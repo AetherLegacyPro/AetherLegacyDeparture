@@ -1,0 +1,481 @@
+{
+  "records.aether_tune": {
+	"category": "record",
+	"sounds":[
+	  {
+	    "name": "aether_legacy:record/aether_tune",
+	    "stream": true
+	  }
+	]
+  },
+  "records.legacy": {
+	"category": "record",
+	"sounds":[
+	  {
+	    "name": "aether_legacy:record/legacy",
+	    "stream": true
+	  }
+	]
+  },
+  "records.ascending_dawn": {
+	"category": "record",
+	"sounds": [
+	  {
+	    "name": "aether_legacy:record/ascending_dawn",
+	    "stream": true
+	  }
+	]
+  },
+  "records.welcoming_skies": {
+  	"category": "record",
+	"sounds": [
+	  {
+	    "name": "aether_legacy:record/welcoming_skies",
+	    "stream": true
+	  }
+	]
+  },
+  "music.menu": {
+	"category": "music",
+	"sounds": [
+	  {
+	    "name": "aether_legacy:music/menu",
+	    "stream": true
+	  }
+	]
+  },
+  "music.aether1": {
+	"category": "music",
+	"sounds": [
+	  {
+	    "name": "aether_legacy:music/aether1",
+	    "stream": true
+	  }
+	]
+  },
+  "music.aether2": {
+	"category": "music",
+	"sounds": [
+	  {
+	    "name": "aether_legacy:music/aether2",
+	    "stream": true
+	  }
+	]
+  },
+  "music.aether3": {
+	"category": "music",
+	"sounds": [
+	  {
+	    "name": "aether_legacy:music/aether3",
+	    "stream": true
+	  }
+	]
+  },
+  "music.aether4": {
+	"category": "music",
+	"sounds": [
+	  {
+	    "name": "aether_legacy:music/aether4",
+	    "stream": true
+	  }
+	]
+  },
+  "achievement": {
+  	"category": "player",
+	"sounds": [
+	  {
+	    "name": "aether_legacy:achievement/achievement_gen",
+	    "stream": true
+	  }
+	]
+  },
+  "achievement_silver": {
+  	"category": "player",
+	"sounds": [
+	  {
+	    "name": "aether_legacy:achievement/achievement_silver",
+	    "stream": true
+	  }
+	]
+  },
+  "achievement_bronze": {
+  	"category": "player",
+	"sounds": [
+	  {
+	    "name": "aether_legacy:achievement/achievement_bronze",
+	    "stream": true
+	  }
+	]
+  },
+  "aemob.moa.say": {
+  	"category": "neutral",
+	"subtitle": "subtitles.aemob.moa.say",
+	"sounds": [
+	    "aether_legacy:aemob/moa/say"
+	]
+  },
+  "aemob.aerbunny.hurt": {
+  	"category": "neutral",
+	"subtitle": "subtitles.aemob.aerbunny.hurt",
+	"sounds": [
+	    "aether_legacy:aemob/aerbunny/hurt"
+	]
+  },
+  "aemob.aerbunny.death": {
+  	"category": "neutral",
+	"subtitle": "subtitles.aemob.aerbunny.death",
+	"sounds": [
+	    "aether_legacy:aemob/aerbunny/death"
+	]
+  },
+  "aemob.aerbunny.lift": {
+  	"category": "neutral",
+	"subtitle": "subtitles.aemob.aerbunny.lift",
+	"sounds": [
+	    "aether_legacy:aemob/aerbunny/lift"
+	]
+  },
+  "aemob.zephyr.call": {
+  	"category": "hostile",
+	"subtitle": "subtitles.aemob.zephyr.say",
+	"sounds": [
+	    "aether_legacy:aemob/zephyr/call"
+	]
+  },
+  "aemob.zephyr.shoot": {
+  	"category": "hostile",
+	"subtitle": "subtitles.aemob.zephyr.shoot",
+	"sounds": [
+	    "aether_legacy:aemob/zephyr/shoot"
+	]
+  },  
+  "aemob.zephyr.blow": {
+    "category": "hostile",
+    "subtitle": "subtitles.aemob.zephyr.blow",
+    "sounds": [
+        "aether_legacy:aemob/zephyr/blow"
+    ]
+  },  
+  "aemob.zephyr.puff": {
+    "category": "hostile",
+    "subtitle": "subtitles.aemob.zephyr.puff",
+    "sounds": [
+        "aether_legacy:aemob/zephyr/puff"
+    ]
+  },
+  "aemob.aerwhale.call": {
+  	"category": "neutral",
+	"subtitle": "subtitles.aemob.aerwhale.say",
+	"sounds": [
+	    "aether_legacy:aemob/aerwhale/call"
+	]
+  },
+  "aemob.aerwhale.death": {
+  	"category": "neutral",
+	"subtitle": "subtitles.aemob.aerwhale.death",
+	"sounds": [
+	    "aether_legacy:aemob/aerwhale/death"
+	]
+  },
+  "projectile.shoot": {
+	"category": "player",
+	"subtitle": "subtitles.aemisc.projectile.shoot",
+	"sounds": [
+	    "aether_legacy:projectile/shoot"
+	]
+  },
+  "projectile.dart_shooter.shoot": {
+	"category": "player",
+	"subtitle": "subtitles.aemisc.dart_shooter.shoot",
+	"sounds": [
+	    "aether_legacy:projectile/dart_shooter/shoot"
+	]
+  },
+  "projectile.laser.laser_fire": {
+    "category": "player",
+    "subtitle": "subtitles.aemisc.elysian_fire",
+    "sounds": [
+        "aether_legacy:projectile/laser/laser_fire_1",
+        "aether_legacy:projectile/laser/laser_fire_2"
+    ]
+  },
+  "aeboss.slider.awaken": {
+	"category": "hostile",
+	"subtitle": "subtitles.aeboss.slider.awaken",
+	"sounds": [
+	    "aether_legacy:aeboss/slider/awaken"
+	]
+  },
+  "aeboss.slider.collide": {
+	"category": "hostile",
+	"subtitle": "subtitles.aeboss.slider.collide",
+	"sounds": [
+	    "aether_legacy:aeboss/slider/collide"
+	]
+  },
+  "aeboss.slider.move": {
+	"category": "hostile",
+	"subtitle": "subtitles.aeboss.slider.move",
+	"sounds": [
+	    "aether_legacy:aeboss/slider/move"
+	]
+  },
+  "aeboss.slider.death": {
+	"category": "hostile",
+	"subtitle": "subtitles.aeboss.slider.death",
+	"sounds": [
+	    "aether_legacy:aeboss/slider/death"
+	]
+   },
+   
+   "aemob.cyro.hurt": {
+    "category": "hostile",
+    "subtitle": "subtitles.aemob.cyro.hit",
+    "sounds": [
+        "aether_legacy:aemob/cyro/hit1",
+        "aether_legacy:aemob/cyro/hit2",
+        "aether_legacy:aemob/cyro/hit3",
+        "aether_legacy:aemob/cyro/hit4"
+     ]
+    },
+    
+    "aemob.cyro.death": {
+    "category": "hostile",
+    "subtitle": "subtitles.aemob.cyro.death",
+    "sounds": [
+        "aether_legacy:aemob/cyro/death"
+     ]
+    },
+    
+    "aemob.cyro.living": {
+    "category": "hostile",
+    "subtitle": "subtitles.aemob.cyro.breathe",
+    "sounds": [
+        "aether_legacy:aemob/cyro/breathe1",
+        "aether_legacy:aemob/cyro/breathe2",
+        "aether_legacy:aemob/cyro/breathe3"
+     ]
+    },
+    
+   "aemob.aercenturion.hurt": {
+    "category": "hostile",
+    "subtitle": "subtitles.aemob.aercenturion.hit",
+    "sounds": [
+        "aether_legacy:aemob/aercenturion/hit1",
+        "aether_legacy:aemob/aercenturion/hit2"
+     ]
+    },
+
+    "aemob.aercenturion.death": {
+    "category": "hostile",
+    "subtitle": "subtitles.aemob.aercenturion.death",
+    "sounds": [
+        "aether_legacy:aemob/aercenturion/death"
+     ]
+    },
+    
+    "aemob.aercenturion.say": {
+    "category": "hostile",
+    "subtitle": "subtitles.aemob.aercenturion.say",
+    "sounds": [
+        "aether_legacy:aemob/aercenturion/say1",
+        "aether_legacy:aemob/aercenturion/say2"
+     ]
+    },
+    
+    "aemob.aercenturion.seenEnemy": {
+    "category": "hostile",
+    "subtitle": "subtitles.aemob.aercenturion.seenEnemy",
+    "sounds": [
+        "aether_legacy:aemob/aercenturion/seenEnemy"
+     ]
+    },
+    
+    "projectile.charged_hit": {
+    "category": "neutral",
+    "subtitle": "subtitles.projectile.charged_hit",
+    "sounds": [
+        "aether_legacy:projectile/charged_hit/charged_hit0",
+        "aether_legacy:projectile/charged_hit/charged_hit1",
+        "aether_legacy:projectile/charged_hit/charged_hit2",
+        "aether_legacy:projectile/charged_hit/charged_hit3",
+        "aether_legacy:projectile/charged_hit/charged_hit4"
+    ]
+  }, 
+    
+    "aemob.zephyroo.say": {
+    "category": "neutral",
+    "subtitle": "subtitles.aemob.zephyroo.say",
+    "sounds": [
+        "aether_legacy:aemob/zephyroo/say1",
+        "aether_legacy:aemob/zephyroo/say2",
+        "aether_legacy:aemob/zephyroo/say3"
+    ]
+  },
+  
+  "aemob.zephyroo.hurt": {
+    "category": "neutral",
+    "subtitle": "subtitles.aemob.zephyroo.hurt",
+    "sounds": [
+        "aether_legacy:aemob/zephyroo/hurt1",
+        "aether_legacy:aemob/zephyroo/hurt2",
+        "aether_legacy:aemob/zephyroo/hurt3"
+    ]
+  },
+  
+  "aemob.zarnillys.say": {
+    "category": "hostile",
+    "subtitle": "subtitles.aemob.zarnillys.say",
+    "sounds": [
+        "aether_legacy:aemob/zarnillys/say0",
+        "aether_legacy:aemob/zarnillys/say1",
+        "aether_legacy:aemob/zarnillys/say2",
+        "aether_legacy:aemob/zarnillys/say3"
+    ]
+  },
+  
+  "aemob.zarnillys.hurt": {
+    "category": "hostile",
+    "subtitle": "subtitles.aemob.zarnillys.hurt",
+    "sounds": [
+        "aether_legacy:aemob/zarnillys/hurt0",
+        "aether_legacy:aemob/zarnillys/hurt1",
+        "aether_legacy:aemob/zarnillys/hurt2",
+        "aether_legacy:aemob/zarnillys/hurt3"
+    ]
+  },
+  
+  "aemob.zephyroo.death": {
+    "category": "neutral",
+    "subtitle": "subtitles.aemob.zephyroo.death",
+    "sounds": [
+        "aether_legacy:aemob/zephyroo/death"
+    ]
+  },
+  
+  "aemob.urk.hurt": {
+    "category": "hostile",
+    "subtitle": "subtitles.aemob.urk.hurt",
+    "sounds": [
+        "aether_legacy:aemob/urk/hurt0",
+        "aether_legacy:aemob/urk/hurt1",
+        "aether_legacy:aemob/urk/hurt2"
+    ]
+  },
+  
+  "aemob.urk.death": {
+    "category": "neutral",
+    "subtitle": "subtitles.aemob.urk.death",
+    "sounds": [
+        "aether_legacy:aemob/urk/death"
+    ]
+  },
+  
+  
+  "aemob.urk.step": {
+    "category": "hostile",
+    "subtitle": "subtitles.aemob.urk.step",
+    "sounds": [
+        "aether_legacy:aemob/urk/step0",
+        "aether_legacy:aemob/urk/step1",
+        "aether_legacy:aemob/urk/step2",
+        "aether_legacy:aemob/urk/step3"
+    ]
+  },
+  
+   
+  "aemob.cockatrice.hurt": {
+    "category": "hostile",
+    "subtitle": "subtitles.aemob.cockatrice.hurt",
+    "sounds": [
+        "aether_legacy:aemob/cockatrice/hurt1",
+        "aether_legacy:aemob/cockatrice/hurt2",
+        "aether_legacy:aemob/cockatrice/hurt3"
+     ]
+    },
+    
+    "aemob.cockatrice.death": {
+    "category": "hostile",
+    "subtitle": "subtitles.aemob.cockatrice.death",
+    "sounds": [
+        "aether_legacy:aemob/cockatrice/death"
+     ]
+    },
+    
+    "aemob.cockatrice.say": {
+    "category": "hostile",
+    "subtitle": "subtitles.aemob.cockatrice.say",
+    "sounds": [
+        "aether_legacy:aemob/cockatrice/say1",
+        "aether_legacy:aemob/cockatrice/say2",
+        "aether_legacy:aemob/cockatrice/say3"
+     ]
+    },
+    
+    "aemob.uligo.hurt": {
+    "category": "hostile",
+    "subtitle": "subtitles.aemob.uligo.hurt",
+    "sounds": [
+        "aether_legacy:aemob/uligo/hurt1",
+        "aether_legacy:aemob/uligo/hurt2",
+        "aether_legacy:aemob/uligo/hurt3"
+     ]
+    },
+    
+    "aemob.uligo.death": {
+    "category": "hostile",
+    "subtitle": "subtitles.aemob.uligo.death",
+    "sounds": [
+        "aether_legacy:aemob/uligo/death"
+     ]
+    },
+    
+   "aemob.thunderlo.hurt": {
+    "category": "neutral",
+    "subtitle": "subtitles.aemob.thunderlo.hurt",
+    "sounds": [
+        "aether_legacy:aemob/thunderlo/hurt1",
+        "aether_legacy:aemob/thunderlo/hurt2",
+        "aether_legacy:aemob/thunderlo/hurt3"
+     ]
+    },
+    
+    "aemob.thunderlo.death": {
+    "category": "neutral",
+    "subtitle": "subtitles.aemob.thunderlo.death",
+    "sounds": [
+        "aether_legacy:aemob/thunderlo/death"
+     ]
+    },
+    
+    "aemob.thunderlo.say": {
+    "category": "neutral",
+    "subtitle": "subtitles.aemob.thunderlo.say",
+    "sounds": [
+        "aether_legacy:aemob/thunderlo/say1",
+        "aether_legacy:aemob/thunderlo/say2",
+        "aether_legacy:aemob/thunderlo/say3",
+        "aether_legacy:aemob/thunderlo/say4"
+     ]
+    },
+   
+  "aeportal.aeportal": {
+        "category": "neutral",
+        "sounds": [
+            "aeportal/aeportal"
+        ]
+    },
+    
+   "aeportal.aetravel": {
+        "category": "neutral",
+        "sounds": [
+            "aeportal/aetravel"
+        ]
+    },
+   "aeportal.aetrigger": {
+        "category": "neutral",
+        "sounds": [
+            "aeportal/aetrigger"
+        ]
+    }
+}
