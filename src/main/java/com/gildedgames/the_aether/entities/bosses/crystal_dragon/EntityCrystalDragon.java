@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.entities.bosses.EntityElysianGuardian;
+import com.gildedgames.the_aether.entities.bosses.genesis_dragon.EntityGenesisDragon;
 import com.gildedgames.the_aether.entities.hostile.EntityIrk;
 import com.gildedgames.the_aether.items.ItemsAether;
 
@@ -428,7 +429,7 @@ public class EntityCrystalDragon extends EntityFlying implements GIEntityMultiPa
         for (int i = 0; i < p_70971_1_.size(); ++i)
         {
             Entity entity = (Entity)p_70971_1_.get(i);
-       if(!((entity instanceof EntityIrk) || (entity instanceof EntityElysianGuardian) || (entity instanceof EntityCrystalDragon))) { 
+        if(!((entity instanceof EntityIrk) || (entity instanceof EntityElysianGuardian) || (entity instanceof EntityCrystalDragon) || (entity instanceof EntityGenesisDragon))) { 
     	   
             if (entity instanceof EntityLivingBase)
             {

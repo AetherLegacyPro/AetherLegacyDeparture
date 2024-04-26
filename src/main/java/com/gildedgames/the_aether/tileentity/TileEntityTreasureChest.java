@@ -15,6 +15,7 @@ import com.gildedgames.the_aether.world.dungeon.CobaltDungeon;
 import com.gildedgames.the_aether.world.dungeon.DivineBronzeDungeon;
 import com.gildedgames.the_aether.world.dungeon.LargeBronzeDungeon;
 import com.gildedgames.the_aether.world.dungeon.MythicBronzeDungeon;
+import com.gildedgames.the_aether.world.dungeon.PalladiumDungeonTotem;
 import com.gildedgames.the_aether.world.gen.components.ComponentAncientGoldenDungeon;
 import com.gildedgames.the_aether.world.gen.components.ComponentAncientSilverDungeon;
 import com.gildedgames.the_aether.world.gen.components.ComponentDivineGoldenDungeon;
@@ -125,9 +126,9 @@ public class TileEntityTreasureChest extends TileEntityChest {
 			}
 		}
 		
-		if (kind == 13) {
-			for (p = 0; p < 7 + random.nextInt(3); ++p) {
-				this.setInventorySlotContents(random.nextInt(this.getSizeInventory()), ComponentOsmiumDungeon.getOsmiumLoot(random));
+		if (kind == 14) {
+			for (p = 0; p < 7 + random.nextInt(8); ++p) {
+				this.setInventorySlotContents(random.nextInt(this.getSizeInventory()), PalladiumDungeonTotem.getPalladiumLoot(random));
 			}
 		}
 

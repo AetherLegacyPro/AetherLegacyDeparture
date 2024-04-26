@@ -4,19 +4,15 @@ import java.util.Iterator;
 import java.util.List;
 
 import com.gildedgames.the_aether.api.player.util.IAetherBoss;
-import com.gildedgames.the_aether.entities.ai.EntityAIAttackContinuously;
+import com.gildedgames.the_aether.entities.bosses.crystal_dragon.EntityCrystalDragon;
+import com.gildedgames.the_aether.entities.particles.NewAetherParticleHandler;
 import com.gildedgames.the_aether.entities.util.AetherNameGen;
-import com.gildedgames.the_aether.entities.util.EntityAetherItem;
+import com.gildedgames.the_aether.items.ItemsAether;
+import com.gildedgames.the_aether.player.PlayerAether;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-
-import com.gildedgames.the_aether.entities.bosses.genesis_dragon.EntityGenesisDragonPart;
-import com.gildedgames.the_aether.entities.bosses.genesis_dragon.GIEntityMultiPart;
-import com.gildedgames.the_aether.entities.effects.EffectInebriation;
-import com.gildedgames.the_aether.entities.projectile.EntityAmplifiedHammerProjectile;
-import com.gildedgames.the_aether.entities.projectile.EntityZephyrSnowball;
-import com.gildedgames.the_aether.entities.projectile.crystals.EntityCrystal;
-
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEndPortal;
 import net.minecraft.block.material.Material;
@@ -36,6 +32,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityLargeFireball;
 import net.minecraft.entity.projectile.EntitySmallFireball;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.AxisAlignedBB;
@@ -51,7 +50,6 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GIEntityMultiPart, IMob
 {
-	public double waypointX, waypointY, waypointZ;
     public double targetX;
     public double targetY;
     public double targetZ;
@@ -82,150 +80,66 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
     /** Force selecting a new flight target at next tick if set to true. */
     public boolean forceNewTarget;
     /** Activated if the dragon is flying though obsidian, white stone or bedrock. Slows movement and animation speed. */
-    public boolean slowed;
+    public boolean slowed = false;
     private Entity target;
     public int deathTicks;
     /** The current endercrystal that is healing this dragon */
     public EntityEnderCrystal healingEnderCrystal;
     public EntityLivingBase shootingEntity;
-    private final float base;
     private static final String __OBFID = "CL_00001659";
 
-    public EntityGenesisDragon(World p_i1700_1_)
+    public EntityGenesisDragon(final World p_i1700_1_)
     {
         super(p_i1700_1_);
         this.dragonPartArray = new EntityGenesisDragonPart[] {this.dragonPartHead = new EntityGenesisDragonPart(this, "head", 6.0F, 6.0F), this.dragonPartBody = new EntityGenesisDragonPart(this, "body", 8.0F, 8.0F), this.dragonPartTail1 = new EntityGenesisDragonPart(this, "tail", 4.0F, 4.0F), this.dragonPartTail2 = new EntityGenesisDragonPart(this, "tail", 4.0F, 4.0F), this.dragonPartTail3 = new EntityGenesisDragonPart(this, "tail", 4.0F, 4.0F), this.dragonPartWing1 = new EntityGenesisDragonPart(this, "wing", 4.0F, 4.0F), this.dragonPartWing2 = new EntityGenesisDragonPart(this, "wing", 4.0F, 4.0F)};
         this.setHealth(this.getMaxHealth());
-        this.setSize(8.0F, 4.0F);
+        this.setSize(16.0F, 8.0F);
         this.noClip = true;
         this.isImmuneToFire = true;
         this.targetY = 100.0D;
         this.ignoreFrustumCheck = true;
-        this.base = (this.getRNG().nextFloat() - this.getRNG().nextFloat()) * 0.2F + 1.0F;
+        this.dataWatcher.updateObject(19, AetherNameGen.valkGen());
     }
 
+    @Override
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(50.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(500.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(400.0D);
     }
     
     public void registerEntityAI() {
-        this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F, 200.0F));
-    }
-
-    protected void entityInit()
-    {
-        super.entityInit();
+        this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F, 400.0F));
     }
     
     @Override
-	protected void updateEntityActionState()
-	{
-		if (!this.worldObj.isRemote && this.worldObj.difficultySetting != EnumDifficulty.PEACEFUL)
-		{
-			
-		this.prevAttackCounter = this.attackCounter;
-		double d0 = this.waypointX - this.posX;
-		double d1 = this.waypointY - this.posY;
-		double d2 = this.waypointZ - this.posZ;
-		double d3 = d0 * d0 + d1 * d1 + d2 * d2;
-
-		if (d3 < 1.0D || d3 > 3600.0D)
-		{
-			this.waypointX = this.posX + (double)((this.rand.nextFloat() * 2.0F - 1.0F) * 16.0F);
-			this.waypointY = this.posY + (double)((this.rand.nextFloat() * 2.0F - 1.0F) * 16.0F);
-			this.waypointZ = this.posZ + (double)((this.rand.nextFloat() * 2.0F - 1.0F) * 16.0F);
-		}
-
-		if (this.courseChangeCooldown-- <= 0)
-		{
-			this.courseChangeCooldown += this.rand.nextInt(30) + 2;
-			d3 = (double)MathHelper.sqrt_double(d3);
-
-			if (this.isCourseTraversable(this.waypointX, this.waypointY, this.waypointZ, d3))
-			{
-				this.motionX += d0 / d3 * 0.1D;
-				this.motionY += d1 / d3 * 0.1D;
-				this.motionZ += d2 / d3 * 0.1D;
-			}
-			else
-			{
-				this.waypointX = this.posX;
-				this.waypointY = this.posY;
-				this.waypointZ = this.posZ;
-			}
-		}
-
-		this.prevAttackCounter = this.attackCounter;
-
-		if (this.getAttackTarget() == null) {
-			if (this.attackCounter > 0) {
-				this.attackCounter--;
-			}
-
-			this.setAttackTarget(this.worldObj.getClosestVulnerablePlayerToEntity(this, 300D));
-		} else {
-			if (this.getAttackTarget() instanceof EntityPlayer && (((EntityPlayer) this.getAttackTarget()).capabilities.isCreativeMode)) {
-				this.setAttackTarget(null);
-				return;
-			}
-
-			if (this.getAttackTarget().getDistanceSqToEntity(this) < 4096.0D && this.canEntityBeSeen(this.getAttackTarget())) {
-				double x = this.getAttackTarget().posX - this.posX;
-				double y = (this.getAttackTarget().boundingBox.minY + (this.getAttackTarget().height / 2.0F)) - (this.posY + (this.height / 2.0F));
-				double z = this.getAttackTarget().posZ - this.posZ;
-
-				this.rotationYaw = (-(float) Math.atan2(x, z) * 180F) / 3.141593F;
-
-				++this.attackCounter;
-
-				if (this.attackCounter == 10) {
-					this.playSound("aether_legacy:aemob.zephyr.call", 3F, this.base);
-				} else if (this.attackCounter == 20) {
-					this.playSound("aether_legacy:aemob.zephyr.call", 3F, this.base);
-
-					EntityAmplifiedHammerProjectile projectile = new EntityAmplifiedHammerProjectile(this.worldObj);
-					Vec3 lookVector = this.getLook(1.0F);
-
-					projectile.posX = this.posX + lookVector.xCoord * 20D;
-					projectile.posY = this.posY + (double) (this.height / 2.0F) + 0.5D;
-					projectile.posZ = this.posZ + lookVector.zCoord * 20D;
-
-					if (!this.worldObj.isRemote) {
-						projectile.setThrowableHeading(x, y, z, 1.2F, 1.0F);
-						this.worldObj.spawnEntityInWorld(projectile);
-					}
-
-					this.attackCounter = -10;
-				}
-			} else if (this.attackCounter > 0) {
-				this.attackCounter--;
-			}
-		  }
-		}
-	}
-
-	private boolean isCourseTraversable(double p_70790_1_, double p_70790_3_, double p_70790_5_, double p_70790_7_)
-	{
-		double d4 = (this.waypointX - this.posX) / p_70790_7_;
-		double d5 = (this.waypointY - this.posY) / p_70790_7_;
-		double d6 = (this.waypointZ - this.posZ) / p_70790_7_;
-		AxisAlignedBB axisalignedbb = this.boundingBox.copy();
-
-		for (int i = 1; (double)i < p_70790_7_; ++i)
-		{
-			axisalignedbb.offset(d4, d5, d6);
-
-			if (!this.worldObj.getCollidingBoundingBoxes(this, axisalignedbb).isEmpty())
-			{
-				return false;
-			}
-		}
-
-		return true;
-	}
-
+	protected boolean isAIEnabled()
+    {
+        return true;
+    }
+    
+    @Override
+    protected void entityInit()
+    {
+        super.entityInit();
+        this.dataWatcher.addObject(19, AetherNameGen.valkGen());
+    }
+    
+    @Override
+    public void writeEntityToNBT(NBTTagCompound nbttagcompound) {
+        super.writeEntityToNBT(nbttagcompound);
+        
+        nbttagcompound.setString("BossName", this.getName());
+    }
+    
+    @Override
+    public void readEntityFromNBT(NBTTagCompound nbttagcompound) {
+        super.readEntityFromNBT(nbttagcompound);
+        
+        this.setBossName(nbttagcompound.getString("BossName"));
+    }
+    
     /**
      * Returns a double[3] array with movement offsets, used to calculate trailing tail/neck positions. [0] = yaw
      * offset, [1] = y offset, [2] = unused, always 0. Parameters: buffer index offset, partial ticks.
@@ -250,16 +164,70 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
         adouble[2] = this.ringBuffer[j][2] + (this.ringBuffer[k][2] - this.ringBuffer[j][2]) * (double)p_70974_2_;
         return adouble;
     }
+    
+    public void FireBreath() {
+    	if (this.worldObj.isRemote) {
+    		
+    		if (net.minecraft.client.Minecraft.getMinecraft().gameSettings.particleSetting == 2) {
+    			return;
+    		}
+    		
+    		Vec3 look = this.getLookVec();
+
+    		double dist = -12.9; //0.9 -3.9
+    		double px = this.posX + look.xCoord * dist;
+    		double py = this.posY + 2.25 + look.yCoord * dist; //0.25
+    		double pz = this.posZ + look.zCoord * dist;
+
+    			for (int i = 0; i < 6; i++)
+    			{
+    			double dx = look.xCoord;
+    			double dy = look.yCoord;
+    			double dz = look.zCoord;
+
+    			double spread = 6 + this.getRNG().nextDouble() * 2.5; //5
+    			double velocity = 1.15 + this.getRNG().nextDouble() * 0.45; //0.15
+
+    			dx += this.getRNG().nextGaussian() * 0.007499999832361937D * spread;
+    			dy += this.getRNG().nextGaussian() * 0.007499999832361937D * spread;
+    			dz += this.getRNG().nextGaussian() * 0.007499999832361937D * spread;
+    			dx *= velocity;
+    			dy *= velocity;
+    			dz *= velocity;
+    			
+    			NewAetherParticleHandler.DRAGON_FLAME.spawn(worldObj, px, py, pz, -dx, dy, -dz, 0.0f, new Object[0]);
+    			}   	  
+    	}
+    }
 
     /**
      * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
      * use this to react to sunlight and start to burn.
      */
+    //@Override
     public void onLivingUpdate()
     {
+    	
         float f;
-        float f1;
+        float f1;       
+        
+        int rand2 = (int)(1 + Math.random() * 20);
+		switch (rand2)
+        {
+        case 1: 
+		 if (this.rand.nextInt(25) == 1 && !this.worldObj.isRemote) {
+		        EntityCrystalDragon var = new EntityCrystalDragon(this.worldObj);
+		        var.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
+		        var.setAttackTarget(this.getAttackTarget());
 
+		        if (!this.worldObj.isRemote) {
+		           this.worldObj.spawnEntityInWorld(var);
+		          }
+		        
+		        break;
+         	}
+        }
+        
         if (this.worldObj.isRemote)
         {
             f = MathHelper.cos(this.animTime * (float)Math.PI * 2.0F);
@@ -283,8 +251,7 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
         }
         else
         {
-            this.updateDragonEnderCrystal();
-            f = 0.2F / (MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ) * 10.0F + 1.0F);
+            f = 0.2F / (MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ) * 20.0F + 1.0F); //10.0
             f *= (float)Math.pow(2.0D, this.motionY);
 
             if (this.slowed)
@@ -407,8 +374,8 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
                 }
 
                 this.randomYawVelocity *= 0.8F;
-                float f6 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ) * 1.0F + 1.0F;
-                double d9 = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ) * 1.0D + 1.0D;
+                float f6 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ) * 1.0F + 1.0F; //1
+                double d9 = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ) * 1.0D + 1.0D; //1
 
                 if (d9 > 40.0D)
                 {
@@ -435,7 +402,7 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
                 f9 = 0.8F + 0.15F * f9;
                 this.motionX *= (double)f9;
                 this.motionZ *= (double)f9;
-                this.motionY *= 0.9100000262260437D;
+                this.motionY *= 0.9100000262260437D; //0.0
             }
 
             this.renderYawOffset = this.rotationYaw;
@@ -478,7 +445,7 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
 
             for (int j = 0; j < 3; ++j)
             {
-                EntityGenesisDragonPart entitydragonpart = null;
+            	EntityGenesisDragonPart entitydragonpart = null;
 
                 if (j == 0)
                 {
@@ -508,55 +475,19 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
             
         }
         
-       
+        List<Entity> volume = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(10, 10, 10));
+        
+        for(Entity entity : volume) {
+        	if(entity instanceof EntityPlayer && this.canEntityBeSeen(entity)) {
+        		if (worldObj.isRemote) 
+        	    this.FireBreath();
+        		}
+        	}
     }
     
-
-    /**
-     * Updates the state of the enderdragon's current endercrystal.
-     */
-    private void updateDragonEnderCrystal()
-    {
-        if (this.healingEnderCrystal != null)
-        {
-            if (this.healingEnderCrystal.isDead)
-            {
-                if (!this.worldObj.isRemote)
-                {
-                    this.aattackEntityFromPart(this.dragonPartHead, DamageSource.setExplosionSource((Explosion)null), 10.0F);
-                }
-
-                this.healingEnderCrystal = null;
-            }
-            else if (this.ticksExisted % 10 == 0 && this.getHealth() < this.getMaxHealth())
-            {
-                this.setHealth(this.getHealth() + 1.0F);
-            }
-        }
-
-        if (this.rand.nextInt(10) == 0)
-        {
-            float f = 32.0F;
-            List list = this.worldObj.getEntitiesWithinAABB(EntityEnderCrystal.class, this.boundingBox.expand((double)f, (double)f, (double)f));
-            EntityEnderCrystal entityendercrystal = null;
-            double d0 = Double.MAX_VALUE;
-            Iterator iterator = list.iterator();
-
-            while (iterator.hasNext())
-            {
-                EntityEnderCrystal entityendercrystal1 = (EntityEnderCrystal)iterator.next();
-                double d1 = entityendercrystal1.getDistanceSqToEntity(this);
-
-                if (d1 < d0)
-                {
-                    d0 = d1;
-                    entityendercrystal = entityendercrystal1;
-                }
-            }
-
-            this.healingEnderCrystal = entityendercrystal;
-        }
-    }
+    public void playBreathSound() {
+		worldObj.playSoundEffect(this.posX + 0.5, this.posY + 0.5, this.posZ + 0.5, "nova_craft:deepoid.breath", rand.nextFloat() * 0.5F, rand.nextFloat() * 0.5F); //mob.enderdragon.growl
+	}
 
     /**
      * Pushes all entities inside the list away from the enderdragon.
@@ -570,15 +501,18 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
         while (iterator.hasNext())
         {
             Entity entity = (Entity)iterator.next();
-
             if (entity instanceof EntityLivingBase)
-            {
+            {	
                 double d2 = entity.posX - d0;
                 double d3 = entity.posZ - d1;
                 double d4 = d2 * d2 + d3 * d3;
                 entity.addVelocity(d2 / d4 * 8.0D, 0.20000000298023224D, d3 / d4 * 8.0D);
             }
+            
         }
+        
+        if (worldObj.isRemote) 
+    	this.FireBreath();
     }
 
     /**
@@ -589,31 +523,37 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
         for (int i = 0; i < p_70971_1_.size(); ++i)
         {
             Entity entity = (Entity)p_70971_1_.get(i);
-
+       if(!((entity instanceof EntityCrystalDragon))) { 
+    	   
             if (entity instanceof EntityLivingBase)
-            {
-                entity.attackEntityFrom(DamageSource.causeMobDamage(this), 13.0F);
-                entity.attackEntityFrom(DamageSource.magic, 5.0F);
-                entity.attackEntityFrom(DamageSource.outOfWorld, 2.0F);
-            }
+            {            
+                entity.attackEntityFrom(DamageSource.magic, 8.0F);
+                entity.attackEntityFrom(DamageSource.outOfWorld, 2.0F);        
+                
+                {
+                if (!entity.isImmuneToFire())
+            	{
+                	entity.setFire(20);
+                	entity.attackEntityFrom(DamageSource.inFire, 24.0F);
+                	entity.attackEntityFrom(DamageSource.magic, 15.0F);
+            	}
+        		else
+        		{
+        			entity.setFire(20);
+        			entity.attackEntityFrom(DamageSource.generic, 22.0F);
+                	entity.attackEntityFrom(DamageSource.magic, 15.0F);	
+        			//nice try
+        		  }
+                }
+             }
+            
+          }
+       
+       		if (worldObj.isRemote) //good
+       		this.FireBreath();
         }
+        
 
-    }
-    
-    public void func_70844_e(boolean p_70844_1_)
-    {
-        byte b0 = this.dataWatcher.getWatchableObjectByte(16);
-
-        if (p_70844_1_)
-        {
-            b0 = (byte)(b0 | 1);
-        }
-        else
-        {
-            b0 &= -2;
-        }
-
-        this.dataWatcher.updateObject(16, Byte.valueOf(b0));
     }
 
     /**
@@ -623,9 +563,10 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
     {
         this.forceNewTarget = false;
 
-        if (this.rand.nextInt(2) == 0 && !this.worldObj.playerEntities.isEmpty())
+        if (this.rand.nextInt(3) == 0 && !this.worldObj.playerEntities.isEmpty())
         {
-            this.target = (Entity)this.worldObj.playerEntities.get(this.rand.nextInt(this.worldObj.playerEntities.size()));
+            this.target = (Entity)this.worldObj.playerEntities.get(this.rand.nextInt(this.worldObj.playerEntities.size()));   
+                      
         }
         else
         {
@@ -642,6 +583,7 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
                 double d1 = this.posY - this.targetY;
                 double d2 = this.posZ - this.targetZ;
                 flag = d0 * d0 + d1 * d1 + d2 * d2 > 100.0D;
+                              
             }
             while (!flag);
 
@@ -675,17 +617,59 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
         if (p_70965_2_.getEntity() instanceof EntityPlayer || p_70965_2_.isExplosion())
         {
             this.func_82195_e(p_70965_2_, p_70965_3_);
+            this.attackEntityFrom(p_70965_2_, p_70965_3_);
         }
 
         return true;
     }
+    
+    @Override
+    public boolean attackEntityFrom(DamageSource ds, float i) {
+        if (ds.getEntity() instanceof EntityPlayer) {
+        	
+        	if (ds.isExplosion())
+            {
+                return false;
+            }
+        	
+        	Entity entity = ds.getEntity();
+        	
+        	if (entity instanceof EntityPlayer)
+            {
+        	
+            int random1 = (int)(1 + Math.random() * 50);
+       	 	if(random1 == 1 ) {
+       	 	EntityCrystalDragon dragon = new EntityCrystalDragon(this.worldObj);
+       	 		dragon.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
+       	 		dragon.setAttackTarget(this.getAttackTarget());
 
-    /**
-     * Called when the entity is attacked.
-     */
-    public boolean attackEntityFrom(DamageSource p_70097_1_, float p_70097_2_)
-    {
-        return false;
+               if (!this.worldObj.isRemote) {
+                   this.worldObj.spawnEntityInWorld(dragon);
+               	}
+               
+       		}
+       	 
+            }
+        	
+        	if(worldObj.isRemote) 
+            this.FireBreath();
+        	
+        }
+        
+        if (ds.getEntity() == null || !(ds.getEntity() instanceof EntityPlayer)) {
+   		 return false;
+        }
+        EntityPlayer player = (EntityPlayer) ds.getEntity();
+   		boolean flag = super.attackEntityFrom(ds, Math.max(0, i));
+   	
+   		if (flag) {
+   		if (this.getHealth() <= 0 || this.isDead) {
+   		PlayerAether.get(player).setFocusedBoss(null);
+   			}
+   		}
+   		PlayerAether.get(player).setFocusedBoss(this);
+        
+   		return flag;
     }
 
     protected boolean func_82195_e(DamageSource p_82195_1_, float p_82195_2_)
@@ -699,7 +683,7 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
     
     public int getTotalArmorValue()
     {
-        return 10;
+        return 17;
     }
     
     protected void onDeathUpdate()
@@ -751,20 +735,19 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
                 this.worldObj.spawnEntityInWorld(new EntityXPOrb(this.worldObj, this.posX, this.posY, this.posZ, j));
             }
 
+            //this.createloot(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY), MathHelper.floor_double(this.posZ));
             this.setDead();
         }
     }
     
-    public boolean isAirySpace(int x, int y, int z) {
-        Block block = this.worldObj.getBlock(x, y, z);
-
-        return block == Blocks.air || block.getCollisionBoundingBoxFromPool(this.worldObj, x, y, z) == null;
+    protected void dropFewItems(boolean p_70628_1_, int p_70628_2_)
+    {  	
+    	  this.entityDropItem(new ItemStack(ItemsAether.dungeon_key, 1, 14), 0.5F);
+    	//this.entityDropItem(new ItemStack(NovaCraftItems.deep_one_scales, 7 + p_70628_2_), 0.5F);
+    	//this.entityDropItem(new ItemStack(NovaCraftItems.deep_one_bone, 2 + p_70628_2_), 0.5F);
+    	//this.entityDropItem(new ItemStack(NovaCraftItems.anomalous_essence, 12 + p_70628_2_), 0.5F);
+               
     }
-
-    /**
-     * Makes the entity despawn if requirements are reached
-     */
-    protected void despawnEntity() {}
 
     /**
      * Return the Entity parts making up this Entity (currently only for dragons)
@@ -808,12 +791,15 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
      */
     protected float getSoundVolume()
     {
-        return 1.0F;
+        return 3.0F;
     }
-
-    @Override
-    public String getBossName() {
-        return this.dataWatcher.getWatchableObjectString(19) + ", " + StatCollector.translateToLocal("title.aether_legacy.valkyrie_queen.name");
+    
+    public boolean canDespawn() {
+        return false;
+    }
+    
+    public String getName() {
+        return this.dataWatcher.getWatchableObjectString(19);
     }
 
     public void setBossName(String name) {
@@ -821,6 +807,11 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
     }
 
     @Override
+    public String getBossName() {
+        return this.dataWatcher.getWatchableObjectString(19) + ", " + StatCollector.translateToLocal("tile.aether_legacy.genesis_dragon.name");
+    }
+
+	@Override
     public float getBossHealth() {
         return this.getHealth();
     }
@@ -829,5 +820,7 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
     public float getMaxBossHealth() {
         return this.getMaxHealth();
     }
+
 }
+
 

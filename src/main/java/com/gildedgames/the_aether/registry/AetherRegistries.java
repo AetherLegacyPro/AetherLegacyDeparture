@@ -533,6 +533,7 @@ public class AetherRegistries {
 	public static void initializeAmplifierFuel() {
 		AetherAPI.instance().register(new AetherAmplifierFuel(BlocksAether.divineral_block, 8100));
 		AetherAPI.instance().register(new AetherAmplifierFuel(ItemsAether.divineral_ingot, 900));
+		AetherAPI.instance().register(new AetherAmplifierFuel(ItemsAether.notched_core, 900));
 		AetherAPI.instance().register(new AetherAmplifierFuel(ItemsAether.enchanted_divineral, 100));
 		
 		AetherAPI.instance().register(new AetherAmplifierFuel(ItemsAether.divineral_sword, 300));

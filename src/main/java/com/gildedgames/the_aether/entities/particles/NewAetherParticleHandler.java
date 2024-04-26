@@ -51,6 +51,19 @@ public enum NewAetherParticleHandler
         }
 	},
 	
+	DRAGON_FLAME((Class)EntityAmplifierFlame.class, ParticleData.VX_VY_VZ, new Class[] { Integer.TYPE, Float.TYPE, Integer.TYPE, ResourceLocation.class, Integer.TYPE }) {
+        private final ResourceLocation texture;
+        
+        {
+            this.texture = new ResourceLocation("aether_legacy:textures/particles/amplifier_flame.png");
+        }
+        
+        @Override
+        protected Object[] getAdditionalArgs(final World world, final Object... data) {
+            return new Object[] { 0, 0.64f * world.rand.nextFloat(), -1, this.texture, 1 };
+        }
+	},
+	
 	AMBROSIUM_FLAME((Class)EntityEtherealTorchFlame.class, ParticleData.VX_VY_VZ, new Class[] { Integer.TYPE, Float.TYPE, Integer.TYPE, ResourceLocation.class, Integer.TYPE }) {
         private final ResourceLocation texture;
         

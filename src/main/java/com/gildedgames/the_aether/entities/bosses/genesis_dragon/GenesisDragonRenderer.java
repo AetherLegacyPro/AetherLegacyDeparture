@@ -62,7 +62,7 @@ public class GenesisDragonRenderer extends RenderLiving
     protected void preRenderCallback(EntityLivingBase dragon, float partialTickTime)
     {
     	GL11.glTranslated(0, 1.2D, 0);
-        GL11.glScalef(0.5F, 0.5F, 0.5F);
+        GL11.glScalef(2.0F, 2.0F, 2.0F);
     }
 
     /**

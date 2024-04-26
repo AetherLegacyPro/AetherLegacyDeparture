@@ -60,7 +60,6 @@ public class ComponentOsmiumDungeon extends AetherStructure {
 
 	@Override
 	public boolean generate() {
-		System.out.println("Large Structure is generating, be patient!");
 		this.replaceAir = true;
 
 		this.setStructureOffset(42, 34, 40);

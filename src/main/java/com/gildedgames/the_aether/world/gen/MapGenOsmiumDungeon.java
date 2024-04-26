@@ -2,8 +2,11 @@ package com.gildedgames.the_aether.world.gen;
 
 import java.util.Random;
 
+import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.world.gen.components.ComponentOsmiumDungeon;
 import com.gildedgames.the_aether.world.util.RandomTracker;
+
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.MapGenStructure;
@@ -24,9 +27,9 @@ public class MapGenOsmiumDungeon extends MapGenStructure {
 	protected boolean canSpawnStructureAtCoords(int chunkX, int chunkZ) {
 		RandomTracker randomTracker = new RandomTracker();
 
-		if (randomTracker.testRandom(this.rand, 3000) != 0)
+		if (randomTracker.testRandom(this.rand, 4000) != 0)
 		{
-			if (randomTracker.testRandom(this.rand, 3080) != 0)
+			if (randomTracker.testRandom(this.rand, 4080) != 0)
 			{
 				return false;
 			}
@@ -45,6 +48,7 @@ public class MapGenOsmiumDungeon extends MapGenStructure {
 		private int xTendency, zTendency;
 
 		public Start() {
+			System.out.println("Large Structure is generating, be patient!");
 		}
 
 		public Start(World worldIn, Random random, int chunkX, int chunkZ) {

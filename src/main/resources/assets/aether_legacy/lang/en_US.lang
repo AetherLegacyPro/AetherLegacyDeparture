@@ -1434,6 +1434,7 @@ gui.treasure_chest.divine_golden=Divine Golden Treasure Chest
 gui.treasure_chest.mythic_bronze=Unseen Bronze Treasure Chest
 gui.treasure_chest.cobalt=Cobalt Treasure Chest
 gui.treasure_chest.osmium=Osmium Treasure Chest
+gui.treasure_chest.palladium=Palladium Treasure Chest
 
 title.aether_legacy.slider.name=the Slider
 title.aether_legacy.ancient_slider.name=the Ancient Slider

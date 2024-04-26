@@ -142,6 +142,8 @@ public class ItemElysianOffering extends Item {
 			world.setBlock(x - 2, y + 2, z + 2, BlocksAether.hellfire);
 			world.setBlock(x + 2, y + 2, z - 2, BlocksAether.hellfire);
 			world.setBlock(x + 2, y + 2, z + 2, BlocksAether.hellfire);
+			
+			world.setBlock(x, y, z, BlocksAether.treasure_chest, 0, 2);
 		}
 		return true;
     }

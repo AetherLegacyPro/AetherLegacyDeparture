@@ -54,6 +54,8 @@ public class GuiTreasureChest extends GuiContainer {
 			this.chestType = I18n.format("gui.treasure_chest.cobalt");
 		} else if (chestInventory.getKind() == 11) {
 			this.chestType = I18n.format("gui.treasure_chest.osmium");
+		} else if (chestInventory.getKind() == 14) {
+			this.chestType = I18n.format("gui.treasure_chest.palladium");
 		}
 	}
 

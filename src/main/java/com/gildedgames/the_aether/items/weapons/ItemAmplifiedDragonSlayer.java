@@ -49,7 +49,10 @@ public class ItemAmplifiedDragonSlayer extends ItemSword {
 	
 	public boolean hitEntity(ItemStack stack, EntityLivingBase entity, EntityLivingBase player) {
 	      this.damageDealt = dragonMaterial.getDamageVsEntity();
-	      if (entity instanceof EntityCrystalDragon || entity instanceof EntityDragon) {
+	      
+	      String s = EntityList.getEntityString((Entity) entity);
+	      
+	      if (entity instanceof EntityCrystalDragon || entity instanceof EntityDragon || s.contains("Genesis_dragon") ) {
 	         this.damageDealt += 38.0F;
 	      }
 

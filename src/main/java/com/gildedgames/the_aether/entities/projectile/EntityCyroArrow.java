@@ -20,6 +20,8 @@ import java.util.List;
 
 import com.gildedgames.the_aether.entities.bosses.crystal_dragon.EntityCrystalDragon;
 import com.gildedgames.the_aether.entities.bosses.crystal_dragon.EntityCrystalDragonPart;
+import com.gildedgames.the_aether.entities.bosses.genesis_dragon.EntityGenesisDragon;
+import com.gildedgames.the_aether.entities.bosses.genesis_dragon.EntityGenesisDragonPart;
 
 public class EntityCyroArrow extends EntityArrow implements IThrowableEntity {
 
@@ -118,7 +120,7 @@ public class EntityCyroArrow extends EntityArrow implements IThrowableEntity {
 		}
 		
 		if (movingobjectposition != null) {
-			if (movingobjectposition.entityHit != null && !(movingobjectposition.entityHit instanceof EntityCrystalDragon || movingobjectposition.entityHit instanceof EntityCrystalDragonPart)) {
+			if (movingobjectposition.entityHit != null && !(movingobjectposition.entityHit instanceof EntityCrystalDragon || movingobjectposition.entityHit instanceof EntityCrystalDragonPart || movingobjectposition.entityHit instanceof EntityGenesisDragonPart || movingobjectposition.entityHit instanceof EntityGenesisDragon)) {
 				((EntityLivingBase)movingobjectposition.entityHit).addPotionEffect(new PotionEffect(Potion.digSlowdown.id, 200, 1));
 				((EntityLivingBase)movingobjectposition.entityHit).addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 200, 2));
 			}
