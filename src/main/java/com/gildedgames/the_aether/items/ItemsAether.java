@@ -321,14 +321,15 @@ public class ItemsAether {
 	public static Item copper_ring, netherite_ring, diamond_ring, continuum_ring, arkenium_ring, auralite_ring, gravitite_ring, divineral_ring;
 	public static Item iron_pendant, golden_pendant, zanite_pendant, ice_pendant, false_wings;
 	public static Item copper_pendant, netherite_pendant, diamond_pendant, continuum_pendant, arkenium_pendant;
-	public static Item auralite_pendant, gravitite_pendant, divineral_pendant;
+	public static Item auralite_pendant, reinforced_auralite_pendant, amplified_auralite_pendant;
+	public static Item gravitite_pendant, divineral_pendant;
 	public static Item elysian_ring, reinforced_elysian_ring, amplified_elysian_ring;
 
 	public static Item white_cape, red_cape, blue_cape, yellow_cape, black_cape, green_cape, purple_cape, orange_cape, lime_cape; 
 	public static Item pink_cape, gray_cape, cyan_cape, light_gray_cape, light_blue_cape, magenta_cape, brown_cape;	
 	public static Item swet_cape, invisibility_cape, agility_cape, valkyrie_cape, phoenix_cape, aer_cape;
 
-	public static Item golden_feather;
+	public static Item golden_feather, reinforced_golden_feather, amplified_golden_feather;
 	public static Item regeneration_stone, reinforced_regeneration_stone, healing_matrix;
 	public static Item iron_bubble, reinforced_iron_bubble, amplified_iron_bubble;
 	public static Item life_shard, power_shard, invisibility_gem, flaming_stone;
@@ -839,7 +840,11 @@ public class ItemsAether {
 		continuum_pendant = register("continuum_pendant", new ItemAccessory(AccessoryType.PENDANT).setTexture("continuum").setTextureName(Aether.find("accessories/continuum_pendant")));
 		gravitite_pendant = register("gravitite_pendant", new ItemAccessory(AccessoryType.PENDANT).setTexture("gravitite").setTextureName(Aether.find("accessories/gravitite_pendant")));
 		divineral_pendant = register("divineral_pendant", new ItemAccessory(AccessoryType.PENDANT).setTexture("divineral").setMaxDamage(803).setTextureName(Aether.find("accessories/divineral_pendant")));
+		
 		auralite_pendant = register("auralite_pendant", new ItemAccessory(AccessoryType.PENDANT).setTexture("auralite").setMaxDamage(203).setTextureName(Aether.find("accessories/auralite_pendant")));		
+		reinforced_auralite_pendant = register("reinforced_auralite_pendant", new ItemAccessory(AccessoryType.PENDANT).setTexture("ref_auralite").setMaxDamage(603).setTextureName(Aether.find("accessories/ref_auralite_pendant")));		
+		amplified_auralite_pendant = register("amplified_auralite_pendant", new ItemAccessory(AccessoryType.PENDANT).setTexture("amplified_auralite").setMaxDamage(1903).setTextureName(Aether.find("accessories/amplified_auralite_pendant")));		
+	
 		ice_pendant = register("ice_pendant", new ItemAccessory(AccessoryType.PENDANT).setColor(0x95e6e7).setMaxDamage(250).setTextureName(Aether.find("accessories/pendant_base")));
 		false_wings = register("false_wings", new ItemAccessory(AccessoryType.PENDANT).setDungeonLoot().setTextureName(Aether.find("accessories/false_wings")));
 
@@ -867,7 +872,10 @@ public class ItemsAether {
 		phoenix_cape = register("phoenix_cape", new ItemAccessory(AccessoryType.CAPE).setTexture("phoenix_cape").setDungeonLoot().setTextureName(Aether.find("accessories/phoenix_cape")));
 		aer_cape = register("aer_cape", new ItemAccessory(AccessoryType.CAPE).setTexture("aer_cape").setDungeonLoot().setTextureName(Aether.find("accessories/aer_cape")));
 		
-		golden_feather = register("golden_feather", new ItemAccessory(AccessoryType.MISC).setDungeonLoot().setMaxDamage(1800).setTextureName(Aether.find("accessories/golden_feather")));
+		golden_feather = register("golden_feather", new ItemAccessory(AccessoryType.MISC).setDungeonLoot().setMaxDamage(120).setTextureName(Aether.find("accessories/golden_feather")));
+		reinforced_golden_feather = register("reinforced_golden_feather", new ItemAccessory(AccessoryType.MISC).setDungeonLoot().setMaxDamage(480).setTextureName(Aether.find("accessories/ref_golden_feather")));
+		amplified_golden_feather = register("amplified_golden_feather", new ItemAccessory(AccessoryType.MISC).setDungeonLoot().setMaxDamage(1800).setTextureName(Aether.find("accessories/amplified_golden_feather")));
+		
 		flaming_stone = register("flaming_stone", new ItemAccessory(AccessoryType.MISC).setDungeonLoot().setTextureName(Aether.find("accessories/flaming_stone")));
 		
 		regeneration_stone = register("regeneration_stone", new ItemAccessory(AccessoryType.MISC).setDungeonLoot().setMaxDamage(120).setTextureName(Aether.find("accessories/regeneration_stone")));

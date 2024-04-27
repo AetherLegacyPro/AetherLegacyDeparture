@@ -38,7 +38,7 @@ public class AbilityAuraliteRing implements IAetherAbility {
 	
 		Entity entity = this.player.getEntity();
 
-		if (this.player.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.auralite_ring)) || this.player.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.auralite_pendant))) {
+		if (this.player.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.auralite_ring)) || this.player.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.auralite_pendant)) || this.player.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.reinforced_auralite_pendant))) {
 			EntityLivingBase entityLiving = (EntityLivingBase) entity;
 
 			float movementLR = this.negativeDifference(entityLiving, entityLiving.moveStrafing);
@@ -57,7 +57,7 @@ public class AbilityAuraliteRing implements IAetherAbility {
 					}
 			
 				}
-		else if (this.player.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.auralite_ring)) && this.player.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.auralite_pendant))) {
+		else if (this.player.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.auralite_ring)) && (this.player.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.auralite_pendant)) || this.player.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.reinforced_auralite_pendant)))) {
 			EntityLivingBase entityLiving = (EntityLivingBase) entity;
 
 			float movementLR = this.negativeDifference(entityLiving, entityLiving.moveStrafing);
@@ -73,6 +73,26 @@ public class AbilityAuraliteRing implements IAetherAbility {
 			
 			if (entityLiving.isEntityAlive()) {
 				entityLiving.moveFlying(movementLR, movementFB, 0.01F);
+					}
+			
+				}
+		
+		else if (this.player.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.amplified_auralite_pendant))) {
+			EntityLivingBase entityLiving = (EntityLivingBase) entity;
+
+			float movementLR = this.negativeDifference(entityLiving, entityLiving.moveStrafing);
+			float movementFB = this.negativeDifference(entityLiving, entityLiving.moveForward);			
+						
+			if (entityLiving.isInWater()) {
+				entityLiving.moveFlying(movementLR, movementFB, 0.01F);
+			}
+			
+			if (entityLiving.isSprinting()) {
+				entityLiving.moveFlying(movementLR, movementFB, 0.035F);
+			}
+			
+			if (entityLiving.isEntityAlive()) {
+				entityLiving.moveFlying(movementLR, movementFB, 0.02F);
 					}
 			
 				}

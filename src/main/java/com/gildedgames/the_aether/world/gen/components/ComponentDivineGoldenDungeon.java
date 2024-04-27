@@ -298,7 +298,7 @@ public class ComponentDivineGoldenDungeon extends AetherStructure {
 			}
 			
 			case 11: 
-				return new ItemStack(ItemsAether.healing_matrix);
+				return new ItemStack(ItemsAether.reinforced_regeneration_stone);
 
 			case 12: 
 				return new ItemStack(ItemsAether.agility_boots);

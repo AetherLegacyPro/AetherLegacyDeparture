@@ -110,9 +110,12 @@ public class AetherRegistries {
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.continuum_pendant, AccessoryType.PENDANT));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.gravitite_pendant, AccessoryType.PENDANT));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.divineral_pendant, AccessoryType.PENDANT));
-		AetherAPI.instance().register(new AetherAccessory(ItemsAether.auralite_pendant, AccessoryType.PENDANT));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.ice_pendant, AccessoryType.PENDANT));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.false_wings, AccessoryType.PENDANT));
+		
+		AetherAPI.instance().register(new AetherAccessory(ItemsAether.auralite_pendant, AccessoryType.PENDANT));
+		AetherAPI.instance().register(new AetherAccessory(ItemsAether.reinforced_auralite_pendant, AccessoryType.PENDANT));
+		AetherAPI.instance().register(new AetherAccessory(ItemsAether.amplified_auralite_pendant, AccessoryType.PENDANT));
 		
 		if (Loader.isModLoaded("etfuturum")) {
 			AetherAPI.instance().register(new AetherAccessory(ItemsAether.copper_pendant, AccessoryType.PENDANT));
@@ -144,8 +147,8 @@ public class AetherRegistries {
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.aer_cape, AccessoryType.CAPE));
 
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.golden_feather, AccessoryType.MISC));
-		
-		
+		AetherAPI.instance().register(new AetherAccessory(ItemsAether.reinforced_golden_feather, AccessoryType.MISC));
+		AetherAPI.instance().register(new AetherAccessory(ItemsAether.amplified_golden_feather, AccessoryType.MISC));
 		
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.regeneration_stone, AccessoryType.MISC));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.reinforced_regeneration_stone, AccessoryType.MISC));
@@ -546,6 +549,15 @@ public class AetherRegistries {
 		
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.tipped_notched_pickaxe, ItemsAether.amplified_notched_pickaxe, 7200));
 		
+		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.reinforced_valkyrie_ring, ItemsAether.amplified_valkyrie_ring, 2700));
+		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.reinforced_bone_ring, ItemsAether.amplified_bone_ring, 1800));
+		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.reinforced_haste_ring, ItemsAether.amplified_haste_ring, 2700));
+		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.reinforced_auralite_pendant, ItemsAether.amplified_auralite_pendant, 1800));
+		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.reinforced_regeneration_stone, ItemsAether.healing_matrix, 2700));		
+		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.reinforced_iron_bubble, ItemsAether.amplified_iron_bubble, 1800));
+		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.reinforced_golden_feather, ItemsAether.amplified_golden_feather, 2700));
+		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.reinforced_elysian_ring, ItemsAether.amplified_elysian_ring, 2700));
+
 	}
 	
 	public static void initializeAmplifierFuel() {
@@ -924,7 +936,14 @@ public class AetherRegistries {
 		register("scaled_elysian_boots", new ItemStack(ItemsAether.scaled_elysian_boots), "VXX", "XYX", "XXV", 'X', ItemsAether.zarnillys_scales, 'Y', ItemsAether.elysian_boots, 'V', ItemsAether.thunderlo_leather);
 		
 		//Reinforced Recipes
-		register("elysian_ring", new ItemStack(ItemsAether.elysian_ring), "VX ", "XZY", " YW", 'V', ItemsAether.charged_tempest_core, 'X', ItemsAether.aceninum_shard, 'Z', ItemsAether.elysian_ring, 'Y', ItemsAether.charged_empyrean_gemstone, 'W', ItemsAether.zanite_gemstone);
+		register("reinforced_elysian_ring", new ItemStack(ItemsAether.reinforced_elysian_ring), "VX ", "XZY", " YW", 'V', ItemsAether.charged_tempest_core, 'X', ItemsAether.aceninum_shard, 'Z', ItemsAether.elysian_ring, 'Y', ItemsAether.charged_empyrean_gemstone, 'W', ItemsAether.zanite_gemstone);		
+		register("reinforced_bone_ring", new ItemStack(ItemsAether.reinforced_bone_ring), "VX ", "XZY", " YW", 'V', ItemsAether.charged_tempest_core, 'X', ItemsAether.aceninum_shard, 'Z', ItemsAether.bone_ring, 'Y', ItemsAether.charged_empyrean_gemstone, 'W', ItemsAether.zanite_gemstone);
+		register("reinforced_valkyrie_ring", new ItemStack(ItemsAether.reinforced_valkyrie_ring), "VX ", "XZY", " YW", 'V', ItemsAether.charged_tempest_core, 'X', ItemsAether.aceninum_shard, 'Z', ItemsAether.valkyrie_ring, 'Y', ItemsAether.charged_empyrean_gemstone, 'W', ItemsAether.zanite_gemstone);		
+		register("reinforced_auralite_pendant", new ItemStack(ItemsAether.reinforced_auralite_pendant), "VX ", "XZY", " YW", 'V', ItemsAether.charged_tempest_core, 'X', ItemsAether.aceninum_shard, 'Z', ItemsAether.auralite_pendant, 'Y', ItemsAether.charged_empyrean_gemstone, 'W', ItemsAether.zanite_gemstone);
+		register("reinforced_haste_ring", new ItemStack(ItemsAether.reinforced_haste_ring), "VX ", "XZY", " YW", 'V', ItemsAether.charged_tempest_core, 'X', ItemsAether.aceninum_shard, 'Z', ItemsAether.haste_ring, 'Y', ItemsAether.charged_empyrean_gemstone, 'W', ItemsAether.zanite_gemstone);
+		register("reinforced_regeneration_stone", new ItemStack(ItemsAether.reinforced_regeneration_stone), "VX ", "XZY", " YW", 'V', ItemsAether.charged_tempest_core, 'X', ItemsAether.aceninum_shard, 'Z', ItemsAether.regeneration_stone, 'Y', ItemsAether.charged_empyrean_gemstone, 'W', ItemsAether.zanite_gemstone);
+		register("reinforced_iron_bubble", new ItemStack(ItemsAether.reinforced_iron_bubble), "VX ", "XZY", " YW", 'V', ItemsAether.charged_tempest_core, 'X', ItemsAether.aceninum_shard, 'Z', ItemsAether.iron_bubble, 'Y', ItemsAether.charged_empyrean_gemstone, 'W', ItemsAether.zanite_gemstone);
+		register("reinforced_golden_feather", new ItemStack(ItemsAether.reinforced_golden_feather), "VX ", "XZY", " YW", 'V', ItemsAether.charged_tempest_core, 'X', ItemsAether.aceninum_shard, 'Z', ItemsAether.golden_feather, 'Y', ItemsAether.charged_empyrean_gemstone, 'W', ItemsAether.zanite_gemstone);
 		
 		//Tipped Recipes
 		register("tipped_skyroot_sword", new ItemStack(ItemsAether.tipped_skyroot_sword), "VXZ", "XYX", "ZXX", 'X', ItemsAether.auralite_crystal, 'Y', ItemsAether.skyroot_sword, 'V', BlocksAether.enchanted_gravitite, 'Z', ItemsAether.arkenium_ingot);

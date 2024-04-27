@@ -51,6 +51,7 @@ public class AbilityAccessories implements IAetherAbility {
 			
 			this.player.getAccessoryInventory().damageWornStack(1, new ItemStack(ItemsAether.auralite_ring));
 			this.player.getAccessoryInventory().damageWornStack(1, new ItemStack(ItemsAether.auralite_pendant));
+			this.player.getAccessoryInventory().damageWornStack(1, new ItemStack(ItemsAether.reinforced_auralite_pendant));
 			
 			if (Loader.isModLoaded("etfuturum")) {
 			this.player.getAccessoryInventory().damageWornStack(1, new ItemStack(ItemsAether.copper_ring));
@@ -86,12 +87,15 @@ public class AbilityAccessories implements IAetherAbility {
 		
 		if (this.player.getEntity().ticksExisted % 2500 == 0 && AetherConfig.MiscItemDamageable() == true) {
 			this.player.getAccessoryInventory().damageWornStack(1, new ItemStack(ItemsAether.golden_feather));
+			this.player.getAccessoryInventory().damageWornStack(1, new ItemStack(ItemsAether.reinforced_golden_feather));
+			this.player.getAccessoryInventory().damageWornStack(1, new ItemStack(ItemsAether.amplified_golden_feather));
 			this.player.getAccessoryInventory().damageWornStack(1, new ItemStack(ItemsAether.regeneration_stone));
 			this.player.getAccessoryInventory().damageWornStack(1, new ItemStack(ItemsAether.reinforced_regeneration_stone));
 			this.player.getAccessoryInventory().damageWornStack(1, new ItemStack(ItemsAether.iron_bubble));
 			this.player.getAccessoryInventory().damageWornStack(1, new ItemStack(ItemsAether.reinforced_iron_bubble));
 			this.player.getAccessoryInventory().damageWornStack(1, new ItemStack(ItemsAether.amplified_iron_bubble));
 			this.player.getAccessoryInventory().damageWornStack(1, new ItemStack(ItemsAether.healing_matrix));
+			this.player.getAccessoryInventory().damageWornStack(1, new ItemStack(ItemsAether.amplified_auralite_pendant));
 			
 			this.player.getAccessoryInventory().damageWornStack(1, new ItemStack(ItemsAether.elysian_ring));	
 			this.player.getAccessoryInventory().damageWornStack(1, new ItemStack(ItemsAether.reinforced_elysian_ring));	
@@ -236,7 +240,7 @@ public class AbilityAccessories implements IAetherAbility {
 			}
 		}
 
-		if (this.player.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.golden_feather)) || this.player.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.valkyrie_cape))) {
+		if (this.player.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.golden_feather)) || this.player.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.reinforced_golden_feather)) || this.player.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.amplified_golden_feather)) || this.player.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.valkyrie_cape))) {
 			if (!this.player.getEntity().onGround && this.player.getEntity().motionY < 0.0D && !this.player.getEntity().isInWater() && !this.player.getEntity().isSneaking()) {
 				this.player.getEntity().motionY *= 0.59999999999999998D;
 			}

@@ -1172,7 +1172,7 @@ public class ComponentOsmiumDungeon extends AetherStructure {
 			case 4:
 				return new ItemStack(ItemsAether.bone_ring);
 			case 5:
-				return new ItemStack(ItemsAether.healing_matrix);
+				return new ItemStack(ItemsAether.reinforced_regeneration_stone);
 			case 6: {
 				return new ItemStack(ItemsAether.aer_cape);
 			}

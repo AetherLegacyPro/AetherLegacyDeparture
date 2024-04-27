@@ -169,6 +169,10 @@ item.amplified_valkyrie_ring.name=Valkyrie Ring
 item.reinforced_regeneration_stone.name=Healing Stone
 item.reinforced_iron_bubble.name=Iron Bubble
 item.amplified_iron_bubble.name=Iron Bubble
+item.reinforced_golden_feather.name=Golden Feather
+item.amplified_golden_feather.name=Golden Feather
+item.reinforced_auralite_pendant.name=Auralite Pendant
+item.amplified_auralite_pendant.name=Auralite Pendant
 
 item.white_dye.name=White Dye
 item.black_dye.name=Black Dye

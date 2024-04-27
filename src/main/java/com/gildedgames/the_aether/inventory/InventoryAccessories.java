@@ -635,7 +635,8 @@ public class InventoryAccessories implements IAccessoryInventory {
 	@Override
 	public boolean isWearingPureSpeed() {
 		return (wearingArmor(new ItemStack(ItemsAether.amplified_agility_boots)) && wearingAccessory(new ItemStack(ItemsAether.agility_cape))
-				&& wearingAccessory(new ItemStack(ItemsAether.auralite_pendant)) && wearingAccessory(new ItemStack(ItemsAether.auralite_ring))); 
+				&& (wearingAccessory(new ItemStack(ItemsAether.auralite_pendant)) || wearingAccessory(new ItemStack(ItemsAether.reinforced_auralite_pendant)) || wearingAccessory(new ItemStack(ItemsAether.amplified_auralite_pendant))) 
+				&& wearingAccessory(new ItemStack(ItemsAether.auralite_ring))); 
 	}
 	
 	@Override
