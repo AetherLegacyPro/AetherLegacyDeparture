@@ -45,6 +45,30 @@ public class AbilityBoneRing implements IAetherAbility {
 				}
 			}
 		}
+		else if (this.player.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.reinforced_bone_ring))) {
+			if (this.player.getEntity().isEating()) {
+				this.player.getEntity().addPotionEffect(new PotionEffect(Potion.resistance.id, 600, 0));
+				this.player.getEntity().addPotionEffect(new PotionEffect(Potion.damageBoost.id, 600, 0));
+				this.player.getEntity().addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 600, 0));
+				
+				int rand = (int)(1 + Math.random() * 130);
+				if(rand == 10 ) {
+				this.player.getAccessoryInventory().damageWornStack(1, new ItemStack(ItemsAether.reinforced_bone_ring));
+				}
+			}
+		}
+		else if (this.player.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.amplified_bone_ring))) {
+			if (this.player.getEntity().isEating()) {
+				this.player.getEntity().addPotionEffect(new PotionEffect(Potion.resistance.id, 600, 1));
+				this.player.getEntity().addPotionEffect(new PotionEffect(Potion.damageBoost.id, 600, 1));
+				this.player.getEntity().addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 600, 0));
+				
+				int rand = (int)(1 + Math.random() * 150);
+				if(rand == 10 ) {
+				this.player.getAccessoryInventory().damageWornStack(1, new ItemStack(ItemsAether.amplified_bone_ring));
+				}
+			}
+		}
 				
 		}
 	}

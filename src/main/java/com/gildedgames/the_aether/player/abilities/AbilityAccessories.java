@@ -74,7 +74,11 @@ public class AbilityAccessories implements IAetherAbility {
 		
 		if (this.player.getEntity().ticksExisted % 2000 == 0) {
 			this.player.getAccessoryInventory().damageWornStack(1, new ItemStack(ItemsAether.valkyrie_ring));
+			this.player.getAccessoryInventory().damageWornStack(1, new ItemStack(ItemsAether.reinforced_valkyrie_ring));
+			this.player.getAccessoryInventory().damageWornStack(1, new ItemStack(ItemsAether.amplified_valkyrie_ring));
 			this.player.getAccessoryInventory().damageWornStack(1, new ItemStack(ItemsAether.haste_ring));
+			this.player.getAccessoryInventory().damageWornStack(1, new ItemStack(ItemsAether.reinforced_haste_ring));
+			this.player.getAccessoryInventory().damageWornStack(1, new ItemStack(ItemsAether.amplified_haste_ring));
 			if (AetherConfig.MiscItemDamageable() == true) {
 			this.player.getAccessoryInventory().damageWornStack(1, new ItemStack(ItemsAether.invisibility_gem));
 			}
@@ -83,7 +87,10 @@ public class AbilityAccessories implements IAetherAbility {
 		if (this.player.getEntity().ticksExisted % 2500 == 0 && AetherConfig.MiscItemDamageable() == true) {
 			this.player.getAccessoryInventory().damageWornStack(1, new ItemStack(ItemsAether.golden_feather));
 			this.player.getAccessoryInventory().damageWornStack(1, new ItemStack(ItemsAether.regeneration_stone));
+			this.player.getAccessoryInventory().damageWornStack(1, new ItemStack(ItemsAether.reinforced_regeneration_stone));
 			this.player.getAccessoryInventory().damageWornStack(1, new ItemStack(ItemsAether.iron_bubble));
+			this.player.getAccessoryInventory().damageWornStack(1, new ItemStack(ItemsAether.reinforced_iron_bubble));
+			this.player.getAccessoryInventory().damageWornStack(1, new ItemStack(ItemsAether.amplified_iron_bubble));
 			this.player.getAccessoryInventory().damageWornStack(1, new ItemStack(ItemsAether.healing_matrix));
 			
 			this.player.getAccessoryInventory().damageWornStack(1, new ItemStack(ItemsAether.elysian_ring));	
@@ -155,7 +162,7 @@ public class AbilityAccessories implements IAetherAbility {
 			}
 		}
 
-		if (this.player.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.iron_bubble))) {
+		if (this.player.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.iron_bubble)) || this.player.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.reinforced_iron_bubble)) || this.player.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.amplified_iron_bubble))) {
 			this.player.getEntity().setAir(0);
 		}
 
@@ -187,7 +194,7 @@ public class AbilityAccessories implements IAetherAbility {
 			}
 		}
 
-		if (this.player.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.regeneration_stone))) {
+		if (this.player.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.regeneration_stone)) || this.player.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.reinforced_regeneration_stone))) {
 			if (this.player.getEntity().getHealth() < this.player.getEntity().getMaxHealth() && this.player.getEntity().getActivePotionEffect(Potion.regeneration) == null) {
 				this.player.getEntity().addPotionEffect(new PotionEffect(Potion.regeneration.id, 80, 0));
 			}

@@ -481,6 +481,7 @@ AetherEventHandler {
 					|| (playerAether.getAccessoryInventory().isWearingValkyrieSet())
 					|| (playerAether.getAccessoryInventory().isWearingValkyrieComboSet())
 					|| (playerAether.getAccessoryInventory().isWearingValkyrieRingAndAmplifiedArmor())
+					|| (playerAether.getAccessoryInventory().isWearingAmplifiedValkyrieRingAndAmplifiedArmor())
 					|| (playerAether.getAccessoryInventory().isWearingAmplifiedValkyrieSet()))
 			{
 				event.setCanceled(true);

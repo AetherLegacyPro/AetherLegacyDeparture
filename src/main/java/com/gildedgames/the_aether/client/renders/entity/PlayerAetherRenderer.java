@@ -447,6 +447,20 @@ public class PlayerAetherRenderer {
             }
         }
         
+        if (playerAether.getAccessoryInventory().isWearingAmplifiedValkyrieRingAndAmplifiedArmor()) {
+        	this.mc.getTextureManager().bindTexture(TEXTURE_VALKYRIE_RING);
+        	
+        	this.modelWings.setWingSinage(playerAether.wingSinage);
+            this.modelWings.wingLeft.render(scale);
+            this.modelWings.wingRight.render(scale);
+
+            if (player.hurtResistantTime > 0) {
+                GL11.glColor3f(1.0F, 0.5F, 0.5F);
+            } else {
+                GL11.glColor3f(1.0F, 1.0F, 1.0F);
+            }
+        }
+        
         if (playerAether.getAccessoryInventory().isWearingAgilityBoots() || playerAether.getAccessoryInventory().isWearingAmplifiedAgilityBoots()) {
         	 float f9 = player.prevRotationYaw + (player.rotationYaw - player.prevRotationYaw) * partialTicks - (player.prevRenderYawOffset + (player.renderYawOffset - player.prevRenderYawOffset) * partialTicks);
 

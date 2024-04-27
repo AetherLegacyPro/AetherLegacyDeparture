@@ -132,6 +132,23 @@ public class AetherOverlay {
 				drawTexturedModalRect((width / 2 - 8 * i) + 81, height - 49, 16, 18, 9, 9);
 			}
 		}
+		
+		int bubbleAmount2 = PlayerAether.get(mc.thePlayer).getAccessoryInventory().getAccessoryCount(new ItemStack(ItemsAether.reinforced_iron_bubble));
+
+		if (mc.playerController.shouldDrawHUD() && mc.thePlayer.isInWater() && mc.thePlayer.isInsideOfMaterial(Material.water)) {
+			for (int i = 0; i < bubbleAmount2; ++i) {
+				drawTexturedModalRect((width / 2 - 8 * i) + 81, height - 49, 16, 18, 9, 9);
+			}
+		}
+		
+
+		int bubbleAmount3 = PlayerAether.get(mc.thePlayer).getAccessoryInventory().getAccessoryCount(new ItemStack(ItemsAether.amplified_iron_bubble));
+
+		if (mc.playerController.shouldDrawHUD() && mc.thePlayer.isInWater() && mc.thePlayer.isInsideOfMaterial(Material.water)) {
+			for (int i = 0; i < bubbleAmount3; ++i) {
+				drawTexturedModalRect((width / 2 - 8 * i) + 81, height - 49, 16, 18, 9, 9);
+			}
+		}
 
 		GL11.glDepthMask(true);
 		GL11.glEnable(GL11.GL_DEPTH_TEST);

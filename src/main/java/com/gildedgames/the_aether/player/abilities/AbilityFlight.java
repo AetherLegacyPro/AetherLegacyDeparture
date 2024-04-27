@@ -44,7 +44,8 @@ public class AbilityFlight implements IAetherAbility {
 		return (this.player.getAccessoryInventory().isWearingValkyrieSet() ||
 			   this.player.getAccessoryInventory().isWearingValkyrieComboSet() ||
 			   this.player.getAccessoryInventory().isWearingAmplifiedValkyrieSet() ||
-			   this.player.getAccessoryInventory().isWearingValkyrieRingAndAmplifiedArmor());
+			   this.player.getAccessoryInventory().isWearingValkyrieRingAndAmplifiedArmor() ||
+			   this.player.getAccessoryInventory().isWearingAmplifiedValkyrieRingAndAmplifiedArmor());
 	}
 
 	@Override
@@ -110,6 +111,32 @@ public class AbilityFlight implements IAetherAbility {
 					if (this.flightCount3 < this.maxFlightCount3) {
 						this.flightMod3 += 0.45D;
 						this.player.getEntity().motionY = 0.045D * this.flightMod3;
+						this.flightCount3++;
+					}
+				} else {
+					this.flightCount3++;
+				}
+
+			} else {
+				this.flightMod3 = 1.0D;
+			}
+
+			if (this.player.getEntity().onGround) {
+				this.flightCount3 = 0;
+				this.flightMod3 = 2.0D;
+			}
+		}
+		 
+		if (this.player.getAccessoryInventory().isWearingAmplifiedValkyrieRingAndAmplifiedArmor()) {
+			 if (this.player.isJumping()) {
+				if (this.flightMod3 >= this.maxFlightMod3) {
+					this.flightMod3 = this.maxFlightMod3;
+				}
+
+				if (this.flightCount3 > 2) {
+					if (this.flightCount3 < this.maxFlightCount3) {
+						this.flightMod3 += 0.65D;
+						this.player.getEntity().motionY = 0.065D * this.flightMod3;
 						this.flightCount3++;
 					}
 				} else {

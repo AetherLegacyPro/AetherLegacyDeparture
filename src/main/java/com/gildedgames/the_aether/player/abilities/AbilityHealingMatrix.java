@@ -36,7 +36,7 @@ public class AbilityHealingMatrix implements IAetherAbility {
 	
 		if (this.player.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.healing_matrix))) {
 			if (this.player.getEntity().getHealth() < this.player.getEntity().getMaxHealth() && this.player.getEntity().getActivePotionEffect(Potion.regeneration) == null) {
-				this.player.getEntity().addPotionEffect(new PotionEffect(Potion.regeneration.id, 40, 0));
+				this.player.getEntity().addPotionEffect(new PotionEffect(Potion.regeneration.id, 40, 1));
 			}
 		}
 		

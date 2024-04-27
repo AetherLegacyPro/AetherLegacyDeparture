@@ -119,6 +119,8 @@ public interface IAccessoryInventory extends IInventory {
 	
 	public boolean isWearingValkyrieRingAndAmplifiedArmor();
 	
+	public boolean isWearingAmplifiedValkyrieRingAndAmplifiedArmor();
+	
 	//---------------- Haste Ring CDFS
 	public boolean isWearingHasteRing();
 	

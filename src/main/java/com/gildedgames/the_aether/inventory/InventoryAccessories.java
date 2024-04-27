@@ -559,7 +559,7 @@ public class InventoryAccessories implements IAccessoryInventory {
 	
 	@Override
 	public boolean isWearingValkyrieRing() {
-		return wearingAccessory(new ItemStack(ItemsAether.valkyrie_ring));
+		return (wearingAccessory(new ItemStack(ItemsAether.valkyrie_ring)) || wearingAccessory(new ItemStack(ItemsAether.reinforced_valkyrie_ring)) || wearingAccessory(new ItemStack(ItemsAether.amplified_valkyrie_ring)));
 	}
 	
 	@Override
@@ -568,7 +568,17 @@ public class InventoryAccessories implements IAccessoryInventory {
 				&& wearingArmor(new ItemStack(ItemsAether.amplified_valkyrie_chestplate)) 
 				&& wearingArmor(new ItemStack(ItemsAether.amplified_valkyrie_leggings)) 
 				&& (wearingArmor(new ItemStack(ItemsAether.amplified_valkyrie_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_agility_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_sentry_boots)))  
-				&& wearingAccessory(new ItemStack(ItemsAether.valkyrie_ring))
+				&& (wearingAccessory(new ItemStack(ItemsAether.valkyrie_ring)) || wearingAccessory(new ItemStack(ItemsAether.reinforced_valkyrie_ring)))
+				&& wearingAccessory(new ItemStack(ItemsAether.amplified_valkyrie_gloves));
+	}
+	
+	@Override
+	public boolean isWearingAmplifiedValkyrieRingAndAmplifiedArmor() {
+		return wearingArmor(new ItemStack(ItemsAether.amplified_valkyrie_helmet)) 
+				&& wearingArmor(new ItemStack(ItemsAether.amplified_valkyrie_chestplate)) 
+				&& wearingArmor(new ItemStack(ItemsAether.amplified_valkyrie_leggings)) 
+				&& (wearingArmor(new ItemStack(ItemsAether.amplified_valkyrie_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_agility_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_sentry_boots)))  
+				&& wearingAccessory(new ItemStack(ItemsAether.amplified_valkyrie_ring))
 				&& wearingAccessory(new ItemStack(ItemsAether.amplified_valkyrie_gloves));
 	}
 	
@@ -579,7 +589,7 @@ public class InventoryAccessories implements IAccessoryInventory {
 	
 	@Override
 	public boolean isWearingHasteRing() {
-		return wearingAccessory(new ItemStack(ItemsAether.haste_ring));
+		return (wearingAccessory(new ItemStack(ItemsAether.haste_ring)) || wearingAccessory(new ItemStack(ItemsAether.reinforced_haste_ring)) || wearingAccessory(new ItemStack(ItemsAether.amplified_haste_ring)));
 	}
 	
 	@Override
@@ -589,7 +599,7 @@ public class InventoryAccessories implements IAccessoryInventory {
 				&& wearingArmor(new ItemStack(ItemsAether.arkenium_leggings)) 
 				&& (wearingArmor(new ItemStack(ItemsAether.arkenium_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_agility_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_sentry_boots))) 
 				&& wearingAccessory(new ItemStack(ItemsAether.arkenium_gloves))
-				&& wearingAccessory(new ItemStack(ItemsAether.haste_ring));
+				&& (wearingAccessory(new ItemStack(ItemsAether.haste_ring)) || wearingAccessory(new ItemStack(ItemsAether.reinforced_haste_ring)) || wearingAccessory(new ItemStack(ItemsAether.amplified_haste_ring)));
 	}
 	
 	@Override
@@ -599,7 +609,7 @@ public class InventoryAccessories implements IAccessoryInventory {
 			   && (wearingArmor(new ItemStack(ItemsAether.arkenium_leggings)) || wearingArmor(new ItemStack(ItemsAether.amplified_arkenium_leggings))) 
 			   && (wearingArmor(new ItemStack(ItemsAether.arkenium_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_agility_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_arkenium_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_sentry_boots))) 
 			   && (wearingAccessory(new ItemStack(ItemsAether.arkenium_gloves)) || wearingAccessory(new ItemStack(ItemsAether.amplified_arkenium_gloves)))
-			   && wearingAccessory(new ItemStack(ItemsAether.haste_ring));
+			   && (wearingAccessory(new ItemStack(ItemsAether.haste_ring)) || wearingAccessory(new ItemStack(ItemsAether.reinforced_haste_ring)) || wearingAccessory(new ItemStack(ItemsAether.amplified_haste_ring)));
 	}
 	
 	@Override
@@ -609,7 +619,7 @@ public class InventoryAccessories implements IAccessoryInventory {
 				&& wearingArmor(new ItemStack(ItemsAether.amplified_arkenium_leggings)) 
 				&& (wearingArmor(new ItemStack(ItemsAether.amplified_arkenium_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_agility_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_sentry_boots))) 
 				&& wearingAccessory(new ItemStack(ItemsAether.amplified_arkenium_gloves))
-				&& wearingAccessory(new ItemStack(ItemsAether.haste_ring));
+				&& wearingAccessory(new ItemStack(ItemsAether.amplified_haste_ring));
 	}
 	
 	@Override

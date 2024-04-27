@@ -80,9 +80,19 @@ public class AetherRegistries {
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.divineral_ring, AccessoryType.RING));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.auralite_ring, AccessoryType.RING));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.ice_ring, AccessoryType.RING));
+		
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.valkyrie_ring, AccessoryType.RING));
+		AetherAPI.instance().register(new AetherAccessory(ItemsAether.reinforced_valkyrie_ring, AccessoryType.RING));
+		AetherAPI.instance().register(new AetherAccessory(ItemsAether.amplified_valkyrie_ring, AccessoryType.RING));
+		
+		AetherAPI.instance().register(new AetherAccessory(ItemsAether.bone_ring, AccessoryType.RING));
+		AetherAPI.instance().register(new AetherAccessory(ItemsAether.reinforced_bone_ring, AccessoryType.RING));
+		AetherAPI.instance().register(new AetherAccessory(ItemsAether.amplified_bone_ring, AccessoryType.RING));
+				
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.haste_ring, AccessoryType.RING));
-		AetherAPI.instance().register(new AetherAccessory(ItemsAether.bone_ring, AccessoryType.RING));		
+		AetherAPI.instance().register(new AetherAccessory(ItemsAether.reinforced_haste_ring, AccessoryType.RING));
+		AetherAPI.instance().register(new AetherAccessory(ItemsAether.amplified_haste_ring, AccessoryType.RING));
+		
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.elysian_ring, AccessoryType.RING));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.reinforced_elysian_ring, AccessoryType.RING));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.amplified_elysian_ring, AccessoryType.RING));
@@ -134,10 +144,18 @@ public class AetherRegistries {
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.aer_cape, AccessoryType.CAPE));
 
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.golden_feather, AccessoryType.MISC));
+		
+		
+		
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.regeneration_stone, AccessoryType.MISC));
-		AetherAPI.instance().register(new AetherAccessory(ItemsAether.iron_bubble, AccessoryType.MISC));
-		AetherAPI.instance().register(new AetherAccessory(ItemsAether.invisibility_gem, AccessoryType.MISC));
+		AetherAPI.instance().register(new AetherAccessory(ItemsAether.reinforced_regeneration_stone, AccessoryType.MISC));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.healing_matrix, AccessoryType.MISC));
+		
+		AetherAPI.instance().register(new AetherAccessory(ItemsAether.iron_bubble, AccessoryType.MISC));
+		AetherAPI.instance().register(new AetherAccessory(ItemsAether.reinforced_iron_bubble, AccessoryType.MISC));
+		AetherAPI.instance().register(new AetherAccessory(ItemsAether.amplified_iron_bubble, AccessoryType.MISC));
+		
+		AetherAPI.instance().register(new AetherAccessory(ItemsAether.invisibility_gem, AccessoryType.MISC));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.flaming_stone, AccessoryType.MISC));
 
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.repulsion_shield, AccessoryType.SHIELD));
