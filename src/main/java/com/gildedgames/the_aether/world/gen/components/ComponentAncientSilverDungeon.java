@@ -577,8 +577,6 @@ public class ComponentAncientSilverDungeon extends AetherStructure {
 			case 13:
 				if (AetherConfig.goldenFeatherEnabled())
 					return new ItemStack(ItemsAether.golden_feather);
-			case 14:
-				return new ItemStack(ItemsAether.invisibility_gem);
 		}
 		return new ItemStack(ItemsAether.arkenium_fragement, random.nextInt(3) + 4);
 	}

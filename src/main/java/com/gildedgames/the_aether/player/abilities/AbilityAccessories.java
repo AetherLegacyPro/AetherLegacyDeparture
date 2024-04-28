@@ -80,9 +80,6 @@ public class AbilityAccessories implements IAetherAbility {
 			this.player.getAccessoryInventory().damageWornStack(1, new ItemStack(ItemsAether.haste_ring));
 			this.player.getAccessoryInventory().damageWornStack(1, new ItemStack(ItemsAether.reinforced_haste_ring));
 			this.player.getAccessoryInventory().damageWornStack(1, new ItemStack(ItemsAether.amplified_haste_ring));
-			if (AetherConfig.MiscItemDamageable() == true) {
-			this.player.getAccessoryInventory().damageWornStack(1, new ItemStack(ItemsAether.invisibility_gem));
-			}
 		}
 		
 		if (this.player.getEntity().ticksExisted % 2500 == 0 && AetherConfig.MiscItemDamageable() == true) {

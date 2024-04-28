@@ -58,7 +58,6 @@ import com.gildedgames.the_aether.player.abilities.AbilityHasteRing;
 import com.gildedgames.the_aether.player.abilities.AbilityHealingMatrix;
 import com.gildedgames.the_aether.player.abilities.AbilityZaniteShield;
 import com.gildedgames.the_aether.player.abilities.AbiltyAgilityBoots;
-import com.gildedgames.the_aether.player.abilities.AbilityInvisibilityGem;
 import com.gildedgames.the_aether.player.abilities.AbilityJebShield;
 import com.gildedgames.the_aether.player.abilities.AbilityValkyrieRing;
 import com.gildedgames.the_aether.player.perks.util.DonatorMoaSkin;
@@ -134,7 +133,7 @@ public class PlayerAether implements IPlayerAether {
 		this.shouldRenderGlow = false;
 		this.shouldRenderCape = true;
 		this.shouldGetPortal = true;
-		this.abilities.addAll(Arrays.<IAetherAbility>asList(new AbilityAccessories(this), new AbilityArmor(this), new AbilityFlight(this), new AbilityRepulsion(this), new AbilityGravititeShield(this), new AbilityZaniteShield(this), new AbiltyAgilityBoots(this),new AbilityHasteRing(this), new AbilityAmplifiedAgilityBootsAndCape(this), 	new AbilityAgilityBootsAndCape(this), 	new AbilityInvisibilityGem(this), new AbilityJebShield(this), new AbilityHealingMatrix(this), new AbilityFlamingStone(this),new AbilityAmplifiedAgilityBoots(this),new AbilityArkeniumArmor(this),new AbilityAuraliteRing(this), new AbilityBoneRing(this), new AbilityElysianRing(this)));
+		this.abilities.addAll(Arrays.<IAetherAbility>asList(new AbilityAccessories(this), new AbilityArmor(this), new AbilityFlight(this), new AbilityRepulsion(this), new AbilityGravititeShield(this), new AbilityZaniteShield(this), new AbiltyAgilityBoots(this),new AbilityHasteRing(this), new AbilityAmplifiedAgilityBootsAndCape(this), 	new AbilityAgilityBootsAndCape(this), new AbilityJebShield(this), new AbilityHealingMatrix(this), new AbilityFlamingStone(this),new AbilityAmplifiedAgilityBoots(this),new AbilityArkeniumArmor(this),new AbilityAuraliteRing(this), new AbilityBoneRing(this), new AbilityElysianRing(this)));
 	}
 
 	public static PlayerAether get(EntityPlayer player) {

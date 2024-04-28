@@ -332,7 +332,7 @@ public class ItemsAether {
 	public static Item golden_feather, reinforced_golden_feather, amplified_golden_feather;
 	public static Item regeneration_stone, reinforced_regeneration_stone, healing_matrix;
 	public static Item iron_bubble, reinforced_iron_bubble, amplified_iron_bubble;
-	public static Item life_shard, power_shard, invisibility_gem, flaming_stone;
+	public static Item life_shard, power_shard, flaming_stone;
 	public static Item repulsion_shield, zanite_shield, gravitite_shield, jeb_shield, sentry_shield;
 
 	public static void initialization() {
@@ -773,25 +773,25 @@ public class ItemsAether {
 		}
 		
 		zanite_gloves = register("zanite_gloves", new ItemAccessory(AccessoryType.GLOVES).setTexture("zanite").setMaxDamage(152).setTextureName(Aether.find("accessories/zanite_gloves")));
-		amplified_zanite_gloves = register("amplified_zanite_gloves", new ItemAccessory(AccessoryType.GLOVES).setDungeonLoot().setTexture("amplified_zanite").setMaxDamage(752).setTextureName(Aether.find("accessories/amplified_zanite_gloves")));
+		amplified_zanite_gloves = register("amplified_zanite_gloves", new ItemAccessory(AccessoryType.GLOVES).setAmplifiedDungeonLoot().setTexture("amplified_zanite").setMaxDamage(752).setTextureName(Aether.find("accessories/amplified_zanite_gloves")));
 		arkenium_gloves = register("arkenium_gloves", new ItemAccessory(AccessoryType.GLOVES).setColor(0x4C4A50).setMaxDamage(252).setTextureName(Aether.find("accessories/arkenium_gloves")));
-		amplified_arkenium_gloves = register("amplified_arkenium_gloves", new ItemAccessory(AccessoryType.GLOVES).setDungeonLoot().setColor(0x475855).setMaxDamage(752).setTextureName(Aether.find("accessories/amplified_arkenium_gloves")));		
+		amplified_arkenium_gloves = register("amplified_arkenium_gloves", new ItemAccessory(AccessoryType.GLOVES).setAmplifiedDungeonLoot().setColor(0x475855).setMaxDamage(752).setTextureName(Aether.find("accessories/amplified_arkenium_gloves")));		
 		continuum_gloves = register("continuum_gloves", new ItemAccessory(AccessoryType.GLOVES).setTexture("continuum").setMaxDamage(352).setTextureName(Aether.find("accessories/continuum_gloves")));
-		amplified_continuum_gloves = register("amplified_continuum_gloves", new ItemAccessory(AccessoryType.GLOVES).setDungeonLoot().setTexture("amplified_continuum").setMaxDamage(752).setTextureName(Aether.find("accessories/amplified_continuum_gloves")));
+		amplified_continuum_gloves = register("amplified_continuum_gloves", new ItemAccessory(AccessoryType.GLOVES).setAmplifiedDungeonLoot().setTexture("amplified_continuum").setMaxDamage(752).setTextureName(Aether.find("accessories/amplified_continuum_gloves")));
 		
 		gravitite_gloves = register("gravitite_gloves", new ItemAccessory(AccessoryType.GLOVES).setTexture("gravitite").setMaxDamage(452).setTextureName(Aether.find("accessories/gravitite_gloves")));
-		divineral_gloves = register("divineral_gloves", new ItemAccessory(AccessoryType.GLOVES).setTexture("divineral").setDungeonLoot().setMaxDamage(952).setTextureName(Aether.find("accessories/divineral_gloves")));
+		divineral_gloves = register("divineral_gloves", new ItemAccessory(AccessoryType.GLOVES).setTexture("divineral").setAmplifiedDungeonLoot().setMaxDamage(952).setTextureName(Aether.find("accessories/divineral_gloves")));
 		power_gloves = register("power_gloves", new ItemAccessory(AccessoryType.GLOVES).setTextureName(Aether.find("accessories/power_gloves")));
 		neptune_gloves = register("neptune_gloves", new ItemAccessory(AccessoryType.GLOVES).setTexture("neptune").setDungeonLoot().setMaxDamage(372).setTextureName(Aether.find("accessories/neptune_gloves")));
-		amplified_neptune_gloves = register("amplified_neptune_gloves", new ItemAccessory(AccessoryType.GLOVES).setTexture("amplified_neptune").setDungeonLoot().setMaxDamage(972).setTextureName(Aether.find("accessories/amplified_neptune_gloves")));
+		amplified_neptune_gloves = register("amplified_neptune_gloves", new ItemAccessory(AccessoryType.GLOVES).setTexture("amplified_neptune").setAmplifiedDungeonLoot().setMaxDamage(972).setTextureName(Aether.find("accessories/amplified_neptune_gloves")));
 		phoenix_gloves = register("phoenix_gloves", new ItemAccessory(AccessoryType.GLOVES).setTexture("phoenix").setDungeonLoot().setMaxDamage(372).setTextureName(Aether.find("accessories/phoenix_gloves")));
-		amplified_phoenix_gloves = register("amplified_phoenix_gloves", new ItemAccessory(AccessoryType.GLOVES).setTexture("amplified_phoenix").setDungeonLoot().setMaxDamage(972).setTextureName(Aether.find("accessories/amplified_phoenix_gloves")));
+		amplified_phoenix_gloves = register("amplified_phoenix_gloves", new ItemAccessory(AccessoryType.GLOVES).setTexture("amplified_phoenix").setAmplifiedDungeonLoot().setMaxDamage(972).setTextureName(Aether.find("accessories/amplified_phoenix_gloves")));
 		obsidian_gloves = register("obsidian_gloves", new ItemAccessory(AccessoryType.GLOVES).setDungeonLoot().setColor(0x1b1447).setMaxDamage(672).setTextureName(Aether.find("accessories/solid_gloves")));
-		amplified_obsidian_gloves = register("amplified_obsidian_gloves", new ItemAccessory(AccessoryType.GLOVES).setDungeonLoot().setColor(0x5b2c63).setMaxDamage(972).setTextureName(Aether.find("accessories/solid_gloves")));
+		amplified_obsidian_gloves = register("amplified_obsidian_gloves", new ItemAccessory(AccessoryType.GLOVES).setAmplifiedDungeonLoot().setColor(0x5b2c63).setMaxDamage(972).setTextureName(Aether.find("accessories/solid_gloves")));
 		valkyrie_gloves = register("valkyrie_gloves", new ItemAccessory(AccessoryType.GLOVES).setDungeonLoot().setTexture("valkyrie").setMaxDamage(372).setTextureName(Aether.find("accessories/valkyrie_gloves")));
-		amplified_valkyrie_gloves = register("amplified_valkyrie_gloves", new ItemAccessory(AccessoryType.GLOVES).setDungeonLoot().setTexture("amplified_valkyrie").setMaxDamage(972).setTextureName(Aether.find("accessories/amplified_valkyrie_gloves")));		
+		amplified_valkyrie_gloves = register("amplified_valkyrie_gloves", new ItemAccessory(AccessoryType.GLOVES).setAmplifiedDungeonLoot().setTexture("amplified_valkyrie").setMaxDamage(972).setTextureName(Aether.find("accessories/amplified_valkyrie_gloves")));		
 		elysian_gloves = register("elysian_gloves", new ItemAccessory(AccessoryType.GLOVES).setDungeonLoot().setTexture("elysian").setMaxDamage(472).setTextureName(Aether.find("accessories/elysian_gloves")));
-		amplified_elysian_gloves = register("amplified_elysian_gloves", new ItemAccessory(AccessoryType.GLOVES).setDungeonLoot().setTexture("amplified_elysian").setMaxDamage(1872).setTextureName(Aether.find("accessories/amplified_elysian_gloves")));
+		amplified_elysian_gloves = register("amplified_elysian_gloves", new ItemAccessory(AccessoryType.GLOVES).setAmplifiedDungeonLoot().setTexture("amplified_elysian").setMaxDamage(1872).setTextureName(Aether.find("accessories/amplified_elysian_gloves")));
 		
 		iron_ring = register("iron_ring", new ItemAccessory(AccessoryType.RING).setTextureName(Aether.find("accessories/iron_ring")));
 		golden_ring = register("golden_ring", new ItemAccessory(AccessoryType.RING).setTextureName(Aether.find("accessories/golden_ring")));
@@ -806,25 +806,25 @@ public class ItemsAether {
 		arkenium_ring = register("arkenium_ring", new ItemAccessory(AccessoryType.RING).setTextureName(Aether.find("accessories/arkenium_ring")));
 		continuum_ring = register("continuum_ring", new ItemAccessory(AccessoryType.RING).setTextureName(Aether.find("accessories/continuum_ring")));
 		gravitite_ring = register("gravitite_ring", new ItemAccessory(AccessoryType.RING).setTextureName(Aether.find("accessories/gravitite_ring")));
-		divineral_ring = register("divineral_ring", new ItemAccessory(AccessoryType.RING).setMaxDamage(803).setTextureName(Aether.find("accessories/divineral_ring")));		
-		auralite_ring = register("auralite_ring", new ItemAccessory(AccessoryType.RING).setMaxDamage(178).setTextureName(Aether.find("accessories/auralite_ring")));
+		divineral_ring = register("divineral_ring", new ItemAccessory(AccessoryType.RING).setAmplifiedDungeonLoot().setMaxDamage(803).setTextureName(Aether.find("accessories/divineral_ring")));		
+		auralite_ring = register("auralite_ring", new ItemAccessory(AccessoryType.RING).setDungeonLoot().setMaxDamage(178).setTextureName(Aether.find("accessories/auralite_ring")));
 		ice_ring = register("ice_ring", new ItemAccessory(AccessoryType.RING).setColor(0x95e6e7).setMaxDamage(125).setTextureName(Aether.find("accessories/ring_base")));
 		
-		valkyrie_ring = register("valkyrie_ring", new ItemAccessory(AccessoryType.RING).setMaxDamage(476).setTextureName(Aether.find("accessories/valkyrie_ring")));
-		reinforced_valkyrie_ring = register("reinforced_valkyrie_ring", new ItemAccessory(AccessoryType.RING).setMaxDamage(876).setTextureName(Aether.find("accessories/ref_valkyrie_ring")));
-		amplified_valkyrie_ring = register("amplified_valkyrie_ring", new ItemAccessory(AccessoryType.RING).setMaxDamage(2076).setTextureName(Aether.find("accessories/amplified_valkyrie_ring")));
+		valkyrie_ring = register("valkyrie_ring", new ItemAccessory(AccessoryType.RING).setDungeonLoot().setMaxDamage(476).setTextureName(Aether.find("accessories/valkyrie_ring")));
+		reinforced_valkyrie_ring = register("reinforced_valkyrie_ring", new ItemAccessory(AccessoryType.RING).setReinforcedDungeonLoot().setMaxDamage(876).setTextureName(Aether.find("accessories/ref_valkyrie_ring")));
+		amplified_valkyrie_ring = register("amplified_valkyrie_ring", new ItemAccessory(AccessoryType.RING).setAmplifiedDungeonLoot().setMaxDamage(2076).setTextureName(Aether.find("accessories/amplified_valkyrie_ring")));
 		
-		bone_ring = register("bone_ring", new ItemAccessory(AccessoryType.RING).setMaxDamage(201).setTextureName(Aether.find("accessories/bone_ring")));
-		reinforced_bone_ring = register("reinforced_bone_ring", new ItemAccessory(AccessoryType.RING).setMaxDamage(601).setTextureName(Aether.find("accessories/ref_bone_ring")));
-		amplified_bone_ring = register("amplified_bone_ring", new ItemAccessory(AccessoryType.RING).setMaxDamage(1001).setTextureName(Aether.find("accessories/amplified_bone_ring")));
+		bone_ring = register("bone_ring", new ItemAccessory(AccessoryType.RING).setDungeonLoot().setMaxDamage(201).setTextureName(Aether.find("accessories/bone_ring")));
+		reinforced_bone_ring = register("reinforced_bone_ring", new ItemAccessory(AccessoryType.RING).setReinforcedDungeonLoot().setMaxDamage(601).setTextureName(Aether.find("accessories/ref_bone_ring")));
+		amplified_bone_ring = register("amplified_bone_ring", new ItemAccessory(AccessoryType.RING).setAmplifiedDungeonLoot().setMaxDamage(1001).setTextureName(Aether.find("accessories/amplified_bone_ring")));
 		
-		haste_ring = register("haste_ring", new ItemAccessory(AccessoryType.RING).setMaxDamage(324).setTextureName(Aether.find("accessories/haste_ring")));
-		reinforced_haste_ring = register("reinforced_haste_ring", new ItemAccessory(AccessoryType.RING).setMaxDamage(824).setTextureName(Aether.find("accessories/ref_haste_ring")));
-		amplified_haste_ring = register("amplified_haste_ring", new ItemAccessory(AccessoryType.RING).setMaxDamage(1624).setTextureName(Aether.find("accessories/amplified_haste_ring")));
+		haste_ring = register("haste_ring", new ItemAccessory(AccessoryType.RING).setDungeonLoot().setMaxDamage(324).setTextureName(Aether.find("accessories/haste_ring")));
+		reinforced_haste_ring = register("reinforced_haste_ring", new ItemAccessory(AccessoryType.RING).setReinforcedDungeonLoot().setMaxDamage(824).setTextureName(Aether.find("accessories/ref_haste_ring")));
+		amplified_haste_ring = register("amplified_haste_ring", new ItemAccessory(AccessoryType.RING).setAmplifiedDungeonLoot().setMaxDamage(1624).setTextureName(Aether.find("accessories/amplified_haste_ring")));
 		
-		elysian_ring = register("elysian_ring", new ItemAccessory(AccessoryType.RING).setMaxDamage(524).setTextureName(Aether.find("accessories/elysian_ring")));
-		reinforced_elysian_ring = register("reinforced_elysian_ring", new ItemAccessory(AccessoryType.RING).setMaxDamage(1067).setTextureName(Aether.find("accessories/ref_elysian_ring")));
-		amplified_elysian_ring = register("amplified_elysian_ring", new ItemAccessory(AccessoryType.RING).setMaxDamage(2107).setTextureName(Aether.find("accessories/amplified_elysian_ring")));
+		elysian_ring = register("elysian_ring", new ItemAccessory(AccessoryType.RING).setDungeonLoot().setMaxDamage(524).setTextureName(Aether.find("accessories/elysian_ring")));
+		reinforced_elysian_ring = register("reinforced_elysian_ring", new ItemAccessory(AccessoryType.RING).setReinforcedDungeonLoot().setMaxDamage(1067).setTextureName(Aether.find("accessories/ref_elysian_ring")));
+		amplified_elysian_ring = register("amplified_elysian_ring", new ItemAccessory(AccessoryType.RING).setAmplifiedDungeonLoot().setMaxDamage(2107).setTextureName(Aether.find("accessories/amplified_elysian_ring")));
 		
 		iron_pendant = register("iron_pendant", new ItemAccessory(AccessoryType.PENDANT).setTextureName(Aether.find("accessories/pendant_base")));
 		golden_pendant = register("golden_pendant", new ItemAccessory(AccessoryType.PENDANT).setColor(0xeaee57).setTextureName(Aether.find("accessories/pendant_base")));
@@ -839,15 +839,15 @@ public class ItemsAether {
 		arkenium_pendant = register("arkenium_pendant", new ItemAccessory(AccessoryType.PENDANT).setTexture("arkenium").setTextureName(Aether.find("accessories/arkenium_pendant")));
 		continuum_pendant = register("continuum_pendant", new ItemAccessory(AccessoryType.PENDANT).setTexture("continuum").setTextureName(Aether.find("accessories/continuum_pendant")));
 		gravitite_pendant = register("gravitite_pendant", new ItemAccessory(AccessoryType.PENDANT).setTexture("gravitite").setTextureName(Aether.find("accessories/gravitite_pendant")));
-		divineral_pendant = register("divineral_pendant", new ItemAccessory(AccessoryType.PENDANT).setTexture("divineral").setMaxDamage(803).setTextureName(Aether.find("accessories/divineral_pendant")));
+		divineral_pendant = register("divineral_pendant", new ItemAccessory(AccessoryType.PENDANT).setAmplifiedDungeonLoot().setTexture("divineral").setAmplifiedDungeonLoot().setMaxDamage(803).setTextureName(Aether.find("accessories/divineral_pendant")));
 		
-		auralite_pendant = register("auralite_pendant", new ItemAccessory(AccessoryType.PENDANT).setTexture("auralite").setMaxDamage(203).setTextureName(Aether.find("accessories/auralite_pendant")));		
-		reinforced_auralite_pendant = register("reinforced_auralite_pendant", new ItemAccessory(AccessoryType.PENDANT).setTexture("ref_auralite").setMaxDamage(603).setTextureName(Aether.find("accessories/ref_auralite_pendant")));		
-		amplified_auralite_pendant = register("amplified_auralite_pendant", new ItemAccessory(AccessoryType.PENDANT).setTexture("amplified_auralite").setMaxDamage(1903).setTextureName(Aether.find("accessories/amplified_auralite_pendant")));		
-	
+		auralite_pendant = register("auralite_pendant", new ItemAccessory(AccessoryType.PENDANT).setDungeonLoot().setTexture("auralite").setMaxDamage(203).setTextureName(Aether.find("accessories/auralite_pendant")));		
+		reinforced_auralite_pendant = register("reinforced_auralite_pendant", new ItemAccessory(AccessoryType.PENDANT).setReinforcedDungeonLoot().setTexture("ref_auralite").setMaxDamage(603).setTextureName(Aether.find("accessories/ref_auralite_pendant")));		
+		amplified_auralite_pendant = register("amplified_auralite_pendant", new ItemAccessory(AccessoryType.PENDANT).setAmplifiedDungeonLoot().setTexture("amplified_auralite").setMaxDamage(1903).setTextureName(Aether.find("accessories/amplified_auralite_pendant")));		
+		
 		ice_pendant = register("ice_pendant", new ItemAccessory(AccessoryType.PENDANT).setColor(0x95e6e7).setMaxDamage(250).setTextureName(Aether.find("accessories/pendant_base")));
 		false_wings = register("false_wings", new ItemAccessory(AccessoryType.PENDANT).setDungeonLoot().setTextureName(Aether.find("accessories/false_wings")));
-
+		
 		red_cape = register("red_cape", new ItemAccessory(AccessoryType.CAPE).setColor(0xae3e38).setTextureName(Aether.find("accessories/cape_color_base")));
 		blue_cape = register("blue_cape", new ItemAccessory(AccessoryType.CAPE).setColor(0x323e9a).setTextureName(Aether.find("accessories/cape_color_base")));
 		yellow_cape = register("yellow_cape", new ItemAccessory(AccessoryType.CAPE).setColor(0xcfc231).setTextureName(Aether.find("accessories/cape_color_base")));
@@ -873,20 +873,18 @@ public class ItemsAether {
 		aer_cape = register("aer_cape", new ItemAccessory(AccessoryType.CAPE).setTexture("aer_cape").setDungeonLoot().setTextureName(Aether.find("accessories/aer_cape")));
 		
 		golden_feather = register("golden_feather", new ItemAccessory(AccessoryType.MISC).setDungeonLoot().setMaxDamage(120).setTextureName(Aether.find("accessories/golden_feather")));
-		reinforced_golden_feather = register("reinforced_golden_feather", new ItemAccessory(AccessoryType.MISC).setDungeonLoot().setMaxDamage(480).setTextureName(Aether.find("accessories/ref_golden_feather")));
-		amplified_golden_feather = register("amplified_golden_feather", new ItemAccessory(AccessoryType.MISC).setDungeonLoot().setMaxDamage(1800).setTextureName(Aether.find("accessories/amplified_golden_feather")));
+		reinforced_golden_feather = register("reinforced_golden_feather", new ItemAccessory(AccessoryType.MISC).setReinforcedDungeonLoot().setMaxDamage(480).setTextureName(Aether.find("accessories/ref_golden_feather")));
+		amplified_golden_feather = register("amplified_golden_feather", new ItemAccessory(AccessoryType.MISC).setPoweredDungeonLoot().setMaxDamage(1800).setTextureName(Aether.find("accessories/amplified_golden_feather")));
 		
 		flaming_stone = register("flaming_stone", new ItemAccessory(AccessoryType.MISC).setDungeonLoot().setTextureName(Aether.find("accessories/flaming_stone")));
 		
 		regeneration_stone = register("regeneration_stone", new ItemAccessory(AccessoryType.MISC).setDungeonLoot().setMaxDamage(120).setTextureName(Aether.find("accessories/regeneration_stone")));
-		reinforced_regeneration_stone = register("reinforced_regeneration_stone", new ItemAccessory(AccessoryType.MISC).setDungeonLoot().setMaxDamage(480).setTextureName(Aether.find("accessories/ref_regeneration_stone")));
-		healing_matrix = register("healing_matrix", new ItemAccessory(AccessoryType.MISC).setDungeonLoot().setMaxDamage(1800).setTextureName(Aether.find("accessories/healing_matrix")));
+		reinforced_regeneration_stone = register("reinforced_regeneration_stone", new ItemAccessory(AccessoryType.MISC).setReinforcedDungeonLoot().setMaxDamage(480).setTextureName(Aether.find("accessories/ref_regeneration_stone")));
+		healing_matrix = register("healing_matrix", new ItemAccessory(AccessoryType.MISC).setAmplifiedDungeonLoot().setMaxDamage(1800).setTextureName(Aether.find("accessories/healing_matrix")));
 		
 		iron_bubble = register("iron_bubble", new ItemAccessory(AccessoryType.MISC).setDungeonLoot().setMaxDamage(120).setTextureName(Aether.find("accessories/iron_bubble")));
-		reinforced_iron_bubble = register("reinforced_iron_bubble", new ItemAccessory(AccessoryType.MISC).setDungeonLoot().setMaxDamage(480).setTextureName(Aether.find("accessories/ref_iron_bubble")));
-		amplified_iron_bubble = register("amplified_iron_bubble", new ItemAccessory(AccessoryType.MISC).setDungeonLoot().setMaxDamage(1800).setTextureName(Aether.find("accessories/amplified_iron_bubble")));
-		
-		invisibility_gem = register("invisibility_gem", new ItemAccessory(AccessoryType.MISC).setDungeonLoot().setMaxDamage(75).setTextureName(Aether.find("accessories/invisibility_gem")));
+		reinforced_iron_bubble = register("reinforced_iron_bubble", new ItemAccessory(AccessoryType.MISC).setReinforcedDungeonLoot().setMaxDamage(480).setTextureName(Aether.find("accessories/ref_iron_bubble")));
+		amplified_iron_bubble = register("amplified_iron_bubble", new ItemAccessory(AccessoryType.MISC).setAmplifiedDungeonLoot().setMaxDamage(1800).setTextureName(Aether.find("accessories/amplified_iron_bubble")));
 		
 		life_shard = register("life_shard", new ItemLifeShard().setTextureName(Aether.find("misc/life_shard")));
 		power_shard = register("power_shard", new ItemPowerShard().setTextureName(Aether.find("misc/power_shard")));

@@ -158,7 +158,6 @@ public class AetherRegistries {
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.reinforced_iron_bubble, AccessoryType.MISC));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.amplified_iron_bubble, AccessoryType.MISC));
 		
-		AetherAPI.instance().register(new AetherAccessory(ItemsAether.invisibility_gem, AccessoryType.MISC));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.flaming_stone, AccessoryType.MISC));
 
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.repulsion_shield, AccessoryType.SHIELD));
@@ -1090,6 +1089,7 @@ public class AetherRegistries {
 		register("skyroot_chest", new ItemStack(BlocksAether.skyroot_chest, 1), "XXX", "X X", "XXX", 'X', BlocksAether.wisproot_planks);
 		register("skyroot_chest", new ItemStack(BlocksAether.skyroot_chest, 1), "XXX", "X X", "XXX", 'X', BlocksAether.greatroot_planks);
 		register("skyroot_chest", new ItemStack(BlocksAether.skyroot_chest, 1), "XXX", "X X", "XXX", 'X', BlocksAether.void_planks);
+		register("elysian_chest", new ItemStack(BlocksAether.elysian_chest, 1), "XXX", "XYX", "XXX", 'X', ItemsAether.crystal_dragon_scales, 'Y', BlocksAether.skyroot_chest);
 		register("holystone_bowl", new ItemStack(ItemsAether.holystone_bowl, 1, 0), "Z Z", " Z ", 'Z', new ItemStack(BlocksAether.holystone, 1, 0));
 		register("holystone_bowl", new ItemStack(ItemsAether.holystone_bowl, 1, 0), "Z Z", " Z ", 'Z', new ItemStack(BlocksAether.holystone, 1, 1));
 		register("skyroot_bucket", new ItemStack(ItemsAether.skyroot_bucket, 1, 0), "Z Z", " Z ", 'Z', BlocksAether.skyroot_planks);

@@ -41,6 +41,9 @@ public class ItemAccessory extends Item {
 	private int colorHex = 0xdddddd;
 
 	private boolean isDungeonLoot = false;
+	private boolean isReinforcedDungeonLoot = false;
+	private boolean isAmplifiedDungeonLoot = false;
+	private boolean isPoweredDungeonLoot = false;
 
 	private boolean hasInactiveTexture = false;
 
@@ -146,7 +149,21 @@ public class ItemAccessory extends Item {
 
 	@Override
 	public EnumRarity getRarity(ItemStack stack) {
-		return this.isDungeonLoot ? ItemsAether.aether_loot : super.getRarity(stack);
+		if (isDungeonLoot == true) {
+			return ItemsAether.aether_loot;
+		}
+		else if (isReinforcedDungeonLoot == true) {
+			return ItemsAether.scaled_aether_loot;	
+		}
+		else if (isAmplifiedDungeonLoot == true) {
+			return ItemsAether.divine_aether_loot;	
+		}
+		else if (isPoweredDungeonLoot == true) {
+			return ItemsAether.powered;	
+		}
+		else {
+			return this.isDungeonLoot ? ItemsAether.aether_loot : super.getRarity(stack);
+		}
 	}
 
 	@Override
@@ -157,6 +174,24 @@ public class ItemAccessory extends Item {
 
 	public ItemAccessory setDungeonLoot() {
 		this.isDungeonLoot = true;
+
+		return this;
+	}
+	
+	public ItemAccessory setReinforcedDungeonLoot() {
+		this.isReinforcedDungeonLoot = true;
+
+		return this;
+	}
+	
+	public ItemAccessory setAmplifiedDungeonLoot() {
+		this.isAmplifiedDungeonLoot = true;
+
+		return this;
+	}
+	
+	public ItemAccessory setPoweredDungeonLoot() {
+		this.isPoweredDungeonLoot = true;
 
 		return this;
 	}

@@ -234,7 +234,7 @@ public class ItemContinuumOrb extends Item {
 				case 97:
 					return new ItemStack(ItemsAether.invisibility_cape);
 				case 98:
-					return new ItemStack(ItemsAether.invisibility_gem);
+					return new ItemStack(ItemsAether.aceninum_shard);
 				case 99:
 					return new ItemStack(ItemsAether.iron_bubble);
 				case 100:

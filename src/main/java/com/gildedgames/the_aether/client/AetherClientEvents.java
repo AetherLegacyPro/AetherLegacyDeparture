@@ -626,11 +626,6 @@ public class AetherClientEvents {
 				event.setCanceled(true);
 			}
 			
-		else if (playerAether != null) {
-			if (playerAether.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.invisibility_gem))) {
-					event.setCanceled(true);
-				}
-			}
 		}
 
 		PlayerAetherRenderer.instance().setPartialTicks(event.partialRenderTick);
