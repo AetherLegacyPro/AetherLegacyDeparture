@@ -433,7 +433,7 @@ public class EntityCrystalDragon extends EntityFlying implements GIEntityMultiPa
     	   
             if (entity instanceof EntityLivingBase)
             {
-            	entity.attackEntityFrom(DamageSource.generic, 4.0F);
+            	entity.attackEntityFrom(DamageSource.generic, 8.0F);
                 entity.attackEntityFrom(DamageSource.magic, 2.0F);    
                 
              }

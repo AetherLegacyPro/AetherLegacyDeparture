@@ -1057,15 +1057,15 @@ public class ComponentOsmiumDungeon extends AetherStructure {
 		}
 
 		for (int lineX = (x - 1); lineX < (x + 2); lineX++) {
-			this.setBlockWithOffset(lineX, y + (height + 3), z, BlocksAether.luminous_stone, 0);
+			this.setBlockWithOffset(lineX, y + (height + 3), z, BlocksAether.arctic_glowstone, 0);
 		}
 
 		for (int lineY = (y + height); lineY < y + (height + 3); lineY++) {
-			this.setBlockWithOffset(x, lineY + 2, z, BlocksAether.luminous_stone, 0);
+			this.setBlockWithOffset(x, lineY + 2, z, BlocksAether.arctic_glowstone, 0);
 		}
 
 		for (int lineZ = (z - 1); lineZ < (z + 2); lineZ++) {
-			this.setBlockWithOffset(x, y + (height + 3), lineZ, BlocksAether.luminous_stone, 0);
+			this.setBlockWithOffset(x, y + (height + 3), lineZ, BlocksAether.arctic_glowstone, 0);
 		}
 	}
 
@@ -1151,7 +1151,7 @@ public class ComponentOsmiumDungeon extends AetherStructure {
 	}
 
 	public static ItemStack getOsmiumLoot(Random random) {
-		int item = random.nextInt(15);
+		int item = random.nextInt(16);
 
 		switch (item) {
 			case 0:
@@ -1191,6 +1191,8 @@ public class ComponentOsmiumDungeon extends AetherStructure {
 				return new ItemStack(ItemsAether.auralite_crystal, random.nextInt(3) + 4);
 			case 13:
 				return new ItemStack(ItemsAether.agility_boots);
+			case 14:
+				return new ItemStack(ItemsAether.dexterity_shard);
 		}
 		return new ItemStack(ItemsAether.arkenium_chunk, random.nextInt(12) + 10);
 	}

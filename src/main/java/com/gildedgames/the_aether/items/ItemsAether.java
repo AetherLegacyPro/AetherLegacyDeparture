@@ -49,6 +49,7 @@ import com.gildedgames.the_aether.items.food.ItemAetherFood;
 import com.gildedgames.the_aether.items.food.ItemAgilityStone;
 import com.gildedgames.the_aether.items.food.ItemAmbrosiumShard;
 import com.gildedgames.the_aether.items.food.ItemArkeniumApple;
+import com.gildedgames.the_aether.items.food.ItemDexterityShard;
 import com.gildedgames.the_aether.items.food.ItemDexterityStone;
 import com.gildedgames.the_aether.items.food.ItemElysianApple;
 import com.gildedgames.the_aether.items.food.ItemEnchantedFruitStew;
@@ -332,7 +333,7 @@ public class ItemsAether {
 	public static Item golden_feather, reinforced_golden_feather, amplified_golden_feather;
 	public static Item regeneration_stone, reinforced_regeneration_stone, healing_matrix;
 	public static Item iron_bubble, reinforced_iron_bubble, amplified_iron_bubble;
-	public static Item life_shard, power_shard, flaming_stone;
+	public static Item life_shard, dexterity_shard, power_shard, flaming_stone;
 	public static Item repulsion_shield, zanite_shield, gravitite_shield, jeb_shield, sentry_shield;
 
 	public static void initialization() {
@@ -887,6 +888,7 @@ public class ItemsAether {
 		amplified_iron_bubble = register("amplified_iron_bubble", new ItemAccessory(AccessoryType.MISC).setAmplifiedDungeonLoot().setMaxDamage(1800).setTextureName(Aether.find("accessories/amplified_iron_bubble")));
 		
 		life_shard = register("life_shard", new ItemLifeShard().setTextureName(Aether.find("misc/life_shard")));
+		dexterity_shard = register("dexterity_shard", new ItemDexterityShard().setTextureName(Aether.find("misc/dexterity_shard")));
 		power_shard = register("power_shard", new ItemPowerShard().setTextureName(Aether.find("misc/power_shard")));
 		cloud_staff = register("cloud_staff", new ItemCloudStaff().setTextureName(Aether.find("staff/cloud_staff")));
 		nature_staff = register("nature_staff", new ItemNatureStaff().setTextureName(Aether.find("staff/nature_staff")));

@@ -27,6 +27,7 @@ import com.gildedgames.the_aether.client.models.entities.UligoModel;
 import com.gildedgames.the_aether.client.models.entities.YoungZephyrModel;
 import com.gildedgames.the_aether.client.models.entities.ZarnillysModel;
 import com.gildedgames.the_aether.client.models.entities.ZephyrooModel;
+import com.gildedgames.the_aether.client.models.entities.ZojzModel;
 import com.gildedgames.the_aether.client.renders.block.AetherEnchantmentTableRenderer;
 import com.gildedgames.the_aether.client.renders.block.AetherFlowerRenderer;
 import com.gildedgames.the_aether.client.renders.block.AetherTNTRenderer;
@@ -108,6 +109,8 @@ import com.gildedgames.the_aether.client.renders.entity.ZarnillysRenderer;
 import com.gildedgames.the_aether.client.renders.entity.ZephyrRenderer;
 import com.gildedgames.the_aether.client.renders.entity.ZephyrSnowballRenderer;
 import com.gildedgames.the_aether.client.renders.entity.ZephyrooRenderer;
+import com.gildedgames.the_aether.client.renders.entity.ZojzRenderer;
+import com.gildedgames.the_aether.client.renders.entity.ZojzSnowballRenderer;
 import com.gildedgames.the_aether.client.renders.items.PhoenixBowRenderer;
 import com.gildedgames.the_aether.entities.block.EntityAetherTNT;
 import com.gildedgames.the_aether.entities.block.EntityFloatingBlock;
@@ -150,6 +153,7 @@ import com.gildedgames.the_aether.entities.hostile.EntityUligo;
 import com.gildedgames.the_aether.entities.hostile.EntityUro;
 import com.gildedgames.the_aether.entities.hostile.EntityWhirlwind;
 import com.gildedgames.the_aether.entities.hostile.EntityZephyr;
+import com.gildedgames.the_aether.entities.hostile.EntityZojz;
 import com.gildedgames.the_aether.entities.hostile.EntityYoungZephyr;
 import com.gildedgames.the_aether.entities.hostile.EntityZarnillys;
 import com.gildedgames.the_aether.entities.passive.mountable.EntityAerbunny;
@@ -177,6 +181,7 @@ import com.gildedgames.the_aether.entities.projectile.EntityPoisonSnowball;
 import com.gildedgames.the_aether.entities.projectile.EntityTempestSnowball;
 import com.gildedgames.the_aether.entities.projectile.EntityValkyrieProjectile;
 import com.gildedgames.the_aether.entities.projectile.EntityZephyrSnowball;
+import com.gildedgames.the_aether.entities.projectile.EntityZojzSnowball;
 import com.gildedgames.the_aether.entities.projectile.crystals.EntityCrystal;
 import com.gildedgames.the_aether.entities.projectile.darts.EntityDartBase;
 import com.gildedgames.the_aether.items.ItemsAether;
@@ -206,6 +211,7 @@ public class RendersAether {
 		register(EntityParachute.class, new ParachuteRenderer());
 		register(EntityZephyrSnowball.class, new ZephyrSnowballRenderer());
 		register(EntityTempestSnowball.class, new TempestSnowballRenderer());
+		register(EntityZojzSnowball.class, new ZojzSnowballRenderer());
 		register(EntityPoisonSnowball.class, new PoisonSnowballRenderer());
 		register(EntityPhoenixArrow.class, new PhoenixArrowRenderer());
 		register(EntityCyroArrow.class, new CyroArrowRenderer());
@@ -268,6 +274,7 @@ public class RendersAether {
 		register(EntityElysianGuardian.class, new ElysianGuardianRenderer(new ElysianGuardianModel()));
 		register(EntityIrk.class, new IrkRenderer());
 		register(EntityCrystalDragon.class, new CrystalDragonRenderer());
+		register(EntityZojz.class, new ZojzRenderer(new ZojzModel()));
 		
 		/* Passive */
 		register(EntityMoa.class, new MoaRenderer());

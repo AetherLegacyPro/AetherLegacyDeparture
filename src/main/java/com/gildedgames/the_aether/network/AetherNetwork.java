@@ -59,6 +59,7 @@ public class AetherNetwork {
 
 		INSTANCE.registerMessage(PacketUpdateLifeShardCount.class, PacketUpdateLifeShardCount.class, discriminant++, Side.CLIENT);
 		INSTANCE.registerMessage(PacketUpdatePowerShardCount.class, PacketUpdatePowerShardCount.class, discriminant++, Side.CLIENT);
+		INSTANCE.registerMessage(PacketUpdateDexterityShardCount.class, PacketUpdateDexterityShardCount.class, discriminant++, Side.CLIENT);
 		
 	}
 

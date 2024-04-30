@@ -358,7 +358,14 @@ public class EntityFlynx extends EntityTameable
            final int j = MathHelper.floor_double(this.boundingBox.minY);
            final int k = MathHelper.floor_double(this.posZ);
            final boolean canSpawn = this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes((Entity)this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);          
-           return (this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_dirt || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.arctic_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.verdant_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.enchanted_aether_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.divine_grass) && this.worldObj.getBlockLightValue(i, j, k) > 7 && canSpawn && this.rand.nextInt(AetherConfig.getFlynxSpawnrate()) == 0 && super.getCanSpawnHere();
+			return ((this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_dirt
+					|| this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_grass
+					|| this.worldObj.getBlock(i, j - 1, k) == BlocksAether.arctic_grass
+					|| this.worldObj.getBlock(i, j - 1, k) == BlocksAether.verdant_grass
+					|| this.worldObj.getBlock(i, j - 1, k) == BlocksAether.enchanted_aether_grass
+					|| this.worldObj.getBlock(i, j - 1, k) == BlocksAether.divine_grass)
+					&& this.worldObj.getBlockLightValue(i, j, k) > 7 && canSpawn
+					&& this.rand.nextInt(AetherConfig.getFlynxSpawnrate()) == 0 && super.getCanSpawnHere());
                           
        }
 }

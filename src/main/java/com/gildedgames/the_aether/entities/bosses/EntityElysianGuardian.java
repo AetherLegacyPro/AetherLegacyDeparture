@@ -65,7 +65,7 @@ public class EntityElysianGuardian extends EntityMob {
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
 		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(50.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(7.5D);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(9.5D);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(30.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(175.0D);
 	}
@@ -306,13 +306,13 @@ public class EntityElysianGuardian extends EntityMob {
             super.attackEntity(entity1, f);
         }
         if (this.getHealth() <= 180.0f && this.getHealth() >= 160.0f) {
-            this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(4.65D);
+            this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(7.65D);
         }
         if (this.getHealth() <= 160.0f && this.getHealth() >= 140.0f) {
-            this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(4.8D);
+            this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(7.8D);
         }
         if (this.getHealth() <= 140.0f && this.getHealth() >= 120.0f) {
-            this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(4.85D);
+            this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(7.85D);
             if (!this.onGround) {
                 final double d3 = entity1.posX - this.posX;
                 final double d4 = entity1.posZ - this.posZ;
@@ -322,7 +322,7 @@ public class EntityElysianGuardian extends EntityMob {
             }
         }
         if (this.getHealth() <= 120.0f && this.getHealth() >= 80.0f) {
-            this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(4.9D);
+            this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(7.9D);
             if (!this.onGround) {
                 final double d5 = entity1.posX - this.posX;
                 final double d6 = entity1.posZ - this.posZ;

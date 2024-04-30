@@ -44,7 +44,6 @@ import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerRespawnEvent;
 
 public class PlayerAetherEvents {
-	PlayerAether powerModifier;
 	
 	@SubscribeEvent
 	public void onPlayerAetherConstructing(EntityConstructing event) {
@@ -63,6 +62,7 @@ public class PlayerAetherEvents {
 			AetherNetwork.sendTo(new PacketAccessory(playerAether), (EntityPlayerMP) event.player);
 			playerAether.updateShardCount(0);
 			playerAether.updatePowerShardCount(0);
+			playerAether.updateDexShardCount(0);
 
 			if (!AetherConfig.shouldAetherStart())
 			{
@@ -82,6 +82,8 @@ public class PlayerAetherEvents {
 		PlayerAether playerAether = PlayerAether.get(event.entityPlayer);
 
 		playerAether.shardCount = original.shardCount;
+		playerAether.powerCount = original.powerCount;
+		playerAether.dexCount = original.dexCount;
 
 		if (!event.wasDeath || event.entityPlayer.worldObj.getGameRules().getGameRuleBooleanValue("keepInventory")) {
 			playerAether.setAccessoryInventory(original.getAccessoryInventory());
@@ -105,6 +107,9 @@ public class PlayerAetherEvents {
 			
 			playerAether.updatePowerShardCount(0);
 			
+			playerAether.updateDexShardCount(0);
+			event.player.setAIMoveSpeed(event.player.getAIMoveSpeed());
+			
 			playerAether.isPoisoned = false;
 			playerAether.poisonTime = 0;
 			playerAether.isCured = false;
@@ -120,6 +125,7 @@ public class PlayerAetherEvents {
 			AetherNetwork.sendTo(new PacketAccessory(playerAether), (EntityPlayerMP) event.player);
 			playerAether.updateShardCount(0);
 			playerAether.updatePowerShardCount(0);
+			playerAether.updateDexShardCount(0);
 		}
 	}
 

@@ -69,6 +69,7 @@ import com.gildedgames.the_aether.entities.hostile.EntityWhirlwind;
 import com.gildedgames.the_aether.entities.hostile.EntityYoungZephyr;
 import com.gildedgames.the_aether.entities.hostile.EntityZarnillys;
 import com.gildedgames.the_aether.entities.hostile.EntityZephyr;
+import com.gildedgames.the_aether.entities.hostile.EntityZojz;
 import com.gildedgames.the_aether.entities.passive.mountable.EntityAerbunny;
 import com.gildedgames.the_aether.entities.passive.mountable.EntityAerwhaleMount;
 import com.gildedgames.the_aether.entities.passive.mountable.EntityFlyingCow;
@@ -95,6 +96,7 @@ import com.gildedgames.the_aether.entities.projectile.EntityPoisonSnowball;
 import com.gildedgames.the_aether.entities.projectile.EntityTempestSnowball;
 import com.gildedgames.the_aether.entities.projectile.EntityValkyrieProjectile;
 import com.gildedgames.the_aether.entities.projectile.EntityZephyrSnowball;
+import com.gildedgames.the_aether.entities.projectile.EntityZojzSnowball;
 import com.gildedgames.the_aether.entities.util.AetherMoaTypes;
 import com.gildedgames.the_aether.entities.util.EntityAetherItem;
 
@@ -145,6 +147,7 @@ public class EntitiesAether {
 		register(EntityElysianGuardian.class, "elysian_guardian", 82, 0x3e3e3e, 0x00a8ec);
 		register(EntityIrk.class, "irk", 84, 0x032d24, 0x039893);
 		register(EntityCrystalDragon.class, "crystal_dragon", 85, 0xd8e4f8, 0x1bb7df);
+		register(EntityZojz.class, "zojz", 87, 0x2a4552, 0x72c8c9);
 		
 		register(EntityCyroGuardian.class, "cyro_guardian", 48, 80, 3, true);
 		register(EntitySlider.class, "slider", 12, 80, 3, true);
@@ -187,6 +190,7 @@ public class EntitiesAether {
 		register(EntityCyroArrow.class, "cyro_arrow", 86, 64, 20, true);
 		register(EntityZephyrSnowball.class, "zephyr_snowball", 28, 64, 20, true);
 		register(EntityTempestSnowball.class, "tempest_snowball", 54, 64, 20, true);
+		register(EntityZojzSnowball.class, "zojz_snowball", 88, 64, 20, true);
 		register(EntityPoisonSnowball.class, "poison_snowball", 73, 64, 20, true);
 		register(EntityHammerProjectile.class, "hammer_projectile", 29, 64, 20, true);
 		register(EntityJebHammerProjectile.class, "jeb_hammer_projectile", 33, 64, 20, true);

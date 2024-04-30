@@ -9,7 +9,7 @@ public class AetherConfig {
 
 	public static Configuration config;
 
-	private static int max_life_shards, max_power_shards;
+	private static int max_life_shards, max_power_shards, max_dex_shards;
 
 	private static boolean christmas_content, tallgrass, seasonal_christmas;
 
@@ -138,6 +138,7 @@ public class AetherConfig {
 		aether_start = config.get("Gameplay", "Spawns Player with Aether Portal Frame", false).getBoolean(false);
 
 		max_life_shards = config.get("Gameplay", "Max Life Shards", 10).getInt(10);
+		max_dex_shards = config.get("Gameplay", "Max Dexterity Shards", 10).getInt(10);
 		max_power_shards = config.get("Gameplay", "Max Power Shards - (If player dies they loose this)", 20).getInt(20);
 
 		menu_enabled = config.get("Misc", "Enables the Aether Menu", false).getBoolean(false);
@@ -260,6 +261,10 @@ public class AetherConfig {
 	
 	public static int getMaxPowerShards() {
 		return AetherConfig.max_power_shards;
+	}
+	
+	public static int getMaxDexShards() {
+		return AetherConfig.max_dex_shards;
 	}
 	
 	public static int getTravelDimensionID() {

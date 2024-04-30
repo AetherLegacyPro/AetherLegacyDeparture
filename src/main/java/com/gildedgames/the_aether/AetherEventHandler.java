@@ -46,6 +46,8 @@ import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.blocks.portal.BlockAetherPortal;
 import com.gildedgames.the_aether.entities.EntitiesAether;
 import com.gildedgames.the_aether.entities.bosses.EntityValkyrie;
+import com.gildedgames.the_aether.entities.hostile.EntityTempest;
+import com.gildedgames.the_aether.entities.hostile.EntityZojz;
 import com.gildedgames.the_aether.entities.passive.mountable.EntityFlyingCow;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.items.dungeon.ItemDungeonKey;
@@ -303,6 +305,10 @@ AetherEventHandler {
 					event.setCanceled(true);
 				}
 			}
+		}
+		
+		else if (event.entity instanceof EntityZojz || event.entity instanceof EntityTempest) {
+			event.setCanceled(true);
 		}
 	}
 

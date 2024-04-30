@@ -173,6 +173,7 @@ item.reinforced_golden_feather.name=Golden Feather
 item.amplified_golden_feather.name=Golden Feather
 item.reinforced_auralite_pendant.name=Auralite Pendant
 item.amplified_auralite_pendant.name=Auralite Pendant
+item.dexterity_shard.name=Dexterity Shard
 
 item.white_dye.name=White Dye
 item.black_dye.name=Black Dye
@@ -1104,6 +1105,7 @@ entity.aerca.name=Aerca
 entity.elysian_guardian.name=Elysian Guardian
 entity.irk.name=Irk
 entity.crystal_dragon.name=Crystal Dragon
+entity.zojz.name=Zojz
 
 entity.aether_legacy.aechor_plant.name=Aechor Plant
 entity.aether_legacy.cockatrice.name=Cockatrice
@@ -1172,6 +1174,7 @@ entity.aether_legacy.aerca.name=Aerca
 entity.aether_legacy.elysian_guardian.name=Elysian Guardian
 entity.aether_legacy.irk.name=Irk
 entity.aether_legacy.crystal_dragon.name=Crystal Dragon
+entity.aether_legacy.zojz.name=Zojz
 
 # Damage Descriptions
 death.attack.aether_legacy.dart=%s was shot by %s
@@ -1325,6 +1328,7 @@ death.attack.lightning_ball=%1$s was zapped by %2$s's Thunder Ball
 # Gui messages
 gui.item.life_shard.maxshards=You can only use a total of %s life shards.
 gui.item.power_shard.maxshards=You can only use a total of %s power shards.
+gui.item.dex_shard.maxshards=You can only use a total of %s dexterity shards.
 gui.item.developer_stick.notdev=You aren't skilled enough to use this item!
 
 gui.slider.notpickaxe=Hmm. Perhaps I need to attack it with a Pickaxe?

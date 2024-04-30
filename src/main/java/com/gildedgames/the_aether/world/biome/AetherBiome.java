@@ -25,6 +25,7 @@ import com.gildedgames.the_aether.entities.hostile.EntityUro;
 import com.gildedgames.the_aether.entities.hostile.EntityWhirlwind;
 import com.gildedgames.the_aether.entities.hostile.EntityYoungZephyr;
 import com.gildedgames.the_aether.entities.hostile.EntityZephyr;
+import com.gildedgames.the_aether.entities.hostile.EntityZojz;
 import com.gildedgames.the_aether.entities.passive.EntityAerwhale;
 import com.gildedgames.the_aether.entities.passive.EntityCarrionSprout;
 import com.gildedgames.the_aether.entities.passive.EntityFlynx;
@@ -165,7 +166,7 @@ public class AetherBiome extends BiomeGenBase {
 		list.add(new SpawnListEntry(EntityMoa.class, 5, 2, 3));
 		list.add(new SpawnListEntry(EntityThunderlo.class, 5, 3, 3));
 		list.add(new SpawnListEntry(EntitySwet.class, 5, 4, 4));
-		list.add(new SpawnListEntry(EntityFlynx.class, 2, 1, 2));
+		list.add(new SpawnListEntry(EntityFlynx.class, 4, 1, 4));
 	}
 
 	private void addMobEntry(ArrayList<SpawnListEntry> list)
@@ -189,6 +190,7 @@ public class AetherBiome extends BiomeGenBase {
 		
 		//Silver
 		list.add(new SpawnListEntry(EntityValkyrie.class, 20, 1, 1));
+		list.add(new SpawnListEntry(EntityZojz.class, 80, 1, 1));
 		
 		//Gold
 		list.add(new SpawnListEntry(EntityCinerarium.class, 80, 4, 4));

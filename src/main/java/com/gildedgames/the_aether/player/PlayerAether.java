@@ -82,6 +82,7 @@ public class PlayerAether implements IPlayerAether {
 
 	public int shardCount;
 	public int powerCount;
+	public int dexCount;
 	
 	public DonatorMoaSkin donatorMoaSkin = new DonatorMoaSkin();
 
@@ -127,6 +128,7 @@ public class PlayerAether implements IPlayerAether {
 
 	private AttributeModifier healthModifier;	
 	private AttributeModifier powerModifier;
+	private AttributeModifier dexModifier;
 
 	public PlayerAether() {
 		this.shouldRenderHalo = true;
@@ -511,6 +513,7 @@ public class PlayerAether implements IPlayerAether {
 		aetherTag.setInteger("poison_time", this.poisonTime);
 		aetherTag.setBoolean("cape", this.shouldRenderCape);
 		aetherTag.setInteger("shardCount", this.shardCount);
+		aetherTag.setInteger("dexCount", this.dexCount);
 		aetherTag.setInteger("powerCount", this.powerCount);
 		aetherTag.setTag("accessories", this.getAccessoryInventory().writeToNBT(aetherTag));
 		aetherTag.setBoolean("seen_spirit_dialog", this.seenSpiritDialog);
@@ -568,6 +571,11 @@ public class PlayerAether implements IPlayerAether {
 		if (aetherTag.hasKey("shardCount"))
 		{
 			this.shardCount = aetherTag.getInteger("shardCount");
+		}
+		
+		if (aetherTag.hasKey("dexCount"))
+		{
+			this.dexCount = aetherTag.getInteger("dexCount");
 		}
 		
 		if (aetherTag.hasKey("powerCount"))
@@ -660,6 +668,32 @@ public class PlayerAether implements IPlayerAether {
 			}
 		}
 	}
+	
+	@Override
+	public void updateDexShardCount(int amount) {
+
+		if (!this.getEntity().worldObj.isRemote)
+		{
+			if (this.getDexShardsUsed() <= this.getMaxDexShardCount())
+			{
+				this.dexCount += amount;
+				AetherNetwork.sendToAll(new PacketUpdateDexterityShardCount(this.player, this.dexCount));
+
+				this.dexModifier = new AttributeModifier(uuid, "Aether Dexterity Modifier", (this.dexCount * 0.01D), 0);
+
+				if (this.player.getEntityAttribute(SharedMonsterAttributes.movementSpeed).getModifier(this.uuid) != null)
+				{
+					this.player.getEntityAttribute(SharedMonsterAttributes.movementSpeed).removeModifier(this.dexModifier);
+				}
+
+				this.player.getEntityAttribute(SharedMonsterAttributes.movementSpeed).applyModifier(this.dexModifier);
+			}
+			else
+			{
+				AetherNetwork.sendToAll(new PacketUpdateDexterityShardCount(this.player, this.dexCount));
+			}
+		}
+	}
 
 	@Override
 	public int getShardsUsed() {
@@ -670,6 +704,11 @@ public class PlayerAether implements IPlayerAether {
 	public int getPowerShardsUsed() {
 		return this.powerCount;
 	}
+	
+	@Override
+	public int getDexShardsUsed() {
+		return this.dexCount;
+	}
 
 	@Override
 	public int getMaxShardCount() {
@@ -679,6 +718,11 @@ public class PlayerAether implements IPlayerAether {
 	@Override
 	public int getMaxPowerShardCount() {
 		return AetherConfig.getMaxPowerShards();
+	}
+	
+	@Override
+	public int getMaxDexShardCount() {
+		return AetherConfig.getMaxDexShards();
 	}
 
 	@Override

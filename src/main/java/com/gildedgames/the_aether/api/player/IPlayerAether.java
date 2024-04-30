@@ -54,6 +54,13 @@ public interface IPlayerAether extends IExtendedEntityProperties {
 	public int getPowerShardsUsed();
 	
 	public int getMaxPowerShardCount();
+	
+	//
+	public void updateDexShardCount(int amount);
+
+	public int getDexShardsUsed();
+	
+	public int getMaxDexShardCount();
 
 	public boolean isDonator();
 
