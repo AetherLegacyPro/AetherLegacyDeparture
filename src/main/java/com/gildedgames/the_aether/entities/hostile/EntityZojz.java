@@ -119,7 +119,6 @@ public class EntityZojz extends EntityAetherMob implements IMob
    		 int random1 = (int)(1 + Math.random() * 2);
       	 if(random1 == 1 ) {
       		this.worldObj.addWeatherEffect(new EntityLightningBolt(this.worldObj, this.posX, this.posY, this.posZ));
-    		//this.setDead();
       	   }
           }
    	  
@@ -140,6 +139,10 @@ public class EntityZojz extends EntityAetherMob implements IMob
     	if (this.worldObj.isDaytime() && !this.worldObj.isRemote && this.worldObj.canBlockSeeTheSky(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY), MathHelper.floor_double(this.posZ))) {
             this.damageEntity(DamageSource.drown, 1.0f);
         }
+    	if (!this.worldObj.isRemote && this.worldObj.difficultySetting == EnumDifficulty.PEACEFUL)
+		{
+			this.setDead();
+		}
         if (this.attackTimer > 0) {
             --this.attackTimer;
         }
@@ -207,13 +210,12 @@ public class EntityZojz extends EntityAetherMob implements IMob
     
     @Override
 	protected void dropFewItems(boolean var1, int var2) {
-		this.dropItem(Item.getItemFromBlock(BlocksAether.storm_aercloud), 0);
 		int rand = (int)(1 + Math.random() * 3);
 		switch (rand)
         {
         case 1: this.dropItem(ItemsAether.tempest_core, 1);
         break;
-        case 2: 
+        case 2: this.dropItem(Item.getItemFromBlock(BlocksAether.storm_aercloud), 1);
         break;
         case 3:
         break;

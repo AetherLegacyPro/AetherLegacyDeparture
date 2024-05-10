@@ -152,7 +152,7 @@ public class EntityAncientValkyrieQueen extends EntityBossMob implements IAether
                 for (int z = this.dungeonZ - 6; z < this.dungeonZ + 26; z++) {
                     Block block = this.worldObj.getBlock(x, y, z);
 
-                    if (block == BlocksAether.locked_angelic_stone || block == BlocksAether.locked_light_angelic_stone) {
+                    if (block == BlocksAether.locked_ancient_angelic_stone || block == BlocksAether.locked_ancient_light_angelic_stone) {
                         this.worldObj.setBlock(x, y, z, ((BlockDungeonBase) block).getUnlockedBlock());
                     }
                 }
@@ -248,12 +248,12 @@ public class EntityAncientValkyrieQueen extends EntityBossMob implements IAether
                 {
                     Block state = this.worldObj.getBlock(this.dungeonX - 1, this.dungeonY, this.dungeonZ + k);
 
-                    if (state != BlocksAether.locked_angelic_stone || state != BlocksAether.locked_light_angelic_stone)
+                    if (state != BlocksAether.locked_ancient_angelic_stone || state != BlocksAether.locked_ancient_light_angelic_stone)
                     {
-                        this.worldObj.setBlock(this.dungeonX - 1, this.dungeonY, this.dungeonZ + k, BlocksAether.locked_angelic_stone);
-                        this.worldObj.setBlock(this.dungeonX - 1, this.dungeonY, this.dungeonZ + k + 1, BlocksAether.locked_angelic_stone);
-                        this.worldObj.setBlock(this.dungeonX - 1, this.dungeonY + 1, this.dungeonZ + k + 1, BlocksAether.locked_angelic_stone);
-                        this.worldObj.setBlock(this.dungeonX - 1, this.dungeonY + 1, this.dungeonZ + k, BlocksAether.locked_angelic_stone);
+                        this.worldObj.setBlock(this.dungeonX - 1, this.dungeonY, this.dungeonZ + k, BlocksAether.locked_ancient_angelic_stone);
+                        this.worldObj.setBlock(this.dungeonX - 1, this.dungeonY, this.dungeonZ + k + 1, BlocksAether.locked_ancient_angelic_stone);
+                        this.worldObj.setBlock(this.dungeonX - 1, this.dungeonY + 1, this.dungeonZ + k + 1, BlocksAether.locked_ancient_angelic_stone);
+                        this.worldObj.setBlock(this.dungeonX - 1, this.dungeonY + 1, this.dungeonZ + k, BlocksAether.locked_ancient_angelic_stone);
                         this.dungeonEntranceZ = this.dungeonZ + k;
                     }
                 }
@@ -432,7 +432,7 @@ public class EntityAncientValkyrieQueen extends EntityBossMob implements IAether
         boolean flag = false;
 
         this.swingArm();
-        flag = entity.attackEntityFrom(DamageSource.causeMobDamage(this), 8);
+        flag = entity.attackEntityFrom(DamageSource.causeMobDamage(this), 20);
 
         if (entity != null && this.getEntityToAttack() != null && entity == this.getEntityToAttack() && entity instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer) entity;

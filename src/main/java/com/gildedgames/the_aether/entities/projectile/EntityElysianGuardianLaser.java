@@ -46,7 +46,7 @@ public class EntityElysianGuardianLaser extends Entity implements IProjectile
         this.field_145791_d = -1;
         this.field_145792_e = -1;
         this.field_145789_f = -1;
-        this.damage = 12.0;
+        this.damage = 15.0;
         this.renderDistanceWeight = 5.0;
         this.setSize(0.5f, 0.5f);
     }
@@ -56,7 +56,7 @@ public class EntityElysianGuardianLaser extends Entity implements IProjectile
         this.field_145791_d = -1;
         this.field_145792_e = -1;
         this.field_145789_f = -1;
-        this.damage = 12.0;
+        this.damage = 15.0;
         this.renderDistanceWeight = 5.0;
         this.setSize(0.5f, 0.5f);
         this.setPosition(par2, par3, par4);
@@ -68,7 +68,7 @@ public class EntityElysianGuardianLaser extends Entity implements IProjectile
         this.field_145791_d = -1;
         this.field_145792_e = -1;
         this.field_145789_f = -1;
-        this.damage = 12.0;
+        this.damage = 15.0;
         this.renderDistanceWeight = 5.0;
         this.shootingEntity = (Entity)par2EntityLivingBase;
         this.setSize(0.5f, 0.5f);
@@ -89,7 +89,7 @@ public class EntityElysianGuardianLaser extends Entity implements IProjectile
         this.field_145791_d = -1;
         this.field_145792_e = -1;
         this.field_145789_f = -1;
-        this.damage = 12.0;
+        this.damage = 15.0;
         this.renderDistanceWeight = 5.0;
         this.shootingEntity = (Entity)par2EntityLivingBase;
         this.posY = par2EntityLivingBase.posY + par2EntityLivingBase.getEyeHeight() - 0.10000000149011612;

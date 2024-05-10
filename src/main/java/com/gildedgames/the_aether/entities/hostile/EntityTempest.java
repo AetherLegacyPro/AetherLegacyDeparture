@@ -290,15 +290,14 @@ public class EntityTempest extends EntityAetherMob implements IMob
     
     @Override
 	protected void dropFewItems(boolean var1, int var2) {
-		this.dropItem(Item.getItemFromBlock(BlocksAether.storm_aercloud), 0);
 		int rand = (int)(1 + Math.random() * 3);
 		switch (rand)
         {
         case 1: this.dropItem(ItemsAether.tempest_core, 1);
         break;
-        case 2: 
+        case 2: this.dropItem(Item.getItemFromBlock(BlocksAether.storm_aercloud), 1);
         break;
-        case 3:
+        case 3: 
         break;
         }
 	}

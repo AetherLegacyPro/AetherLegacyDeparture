@@ -6,6 +6,7 @@ import java.util.Random;
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.entities.bosses.EntityAncientFireMinion;
 import com.gildedgames.the_aether.entities.bosses.EntityDivineFireMinion;
+import com.gildedgames.the_aether.entities.bosses.EntityEliteValkyrie;
 import com.gildedgames.the_aether.entities.bosses.EntityFallenValkyrie;
 import com.gildedgames.the_aether.entities.bosses.EntityFireMinion;
 import com.gildedgames.the_aether.entities.bosses.EntityValkyrie;
@@ -190,10 +191,12 @@ public class AetherBiome extends BiomeGenBase {
 		
 		//Silver
 		list.add(new SpawnListEntry(EntityValkyrie.class, 20, 1, 1));
+		list.add(new SpawnListEntry(EntityEliteValkyrie.class, 20, 1, 1));
 		list.add(new SpawnListEntry(EntityZojz.class, 80, 1, 1));
 		
 		//Gold
 		list.add(new SpawnListEntry(EntityCinerarium.class, 80, 4, 4));
+		list.add(new SpawnListEntry(EntityAncientFireMinion.class, 25, 1, 2));
 		list.add(new SpawnListEntry(EntityDivineFireMinion.class, 35, 1, 2));
 		
 		//Osmium

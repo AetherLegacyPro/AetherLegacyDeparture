@@ -9,6 +9,11 @@ import cpw.mods.fml.common.registry.*;
 
 public class OtherModItems
 {
+	//NovaCraft
+	public static Item vanite_ingot;
+	public static Item pherithium_ingot;
+	public static Item klangite_ingot;
+	
 	//Et Futurum
 	public static Item netherite_ingot;
 	public static Item netherite_scrap;
@@ -29,6 +34,11 @@ public class OtherModItems
     public static Item endium_ingot;
 	
 	static {
+		
+	   OtherModItems.vanite_ingot = GameRegistry.findItem("nova_craft", "vanite_ingot");
+	   OtherModItems.pherithium_ingot = GameRegistry.findItem("nova_craft", "pherithium_ingot");
+	   OtherModItems.klangite_ingot = GameRegistry.findItem("nova_craft", "klangite_ingot");
+		
 	   OtherModItems.netherite_ingot = GameRegistry.findItem("etfuturum", "netherite_ingot");
 	   OtherModItems.netherite_scrap = GameRegistry.findItem("etfuturum", "netherite_scrap");
 	   OtherModItems.copper_ingot = GameRegistry.findItem("etfuturum", "copper_ingot");

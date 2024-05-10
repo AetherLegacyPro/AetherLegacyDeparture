@@ -42,8 +42,6 @@ public class BlockAetherSlab extends BlockSlab {
 			return BlocksAether.holystone_brick_slab;
 		} else if (this == BlocksAether.holystone_double_slab) {
 			return BlocksAether.holystone_slab;
-		} else if (this == BlocksAether.gale_double_slab) {
-			return BlocksAether.gale_slab;
 		} else if (this == BlocksAether.genesis_double_slab) {
 			return BlocksAether.genesis_slab;
 		} else if (this == BlocksAether.greatroot_double_slab) {
@@ -106,6 +104,10 @@ public class BlockAetherSlab extends BlockSlab {
 			return BlocksAether.enchanted_aetheral_stone_brick_slab;
 		} else if (this == BlocksAether.divine_oak_double_slab) {
 			return BlocksAether.divine_oak_slab;
+		} else if (this == BlocksAether.ancient_angelic_stone_double_slab) {
+			return BlocksAether.ancient_angelic_stone_slab;
+		} else if (this == BlocksAether.ancient_hellfire_stone_double_slab) {
+			return BlocksAether.ancient_hellfire_stone_slab;
 		} else {
 			return this;
 		}

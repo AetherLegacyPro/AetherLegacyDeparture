@@ -30,7 +30,7 @@ public class EntityPoisonSnowball extends EntityArrow implements IThrowableEntit
 
 	public EntityPoisonSnowball(World worldIn) {
 		super(worldIn);
-		setSize(2F, 2F);
+		setSize(0.5F, 0.5F);
 	}
 
 	public EntityPoisonSnowball(World worldIn, EntityLivingBase shooter, float distance) {
@@ -56,7 +56,7 @@ public class EntityPoisonSnowball extends EntityArrow implements IThrowableEntit
 			}
 		}
 		
-		if (this.ticksInAir > 200) {
+		if (this.ticksInAir > 100) {
 			this.setDead();
 		} else {
 			this.ticksInAir++;

@@ -129,6 +129,9 @@ public interface IAccessoryInventory extends IInventory {
 	public boolean isWearingHasteRingAndArkeniumCombo();
 	
 	public boolean isWearingHasteRingAmpilifedArkenium();
+	
+	//--------------- Discharge Cape
+	public boolean isWearingDischargeCape();
 
 	public List<ItemStack> getAccessories();
 

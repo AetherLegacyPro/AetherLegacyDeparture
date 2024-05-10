@@ -1151,7 +1151,7 @@ public class ComponentOsmiumDungeon extends AetherStructure {
 	}
 
 	public static ItemStack getOsmiumLoot(Random random) {
-		int item = random.nextInt(16);
+		int item = random.nextInt(17);
 
 		switch (item) {
 			case 0:
@@ -1193,6 +1193,8 @@ public class ComponentOsmiumDungeon extends AetherStructure {
 				return new ItemStack(ItemsAether.agility_boots);
 			case 14:
 				return new ItemStack(ItemsAether.dexterity_shard);
+			case 15:
+				return new ItemStack(ItemsAether.discharge_cape);
 		}
 		return new ItemStack(ItemsAether.arkenium_chunk, random.nextInt(12) + 10);
 	}

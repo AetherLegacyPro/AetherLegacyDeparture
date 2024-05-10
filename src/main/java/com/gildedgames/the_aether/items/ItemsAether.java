@@ -191,7 +191,7 @@ public class ItemsAether {
 	//Misc Items
 	public static Item skyroot_stick, zanite_gemstone, ambrosium_shard, mimicry_ambrosium_shard, arkenium_fragement, arkenium_chunk, arkenium_ingot, continuum_orb, continuum_gemstone;
 	public static Item raw_gravitite, empyrean_gemstone, cracked_empyrean_gemstone, charged_empyrean_gemstone;
-	public static Item valkyrie_ingot, valkyrie_nugget, enchanted_divineral, divineral_ingot, golden_amber, cer_scales, icestone_crystal, auralite_crystal;	
+	public static Item valkyrie_ingot, valkyrie_nugget, enchanted_divineral, divineral_ingot, golden_amber, icestone_crystal, auralite_crystal;	
 	public static Item zanite_nugget, arkenium_nugget, continuum_nugget, gravitite_nugget, divineral_nugget;
 	public static Item swet_ball, golden_swet_ball, purple_swet_ball, uligo_swet_ball;
 	public static Item aercloud_globule, blue_aercloud_globule, golden_aercloud_globule, purple_aercloud_globule, green_aercloud_globule;
@@ -204,10 +204,11 @@ public class ItemsAether {
 	
 	//Mob Drops
 	public static Item aechor_petal, blue_aechor_petal, golden_aechor_petal, cockatrice_feather, tempest_core, zarnillys_scales, thunderlo_horn, divine_essence;
-	public static Item cyro_rod, cinerarium_rod, zephyroo_leather, zephyroo_pouch, zephyroo_saddle, thunderlo_leather;
+	public static Item cyro_rod, cinerarium_rod, zephyroo_leather, zephyroo_saddle, thunderlo_leather;
 	public static Item aerca_tooth, aerca_powder, charged_tempest_core;
 	public static Item victory_medal, osmium_insignia;
 	public static Item aceninum_shard, elysian_core, crystal_dragon_scales, notched_core, elysian_offering;
+	public static Item elysian_dragon_scales;
 	
 	//Aether Tools
 	public static Item skyroot_pickaxe, skyroot_axe, skyroot_shovel, skyroot_sword, skyroot_hoe;
@@ -284,7 +285,6 @@ public class ItemsAether {
 	public static Item sentry_boots, scaled_sentry_boots, amplified_sentry_boots;
 	
 	public static Item leather_gloves, iron_gloves, golden_gloves, chain_gloves, diamond_gloves;
-	public static Item power_gloves;
 	public static Item netherite_gloves, copper_gloves, effrine_gloves, heavy_blaze_gloves;
 	public static Item vanite_gloves, pherithium_gloves, klangite_gloves;
 	
@@ -328,7 +328,7 @@ public class ItemsAether {
 
 	public static Item white_cape, red_cape, blue_cape, yellow_cape, black_cape, green_cape, purple_cape, orange_cape, lime_cape; 
 	public static Item pink_cape, gray_cape, cyan_cape, light_gray_cape, light_blue_cape, magenta_cape, brown_cape;	
-	public static Item swet_cape, invisibility_cape, agility_cape, valkyrie_cape, phoenix_cape, aer_cape;
+	public static Item swet_cape, invisibility_cape, agility_cape, valkyrie_cape, phoenix_cape, aer_cape, discharge_cape;
 
 	public static Item golden_feather, reinforced_golden_feather, amplified_golden_feather;
 	public static Item regeneration_stone, reinforced_regeneration_stone, healing_matrix;
@@ -365,16 +365,14 @@ public class ItemsAether {
 		divineral_nugget = register("divineral_nugget", new ItemDivineItem().setTextureName(Aether.find("misc/divineral_nugget")));
 		divineral_ingot = register("divineral_ingot", new ItemDivineItem().setTextureName(Aether.find("misc/divineral_ingot")));
 		enchanted_divineral = register("enchanted_divineral", new ItemDivineItem().setTextureName(Aether.find("misc/enchanted_divineral")));
-		cer_scales = register("cer_scales", new ItemAether(AetherCreativeTabs.material).setTextureName(Aether.find("misc/cer_scales")));
 		cyro_rod = register("cyro_rod", new ItemAether(AetherCreativeTabs.material).setTextureName(Aether.find("misc/cyro_rod")));
 		cinerarium_rod = register("cinerarium_rod", new ItemAether(AetherCreativeTabs.material).setTextureName(Aether.find("misc/cinerarium_rod")));	
 		zephyroo_leather = register("zephyroo_leather", new ItemAether(AetherCreativeTabs.material).setTextureName(Aether.find("misc/zephyroo_leather")));
-		zephyroo_pouch = register("zephyroo_pouch", new ItemAether(AetherCreativeTabs.material).setTextureName(Aether.find("misc/zephyroo_pouch")));
 		zephyroo_saddle = register("zephyroo_saddle", new ItemAetherSaddle().setTextureName(Aether.find("misc/zephyroo_saddle")));
 		thunderlo_leather = register("thunderlo_leather", new ItemAether(AetherCreativeTabs.material).setTextureName(Aether.find("misc/thunderlo_leather")));
 		thunderlo_horn = register("thunderlo_horn", new ItemAether(AetherCreativeTabs.material).setTextureName(Aether.find("misc/thunderlo_horn")));		
 		cockatrice_feather = register("cockatrice_feather", new ItemAether(AetherCreativeTabs.material).setTextureName(Aether.find("misc/cockatrice_feather")));
-		tempest_core = register("tempest_core", new ItemAether(AetherCreativeTabs.material).setTextureName(Aether.find("misc/tempest_core")));
+		tempest_core = register("tempest_core", new ItemTempestCore().setTextureName(Aether.find("misc/tempest_core")));
 		zarnillys_scales = register("zarnillys_scales", new ItemZarnillysScales().setTextureName(Aether.find("misc/zarnillys_scales")));
 		auralite_crystal = register("auralite_crystal", new ItemZarnillysScales().setTextureName(Aether.find("misc/auralite_crystal")));	
 		empyrean_gemstone = register("empyrean_gemstone", new ItemZarnillysScales().setTextureName(Aether.find("misc/empyrean_gemstone")));
@@ -386,6 +384,7 @@ public class ItemsAether {
 		charged_tempest_core = register("charged_tempest_core", new ItemChargedTempestCore().setTextureName(Aether.find("misc/charged_tempest_core")));
 		aceninum_shard = register("aceninum_shard", new ItemAceninumShard().setTextureName(Aether.find("misc/aceninum_shard")));
 		crystal_dragon_scales = register("crystal_dragon_scales", new ItemAether(AetherCreativeTabs.material).setTextureName(Aether.find("misc/crystal_dragon_scales")));
+		elysian_dragon_scales = register("elysian_dragon_scales", new ItemAceninumShard().setTextureName(Aether.find("misc/elysian_dragon_scales")));
 		
 		aercloud_globule = register("aercloud_globule", new ItemAercloudGlobule().setTextureName(Aether.find("misc/cold_aercloud_item")));
 		blue_aercloud_globule = register("blue_aercloud_globule", new ItemBlueAercloudGlobule().setTextureName(Aether.find("misc/blue_aercloud_item")));
@@ -674,7 +673,7 @@ public class ItemsAether {
 		osmium_insignia = register("osmium_insignia", new Item().setCreativeTab(AetherCreativeTabs.misc).setTextureName(Aether.find("osmium_insignia")));
 		victory_medal = register("victory_medal", new ItemVictoryMedal().setTextureName(Aether.find("victory_medal")));
 		elysian_core = register("elysian_core", new ItemElysianCore().setCreativeTab(AetherCreativeTabs.misc).setTextureName(Aether.find("misc/elysian_core")));
-		notched_core = register("notched_core", new ItemNotchedCore().setCreativeTab(AetherCreativeTabs.material).setTextureName(Aether.find("misc/notched_core")));
+		notched_core = register("notched_core", new ItemNotchedCore().setCreativeTab(AetherCreativeTabs.misc).setTextureName(Aether.find("misc/notched_core")));
 		elysian_offering = register("elysian_offering", new ItemElysianOffering().setCreativeTab(AetherCreativeTabs.misc).setTextureName(Aether.find("misc/elysian_offering")));
 		
 		dungeon_key = register("dungeon_key", new ItemDungeonKey());
@@ -770,7 +769,7 @@ public class ItemsAether {
 		if (Loader.isModLoaded("nova_craft")) {
 		pherithium_gloves = register("pherithium_gloves", new ItemAccessory(AccessoryType.GLOVES).setTexture("pherithium").setMaxDamage(182).setTextureName(Aether.find("accessories/pherithium_gloves")));
 		vanite_gloves = register("vanite_gloves", new ItemAccessory(AccessoryType.GLOVES).setTexture("vanite").setMaxDamage(122).setTextureName(Aether.find("accessories/vanite_gloves")));
-		klangite_gloves = register("klangite_gloves", new ItemAccessory(AccessoryType.GLOVES).setTexture("klangite").setMaxDamage(1022).setTextureName(Aether.find("accessories/klangite_gloves")));
+		klangite_gloves = register("klangite_gloves", new ItemAccessory(AccessoryType.GLOVES).setTexture("klangite").setMaxDamage(2022).setTextureName(Aether.find("accessories/klangite_gloves")));
 		}
 		
 		zanite_gloves = register("zanite_gloves", new ItemAccessory(AccessoryType.GLOVES).setTexture("zanite").setMaxDamage(152).setTextureName(Aether.find("accessories/zanite_gloves")));
@@ -782,7 +781,6 @@ public class ItemsAether {
 		
 		gravitite_gloves = register("gravitite_gloves", new ItemAccessory(AccessoryType.GLOVES).setTexture("gravitite").setMaxDamage(452).setTextureName(Aether.find("accessories/gravitite_gloves")));
 		divineral_gloves = register("divineral_gloves", new ItemAccessory(AccessoryType.GLOVES).setTexture("divineral").setAmplifiedDungeonLoot().setMaxDamage(952).setTextureName(Aether.find("accessories/divineral_gloves")));
-		power_gloves = register("power_gloves", new ItemAccessory(AccessoryType.GLOVES).setTextureName(Aether.find("accessories/power_gloves")));
 		neptune_gloves = register("neptune_gloves", new ItemAccessory(AccessoryType.GLOVES).setTexture("neptune").setDungeonLoot().setMaxDamage(372).setTextureName(Aether.find("accessories/neptune_gloves")));
 		amplified_neptune_gloves = register("amplified_neptune_gloves", new ItemAccessory(AccessoryType.GLOVES).setTexture("amplified_neptune").setAmplifiedDungeonLoot().setMaxDamage(972).setTextureName(Aether.find("accessories/amplified_neptune_gloves")));
 		phoenix_gloves = register("phoenix_gloves", new ItemAccessory(AccessoryType.GLOVES).setTexture("phoenix").setDungeonLoot().setMaxDamage(372).setTextureName(Aether.find("accessories/phoenix_gloves")));
@@ -872,6 +870,7 @@ public class ItemsAether {
 		valkyrie_cape = register("valkyrie_cape", new ItemAccessory(AccessoryType.CAPE).setTexture("valkyrie_cape").setDungeonLoot().setTextureName(Aether.find("accessories/valkyrie_cape")));
 		phoenix_cape = register("phoenix_cape", new ItemAccessory(AccessoryType.CAPE).setTexture("phoenix_cape").setDungeonLoot().setTextureName(Aether.find("accessories/phoenix_cape")));
 		aer_cape = register("aer_cape", new ItemAccessory(AccessoryType.CAPE).setTexture("aer_cape").setDungeonLoot().setTextureName(Aether.find("accessories/aer_cape")));
+		discharge_cape = register("discharge_cape", new ItemAccessory(AccessoryType.CAPE).setTexture("discharge_cape").setDungeonLoot().setTextureName(Aether.find("accessories/discharge_cape")));
 		
 		golden_feather = register("golden_feather", new ItemAccessory(AccessoryType.MISC).setDungeonLoot().setMaxDamage(120).setTextureName(Aether.find("accessories/golden_feather")));
 		reinforced_golden_feather = register("reinforced_golden_feather", new ItemAccessory(AccessoryType.MISC).setReinforcedDungeonLoot().setMaxDamage(480).setTextureName(Aether.find("accessories/ref_golden_feather")));

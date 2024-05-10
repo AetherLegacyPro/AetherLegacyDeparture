@@ -1,5 +1,6 @@
 package com.gildedgames.the_aether.items;
 
+import com.gildedgames.the_aether.entities.block.EntityFireProofItemAether;
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -35,5 +36,13 @@ public class ItemChargedTempestCore extends Item {
 	public EnumRarity getRarity(ItemStack stack) {
 		return ItemsAether.aether_loot;
 	}
+	
+	public boolean hasCustomEntity(final ItemStack stack) {
+        return true;
+    }
+    
+    public Entity createEntity(final World world, final Entity location, final ItemStack itemstack) {
+        return (Entity)new EntityFireProofItemAether(world, location, itemstack);
+    }
 	
 }

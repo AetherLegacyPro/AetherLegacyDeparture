@@ -24,7 +24,7 @@ public enum EnumAetherMultiToolType {
 				BlocksAether.holystone, BlocksAether.holystone_brick, BlocksAether.mossy_holystone,
 				BlocksAether.enchanter, BlocksAether.incubator, BlocksAether.enchanter, BlocksAether.ambrosium_ore,
 				BlocksAether.icestone, BlocksAether.aerogel, BlocksAether.carved_stone, BlocksAether.angelic_stone,
-				BlocksAether.hellfire_stone, BlocksAether.gale_stone, BlocksAether.sentry_stone, BlocksAether.light_angelic_stone,
+				BlocksAether.hellfire_stone, BlocksAether.sentry_stone, BlocksAether.light_angelic_stone,
 				BlocksAether.light_hellfire_stone,
 				Blocks.grass, Blocks.dirt, Blocks.sand, Blocks.gravel, Blocks.snow,
 				Blocks.snow_layer, Blocks.clay, Blocks.farmland, Blocks.soul_sand,

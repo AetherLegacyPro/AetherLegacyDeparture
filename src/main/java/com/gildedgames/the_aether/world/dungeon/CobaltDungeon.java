@@ -877,13 +877,13 @@ public class CobaltDungeon extends AetherDungeon {
 			case 0:
 				return new ItemStack(ItemsAether.golden_amber, random.nextInt(10) + 1);
 			case 1:
-				return new ItemStack(ItemsAether.continuum_sword);
+				return new ItemStack(ItemsAether.orange, random.nextInt(4) + 1);
 			case 2:
 				return new ItemStack(ItemsAether.wynberry, random.nextInt(3) + 1);
 			case 3:
 				return new ItemStack(ItemsAether.arkenium_shovel);
 			case 4:
-				return new ItemStack(ItemsAether.swet_cape);
+				return new ItemStack(ItemsAether.grapes, random.nextInt(4) + 3);
 			case 5:
 				return new ItemStack(ItemsAether.ambrosium_shard, random.nextInt(25) + 1);
 			case 6:
@@ -891,9 +891,11 @@ public class CobaltDungeon extends AetherDungeon {
 			case 7:
 				return new ItemStack(ItemsAether.dexterity_stone, random.nextInt(3) + 1);
 			case 8:
-				return new ItemStack(BlocksAether.gravitite_ore, random.nextInt(1) + 1);
+				if (random.nextInt(3) == 0) {
+				return new ItemStack(ItemsAether.raw_gravitite, random.nextInt(1) + 1);
+				}
 			case 9: {
-				if (random.nextInt(20) == 0) {
+				if (random.nextInt(15) == 0) {
 					return new ItemStack(ItemsAether.arkenium_ingot);
 				}
 
@@ -909,8 +911,8 @@ public class CobaltDungeon extends AetherDungeon {
 				break;
 			}
 			case 12: {
-				if (random.nextInt(10) == 0) {
-					return new ItemStack(ItemsAether.ice_ring);
+				if (random.nextInt(5) == 0) {
+					return new ItemStack(ItemsAether.auralite_crystal);
 				}
 				break;
 			}
@@ -919,12 +921,12 @@ public class CobaltDungeon extends AetherDungeon {
 	}
 
 	public static ItemStack getCobaltLoot(Random random) {
-		int item = random.nextInt(12);
+		int item = random.nextInt(14);
 		switch (item) {
 			case 0:
 				return new ItemStack(ItemsAether.arkenium_pickaxe);
 			case 1:
-				return new ItemStack(BlocksAether.gravitite_ore, random.nextInt(2) + 1);
+				return new ItemStack(ItemsAether.raw_gravitite, random.nextInt(2) + 1);
 			case 2:
 				return new ItemStack(ItemsAether.arkenium_sword);
 			case 3:
@@ -945,7 +947,7 @@ public class CobaltDungeon extends AetherDungeon {
 				return new ItemStack(ItemsAether.shears_of_agnes, 1);
 			}
 			case 10: {
-				if (random.nextInt(15) == 0) {
+				if (random.nextInt(8) == 0) {
 					return new ItemStack(ItemsAether.enchanted_divineral, 1);
 				}
 				break;

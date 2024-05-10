@@ -23,8 +23,8 @@ public class GenesisDragonRenderer extends RenderLiving
 {
     private static final ResourceLocation genesisDragonExplodingTextures = Aether.locate("textures/bosses/genesis_dragon/genesis_dragon_exploding.png");
     private static final ResourceLocation genesisDragonCrystalBeamTextures = Aether.locate("textures/bosses/genesis_dragon/genesis_endercrystal_beam.png");
-    private static final ResourceLocation genesisDragonEyesTextures = Aether.locate("textures/bosses/genesis_dragon/genesis_dragon_eyes.png");
-    private static final ResourceLocation genesisDragonTextures = Aether.locate("textures/bosses/genesis_dragon/genesis_dragon.png");
+    private static final ResourceLocation genesisDragonEyesTextures;
+    private static final ResourceLocation genesisDragonTextures;
     /** An instance of the dragon model in RenderDragon */
     protected GenesisDragonModel modelDragon;
     private static final String __OBFID = "CL_00000988";
@@ -318,6 +318,11 @@ public class GenesisDragonRenderer extends RenderLiving
     public void doRender(Entity p_76986_1_, double p_76986_2_, double p_76986_4_, double p_76986_6_, float p_76986_8_, float p_76986_9_)
     {
         this.doRender((EntityGenesisDragon)p_76986_1_, p_76986_2_, p_76986_4_, p_76986_6_, p_76986_8_, p_76986_9_);
+    }
+    
+    static {
+    	genesisDragonTextures = Aether.locate("textures/bosses/genesis_dragon/genesis_dragon.png");
+    	genesisDragonEyesTextures = new ResourceLocation("aether_legacy", "textures/bosses/genesis_dragon/genesis_dragon_eyes.png");
     }
 
 

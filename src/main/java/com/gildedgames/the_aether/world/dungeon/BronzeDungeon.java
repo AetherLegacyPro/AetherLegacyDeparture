@@ -801,7 +801,7 @@ public class BronzeDungeon extends AetherDungeon {
 	}
 
 	private ItemStack getNormalLoot(Random random) {
-		int item = random.nextInt(15);
+		int item = random.nextInt(18);
 		switch (item) {
 			case 0:
 				return new ItemStack(ItemsAether.zanite_pickaxe);
@@ -819,8 +819,12 @@ public class BronzeDungeon extends AetherDungeon {
 				return new ItemStack(ItemsAether.gummy_swet, random.nextInt(5) + 1);
 			case 7:
 				return new ItemStack(ItemsAether.healing_stone, random.nextInt(3) + 1);
-			case 8:
-				return new ItemStack(BlocksAether.gravitite_ore, random.nextInt(1) + 1);
+			case 8:		
+				if (random.nextInt(5) == 0) {
+				return new ItemStack(ItemsAether.arkenium_fragement, random.nextInt(1) + 1);
+				}
+				
+				break;
 			case 9: {
 				if (random.nextInt(20) == 0) {
 					return new ItemStack(ItemsAether.aether_tune);
@@ -850,7 +854,7 @@ public class BronzeDungeon extends AetherDungeon {
 				break;
 			}
 		}
-		return new ItemStack(BlocksAether.ethereal_torch, random.nextInt(2) + 3);
+		return new ItemStack(BlocksAether.ambrosium_torch, random.nextInt(2) + 3);
 	}
 
 	public static ItemStack getBronzeLoot(Random random) {

@@ -128,7 +128,7 @@ public class ItemElysianOffering extends Item {
 			if (!world.isRemote)
         	{
 				EntityGenesisDragon dragon = new EntityGenesisDragon(world);
-				dragon.setLocationAndAngles((double)x + 0.5D, (double)y, (double)z + 0.5D, 20.0F, 0.0F);
+				dragon.setLocationAndAngles((double)x + 0.5D, (double)y + 20D, (double)z + 0.5D, 0.0F, 0.0F);
 				world.spawnEntityInWorld(dragon);
 				dragon.spawnExplosionParticle();
         	}

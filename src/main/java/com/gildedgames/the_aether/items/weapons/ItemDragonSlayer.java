@@ -1,11 +1,17 @@
 package com.gildedgames.the_aether.items.weapons;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import com.gildedgames.the_aether.entities.block.EntityFireProofItemAether;
+import com.gildedgames.the_aether.entities.bosses.crystal_dragon.EntityCrystalDragonPart;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityFlying;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -23,7 +29,7 @@ import com.google.common.collect.Multimap;
 public class ItemDragonSlayer extends ItemSword {
 
 	public float[] level = new float[]{8.0F, 8.0F, 8.0F, 8.0F, 8.0F};
-
+	
 	public ItemDragonSlayer() {
 		super(ToolMaterial.EMERALD);
 		this.setCreativeTab(AetherCreativeTabs.weapons);
@@ -69,23 +75,6 @@ public class ItemDragonSlayer extends ItemSword {
 	@Override
 	public boolean getIsRepairable(ItemStack stack, ItemStack repairStack) {
 		return false;
-	}
-	
-	@Override
-	public boolean hitEntity(ItemStack itemstack, EntityLivingBase entityliving, EntityLivingBase entityliving1) {
-		if (entityliving == null || entityliving1 == null) {
-			return false;
-		}
-
-		String s = EntityList.getEntityString((Entity) entityliving);
-
-		if (s != null && (s.toLowerCase().contains("dragon") || s.toLowerCase().contains("ender_dragon") || s.toLowerCase().contains("crystal_dragon") || s.toLowerCase().contains("genesis_dragon") || s.toLowerCase().contains("reddragonrediscovered") || s.toLowerCase().contains("deepoid_dragon") )) {
-			if (entityliving.getHealth() > 0) {
-				entityliving.attackEntityFrom(DamageSource.causeMobDamage(entityliving1), 30);
-			}
-		}
-
-		return super.hitEntity(itemstack, entityliving, entityliving1);
 	}
 	
 	@Override

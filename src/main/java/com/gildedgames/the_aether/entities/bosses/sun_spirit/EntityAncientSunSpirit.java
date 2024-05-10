@@ -517,7 +517,7 @@ public class EntityAncientSunSpirit extends EntityFlying implements IMob, IAethe
         if (this.chatWithMe(player)) {
             this.rotary = (180D / Math.PI) * Math.atan2(this.posX - player.posX, this.posZ - player.posZ);
             this.setAttackTarget(player);
-            this.setDoor(BlocksAether.locked_hellfire_stone);
+            this.setDoor(BlocksAether.locked_ancient_hellfire_stone);
 
             return true;
         }
@@ -708,7 +708,7 @@ public class EntityAncientSunSpirit extends EntityFlying implements IMob, IAethe
                 for (z = this.originPointZ - 20; z < this.originPointZ + 20; ++z) {
                     Block unlock_block = this.worldObj.getBlock(x, y, z);
 
-                    if (unlock_block == BlocksAether.locked_hellfire_stone || unlock_block == BlocksAether.locked_light_hellfire_stone) {
+                    if (unlock_block == BlocksAether.locked_ancient_hellfire_stone || unlock_block == BlocksAether.locked_ancient_light_hellfire_stone) {
                         this.worldObj.setBlock(x, y, z, ((BlockDungeonBase) unlock_block).getUnlockedBlock());
                     }
                 }

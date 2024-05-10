@@ -1,6 +1,7 @@
 package com.gildedgames.the_aether.blocks.dungeon;
 
 import com.gildedgames.the_aether.blocks.BlocksAether;
+import com.gildedgames.the_aether.entities.bosses.EntityEliteValkyrie;
 import com.gildedgames.the_aether.entities.bosses.EntityFireMinion;
 import com.gildedgames.the_aether.entities.bosses.EntityValkyrie;
 import com.gildedgames.the_aether.entities.hostile.EntityBattleSentry;
@@ -55,8 +56,15 @@ public class BlockDungeonTrap extends Block {
 				if (!world.isRemote) {
 					world.spawnEntityInWorld(valkyrie);
 				}
+			} else if (this == BlocksAether.ancient_angelic_trap) {
+				EntityEliteValkyrie valkyrie = new EntityEliteValkyrie(world);
+				valkyrie.setPosition(x + 0.5D, y + 1D, z + 0.5D);
+
+				if (!world.isRemote) {
+					world.spawnEntityInWorld(valkyrie);
+				}
 			} else if (this == BlocksAether.divine_angelic_trap) {
-					EntityValkyrie valkyrie = new EntityValkyrie(world);
+					EntityEliteValkyrie valkyrie = new EntityEliteValkyrie(world);
 					valkyrie.setPosition(x + 0.5D, y + 1D, z + 0.5D);
 
 					if (!world.isRemote) {
@@ -70,13 +78,6 @@ public class BlockDungeonTrap extends Block {
 				if (!world.isRemote) {
 					world.spawnEntityInWorld(minion);
 				}
-			} else if (this == BlocksAether.gale_trap) {
-				EntityCockatrice minion = new EntityCockatrice(world);
-				minion.setPosition(x + 0.5D, y + 1D, z + 0.5D);
-
-				if (!world.isRemote) {
-					world.spawnEntityInWorld(minion);
-				}	
 			} else if (this == BlocksAether.genesis_trap) {
 				EntityCockatrice minion = new EntityCockatrice(world);
 				minion.setPosition(x + 0.5D, y + 1D, z + 0.5D);

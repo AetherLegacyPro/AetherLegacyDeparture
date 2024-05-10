@@ -12,6 +12,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockChest;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -36,8 +37,9 @@ public class BlockMimicElysian extends BlockElysianChest {
 
 	@Override
 	public boolean onBlockActivated(World worldIn, int x, int y, int z, EntityPlayer playerIn, int side, float hitX, float hitY, float hitZ) {
+		worldIn.spawnEntityInWorld(new EntityLightningBolt(worldIn, x, y - 1, z));
 		this.spawnMimic(worldIn, playerIn, x, y, z);
-
+		
 		worldIn.playSoundEffect((double) x + 0.5D, (double) y + 0.5D, (double) z + 0.5D, "ambient.cave.cave", 0.5F, worldIn.rand.nextFloat() * 0.1F + 0.9F);
 		
 		if (!worldIn.isRemote) {
@@ -47,6 +49,25 @@ public class BlockMimicElysian extends BlockElysianChest {
 		}
 		
 		return true;
+	}
+	
+	public void onBlockDestroyedByPlayer(World world, int x, int y, int z, int l) {
+		world.spawnEntityInWorld(new EntityLightningBolt(world, x, y - 1, z));
+		
+		world.playSoundEffect((double) x + 0.5D, (double) y + 0.5D, (double) z + 0.5D, "ambient.cave.cave", 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
+		
+		if (!world.isRemote) {
+			EntityItem entityItem = new EntityItem(world, x, y, z, new ItemStack(BlocksAether.elysian_chest, 1));
+
+			world.spawnEntityInWorld(entityItem);
+		}
+		
+		if (!world.isRemote) {
+		EntityElysianGuardian guardian = new EntityElysianGuardian(world);
+		guardian.setPosition((double) x + 0.5D, (double) y + 1.5D, (double) z + 0.5D);
+		world.spawnEntityInWorld(guardian);
+		}
+				
 	}
 
 	@Override
@@ -68,6 +89,7 @@ public class BlockMimicElysian extends BlockElysianChest {
 		if (!world.isRemote) {
 			
 			this.explode(world, player, x, y, z);
+			world.spawnEntityInWorld(new EntityLightningBolt(world, x, y, z));
 			
 			EntityElysianGuardian guardian = new EntityElysianGuardian(world);
 			if (!player.capabilities.isCreativeMode) {
@@ -87,7 +109,7 @@ public class BlockMimicElysian extends BlockElysianChest {
 	
 	@Override
 	public Item getItemDropped(int meta, Random random, int fortune) {
-		return Item.getItemFromBlock(BlocksAether.elysian_chest);
+		return null;
 	}
 	
 	@SideOnly(Side.CLIENT)

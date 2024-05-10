@@ -21,9 +21,9 @@ import com.gildedgames.the_aether.blocks.BlocksAether;
 
 public class ComponentAncientSilverDungeon extends AetherStructure {
 
-	private static final Block LOCKED_ANGELIC_STONE = BlocksAether.locked_angelic_stone;
+	private static final Block LOCKED_ANGELIC_STONE = BlocksAether.locked_ancient_angelic_stone;
 
-	private static final Block LOCKED_LIGHT_ANGELIC_STONE = BlocksAether.locked_light_angelic_stone;
+	private static final Block LOCKED_LIGHT_ANGELIC_STONE = BlocksAether.locked_ancient_light_angelic_stone;
 
 	private int[][][] rooms = new int[3][3][3];
 
@@ -92,7 +92,7 @@ public class ComponentAncientSilverDungeon extends AetherStructure {
 		this.addPlaneZ(5, 0, 11, 20, 15);
 		this.addPlaneZ(5, 0, 18, 20, 15);
 
-		this.setBlocks(LOCKED_ANGELIC_STONE, BlocksAether.angelic_trap, 60);
+		this.setBlocks(LOCKED_ANGELIC_STONE, BlocksAether.ancient_angelic_trap, 60);
 		this.addPlaneY(5, 4, 5, 20, 20);
 		this.addPlaneY(5, 9, 5, 20, 20);
 
@@ -237,7 +237,7 @@ public class ComponentAncientSilverDungeon extends AetherStructure {
 						int roomType = this.random.nextInt(3);
 
 						if (type >= 3) {
-							this.setBlockWithOffset(7 + p * 7, -1 + q * 5, 7 + r * 7, BlocksAether.angelic_trap, 0);
+							this.setBlockWithOffset(7 + p * 7, -1 + q * 5, 7 + r * 7, BlocksAether.ancient_angelic_trap, 0);
 
 							switch (roomType) {
 								case 1: {
@@ -301,7 +301,7 @@ public class ComponentAncientSilverDungeon extends AetherStructure {
 
 		for (x = 0; x < 2; x++) {
 			for (z = 0; z < 2; z++) {
-				this.setBlockWithOffset(44 + x * 5, 2, 11 + z * 7, BlocksAether.ambrosium_torch, 0);
+				this.setBlockWithOffset(44 + x * 5, 2, 11 + z * 7, BlocksAether.ethereal_torch, 0);
 			}
 		}
 
@@ -329,7 +329,7 @@ public class ComponentAncientSilverDungeon extends AetherStructure {
 
 		for (x = 36; x < 40; x += 3) {
 			for (z = 8; z < 22; z += 13) {
-				this.setBlockWithOffset(x, 2, z, BlocksAether.ambrosium_torch, 0);
+				this.setBlockWithOffset(x, 2, z, BlocksAether.ethereal_torch, 0);
 			}
 		}
 
@@ -369,7 +369,7 @@ public class ComponentAncientSilverDungeon extends AetherStructure {
 
 		for (int lineX = x; lineX < x + 3; lineX += 2) {
 			for (int lineZ = z; lineZ < z + 3; lineZ += 2) {
-				this.setBlockWithOffset(lineX, y + 1, lineZ, BlocksAether.ambrosium_torch, 0);
+				this.setBlockWithOffset(lineX, y + 1, lineZ, BlocksAether.ethereal_torch, 0);
 			}
 		}
 	}
@@ -380,15 +380,15 @@ public class ComponentAncientSilverDungeon extends AetherStructure {
 		}
 
 		for (int lineX = (x - 1); lineX < (x + 2); lineX++) {
-			this.setBlockWithOffset(lineX, y + (height + 1), z, Blocks.glowstone, 0);
+			this.setBlockWithOffset(lineX, y + (height + 1), z, BlocksAether.arctic_glowstone, 0);
 		}
 
 		for (int lineY = (y + height); lineY < y + (height + 3); lineY++) {
-			this.setBlockWithOffset(x, lineY, z, Blocks.glowstone, 0);
+			this.setBlockWithOffset(x, lineY, z, BlocksAether.arctic_glowstone, 0);
 		}
 
 		for (int lineZ = (z - 1); lineZ < (z + 2); lineZ++) {
-			this.setBlockWithOffset(x, y + (height + 1), lineZ, Blocks.glowstone, 0);
+			this.setBlockWithOffset(x, y + (height + 1), lineZ, BlocksAether.arctic_glowstone, 0);
 		}
 	}
 
@@ -505,17 +505,17 @@ public class ComponentAncientSilverDungeon extends AetherStructure {
 			}
 			case 14: {
 				if (random.nextInt(10) == 0)
-					return new ItemStack(BlocksAether.continuum_ore);
+					return new ItemStack(ItemsAether.continuum_gemstone);
 			}
 			case 15: {
 				if (random.nextInt(15) == 0)
-					return new ItemStack(BlocksAether.gravitite_ore, random.nextInt(1) + 1);
+					return new ItemStack(ItemsAether.arkenium_chunk, random.nextInt(1) + 1);
 			}
 			case 16:
 				return ItemMoaEgg.getStackFromType(AetherMoaTypes.pink);
 		}
 
-		return new ItemStack(BlocksAether.ambrosium_torch, random.nextInt(4) + 1);
+		return new ItemStack(BlocksAether.ethereal_torch, random.nextInt(4) + 1);
 	}
 
 	public static ItemStack getAncientSilverLoot(Random random) {

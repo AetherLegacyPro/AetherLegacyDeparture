@@ -74,7 +74,21 @@ public class EntityAncientFireMinion extends EntityAetherMob {
 	
 	@Override
 	protected void dropFewItems(boolean var1, int var2) {
-		this.dropItem(Item.getItemFromBlock(BlocksAether.hellfire_stone), 3);
+		this.dropItem(Item.getItemFromBlock(BlocksAether.ancient_hellfire_stone), 3);
 	}
+	
+	protected boolean isValidLightLevel()
+    {
+        return true;
+    }
+	
+	public boolean getCanSpawnHere() {
+        final int i = MathHelper.floor_double(this.posX);
+        final int j = MathHelper.floor_double(this.boundingBox.minY);
+        final int k = MathHelper.floor_double(this.posZ);
+        final boolean canSpawn = this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes((Entity)this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);          
+        return (this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_hellfire_stone || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_light_hellfire_stone || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_divine_hellfire_stone || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_divine_hellfire_stone || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_divine_hellfire_stone || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_divine_hellfire_stone) && this.worldObj.getBlockLightValue(i, j, k) < 14 && canSpawn;
+                       
+    }
 
 }

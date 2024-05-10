@@ -66,7 +66,7 @@ public class EntityElysianGuardian extends EntityMob {
 		super.applyEntityAttributes();
 		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(50.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(9.5D);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(30.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(35.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(175.0D);
 	}
 
@@ -376,7 +376,7 @@ public class EntityElysianGuardian extends EntityMob {
 			this.attackTime = 20;
 			this.worldObj.playSoundAtEntity((Entity)this, "aether_legacy:projectile.charged_hit", 0.9f, 0.9f / (this.rand.nextFloat() * 0.4f + 0.8f));
 			swingArm();
-			flag = entity.attackEntityFrom(DamageSource.causeMobDamage(this), 30);			
+			flag = entity.attackEntityFrom(DamageSource.causeMobDamage(this), 35);			
 		}
 
 		return flag;

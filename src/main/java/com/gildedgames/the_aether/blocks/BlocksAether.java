@@ -156,7 +156,6 @@ import com.gildedgames.the_aether.blocks.natural.BlockVerdantGrass;
 import com.gildedgames.the_aether.blocks.natural.BlockZanitePile;
 import com.gildedgames.the_aether.blocks.portal.BlockAetherPortal;
 import com.gildedgames.the_aether.blocks.util.BlockFloating;
-import com.gildedgames.the_aether.blocks.BlockGalestone;
 import com.gildedgames.the_aether.blocks.ancient.enchanter.BlockAncientEnchanter;
 
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -169,7 +168,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 public class BlocksAether {
 
 	//World Generation
-	public static Block aether_grass, arctic_grass, enchanted_aether_grass, aether_dirt, quicksoil;
+	public static Block aether_grass, arctic_grass, verdant_grass, enchanted_aether_grass, aether_dirt, quicksoil;
 	public static Block holystone, holystone_brick, aetheral_stone, agiosite, deific;	
 	public static Block mossy_holystone, bloodmoss_stone, azure_holystone, notch_holystone;
 	public static Block glowing_icestone;
@@ -247,22 +246,22 @@ public class BlocksAether {
 	
 	//Silver Dungeon Exclusive Blocks
 	public static Block pillar, pillar_top;	
-	public static Block angelic_stone, divine_angelic_stone, mythic_angelic_stone;
-	public static Block light_angelic_stone, divine_light_angelic_stone, mythic_light_angelic_stone;
-	public static Block locked_angelic_stone, locked_divine_angelic_stone, locked_mythic_angelic_stone; 
-	public static Block locked_light_angelic_stone, locked_divine_light_angelic_stone, locked_mythic_light_angelic_stone;
-	public static Block angelic_trap, divine_angelic_trap;
+	public static Block angelic_stone, ancient_angelic_stone, divine_angelic_stone, mythic_angelic_stone;
+	public static Block light_angelic_stone, ancient_light_angelic_stone, divine_light_angelic_stone, mythic_light_angelic_stone;
+	public static Block locked_angelic_stone, locked_ancient_angelic_stone, locked_divine_angelic_stone, locked_mythic_angelic_stone; 
+	public static Block locked_light_angelic_stone, locked_ancient_light_angelic_stone, locked_divine_light_angelic_stone, locked_mythic_light_angelic_stone;
+	public static Block angelic_trap, ancient_angelic_trap, divine_angelic_trap;
 		
 	//Gold Dungeon Exclusive Blocks
 	public static Block luminous_stone, arctic_glowstone, amethyst_glowstone;
-	public static Block hellfire_stone, divine_hellfire_stone, mythic_hellfire_stone;
-	public static Block light_hellfire_stone, divine_light_hellfire_stone, mythic_light_hellfire_stone;		
-	public static Block locked_hellfire_stone, locked_divine_hellfire_stone;
-	public static Block locked_light_hellfire_stone, locked_divine_light_hellfire_stone;
-	public static Block hellfire_trap;
+	public static Block hellfire_stone, ancient_hellfire_stone, divine_hellfire_stone, mythic_hellfire_stone;
+	public static Block light_hellfire_stone, ancient_light_hellfire_stone, divine_light_hellfire_stone, mythic_light_hellfire_stone;		
+	public static Block locked_hellfire_stone, locked_ancient_hellfire_stone, locked_divine_hellfire_stone;
+	public static Block locked_light_hellfire_stone, locked_ancient_light_hellfire_stone, locked_divine_light_hellfire_stone;
+	public static Block hellfire_trap, ancient_hellfire_trap;
 	
 	//Osminum Dungeon Exclusive Blocks
-	public static Block caelestia_stone, storm_aercloud;
+	public static Block caelestia_stone, storm_aercloud, inebriation_aercloud;
 	public static Block fuse_stone; 
 	public static Block creeping_stone;
 	public static Block locked_fuse_stone;
@@ -270,11 +269,11 @@ public class BlocksAether {
 	public static Block fuse_trap, fuse_trap_2;
 	
 	//Palladium Dungeon Exclusive Blocks
-	public static Block genesis_stone, light_genesis_stone, crystallized_genesis_stone; 
+	public static Block genesis_stone, light_genesis_stone, crystallized_genesis_stone, divine_grass; 
 	public static Block genesis_stone_2, light_genesis_stone_2, genesis_trap;
 	public static Block genesis_stairs, genesis_slab, genesis_double_slab, genesis_wall;
 	public static Block block_of_aceninum, aceninum_cluster;
-	public static Block diamond_aercloud;
+	public static Block diamond_aercloud, cer_scales_block, elysian_scales_block;
 	public static Block zanite_pile, continuum_pile, gravitite_pile, arkenium_pile, divineral_pile;
 	
 	//Aether Stairs
@@ -282,10 +281,11 @@ public class BlocksAether {
 	public static Block holystone_brick_stairs, aerogel_stairs, golden_oak_stairs, greatroot_stairs, wisproot_stairs, agiosite_stairs; 
 	public static Block enchanted_agiosite_stairs, aetheral_stone_stairs, enchanted_aetheral_stone_stairs, void_stairs, deific_stairs;
 	public static Block enchanted_deific_stairs, enchanted_holystone_stairs, enchanted_holystone_brick_stairs, caelestia_stone_stairs;	
-	public static Block ancient_carved_stone_stairs, divine_carved_stone_stairs, divine_angelic_stone_stairs, divine_hellfire_stone_stairs;	
+	public static Block ancient_carved_stone_stairs, divine_carved_stone_stairs, ancient_angelic_stone_stairs, divine_angelic_stone_stairs, divine_hellfire_stone_stairs;	
 	public static Block mythic_carved_stone_stairs, mythic_angelic_stone_stairs, mythic_hellfire_stone_stairs, oblitus_stairs, divine_oak_stairs;	
 	public static Block aetheral_stone_brick_stairs, agiosite_brick_stairs, deific_brick_stairs, carved_caelestia_stone_stairs;
 	public static Block enchanted_agiosite_brick_stairs, enchanted_deific_brick_stairs, enchanted_aetheral_stone_brick_stairs;
+	public static Block ancient_hellfire_stairs;
 	
 	//Aether Slabs
 	public static Block carved_slab, angelic_slab, hellfire_slab, fuse_slab, skyroot_slab, holystone_slab, holystone_brick_slab, divine_oak_slab;
@@ -294,7 +294,7 @@ public class BlocksAether {
 	public static Block enchanted_deific_slab, enchanted_holystone_slab, enchanted_holystone_brick_slab, caelestia_stone_slab, carved_caelestia_stone_slab;
 	public static Block enchanted_agiosite_brick_slab, ancient_carved_stone_slab, divine_carved_stone_slab, golden_oak_slab, divine_hellfire_stone_slab;
 	public static Block mythic_carved_stone_slab, divine_angelic_stone_slab, mythic_angelic_stone_slab, oblitus_stone_slab, enchanted_deific_brick_slab;
-	public static Block enchanted_aetheral_stone_brick_slab;
+	public static Block enchanted_aetheral_stone_brick_slab, ancient_angelic_stone_slab, ancient_hellfire_stone_slab;
 	
 	//Aether Double Slabs
 	public static Block carved_double_slab, angelic_double_slab, hellfire_double_slab, fuse_double_slab, skyroot_double_slab, holystone_double_slab;
@@ -305,7 +305,7 @@ public class BlocksAether {
 	public static Block carved_caelestia_stone_double_slab, enchanted_agiosite_brick_double_slab, divine_carved_stone_double_slab;
 	public static Block golden_oak_double_slab, divine_hellfire_stone_double_slab, mythic_carved_stone_double_slab, oblitus_stone_double_slab;
 	public static Block ancient_carved_stone_double_slab, divine_angelic_stone_double_slab, mythic_angelic_stone_double_slab, enchanted_deific_brick_double_slab;
-	public static Block enchanted_aetheral_stone_brick_double_slab;
+	public static Block enchanted_aetheral_stone_brick_double_slab, ancient_angelic_stone_double_slab, ancient_hellfire_stone_double_slab;
 	
 	//Aether Walls
 	public static Block holystone_wall, mossy_holystone_wall, holystone_brick_wall, carved_wall, angelic_wall, hellfire_wall, fuse_wall, aerogel_wall;
@@ -314,11 +314,9 @@ public class BlocksAether {
 	public static Block mythic_carved_stone_wall, mythic_angelic_stone_wall, enchanted_agiosite_brick_wall, oblitus_wall, enchanted_deific_brick_wall;
 	public static Block skyroot_log_wall, golden_oak_log_wall, wisproot_log_wall, greatroot_log_wall, void_log_wall, enchanted_aetheral_stone_brick_wall;	
 	public static Block ancient_carved_stone_wall, divine_carved_stone_wall, divine_angelic_stone_wall, divine_hellfire_stone_wall, divine_oak_log_wall;
+	public static Block ancient_angelic_stone_wall, ancient_hellfire_wall;
 	
 	//Not Complete or Not Implemented
-	public static Block inebriation_aercloud, songstone, cer_scales_block, verdant_grass, divine_grass;
-	public static Block gale_stone, light_gale_stone, locked_gale_stone, locked_light_gale_stone, gale_trap;
-	public static Block gale_stairs, gale_slab, gale_double_slab, gale_wall; 
 				
 	public static int AncientEnchanterRenderId;
 	public static int SkyrootChestRenderId;
@@ -367,6 +365,7 @@ public class BlocksAether {
 		arctic_glowstone = registerMeta("arctic_glowstone", new BlockLuminousStone().setBlockTextureName(Aether.find("arctic_glowstone")));
 		amethyst_glowstone = registerMeta("amethyst_glowstone", new BlockLuminousStone().setBlockTextureName(Aether.find("amethyst_glowstone")));
 		cer_scales_block = registerRarity("cer_scales_block", new BlockAerScalesBlock(), ItemsAether.aether_loot);
+		elysian_scales_block = registerRarity("elysian_scales_block", new BlockElysianScalesBlock(), ItemsAether.divine_aether_loot).setBlockTextureName(Aether.find("elysian_scales_block"));
 		ambrosium_torch = register("ambrosium_torch", new BlockAmbrosiumTorch().setBlockTextureName(Aether.find("ambrosium_torch")));
 		ethereal_torch = register("ethereal_torch", new BlockEtherealTorch().setBlockTextureName(Aether.find("ethereal_torch")));
 		inferno_torch = register("hellfire_torch", new BlockInfernoTorch().setBlockTextureName(Aether.find("hellfire_torch")));
@@ -550,7 +549,6 @@ public class BlocksAether {
 		divine_enchantment_table = registerRarity("divine_enchantment_table", new BlockDivineEnchantmentTable(), ItemsAether.divine_aether_loot).setLightOpacity(3);
 		elysian_totem = register("elysian_totem", new BlockElysianTotem());
 		present = register("present", new BlockPresent());	
-		songstone = registerHidden("songstone_side", new BlockSongstone());
 		skyroot_workbench = register("skyroot_workbench", new BlockSkyrootWorkbench());
 		skyroot_chest = register("skyroot_chest", new BlockSkyrootChest(0));
 		chest_mimic = register("chest_mimic", new BlockMimicChest());
@@ -586,14 +584,18 @@ public class BlocksAether {
 		cracked_oblitus_stone_2 = register("cracked_oblitus_stone_2", new BlockCrackedOblitusStone2().setBlockTextureName(Aether.find("cracked_oblitus_stone")));
 		
 		angelic_stone = register("angelic_stone", new BlockDungeonBase(false).setBlockTextureName(Aether.find("angelic_stone")));
-		light_angelic_stone = register("light_angelic_stone", new BlockDungeonBase(true).setBlockTextureName(Aether.find("light_angelic_stone")));
+		light_angelic_stone = register("light_angelic_stone", new BlockDungeonBase(true).setBlockTextureName(Aether.find("light_angelic_stone")));		
+		ancient_angelic_stone = register("ancient_angelic_stone", new BlockDungeonBase(false).setBlockTextureName(Aether.find("ancient_angelic_stone")));
+		ancient_light_angelic_stone = register("ancient_light_angelic_stone", new BlockDungeonBase(true).setBlockTextureName(Aether.find("ancient_light_angelic_stone")));		
 		divine_angelic_stone = register("divine_angelic_stone", new BlockDungeonBase(false).setBlockTextureName(Aether.find("divine_angelic_stone")));
 		divine_light_angelic_stone = register("divine_light_angelic_stone", new BlockDungeonBase(true).setBlockTextureName(Aether.find("divine_light_angelic_stone")));		
 		mythic_angelic_stone = register("mythic_angelic_stone", new BlockDungeonBase(false).setBlockTextureName(Aether.find("mythic_angelic_stone")));
 		mythic_light_angelic_stone = register("mythic_light_angelic_stone", new BlockDungeonBase(true).setBlockTextureName(Aether.find("mythic_light_angelic_stone")));		
 			
 		hellfire_stone = register("hellfire_stone", new BlockDungeonBase(false).setBlockTextureName(Aether.find("hellfire_stone")));
-		light_hellfire_stone = register("light_hellfire_stone", new BlockDungeonBase(true).setBlockTextureName(Aether.find("light_hellfire_stone")));
+		light_hellfire_stone = register("light_hellfire_stone", new BlockDungeonBase(true).setBlockTextureName(Aether.find("light_hellfire_stone")));	
+		ancient_hellfire_stone = register("ancient_hellfire_stone", new BlockDungeonBase(false).setBlockTextureName(Aether.find("ancient_hellfire_stone")));
+		ancient_light_hellfire_stone = register("ancient_light_hellfire_stone", new BlockDungeonBase(true).setBlockTextureName(Aether.find("ancient_light_hellfire_stone")));	
 		divine_hellfire_stone = register("divine_hellfire_stone", new BlockDungeonBase(false).setBlockTextureName(Aether.find("divine_hellfire_stone")));
 		divine_light_hellfire_stone = register("divine_light_hellfire_stone", new BlockDungeonBase(true).setBlockTextureName(Aether.find("divine_light_hellfire_stone")));
 		
@@ -613,9 +615,6 @@ public class BlocksAether {
 		gravitite_pile = registerMeta("gravitite_pile", new BlockGravititePile());
 		divineral_pile = registerMeta("divineral_pile", new BlockDivineralPile());
 		
-		gale_stone = register("gale_stone", new BlockGalestone());
-		light_gale_stone = register("light_gale_stone", new BlockLightGaleStone());
-		
 		locked_carved_stone = register("locked_carved_stone", new BlockDungeonBase(carved_stone, false).setBlockTextureName(Aether.find("carved_stone"))).setCreativeTab(null);
 		locked_sentry_stone = register("locked_sentry_stone", new BlockDungeonBase(sentry_stone, false).setBlockTextureName(Aether.find("sentry_stone"))).setCreativeTab(null);
 		locked_ancient_carved_stone = register("locked_ancient_carved_stone", new BlockDungeonBase(ancient_carved_stone, false).setBlockTextureName(Aether.find("ancient_carved_stone"))).setCreativeTab(null);
@@ -626,19 +625,21 @@ public class BlocksAether {
 		locked_mythic_sentry_stone = register("locked_mythic_sentry_stone", new BlockDungeonBase(mythic_sentry_stone, false).setBlockTextureName(Aether.find("mythic_sentry_stone"))).setCreativeTab(null);
 		
 		locked_angelic_stone = register("locked_angelic_stone", new BlockDungeonBase(angelic_stone, false).setBlockTextureName(Aether.find("angelic_stone"))).setCreativeTab(null);
-		locked_light_angelic_stone = register("locked_light_angelic_stone", new BlockDungeonBase(light_angelic_stone, true).setBlockTextureName(Aether.find("light_angelic_stone"))).setCreativeTab(null);
+		locked_light_angelic_stone = register("locked_light_angelic_stone", new BlockDungeonBase(light_angelic_stone, true).setBlockTextureName(Aether.find("light_angelic_stone"))).setCreativeTab(null);		
+		locked_ancient_angelic_stone = register("locked_ancient_angelic_stone", new BlockDungeonBase(ancient_angelic_stone, false).setBlockTextureName(Aether.find("ancient_angelic_stone"))).setCreativeTab(null);
+		locked_ancient_light_angelic_stone = register("locked_ancient_light_angelic_stone", new BlockDungeonBase(ancient_light_angelic_stone, true).setBlockTextureName(Aether.find("ancient_light_angelic_stone"))).setCreativeTab(null);		
 		locked_divine_angelic_stone = register("locked_divine_angelic_stone", new BlockDungeonBase(divine_angelic_stone, false).setBlockTextureName(Aether.find("divine_angelic_stone"))).setCreativeTab(null);
 		locked_divine_light_angelic_stone = register("locked_divine_light_angelic_stone", new BlockDungeonBase(divine_light_angelic_stone, true).setBlockTextureName(Aether.find("divine_light_angelic_stone"))).setCreativeTab(null);	
 		locked_mythic_angelic_stone = register("locked_mythic_angelic_stone", new BlockDungeonBase(mythic_angelic_stone, false).setBlockTextureName(Aether.find("mythic_angelic_stone"))).setCreativeTab(null);
 		locked_mythic_light_angelic_stone = register("locked_mythic_light_angelic_stone", new BlockDungeonBase(mythic_light_angelic_stone, true).setBlockTextureName(Aether.find("mythic_light_angelic_stone"))).setCreativeTab(null);
 		
 		locked_hellfire_stone = register("locked_hellfire_stone", new BlockDungeonBase(hellfire_stone, false).setBlockTextureName(Aether.find("hellfire_stone"))).setCreativeTab(null);
-		locked_light_hellfire_stone = register("locked_light_hellfire_stone", new BlockDungeonBase(light_hellfire_stone, true).setBlockTextureName(Aether.find("light_hellfire_stone"))).setCreativeTab(null);			
+		locked_light_hellfire_stone = register("locked_light_hellfire_stone", new BlockDungeonBase(light_hellfire_stone, true).setBlockTextureName(Aether.find("light_hellfire_stone"))).setCreativeTab(null);	
+		locked_ancient_hellfire_stone = register("locked_ancient_hellfire_stone", new BlockDungeonBase(ancient_hellfire_stone, false).setBlockTextureName(Aether.find("ancient_hellfire_stone"))).setCreativeTab(null);
+		locked_ancient_light_hellfire_stone = register("locked_ancient_light_hellfire_stone", new BlockDungeonBase(ancient_light_hellfire_stone, true).setBlockTextureName(Aether.find("ancient_light_hellfire_stone"))).setCreativeTab(null);					
 		locked_divine_hellfire_stone = register("locked_divine_hellfire_stone", new BlockDungeonBase(divine_hellfire_stone, false).setBlockTextureName(Aether.find("divine_hellfire_stone"))).setCreativeTab(null);
 		locked_divine_light_hellfire_stone = register("locked_divine_light_hellfire_stone", new BlockDungeonBase(divine_light_hellfire_stone, true).setBlockTextureName(Aether.find("divine_light_hellfire_stone"))).setCreativeTab(null);
 		
-		locked_gale_stone = register("locked_gale_stone", new BlockDungeonBase(gale_stone, false).setBlockTextureName(Aether.find("gale_stone"))).setCreativeTab(null);
-		locked_light_gale_stone = register("locked_light_gale_stone", new BlockDungeonBase(light_gale_stone, true).setBlockTextureName(Aether.find("light_gale_stone"))).setCreativeTab(null);
 		
 		locked_fuse_stone = register("locked_fuse_stone", new BlockDungeonBaseOsmium(fuse_stone, false).setResistance(15.0F).setBlockTextureName(Aether.find("fuse_stone"))).setResistance(15.0F).setCreativeTab(null);
 		locked_creeping_stone = register("locked_creeping_stone", new BlockDungeonBaseOsmium(creeping_stone, true).setResistance(15.0F).setBlockTextureName(Aether.find("creeping_stone"))).setResistance(15.0F).setCreativeTab(null);
@@ -646,14 +647,14 @@ public class BlocksAether {
 		carved_trap = register("carved_trap", new BlockDungeonTrap(carved_stone).setBlockTextureName(Aether.find("carved_stone"))).setCreativeTab(null);
 		divine_carved_trap = register("divine_carved_trap", new BlockDungeonTrap(divine_carved_stone).setBlockTextureName(Aether.find("divine_carved_stone"))).setCreativeTab(null);
 
-		angelic_trap = register("angelic_trap", new BlockDungeonTrap(angelic_stone).setBlockTextureName(Aether.find("angelic_stone"))).setCreativeTab(null);
+		angelic_trap = register("angelic_trap", new BlockDungeonTrap(angelic_stone).setBlockTextureName(Aether.find("angelic_stone"))).setCreativeTab(null);		
+		ancient_angelic_trap = register("ancient_angelic_trap", new BlockDungeonTrap(ancient_angelic_stone).setBlockTextureName(Aether.find("ancient_angelic_stone"))).setCreativeTab(null);		
 		divine_angelic_trap = register("divine_angelic_trap", new BlockDungeonTrap(divine_angelic_stone).setBlockTextureName(Aether.find("divine_angelic_stone"))).setCreativeTab(null);
 
 		fuse_trap = register("fuse_trap", new BlockDungeonTrap(locked_fuse_stone).setResistance(15.0F).setBlockTextureName(Aether.find("fuse_stone"))).setCreativeTab(null);
 		fuse_trap_2 = register("fuse_trap_2", new BlockDungeonTrap2(locked_creeping_stone).setResistance(15.0F).setBlockTextureName(Aether.find("creeping_stone"))).setCreativeTab(null);
 		
 		hellfire_trap = register("hellfire_trap", new BlockDungeonTrap(hellfire_stone).setBlockTextureName(Aether.find("hellfire_stone"))).setCreativeTab(null);
-		gale_trap = register("gale_trap", new BlockDungeonTrap(gale_stone).setBlockTextureName(Aether.find("gale_stone"))).setCreativeTab(null);
 		genesis_trap = register("genesis_trap", new BlockDungeonTrap(genesis_stone).setBlockTextureName(Aether.find("genesis_stone"))).setCreativeTab(null);
 		skyroot_fence = register("skyroot_fence", new BlockAetherFence());
 		greatroot_fence = register("greatroot_fence", new BlockAetherFenceGreatroot());
@@ -680,8 +681,8 @@ public class BlocksAether {
 		angelic_wall = register("angelic_wall", new BlockAetherWall(angelic_stone));
 		hellfire_wall = register("hellfire_wall", new BlockAetherWall(hellfire_stone));
 		fuse_wall = register("fuse_wall", new BlockAetherWall(fuse_stone));
+		ancient_hellfire_wall = register("ancient_hellfire_wall", new BlockAetherWall(ancient_hellfire_stone));
 		divine_hellfire_stone_wall = register("divine_hellfire_stone_wall", new BlockAetherWall(divine_hellfire_stone));
-		gale_wall = register("gale_wall", new BlockAetherWall(gale_stone));
 		genesis_wall = register("genesis_wall", new BlockAetherWall(genesis_stone));
 		holystone_wall = register("holystone_wall", new BlockAetherWall(holystone));
 		holystone_brick_wall = register("holystone_brick_wall", new BlockAetherWall(holystone_brick));
@@ -705,7 +706,8 @@ public class BlocksAether {
 		carved_caelestia_stone_wall = register("carved_caelestia_stone_wall", new BlockAetherWall(carved_caelestia_stone));
 		ancient_carved_stone_wall = register("ancient_carved_stone_wall", new BlockAetherWall(ancient_carved_stone));
 		divine_carved_stone_wall = register("divine_carved_stone_wall", new BlockAetherWall(divine_carved_stone));
-		mythic_carved_stone_wall = register("mythic_carved_stone_wall", new BlockAetherWall(mythic_carved_stone));
+		mythic_carved_stone_wall = register("mythic_carved_stone_wall", new BlockAetherWall(mythic_carved_stone));	
+		ancient_angelic_stone_wall = register("ancient_angelic_stone_wall", new BlockAetherWall(ancient_angelic_stone));		
 		divine_angelic_stone_wall = register("divine_angelic_stone_wall", new BlockAetherWall(divine_angelic_stone));
 		mythic_angelic_stone_wall = register("mythic_angelic_stone_wall", new BlockAetherWall(mythic_angelic_stone));
 		
@@ -715,8 +717,8 @@ public class BlocksAether {
 		angelic_stairs = register("angelic_stairs", new BlockAetherStairs(angelic_stone));
 		hellfire_stairs = register("hellfire_stairs", new BlockAetherStairs(hellfire_stone));
 		fuse_stairs = register("fuse_stairs", new BlockAetherStairs(fuse_stone));
+		ancient_hellfire_stairs = register("ancient_hellfire_stairs", new BlockAetherStairs(ancient_hellfire_stone));
 		divine_hellfire_stone_stairs = register("divine_hellfire_stone_stairs", new BlockAetherStairs(divine_hellfire_stone));
-		gale_stairs = register("gale_stairs", new BlockAetherStairs(gale_stone));
 		genesis_stairs = register("genesis_stairs", new BlockAetherStairs(genesis_stone));
 		skyroot_stairs = register("skyroot_stairs", new BlockAetherStairs(skyroot_planks));
 		golden_oak_stairs = register("golden_oak_stairs", new BlockAetherStairs(golden_oak_planks));
@@ -746,7 +748,8 @@ public class BlocksAether {
 		carved_caelestia_stone_stairs = register("carved_caelestia_stone_stairs", new BlockAetherStairs(carved_caelestia_stone));
 		ancient_carved_stone_stairs = register("ancient_carved_stone_stairs", new BlockAetherStairs(ancient_carved_stone));
 		divine_carved_stone_stairs = register("divine_carved_stone_stairs", new BlockAetherStairs(divine_carved_stone));
-		mythic_carved_stone_stairs = register("mythic_carved_stone_stairs", new BlockAetherStairs(mythic_carved_stone));
+		mythic_carved_stone_stairs = register("mythic_carved_stone_stairs", new BlockAetherStairs(mythic_carved_stone));	
+		ancient_angelic_stone_stairs = register("ancient_angelic_stone_stairs", new BlockAetherStairs(ancient_angelic_stone));	
 		divine_angelic_stone_stairs = register("divine_angelic_stone_stairs", new BlockAetherStairs(divine_angelic_stone));
 		mythic_angelic_stone_stairs = register("mythic_angelic_stone_stairs", new BlockAetherStairs(mythic_angelic_stone));
 		
@@ -771,8 +774,6 @@ public class BlocksAether {
 		skyroot_bookshelf = register("skyroot_bookshelf", new BlockSkyrootBookshelf());
 		golden_oak_bookshelf = register("golden_oak_bookshelf", new BlockGoldenOakBookshelf());
 		skyroot_bed = registerBed("skyroot_bed", new BlockSkyrootBed().setBlockTextureName(Aether.find("skyroot_bed")));
-		gale_double_slab = register("gale_double_slab", new BlockAetherSlab("gale_double_slab", true, Material.rock).setBlockTextureName(Aether.find("gale_stone")).setHardness(2.0F).setResistance(10.0F)).setCreativeTab(null);
-		gale_slab = registerSlab("gale_slab", new BlockAetherSlab("gale_slab", false, Material.rock).setBlockTextureName(Aether.find("gale_stone")).setHardness(0.5F).setResistance(10.0F), gale_double_slab);
 		genesis_double_slab = register("genesis_double_slab", new BlockAetherSlab("genesis_double_slab", true, Material.rock).setBlockTextureName(Aether.find("genesis_stone")).setHardness(3.5F).setResistance(20.0F)).setCreativeTab(null);
 		genesis_slab = registerSlab("genesis_slab", new BlockAetherSlab("genesis_slab", false, Material.rock).setBlockTextureName(Aether.find("genesis_stone")).setHardness(3.5F).setResistance(20.0F), genesis_double_slab);
 		agiosite_double_slab = register("agiosite_double_slab", new BlockAetherSlab("agiosite_double_slab", true, Material.rock).setBlockTextureName(Aether.find("agiosite")).setHardness(2.0F).setResistance(10.0F)).setCreativeTab(null);
@@ -801,10 +802,14 @@ public class BlocksAether {
 		divine_carved_stone_slab = registerSlab("divine_carved_stone_slab", new BlockAetherSlab("divine_carved_stone_slab", false, Material.rock).setBlockTextureName(Aether.find("divine_carved_stone")).setHardness(0.5F).setResistance(10.0F), divine_carved_stone_double_slab);
 		mythic_carved_stone_double_slab = register("mythic_carved_stone_double_slab", new BlockAetherSlab("mythic_carved_stone_double_slab", true, Material.rock).setBlockTextureName(Aether.find("mythic_carved_stone")).setHardness(2.0F).setResistance(10.0F)).setCreativeTab(null);
 		mythic_carved_stone_slab = registerSlab("mythic_carved_stone_slab", new BlockAetherSlab("mythic_carved_stone_slab", false, Material.rock).setBlockTextureName(Aether.find("mythic_carved_stone")).setHardness(0.5F).setResistance(10.0F), mythic_carved_stone_double_slab);			
+		ancient_angelic_stone_double_slab = register("ancient_angelic_stone_double_slab", new BlockAetherSlab("ancient_angelic_stone_double_slab", true, Material.rock).setBlockTextureName(Aether.find("ancient_angelic_stone")).setHardness(2.0F).setResistance(10.0F)).setCreativeTab(null);
+		ancient_angelic_stone_slab = registerSlab("ancient_angelic_stone_slab", new BlockAetherSlab("ancient_angelic_stone_slab", false, Material.rock).setBlockTextureName(Aether.find("ancient_angelic_stone")).setHardness(0.5F).setResistance(10.0F), ancient_angelic_stone_double_slab);		
 		divine_angelic_stone_double_slab = register("divine_angelic_stone_double_slab", new BlockAetherSlab("divine_angelic_stone_double_slab", true, Material.rock).setBlockTextureName(Aether.find("divine_angelic_stone")).setHardness(2.0F).setResistance(10.0F)).setCreativeTab(null);
 		divine_angelic_stone_slab = registerSlab("divine_angelic_stone_slab", new BlockAetherSlab("divine_angelic_stone_slab", false, Material.rock).setBlockTextureName(Aether.find("divine_angelic_stone")).setHardness(0.5F).setResistance(10.0F), divine_angelic_stone_double_slab);		
 		mythic_angelic_stone_double_slab = register("mythic_angelic_stone_double_slab", new BlockAetherSlab("mythic_angelic_stone_double_slab", true, Material.rock).setBlockTextureName(Aether.find("mythic_angelic_stone")).setHardness(2.0F).setResistance(10.0F)).setCreativeTab(null);
-		mythic_angelic_stone_slab = registerSlab("mythic_angelic_stone_slab", new BlockAetherSlab("mythic_angelic_stone_slab", false, Material.rock).setBlockTextureName(Aether.find("mythic_angelic_stone")).setHardness(0.5F).setResistance(10.0F), mythic_angelic_stone_double_slab);
+		mythic_angelic_stone_slab = registerSlab("mythic_angelic_stone_slab", new BlockAetherSlab("mythic_angelic_stone_slab", false, Material.rock).setBlockTextureName(Aether.find("mythic_angelic_stone")).setHardness(0.5F).setResistance(10.0F), mythic_angelic_stone_double_slab);		
+		ancient_hellfire_stone_double_slab = register("ancient_hellfire_stone_double_slab", new BlockAetherSlab("ancient_hellfire_stone_double_slab", true, Material.rock).setBlockTextureName(Aether.find("ancient_hellfire_stone")).setHardness(2.0F).setResistance(10.0F)).setCreativeTab(null);
+		ancient_hellfire_stone_slab = registerSlab("ancient_hellfire_stone_slab", new BlockAetherSlab("ancient_hellfire_stone_slab", false, Material.rock).setBlockTextureName(Aether.find("ancient_hellfire_stone")).setHardness(0.5F).setResistance(10.0F), ancient_hellfire_stone_double_slab);		
 		divine_hellfire_stone_double_slab = register("divine_hellfire_stone_double_slab", new BlockAetherSlab("divine_hellfire_stone_double_slab", true, Material.rock).setBlockTextureName(Aether.find("divine_hellfire_stone")).setHardness(2.0F).setResistance(10.0F)).setCreativeTab(null);
 		divine_hellfire_stone_slab = registerSlab("divine_hellfire_stone_slab", new BlockAetherSlab("divine_hellfire_stone_slab", false, Material.rock).setBlockTextureName(Aether.find("divine_hellfire_stone")).setHardness(0.5F).setResistance(10.0F), divine_hellfire_stone_double_slab);			
 		oblitus_stone_double_slab = register("oblitus_stone_double_slab", new BlockAetherSlab("oblitus_stone_double_slab", true, Material.rock).setBlockTextureName(Aether.find("oblitus_stone")).setHardness(2.0F).setResistance(10.0F)).setCreativeTab(null);
@@ -1076,18 +1081,11 @@ public class BlocksAether {
 		BlocksAether.sun_altar.setHarvestLevel("pickaxe", 0);
 		BlocksAether.skyroot_bookshelf.setHarvestLevel("axe", 0);
 		BlocksAether.skyroot_bed.setHarvestLevel("axe", 0);
-		BlocksAether.gale_stone.setHarvestLevel("pickaxe", 0);
-		BlocksAether.light_gale_stone.setHarvestLevel("pickaxe", 0);
 		BlocksAether.genesis_stone.setHarvestLevel("pickaxe", 2);
-		BlocksAether.songstone.setHarvestLevel("pickaxe", 0);
 		BlocksAether.pink_aercloud.setHarvestLevel("pickaxe", 0);
 		BlocksAether.storm_aercloud.setHarvestLevel("pickaxe", 0);
 		BlocksAether.green_aercloud.setHarvestLevel("pickaxe", 0);
 		BlocksAether.purple_aercloud.setHarvestLevel("pickaxe", 0);
-		BlocksAether.gale_wall.setHarvestLevel("pickaxe", 0);
-		BlocksAether.gale_stairs.setHarvestLevel("pickaxe", 0);
-		BlocksAether.gale_slab.setHarvestLevel("pickaxe", 0);
-		BlocksAether.gale_double_slab.setHarvestLevel("pickaxe", 0);
 	}
 
 	public static boolean isGood(Block block) {

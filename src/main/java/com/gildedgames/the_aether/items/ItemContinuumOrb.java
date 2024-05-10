@@ -29,6 +29,11 @@ public class ItemContinuumOrb extends Item {
 	public EnumRarity getRarity(ItemStack stack) {
 		return ItemsAether.aether_loot;
 	}
+	
+	@Override
+	public boolean hasEffect(ItemStack stack, int pass) {
+		return true;
+	}
 
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World worldIn, EntityPlayer player) {
@@ -98,7 +103,7 @@ public class ItemContinuumOrb extends Item {
 				case 29:
 					return new ItemStack(ItemsAether.candy_cane_sword);
 				case 30:
-					return new ItemStack(ItemsAether.cer_scales);
+					return new ItemStack(ItemsAether.crystal_dragon_scales);
 				case 31:
 					return new ItemStack(ItemsAether.chain_gloves);
 				case 32:

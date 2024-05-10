@@ -854,15 +854,15 @@ public class LargeBronzeDungeon extends AetherDungeon {
 				break;
 			}
 			case 11: {
-				if (random.nextInt(5) == 0) {
-					return new ItemStack(BlocksAether.gravitite_ore, random.nextInt(1) + 1);
+				if (random.nextInt(3) == 0) {
+					return new ItemStack(ItemsAether.arkenium_fragement, random.nextInt(5) + 1);
 				}
 
 				break;
 			}
 			case 12: {
-				if (random.nextInt(1) == 0) {
-					return new ItemStack(BlocksAether.continuum_ore);
+				if (random.nextInt(15) == 0) {
+					return new ItemStack(ItemsAether.continuum_gemstone);
 				}
 
 				break;
@@ -887,7 +887,7 @@ public class LargeBronzeDungeon extends AetherDungeon {
 				break;
 			}
 		}
-		return new ItemStack(BlocksAether.ethereal_torch, random.nextInt(1) + 2);
+		return new ItemStack(BlocksAether.ethereal_torch, random.nextInt(11) + 2);
 	}
 
 	public static ItemStack getAncientBronzeLoot(Random random) {

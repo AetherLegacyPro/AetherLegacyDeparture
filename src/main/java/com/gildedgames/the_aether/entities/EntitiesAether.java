@@ -34,6 +34,7 @@ import com.gildedgames.the_aether.entities.block.EntityTNTPresent;
 import com.gildedgames.the_aether.entities.bosses.EntityAncientFireMinion;
 import com.gildedgames.the_aether.entities.bosses.EntityDivineFireMinion;
 import com.gildedgames.the_aether.entities.bosses.EntityElderZarnillys;
+import com.gildedgames.the_aether.entities.bosses.EntityEliteValkyrie;
 import com.gildedgames.the_aether.entities.bosses.EntityElysianGuardian;
 import com.gildedgames.the_aether.entities.bosses.EntityFallenValkyrie;
 import com.gildedgames.the_aether.entities.bosses.EntityFireMinion;
@@ -174,6 +175,7 @@ public class EntitiesAether {
 		register(EntityWhirlwind.class, "whirlwind", 20, 80, 3, false);
 		register(EntityValkyrie.class, "valkyrie", 22, 0xebd1ae, 0xf4eaaf);
 		register(EntityFallenValkyrie.class, "fallen_valkyrie", 67, 0xd8e2d6, 0xa9e0cc);
+		register(EntityEliteValkyrie.class, "elite_valkyrie", 89, 0xe7c79c, 0xb3faf6);
 		register(EntityFireMinion.class, "fire_minion", 23, 0xe69426, 0xe5111e);
 		register(EntityAncientFireMinion.class, "ancient_fire_minion", 74, 0xd9001d, 0xeb4c25);
 		register(EntityDivineFireMinion.class, "divine_fire_minion", 75, 0xd20070, 0xd6006c);

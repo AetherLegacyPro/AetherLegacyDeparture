@@ -431,7 +431,7 @@ public class EntityValkyrieQueen extends EntityBossMob implements IAetherBoss {
         boolean flag = false;
 
         this.swingArm();
-        flag = entity.attackEntityFrom(DamageSource.causeMobDamage(this), 8);
+        flag = entity.attackEntityFrom(DamageSource.causeMobDamage(this), 13);
 
         if (entity != null && this.getEntityToAttack() != null && entity == this.getEntityToAttack() && entity instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer) entity;

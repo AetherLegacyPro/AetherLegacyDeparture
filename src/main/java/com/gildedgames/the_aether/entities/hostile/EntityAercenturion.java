@@ -19,6 +19,7 @@ import com.gildedgames.the_aether.player.PlayerAether;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -57,20 +58,6 @@ public class EntityAercenturion extends EntityMob
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(50.0D);
     }
     
-    @SideOnly(Side.CLIENT)
-    public int getBrightnessForRender(float p_70070_1_)
-    {
-        return 15728880;
-    }
-
-    /**
-     * Gets how bright this entity is.
-     */
-    public float getBrightness(float p_70013_1_)
-    {
-        return 0.1F;
-    }
-    
     @Override
    	public void fall(float distance) {
    	}
@@ -100,8 +87,9 @@ public class EntityAercenturion extends EntityMob
         return super.getSoundPitch() * 0.55f;
     }
     
-    protected void func_70036_a(final int par1, final int par2, final int par3, final int par4) {
-        this.playSound("mob.cow.step", 0.15f, 1.0f);
+    protected void func_145780_a(int p_145780_1_, int p_145780_2_, int p_145780_3_, Block p_145780_4_)
+    {
+        this.playSound("mob.irongolem.walk", 0.5F, 0.5F);
     }
     
     protected void dropFewItems(boolean p_70628_1_, int p_70628_2_)
@@ -127,13 +115,13 @@ public class EntityAercenturion extends EntityMob
     
     public void onLivingUpdate()
 	{	
-    	//if (Minecraft.getMinecraft().thePlayer.capabilities.isCreativeMode = false) {
+    	if (Minecraft.getMinecraft().thePlayer.capabilities.isCreativeMode == false) {
         
         List<Entity> volume2 = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(5, 5, 5));
         for(Entity entity2 : volume2) {
         	if(entity2 instanceof EntityPlayer && this.canEntityBeSeen(entity2)) ((EntityPlayer)entity2).addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 120, 1, true));
         	}
-    	//}
+    	}
 		
 		super.onLivingUpdate();
 	}
@@ -189,21 +177,13 @@ public class EntityAercenturion extends EntityMob
 	}
     
     private boolean shouldAttackPlayer(EntityPlayer p_70821_1_)
-    {
-    	 //ItemStack itemstack = p_70821_1_.inventory.armorInventory[0];
-    	// if ((itemstack != null && itemstack.getItem() == ItemsAether.amplified_sentry_boots)) 
-    	 	//{  		 
-    	    //return false;
-    	    //}
-    	// else {
+    {    	
             Vec3 vec3 = p_70821_1_.getLook(1.0F).normalize();
             Vec3 vec31 = Vec3.createVectorHelper(this.posX - p_70821_1_.posX, this.boundingBox.minY + (double)(this.height / 2.0F) - (p_70821_1_.posY + (double)p_70821_1_.getEyeHeight()), this.posZ - p_70821_1_.posZ);
             double d0 = vec31.lengthVector();
             vec31 = vec31.normalize();
             double d1 = vec3.dotProduct(vec31);
             return d1 > 1.0D - 0.025D / d0 && p_70821_1_.canEntityBeSeen(this);
-    	 
-    	// }
     }
     
     @Override

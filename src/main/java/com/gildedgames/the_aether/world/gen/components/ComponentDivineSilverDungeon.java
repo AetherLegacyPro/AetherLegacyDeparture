@@ -380,15 +380,15 @@ public class ComponentDivineSilverDungeon extends AetherStructure {
 		}
 
 		for (int lineX = (x - 1); lineX < (x + 2); lineX++) {
-			this.setBlockWithOffset(lineX, y + (height + 1), z, BlocksAether.luminous_stone, 0);
+			this.setBlockWithOffset(lineX, y + (height + 1), z, Blocks.glowstone, 0);
 		}
 
 		for (int lineY = (y + height); lineY < y + (height + 3); lineY++) {
-			this.setBlockWithOffset(x, lineY, z, BlocksAether.luminous_stone, 0);
+			this.setBlockWithOffset(x, lineY, z, Blocks.glowstone, 0);
 		}
 
 		for (int lineZ = (z - 1); lineZ < (z + 2); lineZ++) {
-			this.setBlockWithOffset(x, y + (height + 1), lineZ, BlocksAether.luminous_stone, 0);
+			this.setBlockWithOffset(x, y + (height + 1), lineZ, Blocks.glowstone, 0);
 		}
 	}
 
@@ -499,11 +499,11 @@ public class ComponentDivineSilverDungeon extends AetherStructure {
 			}
 			case 11: {
 				if (random.nextInt(10) == 0)
-					return new ItemStack(BlocksAether.continuum_ore);
+					return new ItemStack(ItemsAether.continuum_gemstone);
 			}
 			case 12: {
 				if (random.nextInt(15) == 0)
-					return new ItemStack(BlocksAether.gravitite_ore, random.nextInt(1) + 1);
+					return new ItemStack(ItemsAether.raw_gravitite, random.nextInt(1) + 1);
 			}
 			case 13:
 				return ItemMoaEgg.getStackFromType(AetherMoaTypes.pink);

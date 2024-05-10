@@ -499,16 +499,14 @@ public class ComponentSilverDungeon extends AetherStructure {
 				break;
 			}
 			case 13: {
-				if (random.nextInt(4) == 0)
-					return new ItemStack(ItemsAether.iron_pendant);
+					return new ItemStack(ItemsAether.arkenium_fragement);
 			}
 			case 14: {
-				if (random.nextInt(10) == 0)
-					return new ItemStack(ItemsAether.golden_pendant);
+				return new ItemStack(ItemsAether.healing_stone, random.nextInt(2));
 			}
 			case 15: {
 				if (random.nextInt(15) == 0)
-					return new ItemStack(ItemsAether.zanite_ring);
+					return new ItemStack(ItemsAether.arkenium_pendant);
 			}
 			case 16:
 				return ItemMoaEgg.getStackFromType(AetherMoaTypes.violet);

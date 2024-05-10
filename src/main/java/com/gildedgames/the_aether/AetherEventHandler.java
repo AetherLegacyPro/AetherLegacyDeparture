@@ -45,7 +45,13 @@ import net.minecraftforge.event.entity.player.*;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.blocks.portal.BlockAetherPortal;
 import com.gildedgames.the_aether.entities.EntitiesAether;
+import com.gildedgames.the_aether.entities.bosses.EntityEliteValkyrie;
+import com.gildedgames.the_aether.entities.bosses.EntityElysianGuardian;
 import com.gildedgames.the_aether.entities.bosses.EntityValkyrie;
+import com.gildedgames.the_aether.entities.bosses.genesis_dragon.EntityGenesisDragon;
+import com.gildedgames.the_aether.entities.bosses.genesis_dragon.EntityGenesisDragonPart;
+import com.gildedgames.the_aether.entities.bosses.valkyrie_queen.EntityDivineValkyrieQueen;
+import com.gildedgames.the_aether.entities.hostile.EntityIrk;
 import com.gildedgames.the_aether.entities.hostile.EntityTempest;
 import com.gildedgames.the_aether.entities.hostile.EntityZojz;
 import com.gildedgames.the_aether.entities.passive.mountable.EntityFlyingCow;
@@ -307,8 +313,21 @@ AetherEventHandler {
 			}
 		}
 		
-		else if (event.entity instanceof EntityZojz || event.entity instanceof EntityTempest) {
+		else if (event.entity instanceof EntityZojz || event.entity instanceof EntityTempest || event.entity instanceof EntityEliteValkyrie 
+			|| event.entity instanceof EntityDivineValkyrieQueen || event.entity instanceof EntityElysianGuardian 
+			|| event.entity instanceof EntityIrk || event.entity instanceof EntityGenesisDragon 
+			|| event.entity instanceof EntityGenesisDragonPart) {
 			event.setCanceled(true);
+		}
+		
+		if (event.entity instanceof EntityPlayer)
+		{
+			IPlayerAether playerAether = PlayerAether.get((EntityPlayer) event.entity);
+
+			if (playerAether.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.discharge_cape)))				
+			{
+				event.setCanceled(true);
+			}
 		}
 	}
 

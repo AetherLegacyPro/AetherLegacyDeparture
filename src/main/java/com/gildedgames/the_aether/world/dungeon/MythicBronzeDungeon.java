@@ -996,15 +996,15 @@ public class MythicBronzeDungeon extends AetherDungeon {
 			case 0:
 				return new ItemStack(ItemsAether.arkenium_pickaxe);
 			case 1:
-				return new ItemStack(ItemsAether.zanite_axe);
+				return new ItemStack(ItemsAether.arkenium_axe);
 			case 2:
-				return new ItemStack(ItemsAether.zanite_sword);
+				return new ItemStack(ItemsAether.arkenium_sword);
 			case 3:
-				return new ItemStack(ItemsAether.zanite_shovel);
+				return new ItemStack(ItemsAether.arkenium_shovel);
 			case 4:
 				return new ItemStack(ItemsAether.swet_cape);
 			case 5:
-				return new ItemStack(ItemsAether.ambrosium_shard, random.nextInt(12) + 1);
+				return new ItemStack(ItemsAether.resistance_stone, random.nextInt(12) + 1);
 			case 6:
 				return new ItemStack(ItemsAether.zanite_gemstone, random.nextInt(6) + 2);
 			case 7: {
@@ -1015,18 +1015,11 @@ public class MythicBronzeDungeon extends AetherDungeon {
 				break;
 			}
 			case 8: {
-				if (random.nextInt(7) == 0) {
-					return new ItemStack(BlocksAether.gravitite_ore, random.nextInt(1) + 1);
-				}
+					return new ItemStack(ItemsAether.raw_gravitite, random.nextInt(3) + 1);
 
-				break;
 			}
 			case 9: {
-				if (random.nextInt(3) == 0) {
-					return new ItemStack(BlocksAether.continuum_ore);
-				}
-
-				break;
+					return new ItemStack(ItemsAether.continuum_gemstone);
 			}
 			case 10: {
 				if (random.nextInt(10) == 0) {
@@ -1037,26 +1030,26 @@ public class MythicBronzeDungeon extends AetherDungeon {
 			}
 			case 11: {
 				if (random.nextInt(4) == 0) {
-					return new ItemStack(ItemsAether.ice_ring);
+					return new ItemStack(ItemsAether.auralite_ring);
 				}
 				break;
 			}
 			case 12: {
-				if (random.nextInt(10) == 0) {
-					return new ItemStack(ItemsAether.zanite_ring);
+				if (random.nextInt(3) == 0) {
+					return new ItemStack(ItemsAether.auralite_pendant);
 				}
 				break;
 			}
 			case 13:
-				if (random.nextInt(35) == 0) {
+				if (random.nextInt(5) == 0) {
 					
-				return new ItemStack(ItemsAether.continuum_pickaxe);
+				return new ItemStack(ItemsAether.gravitite_pickaxe);
 				}
 				
 				break;
 		   
 		}
-		return new ItemStack(ItemsAether.ambrosium_shard, random.nextInt(3) + 2);
+		return new ItemStack(ItemsAether.ambrosium_shard, random.nextInt(20) + 8);
 	}
 
 	public static ItemStack getMythicBronzeLoot(Random random) {

@@ -57,7 +57,6 @@ public class AetherRegistries {
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.valkyrie_gloves, AccessoryType.GLOVES));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.arkenium_gloves, AccessoryType.GLOVES));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.continuum_gloves, AccessoryType.GLOVES));
-		AetherAPI.instance().register(new AetherAccessory(ItemsAether.power_gloves, AccessoryType.GLOVES));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.divineral_gloves, AccessoryType.GLOVES));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.elysian_gloves, AccessoryType.GLOVES));
 		
@@ -145,6 +144,7 @@ public class AetherRegistries {
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.valkyrie_cape, AccessoryType.CAPE));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.phoenix_cape, AccessoryType.CAPE));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.aer_cape, AccessoryType.CAPE));
+		AetherAPI.instance().register(new AetherAccessory(ItemsAether.discharge_cape, AccessoryType.CAPE));
 
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.golden_feather, AccessoryType.MISC));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.reinforced_golden_feather, AccessoryType.MISC));
@@ -302,7 +302,7 @@ public class AetherRegistries {
 		AetherAPI.instance().register(new AetherEnchantment(BlocksAether.aetheral_continuum_ore, ItemsAether.continuum_gemstone, 1200));
 		AetherAPI.instance().register(new AetherEnchantment(BlocksAether.agiosite_continuum_ore, ItemsAether.continuum_gemstone, 1200));
 		AetherAPI.instance().register(new AetherEnchantment(BlocksAether.deific_continuum_ore, ItemsAether.continuum_gemstone, 1200));		
-		AetherAPI.instance().register(new AetherEnchantment(BlocksAether.primeval_artifact, ItemsAether.enchanted_divineral, 6000));
+		AetherAPI.instance().register(new AetherEnchantment(BlocksAether.primeval_artifact, ItemsAether.enchanted_divineral, 8100));
 		AetherAPI.instance().register(new AetherEnchantment(new ItemStack(BlocksAether.holystone, 1, 1), BlocksAether.enchanted_holystone, 500));
 		AetherAPI.instance().register(new AetherEnchantment(new ItemStack(BlocksAether.frozen_quicksoil, 1, 0), BlocksAether.frozen_quicksoil_glass, 300));
 		AetherAPI.instance().register(new AetherEnchantment(new ItemStack(BlocksAether.frozen_quicksoil, 1, 1), BlocksAether.frozen_quicksoil_glass, 300));
@@ -394,6 +394,7 @@ public class AetherRegistries {
 		AetherAPI.instance().register(new AetherEnchantmentFuel(BlocksAether.ambrosium_block, 8100));
 		AetherAPI.instance().register(new AetherEnchantmentFuel(ItemsAether.empyrean_gemstone, 1000));
 		AetherAPI.instance().register(new AetherEnchantmentFuel(BlocksAether.empyrean_block, 9000));
+		AetherAPI.instance().register(new AetherEnchantmentFuel(ItemsAether.elysian_core, 18000));
 		AetherAPI.instance().register(new AetherEnchantmentFuel(ItemsAether.charged_empyrean_gemstone, 9000));
 		AetherAPI.instance().register(new AetherEnchantmentFuel(BlocksAether.charged_empyrean_block, 81000));
 		AetherAPI.instance().register(new AetherEnchantmentFuel(ItemsAether.flaming_stone, 150000));
@@ -661,6 +662,10 @@ public class AetherRegistries {
 		GameRegistry.addRecipe(new RecipeAccessoryDyes());
 		FurnaceRecipes.smelting().func_151394_a(new ItemStack(BlocksAether.skyroot_log, 1, 1), new ItemStack(Items.coal, 1, 1), 0.15F);
 		FurnaceRecipes.smelting().func_151394_a(new ItemStack(BlocksAether.golden_oak_log, 1, 1), new ItemStack(Items.coal, 1, 1), 0.15F);
+		FurnaceRecipes.smelting().func_151394_a(new ItemStack(BlocksAether.greatroot_log, 1, 1), new ItemStack(Items.coal, 1, 1), 0.15F);
+		FurnaceRecipes.smelting().func_151394_a(new ItemStack(BlocksAether.wisproot_log, 1, 1), new ItemStack(Items.coal, 1, 1), 0.15F);
+		FurnaceRecipes.smelting().func_151394_a(new ItemStack(BlocksAether.void_log, 1, 1), new ItemStack(Items.coal, 1, 1), 0.15F);
+		FurnaceRecipes.smelting().func_151394_a(new ItemStack(BlocksAether.divine_oak_log, 1, 1), new ItemStack(Items.coal, 1, 1), 0.15F);
 
 		OreDictionary.registerOre("stickWood", ItemsAether.skyroot_stick);
 		OreDictionary.registerOre("feather", ItemsAether.cockatrice_feather);
@@ -730,6 +735,15 @@ public class AetherRegistries {
 		registerShapeless("netherite_gloves", new ItemStack(ItemsAether.netherite_gloves), new ItemStack(ItemsAether.diamond_gloves), new ItemStack(OtherModItems.netherite_ingot));
 		registerShapeless("netherite_ring", new ItemStack(ItemsAether.netherite_ring), new ItemStack(ItemsAether.diamond_ring), new ItemStack(OtherModItems.netherite_ingot));
 		registerShapeless("netherite_pendent", new ItemStack(ItemsAether.netherite_pendant), new ItemStack(ItemsAether.diamond_pendant), new ItemStack(OtherModItems.netherite_ingot));
+		}
+		
+		if (Loader.isModLoaded("nova_craft")) {
+			if (Loader.isModLoaded("etfuturum")) {
+				registerShapeless("klangite_gloves", new ItemStack(ItemsAether.klangite_gloves), new ItemStack(ItemsAether.netherite_gloves), new ItemStack(OtherModItems.klangite_ingot));
+			}
+			else {
+				registerShapeless("klangite_gloves", new ItemStack(ItemsAether.klangite_gloves), new ItemStack(ItemsAether.diamond_gloves), new ItemStack(OtherModItems.klangite_ingot));
+			}
 		}
 		
 		registerShapeless("aercloud_globule", new ItemStack(ItemsAether.aercloud_globule, 8), new ItemStack(BlocksAether.aercloud, 1, 0));
@@ -825,7 +839,8 @@ public class AetherRegistries {
 		register("enchanted_deific", new ItemStack(BlocksAether.enchanted_deific_bricks, 4), "XX", "XX", 'X', BlocksAether.enchanted_deific);
 		register("enchanted_agiosite_bricks", new ItemStack(BlocksAether.enchanted_agiosite_bricks, 4), "XX", "XX", 'X', BlocksAether.enchanted_agiosite);
 		register("enchanted_holystone_bricks", new ItemStack(BlocksAether.enchanted_holystone_bricks, 4), "XX", "XX", 'X', BlocksAether.enchanted_holystone);
-		register("cer_scales_block", new ItemStack(BlocksAether.cer_scales_block), "XX", "XX", 'X', ItemsAether.crystal_dragon_scales);
+		register("cer_scales_block", new ItemStack(BlocksAether.cer_scales_block), "XXX", "XXX", "XXX", 'X', ItemsAether.crystal_dragon_scales);
+		register("elysian_scales_block", new ItemStack(BlocksAether.elysian_scales_block), "XXX", "XXX", "XXX", 'X', ItemsAether.elysian_dragon_scales);
 		register("zanite_block", new ItemStack(BlocksAether.zanite_block), "XXX", "XXX", "XXX", 'X', ItemsAether.zanite_gemstone);
 		register("ambrosium_block", new ItemStack(BlocksAether.ambrosium_block), "XXX", "XXX", "XXX", 'X', ItemsAether.ambrosium_shard);
 		register("continuum_block", new ItemStack(BlocksAether.continuum_block), "XXX", "XXX", "XXX", 'X', ItemsAether.continuum_gemstone);
@@ -834,6 +849,8 @@ public class AetherRegistries {
 		register("zanite_gemstone", new ItemStack(ItemsAether.zanite_gemstone, 9), "X", 'X', BlocksAether.zanite_block);
 		register("ambrosium_shard", new ItemStack(ItemsAether.ambrosium_shard, 9), "X", 'X', BlocksAether.ambrosium_block);
 		register("continuum_gemstone", new ItemStack(ItemsAether.continuum_gemstone, 9), "X", 'X', BlocksAether.continuum_block);
+		register("crystal_dragon_scales", new ItemStack(ItemsAether.crystal_dragon_scales, 9), "X", 'X', BlocksAether.cer_scales_block);
+		register("elysian_dragon_scales", new ItemStack(ItemsAether.elysian_dragon_scales, 9), "X", 'X', BlocksAether.elysian_scales_block);
 		register("valkyrie_nugget", new ItemStack(ItemsAether.valkyrie_nugget, 9), "X", 'X', ItemsAether.valkyrie_ingot);
 		register("valkyrie_ingot", new ItemStack(ItemsAether.valkyrie_ingot), "XXX", "XXX", "XXX", 'X', ItemsAether.valkyrie_nugget);
 		register("arkenium_chunk", new ItemStack(ItemsAether.arkenium_chunk), "XX", "XX", 'X', new ItemStack(ItemsAether.arkenium_fragement));		
@@ -1003,8 +1020,9 @@ public class AetherRegistries {
 		register("freezer", new ItemStack(BlocksAether.freezer), "XXX", "XYX", "ZZZ", 'X', BlocksAether.holystone, 'Y', BlocksAether.icestone, 'Z', BlocksAether.skyroot_planks);	
 		register("zephyroo_saddle", new ItemStack(ItemsAether.zephyroo_saddle), "XXX", "XYX", "ZZZ", 'X', ItemsAether.zephyroo_leather, 'Y', Items.saddle, 'Z', ItemsAether.zanite_gemstone);	
 		register("enchanter", new ItemStack(BlocksAether.enchanter), "XXX", "XYX", "XXX", 'X', BlocksAether.holystone, 'Y', ItemsAether.zanite_gemstone);
-		register("amplifier", new ItemStack(BlocksAether.amplifier), "XVX", "UYU", "XZX", 'X', BlocksAether.enchanted_gravitite, 'Y', ItemsAether.divineral_ingot, 'Z', BlocksAether.enchanted_holystone, 'V', BlocksAether.hellfire_stone, 'U', BlocksAether.zanite_block);
-		register("amplifier", new ItemStack(BlocksAether.amplifier), "XVX", "UYU", "XZX", 'X', BlocksAether.enchanted_gravitite, 'Y', ItemsAether.divineral_ingot, 'Z', BlocksAether.enchanted_holystone, 'V', BlocksAether.divine_hellfire_stone, 'U', BlocksAether.zanite_block);
+		register("amplifier", new ItemStack(BlocksAether.amplifier), "XVX", "UYU", "XZX", 'X', BlocksAether.enchanted_gravitite, 'Y', ItemsAether.elysian_core, 'Z', BlocksAether.enchanted_holystone, 'V', BlocksAether.hellfire_stone, 'U', BlocksAether.zanite_block);		
+		register("amplifier", new ItemStack(BlocksAether.amplifier), "XVX", "UYU", "XZX", 'X', BlocksAether.enchanted_gravitite, 'Y', ItemsAether.elysian_core, 'Z', BlocksAether.enchanted_holystone, 'V', BlocksAether.ancient_hellfire_stone, 'U', BlocksAether.zanite_block);
+		register("amplifier", new ItemStack(BlocksAether.amplifier), "XVX", "UYU", "XZX", 'X', BlocksAether.enchanted_gravitite, 'Y', ItemsAether.elysian_core, 'Z', BlocksAether.enchanted_holystone, 'V', BlocksAether.divine_hellfire_stone, 'U', BlocksAether.zanite_block);
 		register("furnace", new ItemStack(Blocks.furnace), "XXX", "X X", "XXX", 'X', BlocksAether.holystone);
 		register("skyroot_ladder", new ItemStack(BlocksAether.skyroot_ladder, 4), "X X", "XXX", "X X", 'X', ItemsAether.skyroot_stick);
 		register("jukebox", new ItemStack(Blocks.jukebox), "XXX", "XYX", "XXX", 'X', BlocksAether.skyroot_planks, 'Y', BlocksAether.enchanted_gravitite);
@@ -1196,6 +1214,11 @@ public class AetherRegistries {
 		register("iron_ring", new ItemStack(ItemsAether.iron_ring), " Z ", "Z Z", " Z ", 'Z', new ItemStack(Items.iron_ingot));
 		register("diamond_ring", new ItemStack(ItemsAether.diamond_ring), " Z ", "Z Z", " Z ", 'Z', new ItemStack(Items.diamond));
 		
+		//if (Loader.isModLoaded("nova_craft")) {
+			//register("pherithium_gloves", new ItemStack(ItemsAether.pherithium_gloves), "C C", 'C', OtherModItems.pherithium_ingot);
+			//register("vanite_gloves", new ItemStack(ItemsAether.vanite_gloves), "C C", 'C', OtherModItems.vanite_ingot);
+		//}
+		
 		if (Loader.isModLoaded("etfuturum")) {
 		register("copper_gloves", new ItemStack(ItemsAether.copper_gloves), "C C", 'C', OtherModItems.copper_ingot);	
 		register("copper_ring", new ItemStack(ItemsAether.copper_ring), " Z ", "Z Z", " Z ", 'Z', new ItemStack(OtherModItems.copper_ingot));
@@ -1261,7 +1284,8 @@ public class AetherRegistries {
 		register("enchanted_aetheral_stone_brick_slab", new ItemStack(BlocksAether.enchanted_aetheral_stone_brick_slab, 6), "ZZZ", 'Z', new ItemStack(BlocksAether.enchanted_aetheral_stone_bricks));
 		register("divine_oak_slab", new ItemStack(BlocksAether.divine_oak_slab, 6), "ZZZ", 'Z', new ItemStack(BlocksAether.divine_oak_planks));
 		register("genesis_slab", new ItemStack(BlocksAether.genesis_slab, 6), "ZZZ", 'Z', new ItemStack(BlocksAether.genesis_stone_2));
-
+		register("ancient_angelic_stone_slab", new ItemStack(BlocksAether.ancient_angelic_stone_slab, 6), "ZZZ", 'Z', new ItemStack(BlocksAether.ancient_angelic_stone));
+		register("ancient_hellfire_stone_slab", new ItemStack(BlocksAether.ancient_hellfire_stone_slab, 6), "ZZZ", 'Z', new ItemStack(BlocksAether.ancient_hellfire_stone));
 		
 		register("paper", new ItemStack(Items.paper, 6), "ZZZ", 'Z', new ItemStack(BlocksAether.wisproot_log, 1, 0));
 		register("paper", new ItemStack(Items.paper, 6), "ZZZ", 'Z', new ItemStack(BlocksAether.wisproot_log, 1, 1));
@@ -1311,7 +1335,9 @@ public class AetherRegistries {
 		register("enchanted_deific_brick_wall", new ItemStack(BlocksAether.enchanted_deific_brick_wall, 6), "ZZZ", "ZZZ", 'Z', new ItemStack(BlocksAether.enchanted_deific_bricks));
 		register("enchanted_aetheral_stone_brick_wall", new ItemStack(BlocksAether.enchanted_aetheral_stone_brick_wall, 6), "ZZZ", "ZZZ", 'Z', new ItemStack(BlocksAether.enchanted_aetheral_stone_bricks));
 		register("genesis_wall", new ItemStack(BlocksAether.genesis_wall, 6), "ZZZ", "ZZZ", 'Z', new ItemStack(BlocksAether.genesis_stone_2));
-
+		register("ancient_angelic_stone_wall", new ItemStack(BlocksAether.ancient_angelic_stone_wall, 6), "ZZZ", "ZZZ", 'Z', new ItemStack(BlocksAether.ancient_angelic_stone));
+		register("ancient_hellfire_wall", new ItemStack(BlocksAether.ancient_hellfire_wall, 6), "ZZZ", "ZZZ", 'Z', new ItemStack(BlocksAether.ancient_hellfire_stone));
+		
 		
 		register("carved_stone_stairs", new ItemStack(BlocksAether.carved_stairs, 4), "Z  ", "ZZ ", "ZZZ", 'Z', new ItemStack(BlocksAether.carved_stone));
 		register("angelic_stone_stairs", new ItemStack(BlocksAether.angelic_stairs, 4), "Z  ", "ZZ ", "ZZZ", 'Z', new ItemStack(BlocksAether.angelic_stone));
@@ -1351,6 +1377,8 @@ public class AetherRegistries {
 		register("enchanted_aetheral_stone_brick_stairs", new ItemStack(BlocksAether.enchanted_aetheral_stone_brick_stairs, 4), "Z  ", "ZZ ", "ZZZ", 'Z', new ItemStack(BlocksAether.enchanted_aetheral_stone_bricks));
 		register("divine_oak_stairs", new ItemStack(BlocksAether.divine_oak_stairs, 4), "Z  ", "ZZ ", "ZZZ", 'Z', new ItemStack(BlocksAether.divine_oak_planks));
 		register("genesis_stairs", new ItemStack(BlocksAether.genesis_stairs, 4), "Z  ", "ZZ ", "ZZZ", 'Z', new ItemStack(BlocksAether.genesis_stone_2));
+		register("ancient_angelic_stone_stairs", new ItemStack(BlocksAether.ancient_angelic_stone_stairs, 4), "Z  ", "ZZ ", "ZZZ", 'Z', new ItemStack(BlocksAether.ancient_angelic_stone));
+		register("ancient_hellfire_stairs", new ItemStack(BlocksAether.ancient_hellfire_stairs, 4), "Z  ", "ZZ ", "ZZZ", 'Z', new ItemStack(BlocksAether.ancient_hellfire_stone));
 
 		
 		

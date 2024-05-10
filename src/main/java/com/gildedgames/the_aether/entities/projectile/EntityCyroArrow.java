@@ -4,6 +4,8 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.boss.EntityDragon;
+import net.minecraft.entity.boss.EntityDragonPart;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
@@ -22,6 +24,13 @@ import com.gildedgames.the_aether.entities.bosses.crystal_dragon.EntityCrystalDr
 import com.gildedgames.the_aether.entities.bosses.crystal_dragon.EntityCrystalDragonPart;
 import com.gildedgames.the_aether.entities.bosses.genesis_dragon.EntityGenesisDragon;
 import com.gildedgames.the_aether.entities.bosses.genesis_dragon.EntityGenesisDragonPart;
+import com.gildedgames.the_aether.entities.bosses.slider.EntityDivineSlider;
+import com.gildedgames.the_aether.entities.bosses.slider.EntityEnhancedSlider;
+import com.gildedgames.the_aether.entities.bosses.slider.EntityMythicSlider;
+import com.gildedgames.the_aether.entities.bosses.slider.EntitySlider;
+import com.gildedgames.the_aether.entities.bosses.sun_spirit.EntityAncientSunSpirit;
+import com.gildedgames.the_aether.entities.bosses.sun_spirit.EntityDivineSunSpirit;
+import com.gildedgames.the_aether.entities.bosses.sun_spirit.EntitySunSpirit;
 
 public class EntityCyroArrow extends EntityArrow implements IThrowableEntity {
 
@@ -120,7 +129,13 @@ public class EntityCyroArrow extends EntityArrow implements IThrowableEntity {
 		}
 		
 		if (movingobjectposition != null) {
-			if (movingobjectposition.entityHit != null && !(movingobjectposition.entityHit instanceof EntityCrystalDragon || movingobjectposition.entityHit instanceof EntityCrystalDragonPart || movingobjectposition.entityHit instanceof EntityGenesisDragonPart || movingobjectposition.entityHit instanceof EntityGenesisDragon)) {
+			if (movingobjectposition.entityHit != null && !(movingobjectposition.entityHit instanceof EntityCrystalDragon || movingobjectposition.entityHit instanceof EntityCrystalDragonPart 
+					|| movingobjectposition.entityHit instanceof EntityGenesisDragonPart || movingobjectposition.entityHit instanceof EntityGenesisDragon 
+					|| movingobjectposition.entityHit instanceof EntitySunSpirit || movingobjectposition.entityHit instanceof EntityAncientSunSpirit
+					|| movingobjectposition.entityHit instanceof EntityDivineSunSpirit || movingobjectposition.entityHit instanceof EntitySlider
+					|| movingobjectposition.entityHit instanceof EntitySlider || movingobjectposition.entityHit instanceof EntityEnhancedSlider
+					|| movingobjectposition.entityHit instanceof EntityDivineSlider || movingobjectposition.entityHit instanceof EntityMythicSlider
+					|| movingobjectposition.entityHit instanceof EntityDragonPart || movingobjectposition.entityHit instanceof EntityDragon)) {
 				((EntityLivingBase)movingobjectposition.entityHit).addPotionEffect(new PotionEffect(Potion.digSlowdown.id, 200, 1));
 				((EntityLivingBase)movingobjectposition.entityHit).addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 200, 2));
 			}

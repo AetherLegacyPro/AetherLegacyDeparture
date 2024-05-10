@@ -524,13 +524,71 @@ public class EntityCrystalDragon extends EntityFlying implements GIEntityMultiPa
         	Entity entity = ds.getEntity();
         	
         	if (entity instanceof EntityPlayer)
-            {                    
+            {
+        		EntityPlayer player = (EntityPlayer) ds.getEntity();
+                ItemStack stack = player.inventory.getCurrentItem();
+                
+        		if (stack.getItem() == ItemsAether.dragon_bane || stack.getItem() == ItemsAether.tipped_dragon_bane) {
+        			
+        			 int rand = (int)(1 + Math.random() * 4);
+        				switch (rand) {
+        		        	case 1: 
+        		        		this.damageEntity(DamageSource.generic, 20F);
+        		        		if (!(this.worldObj.isRemote)) {
+        		        		this.dropItem(ItemsAether.crystal_dragon_scales, 1);
+        		        		this.dropItem(ItemsAether.aceninum_shard, 1);
+        		        	}
+        			          break;
+        		        	case 2: 
+        		        		this.damageEntity(DamageSource.generic, 10F);
+        		        		if (!(this.worldObj.isRemote)) {
+        		        		this.dropItem(ItemsAether.aceninum_shard, 1);
+        		        	}
+        		        		break;
+        		        	case 3: 
+        		        		this.damageEntity(DamageSource.generic, 10F);
+        		        		if (!(this.worldObj.isRemote)) {
+        		        		this.dropItem(ItemsAether.crystal_dragon_scales, 1);
+        		        	}
+        		        		break;
+        		        	case 4: this.damageEntity(DamageSource.generic, 5F);
+        		        		break;
+        		        }
+        		}
+        		
+        		else if (stack.getItem() == ItemsAether.amplified_dragon_bane) {
+        			
+        			 int rand = (int)(1 + Math.random() * 4);
+        			 switch (rand) {
+ 		        		case 1: 
+ 		        			this.damageEntity(DamageSource.generic, 40F);
+ 		        			if (!(this.worldObj.isRemote)) {
+ 		        				this.dropItem(ItemsAether.crystal_dragon_scales, 1);
+ 		        				this.dropItem(ItemsAether.aceninum_shard, 1);
+ 		        			}
+ 		        			break;
+ 		        		case 2: 
+ 		        			this.damageEntity(DamageSource.generic, 25F);
+ 		        			if (!(this.worldObj.isRemote)) {
+ 		        				this.dropItem(ItemsAether.aceninum_shard, 1);
+ 		        			}
+ 		        			break;
+ 		        		case 3: 
+ 		        			this.damageEntity(DamageSource.generic, 25F);
+ 		        			if (!(this.worldObj.isRemote)) {
+ 		        				this.dropItem(ItemsAether.crystal_dragon_scales, 1);
+ 		        			}
+ 		        			break;
+ 		        		case 4: this.damageEntity(DamageSource.generic, 20F);
+ 		        			break;
+ 		        }
+        			}
             }       	
         	
         }
         
         return super.attackEntityFrom(ds, i);
-    }
+    } 
 
     protected boolean func_82195_e(DamageSource p_82195_1_, float p_82195_2_)
     {

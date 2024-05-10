@@ -37,7 +37,7 @@ public class ComponentAncientGoldenIsland extends AetherStructure {
 			for (int l1 = 24; l1 >= -j1; l1--) {
 				for (int k2 = -j1; k2 <= j1; k2++) {
 					Block state = this.getBlockStateWithOffset(k1, l1, k2);
-					if (state == BlocksAether.locked_hellfire_stone && ++i1 > 24 / 2) {
+					if (state == BlocksAether.locked_ancient_hellfire_stone && ++i1 > 24 / 2) {
 						return;
 					}
 				}
