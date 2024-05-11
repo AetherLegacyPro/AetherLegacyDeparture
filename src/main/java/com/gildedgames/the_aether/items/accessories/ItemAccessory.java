@@ -83,7 +83,9 @@ public class ItemAccessory extends Item {
 		int j = blockSource.getYInt() + enumfacing.getFrontOffsetY();
 		int k = blockSource.getZInt() + enumfacing.getFrontOffsetZ();
 		AxisAlignedBB axisalignedbb = AxisAlignedBB.getBoundingBox((double) i, (double) j, (double) k, (double) (i + 1), (double) (j + 1), (double) (k + 1));
-		List<EntityLivingBase> list = blockSource.getWorld().getEntitiesWithinAABB(EntityPlayer.class, axisalignedbb);
+		//List<EntityLivingBase> list = blockSource.getWorld().getEntitiesWithinAABB(EntityPlayer.class, axisalignedbb);
+		// Change to fix build error
+		List<EntityPlayer> list = blockSource.getWorld().getEntitiesWithinAABB(EntityPlayer.class, axisalignedbb);
 
 		if (list.isEmpty()) {
 			return null;
