@@ -27,7 +27,6 @@ public class GenesisDragonRenderer extends RenderLiving
     private static final ResourceLocation genesisDragonTextures;
     /** An instance of the dragon model in RenderDragon */
     protected GenesisDragonModel modelDragon;
-    private static final String __OBFID = "CL_00000988";
 
     public GenesisDragonRenderer()
     {

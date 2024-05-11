@@ -58,7 +58,6 @@ public class EntityCyro extends EntityAetherMob
     private boolean field_146076_bu = false;
     private float field_146074_bv = -1.0F;
     private float field_146073_bw;
-    private static final String __OBFID = "CL_00001702";
 
     public EntityCyro(World p_i1745_1_)
     {
@@ -421,7 +420,6 @@ public class EntityCyro extends EntityAetherMob
     {
         public boolean field_142048_a;
         public boolean field_142046_b;
-        private static final String __OBFID = "CL_00001704";
 
         private GroupData(boolean p_i2348_2_, boolean p_i2348_3_)
         {

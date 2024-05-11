@@ -14,7 +14,6 @@ import net.minecraft.world.gen.MapGenBase;
 
 public class MapGenAetherCaves extends MapGenBase
 {
-    private static final String __OBFID = "CL_00000393";
     
     protected void func_151542_a(final long p_151542_1_, final int p_151542_3_, final int p_151542_4_, final Block[] p_151542_5_, final byte[] metadata, final double p_151542_6_, final double p_151542_8_, final double p_151542_10_) {
         this.func_151541_a(p_151542_1_, p_151542_3_, p_151542_4_, p_151542_5_, metadata, p_151542_6_, p_151542_8_, p_151542_10_, 1.0f + this.rand.nextFloat() * 6.0f, 0.0f, 0.0f, -1, -1, 0.5);

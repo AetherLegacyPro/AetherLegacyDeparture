@@ -1,14 +1,14 @@
 [
 {
-  "modid": "examplemod",
-  "name": "Example Mod",
-  "description": "Example placeholder mod.",
-  "version": "${version}",
-  "mcversion": "${mcversion}",
+  "modid": "the_aether",
+  "name": "Aether Legacy Departure",
+  "description": "Continuation of Aether Legacy for 1.7.10. _UNOFFICIAL_",
+  "version": "",
+  "mcversion": "",
   "url": "",
   "updateUrl": "",
-  "authorList": ["ExampleDude"],
-  "credits": "The Forge and FML guys, for making this example",
+  "authorList": ["AetherLegacyPro, rrogalski"],
+  "credits": "All contributors to the Aether, Aether Legacy, and the Aether II for making this wonderful content. Thanks to Alex's Mobs and Wild Mobs for used code.",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []

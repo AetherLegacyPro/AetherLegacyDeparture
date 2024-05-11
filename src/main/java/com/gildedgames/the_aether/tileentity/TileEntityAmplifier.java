@@ -127,7 +127,7 @@ public class TileEntityAmplifier extends AetherTileEntity {
 
 	@SuppressWarnings("unchecked")
 	public void addEnchantmentWeight(ItemStack stack) {
-		Map<Enchantment, Integer> enchantments = EnchantmentHelper.getEnchantments(stack);
+		Map<Enchantment, Integer> enchantments = (Map<Enchantment, Integer>) (Map<?, ?>) EnchantmentHelper.getEnchantments(stack); // returns Integer, Integer
 
 		if (!enchantments.isEmpty()) {
 			for (int levels : enchantments.values()) {

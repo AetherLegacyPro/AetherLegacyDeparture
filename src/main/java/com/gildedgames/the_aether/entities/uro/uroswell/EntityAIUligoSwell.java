@@ -11,7 +11,6 @@ public class EntityAIUligoSwell extends EntityAIBase
 	EntityUligo swellingUro;
     /** The uro's attack target. This is used for the changing of the uro's state. */
     EntityLivingBase uroAttackTarget;
-    private static final String __OBFID = "CL_00001614";
 
     public EntityAIUligoSwell(EntityUligo p_i1655_1_)
     {

@@ -22,7 +22,6 @@ public class ItemBlocksAether extends Item
     public final Block field_150939_a;
     @SideOnly(Side.CLIENT)
     private IIcon field_150938_b;
-    private static final String __OBFID = "CL_00001772";
 
     public ItemBlocksAether(Block p_i45328_1_)
     {

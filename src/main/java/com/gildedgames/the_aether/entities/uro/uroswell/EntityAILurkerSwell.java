@@ -13,7 +13,6 @@ public class EntityAILurkerSwell extends EntityAIBase
 	EntityLurker swellingLurker;
     /** The uro's attack target. This is used for the changing of the uro's state. */
     EntityLivingBase uroAttackTarget;
-    private static final String __OBFID = "CL_00001614";
 
     public EntityAILurkerSwell(EntityLurker p_i1655_1_)
     {

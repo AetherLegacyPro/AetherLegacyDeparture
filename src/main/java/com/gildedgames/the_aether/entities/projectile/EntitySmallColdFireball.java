@@ -13,7 +13,6 @@ import net.minecraft.world.World;
 
 public class EntitySmallColdFireball extends EntitySmallFireball
 {
-    private static final String __OBFID = "CL_00001721";
 
     public EntitySmallColdFireball(World p_i1770_1_)
     {

@@ -22,7 +22,6 @@ public class FlynxRenderer extends RenderLiving
     private static final ResourceLocation ocelotTextures = Aether.locate("textures/entities/flynx/flynx.png");
     private static final ResourceLocation redOcelotTextures = Aether.locate("textures/entities/flynx/green.png");
     private static final ResourceLocation siameseOcelotTextures = Aether.locate("textures/entities/flynx/blue.png");
-    private static final String __OBFID = "CL_00001017";
 
     public FlynxRenderer()
     {

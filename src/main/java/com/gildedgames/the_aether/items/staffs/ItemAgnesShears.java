@@ -26,7 +26,6 @@ import net.minecraftforge.common.IShearable;
 
 public class ItemAgnesShears extends ItemShears
 {
-    private static final String __OBFID = "CL_00000062";
 
     public ItemAgnesShears()
     {

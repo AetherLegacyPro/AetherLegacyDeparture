@@ -11,7 +11,6 @@ import net.minecraft.world.World;
 
 public class ItemUncookedFruitStewBowl extends ItemFood
 {
-	 private static final String __OBFID = "CL_00001778";
 
 	 public ItemUncookedFruitStewBowl(int p_i45330_1_)
 	    {

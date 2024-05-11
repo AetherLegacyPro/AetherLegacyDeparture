@@ -36,7 +36,6 @@ import net.minecraft.world.World;
 public class BlockAercloudLayer extends Block implements IColoredBlock, INamedBlock
 {
 
-	private static final String __OBFID = "CL_00000309";
 	
     public BlockAercloudLayer()
     {

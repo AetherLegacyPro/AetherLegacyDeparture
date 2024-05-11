@@ -19,7 +19,6 @@ public class CyroGuardianRenderer extends RenderLiving
 {
     private static final ResourceLocation cyroTextures = Aether.locate("textures/bosses/cyro_guardian/cyro_guardian.png");
     private int field_77068_a;
-    private static final String __OBFID = "CL_00000980";
 
     public CyroGuardianRenderer()
     {

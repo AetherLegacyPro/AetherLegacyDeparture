@@ -21,7 +21,6 @@ public class UroRenderer extends RenderLiving
     private static final ResourceLocation creeperTextures = Aether.locate("textures/entities/uro/uro.png");
     /** The creeper model. */
     private ModelBase creeperModel = new UroModel(2.0F);
-    private static final String __OBFID = "CL_00000985";
 
     public UroRenderer()
     {

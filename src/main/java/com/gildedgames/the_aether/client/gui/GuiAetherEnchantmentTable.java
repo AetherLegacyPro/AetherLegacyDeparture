@@ -40,7 +40,6 @@ public class GuiAetherEnchantmentTable extends GuiContainer
     public float field_147076_A;
     ItemStack field_147077_B;
     private String field_147079_H;
-    private static final String __OBFID = "CL_00000757";
 
     public GuiAetherEnchantmentTable(InventoryPlayer p_i1090_1_, World p_i1090_2_, int p_i1090_3_, int p_i1090_4_, int p_i1090_5_, String p_i1090_6_)
     {

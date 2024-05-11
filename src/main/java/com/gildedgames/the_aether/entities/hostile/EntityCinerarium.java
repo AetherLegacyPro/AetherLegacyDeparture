@@ -23,7 +23,6 @@ public class EntityCinerarium extends EntityMob
     /** ticks until heightOffset is randomized */
     private int heightOffsetUpdateTime;
     private int field_70846_g;
-    private static final String __OBFID = "CL_00001682";
 
     public EntityCinerarium(World p_i1731_1_)
     {

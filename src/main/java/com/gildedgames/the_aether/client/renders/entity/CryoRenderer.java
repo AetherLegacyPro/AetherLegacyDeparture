@@ -17,7 +17,6 @@ public class CryoRenderer extends RenderLiving
 {
     private static final ResourceLocation cyroTextures = Aether.locate("textures/entities/cyro/cyro.png");
     private int field_77068_a;
-    private static final String __OBFID = "CL_00000980";
 
     public CryoRenderer()
     {

@@ -21,7 +21,6 @@ public class LurkerRenderer extends RenderLiving
     private static final ResourceLocation creeperTextures = Aether.locate("textures/bosses/urker/urker.png");
     /** The creeper model. */
     private ModelBase creeperModel = new LurkerModel(2.0F);
-    private static final String __OBFID = "CL_00000985";
     protected LurkerModel field_82437_k; //new
 	protected LurkerModel field_82435_l; //new
 

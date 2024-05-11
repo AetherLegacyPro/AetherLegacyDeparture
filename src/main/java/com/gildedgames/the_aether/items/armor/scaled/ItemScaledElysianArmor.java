@@ -70,7 +70,7 @@ public class ItemScaledElysianArmor extends ItemArmor {
         if (hasElysianHelmet && hasElysianChest && hasElysianLegs && hasElysianBoots) {
         	if(!world.isRemote) {
         		AxisAlignedBB axisalignedbb = player.boundingBox;
-        		List<Entity> volume = world.getEntitiesWithinAABB(EntityLivingBase.class, axisalignedbb.expand(2, 3, 2));
+        		List<EntityLivingBase> volume = world.getEntitiesWithinAABB(EntityLivingBase.class, axisalignedbb.expand(2, 3, 2));
         		int rand = (int)(1 + Math.random() * 96);
         		 for(Entity entity : volume) {
         			 if(!(entity instanceof EntityPlayer) && !(entity instanceof EntityAetherAnimal) && !(entity instanceof EntityAnimal) 

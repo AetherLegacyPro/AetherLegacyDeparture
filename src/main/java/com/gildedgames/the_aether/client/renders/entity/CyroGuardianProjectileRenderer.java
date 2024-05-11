@@ -19,7 +19,6 @@ import com.gildedgames.the_aether.entities.projectile.EntityCyroGuardianProjecti
 public class CyroGuardianProjectileRenderer extends Render
 {
     private float field_77002_a;
-    private static final String __OBFID = "CL_00000995";
 
     public CyroGuardianProjectileRenderer(float p_i1254_1_)
     {

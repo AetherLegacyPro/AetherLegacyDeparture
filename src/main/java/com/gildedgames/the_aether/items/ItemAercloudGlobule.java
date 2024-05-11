@@ -14,7 +14,6 @@ import com.gildedgames.the_aether.blocks.BlocksAether;
 
 public class ItemAercloudGlobule extends Item
 {
-    private static final String __OBFID = "CL_00000058";
 
     public ItemAercloudGlobule()
     {

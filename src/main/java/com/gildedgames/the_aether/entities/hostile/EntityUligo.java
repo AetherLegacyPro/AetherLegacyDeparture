@@ -39,7 +39,6 @@ public class EntityUligo extends EntityLiving implements IMob
     private int fuseTime = 20;
     /** Explosion radius for this creeper. */
     private int explosionRadius = 2;  
-    private static final String __OBFID = "CL_00001698";
 
     public EntityUligo(World p_i1742_1_)
     {

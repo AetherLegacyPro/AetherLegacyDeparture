@@ -36,7 +36,6 @@ public class CrystalDragonModel extends ModelBase
     /** The wing tip Model renderer of the dragon */
     private ModelRenderer wingTip;
     private float partialTicks;
-    private static final String __OBFID = "CL_00000870";
 
     public CrystalDragonModel(float p_i1169_1_)
     {
