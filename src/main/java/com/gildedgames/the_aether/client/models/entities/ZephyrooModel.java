@@ -2,147 +2,139 @@ package com.gildedgames.the_aether.client.models.entities;
 
 import org.lwjgl.opengl.GL11;
 
-import com.gildedgames.the_aether.entities.passive.EntityThunderlo;
 import com.gildedgames.the_aether.entities.passive.mountable.EntityZephyroo;
+import com.google.common.collect.ImmutableList;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.entity.Entity;
 
-import net.minecraft.client.model.*;
-import net.minecraft.entity.*;
+//Credit goes to developers of Alex's Mobs for the Model
+public class ZephyrooModel extends ModelBase {
+	
+	public final ModelRenderer root;
+	public final ModelRenderer body;
+	public final ModelRenderer pouch;
+	public final ModelRenderer tail1;
+	public final ModelRenderer tail2;
+	public final ModelRenderer leg_left;
+	public final ModelRenderer knee_left;
+	public final ModelRenderer foot_left;
+	public final ModelRenderer leg_right;
+	public final ModelRenderer knee_right;
+	public final ModelRenderer foot_right;
+	public final ModelRenderer chest;
+	public final ModelRenderer arm_left;
+	public final ModelRenderer arm_right;
+	public final ModelRenderer neck;
+	public final ModelRenderer head;
+	public final ModelRenderer ear_left;
+	public final ModelRenderer ear_right;
+	public final ModelRenderer snout;
 
-public class ZephyrooModel extends ModelBase
-{
-    ModelRenderer LeftHand;
-    ModelRenderer LeftArm;
-    ModelRenderer LeftFoot;
-    ModelRenderer LeftLeg;
-    ModelRenderer LeftHip;
-    ModelRenderer LeftShoulder;
-    ModelRenderer TailBottom;
-    ModelRenderer Pouch;
-    ModelRenderer Snout;
-    ModelRenderer RightHip;
-    ModelRenderer RightLeg;
-    ModelRenderer RightFoot;
-    ModelRenderer RightShoulder;
-    ModelRenderer RightArm;
-    ModelRenderer RightHand;
-    ModelRenderer TailTop;
-    ModelRenderer EarLeft;
-    ModelRenderer Neck;
-    ModelRenderer EarRight;
-    ModelRenderer Head;
-    ModelRenderer Body;
-    
-    public ZephyrooModel() {
-        this.textureWidth = 128;
-        this.textureHeight = 64;
-        (this.LeftHand = new ModelRenderer((ModelBase)this, 50, 50)).addBox(0.0f, 0.0f, 0.0f, 2, 1, 4);
-        this.LeftHand.setRotationPoint(5.0f, 10.5f, -10.5f);
-        this.LeftHand.setTextureSize(128, 64);
-        this.LeftHand.mirror = true;
-        this.setRotation(this.LeftHand, -0.3665191f, 0.0f, 0.0f);
-        (this.LeftArm = new ModelRenderer((ModelBase)this, 40, 38)).addBox(0.0f, 0.0f, 0.0f, 2, 9, 2);
-        this.LeftArm.setRotationPoint(5.0f, 3.0f, -7.0f);
-        this.LeftArm.setTextureSize(128, 64);
-        this.LeftArm.mirror = true;
-        this.setRotation(this.LeftArm, -0.4363323f, 0.0f, 0.0f);
-        (this.LeftFoot = new ModelRenderer((ModelBase)this, 29, 19)).addBox(0.0f, 8.0f, -7.0f, 3, 2, 6);
-        this.LeftFoot.setRotationPoint(3.0f, 14.0f, 1.0f);
-        this.LeftFoot.setTextureSize(128, 64);
-        this.LeftFoot.mirror = true;
-        this.setRotation(this.LeftFoot, 0.0f, 0.0f, 0.0f);
-        (this.LeftLeg = new ModelRenderer((ModelBase)this, 0, 0)).addBox(0.0f, 0.0f, 0.0f, 3, 9, 3);
-        this.LeftLeg.setRotationPoint(3.0f, 14.0f, 1.0f);
-        this.LeftLeg.setTextureSize(128, 64);
-        this.LeftLeg.mirror = true;
-        this.setRotation(this.LeftLeg, -0.4363323f, 0.0f, 0.0f);
-        (this.LeftHip = new ModelRenderer((ModelBase)this, 0, 41)).addBox(0.0f, 0.0f, 0.0f, 2, 7, 7);
-        this.LeftHip.setRotationPoint(4.0f, 8.0f, 0.5f);
-        this.LeftHip.setTextureSize(128, 64);
-        this.LeftHip.mirror = true;
-        this.setRotation(this.LeftHip, 0.0349066f, 0.0f, 0.0f);
-        (this.LeftShoulder = new ModelRenderer((ModelBase)this, 40, 49)).addBox(0.0f, 0.0f, 0.0f, 2, 3, 3);
-        this.LeftShoulder.setRotationPoint(5.0f, 2.0f, -7.5f);
-        this.LeftShoulder.setTextureSize(128, 64);
-        this.LeftShoulder.mirror = true;
-        this.setRotation(this.LeftShoulder, 0.0349066f, 0.0f, 0.0f);
-        (this.TailBottom = new ModelRenderer((ModelBase)this, 44, 25)).addBox(0.0f, 0.0f, 0.0f, 3, 9, 3);
-        this.TailBottom.setRotationPoint(-1.5f, 21.0f, 15.0f);
-        this.TailBottom.setTextureSize(128, 64);
-        this.TailBottom.mirror = true;
-        this.setRotation(this.TailBottom, 1.32645f, 0.0f, 0.0f);
-        (this.Pouch = new ModelRenderer((ModelBase)this, 13, 0)).addBox(0.0f, 0.0f, 0.0f, 9, 2, 8);
-        this.Pouch.setRotationPoint(-4.5f, 10.0f, -4.0f);
-        this.Pouch.setTextureSize(128, 64);
-        this.Pouch.mirror = true;
-        this.setRotation(this.Pouch, -0.7853982f, 0.0f, 0.0f);
-        (this.Snout = new ModelRenderer((ModelBase)this, 0, 22)).addBox(0.0f, 0.0f, 0.0f, 4, 4, 9);
-        this.Snout.setRotationPoint(-2.0f, -2.0f, -14.5f);
-        this.Snout.setTextureSize(128, 64);
-        this.Snout.mirror = true;
-        this.setRotation(this.Snout, 0.3490659f, 0.0f, 0.0f);
-        (this.RightHip = new ModelRenderer((ModelBase)this, 0, 41)).addBox(0.0f, 0.0f, 0.0f, 2, 7, 7);
-        this.RightHip.setRotationPoint(-6.0f, 8.0f, 0.5f);
-        this.RightHip.setTextureSize(128, 64);
-        this.RightHip.mirror = true;
-        this.setRotation(this.RightHip, 0.0349066f, 0.0f, 0.0f);
-        (this.RightLeg = new ModelRenderer((ModelBase)this, 0, 0)).addBox(0.0f, 0.0f, 0.0f, 3, 9, 3);
-        this.RightLeg.setRotationPoint(-6.0f, 14.0f, 1.0f);
-        this.RightLeg.setTextureSize(128, 64);
-        this.RightLeg.mirror = true;
-        this.setRotation(this.RightLeg, -0.4363323f, 0.0f, 0.0f);
-        (this.RightFoot = new ModelRenderer((ModelBase)this, 29, 19)).addBox(0.0f, 8.0f, -7.0f, 3, 2, 6);
-        this.RightFoot.setRotationPoint(-6.0f, 14.0f, 1.0f);
-        this.RightFoot.setTextureSize(128, 64);
-        this.RightFoot.mirror = true;
-        this.setRotation(this.RightFoot, 0.0f, 0.0f, 0.0f);
-        (this.RightShoulder = new ModelRenderer((ModelBase)this, 40, 49)).addBox(0.0f, 0.0f, 0.0f, 2, 3, 3);
-        this.RightShoulder.setRotationPoint(-7.0f, 2.0f, -7.5f);
-        this.RightShoulder.setTextureSize(128, 64);
-        this.RightShoulder.mirror = true;
-        this.setRotation(this.RightShoulder, 0.0349066f, 0.0f, 0.0f);
-        (this.RightArm = new ModelRenderer((ModelBase)this, 40, 38)).addBox(0.0f, 0.0f, 0.0f, 2, 9, 2);
-        this.RightArm.setRotationPoint(-7.0f, 3.0f, -7.0f);
-        this.RightArm.setTextureSize(128, 64);
-        this.RightArm.mirror = true;
-        this.setRotation(this.RightArm, -0.4363323f, 0.0f, 0.0f);
-        (this.RightHand = new ModelRenderer((ModelBase)this, 50, 50)).addBox(0.0f, 0.0f, 0.0f, 2, 1, 4);
-        this.RightHand.setRotationPoint(-7.0f, 10.5f, -10.5f);
-        this.RightHand.setTextureSize(128, 64);
-        this.RightHand.mirror = true;
-        this.setRotation(this.RightHand, -0.3665191f, 0.0f, 0.0f);
-        (this.TailTop = new ModelRenderer((ModelBase)this, 48, 37)).addBox(0.0f, 0.0f, 0.0f, 3, 10, 3);
-        this.TailTop.setRotationPoint(-1.5f, 14.0f, 8.0f);
-        this.TailTop.setTextureSize(128, 64);
-        this.TailTop.mirror = true;
-        this.setRotation(this.TailTop, 0.8028515f, 0.0f, 0.0f);
-        (this.EarLeft = new ModelRenderer((ModelBase)this, 0, 41)).addBox(0.0f, 0.0f, 0.0f, 1, 5, 2);
-        this.EarLeft.setRotationPoint(2.0f, -10.5f, -10.0f);
-        this.EarLeft.setTextureSize(128, 64);
-        this.EarLeft.mirror = true;
-        this.setRotation(this.EarLeft, 0.0f, 0.0f, 0.2443461f);
-        (this.Neck = new ModelRenderer((ModelBase)this, 0, 14)).addBox(0.0f, 0.0f, 0.0f, 4, 3, 5);
-        this.Neck.setRotationPoint(-2.0f, 0.0f, -9.5f);
-        this.Neck.setTextureSize(128, 64);
-        this.Neck.mirror = true;
-        this.setRotation(this.Neck, 0.6108652f, 0.0f, 0.0f);
-        (this.EarRight = new ModelRenderer((ModelBase)this, 0, 41)).addBox(0.0f, 0.0f, 0.0f, 1, 5, 2);
-        this.EarRight.setRotationPoint(-3.0f, -10.0f, -10.0f);
-        this.EarRight.setTextureSize(128, 64);
-        this.EarRight.mirror = true;
-        this.setRotation(this.EarRight, 0.0f, 0.0f, -0.2617994f);
-        (this.Head = new ModelRenderer((ModelBase)this, 26, 27)).addBox(0.0f, 0.0f, 0.0f, 4, 3, 5);
-        this.Head.setRotationPoint(-2.0f, -6.0f, -11.0f);
-        this.Head.setTextureSize(128, 64);
-        this.Head.mirror = true;
-        this.setRotation(this.Head, 0.0f, 0.0f, 0.0f);
-        (this.Body = new ModelRenderer((ModelBase)this, 0, 35)).addBox(0.0f, 0.0f, 0.0f, 10, 9, 20);
-        this.Body.setRotationPoint(-5.0f, -2.0f, -4.0f);
-        this.Body.setTextureSize(128, 64);
-        this.Body.mirror = true;
-        this.setRotation(this.Body, -0.7853982f, 0.0f, 0.0f);
-    }
-    
-    public void render(final Entity entity, final float f, final float f1, final float f2, final float f3, final float f4, final float f5) {
+	public ZephyrooModel() {
+		this.textureWidth = 128;
+		this.textureHeight = 128;
+		
+		this.root = new ModelRenderer(this, 0, 0);
+		this.root.setRotationPoint(0.0F, 24.0F, 0.0F);
+
+		this.body = new ModelRenderer(this, 0, 0);
+		this.body.addBox(-5.0F, -6.0F, -6.0F, 10, 11, 13);
+		this.body.setRotationPoint(0.0F, -15.0F, 4.0F);
+		this.root.addChild(body);
+
+		this.pouch = new ModelRenderer(this, 64, 6);
+		this.pouch.addBox(-3.5F, -2.5F, -4.0F, 7, 5, 8);
+		this.pouch.setRotationPoint(0.0F, 2.7F, -2.2F);
+		this.body.addChild(pouch);
+
+		this.tail1 = new ModelRenderer(this, 0, 25);
+		this.tail1.addBox(-2.5F, 0.0F, 0.0F, 5, 6, 15);
+		this.tail1.setRotationPoint(0.0F, -5.0F, 7.0F);
+		this.body.addChild(tail1);
+
+		this.tail2 = new ModelRenderer(this, 26, 32);
+		this.tail2.addBox(-1.5F, -3.0F, 0.0F, 3, 4, 15);
+		this.tail2.setRotationPoint(0.0F, 4.0F, 15.0F);
+		this.tail1.addChild(tail2);
+
+		this.leg_left = new ModelRenderer(this, 48, 28);
+		this.leg_left.addBox(-1.25F, -3.75F, -3.5F, 3, 7, 8);
+		this.leg_left.setRotationPoint(4.25F, 0.75F, -0.5F);
+		this.body.addChild(leg_left);
+
+		this.knee_left = new ModelRenderer(this, 0, 0);
+		this.knee_left.addBox(-1.0F, 0.0F, 0.0F, 2, 9, 3);
+		this.knee_left.setRotationPoint(0.25F, 3.25F, -3.5F);
+		this.leg_left.addChild(knee_left);
+
+		this.foot_left = new ModelRenderer(this, 35, 13);
+		this.foot_left.addBox(-1.5F, 0.0F, -10.0F, 3, 2, 12);
+		this.foot_left.setRotationPoint(0.0F, 9.0F, 1.0F);
+		this.knee_left.addChild(foot_left);
+
+		this.leg_right = new ModelRenderer(this, 48, 28);
+		this.leg_right.addBox(-1.75F, -3.75F, -3.5F, 3, 7, 8);
+		this.leg_right.setRotationPoint(-4.25F, 0.75F, -0.5F);
+		this.body.addChild(leg_right);
+
+		this.knee_right = new ModelRenderer(this, 0, 0);
+		this.knee_right.addBox(-1.0F, 0.0F, 0.0F, 2, 9, 3);
+		this.knee_right.setRotationPoint(-0.25F, 3.25F, -3.5F);
+		this.leg_right.addChild(knee_right);
+		
+		this.foot_right = new ModelRenderer(this, 35, 13);
+		this.foot_right.addBox(-1.5F, 0.0F, -10.0F, 3, 2, 12);
+		this.foot_right.setRotationPoint(0.0F, 9.0F, 1.0F);
+		this.knee_right.addChild(foot_right);
+
+		this.chest = new ModelRenderer(this, 0, 47);
+		this.chest.addBox(-4.0F, 0.0F, -9.0F, 8, 9, 9);
+		this.chest.setRotationPoint(0.0F, -6.0F, -6.0F);
+		this.body.addChild(chest);
+		
+		this.arm_left = new ModelRenderer(this, 71, 49);
+		this.arm_left.addBox(-1.0F, -1.0F, -2.0F, 2, 12, 3);
+		this.arm_left.setRotationPoint(4.0F, 6.0F, -6.0F);
+		this.chest.addChild(arm_left);
+
+		this.arm_right = new ModelRenderer(this, 71, 49);
+		this.arm_right.addBox(-1.0F, -1.0F, -2.0F, 2, 12, 3);
+		this.arm_right.setRotationPoint(-4.0F, 6.0F, -6.0F);
+		this.chest.addChild(arm_right);
+
+		this.neck = new ModelRenderer(this, 35, 52);
+		this.neck.addBox(-2.0F, -6.0F, -3.0F, 4, 11, 5);
+		this.neck.setRotationPoint(0.0F, 2.0F, -8.0F);
+		chest.addChild(neck);
+
+		this.head = new ModelRenderer(this, 34, 0);
+		this.head.addBox(-2.5F, -4.0F, -3.5F, 5, 4, 6);
+		this.head.setRotationPoint(0.0F, -6.0F, -0.5F);
+		neck.addChild(head);
+
+		this.ear_left = new ModelRenderer(this, 0, 47);
+		this.ear_left.addBox(0.0F, -6.0F, -1.0F, 3, 6, 1);
+		this.ear_left.setRotationPoint(0.4F, -4.0F, 1.5F);
+		this.head.addChild(ear_left);
+		this.setRotation(ear_left, -0.1745F, -0.3491F, 0.4363F);
+
+		this.ear_right = new ModelRenderer(this, 0, 47);
+		this.ear_right.addBox(-3.0F, -6.0F, -1.0F, 3, 6, 1);
+		this.ear_right.setRotationPoint(-0.4F, -4.0F, 1.5F);
+		this.head.addChild(ear_right);
+		this.setRotation(ear_right, -0.1745F, 0.3491F, -0.4363F);
+		this.setRotation(chest, 0.1745F, 0F, 0F);
+		this.setRotation(tail1, -0.1745F, 0F, 0F);
+		
+		this.snout = new ModelRenderer(this, 0, 25);
+		this.snout.addBox(-1.5F, -1.5F, -4.0F, 3, 3, 4);
+		this.snout.setRotationPoint(0.0F, -1.5F, -3.5F);
+		this.head.addChild(snout);
+	}
+	
+	public void render(final Entity entity, final float f, final float f1, final float f2, final float f3, final float f4, final float f5) {
     	EntityZephyroo zephyroo = ((EntityZephyroo) entity);
         if(zephyroo.isChild()) {
         	
@@ -152,49 +144,29 @@ public class ZephyrooModel extends ModelBase
         }    	
     	super.render(entity, f, f1, f2, f3, f4, f5);
         this.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-        this.LeftHand.render(f5);
-        this.LeftArm.render(f5);
-        this.LeftFoot.render(f5);
-        this.LeftLeg.render(f5);
-        this.LeftHip.render(f5);
-        this.LeftShoulder.render(f5);
-        this.TailBottom.render(f5);
-        this.Pouch.render(f5);
-        this.Snout.render(f5);
-        this.RightHip.render(f5);
-        this.RightLeg.render(f5);
-        this.RightFoot.render(f5);
-        this.RightShoulder.render(f5);
-        this.RightArm.render(f5);
-        this.RightHand.render(f5);
-        this.TailTop.render(f5);
-        this.EarLeft.render(f5);
-        this.Neck.render(f5);
-        this.EarRight.render(f5);
-        this.Head.render(f5);
-        this.Body.render(f5);
+        this.root.render(f5);
     }
-    
-    private void setRotation(final ModelRenderer model, final float x, final float y, final float z) {
-        model.rotateAngleX = x;
-        model.rotateAngleY = y;
-        model.rotateAngleZ = z;
-    }
-    
-    public void setRotationAngles(final float f, final float f1, final float f2, final float f3, final float f4, final float f5, final Entity entity) {
-        super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-        if (entity.motionX != 0.0 && entity.motionZ != 0.0) {
-            this.RightLeg.rotateAngleX = (float)Math.cos(((EntityZephyroo)entity).getTimeTilJump() * 0.5f);
-            this.LeftLeg.rotateAngleX = (float)Math.cos(((EntityZephyroo)entity).getTimeTilJump() * 0.5f);
-            this.RightFoot.rotateAngleX = this.RightLeg.rotateAngleX + 0.25f;
-            this.LeftFoot.rotateAngleX = this.RightLeg.rotateAngleX + 0.25f;
-        }
-        else {
-            this.RightLeg.rotateAngleX = 0.0f;
-            this.LeftLeg.rotateAngleX = 0.0f;
-            this.RightFoot.rotateAngleX = this.RightLeg.rotateAngleX + 0.25f;
-            this.LeftFoot.rotateAngleX = this.RightLeg.rotateAngleX + 0.25f;
-        }
-    }
-}
+	
+	 private void setRotation(final ModelRenderer model, final float x, final float y, final float z) {
+	        model.rotateAngleX = x;
+	        model.rotateAngleY = y;
+	        model.rotateAngleZ = z;
+	}
+	 
+	 public void setRotationAngles(final float f, final float f1, final float f2, final float f3, final float f4, final float f5, final Entity entity) {
+	        super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+	        if (entity.motionX != 0.0 && entity.motionZ != 0.0) {
+	            this.leg_right.rotateAngleX = (float)Math.cos(((EntityZephyroo)entity).getTimeTilJump() * 0.5f);
+	            this.leg_left.rotateAngleX = (float)Math.cos(((EntityZephyroo)entity).getTimeTilJump() * 0.5f);
+	            this.foot_right.rotateAngleX = this.leg_right.rotateAngleX + 0.15f;
+	            this.foot_left.rotateAngleX = this.leg_right.rotateAngleX + 0.15f;
+	        }
+	        else {
+	            this.leg_right.rotateAngleX = 0.0f;
+	            this.leg_left.rotateAngleX = 0.0f;
+	            this.foot_right.rotateAngleX = this.leg_right.rotateAngleX + 0.15f;
+	            this.foot_left.rotateAngleX = this.leg_right.rotateAngleX + 0.15f;
+	        }
+	    }
 
+}
