@@ -31,7 +31,6 @@ public class UroModel extends ModelBase
     public ModelRenderer leg10;
     public ModelRenderer leg11;
     public ModelRenderer leg12;
-    private static final String __OBFID = "CL_00000837";
 
     public UroModel()
     {

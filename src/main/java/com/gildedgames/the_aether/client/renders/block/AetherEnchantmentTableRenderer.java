@@ -17,7 +17,6 @@ public class AetherEnchantmentTableRenderer extends TileEntitySpecialRenderer
 {
     private static final ResourceLocation field_147540_b = new ResourceLocation("aether_legacy","textures/entities/aether_enchanting_table_book.png");
     private ModelBook field_147541_c = new ModelBook();
-    private static final String __OBFID = "CL_00000966";
 
     public void renderTileEntityAt(TileEntityAetherEnchantmentTable p_147500_1_, double p_147500_2_, double p_147500_4_, double p_147500_6_, float p_147500_8_)
     {

@@ -19,7 +19,6 @@ public class HellfireCinderRenderer extends RenderLiving
 {
     private static final ResourceLocation cyroTextures = Aether.locate("textures/entities/cinerarium/cinerarium.png");
     private int field_77068_a;
-    private static final String __OBFID = "CL_00000980";
 
     public HellfireCinderRenderer()
     {

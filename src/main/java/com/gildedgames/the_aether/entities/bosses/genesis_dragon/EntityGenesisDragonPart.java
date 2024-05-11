@@ -12,7 +12,6 @@ public class EntityGenesisDragonPart extends Entity
     /** The dragon entity this dragon part belongs to */
     public final GIEntityMultiPart entityDragonObj;
     public final String field_146032_b;
-    private static final String __OBFID = "CL_00001657";
 
     public EntityGenesisDragonPart(GIEntityMultiPart p_i1697_1_, String p_i1697_2_, float p_i1697_3_, float p_i1697_4_)
     {

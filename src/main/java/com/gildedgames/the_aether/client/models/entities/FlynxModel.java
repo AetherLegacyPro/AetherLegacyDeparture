@@ -36,7 +36,6 @@ public class FlynxModel extends ModelBase
     /** The body model for the Ocelot. */
     ModelRenderer ocelotBody;
     int field_78163_i = 1;
-    private static final String __OBFID = "CL_00000848";
 
     public FlynxModel()
     {

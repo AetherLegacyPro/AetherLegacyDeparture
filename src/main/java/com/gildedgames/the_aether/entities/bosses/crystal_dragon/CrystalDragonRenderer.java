@@ -27,7 +27,6 @@ public class CrystalDragonRenderer extends RenderLiving
     private static final ResourceLocation genesisDragonTextures = Aether.locate("textures/entities/crystal_dragon/crystal_dragon.png");
     /** An instance of the dragon model in RenderDragon */
     protected CrystalDragonModel modelDragon;
-    private static final String __OBFID = "CL_00000988";
 
     public CrystalDragonRenderer()
     {

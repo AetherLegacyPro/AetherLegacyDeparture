@@ -16,7 +16,6 @@ import net.minecraft.world.World;
 
 public class EntityCinerariumProjectile extends EntityFireball
 {
-    private static final String __OBFID = "CL_00001721";
 
     public EntityCinerariumProjectile(World p_i1770_1_)
     {

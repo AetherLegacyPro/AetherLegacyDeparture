@@ -11,7 +11,6 @@ import net.minecraft.world.World;
 
 public class ItemAercloud extends ItemBlockWithMetadata
 {
-    private static final String __OBFID = "CL_00000068";
 
     public ItemAercloud(Block p_i45354_1_, Block p_i45354_2_)
     {

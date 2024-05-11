@@ -40,7 +40,6 @@ public class EntityUro extends EntityMob
     private int fuseTime = 50;
     /** Explosion radius for this creeper. */
     private int explosionRadius = 4;
-    private static final String __OBFID = "CL_00001684";
 
     public EntityUro(World p_i1733_1_)
     {

@@ -24,7 +24,6 @@ import net.minecraftforge.common.IShearable;
 
 public class ItemZaniteShears extends ItemShears
 {
-    private static final String __OBFID = "CL_00000062";
 
     public ItemZaniteShears()
     {

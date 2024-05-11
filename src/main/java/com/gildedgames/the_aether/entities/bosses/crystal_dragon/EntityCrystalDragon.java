@@ -85,7 +85,6 @@ public class EntityCrystalDragon extends EntityFlying implements GIEntityMultiPa
     /** The current endercrystal that is healing this dragon */
     public EntityEnderCrystal healingEnderCrystal;
     public EntityLivingBase shootingEntity;
-    private static final String __OBFID = "CL_00001659";
 
     public EntityCrystalDragon(final World p_i1700_1_)
     {

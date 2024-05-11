@@ -83,7 +83,6 @@ public class EntityLurker extends EntityBossMob implements IAetherBoss {
     private int fuseTime = 25;
     /** Explosion radius for this creeper. */
     private int explosionRadius = 3;
-    private static final String __OBFID = "CL_00001684";
 
     public EntityLurker(World world) {
         super(world);

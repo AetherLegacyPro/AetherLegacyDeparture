@@ -15,7 +15,6 @@ import net.minecraft.world.World;
 
 public class ItemEnchantedFruitStew extends ItemFood
 {
-	 private static final String __OBFID = "CL_00001778";
 
 	 public ItemEnchantedFruitStew(int p_i45330_1_)
 	    {

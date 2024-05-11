@@ -16,7 +16,6 @@ public class UligoRenderer extends RenderLiving
 {
     private static final ResourceLocation slimeTextures = new ResourceLocation("aether_legacy", "textures/entities/uligo/uligo.png");
     private ModelBase scaleAmount;
-    private static final String __OBFID = "CL_00001024";
 
     public UligoRenderer(ModelBase p_i1267_1_, ModelBase p_i1267_2_, float p_i1267_3_)
     {

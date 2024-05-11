@@ -7,7 +7,6 @@ import net.minecraft.util.MathHelper;
 
 public class LurkerModel extends ModelBase
 {
-	private static final String __OBFID = "CL_00000865";
 	
 	private final ModelRenderer skullupper;
 	private final ModelRenderer body;
