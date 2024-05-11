@@ -279,8 +279,7 @@ public class ItemsAether {
 	public static Item elysian_helmet, elysian_chestplate, elysian_leggings, elysian_boots, elysian_gloves;
 	public static Item scaled_elysian_helmet, scaled_elysian_chestplate, scaled_elysian_leggings, scaled_elysian_boots;
 	public static Item amplified_elysian_helmet, amplified_elysian_chestplate, amplified_elysian_leggings, amplified_elysian_boots, amplified_elysian_gloves;
-	
-	public static Item swetty_helmet;	
+
 	public static Item agility_boots, scaled_agility_boots, amplified_agility_boots;
 	public static Item sentry_boots, scaled_sentry_boots, amplified_sentry_boots;
 	
@@ -566,7 +565,6 @@ public class ItemsAether {
 		agility_boots = register("agility_boots", new ItemAetherDungeonArmor(3, ArmorMaterial.DIAMOND, "agility", agility_boots).setTextureName(Aether.find("armor/agility_boots")));
 		scaled_agility_boots = register("scaled_agility_boots", new ItemScaledDungeonArmor(3, ArmorMaterial.DIAMOND, "scaled_agility", scaled_agility_boots).setTextureName(Aether.find("armor/scaled_agility_boots")));
 		amplified_agility_boots = register("amplified_agility_boots", new ItemDivineralArmor(3, ArmorMaterial.DIAMOND, "amplified_agility", amplified_agility_boots).setTextureName(Aether.find("armor/amplified_agility_boots")));
-		swetty_helmet = register("swetty_helmet", new ItemAetherDungeonArmor(0, ArmorMaterial.IRON, "swetty", swetty_helmet).setTextureName(Aether.find("armor/swetty_helmet")));
 		
 		phoenix_helmet = register("phoenix_helmet", new ItemPhoenixArmor(0, ArmorMaterial.DIAMOND, "phoenix", null).setTextureName(Aether.find("armor/phoenix_helmet")));
 		phoenix_chestplate = register("phoenix_chestplate", new ItemPhoenixArmor(1, ArmorMaterial.DIAMOND, "phoenix", null).setTextureName(Aether.find("armor/phoenix_chestplate")));

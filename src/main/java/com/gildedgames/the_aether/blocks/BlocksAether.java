@@ -13,7 +13,6 @@ import com.gildedgames.the_aether.world.biome.decoration.AetherGenCrystalTree;
 import com.gildedgames.the_aether.world.biome.decoration.AetherGenDarkBlueSkyrootTree;
 import com.gildedgames.the_aether.world.biome.decoration.AetherGenDivineTree;
 import com.gildedgames.the_aether.world.biome.decoration.AetherGenGreatwoodTree;
-import com.gildedgames.the_aether.world.biome.decoration.AetherGenHolidaySaplingTree;
 import com.gildedgames.the_aether.world.biome.decoration.AetherGenOakTree;
 import com.gildedgames.the_aether.world.biome.decoration.AetherGenPurpleSkyrootTree;
 import com.gildedgames.the_aether.world.biome.decoration.AetherGenSkyrootTree;
@@ -221,7 +220,7 @@ public class BlocksAether {
 	public static Block quickshoot, enchanted_quickshoot, aether_tulips, enchanted_aether_tulips, enchanted_bloom;	
 	public static Block aether_tallgrass, arctic_tallgrass, snowy_tallgrass, enchanted_aether_tallgrass, burstblossom, carrion_flower, moonlit_bloom;
 	public static Block divine_aether_tallgrass, divine_stalk, divine_lily, divine_bloom;
-	public static Block skyroot_sapling, golden_oak_sapling, crystal_sapling, holiday_sapling, void_sapling, divine_oak_sapling;	
+	public static Block skyroot_sapling, golden_oak_sapling, crystal_sapling, void_sapling, divine_oak_sapling;	
 	public static Block purple_skyroot_sapling, blue_skyroot_sapling, dark_blue_skyroot_sapling, wisproot_sapling, greatroot_sapling;	
 	
 	//Tile Entities & Animated Blocks
@@ -536,7 +535,6 @@ public class BlocksAether {
 		wisproot_sapling = register("wisproot_sapling", new BlockAetherSapling(new AetherGenGreatwoodTree(false)).setBlockTextureName(Aether.find("wisproot_sapling")));
 		greatroot_sapling = register("greatroot_sapling", new BlockAetherSapling(new AetherGenGreatwoodTree(false)).setBlockTextureName(Aether.find("greatroot_sapling")));
 		void_sapling = register("void_sapling", new BlockAetherSapling(new AetherGenVoidTree()).setBlockTextureName(Aether.find("void_sapling")));		
-		holiday_sapling = register("holiday_sapling", new BlockAetherSapling(new AetherGenHolidaySaplingTree(false)).setBlockTextureName(Aether.find("holiday_sapling")));
 		divine_oak_sapling = register("divine_oak_sapling", new BlockAetherSapling(new AetherGenDivineTree(BlocksAether.divine_oak_leaves, 40, true)).setBlockTextureName(Aether.find("divine_oak_sapling")));
 		
 		enchanter = registerEnchanter("enchanter", new BlockEnchanter());

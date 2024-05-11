@@ -355,7 +355,7 @@ public class ItemContinuumOrb extends Item {
 				case 155:
 					return new ItemStack(ItemsAether.swet_cape);
 				case 156:
-					return new ItemStack(ItemsAether.swetty_helmet);
+					return new ItemStack(ItemsAether.diamond_gloves);
 				case 157:
 					return new ItemStack(ItemsAether.valkyrie_axe);
 				case 158:

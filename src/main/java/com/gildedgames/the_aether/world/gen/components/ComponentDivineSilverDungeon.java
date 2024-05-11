@@ -461,7 +461,7 @@ public class ComponentDivineSilverDungeon extends AetherStructure {
 			case 0:
 				return new ItemStack(ItemsAether.arkenium_pickaxe);
 			case 1:
-				return new ItemStack(ItemsAether.swetty_helmet);
+				return new ItemStack(ItemsAether.aerca_tooth);
 			case 2:
 				return new ItemStack(ItemsAether.arkenium_fragement, random.nextInt(3));
 			case 3:
