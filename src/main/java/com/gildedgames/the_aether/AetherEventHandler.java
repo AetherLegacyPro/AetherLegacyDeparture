@@ -67,11 +67,19 @@ import cpw.mods.fml.common.eventhandler.Event;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent.ItemCraftedEvent;
 import net.minecraftforge.event.world.WorldEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.Mod;
+import com.gildedgames.the_aether.vrl.ForgetTheOtherMethodsThisIsWhereTheMagicHappens;
+import cpw.mods.fml.common.SidedProxy;
 
 import java.util.Random;
 
 public class
 AetherEventHandler {
+	//@SidedProxy(clientSide = "com.myname.mymodid.ClientProxy", serverSide = "com.myname.mymodid.CommonProxy")
+	@SidedProxy(clientSide = "com.gildedgames.the_aether.ClientProxy", serverSide = "com.gildedgames.the_aether.CommonProxy")
+    public static CommonProxy proxy;
 
 	@SubscribeEvent
 	public void checkBlockBannedEvent(PlayerInteractEvent event) {
@@ -525,4 +533,18 @@ AetherEventHandler {
 			PlayerAether.get(event.entityPlayer).setBedLocation(event.entityPlayer.getBedLocation(AetherConfig.getAetherDimensionID()));
 		}
 	}
+
+	@Mod.EventHandler
+    // preInit "Run before anything else. Read your config, create blocks, items, etc, and register them with the
+    // GameRegistry." (Remove if not needed)
+    public void preInit(FMLPreInitializationEvent event) {
+		System.out.println("moo");
+		proxy.preInit(event);
+        System.out.println("Mod pre-initialization phase! AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+
+		//ForgetTheOtherMethodsThisIsWhereTheMagicHappens assetManager = new ForgetTheOtherMethodsThisIsWhereTheMagicHappens();
+		//ForgetTheOtherMethodsThisIsWhereTheMagicHappens.download("https://cdn.modrinth.com/data/JD2NSu5O/versions/cZNxPTqa/aether_ii-1.12.2-0.3.0%2Bbuild411-universal.jar");
+		//ForgetTheOtherMethodsThisIsWhereTheMagicHappens.download("https://cdn.modrinth.com/data/YhmgMVyu/versions/4NuI8eHN/aether-1.7.10-v1.1.2.3.jar");
+		//ForgetTheOtherMethodsThisIsWhereTheMagicHappens.download("https://static.planetminecraft.com/files/resource_media/mod/1509/aetheriilauncher-unzipandrun8190225.zip");
+    }
 }

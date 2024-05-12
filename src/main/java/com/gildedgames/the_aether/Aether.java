@@ -23,6 +23,7 @@ import com.gildedgames.the_aether.world.biome.decoration.overhaul.ArcticIslandWo
 import com.gildedgames.the_aether.world.biome.decoration.overhaul.DivineIslandWorldGen;
 import com.gildedgames.the_aether.world.biome.decoration.overhaul.GoldenIslandWorldGen;
 import com.gildedgames.the_aether.world.biome.decoration.overhaul.PalladiumDungeonWorldGen;
+import com.gildedgames.the_aether.vrl.ForgetTheOtherMethodsThisIsWhereTheMagicHappens;
 
 import cpw.mods.fml.common.IWorldGenerator;
 import cpw.mods.fml.common.Mod;
