@@ -61,6 +61,9 @@ public class AetherConfig {
 	
 	public static final String catMisc = "New Misc Options";
 	public static final String catWorld = "New World Gen Options";
+
+	private static boolean redownloadFiles;
+	public static String greeting = "Hello World";
 	
 	public static void init(File location) {
 		File newFile = new File(location + "/aether" + "/AetherI.cfg");
@@ -74,6 +77,8 @@ public class AetherConfig {
 		config = new Configuration(newFile);
 
 		config.load();
+
+		redownloadFiles = config.getBoolean("refetchAssets", catMisc, true, "Re-Download assets from the Aether mods?");
 
 		christmas_content = config.get("Aether World Generation", "Christmas Content", false).getBoolean(false);
 		seasonal_christmas = config.get("Aether World Generation", "Spawns Holiday Trees during December and January automatically. Christmas Content overrides this.", true).getBoolean(true);
@@ -466,4 +471,14 @@ public class AetherConfig {
 	public static int getWhirlwindSpawnrate() {
 		return whirlwind_spawnrate;
 	}
+
+	public static void synchronizeConfiguration(File configFile) {
+        Configuration configuration = new Configuration(configFile);
+
+        greeting = configuration.getString("greeting", Configuration.CATEGORY_GENERAL, greeting, "How shall I greet?");
+
+        if (configuration.hasChanged()) {
+            configuration.save();
+        }
+    }
 }

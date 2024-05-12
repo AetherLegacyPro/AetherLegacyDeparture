@@ -23,6 +23,7 @@ import com.gildedgames.the_aether.world.biome.decoration.overhaul.ArcticIslandWo
 import com.gildedgames.the_aether.world.biome.decoration.overhaul.DivineIslandWorldGen;
 import com.gildedgames.the_aether.world.biome.decoration.overhaul.GoldenIslandWorldGen;
 import com.gildedgames.the_aether.world.biome.decoration.overhaul.PalladiumDungeonWorldGen;
+import com.gildedgames.the_aether.vrl.ForgetTheOtherMethodsThisIsWhereTheMagicHappens;
 
 import cpw.mods.fml.common.IWorldGenerator;
 import cpw.mods.fml.common.Mod;
@@ -34,6 +35,9 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 @Mod(modid = Aether.MOD_ID, version = "v1.1.2.2")
 public class Aether {
 
@@ -41,12 +45,14 @@ public class Aether {
 
 	@Instance(Aether.MOD_ID)
 	public static Aether instance;
+	public static final Logger LOG = LogManager.getLogger("aether_legacy");
 
 	@SidedProxy(clientSide = "com.gildedgames.the_aether.client.ClientProxy", serverSide = "com.gildedgames.the_aether.CommonProxy")
 	public static CommonProxy proxy;
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
+		proxy.preInit(event);
 		AetherRankings.initialization();
 		AetherNetwork.preInitialization();
 		AetherConfig.init(event.getModConfigurationDirectory());

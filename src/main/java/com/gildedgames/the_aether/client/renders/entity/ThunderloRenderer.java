@@ -53,6 +53,6 @@ public class ThunderloRenderer extends RenderLiving
     
     static {
         TEXTURE = new ResourceLocation("aether_legacy", "textures/entities/thunderlo/thunderlo.png");
-        TEXTURE_TAIL = new ResourceLocation("aether_legacy", "textures/entities/thunderlo/thunderlotail.png");
+        TEXTURE_TAIL = new ResourceLocation("aether_legacy", "textures/entities/thunderlo/thunderlo_tail.png");
     }
 }
