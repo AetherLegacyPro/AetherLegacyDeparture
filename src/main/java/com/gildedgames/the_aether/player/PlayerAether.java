@@ -37,6 +37,7 @@ import net.minecraft.world.World;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.items.tools.ItemAmplifiedValkyrieTool;
 import com.gildedgames.the_aether.items.tools.ItemArkeniumTool;
+import com.gildedgames.the_aether.items.tools.ItemAscensiteTool;
 import com.gildedgames.the_aether.items.tools.ItemValkyrieTool;
 import com.gildedgames.the_aether.items.tools.tipped.ItemTippedArkeniumTool;
 import com.gildedgames.the_aether.items.tools.tipped.ItemTippedValkyrieTool;
@@ -306,8 +307,12 @@ public class PlayerAether implements IPlayerAether {
 				distance = 8.0D;
 			}
 			
-			if (stack != null && stack.getItem() instanceof ItemTippedValkyrieTool) {
+			else if (stack != null && stack.getItem() instanceof ItemTippedValkyrieTool) {
 				distance = 8.0D;
+			}
+			
+			else if (stack != null && stack.getItem() instanceof ItemAscensiteTool) {
+				distance = 10.0D;
 			}
 			
 			else if (stack != null && stack.getItem() instanceof ItemAmplifiedValkyrieTool) {
@@ -653,7 +658,7 @@ public class PlayerAether implements IPlayerAether {
 				this.powerCount += amount;
 				AetherNetwork.sendToAll(new PacketUpdatePowerShardCount(this.player, this.powerCount));
 
-				this.powerModifier = new AttributeModifier(uuid, "Aether Damage Modifier", (this.powerCount * 2.0D), 0);
+				this.powerModifier = new AttributeModifier(uuid, "Aether Damage Modifier", (this.powerCount * 1.0D), 0);
 
 				if (this.player.getEntityAttribute(SharedMonsterAttributes.attackDamage).getModifier(this.uuid) != null)
 				{

@@ -34,7 +34,7 @@ public class EntityZephyroo extends EntityAetherAnimal
     public EntityZephyroo(final World world) {
         super(world);
         this.timeTilJump = 10;
-        this.setSize(0.5f, 0.5f); 
+        this.setSize(1.5f, 0.75f); 
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(15.0);
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(20.0);
         this.tasks.addTask(0, new EntityAISwimming(this));

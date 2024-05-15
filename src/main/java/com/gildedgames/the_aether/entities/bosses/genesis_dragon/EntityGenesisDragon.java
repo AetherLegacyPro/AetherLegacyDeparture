@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.gildedgames.the_aether.api.player.util.IAetherBoss;
 import com.gildedgames.the_aether.entities.bosses.crystal_dragon.EntityCrystalDragon;
+import com.gildedgames.the_aether.entities.bosses.crystal_dragon.EntityCrystalDragonPart;
 import com.gildedgames.the_aether.entities.particles.NewAetherParticleHandler;
 import com.gildedgames.the_aether.entities.util.AetherNameGen;
 import com.gildedgames.the_aether.items.ItemsAether;
@@ -93,7 +94,7 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
         super(p_i1700_1_);
         this.dragonPartArray = new EntityGenesisDragonPart[] {this.dragonPartHead = new EntityGenesisDragonPart(this, "head", 6.0F, 6.0F), this.dragonPartBody = new EntityGenesisDragonPart(this, "body", 8.0F, 8.0F), this.dragonPartTail1 = new EntityGenesisDragonPart(this, "tail", 4.0F, 4.0F), this.dragonPartTail2 = new EntityGenesisDragonPart(this, "tail", 4.0F, 4.0F), this.dragonPartTail3 = new EntityGenesisDragonPart(this, "tail", 4.0F, 4.0F), this.dragonPartWing1 = new EntityGenesisDragonPart(this, "wing", 4.0F, 4.0F), this.dragonPartWing2 = new EntityGenesisDragonPart(this, "wing", 4.0F, 4.0F)};
         this.setHealth(this.getMaxHealth());
-        this.setSize(16.0F, 8.0F);
+        this.setSize(20.0F, 16.0F);
         this.noClip = true;
         this.isImmuneToFire = true;
         this.targetY = 100.0D;
@@ -501,7 +502,7 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
         while (iterator.hasNext())
         {
             Entity entity = (Entity)iterator.next();
-            if (entity instanceof EntityLivingBase)
+            if (entity instanceof EntityLivingBase && !(entity instanceof EntityCrystalDragon || entity instanceof EntityCrystalDragonPart))
             {	
                 double d2 = entity.posX - d0;
                 double d3 = entity.posZ - d1;
@@ -705,27 +706,89 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
 		if (stack.getItem() == ItemsAether.dragon_bane || stack.getItem() == ItemsAether.tipped_dragon_bane) {
 			
 			 int rand = (int)(1 + Math.random() * 4);
+			 int rand2 = (int)(1 + Math.random() * 24);
 				switch (rand) {
 		        	case 1: 
 		        		this.damageEntity(DamageSource.generic, 10F);
 		        		if (!(this.worldObj.isRemote)) {
 		        		this.dropItem(ItemsAether.crystal_dragon_scales, 1);
 		        		this.dropItem(ItemsAether.aceninum_shard, 1);
+		        		
+		        		if (this.getHealth() <= 0 || this.isDead) {
+		        			this.entityDropItem(new ItemStack(ItemsAether.dungeon_key, 1, 14), 0.5F);
+
+		        	        int j;
+		        	        int k;
+		        	        {
+		        	            j = this.rand.nextInt(3) + 1;
+
+		        	            for (k = 0; k < j; ++k)
+		        	            {
+		        	                this.dropItem(ItemsAether.elysian_dragon_scales, 12 + rand2);
+		        	            }
+		        	        }
+		        		}
 		        	}
 			          break;
 		        	case 2: 
 		        		this.damageEntity(DamageSource.generic, 5F);
 		        		if (!(this.worldObj.isRemote)) {
 		        		this.dropItem(ItemsAether.aceninum_shard, 1);
+		        		
+		        		if (this.getHealth() <= 0 || this.isDead) {
+		        			this.entityDropItem(new ItemStack(ItemsAether.dungeon_key, 1, 14), 0.5F);
+
+		        	        int j;
+		        	        int k;
+		        	        {
+		        	            j = this.rand.nextInt(3) + 1;
+
+		        	            for (k = 0; k < j; ++k)
+		        	            {
+		        	                this.dropItem(ItemsAether.elysian_dragon_scales, 12 + rand2);
+		        	            }
+		        	        }
+		        		}
 		        	}
 		        		break;
 		        	case 3: 
 		        		this.damageEntity(DamageSource.generic, 5F);
 		        		if (!(this.worldObj.isRemote)) {
 		        		this.dropItem(ItemsAether.crystal_dragon_scales, 1);
+		        		
+		        		if (this.getHealth() <= 0 || this.isDead) {
+		        			this.entityDropItem(new ItemStack(ItemsAether.dungeon_key, 1, 14), 0.5F);
+
+		        	        int j;
+		        	        int k;
+		        	        {
+		        	            j = this.rand.nextInt(3) + 1;
+
+		        	            for (k = 0; k < j; ++k)
+		        	            {
+		        	                this.dropItem(ItemsAether.elysian_dragon_scales, 12 + rand2);
+		        	            }
+		        	        }
+		        		}
 		        	}
 		        		break;
 		        	case 4: this.damageEntity(DamageSource.generic, 3F);
+		        	 if (!(this.worldObj.isRemote)) {
+		        		if (this.getHealth() <= 0 || this.isDead) {
+		        			this.entityDropItem(new ItemStack(ItemsAether.dungeon_key, 1, 14), 0.5F);
+
+		        			int j;
+		        			int k;
+		        			{
+		        				j = this.rand.nextInt(3) + 1;
+
+		        				for (k = 0; k < j; ++k)
+		        				{
+	        	                this.dropItem(ItemsAether.elysian_dragon_scales, 12 + rand2);
+		        				}
+		        			}
+		        		}
+		        	 }
 		        		break;
 		        }
 		}
@@ -733,27 +796,89 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
 		else if (stack.getItem() == ItemsAether.amplified_dragon_bane) {
 			
 			 int rand = (int)(1 + Math.random() * 4);
+			 int rand2 = (int)(1 + Math.random() * 24);
 			 switch (rand) {
 	        		case 1: 
 	        			this.damageEntity(DamageSource.generic, 20F);
 	        			if (!(this.worldObj.isRemote)) {
 	        				this.dropItem(ItemsAether.crystal_dragon_scales, 1);
 	        				this.dropItem(ItemsAether.aceninum_shard, 1);
+	        			
+	        			if (this.getHealth() <= 0 || this.isDead) {
+		        			this.entityDropItem(new ItemStack(ItemsAether.dungeon_key, 1, 14), 0.5F);
+
+		        	        int j;
+		        	        int k;
+		        	        {
+		        	            j = this.rand.nextInt(3) + 1;
+
+		        	            for (k = 0; k < j; ++k)
+		        	            {
+		        	                this.dropItem(ItemsAether.elysian_dragon_scales, 12 + rand2);
+		        	            }
+		        	        }
+		        		 }
 	        			}
 	        			break;
 	        		case 2: 
 	        			this.damageEntity(DamageSource.generic, 15F);
 	        			if (!(this.worldObj.isRemote)) {
 	        				this.dropItem(ItemsAether.aceninum_shard, 1);
+	        				
+	        				if (this.getHealth() <= 0 || this.isDead) {
+			        			this.entityDropItem(new ItemStack(ItemsAether.dungeon_key, 1, 14), 0.5F);
+
+			        	        int j;
+			        	        int k;
+			        	        {
+			        	            j = this.rand.nextInt(3) + 1;
+
+			        	            for (k = 0; k < j; ++k)
+			        	            {
+			        	                this.dropItem(ItemsAether.elysian_dragon_scales, 12 + rand2);
+			        	            }
+			        	        }
+			        		 }
 	        			}
 	        			break;
 	        		case 3: 
 	        			this.damageEntity(DamageSource.generic, 15F);
 	        			if (!(this.worldObj.isRemote)) {
 	        				this.dropItem(ItemsAether.crystal_dragon_scales, 1);
+	        				
+	        				if (this.getHealth() <= 0 || this.isDead) {
+			        			this.entityDropItem(new ItemStack(ItemsAether.dungeon_key, 1, 14), 0.5F);
+
+			        	        int j;
+			        	        int k;
+			        	        {
+			        	            j = this.rand.nextInt(3) + 1;
+
+			        	            for (k = 0; k < j; ++k)
+			        	            {
+			        	                this.dropItem(ItemsAether.elysian_dragon_scales, 12 + rand2);
+			        	            }
+			        	        }
+			        		 }
 	        			}
 	        			break;
 	        		case 4: this.damageEntity(DamageSource.generic, 10F);
+	        		if (!(this.worldObj.isRemote)) {
+	        		if (this.getHealth() <= 0 || this.isDead) {
+	        			this.entityDropItem(new ItemStack(ItemsAether.dungeon_key, 1, 14), 0.5F);
+
+	        	        int j;
+	        	        int k;
+	        	        {
+	        	            j = this.rand.nextInt(3) + 1;
+
+	        	            for (k = 0; k < j; ++k)
+	        	            {
+	        	                this.dropItem(ItemsAether.elysian_dragon_scales, 12 + rand2);
+	        	            }
+	        	        }
+	        		  }
+	        		}
 	        			break;
 			 	}
 			}

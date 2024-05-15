@@ -543,8 +543,8 @@ public class AetherRegistries {
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.tipped_battle_sentry_hammer, ItemsAether.amplified_battle_sentry_hammer, 5400));
 		
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.tipped_overworld_slayer, ItemsAether.amplified_overworld_slayer, 5400));
-		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.tipped_nether_slayer, ItemsAether.amplified_nether_slayer, 5400));
-		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.tipped_ender_slayer, ItemsAether.amplified_ender_slayer, 5400));
+		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.tipped_nether_slayer, ItemsAether.amplified_nether_slayer, 3600));
+		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.tipped_ender_slayer, ItemsAether.amplified_ender_slayer, 3600));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.tipped_dragon_bane, ItemsAether.amplified_dragon_bane, 3600));
 		
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.tipped_notched_pickaxe, ItemsAether.amplified_notched_pickaxe, 7200));

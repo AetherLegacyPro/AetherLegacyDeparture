@@ -16,6 +16,7 @@ import net.minecraft.util.Vec3;
 import com.gildedgames.the_aether.items.tools.ItemAmplifiedContinuumTool;
 import com.gildedgames.the_aether.items.tools.ItemAmplifiedValkyrieTool;
 import com.gildedgames.the_aether.items.tools.ItemArkeniumTool;
+import com.gildedgames.the_aether.items.tools.ItemAscensiteTool;
 import com.gildedgames.the_aether.items.tools.ItemValkyrieTool;
 import com.gildedgames.the_aether.items.tools.tipped.ItemTippedArkeniumTool;
 import com.gildedgames.the_aether.items.tools.tipped.ItemTippedValkyrieTool;
@@ -46,7 +47,7 @@ public class AetherEntityRenderer extends EntityRenderer {
 			if (this.mc.theWorld != null) {
 				ItemStack stack = this.mc.thePlayer.getCurrentEquippedItem();
 
-				if (stack == null || !(stack.getItem() instanceof ItemAmplifiedValkyrieTool || (stack.getItem() instanceof ItemValkyrieTool) || (stack.getItem() instanceof ItemTippedValkyrieTool) || (stack.getItem() instanceof ItemArkeniumTool) || (stack.getItem() instanceof ItemTippedArkeniumTool) || (stack.getItem() instanceof ItemAmplifiedContinuumTool))) {
+				if (stack == null || !(stack.getItem() instanceof ItemAmplifiedValkyrieTool || (stack.getItem() instanceof ItemValkyrieTool) || (stack.getItem() instanceof ItemTippedValkyrieTool) || (stack.getItem() instanceof ItemArkeniumTool) || (stack.getItem() instanceof ItemTippedArkeniumTool) || (stack.getItem() instanceof ItemAmplifiedContinuumTool) || (stack.getItem() instanceof ItemTippedValkyrieTool) || (stack.getItem() instanceof ItemArkeniumTool) || (stack.getItem() instanceof ItemTippedArkeniumTool) || (stack.getItem() instanceof ItemAscensiteTool))) {
 					this.previous.getMouseOver(p_78473_1_);
 					return;
 				}

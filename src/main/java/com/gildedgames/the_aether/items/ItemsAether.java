@@ -82,6 +82,7 @@ import com.gildedgames.the_aether.items.tools.ItemAmplifiedValkyrieTool;
 import com.gildedgames.the_aether.items.tools.ItemAmplifiedZaniteTool;
 import com.gildedgames.the_aether.items.tools.ItemArkeniumHoe;
 import com.gildedgames.the_aether.items.tools.ItemArkeniumTool;
+import com.gildedgames.the_aether.items.tools.ItemAscensiteTool;
 import com.gildedgames.the_aether.items.tools.ItemContinuumHoe;
 import com.gildedgames.the_aether.items.tools.ItemContinuumTool;
 import com.gildedgames.the_aether.items.tools.ItemDivineralHoe;
@@ -130,6 +131,7 @@ import com.gildedgames.the_aether.items.weapons.ItemAmplifiedValkyrieLance;
 import com.gildedgames.the_aether.items.weapons.ItemAmplifiedVampireBlade;
 import com.gildedgames.the_aether.items.weapons.ItemAmplifiedZaniteSword;
 import com.gildedgames.the_aether.items.weapons.ItemArkeniumSword;
+import com.gildedgames.the_aether.items.weapons.ItemAscensiteSword;
 import com.gildedgames.the_aether.items.weapons.ItemBattleSentryHammer;
 import com.gildedgames.the_aether.items.weapons.ItemBuilderSlayer;
 import com.gildedgames.the_aether.items.weapons.ItemCandyCaneSword;
@@ -241,6 +243,8 @@ public class ItemsAether {
 	
 	public static Item notched_pickaxe, tipped_notched_pickaxe, amplified_notched_pickaxe;
 	
+	public static Item ascensite_sword, ascensite_pickaxe, ascensite_axe, ascensite_shovel;
+	
 	public static Item nature_staff, cloud_staff, confractus_staff, zanite_shears, zanite_and_cinerarium, zanite_and_cyro, shears_of_agnes;
 
 	//Aether Armor
@@ -336,7 +340,7 @@ public class ItemsAether {
 	public static Item repulsion_shield, zanite_shield, gravitite_shield, jeb_shield, sentry_shield;
 
 	public static void initialization() {
-		skyroot_stick = register("skyroot_stick", new Item().setCreativeTab(AetherCreativeTabs.material).setTextureName(Aether.find("skyroot_stick")));
+		skyroot_stick = register("skyroot_stick", new ItemAether(AetherCreativeTabs.material).setTextureName(Aether.find("skyroot_stick")));
 		zanite_gemstone = register("zanite_gemstone", new ItemAether(AetherCreativeTabs.material).setTextureName(Aether.find("misc/zanite_gemstone")));
 		zanite_nugget = register("zanite_nugget", new ItemAether(AetherCreativeTabs.material).setTextureName(Aether.find("misc/zanite_nugget")));
 		ambrosium_shard = register("ambrosium_shard", new ItemAmbrosiumShard().setTextureName(Aether.find("misc/ambrosium_shard")));
@@ -486,6 +490,12 @@ public class ItemsAether {
 		notched_pickaxe = register("notched_pickaxe", new ItemNotchedPickaxe(2.0F, EnumAetherToolType.PICKAXE).setTextureName(Aether.find("tools/notched_pickaxe")));
 		tipped_notched_pickaxe = register("tipped_notched_pickaxe", new ItemTippedNotchedPickaxe(2.0F, EnumAetherToolType.PICKAXE).setTextureName(Aether.find("tools/tipped_notched_pickaxe")));
 		amplified_notched_pickaxe = register("amplified_notched_pickaxe", new ItemAmplifiedNotchedPickaxe(2.0F, EnumAetherToolType.PICKAXE).setTextureName(Aether.find("tools/amplified_notched_pickaxe")));
+		
+		if (Loader.isModLoaded("nova_craft")) {
+		ascensite_pickaxe = register("ascensite_pickaxe", new ItemAscensiteTool(2.0F, EnumAetherToolType.PICKAXE).setTextureName(Aether.find("tools/ascensite_pickaxe")));
+		ascensite_axe = register("ascensite_axe", new ItemAscensiteTool(3.0F, EnumAetherToolType.AXE).setTextureName(Aether.find("tools/ascensite_axe")));
+		ascensite_shovel = register("ascensite_shovel", new ItemAscensiteTool(1.0F, EnumAetherToolType.SHOVEL).setTextureName(Aether.find("tools/ascensite_shovel")));
+		}
 		
 		zanite_helmet = register("zanite_helmet", new ItemZaniteArmor(0, ArmorMaterial.IRON, "zanite", zanite_gemstone).setTextureName(Aether.find("armor/zanite_helmet")));
 		zanite_chestplate = register("zanite_chestplate", new ItemZaniteArmor(1, ArmorMaterial.IRON, "zanite", zanite_gemstone).setTextureName(Aether.find("armor/zanite_chestplate")));
@@ -747,7 +757,11 @@ public class ItemsAether {
 		dragon_bane = register("dragon_bane", new ItemDragonSlayer().setTextureName(Aether.find("weapons/dragon_bane")));
 		tipped_dragon_bane = register("tipped_dragon_bane", new ItemTippedDragonSlayer().setTextureName(Aether.find("weapons/tipped_dragon_bane")));
 		amplified_dragon_bane = register("amplified_dragon_bane", new ItemAmplifiedDragonSlayer().setTextureName(Aether.find("weapons/amplified_dragon_bane")));	
-				
+		
+		if (Loader.isModLoaded("nova_craft")) {
+		ascensite_sword = register("ascensite_sword", new ItemAscensiteSword().setTextureName(Aether.find("weapons/ascensite_sword")));
+		}
+		
 		leather_gloves = register("leather_gloves", new ItemAccessoryDyed(AccessoryType.GLOVES).setMaxDamage(82).setTextureName(Aether.find("accessories/leather_gloves")));
 		iron_gloves = register("iron_gloves", new ItemAccessory(AccessoryType.GLOVES).setMaxDamage(152).setTextureName(Aether.find("accessories/solid_gloves")));
 		golden_gloves = register("golden_gloves", new ItemAccessory(AccessoryType.GLOVES).setColor(0xFBF424).setMaxDamage(42).setTextureName(Aether.find("accessories/solid_gloves")));

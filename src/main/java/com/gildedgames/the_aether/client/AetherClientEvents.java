@@ -362,6 +362,11 @@ public class AetherClientEvents {
 		return stackIDD == ItemsAether.amplified_valkyrie_shovel || stackIDD == ItemsAether.amplified_valkyrie_axe || stackIDD == ItemsAether.amplified_valkyrie_pickaxe || stackIDD == ItemsAether.amplified_valkyrie_lance;
 	}
 	
+	public boolean isAscensiteItem(Item stackIDD)
+	{
+		return stackIDD == ItemsAether.ascensite_shovel || stackIDD == ItemsAether.ascensite_axe || stackIDD == ItemsAether.ascensite_pickaxe || stackIDD == ItemsAether.ascensite_sword;
+	}
+	
 	public boolean isArkeniumItem(Item stackIDDA)
 	{
 		return stackIDDA == ItemsAether.arkenium_shovel || stackIDDA == ItemsAether.arkenium_axe || stackIDDA == ItemsAether.arkenium_pickaxe || stackIDDA == ItemsAether.arkenium_sword || stackIDDA == ItemsAether.tipped_arkenium_sword || stackIDDA == ItemsAether.tipped_arkenium_pickaxe || stackIDDA == ItemsAether.tipped_arkenium_shovel || stackIDDA == ItemsAether.tipped_arkenium_axe;

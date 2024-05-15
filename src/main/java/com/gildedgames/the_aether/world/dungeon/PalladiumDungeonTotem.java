@@ -117,7 +117,7 @@ public class PalladiumDungeonTotem extends WorldGenerator {
 	}
 	
 	public static ItemStack getPalladiumLoot(Random random) {
-		int item = random.nextInt(24);
+		int item = random.nextInt(25);
 
 		switch (item) {
 			case 0:
@@ -185,6 +185,8 @@ public class PalladiumDungeonTotem extends WorldGenerator {
 				return new ItemStack(ItemsAether.notched_core);
 			case 18:
 				return new ItemStack(ItemsAether.ender_slayer);
+			case 19:
+				return new ItemStack(ItemsAether.dragon_bane);
 		}
 		return new ItemStack(ItemsAether.divineral_nugget, random.nextInt(7) + 4);
 	}

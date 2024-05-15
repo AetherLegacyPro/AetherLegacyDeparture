@@ -57,6 +57,7 @@ import com.gildedgames.the_aether.world.biome.decoration.AetherGenBlueSkyrootTre
 import com.gildedgames.the_aether.world.biome.decoration.AetherGenDarkBlueSkyrootTree;
 import com.gildedgames.the_aether.world.biome.decoration.AetherGenFruitTree;
 import com.gildedgames.the_aether.world.biome.decoration.AetherGenGoldenFruitTree;
+import com.gildedgames.the_aether.world.biome.decoration.AetherGenGreatrootTree;
 import com.gildedgames.the_aether.world.biome.decoration.AetherGenGreatwoodTree;
 import com.gildedgames.the_aether.world.biome.decoration.AetherGenLargeTree;
 import com.gildedgames.the_aether.world.biome.decoration.AetherGenMassiveTree;
@@ -96,7 +97,7 @@ public class AetherBiome extends BiomeGenBase {
 	}
 	
 	public WorldGenAbstractTree getRandomTreeFeature(final Random random) {
-        final int ratio = random.nextInt(89);
+        final int ratio = random.nextInt(88);
         if (ratio <= 35) {
             return (WorldGenAbstractTree)new AetherGenSkyrootTreeNew(BlocksAether.skyroot_leaves, BlocksAether.skyroot_log, 0);
         }
@@ -122,7 +123,7 @@ public class AetherBiome extends BiomeGenBase {
             return (WorldGenAbstractTree)new AetherGenLargeTree(BlocksAether.golden_oak_leaves, BlocksAether.golden_oak_log, 0);
         }
         else if (ratio > 69 && ratio <= 70) {
-            return (WorldGenAbstractTree)new AetherGenLargeTree(BlocksAether.green_light_skyroot_leaves, BlocksAether.greatroot_log, 0);
+            return (WorldGenAbstractTree)new AetherGenLargeTree(BlocksAether.skyroot_leaves, BlocksAether.skyroot_log, 0); 
         }
         else if (ratio > 70 && ratio <= 71) {
             return (WorldGenAbstractTree)new AetherGenLargeTree(BlocksAether.skyroot_leaves, BlocksAether.skyroot_log, 0);
@@ -142,8 +143,14 @@ public class AetherBiome extends BiomeGenBase {
         else if (ratio > 78 && ratio <= 86) {
             return (WorldGenAbstractTree)new AetherGenSkyrootTreeNew(BlocksAether.skyroot_leaves, BlocksAether.skyroot_log, 0);
         }
-        else if (ratio > 86 && ratio <= 88) {
-        	return (WorldGenAbstractTree)new AetherGenMassiveTree(BlocksAether.dark_blue_skyroot_leaves, 35, true);
+        else if (ratio > 86 && ratio <= 87) {
+        	int random1 = (int)(1 + Math.random() * 8);
+        	if (random1 > 2) {
+        	return (WorldGenAbstractTree)new AetherGenGreatrootTree(BlocksAether.green_light_skyroot_leaves, 40, true);
+        	}
+        	else {
+        		return (WorldGenAbstractTree)new AetherGenMassiveTree(BlocksAether.dark_blue_skyroot_leaves, 35, true);
+        	}
         }
         
         return (WorldGenAbstractTree)new AetherGenMassiveTree(BlocksAether.dark_blue_skyroot_leaves, 35, true);
@@ -251,19 +258,5 @@ public class AetherBiome extends BiomeGenBase {
 	public BiomeDecorator createBiomeDecorator() {
 		return new AetherBiomeDecorator();
 	}
-
-	//@Override
-	//public WorldGenAbstractTree func_150567_a(Random rand) {
-		//return (WorldGenAbstractTree) (rand.nextInt(20) == 0 ? new AetherGenOakTree() : new AetherGenSkyrootTree(false));
-	//}
 	
-	//public WorldGenAbstractTree func_150567_b(Random rand) {
-		//return (WorldGenAbstractTree) (rand.nextInt(3) == 0 ? new AetherGenDarkBlueSkyrootTree(false) : new AetherGenBlueSkyrootTree(false));
-	//}
-	
-	//public WorldGenAbstractTree func_150567_c(Random rand) {
-		//return (WorldGenAbstractTree) (rand.nextInt(2) == 0 ? new AetherGenWisprootTree(false) : new AetherGenGreatwoodTree(false));
-	//}
-	
-
 }
