@@ -8,13 +8,16 @@ import com.gildedgames.the_aether.blocks.ancient.enchanter.TileEntityMultiBlock;
 import com.gildedgames.the_aether.entities.particles.NewAetherParticleHandler;
 
 import net.minecraft.util.*;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.*;
 import net.minecraft.world.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 import cpw.mods.fml.relauncher.*;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.*;
 import net.minecraft.client.renderer.texture.*;
+import net.minecraft.client.resources.I18n;
 
 public class BlockElysianTotem extends BlockMultiTileEntity
 {
@@ -28,12 +31,6 @@ public class BlockElysianTotem extends BlockMultiTileEntity
         this.setHardness(-1.0f);
         this.setResistance(1000000.0f);
         this.setBlockSize(0.0f, 0.0f, 0.0f, 1.0f, 2.0f, 1.0f);
-    }
-    
-    @Override
-    public boolean onBlockActivated(final World world, final int x, final int y, final int z, final EntityPlayer entityplayer, final int par6, final float par7, final float par8, final float par9) {
-    	
-    	return false;
     }
     
     public IIcon getIcon(final int i, final int meta) {
@@ -104,5 +101,64 @@ public class BlockElysianTotem extends BlockMultiTileEntity
         {
         	NewAetherParticleHandler.ELYSIAN_TELEPORT.spawn(p_149734_1_, d0 - d4, d1 + d3, d2, 0.0D, 0.12D, 0.0D, 0.0f, new Object[0]);
         }
+    }
+    
+    @Override
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
+    	Block block = world.getBlock(x, y, z);
+		int meta = world.getBlockMetadata(x, y, z);
+		if (world.getBlock(x, y, z) == BlocksAether.elysian_totem 
+		&& world.getBlock(x, y - 1, z) == BlocksAether.crystallized_genesis_stone
+		
+		&& (world.getBlock(x + 1, y - 2, z) == BlocksAether.genesis_stone_2 || world.getBlock(x + 1, y - 2, z) == BlocksAether.genesis_stone)
+		&& (world.getBlock(x - 1, y - 2, z) == BlocksAether.genesis_stone_2 || world.getBlock(x - 1, y - 2, z) == BlocksAether.genesis_stone)
+		&& (world.getBlock(x, y - 2, z + 1) == BlocksAether.genesis_stone_2 || world.getBlock(x, y - 2, z + 1) == BlocksAether.genesis_stone)
+		&& (world.getBlock(x, y - 2, z - 1) == BlocksAether.genesis_stone_2 || world.getBlock(x, y - 2, z - 1) == BlocksAether.genesis_stone)
+		&& (world.getBlock(x + 1, y - 2, z + 1) == BlocksAether.light_genesis_stone_2 || world.getBlock(x + 1, y - 2, z + 1) == BlocksAether.light_genesis_stone)
+		&& (world.getBlock(x - 1, y - 2, z - 1) == BlocksAether.light_genesis_stone_2 || world.getBlock(x - 1, y - 2, z - 1) == BlocksAether.light_genesis_stone)
+		&& (world.getBlock(x + 1, y - 2, z - 1) == BlocksAether.light_genesis_stone_2 || world.getBlock(x + 1, y - 2, z - 1) == BlocksAether.light_genesis_stone)
+		&& (world.getBlock(x - 1, y - 2, z + 1) == BlocksAether.light_genesis_stone_2 || world.getBlock(x - 1, y - 2, z + 1) == BlocksAether.light_genesis_stone)
+
+		&& world.getBlock(x + 2, y - 2, z + 1) == BlocksAether.reinforced_arkenium_block
+		&& world.getBlock(x + 2, y - 2, z) == BlocksAether.reinforced_arkenium_block
+		&& world.getBlock(x + 2, y - 2, z - 1) == BlocksAether.reinforced_arkenium_block
+		&& world.getBlock(x - 2, y - 2, z + 1) == BlocksAether.reinforced_arkenium_block
+		&& world.getBlock(x - 2, y - 2, z) == BlocksAether.reinforced_arkenium_block
+		&& world.getBlock(x - 2, y - 2, z - 1) == BlocksAether.reinforced_arkenium_block
+		&& world.getBlock(x + 1, y - 2, z + 2) == BlocksAether.reinforced_arkenium_block
+		&& world.getBlock(x, y - 2, z + 2) == BlocksAether.reinforced_arkenium_block
+		&& world.getBlock(x - 1, y - 2, z + 2) == BlocksAether.reinforced_arkenium_block
+		&& world.getBlock(x + 1, y - 2, z - 2) == BlocksAether.reinforced_arkenium_block
+		&& world.getBlock(x, y - 2, z - 2) == BlocksAether.reinforced_arkenium_block
+		&& world.getBlock(x - 1, y - 2, z - 2) == BlocksAether.reinforced_arkenium_block 
+
+		&& world.getBlock(x - 2, y - 1, z - 2) == BlocksAether.crystallized_genesis_stone
+		&& world.getBlock(x - 2, y - 1, z + 2) == BlocksAether.crystallized_genesis_stone
+		&& world.getBlock(x + 2, y - 1, z - 2) == BlocksAether.crystallized_genesis_stone
+		&& world.getBlock(x + 2, y - 1, z + 2) == BlocksAether.crystallized_genesis_stone
+
+		&& world.getBlock(x - 2, y, z - 2) == BlocksAether.crystallized_genesis_stone
+		&& world.getBlock(x - 2, y, z + 2) == BlocksAether.crystallized_genesis_stone
+		&& world.getBlock(x + 2, y, z - 2) == BlocksAether.crystallized_genesis_stone
+		&& world.getBlock(x + 2, y, z + 2) == BlocksAether.crystallized_genesis_stone
+
+		&& world.getBlock(x - 2, y + 1, z - 2) == BlocksAether.crystallized_genesis_stone
+		&& world.getBlock(x - 2, y + 1, z + 2) == BlocksAether.crystallized_genesis_stone
+		&& world.getBlock(x + 2, y + 1, z - 2) == BlocksAether.crystallized_genesis_stone
+		&& world.getBlock(x + 2, y + 1, z + 2) == BlocksAether.crystallized_genesis_stone
+
+		&& world.getBlock(x - 2, y + 2, z - 2) == BlocksAether.block_of_aceninum
+		&& world.getBlock(x - 2, y + 2, z + 2) == BlocksAether.block_of_aceninum
+		&& world.getBlock(x + 2, y + 2, z - 2) == BlocksAether.block_of_aceninum
+		&& world.getBlock(x + 2, y + 2, z + 2) == BlocksAether.block_of_aceninum) {
+			
+			world.playSoundEffect(x, y, z, "aether_legacy:projectile.charged_hit", 2.0F, world.rand.nextFloat() - world.rand.nextFloat() * 0.4f + 0.8f);
+			player.addChatComponentMessage(new ChatComponentText(I18n.format("gui.elysian_totem_rightclick")));
+		}
+		else {
+			player.addChatComponentMessage(new ChatComponentText(I18n.format("gui.elysian_totem")));
+		}
+		
+		return true;
     }
 }

@@ -12,6 +12,7 @@ import com.gildedgames.the_aether.world.biome.decoration.AetherGenBlueSkyrootTre
 import com.gildedgames.the_aether.world.biome.decoration.AetherGenCrystalTree;
 import com.gildedgames.the_aether.world.biome.decoration.AetherGenDarkBlueSkyrootTree;
 import com.gildedgames.the_aether.world.biome.decoration.AetherGenDivineTree;
+import com.gildedgames.the_aether.world.biome.decoration.AetherGenGreatrootTree;
 import com.gildedgames.the_aether.world.biome.decoration.AetherGenGreatwoodTree;
 import com.gildedgames.the_aether.world.biome.decoration.AetherGenOakTree;
 import com.gildedgames.the_aether.world.biome.decoration.AetherGenPurpleSkyrootTree;
@@ -532,8 +533,8 @@ public class BlocksAether {
 		purple_skyroot_sapling = register("purple_skyroot_sapling", new BlockAetherSapling(new AetherGenPurpleSkyrootTree(false)).setBlockTextureName(Aether.find("purple_crystal_sapling")));
 		blue_skyroot_sapling = register("blue_skyroot_sapling", new BlockAetherSapling(new AetherGenBlueSkyrootTree(false)).setBlockTextureName(Aether.find("blue_skyroot_sapling")));
 		dark_blue_skyroot_sapling = register("dark_blue_skyroot_sapling", new BlockAetherSapling(new AetherGenDarkBlueSkyrootTree(false)).setBlockTextureName(Aether.find("darkblue_crystal_sapling")));
-		wisproot_sapling = register("wisproot_sapling", new BlockAetherSapling(new AetherGenGreatwoodTree(false)).setBlockTextureName(Aether.find("wisproot_sapling")));
-		greatroot_sapling = register("greatroot_sapling", new BlockAetherSapling(new AetherGenGreatwoodTree(false)).setBlockTextureName(Aether.find("greatroot_sapling")));
+		wisproot_sapling = register("wisproot_sapling", new BlockAetherSapling(new AetherGenWisprootTree(BlocksAether.blue_light_skyroot_leaves, 8, true)).setBlockTextureName(Aether.find("wisproot_sapling")));
+		greatroot_sapling = register("greatroot_sapling", new BlockAetherSapling(new AetherGenGreatrootTree(BlocksAether.green_light_skyroot_leaves, 20, true)).setBlockTextureName(Aether.find("greatroot_sapling")));
 		void_sapling = register("void_sapling", new BlockAetherSapling(new AetherGenVoidTree()).setBlockTextureName(Aether.find("void_sapling")));		
 		divine_oak_sapling = register("divine_oak_sapling", new BlockAetherSapling(new AetherGenDivineTree(BlocksAether.divine_oak_leaves, 40, true)).setBlockTextureName(Aether.find("divine_oak_sapling")));
 		

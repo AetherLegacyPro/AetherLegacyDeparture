@@ -57,7 +57,10 @@ public class AetherConfig {
 
 	private static int zephyr_spawnrate, vulturnus_spawnrate, tempest_spawnrate, cockatrice_spawnrate, swet_spawnrate, aechorplant_spawnrate, whirlwind_spawnrate, cyro_spawnrate, uro_spawnrate, aerca_spawnrate;
 
-	public static boolean arctic_island_enable, golden_island_enable, divine_island_enable, palladium_dungeon_enable;
+	public static boolean arctic_island_enable, golden_island_enable, divine_island_enable, palladium_dungeon_enable;	
+	public static int arctic_island_rarity, golden_island_rarity, divine_island_rarity, palladium_dungeon_rarity;
+	
+	public static boolean enable_ascensite;
 	
 	public static final String catMisc = "New Misc Options";
 	public static final String catWorld = "New World Gen Options";
@@ -126,9 +129,10 @@ public class AetherConfig {
 		redstone_recipes = config.getBoolean("enableRedstoneRecipes", catMisc, true, "Should the player be able to craft redstone items and blocks from materials in the aether?");
 		brewing_recipes = config.getBoolean("enableBrewingRecipes", catMisc, true, "Should the player be able to craft the cauldron, brewing stand, and glass bottles from materials in the aether?");
 		disable_parachutes = config.getBoolean("disableParachutes", catMisc, false, "Should parachutes be removed from being obtainable in survivial? This option is mainly for servers due to the crash they cause if the player falls out of the aether while on one and tries to enter the aether portal.");		
-		misc_items_damageable = config.getBoolean("miscItemsDamageable", catMisc, true, "Should misc items such as the Healing Stone or the Golden Feather degrate slowly while worn?");
+		misc_items_damageable = config.getBoolean("miscItemsDamageable", catMisc, true, "Should misc items such as the Healing Stone or the Golden Feather degrate slowly while worn?");		
 		gloves_damageable = config.getBoolean("glovesDamageable", catMisc, true, "Should gloves degrate slowly while worn?");
 		
+		enable_ascensite = config.getBoolean("enable_ascensite", catMisc, false, "Enables Ascensite if NovaCraft is installed. Meant as a modpack equipment set.");
 		aether_II_dungeons = config.getBoolean("enableAetherIIDungeon", catWorld, false, "If aether II is installed, the entrances to the Slider's Labyrinth can be found in structures similar to geos underground.");
 		
 		disable_trivia = config.get("Trivia", "Disable random trivia", false).getBoolean(false);
@@ -137,7 +141,13 @@ public class AetherConfig {
 		golden_island_enable = config.getBoolean("golden_island_enable", catWorld, true, "Should Golden Islands Generate?");
 		divine_island_enable = config.getBoolean("divine_island_enable", catWorld, true, "Should Divine Islands Generate?");
 		palladium_dungeon_enable = config.getBoolean("palladium_dungeon_enable", catWorld, true, "Should the Palladium Dungeon Generate?");
+		
+		arctic_island_rarity = config.get("Aether World Generation", "How rare should the Arctic Islands be in World Generation? Larger the Number the rarer it will be", 230).getInt();
+		golden_island_rarity = config.get("Aether World Generation", "How rare should the Enchanted Islands be in World Generation? Larger the Number the rarer it will be", 350).getInt();
+		divine_island_rarity = config.get("Aether World Generation", "How rare should the Divine Islands be in World Generation? Larger the Number the rarer it will be", 523).getInt();
+		palladium_dungeon_rarity = config.get("Aether World Generation", "How rare should the Palladium Dungeons be in World Generation? Larger the Number the rarer it will be", 823).getInt();
 
+		
 		old_mobs = config.get("Misc", "Enable Legacy Visuals", false).getBoolean(false);
 
 		aether_start = config.get("Gameplay", "Spawns Player with Aether Portal Frame", false).getBoolean(false);

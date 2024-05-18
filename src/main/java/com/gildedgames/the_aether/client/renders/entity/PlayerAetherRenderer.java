@@ -391,7 +391,7 @@ public class PlayerAetherRenderer {
             }
         }
         
-        if (playerAether.getAccessoryInventory().isWearingAmplifiedValkyrieSet()) {
+        if (playerAether.getAccessoryInventory().isWearingAmplifiedValkyrieSet() || playerAether.getAccessoryInventory().isWearingAscensiteSet()) {
             this.mc.getTextureManager().bindTexture(TEXTURE_VALKYRIE);
 
             this.modelWings.setWingSinage(playerAether.wingSinage);

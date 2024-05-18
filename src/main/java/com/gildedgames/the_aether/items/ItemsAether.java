@@ -1,6 +1,7 @@
 package com.gildedgames.the_aether.items;
 
 import com.gildedgames.the_aether.Aether;
+import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.api.accessories.AccessoryType;
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
 
@@ -284,6 +285,8 @@ public class ItemsAether {
 	public static Item scaled_elysian_helmet, scaled_elysian_chestplate, scaled_elysian_leggings, scaled_elysian_boots;
 	public static Item amplified_elysian_helmet, amplified_elysian_chestplate, amplified_elysian_leggings, amplified_elysian_boots, amplified_elysian_gloves;
 
+	public static Item ascensite_helmet, ascensite_chestplate, ascensite_leggings, ascensite_boots, ascensite_gloves;
+	
 	public static Item agility_boots, scaled_agility_boots, amplified_agility_boots;
 	public static Item sentry_boots, scaled_sentry_boots, amplified_sentry_boots;
 	
@@ -491,7 +494,7 @@ public class ItemsAether {
 		tipped_notched_pickaxe = register("tipped_notched_pickaxe", new ItemTippedNotchedPickaxe(2.0F, EnumAetherToolType.PICKAXE).setTextureName(Aether.find("tools/tipped_notched_pickaxe")));
 		amplified_notched_pickaxe = register("amplified_notched_pickaxe", new ItemAmplifiedNotchedPickaxe(2.0F, EnumAetherToolType.PICKAXE).setTextureName(Aether.find("tools/amplified_notched_pickaxe")));
 		
-		if (Loader.isModLoaded("nova_craft")) {
+		if (Loader.isModLoaded("nova_craft") && AetherConfig.enable_ascensite) {
 		ascensite_pickaxe = register("ascensite_pickaxe", new ItemAscensiteTool(2.0F, EnumAetherToolType.PICKAXE).setTextureName(Aether.find("tools/ascensite_pickaxe")));
 		ascensite_axe = register("ascensite_axe", new ItemAscensiteTool(3.0F, EnumAetherToolType.AXE).setTextureName(Aether.find("tools/ascensite_axe")));
 		ascensite_shovel = register("ascensite_shovel", new ItemAscensiteTool(1.0F, EnumAetherToolType.SHOVEL).setTextureName(Aether.find("tools/ascensite_shovel")));
@@ -636,6 +639,13 @@ public class ItemsAether {
 		amplified_elysian_leggings = register("amplified_elysian_leggings", new ItemAmplifiedElysianArmor(2, ArmorMaterial.DIAMOND, "amplified_elysian", null).setMaxDamage(2143).setTextureName(Aether.find("armor/amplified_elysian_leggings")));
 		amplified_elysian_boots = register("amplified_elysian_boots", new ItemAmplifiedElysianArmor(3, ArmorMaterial.DIAMOND, "amplified_elysian", null).setMaxDamage(2044).setTextureName(Aether.find("armor/amplified_elysian_boots")));
 		
+		if (Loader.isModLoaded("nova_craft") && AetherConfig.enable_ascensite) {
+			ascensite_helmet = register("ascensite_helmet", new ItemAmplifiedElysianArmor(0, ArmorMaterial.DIAMOND, "ascensite", null).setMaxDamage(8745).setTextureName(Aether.find("armor/ascensite_helmet")));
+			ascensite_chestplate = register("ascensite_chestplate", new ItemAmplifiedElysianArmor(1, ArmorMaterial.DIAMOND, "ascensite", null).setMaxDamage(8992).setTextureName(Aether.find("armor/ascensite_chestplate")));
+			ascensite_leggings = register("ascensite_leggings", new ItemAmplifiedElysianArmor(2, ArmorMaterial.DIAMOND, "ascensite", null).setMaxDamage(8943).setTextureName(Aether.find("armor/ascensite_leggings")));
+			ascensite_boots = register("ascensite_boots", new ItemAmplifiedElysianArmor(3, ArmorMaterial.DIAMOND, "ascensite", null).setMaxDamage(8844).setTextureName(Aether.find("armor/ascensite_boots")));	
+		}
+		
 		blueberry = register("blueberry", new ItemAetherFood(1).setTextureName(Aether.find("food/blueberry")));
 		enchanted_blueberry = register("enchanted_blueberry", new ItemAetherFood(6).setTextureName(Aether.find("food/enchanted_blueberry")));
 		grapes = register("grapes", new ItemAetherFood(1).setTextureName(Aether.find("food/grapes")));
@@ -758,7 +768,7 @@ public class ItemsAether {
 		tipped_dragon_bane = register("tipped_dragon_bane", new ItemTippedDragonSlayer().setTextureName(Aether.find("weapons/tipped_dragon_bane")));
 		amplified_dragon_bane = register("amplified_dragon_bane", new ItemAmplifiedDragonSlayer().setTextureName(Aether.find("weapons/amplified_dragon_bane")));	
 		
-		if (Loader.isModLoaded("nova_craft")) {
+		if (Loader.isModLoaded("nova_craft") && AetherConfig.enable_ascensite) {
 		ascensite_sword = register("ascensite_sword", new ItemAscensiteSword().setTextureName(Aether.find("weapons/ascensite_sword")));
 		}
 		
@@ -782,6 +792,10 @@ public class ItemsAether {
 		pherithium_gloves = register("pherithium_gloves", new ItemAccessory(AccessoryType.GLOVES).setTexture("pherithium").setMaxDamage(182).setTextureName(Aether.find("accessories/pherithium_gloves")));
 		vanite_gloves = register("vanite_gloves", new ItemAccessory(AccessoryType.GLOVES).setTexture("vanite").setMaxDamage(122).setTextureName(Aether.find("accessories/vanite_gloves")));
 		klangite_gloves = register("klangite_gloves", new ItemAccessory(AccessoryType.GLOVES).setTexture("klangite").setMaxDamage(2022).setTextureName(Aether.find("accessories/klangite_gloves")));
+		}
+		
+		if (Loader.isModLoaded("nova_craft") && AetherConfig.enable_ascensite) {
+		ascensite_gloves = register("ascensite_gloves", new ItemAccessory(AccessoryType.GLOVES).setAmplifiedDungeonLoot().setTexture("ascensite").setMaxDamage(8182).setTextureName(Aether.find("accessories/ascensite_gloves")));	
 		}
 		
 		zanite_gloves = register("zanite_gloves", new ItemAccessory(AccessoryType.GLOVES).setTexture("zanite").setMaxDamage(152).setTextureName(Aether.find("accessories/zanite_gloves")));

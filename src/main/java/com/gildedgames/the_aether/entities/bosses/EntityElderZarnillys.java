@@ -136,13 +136,13 @@ public class EntityElderZarnillys extends EntityMob
     @Override
     public void onLivingUpdate()
 	{	
-    	//if (Minecraft.getMinecraft().thePlayer.capabilities.isCreativeMode = false) {   			
+    	if (Minecraft.getMinecraft().thePlayer.capabilities.isCreativeMode == false) {   			
         
         List<Entity> volume2 = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(2, 2, 2));
         for(Entity entity2 : volume2) {
         	if(entity2 instanceof EntityPlayer && this.canEntityBeSeen(entity2)) ((EntityPlayer)entity2).addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 120, 0, true));
         	}
-    	//}
+    	}
 		
 		super.onLivingUpdate();
 	}

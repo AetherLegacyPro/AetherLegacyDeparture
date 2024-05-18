@@ -652,6 +652,15 @@ public class InventoryAccessories implements IAccessoryInventory {
 	public boolean isWearingDischargeCape() {
 		return wearingAccessory(new ItemStack(ItemsAether.discharge_cape));
 	}
+	
+	@Override
+	public boolean isWearingAscensiteSet() {
+		return wearingArmor(new ItemStack(ItemsAether.ascensite_helmet)) 
+				&& wearingArmor(new ItemStack(ItemsAether.ascensite_chestplate)) 
+				&& wearingArmor(new ItemStack(ItemsAether.ascensite_leggings)) 
+				&& (wearingArmor(new ItemStack(ItemsAether.ascensite_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_agility_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_sentry_boots)))  
+				&& wearingAccessory(new ItemStack(ItemsAether.ascensite_gloves));
+	}
 
 	@Override
 	public List<ItemStack> getAccessories() {

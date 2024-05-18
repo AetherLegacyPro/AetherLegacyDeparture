@@ -26,10 +26,12 @@ public class PalladiumDungeonWorldGen implements IWorldGenerator {
 	         this.generateAether(world, rand, chunkX * 16, chunkZ * 16);
 	      }
 	   }
+	
+	int aether_random = AetherConfig.palladium_dungeon_rarity;
 		
 	public void generateAether(World world, Random rand, int x, int z) {
 		BiomeGenBase biome = world.getWorldChunkManager().getBiomeGenAt(x + 16, z + 16);
-	      if ((biome == AetherWorld.aether_biome) && rand.nextInt(823) == 0 && AetherConfig.palladium_dungeon_enable == true) {
+	      if ((biome == AetherWorld.aether_biome) && AetherConfig.palladium_dungeon_rarity != 0 && rand.nextInt(aether_random) == 0 && AetherConfig.palladium_dungeon_enable == true) {
 	         byte byte0 = 20;
 	         byte byte1 = 20;
 	         byte byte2 = 35;

@@ -47,6 +47,10 @@ public class AetherRegistries {
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.pherithium_gloves, AccessoryType.GLOVES));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.vanite_gloves, AccessoryType.GLOVES));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.klangite_gloves, AccessoryType.GLOVES));
+		
+		if (AetherConfig.enable_ascensite) {
+		AetherAPI.instance().register(new AetherAccessory(ItemsAether.ascensite_gloves, AccessoryType.GLOVES));
+			}
 		}
 
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.zanite_gloves, AccessoryType.GLOVES));

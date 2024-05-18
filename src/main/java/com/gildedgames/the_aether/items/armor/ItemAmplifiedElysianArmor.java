@@ -56,16 +56,16 @@ public class ItemAmplifiedElysianArmor extends ItemArmor {
         final ItemStack legs = player.getCurrentArmor(1);
         final ItemStack boots = player.getCurrentArmor(0);
         if (helmet != null) {
-            hasElysianHelmet = (helmet.getItem() == ItemsAether.amplified_elysian_helmet);
+            hasElysianHelmet = (helmet.getItem() == ItemsAether.amplified_elysian_helmet || helmet.getItem() == ItemsAether.ascensite_helmet);
         }
         if (chest != null) {
-            hasElysianChest = (chest.getItem() == ItemsAether.amplified_elysian_chestplate);
+            hasElysianChest = (chest.getItem() == ItemsAether.amplified_elysian_chestplate || chest.getItem() == ItemsAether.ascensite_chestplate);
         }
         if (legs != null) {
-            hasElysianLegs = (legs.getItem() == ItemsAether.amplified_elysian_leggings);
+            hasElysianLegs = (legs.getItem() == ItemsAether.amplified_elysian_leggings || legs.getItem() == ItemsAether.ascensite_leggings);
         }
         if (boots != null) {
-            hasElysianBoots = (boots.getItem() == ItemsAether.amplified_elysian_boots || boots.getItem() == ItemsAether.amplified_sentry_boots || boots.getItem() == ItemsAether.amplified_agility_boots);
+            hasElysianBoots = (boots.getItem() == ItemsAether.amplified_elysian_boots || boots.getItem() == ItemsAether.amplified_sentry_boots || boots.getItem() == ItemsAether.amplified_agility_boots || boots.getItem() == ItemsAether.ascensite_boots);
         }
         if (hasElysianHelmet && hasElysianChest && hasElysianLegs && hasElysianBoots) {
         	if(!world.isRemote) {

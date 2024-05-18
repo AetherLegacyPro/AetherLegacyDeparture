@@ -525,6 +525,12 @@ item.scaled_elysian_boots.name=Elysian Boots
 item.elysian_offering.name=Elysian Offering
 item.discharge_cape.name=Discharge Cape
 
+item.ascensite_helmet.name=Ascenstyl Helmet
+item.ascensite_chestplate.name=Ascenstyl Chestplate
+item.ascensite_leggings.name=Ascenstyl Leggings
+item.ascensite_boots.name=Ascenstyl Boots
+item.ascensite_gloves.name=Ascenstyl Gloves
+
 item.amplified_elysian_helmet.name=Elysian Helmet
 item.amplified_elysian_chestplate.name=Elysian Chestplate
 item.amplified_elysian_leggings.name=Elysian Leggings
@@ -1445,6 +1451,9 @@ gui.amplifier.invalid_structure=Insufficient magic required to light the Amplifi
 gui.zanite.cinerarium_invaild=It seems this realm does not provide the necessary conditions to ignite Hell Fire.
 gui.zanite.cyro_invaild=It seems this realm does not provide the necessary conditions to ignite Cold Fire.
 gui.divine_et.invalid_structure=Golden Oak Bookshelves must be placed around the Legendary Enchanting Table to Use!
+
+gui.elysian_totem=The structure surrounding the totem seems to have been eroded/incomplete. Perhaps if it is repaired it will activate...
+gui.elysian_totem_rightclick=Something seems to be missing, the totem seems to missing something perhaps if I offer some kind of offering it will activate?
 
 gui.loading.enteraether=Ascending to the Aether
 gui.loading.exitaether=Descending from the Aether

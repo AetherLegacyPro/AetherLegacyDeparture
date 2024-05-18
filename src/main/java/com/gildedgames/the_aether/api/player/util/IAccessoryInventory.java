@@ -132,6 +132,8 @@ public interface IAccessoryInventory extends IInventory {
 	
 	//--------------- Discharge Cape
 	public boolean isWearingDischargeCape();
+	
+	public boolean isWearingAscensiteSet();
 
 	public List<ItemStack> getAccessories();
 

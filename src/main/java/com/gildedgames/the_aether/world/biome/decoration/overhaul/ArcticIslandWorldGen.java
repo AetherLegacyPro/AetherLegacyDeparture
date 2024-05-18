@@ -24,10 +24,12 @@ public class ArcticIslandWorldGen implements IWorldGenerator {
 	         this.generateAether(world, rand, chunkX * 16, chunkZ * 16);
 	      }
 	   }
+	
+	int aether_random = AetherConfig.arctic_island_rarity; 
 		
 	public void generateAether(World world, Random rand, int x, int z) {
 		BiomeGenBase biome = world.getWorldChunkManager().getBiomeGenAt(x + 16, z + 16);
-	      if ((biome == AetherWorld.aether_biome) && rand.nextInt(230) == 0 && AetherConfig.arctic_island_enable == true) {
+	      if ((biome == AetherWorld.aether_biome) && AetherConfig.arctic_island_rarity != 0 && rand.nextInt(aether_random) == 0 && AetherConfig.arctic_island_enable == true) {
 	         byte byte0 = 20; //20
 	         byte byte1 = 20; //20
 	         byte byte2 = 35; //35

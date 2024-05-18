@@ -126,6 +126,10 @@ public class AbilityAccessories implements IAetherAbility {
 			this.player.getAccessoryInventory().damageWornStack(1, new ItemStack(ItemsAether.amplified_zanite_gloves));
 			this.player.getAccessoryInventory().damageWornStack(1, new ItemStack(ItemsAether.amplified_elysian_gloves));
 			
+			if (Loader.isModLoaded("nova_craft")) {
+			this.player.getAccessoryInventory().damageWornStack(1, new ItemStack(ItemsAether.ascensite_gloves));
+			}
+			
 			if (Loader.isModLoaded("etfuturum")) {
 			this.player.getAccessoryInventory().damageWornStack(1, new ItemStack(ItemsAether.copper_gloves));
 			this.player.getAccessoryInventory().damageWornStack(1, new ItemStack(ItemsAether.netherite_gloves));
