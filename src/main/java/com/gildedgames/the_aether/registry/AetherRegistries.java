@@ -797,7 +797,7 @@ public class AetherRegistries {
 		registerShapeless("green_aercloud_layer", new ItemStack(BlocksAether.aercloud_layer, 1, 4), ItemsAether.green_aercloud_globule);
 		
 		registerShapeless("book", new ItemStack(Items.book, 1), new ItemStack(Items.paper), new ItemStack(Items.paper), new ItemStack(Items.paper), new ItemStack(ItemsAether.zephyroo_leather));
-		registerShapeless("book", new ItemStack(Items.book, 1), new ItemStack(Items.paper), new ItemStack(Items.paper), new ItemStack(Items.paper), new ItemStack(ItemsAether.thunderlo_leather));
+		//registerShapeless("book", new ItemStack(Items.book, 1), new ItemStack(Items.paper), new ItemStack(Items.paper), new ItemStack(Items.paper), new ItemStack(ItemsAether.thunderlo_leather));
 
 	}
 
@@ -876,7 +876,7 @@ public class AetherRegistries {
 		register("cracked_empyrean_gemstone", new ItemStack(ItemsAether.cracked_empyrean_gemstone), " X ", "XYX", " Z ", 'X', ItemsAether.auralite_crystal, 'Y', ItemsAether.empyrean_gemstone, 'Z', ItemsAether.tempest_core);
 		
 		//Scaled Recipes
-		register("scaled_zanite_helmet", new ItemStack(ItemsAether.scaled_zanite_helmet), "VXX", "XYX", "XXV", 'X', ItemsAether.zarnillys_scales, 'Y', ItemsAether.zanite_helmet, 'V', ItemsAether.zephyroo_leather);
+		/*register("scaled_zanite_helmet", new ItemStack(ItemsAether.scaled_zanite_helmet), "VXX", "XYX", "XXV", 'X', ItemsAether.zarnillys_scales, 'Y', ItemsAether.zanite_helmet, 'V', ItemsAether.zephyroo_leather);
 		register("scaled_zanite_chestplate", new ItemStack(ItemsAether.scaled_zanite_chestplate), "VXX", "XYX", "XXV", 'X', ItemsAether.zarnillys_scales, 'Y', ItemsAether.zanite_chestplate, 'V', ItemsAether.zephyroo_leather);
 		register("scaled_zanite_leggings", new ItemStack(ItemsAether.scaled_zanite_leggings), "VXX", "XYX", "XXV", 'X', ItemsAether.zarnillys_scales, 'Y', ItemsAether.zanite_leggings, 'V', ItemsAether.zephyroo_leather);
 		register("scaled_zanite_boots", new ItemStack(ItemsAether.scaled_zanite_boots), "VXX", "XYX", "XXV", 'X', ItemsAether.zarnillys_scales, 'Y', ItemsAether.zanite_boots, 'V', ItemsAether.zephyroo_leather);		
@@ -914,7 +914,7 @@ public class AetherRegistries {
 		register("scaled_elysian_chestplate", new ItemStack(ItemsAether.scaled_elysian_chestplate), "VXX", "XYX", "XXV", 'X', ItemsAether.zarnillys_scales, 'Y', ItemsAether.elysian_chestplate, 'V', ItemsAether.zephyroo_leather);
 		register("scaled_elysian_leggings", new ItemStack(ItemsAether.scaled_elysian_leggings), "VXX", "XYX", "XXV", 'X', ItemsAether.zarnillys_scales, 'Y', ItemsAether.elysian_leggings, 'V', ItemsAether.zephyroo_leather);
 		register("scaled_elysian_boots", new ItemStack(ItemsAether.scaled_elysian_boots), "VXX", "XYX", "XXV", 'X', ItemsAether.zarnillys_scales, 'Y', ItemsAether.elysian_boots, 'V', ItemsAether.zephyroo_leather);
-		
+		*/
 		
 		register("scaled_zanite_helmet", new ItemStack(ItemsAether.scaled_zanite_helmet), "VXX", "XYX", "XXV", 'X', ItemsAether.zarnillys_scales, 'Y', ItemsAether.zanite_helmet, 'V', ItemsAether.thunderlo_leather);
 		register("scaled_zanite_chestplate", new ItemStack(ItemsAether.scaled_zanite_chestplate), "VXX", "XYX", "XXV", 'X', ItemsAether.zarnillys_scales, 'Y', ItemsAether.zanite_chestplate, 'V', ItemsAether.thunderlo_leather);
