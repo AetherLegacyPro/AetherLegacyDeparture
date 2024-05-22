@@ -412,7 +412,7 @@ public class AetherRegistries {
 		AetherAPI.instance().register(new AetherFreezable(new ItemStack(BlocksAether.quicksoil, 1, 1), new ItemStack(BlocksAether.frozen_quicksoil, 1, 1), 350));
 		AetherAPI.instance().register(new AetherFreezable(BlocksAether.luminous_stone, Blocks.glowstone, 500));
 		AetherAPI.instance().register(new AetherFreezable(Blocks.glowstone, BlocksAether.arctic_glowstone, 500));
-		AetherAPI.instance().register(new AetherFreezable(ItemsAether.continuum_gemstone, ItemsAether.continuum_orb, 2000));
+		AetherAPI.instance().register(new AetherFreezable(ItemsAether.continuum_gemstone, ItemsAether.continuum_orb, 3000));
 		AetherAPI.instance().register(new AetherFreezable(new ItemStack(ItemsAether.skyroot_bucket, 1, 1), Blocks.ice, 500));
 		AetherAPI.instance().register(new AetherFreezable(ItemsAether.ascending_dawn, ItemsAether.welcoming_skies, 2500));
 		AetherAPI.instance().register(new AetherFreezable(Blocks.ice, Blocks.packed_ice, 750));

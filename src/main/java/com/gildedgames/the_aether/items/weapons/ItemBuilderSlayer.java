@@ -1,6 +1,7 @@
 package com.gildedgames.the_aether.items.weapons;
 
 import com.gildedgames.the_aether.items.ItemsAether;
+import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
@@ -36,7 +37,7 @@ public class ItemBuilderSlayer extends ItemSword {
 
 		String s = EntityList.getEntityString((Entity) entityliving);
 
-		if (s != null && (s.toLowerCase().contains("player") || s.toLowerCase().contains("valkyrie") || s.toLowerCase().contains("villager") || s.toLowerCase().contains("pillager") || s.toLowerCase().contains("piglin") || s.toLowerCase().contains("iceologer"))) {
+		if (s != null && (s.toLowerCase().contains("player") || s.toLowerCase().contains("valkyrie") || s.toLowerCase().contains("fallen_valkyrie") || s.toLowerCase().contains("elite_valkyrie") || s.toLowerCase().contains("villager") || s.toLowerCase().contains("pillager") || s.toLowerCase().contains("piglin") || s.toLowerCase().contains("iceologer"))) {
 			if (entityliving.getHealth() > 0) {
 				entityliving.attackEntityFrom(DamageSource.causeMobDamage(entityliving1), 30);
 			}

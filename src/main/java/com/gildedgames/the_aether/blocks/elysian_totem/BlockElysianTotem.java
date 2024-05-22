@@ -5,7 +5,10 @@ import java.util.*;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.blocks.ancient.enchanter.BlockMultiTileEntity;
 import com.gildedgames.the_aether.blocks.ancient.enchanter.TileEntityMultiBlock;
+import com.gildedgames.the_aether.entities.bosses.genesis_dragon.EntityGenesisDragon;
 import com.gildedgames.the_aether.entities.particles.NewAetherParticleHandler;
+import com.gildedgames.the_aether.items.ItemsAether;
+import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 
 import net.minecraft.util.*;
 import net.minecraft.block.Block;
@@ -15,7 +18,10 @@ import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 import cpw.mods.fml.relauncher.*;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.*;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.client.renderer.texture.*;
 import net.minecraft.client.resources.I18n;
 
@@ -153,7 +159,77 @@ public class BlockElysianTotem extends BlockMultiTileEntity
 		&& world.getBlock(x + 2, y + 2, z + 2) == BlocksAether.block_of_aceninum) {
 			
 			world.playSoundEffect(x, y, z, "aether_legacy:projectile.charged_hit", 2.0F, world.rand.nextFloat() - world.rand.nextFloat() * 0.4f + 0.8f);
+			
+            ItemStack stack = player.inventory.getCurrentItem();
+            if (stack.getItem() == ItemsAether.elysian_offering) {
+            	--stack.stackSize;
+            	player.triggerAchievement(AchievementsAether.shrine_mender);
+            	
+            	world.setBlock(x, y, z, Blocks.air);
+    			world.setBlock(x, y - 1, z, BlocksAether.genesis_stone_2);
+    			
+    			world.setBlock(x + 1, y - 2, z, BlocksAether.carved_stone);
+    			world.setBlock(x - 1, y - 2, z, BlocksAether.carved_stone);
+    			world.setBlock(x, y - 2, z + 1, BlocksAether.carved_stone);
+    			world.setBlock(x, y - 2, z - 1, BlocksAether.carved_stone);
+    			world.setBlock(x + 1, y - 2, z + 1, BlocksAether.carved_stone);
+    			world.setBlock(x - 1, y - 2, z - 1, BlocksAether.carved_stone);
+    			world.setBlock(x + 1, y - 2, z - 1, BlocksAether.carved_stone);
+    			world.setBlock(x - 1, y - 2, z + 1, BlocksAether.carved_stone);
+    			
+    			world.setBlock(x + 2, y - 2, z + 1, Blocks.air);
+    			world.setBlock(x + 2, y - 2, z, Blocks.air);
+    			world.setBlock(x + 2, y - 2, z - 1, Blocks.air);
+    			world.setBlock(x - 2, y - 2, z + 1, Blocks.air);
+    			world.setBlock(x - 2, y - 2, z, Blocks.air);
+    			world.setBlock(x - 2, y - 2, z - 1, Blocks.air);
+    			world.setBlock(x + 1, y - 2, z + 2, Blocks.air);
+    			world.setBlock(x, y - 2, z + 2, Blocks.air);
+    			world.setBlock(x - 1, y - 2, z + 2, Blocks.air);
+    			world.setBlock(x + 1, y - 2, z - 2, Blocks.air);
+    			world.setBlock(x, y - 2, z - 2, Blocks.air);
+    			world.setBlock(x - 1, y - 2, z - 2, Blocks.air);
+    			
+    			world.setBlock(x - 2, y - 1, z - 2, BlocksAether.genesis_stone_2);
+    			world.setBlock(x - 2, y - 1, z + 2, BlocksAether.genesis_stone_2);
+    			world.setBlock(x + 2, y - 1, z - 2, BlocksAether.genesis_stone_2);
+    			world.setBlock(x + 2, y - 1, z + 2, BlocksAether.genesis_stone_2);
+    			
+    			world.setBlock(x - 2, y, z - 2, BlocksAether.genesis_stone_2);
+    			world.setBlock(x - 2, y, z + 2, BlocksAether.genesis_stone_2);
+    			world.setBlock(x + 2, y, z - 2, BlocksAether.genesis_stone_2);
+    			world.setBlock(x + 2, y, z + 2, BlocksAether.genesis_stone_2);
+
+    			world.setBlock(x - 2, y + 1, z - 2, BlocksAether.genesis_stone_2);
+    			world.setBlock(x - 2, y + 1, z + 2, BlocksAether.genesis_stone_2);
+    			world.setBlock(x + 2, y + 1, z - 2, BlocksAether.genesis_stone_2);
+    			world.setBlock(x + 2, y + 1, z + 2, BlocksAether.genesis_stone_2);
+    			
+    			world.playSoundEffect(x, y, z, "ambient.cave.cave", 3.0F, world.rand.nextFloat() - world.rand.nextFloat() * 0.2F + 1.2F);
+    		
+    			if (!world.isRemote)
+            	{
+    				EntityGenesisDragon dragon = new EntityGenesisDragon(world);
+    				dragon.setLocationAndAngles((double)x + 0.5D, (double)y + 25D, (double)z + 0.5D, 0.0F, 0.0F);
+    				world.spawnEntityInWorld(dragon);
+    				dragon.spawnExplosionParticle();
+            	}
+    			
+    			world.spawnEntityInWorld(new EntityLightningBolt(world, x - 2, y + 2, z - 2));
+    			world.spawnEntityInWorld(new EntityLightningBolt(world, x - 2, y + 2, z + 2));
+    			world.spawnEntityInWorld(new EntityLightningBolt(world, x + 2, y + 2, z - 2));
+    			world.spawnEntityInWorld(new EntityLightningBolt(world, x + 2, y + 2, z + 2));
+    			
+    			world.setBlock(x - 2, y + 2, z - 2, BlocksAether.hellfire);
+    			world.setBlock(x - 2, y + 2, z + 2, BlocksAether.hellfire);
+    			world.setBlock(x + 2, y + 2, z - 2, BlocksAether.hellfire);
+    			world.setBlock(x + 2, y + 2, z + 2, BlocksAether.hellfire);
+    			
+    			world.setBlock(x, y, z, BlocksAether.treasure_chest, 0, 2);    		
+            }
+            else {
 			player.addChatComponentMessage(new ChatComponentText(I18n.format("gui.elysian_totem_rightclick")));
+            }
 		}
 		else {
 			player.addChatComponentMessage(new ChatComponentText(I18n.format("gui.elysian_totem")));

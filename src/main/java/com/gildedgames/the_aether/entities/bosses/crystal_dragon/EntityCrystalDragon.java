@@ -8,6 +8,7 @@ import com.gildedgames.the_aether.entities.bosses.EntityElysianGuardian;
 import com.gildedgames.the_aether.entities.bosses.genesis_dragon.EntityGenesisDragon;
 import com.gildedgames.the_aether.entities.hostile.EntityIrk;
 import com.gildedgames.the_aether.items.ItemsAether;
+import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
@@ -520,7 +521,7 @@ public class EntityCrystalDragon extends EntityFlying implements GIEntityMultiPa
                 return false;
             }
         	
-        	Entity entity = ds.getEntity();
+        	 Entity entity = ds.getEntity();
         	
         	if (entity instanceof EntityPlayer)
             {

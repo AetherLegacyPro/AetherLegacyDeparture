@@ -3,6 +3,7 @@ package com.gildedgames.the_aether.items.weapons;
 import java.util.Random;
 
 import com.gildedgames.the_aether.items.ItemsAether;
+import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
@@ -61,6 +62,8 @@ public class ItemAmplifiedEnderSlayer extends ItemSword {
 	public void onUpdate(ItemStack p_77663_1_, World p_77663_2_, Entity p_77663_3_, int p_77663_4_, boolean p_77663_5_) {
 		super.onUpdate(p_77663_1_, p_77663_2_, p_77663_3_, p_77663_4_, p_77663_5_);
 		if (p_77663_2_.provider.dimensionId == 1) {
+			EntityPlayer player = (EntityPlayer) p_77663_3_;
+			player.triggerAchievement(AchievementsAether.realm_conquer);
 				newWorld = true;
 			}
 		else {

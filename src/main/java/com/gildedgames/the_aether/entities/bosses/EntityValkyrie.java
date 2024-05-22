@@ -4,6 +4,8 @@ import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.entities.hostile.EntityAetherMob;
 import com.gildedgames.the_aether.items.ItemsAether;
+import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -330,6 +332,13 @@ public class EntityValkyrie extends EntityAetherMob {
 		if (flag && this.getHealth() <= 0) {
 			spawnExplosionParticle();
 			this.setDead();
+		}
+		
+		EntityPlayer player = (EntityPlayer) ds.getEntity();
+        ItemStack stack = player.inventory.getCurrentItem();
+        
+		if (stack.getItem() == ItemsAether.builder_slayer) {
+			player.triggerAchievement(AchievementsAether.builders_beware);
 		}
 
 		return flag;

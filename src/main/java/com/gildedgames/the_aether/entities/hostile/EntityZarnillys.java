@@ -37,6 +37,7 @@ import com.gildedgames.the_aether.entities.projectile.EntityAercenturionProjecti
 import com.gildedgames.the_aether.entities.projectile.EntityPoisonNeedle;
 import com.gildedgames.the_aether.entities.projectile.EntityPoisonSnowball;
 import com.gildedgames.the_aether.items.ItemsAether;
+import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 import com.google.common.collect.Maps;
 
 import cpw.mods.fml.relauncher.Side;
@@ -224,6 +225,20 @@ public class EntityZarnillys extends EntityMob
     	((EntityLivingBase) target).addPotionEffect(new EffectInebriation(PotionInebriation.inebriation.id, 120, 0));
     	
     	return true;
+    }
+    
+    public void onDeath(DamageSource p_70645_1_)
+    {
+        super.onDeath(p_70645_1_);
+
+        if (p_70645_1_.getEntity() instanceof EntityPlayer)
+        {
+            EntityPlayer entityplayer = (EntityPlayer)p_70645_1_.getEntity();
+            
+            entityplayer.triggerAchievement(AchievementsAether.aether_hunter);
+            
+        }
+            
     }
     
     public EnumCreatureAttribute getCreatureAttribute() {

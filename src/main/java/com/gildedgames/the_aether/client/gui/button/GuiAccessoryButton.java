@@ -1,6 +1,8 @@
 package com.gildedgames.the_aether.client.gui.button;
 
 import com.gildedgames.the_aether.Aether;
+import com.gildedgames.the_aether.AetherConfig;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.util.ResourceLocation;
@@ -35,8 +37,12 @@ public class GuiAccessoryButton extends GuiButton {
 			mc.getTextureManager().bindTexture(i == 2 ? BUTTON_HOVERED_TEXTURE : BUTTON_TEXTURE);
 			GL11.glEnable(GL11.GL_BLEND);
 
+			if (AetherConfig.cloud_icon == false) {
 			func_146110_a(this.xPosition - 1, this.yPosition, 0, 0, 14, 14, 14, 14);
-
+			}
+			else {
+				GuiAccessoryButton.func_146110_a((int)(this.xPosition - 1), (int)this.yPosition, (float)-2.0f, (float)-2.0f, (int)20, (int)20, (float)16.0f, (float)16.0f);
+			}
 			GL11.glPopMatrix();
 		}
 	}

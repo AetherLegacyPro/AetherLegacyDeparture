@@ -8,6 +8,7 @@ import java.util.UUID;
 
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.items.ItemsAether;
+import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 
 import net.minecraft.block.Block;
 import net.minecraft.command.IEntitySelector;
@@ -141,47 +142,19 @@ public class EntityCyro extends EntityAetherMob
         }
     }
 
-    /**
-     * If Animal, checks if the age timer is negative
-     */
-    //public boolean isChild()
-    //{
-      //  return this.getDataWatcher().getWatchableObjectByte(12) == 1;
-    //}
+    public void onDeath(DamageSource p_70645_1_)
+    {
+        super.onDeath(p_70645_1_);
 
-    /**
-     * Get the experience points the entity currently has.
-     */
-    //protected int getExperiencePoints(EntityPlayer p_70693_1_)
-    //{
-       // if (this.isChild())
-        //{
-           //this.experienceValue = (int)((float)this.experienceValue * 3F);
-        //}
-
-        //return super.getExperiencePoints(p_70693_1_);
-    //}
-
-    /**
-     * Set whether this cyro is a child.
-     */
-    //public void setChild(boolean p_82227_1_)
-   // {
-        //this.getDataWatcher().updateObject(12, Byte.valueOf((byte)(p_82227_1_ ? 1 : 0)));
-
-        //if (this.worldObj != null && !this.worldObj.isRemote)
-        //{
-            //IAttributeInstance iattributeinstance = this.getEntityAttribute(SharedMonsterAttributes.movementSpeed);
-            //iattributeinstance.removeModifier(babySpeedBoostModifier);
-
-            //if (p_82227_1_)
-            //{
-             //   iattributeinstance.applyModifier(babySpeedBoostModifier);
-            //}
-        //}
-
-       // this.func_146071_k(p_82227_1_);
-   // } 
+        if (p_70645_1_.getEntity() instanceof EntityPlayer)
+        {
+            EntityPlayer entityplayer = (EntityPlayer)p_70645_1_.getEntity();
+            
+            entityplayer.triggerAchievement(AchievementsAether.aether_hunter);
+            
+        }
+            
+    }
     
     @Override
    	public void fall(float distance) {

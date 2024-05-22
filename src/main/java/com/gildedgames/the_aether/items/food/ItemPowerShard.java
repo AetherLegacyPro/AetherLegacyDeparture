@@ -3,6 +3,7 @@ package com.gildedgames.the_aether.items.food;
 import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.player.PlayerAether;
+import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
@@ -30,6 +31,7 @@ public class ItemPowerShard extends Item {
 		PlayerAether playerAether = PlayerAether.get(player);
 		ItemStack heldItem = player.getHeldItem();
 
+		player.triggerAchievement(AchievementsAether.powering_up);
 		if (!worldIn.isRemote)
 		{
 			playerAether.updatePowerShardCount(0);

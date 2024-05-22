@@ -9,6 +9,7 @@ import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.entities.projectile.EntityTempestSnowball;
 import com.gildedgames.the_aether.items.ItemsAether;
+import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 
 import cpw.mods.fml.relauncher.*;
 import net.minecraft.entity.*;
@@ -261,6 +262,20 @@ public class EntityTempest extends EntityAetherMob implements IMob
         if (!this.worldObj.isRemote) {
             this.worldObj.spawnEntityInWorld((Entity)snowball);
         }
+    }
+    
+    public void onDeath(DamageSource p_70645_1_)
+    {
+        super.onDeath(p_70645_1_);
+
+        if (p_70645_1_.getEntity() instanceof EntityPlayer)
+        {
+            EntityPlayer entityplayer = (EntityPlayer)p_70645_1_.getEntity();
+            
+            entityplayer.triggerAchievement(AchievementsAether.aether_hunter);
+            
+        }
+            
     }
     
     protected void fall(final float par1) {

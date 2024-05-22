@@ -4,6 +4,7 @@ import com.gildedgames.the_aether.entities.block.EntityFireProofItemAether;
 import com.gildedgames.the_aether.entities.block.EntityFloatingBlock;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.items.util.EnumAetherToolType;
+import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
 
 import net.minecraft.block.Block;
@@ -69,6 +70,7 @@ public class ItemDivineralTool extends ItemAetherTool {
 		Block block = world.getBlock(x, y, z);
 		int meta = world.getBlockMetadata(x, y, z);
 		EntityFloatingBlock entity = new EntityFloatingBlock(world, x, y, z, block, meta);
+		player.triggerAchievement(AchievementsAether.strengthened_levitation);
 
 		if ((this.getDigSpeed(heldItem, block, meta) == this.efficiencyOnProperMaterial || ForgeHooks.isToolEffective(heldItem, block, meta)) && world.isAirBlock(x, y + 1, z)) {
 			if (world.getTileEntity(x, y, z) != null || world.getBlock(x, y, z).getBlockHardness(world, x, y, z) == -1.0F) {
@@ -80,7 +82,7 @@ public class ItemDivineralTool extends ItemAetherTool {
 				world.setBlockToAir(x, y, z);
 			}
 
-			heldItem.damageItem(2, player);
+			heldItem.damageItem(1, player);
 		}
 
 		return true;

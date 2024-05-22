@@ -233,8 +233,6 @@ AetherEventHandler {
 			event.player.triggerAchievement(AchievementsAether.skyroot_tools);
 		} else if (this.isHolystoneTool(event.crafting.getItem())) {
 			event.player.triggerAchievement(AchievementsAether.holystone_tools);
-		} else if (this.isZaniteTool(event.crafting.getItem())) {
-			event.player.triggerAchievement(AchievementsAether.zanite_tools);
 		} else if (this.isArkeniumTool(event.crafting.getItem())) {
 			event.player.triggerAchievement(AchievementsAether.arkenium_tools);
 		} else if (this.isContinuumTool(event.crafting.getItem())) {
@@ -251,7 +249,80 @@ AetherEventHandler {
 			event.player.triggerAchievement(AchievementsAether.aether_enchantment_table);
 		} else if (event.crafting.getItem() == Item.getItemFromBlock(BlocksAether.divineral_block)) {
 			event.player.triggerAchievement(AchievementsAether.divineral_block);
+		} else if (event.crafting.getItem() == Item.getItemFromBlock(BlocksAether.skyroot_workbench)) {
+			event.player.triggerAchievement(AchievementsAether.skyroot_crafting);
+		} else if (event.crafting.getItem() == ItemsAether.skyroot_sword) {
+			event.player.triggerAchievement(AchievementsAether.aether_sword);
+		} else if (event.crafting.getItem() == ItemsAether.holystone_sword) {
+			event.player.triggerAchievement(AchievementsAether.aether_sword);
+		} else if (event.crafting.getItem() == ItemsAether.zanite_sword) {
+			event.player.triggerAchievement(AchievementsAether.aether_sword);
+		} else if (event.crafting.getItem() == ItemsAether.arkenium_sword) {
+			event.player.triggerAchievement(AchievementsAether.aether_sword);
+		} else if (event.crafting.getItem() == ItemsAether.continuum_sword) {
+			event.player.triggerAchievement(AchievementsAether.aether_sword);
+		} else if (event.crafting.getItem() == ItemsAether.gravitite_sword) {
+			event.player.triggerAchievement(AchievementsAether.aether_sword);
+		} else if (event.crafting.getItem() == ItemsAether.scaled_arkenium_chestplate) {
+			event.player.triggerAchievement(AchievementsAether.getting_scaled);
+		} else if (event.crafting.getItem() == ItemsAether.scaled_elysian_chestplate) {
+			event.player.triggerAchievement(AchievementsAether.getting_scaled);
+		} else if (event.crafting.getItem() == ItemsAether.scaled_gravitite_chestplate) {
+			event.player.triggerAchievement(AchievementsAether.getting_scaled);
+		} else if (event.crafting.getItem() == ItemsAether.scaled_neptune_chestplate) {
+			event.player.triggerAchievement(AchievementsAether.getting_scaled);
+		} else if (event.crafting.getItem() == ItemsAether.scaled_obsidian_chestplate) {
+			event.player.triggerAchievement(AchievementsAether.getting_scaled);
+		} else if (event.crafting.getItem() == ItemsAether.scaled_phoenix_chestplate) {
+			event.player.triggerAchievement(AchievementsAether.getting_scaled);
+		} else if (event.crafting.getItem() == ItemsAether.scaled_valkyrie_chestplate) {
+			event.player.triggerAchievement(AchievementsAether.getting_scaled);
+		} else if (event.crafting.getItem() == ItemsAether.scaled_zanite_chestplate) {
+			event.player.triggerAchievement(AchievementsAether.getting_scaled);
+		} else if (event.crafting.getItem() == ItemsAether.tipped_skyroot_pickaxe) {
+			event.player.triggerAchievement(AchievementsAether.getting_tipped);
+		} else if (event.crafting.getItem() == ItemsAether.tipped_holystone_pickaxe) {
+			event.player.triggerAchievement(AchievementsAether.getting_tipped);
+		} else if (event.crafting.getItem() == ItemsAether.tipped_zanite_pickaxe) {
+			event.player.triggerAchievement(AchievementsAether.getting_tipped);
+		} else if (event.crafting.getItem() == ItemsAether.tipped_arkenium_pickaxe) {
+			event.player.triggerAchievement(AchievementsAether.getting_tipped);
+		} else if (event.crafting.getItem() == ItemsAether.tipped_continuum_pickaxe) {
+			event.player.triggerAchievement(AchievementsAether.getting_tipped);
+		} else if (event.crafting.getItem() == ItemsAether.tipped_gravitite_pickaxe) {
+			event.player.triggerAchievement(AchievementsAether.getting_tipped);
+		} else if (event.crafting.getItem() == ItemsAether.tipped_valkyrie_pickaxe) {
+			event.player.triggerAchievement(AchievementsAether.getting_tipped);
+		} else if (event.crafting.getItem() == ItemsAether.tipped_notched_pickaxe) {
+			event.player.triggerAchievement(AchievementsAether.getting_tipped);
+		} else if (event.crafting.getItem() == Item.getItemFromBlock(BlocksAether.enchanted_holystone_bricks)) {
+			event.player.triggerAchievement(AchievementsAether.bringing_out_colors);
+		} else if (event.crafting.getItem() == Item.getItemFromBlock(BlocksAether.enchanted_deific_bricks)) {
+			event.player.triggerAchievement(AchievementsAether.bringing_out_colors);
+		} else if (event.crafting.getItem() == Item.getItemFromBlock(BlocksAether.enchanted_agiosite_bricks)) {
+			event.player.triggerAchievement(AchievementsAether.bringing_out_colors);
+		} else if (event.crafting.getItem() == Item.getItemFromBlock(BlocksAether.enchanted_aetheral_stone_bricks)) {
+			event.player.triggerAchievement(AchievementsAether.bringing_out_colors);
+		} else if (event.crafting.getItem() == ItemsAether.charged_empyrean_gemstone) {
+			event.player.triggerAchievement(AchievementsAether.charging_the_gemstone);
+		} else if (event.crafting.getItem() == ItemsAether.reinforced_auralite_pendant) {
+			event.player.triggerAchievement(AchievementsAether.even_shinier);
+		} else if (event.crafting.getItem() == ItemsAether.reinforced_bone_ring) {
+			event.player.triggerAchievement(AchievementsAether.even_shinier);
+		} else if (event.crafting.getItem() == ItemsAether.reinforced_elysian_ring) {
+			event.player.triggerAchievement(AchievementsAether.even_shinier);
+		} else if (event.crafting.getItem() == ItemsAether.reinforced_golden_feather) {
+			event.player.triggerAchievement(AchievementsAether.even_shinier);
+		} else if (event.crafting.getItem() == ItemsAether.reinforced_haste_ring) {
+			event.player.triggerAchievement(AchievementsAether.even_shinier);
+		} else if (event.crafting.getItem() == ItemsAether.reinforced_iron_bubble) {
+			event.player.triggerAchievement(AchievementsAether.even_shinier);
+		} else if (event.crafting.getItem() == ItemsAether.reinforced_regeneration_stone) {
+			event.player.triggerAchievement(AchievementsAether.even_shinier);
+		} else if (event.crafting.getItem() == ItemsAether.reinforced_valkyrie_ring) {
+			event.player.triggerAchievement(AchievementsAether.even_shinier);
 		}
+		
 	}
 
 	@SubscribeEvent
@@ -331,10 +402,11 @@ AetherEventHandler {
 		if (event.entity instanceof EntityPlayer)
 		{
 			IPlayerAether playerAether = PlayerAether.get((EntityPlayer) event.entity);
-
+			EntityPlayer player = (EntityPlayer) event.entity;
 			if (playerAether.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.discharge_cape)))				
-			{
+			{ 	
 				event.setCanceled(true);
+				player.triggerAchievement(AchievementsAether.discharged);
 			}
 		}
 	}

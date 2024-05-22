@@ -16,6 +16,7 @@ import com.gildedgames.the_aether.entities.projectile.EntityPhoenixArrow;
 import com.gildedgames.the_aether.entities.projectile.EntityTempestSnowball;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.player.PlayerAether;
+import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -240,6 +241,20 @@ public class EntityAercenturion extends EntityMob
         }
         
         return true;
+    }
+    
+    public void onDeath(DamageSource p_70645_1_)
+    {
+        super.onDeath(p_70645_1_);
+
+        if (p_70645_1_.getEntity() instanceof EntityPlayer)
+        {
+            EntityPlayer entityplayer = (EntityPlayer)p_70645_1_.getEntity();
+            
+            entityplayer.triggerAchievement(AchievementsAether.kill_aercenturion);
+            
+        }
+            
     }
     
     public EnumCreatureAttribute getCreatureAttribute() {

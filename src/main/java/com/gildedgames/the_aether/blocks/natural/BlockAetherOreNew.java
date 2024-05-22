@@ -27,7 +27,7 @@ public class BlockAetherOreNew extends Block {
 		this.setHardness(3.0F);
 		this.setResistance(5.0F);
 		this.setStepSound(soundTypeStone);
-		this.setHarvestLevel("pickaxe", level);
+		this.setHarvestLevel("pickaxe", 2);
 	}
 
 	@Override
@@ -55,7 +55,7 @@ public class BlockAetherOreNew extends Block {
 
 	@Override
 	public Item getItemDropped(int meta, Random random, int fortune) {
-		return this == BlocksAether.arkenium_ore ? ItemsAether.arkenium_fragement : ItemsAether.continuum_orb;
+		return this == BlocksAether.arkenium_ore ? ItemsAether.arkenium_fragement : ItemsAether.continuum_gemstone;
 	}
 
 	@Override

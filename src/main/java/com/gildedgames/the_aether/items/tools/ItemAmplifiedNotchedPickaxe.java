@@ -9,12 +9,14 @@ import com.gildedgames.the_aether.items.tools.ItemAetherTool;
 import com.gildedgames.the_aether.items.util.EnumAetherToolType;
 import com.gildedgames.the_aether.registry.ExternalContentNovaCraft;
 import com.gildedgames.the_aether.registry.OtherModBlocks;
+import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 
 import cpw.mods.fml.common.Loader;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumRarity;
@@ -179,6 +181,8 @@ public class ItemAmplifiedNotchedPickaxe extends ItemAetherTool {
             int rand3 = (int)(1 + Math.random() * 200);
     		if (!world.isRemote && rand3 == 1) {
     			int rand2 = (int)(1 + Math.random() * 3);
+    			EntityPlayer player = (EntityPlayer) living;
+    			player.triggerAchievement(AchievementsAether.lucky);
     			EntityItem entityItem = new EntityItem(world, x, y, z, new ItemStack(ItemsAether.divine_essence, rand2 + 1));
     	    	world.spawnEntityInWorld(entityItem);
     		}
@@ -193,6 +197,8 @@ public class ItemAmplifiedNotchedPickaxe extends ItemAetherTool {
            int rand3 = (int)(1 + Math.random() * 290);
    		   if (!world.isRemote && rand3 == 1) {
    			int rand2 = (int)(1 + Math.random() * 3);
+   			EntityPlayer player = (EntityPlayer) living;
+			player.triggerAchievement(AchievementsAether.lucky);
    			EntityItem entityItem = new EntityItem(world, x, y, z, new ItemStack(ItemsAether.divine_essence, rand2 + 1));
    	    	world.spawnEntityInWorld(entityItem);
    		  }
@@ -217,6 +223,8 @@ public class ItemAmplifiedNotchedPickaxe extends ItemAetherTool {
            int rand3 = (int)(1 + Math.random() * 290);
    		   if (!world.isRemote && rand3 == 1) {
    			int rand2 = (int)(1 + Math.random() * 3);
+   			EntityPlayer player = (EntityPlayer) living;
+			player.triggerAchievement(AchievementsAether.lucky);
    			EntityItem entityItem = new EntityItem(world, x, y, z, new ItemStack(ItemsAether.divine_essence, rand2 + 1));
    	    	world.spawnEntityInWorld(entityItem);
    		  }
@@ -260,6 +268,8 @@ public class ItemAmplifiedNotchedPickaxe extends ItemAetherTool {
           int rand3 = (int)(1 + Math.random() * 290);
   		  if (!world.isRemote && rand3 == 1) {
   			int rand2 = (int)(1 + Math.random() * 3);
+  			EntityPlayer player = (EntityPlayer) living;
+			player.triggerAchievement(AchievementsAether.lucky);
   			EntityItem entityItem = new EntityItem(world, x, y, z, new ItemStack(ItemsAether.divine_essence, rand2 + 1));
   	    	world.spawnEntityInWorld(entityItem);
   		}
@@ -276,6 +286,8 @@ public class ItemAmplifiedNotchedPickaxe extends ItemAetherTool {
           int rand3 = (int)(1 + Math.random() * 290);
   		  if (!world.isRemote && rand3 == 1) {
   			int rand2 = (int)(1 + Math.random() * 3);
+  			EntityPlayer player = (EntityPlayer) living;
+			player.triggerAchievement(AchievementsAether.lucky);
   			EntityItem entityItem = new EntityItem(world, x, y, z, new ItemStack(ItemsAether.divine_essence, rand2 + 1));
   	    	world.spawnEntityInWorld(entityItem);
   		}
@@ -365,6 +377,8 @@ public class ItemAmplifiedNotchedPickaxe extends ItemAetherTool {
         int rand3 = (int)(1 + Math.random() * 200);
 		if (!world.isRemote && rand3 == 1) {
 			int rand2 = (int)(1 + Math.random() * 3);
+			EntityPlayer player = (EntityPlayer) living;
+			player.triggerAchievement(AchievementsAether.lucky);
 			EntityItem entityItem = new EntityItem(world, x, y, z, new ItemStack(ItemsAether.divine_essence, rand2 + 1));
 	    	world.spawnEntityInWorld(entityItem);
 		}
@@ -380,6 +394,8 @@ public class ItemAmplifiedNotchedPickaxe extends ItemAetherTool {
        int rand3 = (int)(1 + Math.random() * 290);
 		if (!world.isRemote && rand3 == 1) {
 			int rand2 = (int)(1 + Math.random() * 3);
+			EntityPlayer player = (EntityPlayer) living;
+			player.triggerAchievement(AchievementsAether.lucky);
 			EntityItem entityItem = new EntityItem(world, x, y, z, new ItemStack(ItemsAether.divine_essence, rand2 + 1));
 	    	world.spawnEntityInWorld(entityItem);
 		}
@@ -431,6 +447,8 @@ public class ItemAmplifiedNotchedPickaxe extends ItemAetherTool {
 	  int rand3 = (int)(1 + Math.random() * 150);
 		if (!world.isRemote && rand3 == 1) {
 			int rand2 = (int)(1 + Math.random() * 3);
+			EntityPlayer player = (EntityPlayer) living;
+			player.triggerAchievement(AchievementsAether.lucky);
 			EntityItem entityItem = new EntityItem(world, x, y, z, new ItemStack(ItemsAether.divine_essence, rand2 + 1));
 	    	world.spawnEntityInWorld(entityItem);
 		}

@@ -4,6 +4,8 @@ import com.gildedgames.the_aether.api.accessories.AccessoryType;
 import com.gildedgames.the_aether.api.player.IPlayerAether;
 import com.gildedgames.the_aether.api.player.util.IAetherAbility;
 import com.gildedgames.the_aether.items.ItemsAether;
+import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
+
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
@@ -43,7 +45,6 @@ public class AbilityFlamingStone implements IAetherAbility {
 			this.player.getEntity().addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 40, 0));
 		
 		}
-		
 		
 		}
 	}

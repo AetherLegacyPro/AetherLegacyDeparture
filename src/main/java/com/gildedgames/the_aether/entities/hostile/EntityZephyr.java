@@ -2,11 +2,14 @@ package com.gildedgames.the_aether.entities.hostile;
 
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.entities.projectile.EntityZephyrSnowball;
+import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
+
 import net.minecraft.entity.EntityFlying;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.EnumDifficulty;
@@ -157,6 +160,20 @@ public class EntityZephyr extends EntityFlying implements IMob {
 
 		return true;
 	}
+	
+	public void onDeath(DamageSource p_70645_1_)
+    {
+        super.onDeath(p_70645_1_);
+
+        if (p_70645_1_.getEntity() instanceof EntityPlayer)
+        {
+            EntityPlayer entityplayer = (EntityPlayer)p_70645_1_.getEntity();
+            
+            entityplayer.triggerAchievement(AchievementsAether.aether_hunter);
+            
+        }
+            
+    }
 
 	@Override
 	protected String getLivingSound() {

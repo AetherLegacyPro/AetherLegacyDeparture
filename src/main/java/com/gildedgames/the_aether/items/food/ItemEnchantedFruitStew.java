@@ -19,7 +19,7 @@ public class ItemEnchantedFruitStew extends ItemFood
 	 public ItemEnchantedFruitStew(int p_i45330_1_)
 	    {
 	        super(p_i45330_1_, false);
-	        this.setMaxStackSize(1);
+	        this.setMaxStackSize(16);
 	        this.setCreativeTab(AetherCreativeTabs.food);
 	    }
 	 
@@ -37,7 +37,11 @@ public class ItemEnchantedFruitStew extends ItemFood
 	    {
 	        super.onEaten(p_77654_1_, p_77654_2_, p_77654_3_);
 	        p_77654_3_.triggerAchievement(AchievementsAether.fruit_stew);
-	        return new ItemStack(ItemsAether.holystone_bowl);
+	        
+	        if (p_77654_1_.stackSize >= 1) {	    	
+	    	  p_77654_3_.inventory.addItemStackToInventory(new ItemStack(ItemsAether.holystone_bowl));
+	    	    }
+	    	return p_77654_1_.stackSize <= 0 ? new ItemStack(ItemsAether.holystone_bowl) : p_77654_1_;
 	    }
 	
 	@Override

@@ -62,6 +62,8 @@ public class AetherConfig {
 	
 	public static boolean enable_ascensite;
 	
+	public static boolean cloud_icon;
+	
 	public static final String catMisc = "New Misc Options";
 	public static final String catWorld = "New World Gen Options";
 
@@ -149,6 +151,7 @@ public class AetherConfig {
 
 		
 		old_mobs = config.get("Misc", "Enable Legacy Visuals", false).getBoolean(false);
+		cloud_icon = config.get("Misc", "Changes Position of Cloud Icon Slightly", false).getBoolean(false);
 
 		aether_start = config.get("Gameplay", "Spawns Player with Aether Portal Frame", false).getBoolean(false);
 
@@ -196,6 +199,10 @@ public class AetherConfig {
 		whirlwind_spawnrate = config.get("Spawnrates", "Whirlwind Spawnrate. 1 is always, higher numbers decrease chances.", 55).getInt(55);
 		
 		config.save();
+	}
+	
+	public static boolean enablecloudIcon() {
+		return AetherConfig.cloud_icon;
 	}
 	
 	public static boolean enableAetherIIDungeon() {

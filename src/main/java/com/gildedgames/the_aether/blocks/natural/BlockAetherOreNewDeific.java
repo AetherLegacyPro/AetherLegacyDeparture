@@ -27,7 +27,7 @@ public class BlockAetherOreNewDeific extends Block {
 		this.setHardness(5.5F);
 		this.setResistance(7.0F);
 		this.setStepSound(soundTypeStone);
-		this.setHarvestLevel("pickaxe", level);
+		this.setHarvestLevel("pickaxe", 2);
 	}
 
 	@Override
@@ -55,7 +55,7 @@ public class BlockAetherOreNewDeific extends Block {
 
 	@Override
 	public Item getItemDropped(int meta, Random random, int fortune) {
-		return this == BlocksAether.deific_arkenium_ore ? ItemsAether.arkenium_fragement : ItemsAether.continuum_orb;
+		return this == BlocksAether.deific_arkenium_ore ? ItemsAether.arkenium_fragement : ItemsAether.continuum_gemstone;
 	}
 
 	@Override

@@ -4,6 +4,7 @@ import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.entities.passive.EntityFlynx;
 import com.gildedgames.the_aether.entities.uro.uroswell.EntityAIUroSwell;
 import com.gildedgames.the_aether.items.ItemsAether;
+import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -207,6 +208,14 @@ public class EntityUro extends EntityMob
             int j = Item.getIdFromItem(ItemsAether.aether_tune);
             int k = i + this.rand.nextInt(j - i - g - h + 3);
             this.dropItem(Item.getItemById(k), 1);
+        }
+        
+        if (p_70645_1_.getEntity() instanceof EntityPlayer)
+        {
+            EntityPlayer entityplayer = (EntityPlayer)p_70645_1_.getEntity();
+            
+            entityplayer.triggerAchievement(AchievementsAether.aether_hunter);
+            
         }
     }
 

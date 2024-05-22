@@ -27,6 +27,7 @@ import com.gildedgames.the_aether.items.accessories.ItemAccessory;
 import com.gildedgames.the_aether.items.armor.ItemAetherArmor;
 import com.gildedgames.the_aether.player.PlayerAether;
 import com.gildedgames.the_aether.player.perks.AetherRankings;
+import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 
 public class PlayerAetherRenderer {
 
@@ -419,6 +420,38 @@ public class PlayerAetherRenderer {
             }
         }
         
+        if (playerAether.getAccessoryInventory().isWearingAmplifiedValkyrieRingAndAmplifiedArmor()) {
+        	this.mc.getTextureManager().bindTexture(TEXTURE_VALKYRIE_RING);
+        	
+        	this.modelWings.setWingSinage(playerAether.wingSinage);
+            this.modelWings.wingLeft.render(scale);
+            this.modelWings.wingRight.render(scale);
+
+            if (player.hurtResistantTime > 0) {
+                GL11.glColor3f(1.0F, 0.5F, 0.5F);
+            } else {
+                GL11.glColor3f(1.0F, 1.0F, 1.0F);
+            }
+            
+            player.triggerAchievement(AchievementsAether.not_balanced_flight);
+        }
+        
+        if (playerAether.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.amplified_valkyrie_ring))) {
+        	this.mc.getTextureManager().bindTexture(TEXTURE_VALKYRIE);
+        	
+        	this.modelWings.setWingSinage(playerAether.wingSinage);
+            this.modelWings.wingLeft.render(scale);
+            this.modelWings.wingRight.render(scale);
+
+            if (player.hurtResistantTime > 0) {
+                GL11.glColor3f(1.0F, 0.5F, 0.5F);
+            } else {
+                GL11.glColor3f(1.0F, 1.0F, 1.0F);
+            }
+            
+            player.triggerAchievement(AchievementsAether.balanced_flight);
+        }
+        
         if (playerAether.getAccessoryInventory().isWearingValkyrieRing()) {
         	this.mc.getTextureManager().bindTexture(TEXTURE_VALKYRIE_RING);
         	
@@ -431,6 +464,7 @@ public class PlayerAetherRenderer {
             } else {
                 GL11.glColor3f(1.0F, 1.0F, 1.0F);
             }
+            
         }
         
         if (playerAether.getAccessoryInventory().isWearingValkyrieRingAndAmplifiedArmor()) {
@@ -445,20 +479,7 @@ public class PlayerAetherRenderer {
             } else {
                 GL11.glColor3f(1.0F, 1.0F, 1.0F);
             }
-        }
-        
-        if (playerAether.getAccessoryInventory().isWearingAmplifiedValkyrieRingAndAmplifiedArmor()) {
-        	this.mc.getTextureManager().bindTexture(TEXTURE_VALKYRIE_RING);
-        	
-        	this.modelWings.setWingSinage(playerAether.wingSinage);
-            this.modelWings.wingLeft.render(scale);
-            this.modelWings.wingRight.render(scale);
-
-            if (player.hurtResistantTime > 0) {
-                GL11.glColor3f(1.0F, 0.5F, 0.5F);
-            } else {
-                GL11.glColor3f(1.0F, 1.0F, 1.0F);
-            }
+            
         }
         
         if (playerAether.getAccessoryInventory().isWearingAgilityBoots() || playerAether.getAccessoryInventory().isWearingAmplifiedAgilityBoots()) {

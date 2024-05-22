@@ -9,6 +9,7 @@ import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.entities.projectile.EntityZojzSnowball;
 import com.gildedgames.the_aether.items.ItemsAether;
+import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 
 import cpw.mods.fml.relauncher.*;
 import net.minecraft.entity.*;

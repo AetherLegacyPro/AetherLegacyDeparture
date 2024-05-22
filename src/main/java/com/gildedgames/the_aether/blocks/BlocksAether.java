@@ -917,7 +917,7 @@ public class BlocksAether {
 		BlocksAether.arkenium_ore.setHarvestLevel("pickaxe", 2);
 		BlocksAether.zanite_ore.setHarvestLevel("pickaxe", 1);
 		BlocksAether.gravitite_ore.setHarvestLevel("pickaxe", 2);
-		BlocksAether.continuum_ore.setHarvestLevel("pickaxe", 3);
+		BlocksAether.continuum_ore.setHarvestLevel("pickaxe", 2);
 		BlocksAether.continuum_block.setHarvestLevel("pickaxe", 3);
 		BlocksAether.primeval_artifact.setHarvestLevel("pickaxe", 3);
 		BlocksAether.skyroot_log.setHarvestLevel("axe", 0);
@@ -988,18 +988,18 @@ public class BlocksAether {
 		BlocksAether.aetheral_zanite_ore.setHarvestLevel("pickaxe", 1);
 		BlocksAether.aetheral_arkenium_ore.setHarvestLevel("pickaxe", 2);
 		BlocksAether.aetheral_gravitite_ore.setHarvestLevel("pickaxe", 2);
-		BlocksAether.aetheral_continuum_ore.setHarvestLevel("pickaxe", 3);		
+		BlocksAether.aetheral_continuum_ore.setHarvestLevel("pickaxe", 2);		
 		BlocksAether.agiosite_ambrosium_ore.setHarvestLevel("pickaxe", 0);
 		BlocksAether.agiosite_zanite_ore.setHarvestLevel("pickaxe", 1);
 		BlocksAether.agiosite_arkenium_ore.setHarvestLevel("pickaxe", 2);
 		BlocksAether.agiosite_gravitite_ore.setHarvestLevel("pickaxe", 2);
-		BlocksAether.agiosite_continuum_ore.setHarvestLevel("pickaxe", 3);
+		BlocksAether.agiosite_continuum_ore.setHarvestLevel("pickaxe", 2);
 		
 		BlocksAether.deific_ambrosium_ore.setHarvestLevel("pickaxe", 0);
 		BlocksAether.deific_zanite_ore.setHarvestLevel("pickaxe", 1);
 		BlocksAether.deific_arkenium_ore.setHarvestLevel("pickaxe", 2);
 		BlocksAether.deific_gravitite_ore.setHarvestLevel("pickaxe", 2);
-		BlocksAether.deific_continuum_ore.setHarvestLevel("pickaxe", 3);
+		BlocksAether.deific_continuum_ore.setHarvestLevel("pickaxe", 2);
 		
 		
 		BlocksAether.carved_stairs.setHarvestLevel("pickaxe", 0);

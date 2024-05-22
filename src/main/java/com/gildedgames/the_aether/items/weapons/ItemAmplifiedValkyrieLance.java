@@ -4,6 +4,7 @@ import com.gildedgames.the_aether.entities.block.EntityFireProofItemAether;
 import com.gildedgames.the_aether.entities.projectile.EntityValkyrieProjectile;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.player.PlayerAether;
+import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
@@ -63,6 +64,12 @@ public class ItemAmplifiedValkyrieLance extends ItemSword {
 		} else {
 			return level[0];
 		}
+	}
+	
+	public ItemStack onItemRightClick(ItemStack p_77659_1_, World p_77659_2_, EntityPlayer p_77659_3_)
+	{
+		p_77659_3_.triggerAchievement(AchievementsAether.godly_reach);
+	    return p_77659_1_;
 	}
 
 	private boolean isBetween(int max, int origin, int min) {

@@ -6,6 +6,8 @@ import com.gildedgames.the_aether.entities.hostile.EntityAetherMob;
 import com.gildedgames.the_aether.entities.particles.NewAetherParticleHandler;
 import com.gildedgames.the_aether.entities.projectile.EntityElysianGuardianLaser;
 import com.gildedgames.the_aether.items.ItemsAether;
+import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -381,6 +383,20 @@ public class EntityElysianGuardian extends EntityMob {
 
 		return flag;
 	}
+	
+	public void onDeath(DamageSource p_70645_1_)
+    {
+        super.onDeath(p_70645_1_);
+
+        if (p_70645_1_.getEntity() instanceof EntityPlayer)
+        {
+            EntityPlayer entityplayer = (EntityPlayer)p_70645_1_.getEntity();
+            
+            entityplayer.triggerAchievement(AchievementsAether.kill_elysian_guardian);
+            
+        }
+            
+    }
 
 	@Override
 	protected void dropFewItems(boolean var1, int var2) {

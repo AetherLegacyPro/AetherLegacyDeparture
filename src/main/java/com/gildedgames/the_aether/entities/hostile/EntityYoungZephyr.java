@@ -14,6 +14,7 @@ import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.entities.ai.zephyr.AIEntityFlyingMob;
 import com.gildedgames.the_aether.entities.ai.zephyr.EntityAetherIIMob;
 import com.gildedgames.the_aether.entities.ai.zephyr.IFlyingMob;
+import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 
 import net.minecraft.init.*;
 import net.minecraft.block.*;
@@ -273,6 +274,20 @@ public class EntityYoungZephyr extends EntityAetherIIMob implements IMob, IFlyin
         }
         this.limbSwingAmount += (f4 - this.limbSwingAmount) * 0.4f;
         this.limbSwing += this.limbSwingAmount;
+    }
+    
+    public void onDeath(DamageSource p_70645_1_)
+    {
+        super.onDeath(p_70645_1_);
+
+        if (p_70645_1_.getEntity() instanceof EntityPlayer)
+        {
+            EntityPlayer entityplayer = (EntityPlayer)p_70645_1_.getEntity();
+            
+            entityplayer.triggerAchievement(AchievementsAether.aether_hunter);
+            
+        }
+            
     }
     
     public boolean isOnLadder() {

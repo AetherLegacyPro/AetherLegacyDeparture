@@ -7,6 +7,7 @@ import java.util.Random;
 
 import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.blocks.BlocksAether;
+import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 import com.gildedgames.the_aether.tileentity.TileEntityDivineEnchantmentTable;
 
 import cpw.mods.fml.relauncher.*;
@@ -114,6 +115,7 @@ public class BlockDivineEnchantmentTable extends BlockEnchantmentTable
        
         final int guiID = 10;
         player.openGui((Object)Aether.instance, guiID, world, x, y, z);
+        player.triggerAchievement(AchievementsAether.next_level_enchantments);
         return true;
         }
         

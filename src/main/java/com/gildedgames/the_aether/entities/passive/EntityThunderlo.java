@@ -31,6 +31,7 @@ import java.util.List;
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.items.ItemsAether;
+import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 
 public class EntityThunderlo extends EntityAetherAnimal
 {
@@ -154,6 +155,20 @@ public class EntityThunderlo extends EntityAetherAnimal
     public boolean isBreedingItem(ItemStack p_70877_1_)
     {
         return p_70877_1_ != null && p_70877_1_.getItem() == ItemsAether.strawberry;
+    }
+    
+    public void onDeath(DamageSource p_70645_1_)
+    {
+        super.onDeath(p_70645_1_);
+
+        if (p_70645_1_.getEntity() instanceof EntityPlayer)
+        {
+            EntityPlayer entityplayer = (EntityPlayer)p_70645_1_.getEntity();
+            
+            entityplayer.triggerAchievement(AchievementsAether.kill_thunderlo);
+            
+        }
+            
     }
 	
 	@Override

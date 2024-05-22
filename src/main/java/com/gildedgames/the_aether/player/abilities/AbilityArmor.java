@@ -62,7 +62,7 @@ public class AbilityArmor implements IAetherAbility {
 		else if (this.player.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.aer_cape)) && this.player.getAccessoryInventory().isWearingGravititeSet()) {
 			if (this.player.isJumping() && !this.jumpBoosted) {
 			this.player.getEntity().motionY = 1.5D;
-			this.jumpBoosted = true;			
+			this.jumpBoosted = true;
 			}
 			
 			this.player.getEntity().fallDistance = 0F;

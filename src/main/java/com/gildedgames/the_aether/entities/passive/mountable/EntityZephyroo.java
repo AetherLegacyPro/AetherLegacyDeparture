@@ -14,6 +14,7 @@ import com.gildedgames.the_aether.entities.passive.EntityThunderlo;
 import com.gildedgames.the_aether.entities.util.EntitySaddleMount;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.player.PlayerAether;
+import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 
 import net.minecraft.entity.*;
 import net.minecraft.block.Block;
@@ -24,6 +25,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
@@ -166,6 +168,20 @@ public class EntityZephyroo extends EntityAetherAnimal
     public boolean isBreedingItem(ItemStack p_70877_1_)
     {
         return p_70877_1_ != null && p_70877_1_.getItem() == ItemsAether.grapes;
+    }
+    
+    public void onDeath(DamageSource p_70645_1_)
+    {
+        super.onDeath(p_70645_1_);
+
+        if (p_70645_1_.getEntity() instanceof EntityPlayer)
+        {
+            EntityPlayer entityplayer = (EntityPlayer)p_70645_1_.getEntity();
+            
+            entityplayer.triggerAchievement(AchievementsAether.kill_zephyroo);
+            
+        }
+            
     }
     
     @Override

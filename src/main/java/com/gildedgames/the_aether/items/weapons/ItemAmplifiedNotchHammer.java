@@ -5,6 +5,7 @@ import com.gildedgames.the_aether.entities.block.EntityFloatingBlock;
 import com.gildedgames.the_aether.entities.projectile.EntityAmplifiedHammerProjectile;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.player.PlayerAether;
+import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -90,7 +91,7 @@ public class ItemAmplifiedNotchHammer extends ItemSword {
                 world.spawnEntityInWorld(hammerProjectile);
             }
         } else if (PlayerAether.get(entityplayer).setHammerCooldown(300, itemstack.getDisplayName())) {
-            itemstack.damageItem(10, entityplayer);
+            itemstack.damageItem(1, entityplayer);
 
             world.playSound(entityplayer.posX, entityplayer.posY, entityplayer.posZ, "mob.ghast.fireball", 1.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 0.8F), false);
 
@@ -100,6 +101,7 @@ public class ItemAmplifiedNotchHammer extends ItemSword {
                 world.spawnEntityInWorld(hammerProjectile);
             }
         }
+        entityplayer.triggerAchievement(AchievementsAether.notch_restored);
 
         return itemstack;
     }

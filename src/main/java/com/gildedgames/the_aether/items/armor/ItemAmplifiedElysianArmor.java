@@ -68,6 +68,7 @@ public class ItemAmplifiedElysianArmor extends ItemArmor {
             hasElysianBoots = (boots.getItem() == ItemsAether.amplified_elysian_boots || boots.getItem() == ItemsAether.amplified_sentry_boots || boots.getItem() == ItemsAether.amplified_agility_boots || boots.getItem() == ItemsAether.ascensite_boots);
         }
         if (hasElysianHelmet && hasElysianChest && hasElysianLegs && hasElysianBoots) {
+        	player.triggerAchievement(AchievementsAether.true_thorns);  
         	if(!world.isRemote) {
         		AxisAlignedBB axisalignedbb = player.boundingBox;
         		//List<Entity> volume = world.getEntitiesWithinAABB(EntityLivingBase.class, axisalignedbb.expand(2, 3, 2));

@@ -3,6 +3,7 @@ package com.gildedgames.the_aether.api.player;
 import java.util.ArrayList;
 
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.stats.Achievement;
 import net.minecraftforge.common.IExtendedEntityProperties;
 
 import com.gildedgames.the_aether.api.player.util.IAccessoryInventory;

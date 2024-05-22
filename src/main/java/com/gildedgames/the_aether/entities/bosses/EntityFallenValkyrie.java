@@ -4,6 +4,8 @@ import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.entities.hostile.EntityAetherMob;
 import com.gildedgames.the_aether.items.ItemsAether;
+import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -72,11 +74,6 @@ public class EntityFallenValkyrie extends EntityMob {
 		}
 	}
 
-	//private void becomeAngryAt(EntityLivingBase entity) {
-		//this.setAttackTarget(entity);
-		//this.angerLevel = 200 + rand.nextInt(200);
-	//}
-
 	private void chatItUp(EntityPlayer player, String s) {
 		Side side = FMLCommonHandler.instance().getEffectiveSide();
 
@@ -87,35 +84,6 @@ public class EntityFallenValkyrie extends EntityMob {
 
 			this.chatTime = 60;
 		}
-	}
-
-	@Override
-	public boolean interact(EntityPlayer entityplayer) {
-		//this.faceEntity(entityplayer, 180F, 180F);
-
-		//ItemStack stack = entityplayer.getCurrentEquippedItem();
-
-		//if (stack != null && stack.getItem() == ItemsAether.victory_medal && stack.stackSize >= 0) {
-			//if (stack.stackSize >= 10) {
-				//this.chatItUp(entityplayer, StatCollector.translateToLocal("gui.valkyrie.dialog.medal.1"));
-			//} else if (stack.stackSize >= 5) {
-				//this.chatItUp(entityplayer, StatCollector.translateToLocal("gui.valkyrie.dialog.medal.2"));
-			//} else {
-			//	this.chatItUp(entityplayer, StatCollector.translateToLocal("gui.valkyrie.dialog.medal.3"));
-		//	}
-		//} else {
-		//	int line = rand.nextInt(3);
-
-			//if (line == 2) {
-			//	this.chatItUp(entityplayer, StatCollector.translateToLocal("gui.valkyrie.dialog.1"));
-			//} else if (line == 1) {
-			//	this.chatItUp(entityplayer, StatCollector.translateToLocal("gui.valkyrie.dialog.2"));
-			//} else {
-			//	this.chatItUp(entityplayer, StatCollector.translateToLocal("gui.valkyrie.dialog.3"));
-		//	}
-		//}
-
-		return true;
 	}
 
 	public void teleport(double x, double y, double z, int rad) {
@@ -195,11 +163,6 @@ public class EntityFallenValkyrie extends EntityMob {
 			this.safeZ = this.posZ;
 		}
 
-		//if (this.getAttackTarget() != null && this.getAttackTarget().isDead) {
-			//this.setAttackTarget(null);
-			//this.angerLevel = 0;
-		//}
-
 		if (this.chatTime > 0) {
 			this.chatTime--;
 		}
@@ -269,22 +232,14 @@ public class EntityFallenValkyrie extends EntityMob {
 				}
 
 				this.setAttackTarget(null);
-				//this.angerLevel = this.chatTime = 0;
 			}
 		}
 	}
-
-	
-	//protected Entity findPlayerToAttack() {
-		//return entityToAttack;
-		
-	//}
 
 	@Override
 	public void writeEntityToNBT(NBTTagCompound compound) {
 		super.writeEntityToNBT(compound);
 
-		//compound.setInteger("angerLevel", this.angerLevel);
 		compound.setInteger("teleTimer", this.teleTimer);
 		compound.setInteger("timeLeft", this.timeLeft);
 		compound.setDouble("safePosX", this.safeX);
@@ -296,7 +251,6 @@ public class EntityFallenValkyrie extends EntityMob {
 	public void readEntityFromNBT(NBTTagCompound compound) {
 		super.readEntityFromNBT(compound);
 
-		//this.angerLevel = compound.getInteger("angerLevel");
 		this.teleTimer = compound.getInteger("teleTimer");
 		this.timeLeft = compound.getInteger("timeLeft");
 		this.safeX = compound.getInteger("safePosX");
@@ -309,7 +263,6 @@ public class EntityFallenValkyrie extends EntityMob {
 			EntityPlayer player = (EntityPlayer) ds.getEntity();
 
 			if (this.getAttackTarget() == null) {
-				////this.chatTime = 0;
 				int pokey = rand.nextInt(3);
 				if (pokey == 2) {
 					chatItUp(player, StatCollector.translateToLocal("gui.fallenvalkyrie.dialog.attack.1"));
@@ -325,9 +278,6 @@ public class EntityFallenValkyrie extends EntityMob {
 				this.teleTimer -= 10;
 			}
 
-			//if (ds.getEntity() instanceof EntityLivingBase) {
-			//	becomeAngryAt((EntityLivingBase) ds.getEntity());
-			//}
 		} else {
 			teleport(this.posX, this.posY, this.posZ, 8);
 			extinguish();
@@ -340,6 +290,13 @@ public class EntityFallenValkyrie extends EntityMob {
 			spawnExplosionParticle();
 			this.setDead();
 		}
+		
+		EntityPlayer player = (EntityPlayer) ds.getEntity();
+        ItemStack stack = player.inventory.getCurrentItem();
+        
+		if (stack.getItem() == ItemsAether.builder_slayer) {
+			player.triggerAchievement(AchievementsAether.builders_beware);
+		}
 
 		return flag;
 	}
@@ -351,24 +308,7 @@ public class EntityFallenValkyrie extends EntityMob {
 		if (this.attackTime <= 0 && entity.boundingBox.maxY > this.boundingBox.minY && entity.boundingBox.minY < this.boundingBox.maxY) {
 			this.attackTime = 20;
 			swingArm();
-			flag = entity.attackEntityFrom(DamageSource.causeMobDamage(this), 7);
-			//if (entity != null && this.getAttackTarget() != null && entity == getAttackTarget() && entity instanceof EntityPlayer) {
-				//EntityPlayer player = (EntityPlayer) entity;
-				//if (player.getHealth() <= 0) {
-					//int pokey = this.rand.nextInt(3);
-
-					//if (pokey == 2) {
-					//	chatItUp((EntityPlayer) this.getAttackTarget(), StatCollector.translateToLocal("gui.valkyrie.dialog.playerdead.1"));
-					//} else if (pokey == 1) {
-					//	chatItUp((EntityPlayer) this.getAttackTarget(), StatCollector.translateToLocalFormatted("gui.valkyrie.dialog.playerdead.2", player.getDisplayName()));
-					//} else {
-					//	chatItUp((EntityPlayer) this.getAttackTarget(), StatCollector.translateToLocal("gui.valkyrie.dialog.playerdead.3"));
-					//}
-
-					//this.setAttackTarget(null);
-					//this.angerLevel = this.chatTime = 0;
-				//}
-			//}
+			flag = entity.attackEntityFrom(DamageSource.causeMobDamage(this), 8);			
 		}
 
 		return flag;
@@ -398,11 +338,6 @@ public class EntityFallenValkyrie extends EntityMob {
 	protected String getDeathSound() {
 		return "game.player.hurt.fall.big";
 	}
-	
-	
-	//public float getBlockPathWeight(final int par1, final int par2, final int par3) {
-        //return ((this.worldObj.getBlock(par1, par2 - 1, par3) == BlocksAether.locked_angelic_stone || this.worldObj.getBlock(par1, par2 - 1, par3) == BlocksAether.locked_light_angelic_stone || this.worldObj.getBlock(par1, par2 - 1, par3) == BlocksAether.locked_divine_angelic_stone || this.worldObj.getBlock(par1, par2 - 1, par3) == BlocksAether.locked_divine_light_angelic_stone || this.worldObj.getBlock(par1, par2 - 1, par3) == BlocksAether.locked_mythic_angelic_stone || this.worldObj.getBlock(par1, par2 - 1, par3) == BlocksAether.locked_mythic_sentry_stone )) ? 10.0f : (this.worldObj.getLightBrightness(par1, par2, par3) - 0.5f);
-    //}
     
 	public boolean getCanSpawnHere() {
         final int i = MathHelper.floor_double(this.posX);

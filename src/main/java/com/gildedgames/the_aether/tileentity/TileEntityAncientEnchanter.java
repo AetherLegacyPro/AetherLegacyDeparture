@@ -406,10 +406,6 @@ public class TileEntityAncientEnchanter extends TileEntity implements IInventory
     public void closeInventory() {
     }
     
-    //public void onDataPacket(final NetworkManager net, final S35PacketUpdateTileEntity pkt) {
-     //   this.readFromNBT(pkt.getNbtCompound());
-    //}
-    
     public Packet getDescriptionPacket() {
         final NBTTagCompound var1 = new NBTTagCompound();
         this.writeToNBT(var1);

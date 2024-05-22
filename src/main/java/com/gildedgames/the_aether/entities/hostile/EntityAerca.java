@@ -9,6 +9,7 @@ import net.minecraft.util.*;
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.items.ItemsAether;
+import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 
 import net.minecraft.entity.*;
 import net.minecraft.item.*;
@@ -288,6 +289,20 @@ public class EntityAerca extends EntityFlying implements IMob
         }
 
         super.dropFewItems(recentlyHit, lootLevel);
+    }
+   	
+   	public void onDeath(DamageSource p_70645_1_)
+    {
+        super.onDeath(p_70645_1_);
+
+        if (p_70645_1_.getEntity() instanceof EntityPlayer)
+        {
+            EntityPlayer entityplayer = (EntityPlayer)p_70645_1_.getEntity();
+            
+            entityplayer.triggerAchievement(AchievementsAether.aether_hunter);
+            
+        }
+            
     }
     
    	@Override
