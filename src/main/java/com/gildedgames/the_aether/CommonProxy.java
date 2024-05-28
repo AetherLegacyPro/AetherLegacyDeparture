@@ -14,6 +14,7 @@ import cpw.mods.fml.common.Mod;
 import com.gildedgames.the_aether.vrl.ForgetTheOtherMethodsThisIsWhereTheMagicHappens;
 import com.gildedgames.the_aether.AetherConfig;
 
+import java.io.File;
 import java.util.Random;
 
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -68,12 +69,29 @@ public class CommonProxy {
     // GameRegistry." (Remove if not needed)
     public void preInit(FMLPreInitializationEvent event) {
 		System.out.println("BBBBBBBBBBBBBBBBBBB");
-        AetherConfig.synchronizeConfiguration(event.getSuggestedConfigurationFile());
-		System.out.println("BBBBBBBBBBBBBBBBBBB");
+		File moo = ForgetTheOtherMethodsThisIsWhereTheMagicHappens.getJarName();
+		AetherConfig.init(event.getModConfigurationDirectory());
+        if(AetherConfig.shouldRefetch()) {
+			System.out.println("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH refetching");
 
-        ForgetTheOtherMethodsThisIsWhereTheMagicHappens assetManager = new ForgetTheOtherMethodsThisIsWhereTheMagicHappens();
-        ForgetTheOtherMethodsThisIsWhereTheMagicHappens.download("https://cdn.modrinth.com/data/JD2NSu5O/versions/cZNxPTqa/aether_ii-1.12.2-0.3.0%2Bbuild411-universal.jar");
-        ForgetTheOtherMethodsThisIsWhereTheMagicHappens.download("https://cdn.modrinth.com/data/YhmgMVyu/versions/4NuI8eHN/aether-1.7.10-v1.1.2.3.jar");
-        ForgetTheOtherMethodsThisIsWhereTheMagicHappens.download("https://static.planetminecraft.com/files/resource_media/mod/1509/aetheriilauncher-unzipandrun8190225.zip");
+        	ForgetTheOtherMethodsThisIsWhereTheMagicHappens assetManager = new ForgetTheOtherMethodsThisIsWhereTheMagicHappens();
+        	ForgetTheOtherMethodsThisIsWhereTheMagicHappens.download("https://cdn.modrinth.com/data/JD2NSu5O/versions/cZNxPTqa/aether_ii-1.12.2-0.3.0%2Bbuild411-universal.jar");
+        	ForgetTheOtherMethodsThisIsWhereTheMagicHappens.download("https://cdn.modrinth.com/data/YhmgMVyu/versions/4NuI8eHN/aether-1.7.10-v1.1.2.3.jar");
+			// We need a good static link for aether II 1.7.10. We can probably get everything we need from github auto-zip links, the source should still have the assets.
+			// This is good because it'll be easy to get every asset for every version (including unreleased versions), but the downside is I'd need to make sure
+			// assets are unzipped into instanced locations. 
+			// Do we want the b1.7.3 version too?
+        	//ForgetTheOtherMethodsThisIsWhereTheMagicHappens.download("https://static.planetminecraft.com/files/resource_media/mod/1509/aetheriilauncher-unzipandrun8190225.zip");
+			System.out.println("Fetching aether assets complete");
+
+			File modName = ForgetTheOtherMethodsThisIsWhereTheMagicHappens.getJarName();
+			try {
+	            ForgetTheOtherMethodsThisIsWhereTheMagicHappens.updateJar(modName);
+	        } catch (Exception e) {
+	            e.printStackTrace(); // Example: Printing the stack trace
+	        }
+
+			AetherConfig.fetched();//make sure this is last
+		}
     }
 }

@@ -20,7 +20,7 @@ public class BlockIcestone extends Block {
 		this.setTickRandomly(true);
 		this.setStepSound(soundTypeGlass);
 		this.setHarvestLevel("pickaxe", 1);
-		this.setBlockTextureName("aether_legacy:icestone");
+		this.setBlockTextureName("aether_legacy:new_icestone");
 	}
 
 	@Override

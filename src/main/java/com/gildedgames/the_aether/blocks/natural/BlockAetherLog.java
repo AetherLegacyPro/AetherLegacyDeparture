@@ -25,6 +25,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraftforge.event.ForgeEventFactory;
 
 public class BlockAetherLog extends BlockLog {
+	
+	@SideOnly(Side.CLIENT)
+	private IIcon iconFace, iconTop;
 
 	public BlockAetherLog() {
 		super();
@@ -59,7 +62,7 @@ public class BlockAetherLog extends BlockLog {
 		else
 		{
 			if (stack != null && ((stack.getItem() instanceof ItemAetherTool && ((ItemAetherTool) stack.getItem()).toolType == EnumAetherToolType.AXE) || stack.getItem() == Items.diamond_axe)) {
-				if (stack.getItem() instanceof ItemZaniteTool || stack.getItem() instanceof ItemGravititeTool || stack.getItem() instanceof ItemValkyrieTool || stack.getItem() == Items.diamond_axe) {
+				if (stack.getItem() instanceof ItemZaniteTool || stack.getItem() instanceof ItemGravititeTool || stack.getItem() instanceof ItemValkyrieTool || stack.getItem() == Items.diamond_axe || stack.getItem() instanceof ItemDivineralTool) {
 					if (this == BlocksAether.golden_oak_log) {
 						this.dropBlockAsItem(worldIn, x, y, z, new ItemStack(ItemsAether.golden_amber, 1 + worldIn.rand.nextInt(2)));
 					}
@@ -87,16 +90,25 @@ public class BlockAetherLog extends BlockLog {
 	public int damageDropped(int meta) {
 		return 1;
 	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public IIcon getIcon(int side, int meta){
+		return side == 0 || side == 1 ? iconTop : meta >= 1 && side-1 == meta ? iconFace : blockIcon;
+	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(IIconRegister registry) {
-		this.field_150167_a = new IIcon[1];
-		this.field_150166_b = new IIcon[1];
-
-		for (int i = 0; i < this.field_150167_a.length; ++i) {
-			this.field_150167_a[i] = registry.registerIcon(this.getTextureName() + "_side");
-			this.field_150166_b[i] = registry.registerIcon(this.getTextureName() + "_top");
+	public void registerBlockIcons(IIconRegister iconRegister){
+		if (this == BlocksAether.skyroot_log) {
+		blockIcon = iconRegister.registerIcon("aether_legacy:skyroot_log_side");
+		iconFace = iconRegister.registerIcon("aether_legacy:skyroot_log_top");
+		iconTop = iconRegister.registerIcon("aether_legacy:skyroot_log_top");
+		}
+		else {
+		blockIcon = iconRegister.registerIcon("aether_legacy:golden_oak_log_side");
+		iconFace = iconRegister.registerIcon("aether_legacy:golden_oak_log_top_new");
+		iconTop = iconRegister.registerIcon("aether_legacy:golden_oak_log_top_new");
 		}
 	}
 

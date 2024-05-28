@@ -545,10 +545,10 @@ public class ItemsAether {
 		amplified_continuum_leggings = register("amplified_continuum_leggings", new ItemAmplifiedContinuumArmor(2, ArmorMaterial.DIAMOND, "amplified_continuum", divineral_ingot).setMaxDamage(1945).setTextureName(Aether.find("armor/amplified_continuum_leggings")));
 		amplified_continuum_boots = register("amplified_continuum_boots", new ItemAmplifiedContinuumArmor(3, ArmorMaterial.DIAMOND, "amplified_continuum", divineral_ingot).setMaxDamage(1875).setTextureName(Aether.find("armor/amplified_continuum_boots")));
 		
-		gravitite_helmet = register("gravitite_helmet", new ItemAetherArmor(0, ArmorMaterial.DIAMOND, "gravitite", Item.getItemFromBlock(BlocksAether.enchanted_gravitite)).setMaxDamage(545).setTextureName(Aether.find("armor/gravitite_helmet")));
-		gravitite_chestplate = register("gravitite_chestplate", new ItemAetherArmor(1, ArmorMaterial.DIAMOND, "gravitite", Item.getItemFromBlock(BlocksAether.enchanted_gravitite)).setMaxDamage(792).setTextureName(Aether.find("armor/gravitite_chestplate")));
-		gravitite_leggings = register("gravitite_leggings", new ItemAetherArmor(2, ArmorMaterial.DIAMOND, "gravitite", Item.getItemFromBlock(BlocksAether.enchanted_gravitite)).setMaxDamage(743).setTextureName(Aether.find("armor/gravitite_leggings")));
-		gravitite_boots = register("gravitite_boots", new ItemAetherArmor(3, ArmorMaterial.DIAMOND, "gravitite", Item.getItemFromBlock(BlocksAether.enchanted_gravitite)).setMaxDamage(644).setTextureName(Aether.find("armor/gravitite_boots")));
+		gravitite_helmet = register("gravitite_helmet", new ItemAetherArmor(0, ArmorMaterial.DIAMOND, "gravitite", Item.getItemFromBlock(BlocksAether.enchanted_gravitite)).setMaxDamage(545).setTextureName(Aether.find("armor/new_gravitite_helmet")));
+		gravitite_chestplate = register("gravitite_chestplate", new ItemAetherArmor(1, ArmorMaterial.DIAMOND, "gravitite", Item.getItemFromBlock(BlocksAether.enchanted_gravitite)).setMaxDamage(792).setTextureName(Aether.find("armor/new_gravitite_chestplate")));
+		gravitite_leggings = register("gravitite_leggings", new ItemAetherArmor(2, ArmorMaterial.DIAMOND, "gravitite", Item.getItemFromBlock(BlocksAether.enchanted_gravitite)).setMaxDamage(743).setTextureName(Aether.find("armor/new_gravitite_leggings")));
+		gravitite_boots = register("gravitite_boots", new ItemAetherArmor(3, ArmorMaterial.DIAMOND, "gravitite", Item.getItemFromBlock(BlocksAether.enchanted_gravitite)).setMaxDamage(644).setTextureName(Aether.find("armor/new_gravitite_boots")));
 		
 		scaled_gravitite_helmet = register("scaled_gravitite_helmet", new ItemScaledGravititeArmor(0, ArmorMaterial.DIAMOND, "scaled_gravitite", Item.getItemFromBlock(BlocksAether.enchanted_gravitite)).setMaxDamage(545).setTextureName(Aether.find("armor/scaled_gravitite_helmet")));
 		scaled_gravitite_chestplate = register("scaled_gravitite_chestplate", new ItemScaledGravititeArmor(1, ArmorMaterial.DIAMOND, "scaled_gravitite", Item.getItemFromBlock(BlocksAether.enchanted_gravitite)).setMaxDamage(792).setTextureName(Aether.find("armor/scaled_gravitite_chestplate")));
@@ -744,7 +744,7 @@ public class ItemsAether {
 		tipped_vampire_blade = register("tipped_vampire_blade", new ItemTippedVampireBlade().setTextureName(Aether.find("weapons/tipped_vampire_blade")));
 		amplified_vampire_blade = register("amplified_vampire_blade", new ItemAmplifiedVampireBlade().setTextureName(Aether.find("weapons/amplified_vampire_blade")));
 		pig_slayer = register("pig_slayer", new ItemPigSlayer().setTextureName(Aether.find("weapons/pig_slayer")));
-		candy_cane_sword = register("candy_cane_sword", new ItemCandyCaneSword().setTextureName(Aether.find("weapons/candycane_sword")));
+		candy_cane_sword = register("candy_cane_sword", new ItemCandyCaneSword().setTextureName(Aether.find("weapons/new_candycane_sword")));
 		notch_hammer = register("notch_hammer", new ItemNotchHammer().setTextureName(Aether.find("weapons/notch_hammer")));
 		tipped_notch_hammer = register("tipped_notch_hammer", new ItemTippedNotchHammer().setTextureName(Aether.find("weapons/tipped_notch_hammer")));
 		amplified_notch_hammer = register("amplified_notch_hammer", new ItemAmplifiedNotchHammer().setTextureName(Aether.find("weapons/amplified_notch_hammer")));
@@ -898,7 +898,7 @@ public class ItemsAether {
 		aer_cape = register("aer_cape", new ItemAccessory(AccessoryType.CAPE).setTexture("aer_cape").setDungeonLoot().setTextureName(Aether.find("accessories/aer_cape")));
 		discharge_cape = register("discharge_cape", new ItemAccessory(AccessoryType.CAPE).setTexture("discharge_cape").setDungeonLoot().setTextureName(Aether.find("accessories/discharge_cape")));
 		
-		golden_feather = register("golden_feather", new ItemAccessory(AccessoryType.MISC).setDungeonLoot().setMaxDamage(120).setTextureName(Aether.find("accessories/golden_feather")));
+		golden_feather = register("golden_feather", new ItemAccessory(AccessoryType.MISC).setDungeonLoot().setMaxDamage(120).setTextureName(Aether.find("accessories/new_golden_feather")));
 		reinforced_golden_feather = register("reinforced_golden_feather", new ItemAccessory(AccessoryType.MISC).setReinforcedDungeonLoot().setMaxDamage(480).setTextureName(Aether.find("accessories/ref_golden_feather")));
 		amplified_golden_feather = register("amplified_golden_feather", new ItemAccessory(AccessoryType.MISC).setPoweredDungeonLoot().setMaxDamage(1800).setTextureName(Aether.find("accessories/amplified_golden_feather")));
 		

@@ -488,14 +488,28 @@ public class AetherConfig {
 	public static int getWhirlwindSpawnrate() {
 		return whirlwind_spawnrate;
 	}
+	
+	public static boolean shouldRefetch() {
+		return redownloadFiles;
+	}
 
-	public static void synchronizeConfiguration(File configFile) {
-        Configuration configuration = new Configuration(configFile);
-
-        greeting = configuration.getString("greeting", Configuration.CATEGORY_GENERAL, greeting, "How shall I greet?");
-
-        if (configuration.hasChanged()) {
-            configuration.save();
-        }
+	public static void fetched() {
+		//        redownloadFiles = config.getBoolean("refetchAssets", catMisc, true, "Re-Download assets from the Aether mods?");
+		System.out.println("1");
+        //config.getBoolean("refetchAssets", catMisc, false, "Re-Download assets from the Aether mods?").set(false);
+		config.get(catMisc, "refetchAssets", true, "Re-Download assets from the Aether mods?").set(false);
+		System.out.println("2");
+        config.save();
+		System.out.println("3");
     }
+	
+	//public static void synchronizeConfiguration(File configFile) {
+    //Configuration configuration = new Configuration(configFile);
+
+    //greeting = configuration.getString("greeting", Configuration.CATEGORY_GENERAL, greeting, "How shall I greet?");
+
+    //if (configuration.hasChanged()) {
+    //    configuration.save();
+    //}
+	//}
 }

@@ -454,8 +454,8 @@ public class BlocksAether {
 		void_fruit_leaves = register("void_fruit_leaves", new BlockAetherLeaves().setBlockTextureName(Aether.find("void_fruit_leaves")));
 		divine_oak_leaves = register("divine_oak_leaves", new BlockAetherLeaves().setBlockTextureName(Aether.find("divine_oak_leaves")));
 
-		skyroot_log = registerMeta("skyroot_log", new BlockAetherLog().setBlockTextureName(Aether.find("skyroot_log")));
-		golden_oak_log = registerMeta("golden_oak_log", new BlockAetherLog().setBlockTextureName(Aether.find("golden_oak_log")));
+		skyroot_log = registerMeta("skyroot_log", new BlockAetherLog());
+		golden_oak_log = registerMeta("golden_oak_log", new BlockAetherLog());
 		greatroot_log = registerMeta("greatroot_log", new BlockAetherLogGreatroot().setBlockTextureName(Aether.find("greatroot_log")));
 		wisproot_log = registerMeta("wisproot_log", new BlockAetherLogWisproot().setBlockTextureName(Aether.find("wisproot_log")));
 		void_log = registerMeta("void_log", new BlockAetherLogVoid().setBlockTextureName(Aether.find("void_log")));

@@ -77,10 +77,10 @@ public class ItemDungeonKey extends Item {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister registry) {
-		this.bronzeIcon = registry.registerIcon(Aether.find("misc/keys/bronze_key"));
+		this.bronzeIcon = registry.registerIcon(Aether.find("misc/keys/new_bronze_key"));
 		this.cobaltIcon = registry.registerIcon(Aether.find("misc/keys/cobalt_key"));
-		this.silverIcon = registry.registerIcon(Aether.find("misc/keys/silver_key"));
-		this.goldenIcon = registry.registerIcon(Aether.find("misc/keys/golden_key"));
+		this.silverIcon = registry.registerIcon(Aether.find("misc/keys/new_silver_key"));
+		this.goldenIcon = registry.registerIcon(Aether.find("misc/keys/new_golden_key"));
 		this.osmiumIcon = registry.registerIcon(Aether.find("misc/keys/osmium_key"));
 		this.palladiumIcon = registry.registerIcon(Aether.find("misc/keys/palladium_key"));
 		this.ancientbronzeIcon = registry.registerIcon(Aether.find("misc/keys/ancient_bronze_key"));
