@@ -95,7 +95,7 @@ public class Aether {
 	}
 
 	public static ResourceLocation locateII(String location) {
-		return new ResourceLocation(aether, location);
+		return new ResourceLocation("aether", location);
 	}
 	
 	public static boolean isGamePaused() {
