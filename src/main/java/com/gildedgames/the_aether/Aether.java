@@ -93,6 +93,10 @@ public class Aether {
 	public static ResourceLocation locate(String location) {
 		return new ResourceLocation(MOD_ID, location);
 	}
+
+	public static ResourceLocation locateII(String location) {
+		return new ResourceLocation(aether, location);
+	}
 	
 	public static boolean isGamePaused() {
         final Minecraft mc = Minecraft.getMinecraft();
@@ -101,6 +105,10 @@ public class Aether {
 
 	public static String find(String location) {
 		return modAddress() + location;
+	}
+
+	public static String findII(String location) {
+		return "aether:" + location;
 	}
 
 	public static String modAddress() {
