@@ -342,6 +342,8 @@ public class ForgetTheOtherMethodsThisIsWhereTheMagicHappens {
 		copyFolder(Paths.get(System.getProperty("user.dir") + "/cow/assets/aether"), Paths.get(System.getProperty("user.dir") + "/unpack/assets/aether"));
 		copyFolder(Paths.get(System.getProperty("user.dir") + "/cow/assets/aether_legacy"), Paths.get(System.getProperty("user.dir") + "/unpack/assets/aether_legacy"));
 
+		deleteThingies();
+
 		compress((System.getProperty("user.dir") + "/unpack"));
 
 		// I wrote all the file BS in java so it would "just work" on windows. JAVA. and still
@@ -356,9 +358,10 @@ public class ForgetTheOtherMethodsThisIsWhereTheMagicHappens {
 		} else {
 			Files.move(Paths.get(System.getProperty("user.dir") + "/mods/temptemptemp.zip"), Paths.get(jarFile.getAbsolutePath()), StandardCopyOption.REPLACE_EXISTING);
 		}
-
-		// TODO TODO TODO delete /cow and /unpack
 		// also, maybe instead of checking if we're on windows we should check if the OS uses retard locks
+
+		deleteDirectory(Paths.get((System.getProperty("user.dir") + "/unpack/")));
+		deleteDirectory(Paths.get((System.getProperty("user.dir") + "/cow/")));
     }
 
 	public static void listFilesRecursively(File directory, List<File> fileList) {
@@ -436,4 +439,94 @@ public class ForgetTheOtherMethodsThisIsWhereTheMagicHappens {
             e.printStackTrace();
         }
     }
+
+	public static void deleteThingies(){
+		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/aether/lang/en_US.lang")));
+		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/aether/lang/zh_CN.lang")));
+		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/aether/lang/es_ES.lang")));
+		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/texts/en_US.txt")));
+		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/lang/en_US.lang")));
+		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/lang/th_TH.lang")));
+		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/lang/it_IT.lang")));
+		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/lang/sv_SE.lang")));
+		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/lang/fr_FR.lang")));
+		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/lang/pl_PL.lang")));
+		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/lang/uk_UA.lang")));
+		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/lang/zh_TW.lang")));
+		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/lang/nl_NL.lang")));
+		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/lang/ko_KR.lang")));
+		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/lang/ro_RO.lang")));
+		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/lang/ru_RU.lang")));
+		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/lang/ja_JP.lang")));
+		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/lang/es_MX.lang")));
+		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/lang/es_ES.lang")));
+		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/lang/de_DE.lang")));
+		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/lang/zh_CN.lang")));
+		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/aether_legacy/lang/en_US.lang")));
+		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/aether_legacy/lang/es_MX.lang")));
+		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/aether_legacy/lang/ja_JP.lang")));
+		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/aether_legacy/lang/ru_RU.lang")));
+		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/aether_legacy/lang/zh_CN.lang")));
+		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/aether_legacy/lang/de_DE.lang")));
+		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/aether_legacy/lang/nl_NL.lang")));
+		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/aether_legacy/lang/uk_UA.lang")));
+		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/aether_legacy/lang/zh_TW.lang")));
+		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/aether_legacy/lang/ro_RO.lang")));
+		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/aether_legacy/lang/ko_KR.lang")));
+		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/aether_legacy/lang/pl_PL.lang")));
+		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/aether_legacy/lang/fr_FR.lang")));
+		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/aether_legacy/lang/sv_SE.lang")));
+		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/aether_legacy/lang/th_TH.lang")));
+		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/aether_legacy/lang/it_IT.lang")));
+		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/aether_legacy/texts/en_US.txt")));
+	}
+
+	private static void deleteDirectoryMaybeBadIdk(Path directory) throws IOException {
+        // Check if the path exists and is a directory
+        if (Files.exists(directory) && Files.isDirectory(directory)) {
+            // List all files and subdirectories within the directory
+            Files.list(directory).forEach(subPath -> {
+                try {
+                    // If subpath is a directory, recursively delete it
+                    if (Files.isDirectory(subPath)) {
+                        deleteDirectory(subPath);
+                    } else {
+                        // Delete the file
+                        Files.delete(subPath);
+                    }
+                } catch (IOException e) {
+                    System.err.println("Failed to delete " + subPath + ": " + e.getMessage());
+                }
+            });
+
+            // Delete the empty directory
+            Files.delete(directory);
+        }
+    }
+
+	private static void deleteDirectory(Path directory) throws IOException {
+	    if (Files.exists(directory) && Files.isDirectory(directory)) {
+	        // List all files and subdirectories within the directory
+	        Files.list(directory)
+	             // Exclude "." and ".." directories
+	             .filter(path -> !path.getFileName().toString().equals(".") &&
+	                              !path.getFileName().toString().equals(".."))
+	             .forEach(subPath -> {
+	            try {
+	                // If subpath is a directory, recursively delete it
+	                if (Files.isDirectory(subPath)) {
+	                    deleteDirectory(subPath);
+	                } else {
+	                    // Delete the file
+	                    Files.delete(subPath);
+	                }
+	            } catch (IOException e) {
+	                System.err.println("Failed to delete " + subPath + ": " + e.getMessage());
+	            }
+    	    });
+
+	        // Delete the empty directory
+	        Files.delete(directory);
+    	}
+	}
 }
