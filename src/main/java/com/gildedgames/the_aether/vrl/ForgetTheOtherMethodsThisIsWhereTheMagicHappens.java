@@ -338,11 +338,11 @@ public class ForgetTheOtherMethodsThisIsWhereTheMagicHappens {
 		}
 		jar.close();
 
+		deleteThingies();
+
 		// copy files, recursively. who tf invented java this is the most liberal way to do this ever
 		copyFolder(Paths.get(System.getProperty("user.dir") + "/cow/assets/aether"), Paths.get(System.getProperty("user.dir") + "/unpack/assets/aether"));
 		copyFolder(Paths.get(System.getProperty("user.dir") + "/cow/assets/aether_legacy"), Paths.get(System.getProperty("user.dir") + "/unpack/assets/aether_legacy"));
-
-		deleteThingies();
 
 		compress((System.getProperty("user.dir") + "/unpack"));
 
@@ -441,44 +441,28 @@ public class ForgetTheOtherMethodsThisIsWhereTheMagicHappens {
     }
 
 	public static void deleteThingies() throws IOException {
-		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/aether/lang/en_US.lang")));
-		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/aether/lang/zh_CN.lang")));
-		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/aether/lang/es_ES.lang")));
-		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/texts/en_US.txt")));
-		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/lang/en_US.lang")));
-		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/lang/th_TH.lang")));
-		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/lang/it_IT.lang")));
-		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/lang/sv_SE.lang")));
-		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/lang/fr_FR.lang")));
-		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/lang/pl_PL.lang")));
-		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/lang/uk_UA.lang")));
-		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/lang/zh_TW.lang")));
-		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/lang/nl_NL.lang")));
-		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/lang/ko_KR.lang")));
-		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/lang/ro_RO.lang")));
-		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/lang/ru_RU.lang")));
-		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/lang/ja_JP.lang")));
-		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/lang/es_MX.lang")));
-		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/lang/es_ES.lang")));
-		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/lang/de_DE.lang")));
-		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/lang/zh_CN.lang")));
-		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/aether_legacy/lang/en_US.lang")));
-		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/aether_legacy/lang/es_MX.lang")));
-		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/aether_legacy/lang/ja_JP.lang")));
-		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/aether_legacy/lang/ru_RU.lang")));
-		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/aether_legacy/lang/zh_CN.lang")));
-		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/aether_legacy/lang/de_DE.lang")));
-		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/aether_legacy/lang/nl_NL.lang")));
-		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/aether_legacy/lang/uk_UA.lang")));
-		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/aether_legacy/lang/zh_TW.lang")));
-		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/aether_legacy/lang/ro_RO.lang")));
-		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/aether_legacy/lang/ko_KR.lang")));
-		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/aether_legacy/lang/pl_PL.lang")));
-		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/aether_legacy/lang/fr_FR.lang")));
-		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/aether_legacy/lang/sv_SE.lang")));
-		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/aether_legacy/lang/th_TH.lang")));
-		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/aether_legacy/lang/it_IT.lang")));
-		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/aether_legacy/texts/en_US.txt")));
+		try{
+		Files.delete(Paths.get((System.getProperty("user.dir") + "/cow/assets/aether/lang/en_US.lang")));
+		Files.delete(Paths.get((System.getProperty("user.dir") + "/cow/assets/aether_legacy/lang/en_US.lang")));
+		Files.delete(Paths.get((System.getProperty("user.dir") + "/cow/assets/aether_legacy/texts/en_US.txt")));
+		Files.delete(Paths.get((System.getProperty("user.dir") + "/cow/assets/aether/lang/zh_CN.lang")));
+		Files.delete(Paths.get((System.getProperty("user.dir") + "/cow/assets/aether/lang/es_ES.lang")));
+		Files.delete(Paths.get((System.getProperty("user.dir") + "/cow/assets/aether_legacy/lang/es_MX.lang")));
+		Files.delete(Paths.get((System.getProperty("user.dir") + "/cow/assets/aether_legacy/lang/ja_JP.lang")));
+		Files.delete(Paths.get((System.getProperty("user.dir") + "/cow/assets/aether_legacy/lang/ru_RU.lang")));
+		Files.delete(Paths.get((System.getProperty("user.dir") + "/cow/assets/aether_legacy/lang/zh_CN.lang")));
+		Files.delete(Paths.get((System.getProperty("user.dir") + "/cow/assets/aether_legacy/lang/de_DE.lang")));
+		Files.delete(Paths.get((System.getProperty("user.dir") + "/cow/assets/aether_legacy/lang/nl_NL.lang")));
+		Files.delete(Paths.get((System.getProperty("user.dir") + "/cow/assets/aether_legacy/lang/uk_UA.lang")));
+		Files.delete(Paths.get((System.getProperty("user.dir") + "/cow/assets/aether_legacy/lang/zh_TW.lang")));
+		Files.delete(Paths.get((System.getProperty("user.dir") + "/cow/assets/aether_legacy/lang/ro_RO.lang")));
+		Files.delete(Paths.get((System.getProperty("user.dir") + "/cow/assets/aether_legacy/lang/ko_KR.lang")));
+		Files.delete(Paths.get((System.getProperty("user.dir") + "/cow/assets/aether_legacy/lang/pl_PL.lang")));
+		Files.delete(Paths.get((System.getProperty("user.dir") + "/cow/assets/aether_legacy/lang/fr_FR.lang")));
+		Files.delete(Paths.get((System.getProperty("user.dir") + "/cow/assets/aether_legacy/lang/sv_SE.lang")));
+		Files.delete(Paths.get((System.getProperty("user.dir") + "/cow/assets/aether_legacy/lang/th_TH.lang")));
+		Files.delete(Paths.get((System.getProperty("user.dir") + "/cow/assets/aether_legacy/lang/it_IT.lang")));
+		} catch (Exception e) { System.out.println("Failed to delete the file: " + e.getMessage()); }
 	}
 
 	private static void deleteDirectoryMaybeBadIdk(Path directory) throws IOException {
