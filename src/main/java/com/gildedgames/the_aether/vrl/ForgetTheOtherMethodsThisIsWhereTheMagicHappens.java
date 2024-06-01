@@ -440,7 +440,7 @@ public class ForgetTheOtherMethodsThisIsWhereTheMagicHappens {
         }
     }
 
-	public static void deleteThingies(){
+	public static void deleteThingies() throws IOException {
 		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/aether/lang/en_US.lang")));
 		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/aether/lang/zh_CN.lang")));
 		Files.delete(Paths.get((System.getProperty("user.dir") + "/unpack/assets/aether/lang/es_ES.lang")));
