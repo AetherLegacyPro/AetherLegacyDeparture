@@ -339,8 +339,8 @@ public class BlocksAether {
 		
 		holystone = registerMeta("holystone", new BlockHolystone());
 		holystone_brick = register("holystone_brick", new BlockAether(Material.rock, Aether.find("holystone_brick")).setHardness(0.5F).setResistance(10.0F));
-		enchanted_holystone = registerMeta("enchanted_holystone", new BlockEnchantedAgiosite().setBlockTextureName(Aether.find("enchanted_holystone")));
-		enchanted_holystone_bricks = register("enchanted_holystone_bricks", new BlockAether(Material.rock, Aether.find("enchanted_holystone_bricks")).setHardness(0.6F).setResistance(14.0F));			
+		enchanted_holystone = registerMeta("enchanted_holystone", new BlockEnchantedAgiosite().setBlockTextureName(Aether.findII("agiosite")));
+		enchanted_holystone_bricks = register("enchanted_holystone_bricks", new BlockAether(Material.rock, Aether.findII("agiosite_brick")).setHardness(0.6F).setResistance(14.0F));			
 		aetheral_stone = registerMeta("aetheral_stone", new BlockHolystone().setBlockTextureName(Aether.find("aetheral_stone")).setHardness(3.0F).setResistance(5.0F));
 		aetheral_stone_bricks = register("aetheral_stone_bricks", new BlockAether(Material.rock, Aether.find("aetheral_stone_brick")).setHardness(3.0F).setResistance(5.0F));
 		enchanted_aetheral_stone = registerMeta("enchanted_aetheral_stone", new BlockEnchantedAetheralStone().setHardness(3.0F).setResistance(5.0F));
@@ -456,8 +456,8 @@ public class BlocksAether {
 
 		skyroot_log = registerMeta("skyroot_log", new BlockAetherLog());
 		golden_oak_log = registerMeta("golden_oak_log", new BlockAetherLog());
-		greatroot_log = registerMeta("greatroot_log", new BlockAetherLogGreatroot().setBlockTextureName(Aether.find("greatroot_log")));
-		wisproot_log = registerMeta("wisproot_log", new BlockAetherLogWisproot().setBlockTextureName(Aether.find("wisproot_log")));
+		greatroot_log = registerMeta("greatroot_log", new BlockAetherLogGreatroot().setBlockTextureName(Aether.findII("logs/greatroot_log")));
+		wisproot_log = registerMeta("wisproot_log", new BlockAetherLogWisproot().setBlockTextureName(Aether.findII("logs/wisproot_log")));
 		void_log = registerMeta("void_log", new BlockAetherLogVoid().setBlockTextureName(Aether.find("void_log")));
 		divine_oak_log = registerMeta("divine_oak_log", new BlockAetherLogDivine().setBlockTextureName(Aether.find("divine_log")));
 		skyroot_planks = register("skyroot_planks", new BlockSkyrootPlanks());
@@ -467,13 +467,13 @@ public class BlocksAether {
 		void_planks = register("void_planks", new BlockVoidPlanks());
 		divine_oak_planks = register("divine_oak_planks", new BlockDivinePlanks());
 		
-		skyroot_trapdoor = registerMeta("skyroot_trapdoor", new BlockAetherTrapdoor(Material.wood).setBlockTextureName(Aether.find("skyroot_trapdoor")));
+		skyroot_trapdoor = registerMeta("skyroot_trapdoor", new BlockAetherTrapdoor(Material.wood).setBlockTextureName(Aether.findII("skyroot_trapdoor")));
 		golden_oak_trapdoor = registerMeta("golden_oak_trapdoor", new BlockAetherTrapdoor(Material.wood).setBlockTextureName(Aether.find("golden_oak_trapdoor")));
 		wisproot_trapdoor = registerMeta("wisproot_trapdoor", new BlockAetherTrapdoor(Material.wood).setBlockTextureName(Aether.find("wisproot_trapdoor")));
 		greatroot_trapdoor = registerMeta("greatroot_trapdoor", new BlockAetherTrapdoor(Material.wood).setBlockTextureName(Aether.find("greatroot_trapdoor")));
 		void_trapdoor = registerMeta("void_trapdoor", new BlockAetherTrapdoor(Material.wood).setBlockTextureName(Aether.find("void_trapdoor")));
 		zanite_trapdoor = registerMeta("zanite_trapdoor", new BlockAetherTrapdoor(Material.iron).setBlockTextureName(Aether.find("zanite_trapdoor")));		
-		skyroot_ladder = registerMeta("skyroot_ladder", new BlockAetherLadder(Material.wood).setBlockTextureName(Aether.find("skyroot_ladder")));
+		skyroot_ladder = registerMeta("skyroot_ladder", new BlockAetherLadder(Material.wood).setBlockTextureName(Aether.findII("ladders/skyroot_ladder")));
 		
 		small_blueberry_bush = registerHidden("small_blueberry_bush", new BlockSmallBerryBushStem().setBlockTextureName(Aether.find("small_blueberry_bush")));
 		medium_blueberry_bush = registerHidden("medium_blueberry_bush", new BlockMediumBerryBushStem().setBlockTextureName(Aether.find("medium_blueberry_bush")));
@@ -511,7 +511,7 @@ public class BlocksAether {
 		divine_aether_tallgrass = register("divine_aether_tallgrass", new BlockDivineAetherTallGrass().setBlockTextureName(Aether.find("divine_grass")));
 		purple_flower = register("purple_flower", new BlockAetherFlower().setBlockTextureName(Aether.find("purple_flower")));
 		white_flower = register("white_flower", new BlockAetherFlower().setBlockTextureName(Aether.find("white_flower")));
-		white_rose = register("white_rose", new BlockAetherFlower().setBlockTextureName(Aether.find("white_rose")));
+		white_rose = register("white_rose", new BlockAetherFlower().setBlockTextureName("aether:flowers/white_rose"));// could re-findII this
 		aechor_sprout = register("aechor_sprout", new BlockAetherFlower().setBlockTextureName(Aether.find("aechor_sprout")));
 		blue_swingtip = register("blue_swingtip", new BlockAetherFlower().setBlockTextureName(Aether.find("blue_swingtip")));
 		neverbloom = register("neverbloom", new BlockAetherFlower().setBlockTextureName(Aether.find("neverbloom")));	
@@ -821,10 +821,10 @@ public class BlocksAether {
 		divine_oak_double_slab = register("divine_oak_double_slab", new BlockAetherSlab("divine_oak_double_slab", true, Material.rock).setBlockTextureName(Aether.find("divine_oak_planks")).setHardness(2.0F).setResistance(10.0F)).setCreativeTab(null);
 		divine_oak_slab = registerSlab("divine_oak_slab", new BlockAetherSlab("divine_oak_slab", false, Material.rock).setBlockTextureName(Aether.find("divine_oak_planks")).setHardness(0.5F).setResistance(10.0F), divine_oak_double_slab);
 		
-		greatroot_double_slab = register("greatroot_double_slab", new BlockAetherSlab("greatroot_double_slab", true, Material.wood).setBlockTextureName(Aether.find("greatroot_planks")).setHardness(2.0F).setResistance(10.0F)).setCreativeTab(null);
-		greatroot_slab = registerSlab("greatroot_slab", new BlockAetherSlab("greatroot_slab", false, Material.wood).setBlockTextureName(Aether.find("greatroot_planks")).setHardness(2.0F).setResistance(5.0F), greatroot_double_slab);
-		wisproot_double_slab = register("wisproot_double_slab", new BlockAetherSlab("wisproot_double_slab", true, Material.wood).setBlockTextureName(Aether.find("wisproot_planks")).setHardness(2.0F).setResistance(10.0F)).setCreativeTab(null);
-		wisproot_slab = registerSlab("wisproot_slab", new BlockAetherSlab("wisproot_slab", false, Material.wood).setBlockTextureName(Aether.find("wisproot_planks")).setHardness(2.0F).setResistance(5.0F), wisproot_double_slab);
+		greatroot_double_slab = register("greatroot_double_slab", new BlockAetherSlab("greatroot_double_slab", true, Material.wood).setBlockTextureName(Aether.findII("dark_skyroot_planks/greatroot_planks")).setHardness(2.0F).setResistance(10.0F)).setCreativeTab(null);
+		greatroot_slab = registerSlab("greatroot_slab", new BlockAetherSlab("greatroot_slab", false, Material.wood).setBlockTextureName(Aether.findII("dark_skyroot_planks/greatroot_planks")).setHardness(2.0F).setResistance(5.0F), greatroot_double_slab);
+		wisproot_double_slab = register("wisproot_double_slab", new BlockAetherSlab("wisproot_double_slab", true, Material.wood).setBlockTextureName(Aether.findII("light_skyroot_planks/wisproot_planks")).setHardness(2.0F).setResistance(10.0F)).setCreativeTab(null);
+		wisproot_slab = registerSlab("wisproot_slab", new BlockAetherSlab("wisproot_slab", false, Material.wood).setBlockTextureName(Aether.findII("light_skyroot_planks/wisproot_planks")).setHardness(2.0F).setResistance(5.0F), wisproot_double_slab);
 		void_double_slab = register("void_double_slab", new BlockAetherSlab("void_double_slab", true, Material.wood).setBlockTextureName(Aether.find("void_planks")).setHardness(2.0F).setResistance(10.0F)).setCreativeTab(null);
 		void_slab = registerSlab("void_slab", new BlockAetherSlab("void_slab", false, Material.wood).setBlockTextureName(Aether.find("void_planks")).setHardness(2.0F).setResistance(5.0F), void_double_slab);
 		
@@ -836,10 +836,10 @@ public class BlocksAether {
 		enchanted_deific_slab = registerSlab("enchanted_deific_slab", new BlockAetherSlab("enchanted_deific_slab", false, Material.rock).setBlockTextureName(Aether.find("enchanted_deific")).setHardness(5.5F).setResistance(7.0F), enchanted_deific_double_slab);			
 		enchanted_deific_brick_double_slab = register("enchanted_deific_brick_double_slab", new BlockAetherSlab("enchanted_deific_brick_double_slab", true, Material.rock).setBlockTextureName(Aether.find("enchanted_deific_bricks")).setHardness(5.5F).setResistance(7.0F)).setCreativeTab(null);
 		enchanted_deific_brick_slab = registerSlab("enchanted_deific_brick_slab", new BlockAetherSlab("enchanted_deific_brick_slab", false, Material.rock).setBlockTextureName(Aether.find("enchanted_deific_bricks")).setHardness(5.5F).setResistance(7.0F), enchanted_deific_brick_double_slab);		
-		enchanted_holystone_double_slab = register("enchanted_holystone_double_slab", new BlockAetherSlab("enchanted_holystone_double_slab", true, Material.rock).setBlockTextureName(Aether.find("enchanted_holystone")).setHardness(2.0F).setResistance(10.0F)).setCreativeTab(null);
-		enchanted_holystone_slab = registerSlab("enchanted_holystone_slab", new BlockAetherSlab("enchanted_holystone_slab", false, Material.rock).setBlockTextureName(Aether.find("enchanted_holystone")).setHardness(2.0F).setResistance(5.0F), enchanted_holystone_double_slab);
-		enchanted_holystone_brick_double_slab = register("enchanted_holystone_brick_double_slab", new BlockAetherSlab("enchanted_holystone_brick_double_slab", true, Material.rock).setBlockTextureName(Aether.find("enchanted_holystone_bricks")).setHardness(2.0F).setResistance(10.0F)).setCreativeTab(null);
-		enchanted_holystone_brick_slab = registerSlab("enchanted_holystone_brick_slab", new BlockAetherSlab("enchanted_holystone_brick_slab", false, Material.rock).setBlockTextureName(Aether.find("enchanted_holystone_bricks")).setHardness(2.0F).setResistance(5.0F), enchanted_holystone_brick_double_slab);
+		enchanted_holystone_double_slab = register("enchanted_holystone_double_slab", new BlockAetherSlab("enchanted_holystone_double_slab", true, Material.rock).setBlockTextureName(Aether.findII("agiosite")).setHardness(2.0F).setResistance(10.0F)).setCreativeTab(null);
+		enchanted_holystone_slab = registerSlab("enchanted_holystone_slab", new BlockAetherSlab("enchanted_holystone_slab", false, Material.rock).setBlockTextureName(Aether.findII("agiosite")).setHardness(2.0F).setResistance(5.0F), enchanted_holystone_double_slab);
+		enchanted_holystone_brick_double_slab = register("enchanted_holystone_brick_double_slab", new BlockAetherSlab("enchanted_holystone_brick_double_slab", true, Material.rock).setBlockTextureName(Aether.findII("agiosite_brick")).setHardness(2.0F).setResistance(10.0F)).setCreativeTab(null);
+		enchanted_holystone_brick_slab = registerSlab("enchanted_holystone_brick_slab", new BlockAetherSlab("enchanted_holystone_brick_slab", false, Material.rock).setBlockTextureName(Aether.findII("agiosite_brick")).setHardness(2.0F).setResistance(5.0F), enchanted_holystone_brick_double_slab);
 	
 	}
 

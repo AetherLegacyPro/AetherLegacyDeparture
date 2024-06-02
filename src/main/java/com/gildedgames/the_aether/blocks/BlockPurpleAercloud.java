@@ -28,7 +28,7 @@ public class BlockPurpleAercloud extends Block implements IColoredBlock, INamedB
 
 		this.setHardness(0.2F);
 		this.setStepSound(soundTypeCloth);
-		this.setBlockTextureName("aether_legacy:purple_aercloud");
+		this.setBlockTextureName("aether:aercloud/purple_aercloud_up");
 	}
 
 	@SideOnly(Side.CLIENT)

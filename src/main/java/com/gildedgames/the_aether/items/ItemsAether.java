@@ -654,11 +654,11 @@ public class ItemsAether {
 		enchanted_thunderlo = register("enchanted_thunderlo", new ItemAetherFood(6).setTextureName(Aether.find("food/enchanted_thunderlo")));
 		raw_aerwhale = register("raw_aerwhale", new ItemAetherFood(3).setTextureName(Aether.find("food/raw_aerwhale")));
 		enchanted_aerwhale = register("enchanted_aerwhale", new ItemAetherFood(9).setTextureName(Aether.find("food/cooked_aerwhale")));
-		wynberry = register("wynberry", new ItemWynberry().setTextureName(Aether.find("food/wynberry")));
+		wynberry = register("wynberry", new ItemWynberry().setTextureName(Aether.findII("../consumables/wyndberry")));
 		rainbow_strawberry = register("rainbow_strawberry", new ItemRainbowStrawberry().setTextureName(Aether.find("food/rainbow_strawberry")));
 		strawberry = register("strawberry", new ItemAetherFood(1).setTextureName(Aether.find("food/strawberry")));
 		enchanted_strawberry = register("enchanted_strawberry", new ItemAetherFood(6).setTextureName(Aether.find("food/enchanted_strawberry")));
-		orange = register("orange", new ItemAetherFood(2).setTextureName(Aether.find("food/orange")));
+		orange = register("orange", new ItemAetherFood(2).setTextureName(Aether.findII("../consumables/orange")));
 		enchanted_orange = register("enchanted_orange", new ItemAetherFood(7).setTextureName(Aether.find("food/enchanted_orange")));
 		raspberry = register("raspberry", new ItemAetherFood(1).setTextureName(Aether.find("food/raspberry")));
 		enchanted_raspberry = register("enchanted_raspberry", new ItemAetherFood(5).setTextureName(Aether.find("food/enchanted_raspberry")));
@@ -798,7 +798,7 @@ public class ItemsAether {
 		ascensite_gloves = register("ascensite_gloves", new ItemAccessory(AccessoryType.GLOVES).setAmplifiedDungeonLoot().setTexture("ascensite").setMaxDamage(8182).setTextureName(Aether.find("accessories/ascensite_gloves")));	
 		}
 		
-		zanite_gloves = register("zanite_gloves", new ItemAccessory(AccessoryType.GLOVES).setTexture("zanite").setMaxDamage(152).setTextureName(Aether.findII("accessories/zanite_gloves")));
+		zanite_gloves = register("zanite_gloves", new ItemAccessory(AccessoryType.GLOVES).setTexture("zanite").setMaxDamage(152).setTextureName(Aether.find("accessories/zanite_gloves")));
 		amplified_zanite_gloves = register("amplified_zanite_gloves", new ItemAccessory(AccessoryType.GLOVES).setAmplifiedDungeonLoot().setTexture("amplified_zanite").setMaxDamage(752).setTextureName(Aether.find("accessories/amplified_zanite_gloves")));
 		arkenium_gloves = register("arkenium_gloves", new ItemAccessory(AccessoryType.GLOVES).setColor(0x4C4A50).setMaxDamage(252).setTextureName(Aether.find("accessories/arkenium_gloves")));
 		amplified_arkenium_gloves = register("amplified_arkenium_gloves", new ItemAccessory(AccessoryType.GLOVES).setAmplifiedDungeonLoot().setColor(0x475855).setMaxDamage(752).setTextureName(Aether.find("accessories/amplified_arkenium_gloves")));		
@@ -811,7 +811,7 @@ public class ItemsAether {
 		amplified_neptune_gloves = register("amplified_neptune_gloves", new ItemAccessory(AccessoryType.GLOVES).setTexture("amplified_neptune").setAmplifiedDungeonLoot().setMaxDamage(972).setTextureName(Aether.find("accessories/amplified_neptune_gloves")));
 		phoenix_gloves = register("phoenix_gloves", new ItemAccessory(AccessoryType.GLOVES).setTexture("phoenix").setDungeonLoot().setMaxDamage(372).setTextureName(Aether.find("accessories/phoenix_gloves")));
 		amplified_phoenix_gloves = register("amplified_phoenix_gloves", new ItemAccessory(AccessoryType.GLOVES).setTexture("amplified_phoenix").setAmplifiedDungeonLoot().setMaxDamage(972).setTextureName(Aether.find("accessories/amplified_phoenix_gloves")));
-		obsidian_gloves = register("obsidian_gloves", new ItemAccessory(AccessoryType.GLOVES).setDungeonLoot().setColor(0x1b1447).setMaxDamage(672).setTextureName(Aether.findII("accessories/solid_gloves")));
+		obsidian_gloves = register("obsidian_gloves", new ItemAccessory(AccessoryType.GLOVES).setDungeonLoot().setColor(0x1b1447).setMaxDamage(672).setTextureName(Aether.find("accessories/solid_gloves")));
 		amplified_obsidian_gloves = register("amplified_obsidian_gloves", new ItemAccessory(AccessoryType.GLOVES).setAmplifiedDungeonLoot().setColor(0x5b2c63).setMaxDamage(972).setTextureName(Aether.find("accessories/solid_gloves")));
 		valkyrie_gloves = register("valkyrie_gloves", new ItemAccessory(AccessoryType.GLOVES).setDungeonLoot().setTexture("valkyrie").setMaxDamage(372).setTextureName(Aether.find("accessories/valkyrie_gloves")));
 		amplified_valkyrie_gloves = register("amplified_valkyrie_gloves", new ItemAccessory(AccessoryType.GLOVES).setAmplifiedDungeonLoot().setTexture("amplified_valkyrie").setMaxDamage(972).setTextureName(Aether.find("accessories/amplified_valkyrie_gloves")));		

@@ -13,7 +13,7 @@ import com.gildedgames.the_aether.blocks.BlocksAether;
 public class BlockAetherFenceGreatroot extends BlockFence {
 
 	public BlockAetherFenceGreatroot() {
-		super(Aether.find("greatroot_planks"), Material.wood);
+		super(Aether.findII("dark_skyroot_planks/greatroot_planks"), Material.wood);
 
 		this.setHardness(2.0F);
 		this.setResistance(5.0F);

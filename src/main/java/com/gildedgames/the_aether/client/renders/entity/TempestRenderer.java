@@ -69,7 +69,14 @@ public class TempestRenderer extends RenderLiving
     }
     
     static {
-        TEXTURE = new ResourceLocation("aether_legacy", "textures/entities/tempest/tempest.png");
-        TEXTURE_GLOW = new ResourceLocation("aether_legacy", "textures/entities/tempest/glow.png");
+		/*
+		tempest_insect_glow.png
+		tempest_shell_glow.png
+		tempest_shell.png
+		tempest_insect.png
+		*/
+		// not sure if we should use 'shell' or 'insect' here
+        TEXTURE = new ResourceLocation("aether", "textures/entities/tempest/tempest_shell.png");
+        TEXTURE_GLOW = new ResourceLocation("aether", "textures/entities/tempest/tempest_shell_glow.png");
     }
 }

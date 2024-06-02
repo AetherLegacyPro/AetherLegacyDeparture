@@ -28,7 +28,7 @@ public class BlockStormAercloud extends Block implements IColoredBlock, INamedBl
 
 		this.setHardness(0.2F);
 		this.setStepSound(soundTypeCloth);
-		this.setBlockTextureName("aether_legacy:storm_aercloud");
+		this.setBlockTextureName("aether:aercloud/storm_aercloud");
 	}
 
 	@SideOnly(Side.CLIENT)

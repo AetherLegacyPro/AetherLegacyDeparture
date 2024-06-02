@@ -27,7 +27,7 @@ public class ItemWynberry extends ItemAetherFood {
 
 		this.setHasSubtypes(false);
 		this.setCreativeTab(AetherCreativeTabs.food);
-		this.setTextureName(Aether.find("food/wynberry"));
+		this.setTextureName(Aether.findII("../consumables/wyndberry"));
 	}
 
 	@Override
@@ -35,7 +35,7 @@ public class ItemWynberry extends ItemAetherFood {
 	public void registerIcons(IIconRegister registry) {
 		super.registerIcons(registry);
 
-		this.alternativeIcon = registry.registerIcon(Aether.find("food/wynberry"));
+		this.alternativeIcon = registry.registerIcon(Aether.findII("../consumables/wyndberry"));
 	}
 	
 	@Override

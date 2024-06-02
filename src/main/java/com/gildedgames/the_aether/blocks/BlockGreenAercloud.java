@@ -28,7 +28,7 @@ public class BlockGreenAercloud extends Block implements IColoredBlock, INamedBl
 
 		this.setHardness(0.2F);
 		this.setStepSound(soundTypeCloth);
-		this.setBlockTextureName("aether_legacy:green_aercloud");
+		this.setBlockTextureName("aether:aercloud/green_aercloud");
 	}
 
 	@SideOnly(Side.CLIENT)

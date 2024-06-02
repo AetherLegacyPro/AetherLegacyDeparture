@@ -40,7 +40,7 @@ public class BlockAercloudLayer7 extends Block
         this.setStepSound(soundTypeCloth);
         this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.875F, 1.0F);
         this.setCreativeTab(AetherCreativeTabs.blocks);
-        this.setBlockTextureName("aether_legacy:aercloud_layer");
+        this.setBlockTextureName("aether:aercloud/cold_aercloud");
     }
 
     @SideOnly(Side.CLIENT)

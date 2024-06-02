@@ -15,7 +15,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class AerwhaleMountRenderer extends RenderLiving {
 
-    private static final ResourceLocation TEXTURE = Aether.locate("textures/entities/aerwhale_mount/aerwhale_mount.png");
+    private static final ResourceLocation TEXTURE = Aether.locate("textures/entities/aerwhale/aerwhale.png");
 
     private static final ResourceLocation TEXTURE_SADDLE = Aether.locate("textures/entities/aerwhale_mount/aerwhale_saddle.png");
     

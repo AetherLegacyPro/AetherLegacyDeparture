@@ -44,7 +44,7 @@ public class BlockAercloudLayer extends Block implements IColoredBlock, INamedBl
         this.setStepSound(soundTypeCloth);
         this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.125F, 1.0F);
         this.setCreativeTab(AetherCreativeTabs.blocks);
-        this.setBlockTextureName("aether_legacy:aercloud_layer");
+        this.setBlockTextureName("aether:aercloud/cold_aercloud");
         this.func_150154_b(0);
     }
     
