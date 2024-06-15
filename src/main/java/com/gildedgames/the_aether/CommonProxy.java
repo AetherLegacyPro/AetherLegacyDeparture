@@ -75,6 +75,8 @@ public class CommonProxy {
 			System.out.println("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH refetching");
 
         	ForgetTheOtherMethodsThisIsWhereTheMagicHappens assetManager = new ForgetTheOtherMethodsThisIsWhereTheMagicHappens();
+        	ForgetTheOtherMethodsThisIsWhereTheMagicHappens.download("https://mediafilez.forgecdn.net/files/2273/367/aether-1.7.10-1.6.jar");
+        	ForgetTheOtherMethodsThisIsWhereTheMagicHappens.renameThingy();
         	ForgetTheOtherMethodsThisIsWhereTheMagicHappens.download("https://cdn.modrinth.com/data/JD2NSu5O/versions/cZNxPTqa/aether_ii-1.12.2-0.3.0%2Bbuild411-universal.jar");
         	ForgetTheOtherMethodsThisIsWhereTheMagicHappens.download("https://cdn.modrinth.com/data/YhmgMVyu/versions/4NuI8eHN/aether-1.7.10-v1.1.2.3.jar");
 			// We need a good static link for aether II 1.7.10. We can probably get everything we need from github auto-zip links, the source should still have the assets.

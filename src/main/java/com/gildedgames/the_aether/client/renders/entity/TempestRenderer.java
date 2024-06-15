@@ -75,8 +75,8 @@ public class TempestRenderer extends RenderLiving
 		tempest_shell.png
 		tempest_insect.png
 		*/
-		// not sure if we should use 'shell' or 'insect' here
-        TEXTURE = new ResourceLocation("aether", "textures/entities/tempest/tempest_shell.png");
-        TEXTURE_GLOW = new ResourceLocation("aether", "textures/entities/tempest/tempest_shell_glow.png");
+		// not sure if we should use 'shell' or 'insect' here   textures/mobs/tempest/glow.png
+        TEXTURE = new ResourceLocation("aetherii", "textures/mobs/tempest/tempest.png");
+        TEXTURE_GLOW = new ResourceLocation("aetherii", "textures/mobs/tempest/glow.png");
     }
 }

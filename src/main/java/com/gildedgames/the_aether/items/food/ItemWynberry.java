@@ -17,6 +17,22 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+
+
+
+
+
+import net.minecraft.client.renderer.entity.*;
+import net.minecraft.util.*;
+import net.minecraft.client.model.*;
+import org.lwjgl.opengl.*;
+
+import com.gildedgames.the_aether.client.models.entities.TempestModel;
+import com.gildedgames.the_aether.entities.hostile.EntityTempest;
+
+import net.minecraft.client.renderer.*;
+import net.minecraft.entity.*;
+
 public class ItemWynberry extends ItemAetherFood {
 
 	@SideOnly(Side.CLIENT)
@@ -27,7 +43,8 @@ public class ItemWynberry extends ItemAetherFood {
 
 		this.setHasSubtypes(false);
 		this.setCreativeTab(AetherCreativeTabs.food);
-		this.setTextureName(Aether.findII("../consumables/wyndberry"));
+		//this.setTextureName(Aether.findII("../consumables/wyndberry"));
+		this.setTextureName(("aether:consumables/wyndberry"));
 	}
 
 	@Override
@@ -35,7 +52,7 @@ public class ItemWynberry extends ItemAetherFood {
 	public void registerIcons(IIconRegister registry) {
 		super.registerIcons(registry);
 
-		this.alternativeIcon = registry.registerIcon(Aether.findII("../consumables/wyndberry"));
+		this.alternativeIcon = registry.registerIcon("aether:consumables/wyndberry");
 	}
 	
 	@Override

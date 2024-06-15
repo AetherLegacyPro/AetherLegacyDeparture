@@ -343,6 +343,7 @@ public class ForgetTheOtherMethodsThisIsWhereTheMagicHappens {
 		// copy files, recursively. who tf invented java this is the most liberal way to do this ever
 		copyFolder(Paths.get(System.getProperty("user.dir") + "/cow/assets/aether"), Paths.get(System.getProperty("user.dir") + "/unpack/assets/aether"));
 		copyFolder(Paths.get(System.getProperty("user.dir") + "/cow/assets/aether_legacy"), Paths.get(System.getProperty("user.dir") + "/unpack/assets/aether_legacy"));
+		copyFolder(Paths.get(System.getProperty("user.dir") + "/cow/assets/aetherii"), Paths.get(System.getProperty("user.dir") + "/unpack/assets/aetherii"));
 
 		compress((System.getProperty("user.dir") + "/unpack"));
 
@@ -512,5 +513,11 @@ public class ForgetTheOtherMethodsThisIsWhereTheMagicHappens {
 	        // Delete the empty directory
 	        Files.delete(directory);
     	}
+	}
+
+	public static void renameThingy() {
+		File oldFolder = new File((System.getProperty("user.dir") + "/cow/assets/aether/"));
+        File newFolder = new File((System.getProperty("user.dir") + "/cow/assets/aetherii/"));
+		oldFolder.renameTo(newFolder);
 	}
 }

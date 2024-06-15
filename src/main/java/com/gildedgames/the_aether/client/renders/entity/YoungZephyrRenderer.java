@@ -60,6 +60,6 @@ public class YoungZephyrRenderer extends RenderLiving
     }
     
     static {
-        TEXTURE = new ResourceLocation("aether", "textures/entities/zephyr/zephyr_shell.png");
+        TEXTURE = new ResourceLocation("aetherii", "textures/mobs/zephyr/zephyr.png");
     }
 }
