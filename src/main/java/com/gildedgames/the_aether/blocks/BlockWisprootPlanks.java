@@ -14,7 +14,7 @@ public class BlockWisprootPlanks extends Block {
 		this.setHardness(1F);
 		this.setStepSound(soundTypeWood);
 		this.setHarvestLevel("axe", 0);
-		this.setBlockTextureName("aether:light_skyroot_planks/wisproot_planks");
+		this.setBlockTextureName("aether_legacy:wisproot_planks");
 	}
 
 }

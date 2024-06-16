@@ -95,6 +95,10 @@ public class Aether {
 	}
 
 	public static ResourceLocation locateII(String location) {
+		return new ResourceLocation("aetherii", location);
+	}
+	
+	public static ResourceLocation locateHighlands(String location) {
 		return new ResourceLocation("aether", location);
 	}
 	
@@ -108,6 +112,10 @@ public class Aether {
 	}
 
 	public static String findII(String location) {
+		return "aetherii:" + location;
+	}
+	
+	public static String findHighlands(String location) {
 		return "aether:" + location;
 	}
 

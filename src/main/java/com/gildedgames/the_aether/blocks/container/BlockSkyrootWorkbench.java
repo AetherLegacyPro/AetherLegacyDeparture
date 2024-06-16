@@ -35,9 +35,9 @@ public class BlockSkyrootWorkbench extends BlockWorkbench
     
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(final IIconRegister par1IIconRegister) {
-        this.blockIcon = par1IIconRegister.registerIcon("aether:crafting_tables/skyroot_crafting_table_side");
-        this.field_94385_a = par1IIconRegister.registerIcon("aether:crafting_tables/skyroot_crafting_table_top");
-        this.field_94384_b = par1IIconRegister.registerIcon("aether:crafting_tables/skyroot_crafting_table_front");
+    	this.blockIcon = par1IIconRegister.registerIcon(Aether.findII("Skyroot Workbench Side"));
+        this.field_94385_a = par1IIconRegister.registerIcon(Aether.findII("Skyroot Workbench Top"));
+        this.field_94384_b = par1IIconRegister.registerIcon(Aether.findII("Skyroot Workbench Front"));
     }
     
     public boolean onBlockActivated(final World world, final int x, final int y, final int z, final EntityPlayer player, final int par6, final float par7, final float par8, final float par9) {

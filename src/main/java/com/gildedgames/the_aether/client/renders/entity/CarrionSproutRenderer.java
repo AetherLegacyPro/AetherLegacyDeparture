@@ -60,6 +60,6 @@ public class CarrionSproutRenderer extends RenderLiving
     }
     
     static {
-        TEXTURE = new ResourceLocation("aether", "textures/entities/carrion_sprout/carrion_sprout.png");
+        TEXTURE = new ResourceLocation("aetherii", "textures/mobs/carrionsprout/sprout.png");
     }
 }

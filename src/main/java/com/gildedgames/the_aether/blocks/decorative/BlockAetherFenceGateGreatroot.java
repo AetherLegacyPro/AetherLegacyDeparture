@@ -17,7 +17,7 @@ public class BlockAetherFenceGateGreatroot extends BlockFenceGate {
 		this.setHardness(2.0F);
 		this.setResistance(5.0F);
 		this.setStepSound(soundTypeWood);
-		this.setBlockTextureName(Aether.findII("dark_skyroot_planks/greatroot_planks"));
+		this.setBlockTextureName(Aether.find("greatroot_planks"));
 	}
 
 	@Override

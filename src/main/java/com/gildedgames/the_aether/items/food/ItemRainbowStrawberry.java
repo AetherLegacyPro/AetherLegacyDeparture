@@ -27,7 +27,7 @@ public class ItemRainbowStrawberry extends ItemAetherFood {
 
 		this.setHasSubtypes(false);
 		this.setCreativeTab(AetherCreativeTabs.food);
-		this.setTextureName(Aether.find("food/rainbow_strawberry"));
+		this.setTextureName(Aether.findII("Rainbow Strawberry"));
 	}
 
 	@Override
@@ -35,7 +35,7 @@ public class ItemRainbowStrawberry extends ItemAetherFood {
 	public void registerIcons(IIconRegister registry) {
 		super.registerIcons(registry);
 
-		this.alternativeIcon = registry.registerIcon(Aether.find("food/rainbow_strawberry"));
+		this.alternativeIcon = registry.registerIcon(Aether.findII("Rainbow Strawberry"));
 	}
 	
 	@Override

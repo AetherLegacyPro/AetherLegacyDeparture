@@ -13,11 +13,11 @@ import org.lwjgl.opengl.GL11;
 
 public class BattleSentryRenderer extends RenderLiving {
 
-	private static final ResourceLocation TEXTURE = Aether.locate("textures/entities/battle_sentry/sentry_melee.png");
+	private static final ResourceLocation TEXTURE = Aether.locate("textures/entities/battle_sentry/sentry_melee_new.png");
 
-    private static final ResourceLocation TEXTURE_LIT = Aether.locate("textures/entities/battle_sentry/sentry_melee_lit.png");
+    private static final ResourceLocation TEXTURE_LIT = Aether.locate("textures/entities/battle_sentry/sentry_melee_lit_new.png");
 
-    private static final ResourceLocation TEXTURE_EYE = Aether.locate("textures/entities/battle_sentry/eye.png");
+    private static final ResourceLocation TEXTURE_EYE = Aether.locate("textures/entities/battle_sentry/eye_new.png");
 
 	public BattleSentryRenderer() {
 		super(new ModelSlime(0), 0.3F);

@@ -14,7 +14,7 @@ public class BlockGreatrootPlanks extends Block {
 		this.setHardness(1F);
 		this.setStepSound(soundTypeWood);
 		this.setHarvestLevel("axe", 0);
-		this.setBlockTextureName("aether:dark_skyroot_planks/greatroot_planks");
+		this.setBlockTextureName("aether_legacy:greatroot_planks");
 	}
 
 }

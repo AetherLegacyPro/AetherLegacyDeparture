@@ -101,8 +101,8 @@ public class TileEntitySkyrootChestRenderer extends TileEntitySpecialRenderer
   }
   
   static {
-      TEXTURE_DOUBLE = new ResourceLocation("aether", "textures/tile_entities/skyroot_large_chest.png");
-      TEXTURE_SINGLE = new ResourceLocation("aether", "textures/tile_entities/skyroot_chest.png");
+      TEXTURE_DOUBLE = new ResourceLocation("aetherii", "textures/tile_entities/skyrootLargeChest.png");
+      TEXTURE_SINGLE = new ResourceLocation("aetherii", "textures/tile_entities/skyrootChest.png");
   }
 }
 

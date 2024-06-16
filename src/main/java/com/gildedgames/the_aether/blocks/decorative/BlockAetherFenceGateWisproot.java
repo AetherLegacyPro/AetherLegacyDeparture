@@ -17,7 +17,7 @@ public class BlockAetherFenceGateWisproot extends BlockFenceGate {
 		this.setHardness(2.0F);
 		this.setResistance(5.0F);
 		this.setStepSound(soundTypeWood);
-		this.setBlockTextureName(Aether.findII("light_skyroot_planks/wisproot_planks"));
+		this.setBlockTextureName(Aether.find("wisproot_planks"));
 	}
 
 	@Override

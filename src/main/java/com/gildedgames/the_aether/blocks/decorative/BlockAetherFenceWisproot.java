@@ -13,7 +13,7 @@ import com.gildedgames.the_aether.blocks.BlocksAether;
 public class BlockAetherFenceWisproot extends BlockFence {
 
 	public BlockAetherFenceWisproot() {
-		super(Aether.findII("light_skyroot_planks/wisproot_planks"), Material.wood);
+		super(Aether.find("wisproot_planks"), Material.wood);
 
 		this.setHardness(2.0F);
 		this.setResistance(5.0F);
