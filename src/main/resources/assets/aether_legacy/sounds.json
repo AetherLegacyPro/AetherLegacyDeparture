@@ -35,6 +35,27 @@
 	  }
 	]
   },
+  
+  "music.night1": {
+    "category": "music",
+    "sounds": [
+      {
+        "name": "aetherii:music/night1",
+        "stream": true
+      }
+    ]
+  },
+  
+  "music.night2": {
+    "category": "music",
+    "sounds": [
+      {
+        "name": "aetherii:music/night2",
+        "stream": true
+      }
+    ]
+  },
+  
   "music.menu": {
 	"category": "music",
 	"sounds": [
@@ -79,7 +100,26 @@
 	    "stream": true
 	  }
 	]
+  },  
+   "music.aether5": {
+    "category": "music",
+    "sounds": [
+      {
+        "name": "aetherii:music/day3",
+        "stream": true
+      }
+    ]
+  },    
+   "music.aether6": {
+    "category": "music",
+    "sounds": [
+      {
+        "name": "aetherii:music/day6",
+        "stream": true
+      }
+    ]
   },
+  
   "achievement": {
   	"category": "player",
 	"sounds": [
@@ -153,14 +193,14 @@
     "category": "hostile",
     "subtitle": "subtitles.aemob.zephyr.blow",
     "sounds": [
-        "aether_legacy:aemob/zephyr/blow"
+        "aetherii:aemob/zephyr/blow"
     ]
   },  
   "aemob.zephyr.puff": {
     "category": "hostile",
     "subtitle": "subtitles.aemob.zephyr.puff",
     "sounds": [
-        "aether_legacy:aemob/zephyr/puff"
+        "aetherii:aemob/zephyr/puff"
     ]
   },
   "aemob.aerwhale.call": {
@@ -462,20 +502,20 @@
   "aeportal.aeportal": {
         "category": "neutral",
         "sounds": [
-            "aeportal/aeportal"
+            "aetherii:aeportal/aeportal"
         ]
     },
     
    "aeportal.aetravel": {
         "category": "neutral",
         "sounds": [
-            "aeportal/aetravel"
+            "aetherii:aeportal/aetravel"
         ]
     },
    "aeportal.aetrigger": {
         "category": "neutral",
         "sounds": [
-            "aeportal/aetrigger"
+            "aetherii:aeportal/aetrigger"
         ]
     }
 }

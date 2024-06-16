@@ -126,7 +126,7 @@ public class EntitiesAether {
 		register(EntitySwet.class, "swet", 6, 0xcdda4f, 0x4fb1da);
 		register(EntityCockatrice.class, "cockatrice", 7, 0x6cb15c, 0x6c579d);
 		register(EntitySentry.class, "sentry", 8, 0x838c9a, 0x2561ba);
-		register(EntityBattleSentry.class, "battle_sentry", 52, 0x838c9a, 0x3bb31f);
+		register(EntityBattleSentry.class, "battle_sentry", 52, 0x838c9a, 0x286c78);
 		register(EntityZephyr.class, "zephyr", 9, 0xdfdfdf, 0x99cfe8);
 		register(EntityYoungZephyr.class, "young_zephyr", 35, 0xb8b5ab, 0x988c65);
 		register(EntityTempest.class, "tempest", 53, 0x2a2838, 0x494089);
@@ -161,7 +161,7 @@ public class EntitiesAether {
 		register(EntitySunSpirit.class, "sun_spirit", 14, 80, 3, true);
 		register(EntityAncientSunSpirit.class, "ancient_sun_spirit", 56, 80, 3, true);
 		register(EntityDivineSunSpirit.class, "divine_sun_spirit", 63, 80, 3, true);
-		register(EntityGenesisDragon.class, "genesis_dragon", 42, 0x1020FF, 0x1247AB);
+		register(EntityGenesisDragon.class, "genesis_dragon", 42, 80, 3, true);
 		register(EntityLurker.class, "aer_lurker", 64, 80, 3, true);
 
 		register(EntityDartGolden.class, "golden_dart", 15, 64, 20, false);

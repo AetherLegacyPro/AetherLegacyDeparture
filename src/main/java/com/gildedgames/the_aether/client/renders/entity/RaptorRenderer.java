@@ -13,7 +13,7 @@ import org.lwjgl.opengl.GL11;
 
 public class RaptorRenderer extends RenderLiving {
 
-    private static final ResourceLocation TEXTURE = Aether.locate("textures/entities/raptor/raptor.png");
+    private static final ResourceLocation TEXTURE = Aether.locate("textures/entities/moa/raptor.png");
 
     public RaptorRenderer() {
         super(new RaptorModel(), 1.0F);

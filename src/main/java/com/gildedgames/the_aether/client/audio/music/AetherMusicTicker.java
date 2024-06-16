@@ -88,9 +88,11 @@ public class AetherMusicTicker implements IUpdatePlayerListBox {
 	}
 
 	public AetherMusicTicker.TrackType getRandomTrack() {
-		int num = this.rand.nextInt(4);
+		int num = this.rand.nextInt(8);
 
-		return num == 0 ? TrackType.TRACK_ONE : num == 1 ? TrackType.TRACK_TWO : num == 2 ? TrackType.TRACK_THREE : TrackType.TRACK_FOUR;
+		return num == 0 ? TrackType.TRACK_ONE : num == 1 ? TrackType.TRACK_TWO : num == 2 ? TrackType.TRACK_THREE 
+				: num == 3 ? TrackType.TRACK_THREE : num == 4 ? TrackType.TRACK_FOUR : num == 5 ? TrackType.TRACK_FIVE
+				: num == 6 ? TrackType.TRACK_SIX : num == 7 ? TrackType.TRACK_SEVEN: TrackType.TRACK_EIGHT;
 	}
 
 	public void playMusic(TrackType requestedMusicType) {
@@ -147,6 +149,13 @@ public class AetherMusicTicker implements IUpdatePlayerListBox {
 		TRACK_TWO(Aether.locate("music.aether2"), 1200, 1500),
 		TRACK_THREE(Aether.locate("music.aether3"), 1200, 1500),
 		TRACK_FOUR(Aether.locate("music.aether4"), 1200, 1500),
+		
+		//new tracks from Aether II
+		TRACK_FIVE(Aether.locate("music.aether5"), 1200, 1500),
+		TRACK_SIX(Aether.locate("music.aether6"), 1200, 1500),		
+		TRACK_SEVEN(Aether.locate("music.night1"), 1200, 1500),
+		TRACK_EIGHT(Aether.locate("music.night2"), 1200, 1500),
+		
 		TRACK_MENU(Aether.locate("music.menu"), 1200, 1500);
 
 		private final ResourceLocation musicLocation;
