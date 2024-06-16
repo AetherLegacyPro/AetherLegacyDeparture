@@ -340,12 +340,6 @@ public class ForgetTheOtherMethodsThisIsWhereTheMagicHappens {
 
 		deleteThingies();
 
-		// copy files, recursively. who tf invented java this is the most liberal way to do this ever
-		copyFolder(Paths.get(System.getProperty("user.dir") + "/cow/assets/aether"), Paths.get(System.getProperty("user.dir") + "/unpack/assets/aether"));
-		copyFolder(Paths.get(System.getProperty("user.dir") + "/cow/assets/aether_legacy"), Paths.get(System.getProperty("user.dir") + "/unpack/assets/aether_legacy"));
-		copyFolder(Paths.get(System.getProperty("user.dir") + "/cow/assets/aetherii"), Paths.get(System.getProperty("user.dir") + "/unpack/assets/aetherii"));
-
-		compress((System.getProperty("user.dir") + "/unpack"));
 
 		// I wrote all the file BS in java so it would "just work" on windows. JAVA. and still
 		// it. does. not. work. on. windows. shelling out to the system, I should have never left you
@@ -355,8 +349,25 @@ public class ForgetTheOtherMethodsThisIsWhereTheMagicHappens {
 			//Process process = processBuilder.start();
 			//int exitCode = process.waitFor();
 			//System.out.println(exitCode);
-			Files.move(Paths.get(System.getProperty("user.dir") + "/mods/temptemptemp.zip"), Paths.get(System.getProperty("user.dir") + "/resourcepacks/AetherDepartureAssets.zip"), StandardCopyOption.REPLACE_EXISTING);
+
+
+			String packFolderStr = System.getProperty("user.dir") + "/resourcepacks/aether_departure";
+        	File packFolder = new File(packFolderStr);
+        	if (!packFolder.exists()) {
+	           	packFolder.mkdirs();
+	        }
+
+			copyFolder(Paths.get(System.getProperty("user.dir") + "/cow/assets/aether"), Paths.get(System.getProperty("user.dir") + "/resourcepacks/aether_departure/assets/aether"));
+        	copyFolder(Paths.get(System.getProperty("user.dir") + "/cow/assets/aether_legacy"), Paths.get(System.getProperty("user.dir") + "/resourcepacks/aether_departure/assets/aether_legacy"));
+        	copyFolder(Paths.get(System.getProperty("user.dir") + "/cow/assets/aetherii"), Paths.get(System.getProperty("user.dir") + "/resourcepacks/aether_departure/assets/aetherii"));
+			// I really fricking hate this
+			//Files.move(Paths.get(System.getProperty("user.dir") + "/mods/temptemptemp.zip"), Paths.get(System.getProperty("user.dir") + "/resourcepacks/AetherDepartureAssets.zip"), StandardCopyOption.REPLACE_EXISTING);
+			System.out.println("winblows");
 		} else {
+			copyFolder(Paths.get(System.getProperty("user.dir") + "/cow/assets/aether"), Paths.get(System.getProperty("user.dir") + "/unpack/assets/aether"));
+        	copyFolder(Paths.get(System.getProperty("user.dir") + "/cow/assets/aether_legacy"), Paths.get(System.getProperty("user.dir") + "/unpack/assets/aether_legacy"));
+        	copyFolder(Paths.get(System.getProperty("user.dir") + "/cow/assets/aetherii"), Paths.get(System.getProperty("user.dir") + "/unpack/assets/aetherii"));
+			compress((System.getProperty("user.dir") + "/unpack"));
 			Files.move(Paths.get(System.getProperty("user.dir") + "/mods/temptemptemp.zip"), Paths.get(jarFile.getAbsolutePath()), StandardCopyOption.REPLACE_EXISTING);
 		}
 		// also, maybe instead of checking if we're on windows we should check if the OS uses retard locks
