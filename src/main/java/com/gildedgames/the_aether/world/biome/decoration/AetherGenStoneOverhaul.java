@@ -57,7 +57,7 @@ public class AetherGenStoneOverhaul implements IWorldGenerator {
 					BlocksAether.holystone);
 			this.generateOre(BlocksAether.continuum_ore, world, rand, x, z, 1, 5, 8, 0, 128,
 					BlocksAether.holystone);
-			this.generateOre(BlocksAether.gravitite_ore, world, rand, x, z, 2, 6, 7, 8, 35,
+			this.generateOre(BlocksAether.gravitite_ore, world, rand, x, z, 1, 3, 6, 8, 35,
 					BlocksAether.holystone);
 			this.generateOre(BlocksAether.primeval_artifact, world, rand, x, z, 1, 5, 6, 0, 32,
 					BlocksAether.holystone);

@@ -116,9 +116,12 @@ public class GoldenIslandWorldGen implements IWorldGenerator {
 	            } else {
 	               blocksPerBumpBottomY1 = rand.nextInt(byte14 - byte13) + byte13;
 	            }
-
+	            
+	            if (AetherConfig.enableLogReporting() == true) {
 	            System.out.println("Enchanted island generated at (X:" + x1 + ", Z:" + z1 + ")");
 	            System.out.println("May take a moment be patient!");
+	            }
+	            
 	            Block genOre = BlocksAether.gravitite_ore;
 	            (new GoldenIsland(bumpsWide1, bumpsLong1, bumpHeightVarTop1, bumpHeightVarBottom1, bumpHeightMinTop1, bumpHeightMinBottom1, blocksPerBumpX1, blocksPerBumpZ1, blocksPerBumpTopY1, blocksPerBumpBottomY1, blurPassesTop1, blurPassesBottom1, spikeHeightVarTop1, spikeHeightVarBottom1, radialDistanceSamples1, radialDistanceMin1, radialDistanceVar1, radialDistanceScaling1, radialDistanceBlurPasses1, genOre)).generate(world, rand, x1, y1, z1);
 	            (new GoldenIsland(bumpsWide1, bumpsLong1, bumpHeightVarTop1, bumpHeightVarBottom1, bumpHeightMinTop1, bumpHeightMinBottom1, blocksPerBumpX1, blocksPerBumpZ1, blocksPerBumpTopY1, blocksPerBumpBottomY1, blurPassesTop1, blurPassesBottom1, spikeHeightVarTop1, spikeHeightVarBottom1, radialDistanceSamples1, radialDistanceMin1, radialDistanceVar1, radialDistanceScaling1, radialDistanceBlurPasses1, genOre)).generate(world, rand, x1 - 32, y1, z1 + 32);

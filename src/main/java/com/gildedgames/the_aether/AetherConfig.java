@@ -60,6 +60,7 @@ public class AetherConfig {
 	public static boolean arctic_island_enable, golden_island_enable, divine_island_enable, palladium_dungeon_enable;	
 	public static int arctic_island_rarity, golden_island_rarity, divine_island_rarity, palladium_dungeon_rarity;
 	
+	public static boolean enable_log_reporting_biomes, enable_assets_message;
 	public static boolean enable_ascensite;
 	
 	public static boolean cloud_icon;
@@ -139,6 +140,8 @@ public class AetherConfig {
 		
 		disable_trivia = config.get("Trivia", "Disable random trivia", false).getBoolean(false);
 		
+		
+		enable_log_reporting_biomes = config.getBoolean("enable_log_reporting_biomes", catWorld, true, "When large structures/biomes generation should it be reported to the log along with their xyz coords?");
 		arctic_island_enable = config.getBoolean("arctic_island_enable", catWorld, true, "Should Arctic Islands Generate?");
 		golden_island_enable = config.getBoolean("golden_island_enable", catWorld, true, "Should Golden Islands Generate?");
 		divine_island_enable = config.getBoolean("divine_island_enable", catWorld, true, "Should Divine Islands Generate?");
@@ -159,6 +162,8 @@ public class AetherConfig {
 		max_dex_shards = config.get("Gameplay", "Max Dexterity Shards", 10).getInt(10);
 		max_power_shards = config.get("Gameplay", "Max Power Shards - (If player dies they loose this)", 20).getInt(20);
 
+		enable_assets_message = config.get("Misc", "Enables message upon loading into the world informing the player to load the resource pack.", true).getBoolean(true);
+		
 		menu_enabled = config.get("Misc", "Enables the Aether Menu", false).getBoolean(false);
 		menu_button = config.get("Misc", "Enables the Aether Menu toggle button", true).getBoolean(true);
 
@@ -199,6 +204,14 @@ public class AetherConfig {
 		whirlwind_spawnrate = config.get("Spawnrates", "Whirlwind Spawnrate. 1 is always, higher numbers decrease chances.", 55).getInt(55);
 		
 		config.save();
+	}
+	
+	public static boolean enableStartupMessage() {
+		return AetherConfig.enable_assets_message;
+	}
+	
+	public static boolean enableLogReporting() {
+		return AetherConfig.enable_log_reporting_biomes;
 	}
 	
 	public static boolean enablecloudIcon() {

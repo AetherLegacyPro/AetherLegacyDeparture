@@ -9,6 +9,8 @@ import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.items.accessories.ItemAccessory;
 import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 import com.gildedgames.the_aether.registry.achievements.AetherAchievement;
+
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -17,6 +19,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.Achievement;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
@@ -72,6 +75,13 @@ public class PlayerAetherEvents {
 			{
 				playerAether.givePortalFrame();
 			}
+
+		  if (AetherConfig.enable_assets_message == true) {
+			  EntityPlayer player = event.player;
+			  player.addChatMessage(new ChatComponentText(I18n.format("gui.enable_assets")));
+			
+			  AetherConfig.enable_assets_message = false;
+		  } 
 		}
 	}
 

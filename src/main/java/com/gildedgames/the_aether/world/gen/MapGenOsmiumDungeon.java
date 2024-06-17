@@ -48,7 +48,6 @@ public class MapGenOsmiumDungeon extends MapGenStructure {
 		private int xTendency, zTendency;
 
 		public Start() {
-			System.out.println("Large Structure is generating, be patient!");
 		}
 
 		public Start(World worldIn, Random random, int chunkX, int chunkZ) {

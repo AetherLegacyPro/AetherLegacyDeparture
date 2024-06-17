@@ -38,7 +38,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-@Mod(modid = Aether.MOD_ID, version = "v1.1.2.2")
+@Mod(modid = Aether.MOD_ID, version = "v1.01")
 public class Aether {
 
 	public static final String MOD_ID = "aether_legacy";

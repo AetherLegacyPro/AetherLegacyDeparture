@@ -119,8 +119,11 @@ public class DivineIslandWorldGen implements IWorldGenerator {
 	               blocksPerBumpBottomY1 = rand.nextInt(byte14 - byte13) + byte13;
 	            }
 	            	           	            
+	            if (AetherConfig.enableLogReporting() == true) {
 		            System.out.println("Divine Island generated at (X:" + x1 + ", Z:" + z1 + ")");
 		            System.out.println("May take a moment be patient!");
+	            }
+	            	
 		            Block genOre3 = BlocksAether.amethyst_glowstone;
 		            (new DivineIsland(bumpsWide1, bumpsLong1, bumpHeightVarTop1, bumpHeightVarBottom1, bumpHeightMinTop1, bumpHeightMinBottom1, blocksPerBumpX1, blocksPerBumpZ1, blocksPerBumpTopY1, blocksPerBumpBottomY1, blurPassesTop1, blurPassesBottom1, spikeHeightVarTop1, spikeHeightVarBottom1, radialDistanceSamples1, radialDistanceMin1, radialDistanceVar1, radialDistanceScaling1, radialDistanceBlurPasses1, genOre3)).generate(world, rand, x1, y1, z1);
 		            (new DivineIsland(bumpsWide1, bumpsLong1, bumpHeightVarTop1, bumpHeightVarBottom1, bumpHeightMinTop1, bumpHeightMinBottom1, blocksPerBumpX1, blocksPerBumpZ1, blocksPerBumpTopY1, blocksPerBumpBottomY1, blurPassesTop1, blurPassesBottom1, spikeHeightVarTop1, spikeHeightVarBottom1, radialDistanceSamples1, radialDistanceMin1, radialDistanceVar1, radialDistanceScaling1, radialDistanceBlurPasses1, genOre3)).generate(world, rand, x1 - 32, y1, z1 + 32);

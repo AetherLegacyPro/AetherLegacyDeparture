@@ -118,8 +118,11 @@ public class ArcticIslandWorldGen implements IWorldGenerator {
 	               blocksPerBumpBottomY1 = rand.nextInt(byte14 - byte13) + byte13;
 	            }
 
+	            if (AetherConfig.enableLogReporting() == true) {
 	            System.out.println("Arctic island generated at (X:" + x1 + ", Z:" + z1 + ")");
 	            System.out.println("May take a moment be patient!");
+	            }
+	            
 	            Block genOre = BlocksAether.zanite_ore;
 	            if (world.canBlockSeeTheSky(MathHelper.floor_double(x1), MathHelper.floor_double(y1), MathHelper.floor_double(z1))) {
 	            (new ArcticIsland(bumpsWide1, bumpsLong1, bumpHeightVarTop1, bumpHeightVarBottom1, bumpHeightMinTop1, bumpHeightMinBottom1, blocksPerBumpX1, blocksPerBumpZ1, blocksPerBumpTopY1, blocksPerBumpBottomY1, blurPassesTop1, blurPassesBottom1, spikeHeightVarTop1, spikeHeightVarBottom1, radialDistanceSamples1, radialDistanceMin1, radialDistanceVar1, radialDistanceScaling1, radialDistanceBlurPasses1, genOre)).generate(world, rand, x1, y1, z1);

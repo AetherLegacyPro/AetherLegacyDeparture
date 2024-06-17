@@ -340,7 +340,7 @@ public class BlocksAether {
 		holystone = registerMeta("holystone", new BlockHolystone());
 		holystone_brick = register("holystone_brick", new BlockAether(Material.rock, Aether.find("holystone_brick")).setHardness(0.5F).setResistance(10.0F));
 		enchanted_holystone = registerMeta("enchanted_holystone", new BlockEnchantedAgiosite().setBlockTextureName(Aether.findHighlands("agiosite")));
-		enchanted_holystone_bricks = register("enchanted_holystone_bricks", new BlockAether(Material.rock, Aether.findHighlands("agiosite_brick")).setHardness(0.6F).setResistance(14.0F));			
+		enchanted_holystone_bricks = register("enchanted_holystone_bricks", new BlockAether(Material.rock, Aether.find("enchanted_holystone_bricks")).setHardness(0.6F).setResistance(14.0F));			
 		aetheral_stone = registerMeta("aetheral_stone", new BlockHolystone().setBlockTextureName(Aether.find("aetheral_stone")).setHardness(3.0F).setResistance(5.0F));
 		aetheral_stone_bricks = register("aetheral_stone_bricks", new BlockAether(Material.rock, Aether.find("aetheral_stone_brick")).setHardness(3.0F).setResistance(5.0F));
 		enchanted_aetheral_stone = registerMeta("enchanted_aetheral_stone", new BlockEnchantedAetheralStone().setHardness(3.0F).setResistance(5.0F));
@@ -838,8 +838,8 @@ public class BlocksAether {
 		enchanted_deific_brick_slab = registerSlab("enchanted_deific_brick_slab", new BlockAetherSlab("enchanted_deific_brick_slab", false, Material.rock).setBlockTextureName(Aether.find("enchanted_deific_bricks")).setHardness(5.5F).setResistance(7.0F), enchanted_deific_brick_double_slab);		
 		enchanted_holystone_double_slab = register("enchanted_holystone_double_slab", new BlockAetherSlab("enchanted_holystone_double_slab", true, Material.rock).setBlockTextureName(Aether.findHighlands("agiosite")).setHardness(2.0F).setResistance(10.0F)).setCreativeTab(null);
 		enchanted_holystone_slab = registerSlab("enchanted_holystone_slab", new BlockAetherSlab("enchanted_holystone_slab", false, Material.rock).setBlockTextureName(Aether.findHighlands("agiosite")).setHardness(2.0F).setResistance(5.0F), enchanted_holystone_double_slab);
-		enchanted_holystone_brick_double_slab = register("enchanted_holystone_brick_double_slab", new BlockAetherSlab("enchanted_holystone_brick_double_slab", true, Material.rock).setBlockTextureName(Aether.findHighlands("agiosite_brick")).setHardness(2.0F).setResistance(10.0F)).setCreativeTab(null);
-		enchanted_holystone_brick_slab = registerSlab("enchanted_holystone_brick_slab", new BlockAetherSlab("enchanted_holystone_brick_slab", false, Material.rock).setBlockTextureName(Aether.findHighlands("agiosite_brick")).setHardness(2.0F).setResistance(5.0F), enchanted_holystone_brick_double_slab);
+		enchanted_holystone_brick_double_slab = register("enchanted_holystone_brick_double_slab", new BlockAetherSlab("enchanted_holystone_brick_double_slab", true, Material.rock).setBlockTextureName(Aether.find("enchanted_holystone_bricks")).setHardness(2.0F).setResistance(10.0F)).setCreativeTab(null);
+		enchanted_holystone_brick_slab = registerSlab("enchanted_holystone_brick_slab", new BlockAetherSlab("enchanted_holystone_brick_slab", false, Material.rock).setBlockTextureName(Aether.find("enchanted_holystone_bricks")).setHardness(2.0F).setResistance(5.0F), enchanted_holystone_brick_double_slab);
 	
 	}
 
