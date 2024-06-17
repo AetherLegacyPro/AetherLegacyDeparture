@@ -1,0 +1,23 @@
+This project uses various code used from several sources.
+
+This project is based on and a fork of the Aether Legacy, by the Aether Team,
+released under LGPL-3. Thanks to the Aether Team and all contributors!!!!
+https://github.com/The-Aether-Team/The-Aether-Archived/tree/1.7.10
+
+This project also uses a lot of code from the Aether II, also by the Aether
+Team and also released under the LGPL-3. 
+https://github.com/The-Aether-Team/The-Aether-II
+
+While we don't use any code or redistribute assets from the Aether II for
+version 1.7.10, we still want to thank Gilded Games for the inspiration and
+assets used at runtime. All rights reserved.
+
+To our best knowledge, this project does not redistribute any code or assets
+we do not have the rights to, and is fully compliant with upstream licenses.
+If you find us to be accidentally redistributig content we do not have the
+right to, or somehow violating the licenses of used code, please inform us so
+we can address them right away. 
+
+If you are an upstream project, we strive to maintain license compatability
+and are more than happy to contribute any fixes or improvements. We are happy
+to license any original code under any license to do so.
