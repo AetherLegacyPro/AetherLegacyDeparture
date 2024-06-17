@@ -360,6 +360,8 @@ public class ForgetTheOtherMethodsThisIsWhereTheMagicHappens {
 			copyFolder(Paths.get(System.getProperty("user.dir") + "/cow/assets/aether"), Paths.get(System.getProperty("user.dir") + "/resourcepacks/aether_departure/assets/aether"));
         	copyFolder(Paths.get(System.getProperty("user.dir") + "/cow/assets/aether_legacy"), Paths.get(System.getProperty("user.dir") + "/resourcepacks/aether_departure/assets/aether_legacy"));
         	copyFolder(Paths.get(System.getProperty("user.dir") + "/cow/assets/aetherii"), Paths.get(System.getProperty("user.dir") + "/resourcepacks/aether_departure/assets/aetherii"));
+        	copyFolder(Paths.get(System.getProperty("user.dir") + "/unpack/pack.mcmeta"), Paths.get(System.getProperty("user.dir") + "/resourcepacks/aether_departure"));
+        	copyFolder(Paths.get(System.getProperty("user.dir") + "/unpack/pack.png"), Paths.get(System.getProperty("user.dir") + "/resourcepacks/aether_departure"));
 			// I really fricking hate this
 			//Files.move(Paths.get(System.getProperty("user.dir") + "/mods/temptemptemp.zip"), Paths.get(System.getProperty("user.dir") + "/resourcepacks/AetherDepartureAssets.zip"), StandardCopyOption.REPLACE_EXISTING);
 			System.out.println("winblows");
