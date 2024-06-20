@@ -75,15 +75,15 @@ public class AetherGenGoldenFruitTree extends WorldGenAbstractTree
                 switch (side) {
                     case 0: {
                         for (int x3 = x; x3 <= x + branchLength; ++x3) {
-                            world.setBlock(x3, y5, z, BlocksAether.golden_oak_log);
+                            world.setBlock(x3, y5, z, BlocksAether.golden_oak_new_log);
                             this.setBlockAirCheck(world, x3, y5 + 1, z, this.leaves, (random.nextInt(chance) == 0) ? this.fruit : Blocks.air);
                             this.setBlockAirCheck(world, x3, y5 - 1, z, this.leaves, (random.nextInt(chance) == 0) ? this.fruit : Blocks.air);
                             this.setBlockAirCheck(world, x3 + 1, y5, z + 1, this.leaves, (random.nextInt(chance) == 0) ? this.fruit : Blocks.air);
                             this.setBlockAirCheck(world, x3 - 1, y5, z - 1, this.leaves, (random.nextInt(chance) == 0) ? this.fruit : Blocks.air);
                         }
-                        world.setBlock(x + (branchLength + 1), y5 + 1, z, BlocksAether.golden_oak_log);
-                        world.setBlock(x + (branchLength + 2), y5 + 2, z, BlocksAether.golden_oak_log);
-                        world.setBlock(x + (branchLength + 2), y5 + 3, z, BlocksAether.golden_oak_log);
+                        world.setBlock(x + (branchLength + 1), y5 + 1, z, BlocksAether.golden_oak_new_log);
+                        world.setBlock(x + (branchLength + 2), y5 + 2, z, BlocksAether.golden_oak_new_log);
+                        world.setBlock(x + (branchLength + 2), y5 + 3, z, BlocksAether.golden_oak_new_log);
                         this.setBlockAirCheck(world, x + (branchLength + 1), y5 + 2, z, this.leaves, (random.nextInt(chance) == 0) ? this.fruit : Blocks.air);
                         this.setBlockAirCheck(world, x + (branchLength + 1), y5 + 3, z, this.leaves, (random.nextInt(chance) == 0) ? this.fruit : Blocks.air);
                         this.setBlockAirCheck(world, x + (branchLength + 2), y5 + 4, z, this.leaves, (random.nextInt(chance) == 0) ? this.fruit : Blocks.air);
@@ -112,15 +112,15 @@ public class AetherGenGoldenFruitTree extends WorldGenAbstractTree
                     }
                     case 1: {
                         for (int x4 = x; x4 >= x - branchLength; --x4) {
-                            world.setBlock(x4, y5, z, BlocksAether.golden_oak_log);
+                            world.setBlock(x4, y5, z, BlocksAether.golden_oak_new_log);
                             this.setBlockAirCheck(world, x4, y5 + 1, z, this.leaves, (random.nextInt(chance) == 0) ? this.fruit : Blocks.air);
                             this.setBlockAirCheck(world, x4, y5 - 1, z, this.leaves, (random.nextInt(chance) == 0) ? this.fruit : Blocks.air);
                             this.setBlockAirCheck(world, x4 + 1, y5, z + 1, this.leaves, (random.nextInt(chance) == 0) ? this.fruit : Blocks.air);
                             this.setBlockAirCheck(world, x4 - 1, y5, z - 1, this.leaves, (random.nextInt(chance) == 0) ? this.fruit : Blocks.air);
                         }
-                        world.setBlock(x - (branchLength + 1), y5 + 1, z, BlocksAether.golden_oak_log);
-                        world.setBlock(x - (branchLength + 2), y5 + 2, z, BlocksAether.golden_oak_log);
-                        world.setBlock(x - (branchLength + 2), y5 + 3, z, BlocksAether.golden_oak_log);
+                        world.setBlock(x - (branchLength + 1), y5 + 1, z, BlocksAether.golden_oak_new_log);
+                        world.setBlock(x - (branchLength + 2), y5 + 2, z, BlocksAether.golden_oak_new_log);
+                        world.setBlock(x - (branchLength + 2), y5 + 3, z, BlocksAether.golden_oak_new_log);
                         this.setBlockAirCheck(world, x - (branchLength + 1), y5 + 2, z, this.leaves, (random.nextInt(chance) == 0) ? this.fruit : Blocks.air);
                         this.setBlockAirCheck(world, x - (branchLength + 1), y5 + 3, z, this.leaves, (random.nextInt(chance) == 0) ? this.fruit : Blocks.air);
                         this.setBlockAirCheck(world, x - (branchLength + 2), y5 + 4, z, this.leaves, (random.nextInt(chance) == 0) ? this.fruit : Blocks.air);
@@ -149,15 +149,15 @@ public class AetherGenGoldenFruitTree extends WorldGenAbstractTree
                     }
                     case 2: {
                         for (int z3 = z; z3 <= z + branchLength; ++z3) {
-                            world.setBlock(x, y5, z3, BlocksAether.golden_oak_log);
+                            world.setBlock(x, y5, z3, BlocksAether.golden_oak_new_log);
                             this.setBlockAirCheck(world, x, y5 + 1, z3, this.leaves, (random.nextInt(chance) == 0) ? this.fruit : Blocks.air);
                             this.setBlockAirCheck(world, x, y5 - 1, z3, this.leaves, (random.nextInt(chance) == 0) ? this.fruit : Blocks.air);
                             this.setBlockAirCheck(world, x + 1, y5, z3, this.leaves, (random.nextInt(chance) == 0) ? this.fruit : Blocks.air);
                             this.setBlockAirCheck(world, x - 1, y5, z3, this.leaves, (random.nextInt(chance) == 0) ? this.fruit : Blocks.air);
                         }
-                        world.setBlock(x, y5 + 1, z + (branchLength + 1), BlocksAether.golden_oak_log);
-                        world.setBlock(x, y5 + 2, z + (branchLength + 2), BlocksAether.golden_oak_log);
-                        world.setBlock(x, y5 + 3, z + (branchLength + 2), BlocksAether.golden_oak_log);
+                        world.setBlock(x, y5 + 1, z + (branchLength + 1), BlocksAether.golden_oak_new_log);
+                        world.setBlock(x, y5 + 2, z + (branchLength + 2), BlocksAether.golden_oak_new_log);
+                        world.setBlock(x, y5 + 3, z + (branchLength + 2), BlocksAether.golden_oak_new_log);
                         this.setBlockAirCheck(world, x, y5 + 2, z + (branchLength + 1), this.leaves, (random.nextInt(chance) == 0) ? this.fruit : Blocks.air);
                         this.setBlockAirCheck(world, x, y5 + 3, z + (branchLength + 1), this.leaves, (random.nextInt(chance) == 0) ? this.fruit : Blocks.air);
                         this.setBlockAirCheck(world, x, y5 + 4, z + (branchLength + 2), this.leaves, (random.nextInt(chance) == 0) ? this.fruit : Blocks.air);
@@ -186,15 +186,15 @@ public class AetherGenGoldenFruitTree extends WorldGenAbstractTree
                     }
                     case 3: {
                         for (int z4 = z; z4 >= z - branchLength; --z4) {
-                            world.setBlock(x, y5, z4, BlocksAether.golden_oak_log);
+                            world.setBlock(x, y5, z4, BlocksAether.golden_oak_new_log);
                             this.setBlockAirCheck(world, x, y5 + 1, z4, this.leaves, (random.nextInt(chance) == 0) ? this.fruit : Blocks.air);
                             this.setBlockAirCheck(world, x, y5 - 1, z4, this.leaves, (random.nextInt(chance) == 0) ? this.fruit : Blocks.air);
                             this.setBlockAirCheck(world, x + 1, y5, z4, this.leaves, (random.nextInt(chance) == 0) ? this.fruit : Blocks.air);
                             this.setBlockAirCheck(world, x - 1, y5, z4, this.leaves, (random.nextInt(chance) == 0) ? this.fruit : Blocks.air);
                         }
-                        world.setBlock(x, y5 + 1, z - (branchLength + 1), BlocksAether.golden_oak_log);
-                        world.setBlock(x, y5 + 2, z - (branchLength + 2), BlocksAether.golden_oak_log);
-                        world.setBlock(x, y5 + 3, z - (branchLength + 2), BlocksAether.golden_oak_log);
+                        world.setBlock(x, y5 + 1, z - (branchLength + 1), BlocksAether.golden_oak_new_log);
+                        world.setBlock(x, y5 + 2, z - (branchLength + 2), BlocksAether.golden_oak_new_log);
+                        world.setBlock(x, y5 + 3, z - (branchLength + 2), BlocksAether.golden_oak_new_log);
                         this.setBlockAirCheck(world, x, y5 + 2, z - (branchLength + 1), this.leaves, (random.nextInt(chance) == 0) ? this.fruit : Blocks.air);
                         this.setBlockAirCheck(world, x, y5 + 3, z - (branchLength + 1), this.leaves, (random.nextInt(chance) == 0) ? this.fruit : Blocks.air);
                         this.setBlockAirCheck(world, x, y5 + 4, z - (branchLength + 2), this.leaves, (random.nextInt(chance) == 0) ? this.fruit : Blocks.air);

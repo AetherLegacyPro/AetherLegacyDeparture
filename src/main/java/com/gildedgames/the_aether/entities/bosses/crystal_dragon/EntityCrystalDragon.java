@@ -168,6 +168,10 @@ public class EntityCrystalDragon extends EntityFlying implements GIEntityMultiPa
      */
     public void onLivingUpdate()
     {
+    	if (!this.worldObj.isRemote && this.worldObj.difficultySetting == EnumDifficulty.PEACEFUL)
+   	 	{
+    	   this.setDead();
+   	 	}
     	
         float f;
         float f1;                       

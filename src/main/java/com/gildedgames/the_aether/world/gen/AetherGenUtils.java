@@ -115,7 +115,7 @@ public class AetherGenUtils {
 				}
 			}
 
-			structure.setBlockWithOffset(x, y + n, z, BlocksAether.golden_oak_log, 0);
+			structure.setBlockWithOffset(x, y + n, z, BlocksAether.golden_oak_new_log, 0);
 		}
 	}
 
@@ -134,8 +134,8 @@ public class AetherGenUtils {
 			k -= directionZ;
 
 			if (structure.getBlockStateWithOffset(x, y, z) == BlocksAether.golden_oak_leaves) {
-				structure.setBlockWithOffset(x, y, z, BlocksAether.golden_oak_log, 0);
-				structure.setBlockWithOffset(i, y, k, BlocksAether.golden_oak_log, 0);
+				structure.setBlockWithOffset(x, y, z, BlocksAether.golden_oak_new_log, 0);
+				structure.setBlockWithOffset(i, y, k, BlocksAether.golden_oak_new_log, 0);
 			}
 		}
 	}

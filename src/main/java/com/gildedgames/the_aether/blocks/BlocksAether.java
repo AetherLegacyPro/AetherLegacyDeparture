@@ -128,6 +128,7 @@ import com.gildedgames.the_aether.blocks.natural.BlockEnchantedAetherFlower;
 import com.gildedgames.the_aether.blocks.natural.BlockEnchantedAetherGrass;
 import com.gildedgames.the_aether.blocks.natural.BlockEnchantedAetherTallGrass;
 import com.gildedgames.the_aether.blocks.natural.BlockFrozenQuicksoil;
+import com.gildedgames.the_aether.blocks.natural.BlockGoldenOakNewLog;
 import com.gildedgames.the_aether.blocks.natural.BlockGrapeTreeMature;
 import com.gildedgames.the_aether.blocks.natural.BlockGrapeTreeStage1;
 import com.gildedgames.the_aether.blocks.natural.BlockGrapeTreeStage2;
@@ -153,6 +154,7 @@ import com.gildedgames.the_aether.blocks.natural.BlockSnowyTallGrass;
 import com.gildedgames.the_aether.blocks.natural.BlockStrawberryBush;
 import com.gildedgames.the_aether.blocks.natural.BlockStrawberryBushStem;
 import com.gildedgames.the_aether.blocks.natural.BlockVerdantGrass;
+import com.gildedgames.the_aether.blocks.natural.BlockVoidSapling;
 import com.gildedgames.the_aether.blocks.natural.BlockZanitePile;
 import com.gildedgames.the_aether.blocks.portal.BlockAetherPortal;
 import com.gildedgames.the_aether.blocks.util.BlockFloating;
@@ -199,7 +201,7 @@ public class BlocksAether {
 	public static Block purple_skyroot_leaves, blue_skyroot_leaves, dark_blue_skyroot_leaves, divine_oak_leaves;
 	public static Block golden_oak_fruit_leaves, crystal_fruit_leaves, purple_skyroot_fruit_leaves, void_fruit_leaves;
 	public static Block holiday_leaves, decorated_holiday_leaves, present;
-	public static Block skyroot_log, golden_oak_log, greatroot_log, wisproot_log, void_log, divine_oak_log;	
+	public static Block skyroot_log, golden_oak_log, golden_oak_new_log, greatroot_log, wisproot_log, void_log, divine_oak_log;	
 	public static Block skyroot_planks, golden_oak_planks, greatroot_planks, wisproot_planks, void_planks, divine_oak_planks;
 	public static Block skyroot_bookshelf, golden_oak_bookshelf;
 	public static Block skyroot_fence, golden_oak_fence, greatroot_fence, wisproot_fence, void_fence, divine_oak_fence;
@@ -454,8 +456,9 @@ public class BlocksAether {
 		void_fruit_leaves = register("void_fruit_leaves", new BlockAetherLeaves().setBlockTextureName(Aether.find("void_fruit_leaves")));
 		divine_oak_leaves = register("divine_oak_leaves", new BlockAetherLeaves().setBlockTextureName(Aether.find("divine_oak_leaves")));
 
-		skyroot_log = registerMeta("skyroot_log", new BlockAetherLog());
-		golden_oak_log = registerMeta("golden_oak_log", new BlockAetherLog());
+		skyroot_log = registerMeta("skyroot_log", new BlockAetherLog()).setBlockTextureName(Aether.find("skyroot_log"));
+		golden_oak_log = registerHidden("golden_oak_log", new BlockAetherLog().setBlockTextureName(Aether.find("golden_oak_log")));
+		golden_oak_new_log = registerMeta("golden_oak_new_log", new BlockGoldenOakNewLog().setBlockTextureName(Aether.find("golden_oak_log_new")));	
 		greatroot_log = registerMeta("greatroot_log", new BlockAetherLogGreatroot().setBlockTextureName(Aether.findHighlands("logs/greatroot_log")));
 		wisproot_log = registerMeta("wisproot_log", new BlockAetherLogWisproot().setBlockTextureName(Aether.findHighlands("logs/wisproot_log")));
 		void_log = registerMeta("void_log", new BlockAetherLogVoid().setBlockTextureName(Aether.find("void_log")));
@@ -535,7 +538,7 @@ public class BlocksAether {
 		dark_blue_skyroot_sapling = register("dark_blue_skyroot_sapling", new BlockAetherSapling(new AetherGenDarkBlueSkyrootTree(false)).setBlockTextureName(Aether.find("darkblue_crystal_sapling")));
 		wisproot_sapling = register("wisproot_sapling", new BlockAetherSapling(new AetherGenWisprootTree(BlocksAether.blue_light_skyroot_leaves, 8, true)).setBlockTextureName(Aether.find("wisproot_sapling")));
 		greatroot_sapling = register("greatroot_sapling", new BlockAetherSapling(new AetherGenGreatrootTree(BlocksAether.green_light_skyroot_leaves, 20, true)).setBlockTextureName(Aether.find("greatroot_sapling")));
-		void_sapling = register("void_sapling", new BlockAetherSapling(new AetherGenVoidTree()).setBlockTextureName(Aether.find("void_sapling")));		
+		void_sapling = register("void_sapling", new BlockVoidSapling(new AetherGenVoidTree(true)).setBlockTextureName(Aether.find("void_sapling")));		
 		divine_oak_sapling = register("divine_oak_sapling", new BlockAetherSapling(new AetherGenDivineTree(BlocksAether.divine_oak_leaves, 40, true)).setBlockTextureName(Aether.find("divine_oak_sapling")));
 		
 		enchanter = registerEnchanter("enchanter", new BlockEnchanter());
@@ -669,7 +672,7 @@ public class BlocksAether {
 		
 		
 		skyroot_log_wall = register("skyroot_log_wall", new BlockAetherWall(skyroot_log));
-		golden_oak_log_wall = register("golden_oak_log_wall", new BlockAetherWall(golden_oak_log));
+		golden_oak_log_wall = register("golden_oak_log_wall", new BlockAetherWall(golden_oak_new_log));
 		wisproot_log_wall = register("wisproot_log_wall", new BlockAetherWall(wisproot_log));
 		greatroot_log_wall = register("greatroot_log_wall", new BlockAetherWall(greatroot_log));
 		void_log_wall = register("void_log_wall", new BlockAetherWall(void_log));

@@ -5,6 +5,7 @@ import com.gildedgames.the_aether.entities.projectile.EntityZephyrSnowball;
 import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 
 import net.minecraft.entity.EntityFlying;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -31,7 +32,7 @@ public class EntityZephyr extends EntityFlying implements IMob {
 
 	public EntityZephyr(World world) {
 		super(world);
-
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(10.0);
 		this.setSize(4F, 4F);
 
 		this.attackCounter = 0;

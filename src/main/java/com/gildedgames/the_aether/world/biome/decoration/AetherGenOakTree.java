@@ -28,8 +28,8 @@ public class AetherGenOakTree extends WorldGenAbstractTree {
 			k -= directionZ;
 
 			if (world.getBlock(x, y, z) == BlocksAether.golden_oak_leaves) {
-				world.setBlock(x, y, z, BlocksAether.golden_oak_log);
-				world.setBlock(i, y, k, BlocksAether.golden_oak_log);
+				world.setBlock(x, y, z, BlocksAether.golden_oak_new_log);
+				world.setBlock(i, y, k, BlocksAether.golden_oak_new_log);
 			}
 		}
 
@@ -61,7 +61,7 @@ public class AetherGenOakTree extends WorldGenAbstractTree {
 				}
 			}
 
-			world.setBlock(x, y + n, z, BlocksAether.golden_oak_log);
+			world.setBlock(x, y + n, z, BlocksAether.golden_oak_new_log);
 		}
 
 		return true;

@@ -45,9 +45,9 @@ public class EntityZephyrSnowball extends EntityProjectileBase {
 				return;
 			}
 
-			object.entityHit.motionX += this.motionX * 2.45F;
+			object.entityHit.motionX += this.motionX * 1.95F;
 			object.entityHit.motionY += 0.5D;
-			object.entityHit.motionZ += this.motionZ * 2.45F;
+			object.entityHit.motionZ += this.motionZ * 1.95F;
 
 			if (object.entityHit instanceof EntityPlayerMP) {
 				((EntityPlayerMP) object.entityHit).playerNetServerHandler.sendPacket(new S12PacketEntityVelocity(object.entityHit));

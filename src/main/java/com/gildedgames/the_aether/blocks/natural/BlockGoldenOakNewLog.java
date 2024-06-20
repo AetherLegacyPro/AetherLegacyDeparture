@@ -33,12 +33,12 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraftforge.event.ForgeEventFactory;
 
-public class BlockAetherLog extends BlockLog {
+public class BlockGoldenOakNewLog extends BlockLog {
 	
 	@SideOnly(Side.CLIENT)
 	private IIcon iconFace, iconTop;
 
-	public BlockAetherLog() {
+	public BlockGoldenOakNewLog() {
 		super();
 	}
 
@@ -76,7 +76,7 @@ public class BlockAetherLog extends BlockLog {
 						|| stack.getItem() instanceof ItemTippedSkyrootTool || stack.getItem() instanceof ItemTippedHolystoneTool || stack.getItem() instanceof ItemTippedZaniteTool
 						|| stack.getItem() instanceof ItemTippedArkeniumTool || stack.getItem() instanceof ItemTippedContinuumTool || stack.getItem() instanceof ItemTippedGravititeTool
 						|| stack.getItem() instanceof ItemBattleSentryHammer || stack.getItem() instanceof ItemTippedBattleSentryHammer || stack.getItem() instanceof ItemAmplifiedBattleSentryHammer) {
-					if (this == BlocksAether.golden_oak_log) {
+					if (this == BlocksAether.golden_oak_new_log) {
 						this.dropBlockAsItem(worldIn, x, y, z, new ItemStack(ItemsAether.golden_amber, 1 + worldIn.rand.nextInt(2)));
 					}
 

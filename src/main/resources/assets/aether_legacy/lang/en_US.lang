@@ -598,6 +598,7 @@ tile.primeval_artifact.name=Primeval Artifact
 tile.zanite_block.name=Zanite Block
 tile.skyroot_log.name=Skyroot Wood
 tile.golden_oak_log.name=Golden Oak Wood
+tile.golden_oak_new_log.name=Golden Oak Wood
 tile.skyroot_leaves.name=Skyroot Leaves
 tile.golden_oak_leaves.name=Golden Oak Leaves
 tile.crystal_fruit_leaves.name=Crystal Fruit Leaves

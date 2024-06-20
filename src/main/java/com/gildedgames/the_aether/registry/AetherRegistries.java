@@ -699,6 +699,9 @@ public class AetherRegistries {
 		registerShapeless("purple_dye", new ItemStack(Items.dye, 2, 5), BlocksAether.divine_lily);	
 		registerShapeless("blue_dye", new ItemStack(ItemsAether.blue_dye, 2, 0), BlocksAether.divine_stalk);	
 		
+		registerShapeless("golden_oak_new_log", new ItemStack(BlocksAether.golden_oak_new_log), new ItemStack(BlocksAether.golden_oak_log, 1, 0));
+		registerShapeless("golden_oak_new_log", new ItemStack(BlocksAether.golden_oak_new_log), new ItemStack(BlocksAether.golden_oak_log, 1, 1));
+		
 		if (AetherConfig.RedstoneItemsCraftable() == true) {
 		registerShapeless("wooden_button", new ItemStack(Blocks.wooden_button), BlocksAether.skyroot_planks);
 		registerShapeless("wooden_button", new ItemStack(Blocks.wooden_button), BlocksAether.greatroot_planks);
@@ -712,8 +715,8 @@ public class AetherRegistries {
 		
 		registerShapeless("skyroot_planks", new ItemStack(BlocksAether.skyroot_planks, 4), new ItemStack(BlocksAether.skyroot_log, 1, 0));
 		registerShapeless("skyroot_planks", new ItemStack(BlocksAether.skyroot_planks, 4), new ItemStack(BlocksAether.skyroot_log, 1, 1));
-		registerShapeless("golden_oak_planks", new ItemStack(BlocksAether.golden_oak_planks, 4), new ItemStack(BlocksAether.golden_oak_log, 1, 0));
-		registerShapeless("golden_oak_planks", new ItemStack(BlocksAether.golden_oak_planks, 4), new ItemStack(BlocksAether.golden_oak_log, 1, 1));
+		registerShapeless("golden_oak_planks", new ItemStack(BlocksAether.golden_oak_planks, 4), new ItemStack(BlocksAether.golden_oak_new_log, 1, 0));
+		registerShapeless("golden_oak_planks", new ItemStack(BlocksAether.golden_oak_planks, 4), new ItemStack(BlocksAether.golden_oak_new_log, 1, 1));
 		registerShapeless("wisproot_planks", new ItemStack(BlocksAether.wisproot_planks, 4), new ItemStack(BlocksAether.wisproot_log, 1, 0));
 		registerShapeless("wisproot_planks", new ItemStack(BlocksAether.wisproot_planks, 4), new ItemStack(BlocksAether.wisproot_log, 1, 1));
 		registerShapeless("greatroot_planks", new ItemStack(BlocksAether.greatroot_planks, 4), new ItemStack(BlocksAether.greatroot_log, 1, 0));
@@ -809,7 +812,8 @@ public class AetherRegistries {
 		register("skyroot_stick", new ItemStack(ItemsAether.skyroot_stick, 4), "X", "X", 'X', BlocksAether.skyroot_planks);
 		register("skyroot_stick", new ItemStack(ItemsAether.skyroot_stick, 4), "X", "X", 'X', BlocksAether.wisproot_planks);
 		register("skyroot_stick", new ItemStack(ItemsAether.skyroot_stick, 4), "X", "X", 'X', BlocksAether.greatroot_planks);
-		register("skyroot_stick", new ItemStack(ItemsAether.skyroot_stick, 4), "X", "X", 'X', BlocksAether.void_planks);		
+		register("skyroot_stick", new ItemStack(ItemsAether.skyroot_stick, 4), "X", "X", 'X', BlocksAether.void_planks);
+		register("skyroot_stick", new ItemStack(ItemsAether.skyroot_stick, 4), "X", "X", 'X', BlocksAether.divine_oak_planks);	
 		register("skyroot_trapdoor", new ItemStack(BlocksAether.skyroot_trapdoor, 2), "XXX", "XXX", 'X', BlocksAether.skyroot_planks);
 		register("void_trapdoor", new ItemStack(BlocksAether.void_trapdoor, 2), "XXX", "XXX", 'X', BlocksAether.void_planks);
 		register("wisproot_trapdoor", new ItemStack(BlocksAether.wisproot_trapdoor, 2), "XXX", "XXX", 'X', BlocksAether.wisproot_planks);
@@ -1143,24 +1147,40 @@ public class AetherRegistries {
 		
 
 		register("skyroot_pickaxe", new ItemStack(ItemsAether.skyroot_pickaxe, 1), "ZZZ", " Y ", " Y ", 'Z', BlocksAether.skyroot_planks, 'Y', ItemsAether.skyroot_stick);
+		register("skyroot_pickaxe", new ItemStack(ItemsAether.skyroot_pickaxe, 1), "ZZZ", " Y ", " Y ", 'Z', BlocksAether.greatroot_planks, 'Y', ItemsAether.skyroot_stick);
+		register("skyroot_pickaxe", new ItemStack(ItemsAether.skyroot_pickaxe, 1), "ZZZ", " Y ", " Y ", 'Z', BlocksAether.wisproot_planks, 'Y', ItemsAether.skyroot_stick);
+		register("skyroot_pickaxe", new ItemStack(ItemsAether.skyroot_pickaxe, 1), "ZZZ", " Y ", " Y ", 'Z', BlocksAether.void_planks, 'Y', ItemsAether.skyroot_stick);
+		register("skyroot_pickaxe", new ItemStack(ItemsAether.skyroot_pickaxe, 1), "ZZZ", " Y ", " Y ", 'Z', BlocksAether.divine_oak_planks, 'Y', ItemsAether.skyroot_stick);		
 		register("holystone_pickaxe", new ItemStack(ItemsAether.holystone_pickaxe, 1), "ZZZ", " Y ", " Y ", 'Z', BlocksAether.holystone, 'Y', ItemsAether.skyroot_stick);
 		register("zanite_pickaxe", new ItemStack(ItemsAether.zanite_pickaxe, 1), "ZZZ", " Y ", " Y ", 'Z', ItemsAether.zanite_gemstone, 'Y', ItemsAether.skyroot_stick);
 		register("arkenium_pickaxe", new ItemStack(ItemsAether.arkenium_pickaxe, 1), "ZZZ", " Y ", " Y ", 'Z', ItemsAether.arkenium_ingot, 'Y', ItemsAether.skyroot_stick);
 		register("continuum_pickaxe", new ItemStack(ItemsAether.continuum_pickaxe, 1), "ZZZ", " Y ", " Y ", 'Z', ItemsAether.continuum_gemstone, 'Y', ItemsAether.skyroot_stick);
 		register("gravitite_pickaxe", new ItemStack(ItemsAether.gravitite_pickaxe, 1), "ZZZ", " Y ", " Y ", 'Z', BlocksAether.enchanted_gravitite, 'Y', ItemsAether.skyroot_stick);
-		register("skyroot_axe", new ItemStack(ItemsAether.skyroot_axe, 1), "ZZ", "ZY", " Y", 'Z', BlocksAether.skyroot_planks, 'Y', ItemsAether.skyroot_stick);
+		register("skyroot_axe", new ItemStack(ItemsAether.skyroot_axe, 1), "ZZ", "ZY", " Y", 'Z', BlocksAether.skyroot_planks, 'Y', ItemsAether.skyroot_stick);		
+		register("skyroot_axe", new ItemStack(ItemsAether.skyroot_axe, 1), "ZZ", "ZY", " Y", 'Z', BlocksAether.wisproot_planks, 'Y', ItemsAether.skyroot_stick);
+		register("skyroot_axe", new ItemStack(ItemsAether.skyroot_axe, 1), "ZZ", "ZY", " Y", 'Z', BlocksAether.greatroot_planks, 'Y', ItemsAether.skyroot_stick);
+		register("skyroot_axe", new ItemStack(ItemsAether.skyroot_axe, 1), "ZZ", "ZY", " Y", 'Z', BlocksAether.void_planks, 'Y', ItemsAether.skyroot_stick);
+		register("skyroot_axe", new ItemStack(ItemsAether.skyroot_axe, 1), "ZZ", "ZY", " Y", 'Z', BlocksAether.divine_oak_planks, 'Y', ItemsAether.skyroot_stick);		
 		register("holystone_axe", new ItemStack(ItemsAether.holystone_axe, 1), "ZZ", "ZY", " Y", 'Z', BlocksAether.holystone, 'Y', ItemsAether.skyroot_stick);
 		register("zanite_axe", new ItemStack(ItemsAether.zanite_axe, 1), "ZZ", "ZY", " Y", 'Z', ItemsAether.zanite_gemstone, 'Y', ItemsAether.skyroot_stick);
 		register("arkenium_axe", new ItemStack(ItemsAether.arkenium_axe, 1), "ZZ", "ZY", " Y", 'Z', ItemsAether.arkenium_ingot, 'Y', ItemsAether.skyroot_stick);
 		register("continuum_axe", new ItemStack(ItemsAether.continuum_axe, 1), "ZZ", "ZY", " Y", 'Z', ItemsAether.continuum_gemstone, 'Y', ItemsAether.skyroot_stick);
 		register("gravitite_axe", new ItemStack(ItemsAether.gravitite_axe, 1), "ZZ", "ZY", " Y", 'Z', BlocksAether.enchanted_gravitite, 'Y', ItemsAether.skyroot_stick);
 		register("skyroot_shovel", new ItemStack(ItemsAether.skyroot_shovel, 1), "Z", "Y", "Y", 'Z', BlocksAether.skyroot_planks, 'Y', ItemsAether.skyroot_stick);
+		register("skyroot_shovel", new ItemStack(ItemsAether.skyroot_shovel, 1), "Z", "Y", "Y", 'Z', BlocksAether.greatroot_planks, 'Y', ItemsAether.skyroot_stick);
+		register("skyroot_shovel", new ItemStack(ItemsAether.skyroot_shovel, 1), "Z", "Y", "Y", 'Z', BlocksAether.wisproot_planks, 'Y', ItemsAether.skyroot_stick);
+		register("skyroot_shovel", new ItemStack(ItemsAether.skyroot_shovel, 1), "Z", "Y", "Y", 'Z', BlocksAether.void_planks, 'Y', ItemsAether.skyroot_stick);
+		register("skyroot_shovel", new ItemStack(ItemsAether.skyroot_shovel, 1), "Z", "Y", "Y", 'Z', BlocksAether.divine_oak_planks, 'Y', ItemsAether.skyroot_stick);
 		register("holystone_shovel", new ItemStack(ItemsAether.holystone_shovel, 1), "Z", "Y", "Y", 'Z', BlocksAether.holystone, 'Y', ItemsAether.skyroot_stick);
 		register("zanite_shovel", new ItemStack(ItemsAether.zanite_shovel, 1), "Z", "Y", "Y", 'Z', ItemsAether.zanite_gemstone, 'Y', ItemsAether.skyroot_stick);
 		register("arkenium_shovel", new ItemStack(ItemsAether.arkenium_shovel, 1), "Z", "Y", "Y", 'Z', ItemsAether.arkenium_ingot, 'Y', ItemsAether.skyroot_stick);
 		register("continuum_shovel", new ItemStack(ItemsAether.continuum_shovel, 1), "Z", "Y", "Y", 'Z', ItemsAether.continuum_gemstone, 'Y', ItemsAether.skyroot_stick);
 		register("gravitite_shovel", new ItemStack(ItemsAether.gravitite_shovel, 1), "Z", "Y", "Y", 'Z', BlocksAether.enchanted_gravitite, 'Y', ItemsAether.skyroot_stick);
-		register("skyroot_sword", new ItemStack(ItemsAether.skyroot_sword, 1), "Z", "Z", "Y", 'Z', BlocksAether.skyroot_planks, 'Y', ItemsAether.skyroot_stick);
+		register("skyroot_sword", new ItemStack(ItemsAether.skyroot_sword, 1), "Z", "Z", "Y", 'Z', BlocksAether.skyroot_planks, 'Y', ItemsAether.skyroot_stick);	
+		register("skyroot_sword", new ItemStack(ItemsAether.skyroot_sword, 1), "Z", "Z", "Y", 'Z', BlocksAether.greatroot_planks, 'Y', ItemsAether.skyroot_stick);
+		register("skyroot_sword", new ItemStack(ItemsAether.skyroot_sword, 1), "Z", "Z", "Y", 'Z', BlocksAether.divine_oak_planks, 'Y', ItemsAether.skyroot_stick);
+		register("skyroot_sword", new ItemStack(ItemsAether.skyroot_sword, 1), "Z", "Z", "Y", 'Z', BlocksAether.wisproot_planks, 'Y', ItemsAether.skyroot_stick);
+		register("skyroot_sword", new ItemStack(ItemsAether.skyroot_sword, 1), "Z", "Z", "Y", 'Z', BlocksAether.void_planks, 'Y', ItemsAether.skyroot_stick);		
 		register("holystone_sword", new ItemStack(ItemsAether.holystone_sword, 1), "Z", "Z", "Y", 'Z', BlocksAether.holystone, 'Y', ItemsAether.skyroot_stick);
 		register("zanite_sword", new ItemStack(ItemsAether.zanite_sword, 1), "Z", "Z", "Y", 'Z', ItemsAether.zanite_gemstone, 'Y', ItemsAether.skyroot_stick);
 		register("arkenium_sword", new ItemStack(ItemsAether.arkenium_sword, 1), "Z", "Z", "Y", 'Z', ItemsAether.arkenium_ingot, 'Y', ItemsAether.skyroot_stick);
@@ -1168,6 +1188,10 @@ public class AetherRegistries {
 		register("gravitite_sword", new ItemStack(ItemsAether.gravitite_sword, 1), "Z", "Z", "Y", 'Z', BlocksAether.enchanted_gravitite, 'Y', ItemsAether.skyroot_stick);
 
 		register("skyroot_hoe", new ItemStack(ItemsAether.skyroot_hoe, 1, 0),  "XX ", " Y ", " Y ", 'X', BlocksAether.skyroot_planks, 'Y', ItemsAether.skyroot_stick);
+		register("skyroot_hoe", new ItemStack(ItemsAether.skyroot_hoe, 1, 0),  "XX ", " Y ", " Y ", 'X', BlocksAether.greatroot_planks, 'Y', ItemsAether.skyroot_stick);
+		register("skyroot_hoe", new ItemStack(ItemsAether.skyroot_hoe, 1, 0),  "XX ", " Y ", " Y ", 'X', BlocksAether.wisproot_planks, 'Y', ItemsAether.skyroot_stick);
+		register("skyroot_hoe", new ItemStack(ItemsAether.skyroot_hoe, 1, 0),  "XX ", " Y ", " Y ", 'X', BlocksAether.void_planks, 'Y', ItemsAether.skyroot_stick);
+		register("skyroot_hoe", new ItemStack(ItemsAether.skyroot_hoe, 1, 0),  "XX ", " Y ", " Y ", 'X', BlocksAether.divine_oak_planks, 'Y', ItemsAether.skyroot_stick);
 		register("holystone_hoe", new ItemStack(ItemsAether.holystone_hoe, 1, 0),  "XX ", " Y ", " Y ", 'X', BlocksAether.holystone, 'Y', ItemsAether.skyroot_stick);
 		register("zanite_hoe", new ItemStack(ItemsAether.zanite_hoe, 1, 0),  "XX ", " Y ", " Y ", 'X', ItemsAether.zanite_gemstone, 'Y', ItemsAether.skyroot_stick);
 		register("arkenium_hoe", new ItemStack(ItemsAether.arkenium_hoe, 1, 0),  "XX ", " Y ", " Y ", 'X', ItemsAether.arkenium_ingot, 'Y', ItemsAether.skyroot_stick);
@@ -1296,14 +1320,14 @@ public class AetherRegistries {
 		
 		
 		register("skyroot_log_wall", new ItemStack(BlocksAether.skyroot_log_wall, 6), "ZZZ", "ZZZ", 'Z', new ItemStack(BlocksAether.skyroot_log));
-		register("golden_oak_log_wall", new ItemStack(BlocksAether.golden_oak_log_wall, 6), "ZZZ", "ZZZ", 'Z', new ItemStack(BlocksAether.golden_oak_log));
+		register("golden_oak_log_wall", new ItemStack(BlocksAether.golden_oak_log_wall, 6), "ZZZ", "ZZZ", 'Z', new ItemStack(BlocksAether.golden_oak_new_log, 0, 0));
 		register("divine_oak_log_wall", new ItemStack(BlocksAether.divine_oak_log_wall, 6), "ZZZ", "ZZZ", 'Z', new ItemStack(BlocksAether.divine_oak_log));
 		register("wisproot_log_wall", new ItemStack(BlocksAether.wisproot_log_wall, 6), "ZZZ", "ZZZ", 'Z', new ItemStack(BlocksAether.wisproot_log));
 		register("greatroot_log_wall", new ItemStack(BlocksAether.greatroot_log_wall, 6), "ZZZ", "ZZZ", 'Z', new ItemStack(BlocksAether.greatroot_log));
 		register("void_log_wall", new ItemStack(BlocksAether.void_log_wall, 6), "ZZZ", "ZZZ", 'Z', new ItemStack(BlocksAether.void_log));		
 		register("skyroot_log_wall", new ItemStack(BlocksAether.skyroot_log_wall, 6), "ZZZ", "ZZZ", 'Z', new ItemStack(BlocksAether.skyroot_log, 1, 1));
 		register("divine_oak_log_wall", new ItemStack(BlocksAether.divine_oak_log_wall, 6), "ZZZ", "ZZZ", 'Z', new ItemStack(BlocksAether.divine_oak_log, 1, 1));
-		register("golden_oak_log_wall", new ItemStack(BlocksAether.golden_oak_log_wall, 6), "ZZZ", "ZZZ", 'Z', new ItemStack(BlocksAether.golden_oak_log, 1, 1));
+		register("golden_oak_log_wall", new ItemStack(BlocksAether.golden_oak_log_wall, 6), "ZZZ", "ZZZ", 'Z', new ItemStack(BlocksAether.golden_oak_new_log, 1, 1));
 		register("wisproot_log_wall", new ItemStack(BlocksAether.wisproot_log_wall, 6), "ZZZ", "ZZZ", 'Z', new ItemStack(BlocksAether.wisproot_log, 1, 1));
 		register("greatroot_log_wall", new ItemStack(BlocksAether.greatroot_log_wall, 6), "ZZZ", "ZZZ", 'Z', new ItemStack(BlocksAether.greatroot_log, 1, 1));
 		register("void_log_wall", new ItemStack(BlocksAether.void_log_wall, 6), "ZZZ", "ZZZ", 'Z', new ItemStack(BlocksAether.void_log, 1, 1));				

@@ -120,7 +120,7 @@ public class AetherBiome extends BiomeGenBase {
             return (WorldGenAbstractTree)new AetherGenMassiveTree(BlocksAether.purple_skyroot_leaves, 8, false);
         }
         else if (ratio > 68 && ratio <= 69) {
-            return (WorldGenAbstractTree)new AetherGenLargeTree(BlocksAether.golden_oak_leaves, BlocksAether.golden_oak_log, 0);
+            return (WorldGenAbstractTree)new AetherGenLargeTree(BlocksAether.golden_oak_leaves, BlocksAether.golden_oak_new_log, 0);
         }
         else if (ratio > 69 && ratio <= 70) {
             return (WorldGenAbstractTree)new AetherGenLargeTree(BlocksAether.skyroot_leaves, BlocksAether.skyroot_log, 0); 
