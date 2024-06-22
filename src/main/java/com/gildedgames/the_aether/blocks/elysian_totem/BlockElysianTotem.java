@@ -161,7 +161,7 @@ public class BlockElysianTotem extends BlockMultiTileEntity
 			world.playSoundEffect(x, y, z, "aether_legacy:projectile.charged_hit", 2.0F, world.rand.nextFloat() - world.rand.nextFloat() * 0.4f + 0.8f);
 			
             ItemStack stack = player.inventory.getCurrentItem();
-            if (stack.getItem() == ItemsAether.elysian_offering) {
+            if (stack != null && stack.getItem() != null && stack.getItem() == ItemsAether.elysian_offering) {
             	--stack.stackSize;
             	player.triggerAchievement(AchievementsAether.shrine_mender);
             	

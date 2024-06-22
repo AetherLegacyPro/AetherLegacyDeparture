@@ -14,7 +14,7 @@ import net.minecraftforge.common.util.EnumHelper;
 
 public class ItemAscensiteSword extends ItemSword {
 	
-	private static ToolMaterial dragonMaterial = EnumHelper.addToolMaterial("ASCENSITE", 0, 8291, 2.0F, 40.0F, 17);
+	private static ToolMaterial dragonMaterial = EnumHelper.addToolMaterial("ASCENSITE", 0, 8291, 2.0F, 12.0F, 17);
 
 	public ItemAscensiteSword() {
 		super(dragonMaterial);

@@ -19,6 +19,9 @@ import java.util.Random;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 public class CommonProxy {
 
 	public static int berryBushRenderID;
@@ -71,14 +74,43 @@ public class CommonProxy {
 		System.out.println("BBBBBBBBBBBBBBBBBBB");
 		File moo = ForgetTheOtherMethodsThisIsWhereTheMagicHappens.getJarName();
 		AetherConfig.init(event.getModConfigurationDirectory());
-        if(AetherConfig.shouldRefetch()) {
+		Side side = FMLCommonHandler.instance().getEffectiveSide();
+        if(AetherConfig.shouldRefetch() && side.isClient()) {
 			System.out.println("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH refetching");
 
+
         	ForgetTheOtherMethodsThisIsWhereTheMagicHappens assetManager = new ForgetTheOtherMethodsThisIsWhereTheMagicHappens();
-        	ForgetTheOtherMethodsThisIsWhereTheMagicHappens.download("https://mediafilez.forgecdn.net/files/2273/367/aether-1.7.10-1.6.jar");
+
+
+        	if(ForgetTheOtherMethodsThisIsWhereTheMagicHappens.download("https://mediafilez.forgecdn.net/files/2273/367/aether-1.7.10-1.6.jar")) {}
+			else if(ForgetTheOtherMethodsThisIsWhereTheMagicHappens.download("https://web.archive.org/web/20240124165801if_/https://mediafilez.forgecdn.net/files/2273/367/aether-1.7.10-1.6.jar")) {}
+        	else if(ForgetTheOtherMethodsThisIsWhereTheMagicHappens.download("http://mediafilez.forgecdn.net/files/2273/367/aether-1.7.10-1.6.jar")) {}
+			else if(ForgetTheOtherMethodsThisIsWhereTheMagicHappens.download("http://web.archive.org/web/20240124165801if_/https://mediafilez.forgecdn.net/files/2273/367/aether-1.7.10-1.6.jar")) {}
+
+
         	ForgetTheOtherMethodsThisIsWhereTheMagicHappens.renameThingy();
-        	ForgetTheOtherMethodsThisIsWhereTheMagicHappens.download("https://cdn.modrinth.com/data/JD2NSu5O/versions/cZNxPTqa/aether_ii-1.12.2-0.3.0%2Bbuild411-universal.jar");
-        	ForgetTheOtherMethodsThisIsWhereTheMagicHappens.download("https://cdn.modrinth.com/data/YhmgMVyu/versions/4NuI8eHN/aether-1.7.10-v1.1.2.3.jar");
+
+
+        	if(ForgetTheOtherMethodsThisIsWhereTheMagicHappens.download("https://cdn.modrinth.com/data/JD2NSu5O/versions/cZNxPTqa/aether_ii-1.12.2-0.3.0%2Bbuild411-universal.jar")) {}
+        	else if(ForgetTheOtherMethodsThisIsWhereTheMagicHappens.download("https://mediafilez.forgecdn.net/files/2960/610/aether_ii-1.12.2-0.3.0%2Bbuild411-universal.jar")) {}
+        	else if(ForgetTheOtherMethodsThisIsWhereTheMagicHappens.download("http://cdn.modrinth.com/data/JD2NSu5O/versions/cZNxPTqa/aether_ii-1.12.2-0.3.0%2Bbuild411-universal.jar")) {}
+        	else if(ForgetTheOtherMethodsThisIsWhereTheMagicHappens.download("http://mediafilez.forgecdn.net/files/2960/610/aether_ii-1.12.2-0.3.0%2Bbuild411-universal.jar")) {}
+        	else if(ForgetTheOtherMethodsThisIsWhereTheMagicHappens.download("https://web.archive.org/web/20240124165707if_/https://mediafilez.forgecdn.net/files/2960/610/aether_ii-1.12.2-0.3.0%2Bbuild411-universal.jar")) {}
+        	else if(ForgetTheOtherMethodsThisIsWhereTheMagicHappens.download("https://web.archive.org/web/20231223214741if_/https://cdn.modrinth.com/data/JD2NSu5O/versions/cZNxPTqa/aether_ii-1.12.2-0.3.0%2Bbuild411-universal.jar")) {}
+        	else if(ForgetTheOtherMethodsThisIsWhereTheMagicHappens.download("http://web.archive.org/web/20240124165707if_/https://mediafilez.forgecdn.net/files/2960/610/aether_ii-1.12.2-0.3.0%2Bbuild411-universal.jar")) {}
+        	else if(ForgetTheOtherMethodsThisIsWhereTheMagicHappens.download("http://web.archive.org/web/20231223214741if_/https://cdn.modrinth.com/data/JD2NSu5O/versions/cZNxPTqa/aether_ii-1.12.2-0.3.0%2Bbuild411-universal.jar")) {}
+
+
+        	if(ForgetTheOtherMethodsThisIsWhereTheMagicHappens.download("https://cdn.modrinth.com/data/YhmgMVyu/versions/4NuI8eHN/aether-1.7.10-v1.1.2.3.jar")) {}
+        	else if(ForgetTheOtherMethodsThisIsWhereTheMagicHappens.download("https://mediafilez.forgecdn.net/files/5028/330/aether-1.7.10-v1.1.2.3.jar")) {}
+        	else if(ForgetTheOtherMethodsThisIsWhereTheMagicHappens.download("http://cdn.modrinth.com/data/YhmgMVyu/versions/4NuI8eHN/aether-1.7.10-v1.1.2.3.jar")) {}
+        	else if(ForgetTheOtherMethodsThisIsWhereTheMagicHappens.download("http://mediafilez.forgecdn.net/files/5028/330/aether-1.7.10-v1.1.2.3.jar")) {}
+        	else if(ForgetTheOtherMethodsThisIsWhereTheMagicHappens.download("https://web.archive.org/web/20240126131524if_/https://mediafilez.forgecdn.net/files/5028/330/aether-1.7.10-v1.1.2.3.jar")) {}
+        	else if(ForgetTheOtherMethodsThisIsWhereTheMagicHappens.download("https://web.archive.org/web/20240229181232if_/https://cdn.modrinth.com/data/YhmgMVyu/versions/4NuI8eHN/aether-1.7.10-v1.1.2.3.jar")) {}
+        	else if(ForgetTheOtherMethodsThisIsWhereTheMagicHappens.download("http://web.archive.org/web/20240126131524if_/https://mediafilez.forgecdn.net/files/5028/330/aether-1.7.10-v1.1.2.3.jar")) {}
+        	else if(ForgetTheOtherMethodsThisIsWhereTheMagicHappens.download("http://web.archive.org/web/20240229181232if_/https://cdn.modrinth.com/data/YhmgMVyu/versions/4NuI8eHN/aether-1.7.10-v1.1.2.3.jar")) {}
+
+
 			// We need a good static link for aether II 1.7.10. We can probably get everything we need from github auto-zip links, the source should still have the assets.
 			// This is good because it'll be easy to get every asset for every version (including unreleased versions), but the downside is I'd need to make sure
 			// assets are unzipped into instanced locations. 

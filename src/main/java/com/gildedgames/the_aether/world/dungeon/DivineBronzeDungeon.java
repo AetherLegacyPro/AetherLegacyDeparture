@@ -376,7 +376,7 @@ public class DivineBronzeDungeon extends AetherDungeon {
 		}
 
 		addPlaneY(world, random, new PositionData(x + 4, y + 1, z + 4), new PositionData(4, 0, 4));
-		int type = random.nextInt(2);
+		int type = random.nextInt(3);
 		int p = x + 5 + random.nextInt(2);
 		int q = z + 5 + random.nextInt(2);
 

@@ -75,13 +75,17 @@ public class PlayerAetherEvents {
 			{
 				playerAether.givePortalFrame();
 			}
-
-		  if (AetherConfig.enable_assets_message == true) {
+			if (event.player.worldObj.isRemote) { 
+		     if (AetherConfig.enable_assets_message == true) {
 			  EntityPlayer player = event.player;
-			  player.addChatMessage(new ChatComponentText(I18n.format("gui.enable_assets")));
+			  if(System.getProperty("os.name").toLowerCase().contains("windows"))
+			  	player.addChatMessage(new ChatComponentText(I18n.format("gui.enable_assets")));
+			  else
+			  	player.addChatMessage(new ChatComponentText(I18n.format("gui.enable_assets2")));
 			
 			  AetherConfig.enable_assets_message = false;
-		  } 
+		    } 
+		  }
 		}
 	}
 

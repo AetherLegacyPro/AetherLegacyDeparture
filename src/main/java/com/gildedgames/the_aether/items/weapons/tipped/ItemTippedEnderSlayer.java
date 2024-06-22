@@ -23,7 +23,7 @@ public class ItemTippedEnderSlayer extends ItemSword {
 	public boolean newWorld;
 	public Random random;
 
-	public float[] level = new float[]{5.0F, 5.0F, 5.0F, 5.0F, 5.0F};
+	public float[] level = new float[]{6.0F, 6.0F, 6.0F, 6.0F, 6.0F};
 	
 	public float[] level2 = new float[]{13.0F, 13.0F, 13.0F, 13.0F, 13.0F};
 

@@ -75,41 +75,39 @@ public class PalladiumDungeonTotem extends WorldGenerator {
 		break;
         }
 		
+			
 		world.setBlock(x - 2, y + 1, z - 2, BlocksAether.crystallized_genesis_stone);
 		world.setBlock(x - 2, y + 2, z - 2, BlocksAether.crystallized_genesis_stone);
 		world.setBlock(x - 2, y + 3, z - 2, BlocksAether.crystallized_genesis_stone);
 		
-		int rand2 = (int)(1 + Math.random() * 8);
-		if (rand2 == 2) {
-		world.setBlock(x - 2, y + 4, z - 2, BlocksAether.block_of_aceninum);
+		int rand2 = (int)(1 + Math.random() * 4);
+		switch (rand2)
+        {
+		case 1:
+			world.setBlock(x - 2, y + 4, z - 2, BlocksAether.block_of_aceninum);
+			break;
+		case 2:
+			world.setBlock(x + 2, y + 4, z - 2, BlocksAether.block_of_aceninum);
+			break;
+		case 3:
+			world.setBlock(x - 2, y + 4, z + 2, BlocksAether.block_of_aceninum);
+			break;
+		case 4:
+			world.setBlock(x + 2, y + 4, z + 2, BlocksAether.block_of_aceninum);
+			break;
 		}
 		
 		world.setBlock(x + 2, y + 1, z - 2, BlocksAether.crystallized_genesis_stone);
 		world.setBlock(x + 2, y + 2, z - 2, BlocksAether.crystallized_genesis_stone);
 		world.setBlock(x + 2, y + 3, z - 2, BlocksAether.crystallized_genesis_stone);
 		
-		int rand3 = (int)(1 + Math.random() * 8);
-		if (rand3 == 3) {
-		world.setBlock(x + 2, y + 4, z - 2, BlocksAether.block_of_aceninum);
-		}
-		
 		world.setBlock(x - 2, y + 1, z + 2, BlocksAether.crystallized_genesis_stone);
 		world.setBlock(x - 2, y + 2, z + 2, BlocksAether.crystallized_genesis_stone);
 		world.setBlock(x - 2, y + 3, z + 2, BlocksAether.crystallized_genesis_stone);
 		
-		int rand4 = (int)(1 + Math.random() * 8);
-		if (rand4 == 4) {
-		world.setBlock(x - 2, y + 4, z + 2, BlocksAether.block_of_aceninum);
-		}
-		
 		world.setBlock(x + 2, y + 1, z + 2, BlocksAether.crystallized_genesis_stone);
 		world.setBlock(x + 2, y + 2, z + 2, BlocksAether.crystallized_genesis_stone);
 		world.setBlock(x + 2, y + 3, z + 2, BlocksAether.crystallized_genesis_stone);
-		
-		int rand5 = (int)(1 + Math.random() * 8);
-		if (rand5 == 5) {
-		world.setBlock(x + 2, y + 4, z + 2, BlocksAether.block_of_aceninum);
-		}
 		
 		
 

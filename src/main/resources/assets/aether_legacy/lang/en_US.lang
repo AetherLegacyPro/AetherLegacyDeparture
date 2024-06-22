@@ -1528,7 +1528,8 @@ gui.divine_et.invalid_structure=Golden Oak Bookshelves must be placed around the
 gui.elysian_totem=The structure surrounding the totem seems to have been eroded/incomplete. Perhaps if it is repaired it will activate...
 gui.elysian_totem_rightclick=Something seems to be missing, the totem seems to missing something perhaps if I offer some kind of offering it will activate?
 
-gui.enable_assets=Welcome to Aether Departure! Enable the Resource Pack that has downloaded on startup otherwise many textures and sounds will be missing!(This message will only appear once)
+gui.enable_assets=Welcome to Aether Departure! Enable the Resource Pack that has downloaded on startup otherwise most textures and sounds will be missing!(This message will only appear once)
+gui.enable_assets2=Welcome to Aether Departure! Make sure to close and relaunch the game on install and each update or else Aether textures will be broken!(This message will only appear once)
 
 gui.loading.enteraether=Ascending to the Aether
 gui.loading.exitaether=Descending from the Aether

@@ -31,7 +31,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 public class ForgetTheOtherMethodsThisIsWhereTheMagicHappens {
-    public static void download(String urlstr) {
+    public static boolean download(String urlstr) {
         try {
             // URL of the file you want to download
             String fileURL = urlstr;
@@ -74,8 +74,10 @@ public class ForgetTheOtherMethodsThisIsWhereTheMagicHappens {
             System.out.println("File downloaded successfully to: " + outputFile.getAbsolutePath());
 
 			unpackJar(outputFile, saveDir);
+			return true;
         } catch (IOException e) {
             e.printStackTrace();
+			return false;
         }
     }
 
@@ -164,7 +166,7 @@ public class ForgetTheOtherMethodsThisIsWhereTheMagicHappens {
 
 		String cowFolderStr = System.getProperty("user.dir") + "/cow";
         File cowFolder = new File(cowFolderStr);
-
+		/*
 		//File[] filesInCowFolder = cowFolder.listFiles();
 		List<File> fileList = new ArrayList<>();
         listFilesRecursively(cowFolder, fileList);
@@ -190,6 +192,7 @@ public class ForgetTheOtherMethodsThisIsWhereTheMagicHappens {
 		for (File fileToAdd : filesToAdd) {
 			System.out.println("MOO " + fileToAdd);
 		}
+		*/
 
 		// it was a valiant effort. works on *nix-like, windows is shit and idk how to script for it
 		/*

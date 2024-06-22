@@ -9,6 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
+import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.items.ItemsAether;
 
 public class BlockVoidSapling extends BlockUpsideDownFlower implements IGrowable {
@@ -28,7 +29,7 @@ public class BlockVoidSapling extends BlockUpsideDownFlower implements IGrowable
 		if (!world.isRemote) {
 			super.updateTick(world, x, y, z, random);
 
-			if (world.getBlockLightValue(x, y - 1, z) <= 7 && random.nextInt(30) == 0) {
+			if (world.getBlockLightValue(x, y + 1, z) <= 7 && random.nextInt(30) == 0) {
 				this.growTree(world, x, y, z, random);
 			}
 		}
@@ -56,7 +57,7 @@ public class BlockVoidSapling extends BlockUpsideDownFlower implements IGrowable
         if (stack.getItem() == ItemsAether.swet_ball || stack.getItem() == ItemsAether.golden_swet_ball || stack.getItem() == ItemsAether.purple_swet_ball) {
         	
         	int rand = (int)(1 + Math.random() * 4);
-        	if (world.getBlockLightValue(x, y - 1, z) <= 7 && rand == 4) {
+        	if (world.getBlockLightValue(x, y + 1, z) <= 7 && rand == 4 && y <= 30.0D && world.provider.dimensionId == AetherConfig.getAetherDimensionID()) {
         		world.setBlock(x, y, z, Blocks.air);
 				this.growTree(world, x, y, z);
 			}

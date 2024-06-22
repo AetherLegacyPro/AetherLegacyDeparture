@@ -14,23 +14,17 @@ public class AetherGenVoidTree extends WorldGenAbstractTree {
 	public AetherGenVoidTree(boolean p_i45448_1_) {
 		super(p_i45448_1_);
 	}
-
+	
+	@Override
 	public boolean generate(World world, Random random, int j, int k, int l) {
 		boolean cangen = true;
 
-		for (int x1 = j - 6; x1 < j + 12; x1++) {
-			for (int y1 = k - 6; y1 < k + 17; y1++) {
-				for (int z1 = l - 6; z1 < l + 12; z1++) {
-					if (world.getBlock(x1, y1, z1) != Blocks.air) {
-						cangen = false;
-					}
-				}
-			}
-		}
-
-		if (k - 11 <= world.getHeight() && cangen) {		
+		if (k - 11 <= world.getHeight() && k <= 30.0D) {	
 			
 			for (int x = 0; x < 1; ++x) {
+				world.setBlock(x + j, k, l, BlocksAether.void_log);
+				world.setBlock(x + j, k - 1, l, BlocksAether.void_log);
+				world.setBlock(x + j, k - 2, l, BlocksAether.void_log);
 				world.setBlock(x + j, k - 3, l, BlocksAether.void_log);
 				world.setBlock(x + j, k - 4, l, BlocksAether.void_log);
 				world.setBlock(x + j, k - 5, l, BlocksAether.void_log);
@@ -182,7 +176,7 @@ public class AetherGenVoidTree extends WorldGenAbstractTree {
 			return true;
 		}
 
-		return false;
+		return true;
 	}
 
 	protected Block setRandomBlock(World world, Random random) {

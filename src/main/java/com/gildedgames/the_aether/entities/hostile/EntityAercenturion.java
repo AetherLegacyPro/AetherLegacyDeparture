@@ -116,8 +116,8 @@ public class EntityAercenturion extends EntityMob
     
     public void onLivingUpdate()
 	{	
-    	if (Minecraft.getMinecraft().thePlayer.capabilities.isCreativeMode == false) {
-        
+    		if (this.worldObj.isRemote)
+        	if (Minecraft.getMinecraft().thePlayer.capabilities.isCreativeMode == false) {  
         List<Entity> volume2 = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(5, 5, 5));
         for(Entity entity2 : volume2) {
         	if(entity2 instanceof EntityPlayer && this.canEntityBeSeen(entity2)) ((EntityPlayer)entity2).addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 120, 1, true));

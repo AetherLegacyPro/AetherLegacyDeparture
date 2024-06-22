@@ -538,7 +538,7 @@ public class BlocksAether {
 		dark_blue_skyroot_sapling = register("dark_blue_skyroot_sapling", new BlockAetherSapling(new AetherGenDarkBlueSkyrootTree(false)).setBlockTextureName(Aether.find("darkblue_crystal_sapling")));
 		wisproot_sapling = register("wisproot_sapling", new BlockAetherSapling(new AetherGenWisprootTree(BlocksAether.blue_light_skyroot_leaves, 8, true)).setBlockTextureName(Aether.find("wisproot_sapling")));
 		greatroot_sapling = register("greatroot_sapling", new BlockAetherSapling(new AetherGenGreatrootTree(BlocksAether.green_light_skyroot_leaves, 20, true)).setBlockTextureName(Aether.find("greatroot_sapling")));
-		void_sapling = register("void_sapling", new BlockVoidSapling(new AetherGenVoidTree(true)).setBlockTextureName(Aether.find("void_sapling")));		
+		void_sapling = register("void_sapling", new BlockVoidSapling(new AetherGenVoidTree(false)).setBlockTextureName(Aether.find("void_sapling")));		
 		divine_oak_sapling = register("divine_oak_sapling", new BlockAetherSapling(new AetherGenDivineTree(BlocksAether.divine_oak_leaves, 40, true)).setBlockTextureName(Aether.find("divine_oak_sapling")));
 		
 		enchanter = registerEnchanter("enchanter", new BlockEnchanter());

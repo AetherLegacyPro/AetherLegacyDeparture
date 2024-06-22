@@ -27,7 +27,7 @@ public class ItemAmplifiedEnderSlayer extends ItemSword {
 	public boolean newWorld;
 	public Random random;
 
-	public float[] level = new float[]{6.0F, 6.0F, 6.0F, 6.0F, 6.0F};
+	public float[] level = new float[]{7.0F, 7.0F, 7.0F, 7.0F, 7.0F};
 	
 	public float[] level2 = new float[]{26.0F, 26.0F, 26.0F, 26.0F, 26.0F};
 

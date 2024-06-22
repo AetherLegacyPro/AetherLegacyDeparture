@@ -2,14 +2,19 @@ package com.gildedgames.the_aether.entities.bosses.genesis_dragon;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 
 import com.gildedgames.the_aether.api.player.util.IAetherBoss;
+import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.entities.bosses.crystal_dragon.EntityCrystalDragon;
 import com.gildedgames.the_aether.entities.bosses.crystal_dragon.EntityCrystalDragonPart;
 import com.gildedgames.the_aether.entities.particles.NewAetherParticleHandler;
 import com.gildedgames.the_aether.entities.util.AetherNameGen;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.player.PlayerAether;
+import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
+import com.gildedgames.the_aether.tileentity.TileEntitySkyrootChest;
+import com.gildedgames.the_aether.tileentity.TileEntityTreasureChestBreakable;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
@@ -965,15 +970,68 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
                 this.worldObj.spawnEntityInWorld(new EntityXPOrb(this.worldObj, this.posX, this.posY, this.posZ, j));
             }
 
-            //this.createloot(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY), MathHelper.floor_double(this.posZ));
+            this.createloot(this.worldObj, this.rand, MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY), MathHelper.floor_double(this.posZ));
             this.setDead();
         }
     }
     
+    public void createloot(World world, Random random, int p_70975_1_, int p_70975_2_, int p_70975_3_)
+    {
+		this.worldObj.setBlock(p_70975_1_, p_70975_2_ + 1, p_70975_3_, BlocksAether.treasure_chest_breakable);
+		TileEntityTreasureChestBreakable chest = (TileEntityTreasureChestBreakable) world.getTileEntity(p_70975_1_, p_70975_2_ + 1, p_70975_3_);
+		chest.setInventorySlotContents(random.nextInt(chest.getSizeInventory()), this.getKey(random));
+		
+		this.worldObj.setBlock(p_70975_1_ + 2, p_70975_2_ + 1, p_70975_3_, BlocksAether.treasure_chest_breakable);
+		TileEntityTreasureChestBreakable chest2 = (TileEntityTreasureChestBreakable) worldObj.getTileEntity(p_70975_1_ + 2, p_70975_2_ + 1, p_70975_3_);
+		int rand = (int)(1 + Math.random() * 20);
+		for (rand = 0; rand < 1 + random.nextInt(12); rand++) {
+			chest2.setInventorySlotContents(random.nextInt(chest2.getSizeInventory()), this.getScales(random));
+        }
+		this.worldObj.setBlock(p_70975_1_, p_70975_2_, p_70975_3_, BlocksAether.reinforced_arkenium_block);		
+		
+		this.worldObj.setBlock(p_70975_1_, p_70975_2_ - 1, p_70975_3_, BlocksAether.aerogel);
+		this.worldObj.setBlock(p_70975_1_ - 1, p_70975_2_ - 1, p_70975_3_, BlocksAether.aerogel);
+		this.worldObj.setBlock(p_70975_1_ + 1, p_70975_2_ - 1, p_70975_3_, BlocksAether.aerogel);
+		this.worldObj.setBlock(p_70975_1_, p_70975_2_ - 1, p_70975_3_ - 1, BlocksAether.aerogel);
+		this.worldObj.setBlock(p_70975_1_, p_70975_2_ - 1, p_70975_3_ + 1, BlocksAether.aerogel);
+		this.worldObj.setBlock(p_70975_1_ - 1, p_70975_2_ - 1, p_70975_3_ + 1, BlocksAether.aerogel);
+		this.worldObj.setBlock(p_70975_1_ - 1, p_70975_2_ - 1, p_70975_3_ - 1, BlocksAether.aerogel);
+		this.worldObj.setBlock(p_70975_1_ + 1, p_70975_2_ - 1, p_70975_3_ + 1, BlocksAether.aerogel);
+		this.worldObj.setBlock(p_70975_1_ + 1, p_70975_2_ - 1, p_70975_3_ - 1, BlocksAether.aerogel);
+		
+		this.worldObj.setBlock(p_70975_1_ - 2, p_70975_2_ - 1, p_70975_3_, BlocksAether.aerogel);
+		this.worldObj.setBlock(p_70975_1_ + 2, p_70975_2_ - 1, p_70975_3_, BlocksAether.aerogel);
+		this.worldObj.setBlock(p_70975_1_, p_70975_2_ - 1, p_70975_3_ - 2, BlocksAether.aerogel);
+		this.worldObj.setBlock(p_70975_1_, p_70975_2_ - 1, p_70975_3_ + 2, BlocksAether.aerogel);
+		
+    }
+    
+    private ItemStack getKey(Random random) {
+    	
+		return new ItemStack(ItemsAether.dungeon_key, 1, 14);
+    }
+    
+    private ItemStack getScales(Random rand3) {	
+			
+		return new ItemStack(ItemsAether.elysian_dragon_scales, rand3.nextInt(30) + 24);
+	}
+    
+    public void onDeath(DamageSource p_70645_1_)
+    {
+        super.onDeath(p_70645_1_);
+
+        if (p_70645_1_.getEntity() instanceof EntityPlayer)
+        {
+            EntityPlayer entityplayer = (EntityPlayer)p_70645_1_.getEntity();
+            
+            entityplayer.triggerAchievement(AchievementsAether.defeat_palladium);
+            
+        }
+            
+    }
+    
     protected void dropFewItems(boolean p_70628_1_, int p_70628_2_)
     {  	
-    	this.entityDropItem(new ItemStack(ItemsAether.dungeon_key, 1, 14), 0.5F);
-
         int j;
         int k;
         {
