@@ -13,6 +13,7 @@ import com.gildedgames.the_aether.entities.util.AetherNameGen;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.player.PlayerAether;
 import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
+import com.gildedgames.the_aether.tileentity.TileEntityElysianChest;
 import com.gildedgames.the_aether.tileentity.TileEntitySkyrootChest;
 import com.gildedgames.the_aether.tileentity.TileEntityTreasureChestBreakable;
 
@@ -981,13 +982,19 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
 		TileEntityTreasureChestBreakable chest = (TileEntityTreasureChestBreakable) world.getTileEntity(p_70975_1_, p_70975_2_ + 1, p_70975_3_);
 		chest.setInventorySlotContents(random.nextInt(chest.getSizeInventory()), this.getKey(random));
 		
-		this.worldObj.setBlock(p_70975_1_ + 2, p_70975_2_ + 1, p_70975_3_, BlocksAether.treasure_chest_breakable);
-		TileEntityTreasureChestBreakable chest2 = (TileEntityTreasureChestBreakable) worldObj.getTileEntity(p_70975_1_ + 2, p_70975_2_ + 1, p_70975_3_);
-		int rand = (int)(1 + Math.random() * 20);
-		for (rand = 0; rand < 1 + random.nextInt(12); rand++) {
+		this.worldObj.setBlock(p_70975_1_ + 2, p_70975_2_ + 1, p_70975_3_, BlocksAether.elysian_chest);
+		TileEntityElysianChest chest2 = (TileEntityElysianChest) worldObj.getTileEntity(p_70975_1_ + 2, p_70975_2_ + 1, p_70975_3_);
 			chest2.setInventorySlotContents(random.nextInt(chest2.getSizeInventory()), this.getScales(random));
-        }
-		this.worldObj.setBlock(p_70975_1_, p_70975_2_, p_70975_3_, BlocksAether.reinforced_arkenium_block);		
+		
+		this.worldObj.setBlock(p_70975_1_ - 2, p_70975_2_ + 1, p_70975_3_, BlocksAether.elysian_chest);
+		TileEntityElysianChest chest3 = (TileEntityElysianChest) worldObj.getTileEntity(p_70975_1_ - 2, p_70975_2_ + 1, p_70975_3_);
+			chest3.setInventorySlotContents(random.nextInt(chest2.getSizeInventory()), this.getScales(random));
+		
+		this.worldObj.setBlock(p_70975_1_, p_70975_2_, p_70975_3_, BlocksAether.reinforced_arkenium_block);
+		
+		this.worldObj.setBlock(p_70975_1_ + 2, p_70975_2_, p_70975_3_, BlocksAether.aerogel);	
+		
+		this.worldObj.setBlock(p_70975_1_ - 2, p_70975_2_, p_70975_3_, BlocksAether.aerogel);	
 		
 		this.worldObj.setBlock(p_70975_1_, p_70975_2_ - 1, p_70975_3_, BlocksAether.aerogel);
 		this.worldObj.setBlock(p_70975_1_ - 1, p_70975_2_ - 1, p_70975_3_, BlocksAether.aerogel);

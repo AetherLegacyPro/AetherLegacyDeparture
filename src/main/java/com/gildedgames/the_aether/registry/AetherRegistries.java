@@ -33,8 +33,10 @@ public class AetherRegistries {
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.chain_gloves, AccessoryType.GLOVES));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.diamond_gloves, AccessoryType.GLOVES));
 		
-		if (Loader.isModLoaded("etfuturum")) {
+		if (Loader.isModLoaded("etfuturum") && AetherConfig.enable_copper_recipes == true) {
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.netherite_gloves, AccessoryType.GLOVES));
+		}
+		if (Loader.isModLoaded("etfuturum") && AetherConfig.enable_netherite_recipes == true) {
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.copper_gloves, AccessoryType.GLOVES));
 		}
 		
@@ -100,10 +102,12 @@ public class AetherRegistries {
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.reinforced_elysian_ring, AccessoryType.RING));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.amplified_elysian_ring, AccessoryType.RING));
 		
-		if (Loader.isModLoaded("etfuturum")) {
+		if (Loader.isModLoaded("etfuturum") && AetherConfig.enable_copper_recipes == true) {
 			AetherAPI.instance().register(new AetherAccessory(ItemsAether.copper_ring, AccessoryType.RING));
+		}
+		if (Loader.isModLoaded("etfuturum") && AetherConfig.enable_netherite_recipes == true) {
 			AetherAPI.instance().register(new AetherAccessory(ItemsAether.netherite_ring, AccessoryType.RING));
-			}
+		}
 
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.iron_pendant, AccessoryType.PENDANT));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.golden_pendant, AccessoryType.PENDANT));
@@ -120,8 +124,10 @@ public class AetherRegistries {
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.reinforced_auralite_pendant, AccessoryType.PENDANT));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.amplified_auralite_pendant, AccessoryType.PENDANT));
 		
-		if (Loader.isModLoaded("etfuturum")) {
+		if (Loader.isModLoaded("etfuturum") && AetherConfig.enable_copper_recipes == true) {
 			AetherAPI.instance().register(new AetherAccessory(ItemsAether.copper_pendant, AccessoryType.PENDANT));
+		}
+		if (Loader.isModLoaded("etfuturum") && AetherConfig.enable_netherite_recipes == true) {
 			AetherAPI.instance().register(new AetherAccessory(ItemsAether.netherite_pendant, AccessoryType.PENDANT));
 		}
 
@@ -738,14 +744,14 @@ public class AetherRegistries {
 		registerShapeless("zanite_and_cyro", new ItemStack(ItemsAether.zanite_and_cyro), new ItemStack(ItemsAether.cyro_rod), new ItemStack(ItemsAether.zanite_gemstone));
 		registerShapeless("uncooked_fruit_stew_bowl", new ItemStack(ItemsAether.uncooked_fruit_stew_bowl), new ItemStack(ItemsAether.holystone_bowl), new ItemStack(ItemsAether.raw_aerwhale), new ItemStack(ItemsAether.rainbow_strawberry), new ItemStack(ItemsAether.gummy_swet), new ItemStack(ItemsAether.blackberry), new ItemStack(ItemsAether.raspberry), new ItemStack(ItemsAether.orange), new ItemStack(ItemsAether.grapes), new ItemStack(ItemsAether.blueberry));
 		
-		if (Loader.isModLoaded("etfuturum")) {
+		if (Loader.isModLoaded("etfuturum") && AetherConfig.enable_netherite_recipes == true) {
 		registerShapeless("netherite_gloves", new ItemStack(ItemsAether.netherite_gloves), new ItemStack(ItemsAether.diamond_gloves), new ItemStack(OtherModItems.netherite_ingot));
 		registerShapeless("netherite_ring", new ItemStack(ItemsAether.netherite_ring), new ItemStack(ItemsAether.diamond_ring), new ItemStack(OtherModItems.netherite_ingot));
 		registerShapeless("netherite_pendent", new ItemStack(ItemsAether.netherite_pendant), new ItemStack(ItemsAether.diamond_pendant), new ItemStack(OtherModItems.netherite_ingot));
 		}
 		
 		if (Loader.isModLoaded("nova_craft")) {
-			if (Loader.isModLoaded("etfuturum")) {
+			if (Loader.isModLoaded("etfuturum") && AetherConfig.enable_netherite_recipes == true) {
 				registerShapeless("klangite_gloves", new ItemStack(ItemsAether.klangite_gloves), new ItemStack(ItemsAether.netherite_gloves), new ItemStack(OtherModItems.klangite_ingot));
 			}
 			else {
@@ -1058,10 +1064,10 @@ public class AetherRegistries {
 			register("divineral_ingot", new ItemStack(ItemsAether.divineral_ingot), " V ", "XYX", " Z ", 'X', ItemsAether.enchanted_divineral, 'Y', BlocksAether.enchanted_gravitite, 'Z', ItemsAether.charged_tempest_core,  'V', ItemsAether.divine_essence);
 		}
 							
-		if (AetherConfig.DivineralRecipeHardmore() == true && AetherConfig.NetheriteRequiredInDivineralIngot() == true && Loader.isModLoaded("etfuturum")) {
+		if (AetherConfig.DivineralRecipeHardmore() == true && AetherConfig.NetheriteRequiredInDivineralIngot() == true && AetherConfig.enableNetheriteRecipes() == true  && Loader.isModLoaded("etfuturum")) {
 		register("divineral_ingot", new ItemStack(ItemsAether.divineral_ingot), "VXZ", "XWX", "YXV", 'X', ItemsAether.enchanted_divineral, 'W', OtherModItems.netherite_ingot, 'Y', BlocksAether.enchanted_gravitite, 'Z', ItemsAether.charged_tempest_core,  'V', ItemsAether.divine_essence);
 		}
-		if (AetherConfig.DivineralRecipeHardmore() == false && AetherConfig.NetheriteRequiredInDivineralIngot() == true && Loader.isModLoaded("etfuturum")) {
+		if (AetherConfig.DivineralRecipeHardmore() == false && AetherConfig.NetheriteRequiredInDivineralIngot() == true && AetherConfig.enableNetheriteRecipes() == true && Loader.isModLoaded("etfuturum")) {
 		register("divineral_ingot", new ItemStack(ItemsAether.divineral_ingot), " V ", "XYX", " Z ", 'X', ItemsAether.enchanted_divineral, 'Y', OtherModItems.netherite_ingot, 'Z', ItemsAether.charged_tempest_core,  'V', ItemsAether.divine_essence);
 		}
 		
@@ -1247,7 +1253,7 @@ public class AetherRegistries {
 			//register("vanite_gloves", new ItemStack(ItemsAether.vanite_gloves), "C C", 'C', OtherModItems.vanite_ingot);
 		//}
 		
-		if (Loader.isModLoaded("etfuturum")) {
+		if (Loader.isModLoaded("etfuturum") && AetherConfig.enable_copper_recipes == true) {
 		register("copper_gloves", new ItemStack(ItemsAether.copper_gloves), "C C", 'C', OtherModItems.copper_ingot);	
 		register("copper_ring", new ItemStack(ItemsAether.copper_ring), " Z ", "Z Z", " Z ", 'Z', new ItemStack(OtherModItems.copper_ingot));
 		register("copper_pendant", new ItemStack(ItemsAether.copper_pendant), " Z ", "Z Z", " ZS", 'Z', new ItemStack(OtherModItems.copper_ingot), 'S', new ItemStack(Items.string));		

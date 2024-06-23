@@ -532,7 +532,7 @@ public class BlocksAether {
 		
 		skyroot_sapling = register("skyroot_sapling", new BlockAetherSapling(new AetherGenSkyrootTree(false)).setBlockTextureName(Aether.find("skyroot_sapling")));
 		golden_oak_sapling = register("golden_oak_sapling", new BlockAetherSapling(new AetherGenOakTree()).setBlockTextureName(Aether.find("golden_oak_sapling")));
-		crystal_sapling = register("crystal_sapling", new BlockAetherSapling(new AetherGenCrystalTree()).setBlockTextureName(Aether.find("crystal_sapling")));		
+		crystal_sapling = register("crystal_sapling", new BlockAetherSapling(new AetherGenCrystalTree(false)).setBlockTextureName(Aether.find("crystal_sapling")));		
 		purple_skyroot_sapling = register("purple_skyroot_sapling", new BlockAetherSapling(new AetherGenPurpleSkyrootTree(false)).setBlockTextureName(Aether.find("purple_crystal_sapling")));
 		blue_skyroot_sapling = register("blue_skyroot_sapling", new BlockAetherSapling(new AetherGenBlueSkyrootTree(false)).setBlockTextureName(Aether.find("blue_skyroot_sapling")));
 		dark_blue_skyroot_sapling = register("dark_blue_skyroot_sapling", new BlockAetherSapling(new AetherGenDarkBlueSkyrootTree(false)).setBlockTextureName(Aether.find("darkblue_crystal_sapling")));

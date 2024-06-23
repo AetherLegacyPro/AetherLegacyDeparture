@@ -778,8 +778,10 @@ public class ItemsAether {
 		chain_gloves = register("chain_gloves", new ItemAccessory(AccessoryType.GLOVES).setTexture("chain").setMaxDamage(122).setTextureName(Aether.find("accessories/chain_gloves")));
 		diamond_gloves = register("diamond_gloves", new ItemAccessory(AccessoryType.GLOVES).setColor(0x33ebcb).setMaxDamage(352).setTextureName(Aether.find("accessories/solid_gloves")));
 		
-		if (Loader.isModLoaded("etfuturum")) {
+		if (Loader.isModLoaded("etfuturum") && AetherConfig.enable_copper_recipes == true) {
 		copper_gloves = register("copper_gloves", new ItemAccessory(AccessoryType.GLOVES).setTexture("copper").setMaxDamage(92).setTextureName(Aether.find("accessories/copper_gloves")));
+		}
+		if (Loader.isModLoaded("etfuturum") && AetherConfig.enable_netherite_recipes == true) {
 		netherite_gloves = register("netherite_gloves", new ItemAccessory(AccessoryType.GLOVES).setTexture("netherite").setMaxDamage(552).setTextureName(Aether.find("accessories/netherite_gloves")));
 		}
 			
@@ -823,8 +825,11 @@ public class ItemsAether {
 		golden_ring = register("golden_ring", new ItemAccessory(AccessoryType.RING).setTextureName(Aether.find("accessories/golden_ring")));
 		diamond_ring = register("diamond_ring", new ItemAccessory(AccessoryType.RING).setMaxDamage(323).setTextureName(Aether.find("accessories/diamond_ring")));
 		
-		if (Loader.isModLoaded("etfuturum")) {
+		if (Loader.isModLoaded("etfuturum") && AetherConfig.enable_copper_recipes == true) {
 		copper_ring = register("copper_ring", new ItemAccessory(AccessoryType.RING).setMaxDamage(56).setTextureName(Aether.find("accessories/copper_ring")));
+		}
+		
+		if (Loader.isModLoaded("etfuturum") && AetherConfig.enable_netherite_recipes == true) {
 		netherite_ring = register("netherite_ring", new ItemAccessory(AccessoryType.RING).setMaxDamage(493).setTextureName(Aether.find("accessories/netherite_ring")));
 		}
 		
@@ -856,8 +861,11 @@ public class ItemsAether {
 		golden_pendant = register("golden_pendant", new ItemAccessory(AccessoryType.PENDANT).setColor(0xeaee57).setTextureName(Aether.find("accessories/pendant_base")));
 		diamond_pendant = register("diamond_pendant", new ItemAccessory(AccessoryType.PENDANT).setTexture("diamond").setMaxDamage(363).setTextureName(Aether.find("accessories/diamond_pendant")));
 		
-		if (Loader.isModLoaded("etfuturum")) {
+		if (Loader.isModLoaded("etfuturum") && AetherConfig.enable_copper_recipes == true) {
 		copper_pendant = register("copper_pendant", new ItemAccessory(AccessoryType.PENDANT).setTexture("copper").setMaxDamage(94).setTextureName(Aether.find("accessories/copper_pendant")));
+		}
+		
+		if (Loader.isModLoaded("etfuturum") && AetherConfig.enable_netherite_recipes == true) {
 		netherite_pendant = register("netherite_pendant", new ItemAccessory(AccessoryType.PENDANT).setTexture("netherite").setMaxDamage(503).setTextureName(Aether.find("accessories/netherite_pendant")));
 		}
 		

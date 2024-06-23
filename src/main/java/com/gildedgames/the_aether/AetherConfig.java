@@ -65,8 +65,11 @@ public class AetherConfig {
 	
 	public static boolean cloud_icon;
 	
+	public static boolean enable_copper_recipes, enable_netherite_recipes;
+	
 	public static final String catMisc = "New Misc Options";
 	public static final String catWorld = "New World Gen Options";
+	public static final String catEtFuturum = "Et Futurum Requiem Options";
 
 	private static boolean redownloadFiles;
 	public static String greeting = "Hello World";
@@ -128,7 +131,6 @@ public class AetherConfig {
 		budding_auralite_recipe = config.getBoolean("enableBuddingAuraliteRecipe", catMisc, true, "Should budding auralite be craftable?");		
 		repair_material_tippedtool = config.getBoolean("repairItemAuraliteCrystal", catMisc, true, "The repair item for tipped tools is auralite crystal, if false it will be the material the tool/sword is made from.");
 		divineral_recipe_hardmore = config.getBoolean("divineralRecipeHardmore", catMisc, true, "Should divineral ingots have a difficult or easier recipe?");
-		netherite_required_divineral_ingot = config.getBoolean("netheriteRequiredInDivineralIngot", catMisc, false, "If Et Futurum Requiem is installed should netherite ingots be required in the divineral ingot recipe?");
 		redstone_recipes = config.getBoolean("enableRedstoneRecipes", catMisc, true, "Should the player be able to craft redstone items and blocks from materials in the aether?");
 		brewing_recipes = config.getBoolean("enableBrewingRecipes", catMisc, true, "Should the player be able to craft the cauldron, brewing stand, and glass bottles from materials in the aether?");
 		disable_parachutes = config.getBoolean("disableParachutes", catMisc, false, "Should parachutes be removed from being obtainable in survivial? This option is mainly for servers due to the crash they cause if the player falls out of the aether while on one and tries to enter the aether portal.");		
@@ -179,6 +181,10 @@ public class AetherConfig {
 
 		disable_eternal_day = config.get("Misc", "Enables eternal day making time cycle in the Aether base on if having killed the Sun Spirit. This is mainly intended for use in modpacks.", false).getBoolean(false);
 
+		enable_copper_recipes = config.getBoolean("enable_copper_recipes", catEtFuturum, false, "Enables Recipes with copper ingots from Et Futurum Requiem.");
+		enable_netherite_recipes = config.getBoolean("enable_netherite_recipes", catEtFuturum, false, "Enables Recipes with netherite ingots from Et Futurum Requiem.");
+		netherite_required_divineral_ingot = config.getBoolean("netheriteRequiredInDivineralIngot", catEtFuturum, false, "If Et Futurum Requiem is installed should netherite ingots be required in the divineral ingot recipe?");
+		
 		//Spawnrates
 		phyg_spawnrate = config.get("Spawnrates", "Phyg Spawnrate. 1 is always, higher numbers decrease chances.", 1).getInt(1);
 		flyingcow_spawnrate = config.get("Spawnrates", "Flying Cow Spawnrate. 1 is always, higher numbers decrease chances.", 1).getInt(1);
@@ -204,6 +210,14 @@ public class AetherConfig {
 		whirlwind_spawnrate = config.get("Spawnrates", "Whirlwind Spawnrate. 1 is always, higher numbers decrease chances.", 55).getInt(55);
 		
 		config.save();
+	}
+	
+	public static boolean enableNetheriteRecipes() {
+		return AetherConfig.enable_netherite_recipes;
+	}
+	
+	public static boolean enableCopperRecipes() {
+		return AetherConfig.enable_copper_recipes;
 	}
 	
 	public static boolean enableStartupMessage() {

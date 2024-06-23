@@ -36,7 +36,7 @@ public class BlockAetherSapling extends BlockAetherFlower implements IGrowable {
 	}
 
 	public void growTree(World world, int x, int y, int z, Random rand) {
-		world.setBlock(x, y, z, Blocks.air);
+		world.setBlock(x, y, z, BlocksAether.skyroot_log, 0, 0);
 
 		if (!this.treeGenObject.generate(world, world.rand, x, y, z)) {
 			world.setBlock(x, y, z, this);
@@ -44,7 +44,7 @@ public class BlockAetherSapling extends BlockAetherFlower implements IGrowable {
 	}
 	
 	public void growTree(World world, int x, int y, int z) {
-		world.setBlock(x, y, z, Blocks.air);
+		world.setBlock(x, y, z, BlocksAether.skyroot_log, 0, 0);
 
 		if (!this.treeGenObject.generate(world, world.rand, x, y, z)) {
 			world.setBlock(x, y, z, this);
@@ -58,7 +58,7 @@ public class BlockAetherSapling extends BlockAetherFlower implements IGrowable {
         	
         	int rand = (int)(1 + Math.random() * 4);
         	if (world.getBlockLightValue(x, y + 1, z) >= 9 && rand == 4) {
-        		world.setBlock(x, y, z, Blocks.air);
+        		world.setBlock(x, y, z, BlocksAether.skyroot_log, 0, 0);
 				this.growTree(world, x, y, z);
 			}
         }
