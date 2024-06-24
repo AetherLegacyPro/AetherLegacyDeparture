@@ -338,9 +338,9 @@ public class EntityEliteValkyrie extends EntityAetherMob {
 		}
 		
 		EntityPlayer player = (EntityPlayer) ds.getEntity();
-        ItemStack stack = player.inventory.getCurrentItem();
+		ItemStack stack = player.inventory.getCurrentItem();
         
-		if (stack.getItem() == ItemsAether.builder_slayer) {
+		if (stack != null && stack.getItem() != null && stack.getItem() == ItemsAether.builder_slayer) {
 			player.triggerAchievement(AchievementsAether.builders_beware);
 		}
 
