@@ -97,6 +97,7 @@ import com.gildedgames.the_aether.blocks.natural.BlockAetherLeaves;
 import com.gildedgames.the_aether.blocks.natural.BlockAetherLog;
 import com.gildedgames.the_aether.blocks.natural.BlockAetherLogDivine;
 import com.gildedgames.the_aether.blocks.natural.BlockAetherLogGreatroot;
+import com.gildedgames.the_aether.blocks.natural.BlockAetherLogOld;
 import com.gildedgames.the_aether.blocks.natural.BlockAetherLogVoid;
 import com.gildedgames.the_aether.blocks.natural.BlockAetherLogWisproot;
 import com.gildedgames.the_aether.blocks.natural.BlockAetherOre;
@@ -457,7 +458,7 @@ public class BlocksAether {
 		divine_oak_leaves = register("divine_oak_leaves", new BlockAetherLeaves().setBlockTextureName(Aether.find("divine_oak_leaves")));
 
 		skyroot_log = registerMeta("skyroot_log", new BlockAetherLog()).setBlockTextureName(Aether.find("skyroot_log"));
-		golden_oak_log = registerHidden("golden_oak_log", new BlockAetherLog().setBlockTextureName(Aether.find("golden_oak_log")));
+		golden_oak_log = registerHidden("golden_oak_log", new BlockAetherLogOld().setBlockTextureName(Aether.find("golden_oak_log")));
 		golden_oak_new_log = registerMeta("golden_oak_new_log", new BlockGoldenOakNewLog().setBlockTextureName(Aether.find("golden_oak_log_new")));	
 		greatroot_log = registerMeta("greatroot_log", new BlockAetherLogGreatroot().setBlockTextureName(Aether.findHighlands("logs/greatroot_log")));
 		wisproot_log = registerMeta("wisproot_log", new BlockAetherLogWisproot().setBlockTextureName(Aether.findHighlands("logs/wisproot_log")));

@@ -17,7 +17,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class GuiFreezer extends GuiContainer {
 
-	private static final ResourceLocation TEXTURE = Aether.locate("textures/gui/freezer.png");
+	private static final ResourceLocation TEXTURE = Aether.locate("textures/gui/altar.png");
 
 	private TileEntityFreezer freezer;
 
