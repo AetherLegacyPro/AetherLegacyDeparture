@@ -25,9 +25,9 @@ Aerogel acts as an explosion-resistant, transparent block.
 Quicksoil increases the speed of walking mobs and sliding items.
 Holystone tools occasionally generate Ambrosium.
 Dungeons can contain extremely powerful and unique rewards. 
-Dungeons have various difficulties: from Bronze, Silver, to Gold.
-Normal music disks can be enchanted into a Blue version.
-You can harvest Aechor Plant's poison with Skyroot Buckets.
+Dungeons have various difficulties: from Bronze, Silver, and Gold, to Osmium, Cobalt, and Palladium.
+Normal music discs can be enchanted into a Blue version.
+You can harvest Aechor Plant poison with Skyroot Buckets.
 Golden, Poison, and Enchanted Darts are not affected by gravity.
 Dart Shooters can be crafted with Skyroot Logs and Zanite Gemstones.
 A Remedy Bucket for poison can be obtained by enchanting Poison.
@@ -36,7 +36,7 @@ Try submerging yourself in water while wearing Phoenix Armour.
 Zephyrs shoot snowballs with a force that can throw you off islands.
 Days in the Aether realm last three times longer than surface days.
 Sheepuff occasionally puff their wool out, making them float.
-When Valkyrie's are defeated they will drop a Victory Medal.
+When Valkyries are defeated they will drop a Victory Medal.
 Skeletons won't shoot if they can't see your face.
 Never dig straight down.
 If a drop looks too big, it probably is.
@@ -88,46 +88,45 @@ It's misleading to locate monsters by sound alone.
 Spider jockeys will dismount after a save and reload.
 The game is only as fun as you make it.
 Not all entities within the Aether are created equal.
-Be wary when battling Uros and Tempests togehter.
-Gravitite is cool and all but ever heard of Divineral?
+Be wary when battling Uros and Tempests together.
+Gravitite is cool and all, but ever heard of Divineral?
 Check what variation of mossy holystone lies outside a dungeon...
 Rest up in the Aether by crafting a skyroot bed.
 Place hellfire stone within the enchanter, it may save your life.
-While Cyros are intimating in groups.
-The Cryo Guardian guards a significant amount of precious resources!
+While Cyros are intimating in groups, individually are not very threatening. 
+The Cyro Guardian guards a significant amount of precious resources!
 Try enchanting the various aether stones to brighten them up!
-The Ancient Altar can only be found occasionally within divine and mythic tier dungeons.
-Aerogel can be found within dungeons within the Aether.
+The Ancient Altar can only be found occasionally within Divine and Unseen tier dungeons.
+Aerogel can be found within dungeons in the Aether.
 Zephyroos drop a stronger type of leather sought after by many adventurers.
-Dungeons all have various difficulties: from Normal, Ancient, Divine, & Mythic.
+Dungeons all have various difficulties: from Normal, Ancient, Divine, & Unseen.
 Right click a continuum orb!
 Sentry Boots are able to nullify zephyr projectiles.
 Try out Et Futurum Requiem!
 Pink Aerclouds will heal the player while standing on it.
 Aerwhales can be ridden if you have a Zephyroo saddle.
-The Ampilfier will amplify all existing armor and tool sets.
+The Amplifier will amplify all existing armor and tool sets.
 Be careful where you step within the Cyro Guardian lair.
 Primeval Artifacts can only be mined with a gravitite pickaxe.
 Search the caves of the Aether.
 Methods of crafting aether machinery and weapons have been lost to time.
 Wear an Arkenium Helmet to stop Cockatrices from firing.
 I don't think Enderman travel to the Aether...
-The Builder Slayer is extremly effective agianst Players, Villagers, and Valkyries.
+The Builder Slayer is extremely effective against Players, Villagers, and Valkyries.
 Try wearing the agility boots and agility cape together.
-The AerBat is not generally hostile but can be if you get too close...
 Try out Immersive CaveGen!
 Breaking the leaves of Void Trees may drop void tomatoes.
 Tame a Flynx with raw Aerwhale.
-Continuuum is a mimicry gemstone it has aspects of the other aether ores.
+Continuuum is a mimicry gemstone. It has aspects of the other aether ores.
 Tempests will immediately despawn when exposed to sunlight.
 Try out NovaCraft!
 Fuse/Creeping Stone may be unminable but not blast proof.
-Cinearium Rods can be frozen into blaze rods.
+Cinerarium Rods can be frozen into blaze rods.
 Fallen Valkyries can be found within the Osmium Dungeon.
 Tools/Armor made with divineral are fireproof.
 Icestone is technically an ore?
 Spawners coming soon!
-Sculk is cursed but ever heard of the Blight?
+Sculk is cursed, but ever heard of the Blight?
 Mutation Update?
 Really need to improve some textures.
 Eternal Day can be enabled in the config.
