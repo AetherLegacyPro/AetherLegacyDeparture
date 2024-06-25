@@ -3,6 +3,7 @@ package com.gildedgames.the_aether.blocks.natural;
 import java.util.ArrayList;
 import java.util.Random;
 
+import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.items.tools.*;
@@ -111,8 +112,8 @@ public class BlockGoldenOakNewLog extends BlockLog {
 		this.field_150166_b = new IIcon[1];
 
 		for (int i = 0; i < this.field_150167_a.length; ++i) {
-			this.field_150167_a[i] = registry.registerIcon(this.getTextureName() + "_side");
-			this.field_150166_b[i] = registry.registerIcon(this.getTextureName() + "_top");
+			this.field_150167_a[i] = registry.registerIcon(Aether.find("golden_oak_log_side"));
+			this.field_150166_b[i] = registry.registerIcon(Aether.find("golden_oak_log_new_top"));
 		}
 	}
 

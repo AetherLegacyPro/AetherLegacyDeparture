@@ -459,7 +459,7 @@ public class BlocksAether {
 
 		skyroot_log = registerMeta("skyroot_log", new BlockAetherLog()).setBlockTextureName(Aether.find("skyroot_log"));
 		golden_oak_log = registerHidden("golden_oak_log", new BlockAetherLogOld().setBlockTextureName(Aether.find("golden_oak_log")));
-		golden_oak_new_log = registerMeta("golden_oak_new_log", new BlockGoldenOakNewLog().setBlockTextureName(Aether.find("golden_oak_log_new")));	
+		golden_oak_new_log = registerMeta("golden_oak_new_log", new BlockGoldenOakNewLog());	
 		greatroot_log = registerMeta("greatroot_log", new BlockAetherLogGreatroot().setBlockTextureName(Aether.findHighlands("logs/greatroot_log")));
 		wisproot_log = registerMeta("wisproot_log", new BlockAetherLogWisproot().setBlockTextureName(Aether.findHighlands("logs/wisproot_log")));
 		void_log = registerMeta("void_log", new BlockAetherLogVoid().setBlockTextureName(Aether.find("void_log")));
