@@ -52,7 +52,7 @@ public class ItemDartShooter extends Item {
 		this.goldenIcon = registry.registerIcon(Aether.find("projectile/golden_dart_shooter"));
 		this.poisonIcon = registry.registerIcon(Aether.find("projectile/poison_dart_shooter"));
 		this.enchantedIcon = registry.registerIcon(Aether.find("projectile/enchanted_dart_shooter"));
-		this.phoenixIcon = registry.registerIcon(Aether.find("projectile/phoenix_dart_shooter"));
+		this.phoenixIcon = registry.registerIcon(Aether.findII("Phoenix Dart Shooter"));
 	}
 
 	@Override

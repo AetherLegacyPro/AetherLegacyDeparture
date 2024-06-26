@@ -2,6 +2,7 @@ package com.gildedgames.the_aether.blocks.natural;
 
 import java.util.Random;
 
+import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.items.util.DoubleDropHelper;
 import com.gildedgames.the_aether.world.AetherWorld;
@@ -82,7 +83,7 @@ public class BlockArcticGrass extends Block implements IGrowable {
 	public void registerBlockIcons(IIconRegister registry) {
 		this.blockIcon = registry.registerIcon("aether_legacy:arctic_grass_side");
 		this.blockIconSnowy = registry.registerIcon("aether_legacy:aether_grass_side_snowy");
-		this.blockIconTop = registry.registerIcon("aether_legacy:arctic_grass_top");
+		this.blockIconTop = registry.registerIcon(Aether.findHighlands("grass/arctic_grass_top"));
 	}
 
 	@Override

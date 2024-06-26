@@ -833,7 +833,7 @@ public class ItemsAether {
 		netherite_ring = register("netherite_ring", new ItemAccessory(AccessoryType.RING).setMaxDamage(493).setTextureName(Aether.find("accessories/netherite_ring")));
 		}
 		
-		zanite_ring = register("zanite_ring", new ItemAccessory(AccessoryType.RING).setMaxDamage(98).setTextureName(Aether.find("accessories/zanite_ring")));
+		zanite_ring = register("zanite_ring", new ItemAccessory(AccessoryType.RING).setMaxDamage(98).setTextureName(Aether.findII("Zanite Ring")));
 		arkenium_ring = register("arkenium_ring", new ItemAccessory(AccessoryType.RING).setTextureName(Aether.find("accessories/arkenium_ring")));
 		continuum_ring = register("continuum_ring", new ItemAccessory(AccessoryType.RING).setTextureName(Aether.find("accessories/continuum_ring")));
 		gravitite_ring = register("gravitite_ring", new ItemAccessory(AccessoryType.RING).setTextureName(Aether.find("accessories/gravitite_ring")));
@@ -845,7 +845,7 @@ public class ItemsAether {
 		reinforced_valkyrie_ring = register("reinforced_valkyrie_ring", new ItemAccessory(AccessoryType.RING).setReinforcedDungeonLoot().setMaxDamage(876).setTextureName(Aether.find("accessories/ref_valkyrie_ring")));
 		amplified_valkyrie_ring = register("amplified_valkyrie_ring", new ItemAccessory(AccessoryType.RING).setAmplifiedDungeonLoot().setMaxDamage(2076).setTextureName(Aether.find("accessories/amplified_valkyrie_ring")));
 		
-		bone_ring = register("bone_ring", new ItemAccessory(AccessoryType.RING).setDungeonLoot().setMaxDamage(201).setTextureName(Aether.find("accessories/bone_ring")));
+		bone_ring = register("bone_ring", new ItemAccessory(AccessoryType.RING).setDungeonLoot().setMaxDamage(201).setTextureName(Aether.findII("Bone Ring")));
 		reinforced_bone_ring = register("reinforced_bone_ring", new ItemAccessory(AccessoryType.RING).setReinforcedDungeonLoot().setMaxDamage(601).setTextureName(Aether.find("accessories/ref_bone_ring")));
 		amplified_bone_ring = register("amplified_bone_ring", new ItemAccessory(AccessoryType.RING).setAmplifiedDungeonLoot().setMaxDamage(1001).setTextureName(Aether.find("accessories/amplified_bone_ring")));
 		
@@ -908,7 +908,7 @@ public class ItemsAether {
 		discharge_cape = register("discharge_cape", new ItemAccessory(AccessoryType.CAPE).setTexture("discharge_cape").setDungeonLoot().setTextureName(Aether.find("accessories/discharge_cape")));
 		
 		golden_feather = register("golden_feather", new ItemAccessory(AccessoryType.MISC).setDungeonLoot().setMaxDamage(120).setTextureName(Aether.find("accessories/new_golden_feather")));
-		reinforced_golden_feather = register("reinforced_golden_feather", new ItemAccessory(AccessoryType.MISC).setReinforcedDungeonLoot().setMaxDamage(480).setTextureName(Aether.find("accessories/ref_golden_feather")));
+		reinforced_golden_feather = register("reinforced_golden_feather", new ItemAccessory(AccessoryType.MISC).setReinforcedDungeonLoot().setMaxDamage(480).setTextureName(Aether.find("accessories/golden_feather")));
 		amplified_golden_feather = register("amplified_golden_feather", new ItemAccessory(AccessoryType.MISC).setPoweredDungeonLoot().setMaxDamage(1800).setTextureName(Aether.find("accessories/amplified_golden_feather")));
 		
 		flaming_stone = register("flaming_stone", new ItemAccessory(AccessoryType.MISC).setDungeonLoot().setTextureName(Aether.find("accessories/flaming_stone")));

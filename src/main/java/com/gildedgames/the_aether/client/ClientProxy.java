@@ -42,6 +42,7 @@ import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import cpw.mods.fml.client.registry.RenderingRegistry;
+import cpw.mods.fml.common.Loader;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -138,8 +139,10 @@ public class ClientProxy extends CommonProxy {
 		registerEvent(new AetherMusicHandler());
 		registerEvent(new AetherClientEvents());
 		registerEvent(new GuiAetherInGame(Minecraft.getMinecraft()));
-
+		
+		if (Loader.isModLoaded("battlegear2") && AetherConfig.enable_battlegear2_compatibility == true) {
 		AetherClientCompatibility.initialization();
+		}
 	}
 
 	public void generateFile(String input, String name, String path)

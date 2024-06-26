@@ -13,6 +13,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 
+import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.items.tools.ItemAmplifiedContinuumTool;
 import com.gildedgames.the_aether.items.tools.ItemAmplifiedValkyrieTool;
 import com.gildedgames.the_aether.items.tools.ItemArkeniumTool;
@@ -38,7 +39,12 @@ public class AetherEntityRenderer extends EntityRenderer {
 		this.mc = mc;
 		this.previous = previous;
 		
-		ObfuscationReflectionHelper.setPrivateValue(EntityRenderer.class, this, new AetherItemRenderer(mc), 7);
+		if (AetherConfig.disable_1stperson_glove_renderer == true) {
+			ObfuscationReflectionHelper.setPrivateValue(EntityRenderer.class, this, new AetherItemRendererAlternate(mc), 7);
+		}
+		else {
+			ObfuscationReflectionHelper.setPrivateValue(EntityRenderer.class, this, new AetherItemRenderer(mc), 7);
+		}
 	}
 
 	@Override

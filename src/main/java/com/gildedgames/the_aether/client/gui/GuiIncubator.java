@@ -16,7 +16,7 @@ public class GuiIncubator extends GuiContainer {
 
 	private TileEntityIncubator incubatorInventory;
 
-	private static final ResourceLocation TEXTURE_INCUBATOR = Aether.locate("textures/gui/incubator.png");
+	private static final ResourceLocation TEXTURE_INCUBATOR = Aether.locate("textures/gui/new_incubator.png");
 
 	public GuiIncubator(EntityPlayer player, InventoryPlayer inventoryplayer, TileEntityIncubator tileentityIncubator) {
 		super(new ContainerIncubator(player, inventoryplayer, tileentityIncubator));

@@ -25,6 +25,7 @@ import net.minecraftforge.client.MinecraftForgeClient;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
+import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.api.accessories.AccessoryType;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.items.accessories.ItemAccessory;
@@ -52,7 +53,7 @@ public class AetherItemRenderer extends ItemRenderer {
 
 		this.mc = mcIn;
 	}
-
+	
 	public void renderFirstPersonArm(RenderPlayer renderPlayer, EntityClientPlayerMP playerIn) {
 		PlayerAether playerAether = PlayerAether.get(playerIn);
 		ItemStack gloves = playerAether.getAccessoryInventory().getStackInSlot(AccessoryType.GLOVES);
@@ -88,9 +89,8 @@ public class AetherItemRenderer extends ItemRenderer {
 
 			GL11.glDisable(GL11.GL_BLEND);
 			GL11.glColor3f(1.0F, 1.0F, 1.0F);
-		}
+		 }
 	}
-
 	@Override
 	public void renderItemInFirstPerson(float partialTicks)
 	{

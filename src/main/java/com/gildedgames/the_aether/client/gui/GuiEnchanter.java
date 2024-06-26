@@ -18,7 +18,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class GuiEnchanter extends GuiContainer {
 
-	private static final ResourceLocation TEXTURE = Aether.locate("textures/gui/altar.png");
+	private static final ResourceLocation TEXTURE = Aether.locate("textures/gui/new_altar.png");
 
 	private TileEntityEnchanter enchanter;
 

@@ -60,10 +60,10 @@ public class AetherConfig {
 	public static boolean arctic_island_enable, golden_island_enable, divine_island_enable, palladium_dungeon_enable;	
 	public static int arctic_island_rarity, golden_island_rarity, divine_island_rarity, palladium_dungeon_rarity;
 	
-	public static boolean enable_log_reporting_biomes, enable_assets_message;
+	public static boolean enable_log_reporting_biomes, enable_assets_message, disable_1stperson_glove_renderer;
 	public static boolean enable_ascensite;
 	
-	public static boolean cloud_icon;
+	public static boolean cloud_icon, enable_battlegear2_compatibility;
 	
 	public static boolean enable_copper_recipes, enable_netherite_recipes;
 	
@@ -157,6 +157,8 @@ public class AetherConfig {
 		
 		old_mobs = config.get("Misc", "Enable Legacy Visuals", false).getBoolean(false);
 		cloud_icon = config.get("Misc", "Changes Position of Cloud Icon Slightly", false).getBoolean(false);
+		enable_battlegear2_compatibility = config.get("Misc", "Fixes Rendering Issues with Battlegears 2", true).getBoolean(true);
+		disable_1stperson_glove_renderer = config.get("Misc", "Temp fix to a rendering issue with the backhand mod, It does not generally work as I think various performance mods are breaking it; a proper fix is neeeded.", false).getBoolean(false);
 
 		aether_start = config.get("Gameplay", "Spawns Player with Aether Portal Frame", false).getBoolean(false);
 
@@ -226,6 +228,14 @@ public class AetherConfig {
 	
 	public static boolean enableLogReporting() {
 		return AetherConfig.enable_log_reporting_biomes;
+	}
+	
+	public static boolean Disable1stPersonGloveRendering() {
+		return AetherConfig.disable_1stperson_glove_renderer;
+	}
+	
+	public static boolean EnableBattlegear2Compatibility() {
+		return AetherConfig.enable_battlegear2_compatibility;
 	}
 	
 	public static boolean enablecloudIcon() {

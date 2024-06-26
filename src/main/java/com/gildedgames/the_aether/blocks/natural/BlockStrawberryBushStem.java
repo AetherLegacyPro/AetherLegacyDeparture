@@ -18,7 +18,7 @@ public class BlockStrawberryBushStem extends BlockAetherFlower implements IGrowa
 		this.setHardness(0.2F);
 		this.setStepSound(soundTypeGrass);
 		this.setCreativeTab(null);
-		this.setBlockTextureName(Aether.find("strawberry_bush_stem"));
+		this.setBlockTextureName(Aether.find("berry_bush_stem"));
 		this.setBlockBounds(0.5F - 0.4F, 0.0F, 0.5F - 0.4F, 0.5F + 0.4F, 0.4F * 2.0F, 0.5F + 0.4F);
 	}
 
