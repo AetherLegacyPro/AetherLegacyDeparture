@@ -51,7 +51,7 @@ https://github.com/The-Aether-Team/The-Aether-II
 
 While we don't use any code or redistribute assets from the Aether II for
 version 1.7.10, we still want to thank Gilded Games for the inspiration and
-assets used at runtime. All rights reserved.
+assets used at runtime. All Rights Reserved.
 
 To our best knowledge, this project does not redistribute any code or assets
 we do not have the rights to, and is fully compliant with upstream licenses.
