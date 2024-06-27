@@ -14,7 +14,7 @@ Most of the changes are listed in this google doc link below.
 Link to the new additions/changes(Probably missed many)
 https://docs.google.com/document/d/1fkVXPPqPQACXHQv0xvcLovIPfzGFf37ymhcmiVsBZSM/edit?usp=sharing
 
-Source is on Github
+Source is on GitHub
 
 ------------------------------------------------------------------------
 Those who wish to contribute to the mod, here are some things to look at.
