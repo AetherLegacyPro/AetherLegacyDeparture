@@ -10,8 +10,8 @@ import com.gildedgames.the_aether.entities.particles.ParticleHolidayLeaves;
 import com.gildedgames.the_aether.entities.particles.ParticleVoidLeaves;
 import com.gildedgames.the_aether.items.ItemsAether;
 import net.minecraft.block.BlockLeaves;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -24,12 +24,6 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockAetherLeaves extends BlockLeaves {
-
-	@SideOnly(Side.CLIENT)
-	private IIcon fastIcon;
-
-	@SideOnly(Side.CLIENT)
-	private IIcon fancyIcon;
 
 	public BlockAetherLeaves() {
 		super();
@@ -56,7 +50,7 @@ public class BlockAetherLeaves extends BlockLeaves {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean isOpaqueCube() {
-		return false;
+		return Blocks.leaves.isOpaqueCube();
 	}
 
 	@Override
@@ -178,29 +172,22 @@ public class BlockAetherLeaves extends BlockLeaves {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(IIconRegister p_149651_1_)
-	{
-		this.fancyIcon = p_149651_1_.registerIcon(this.getTextureName());
-		this.fastIcon = p_149651_1_.registerIcon(this.getTextureName() + "_opaque");
+	public void registerBlockIcons(IIconRegister reg) {
+		field_150129_M[0] = new IIcon[] {reg.registerIcon(getTextureName())};
+		field_150129_M[1] = new IIcon[] {reg.registerIcon(getTextureName() + "_opaque")};
+
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta) {
-		if (Minecraft.getMinecraft().gameSettings.fancyGraphics)
-		{
-			return fancyIcon;
-		}
-		else
-		{
-			return fastIcon;
-		}
+		return field_150129_M[Blocks.leaves.isOpaqueCube() ? 1 : 0][0];
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public boolean shouldSideBeRendered(IBlockAccess p_149646_1_, int p_149646_2_, int p_149646_3_, int p_149646_4_, int p_149646_5_) {
-		return true;
+	public boolean shouldSideBeRendered(IBlockAccess world, int x, int y, int z, int side) {
+		return Blocks.leaves.shouldSideBeRendered(world, x, y, z, side);
 	}
 
 	@Override
