@@ -69,10 +69,10 @@ public class AetherConfig {
 	
 	public static final String catMisc = "New Misc Options";
 	public static final String catWorld = "New World Gen Options";
+	public static final String catSpawnrates = "Spawnrates";
 	public static final String catEtFuturum = "Et Futurum Requiem Options";
 
 	private static boolean redownloadFiles;
-	public static String greeting = "Hello World";
 	
 	public static void init(File location) {
 		File newFile = new File(location + "/aether" + "/AetherI.cfg");
@@ -188,28 +188,28 @@ public class AetherConfig {
 		netherite_required_divineral_ingot = config.getBoolean("netheriteRequiredInDivineralIngot", catEtFuturum, false, "If Et Futurum Requiem is installed should netherite ingots be required in the divineral ingot recipe?");
 		
 		//Spawnrates
-		phyg_spawnrate = config.get("Spawnrates", "Phyg Spawnrate. 1 is always, higher numbers decrease chances.", 1).getInt(1);
-		flyingcow_spawnrate = config.get("Spawnrates", "Flying Cow Spawnrate. 1 is always, higher numbers decrease chances.", 1).getInt(1);
-		sheepuff_spawnrate = config.get("Spawnrates", "Sheepuff Spawnrate. 1 is always, higher numbers decrease chances.", 1).getInt(1);
-		aerbunny_spawnrate = config.get("Spawnrates", "Aerbunny Spawnrate. 1 is always, higher numbers decrease chances.", 1).getInt(1);
-		moa_spawnrate = config.get("Spawnrates", "Moa Spawnrate. 1 is always, higher numbers decrease chances.", 1).getInt(1);
-		carrion_sprout_spawnrate = config.get("Spawnrates", "Carrion Sprout Spawnrate. 1 is always, higher numbers decrease chances.", 1).getInt(1);
-		aerwhale_spawnrate = config.get("Spawnrates", "Aerwhale Spawnrate. 1 is always, higher numbers decrease chances.", 1).getInt(1);
-		zephyroo_spawnrate = config.get("Spawnrates", "Zephyroo Spawnrate. 1 is always, higher numbers decrease chances.", 1).getInt(1);
-		thunderlo_spawnrate = config.get("Spawnrates", "Thunderlo Spawnrate. 1 is always, higher numbers decrease chances.", 1).getInt(1);
-		flynx_spawnrate = config.get("Spawnrates", "Flynx Spawnrate. 1 is always, higher numbers decrease chances.", 1).getInt(1);
-		zephyr_spawnrate = config.get("Spawnrates", "Zephyr Spawnrate. 1 is always, higher numbers decrease chances.", 85).getInt(65);
-		tempest_spawnrate = config.get("Spawnrates", "Tempest Spawnrate. 1 is always, higher numbers decrease chances.", 85).getInt(65);
-		vulturnus_spawnrate = config.get("Spawnrates", "Vulturnus Spawnrate. 1 is always, higher numbers decrease chances.", 85).getInt(65);
-		cockatrice_spawnrate = config.get("Spawnrates", "Cockatrice Spawnrate. 1 is always, higher numbers decrease chances.", 45).getInt(45);
-		raptor_spawnrate = config.get("Spawnrates", "Anzu Spawnrate. 1 is always, higher numbers decrease chances.", 45).getInt(45);
-		cyro_spawnrate = config.get("Spawnrates", "Cyro Spawnrate. 1 is always, higher numbers decrease chances.", 45).getInt(45);
-		uro_spawnrate = config.get("Spawnrates", "Uro Spawnrate. 1 is always, higher numbers decrease chances.", 45).getInt(45);
-		aerca_spawnrate = config.get("Spawnrates", "Aerca Spawnrate. 1 is always, higher numbers decrease chances.", 75).getInt(75);
+		phyg_spawnrate = config.get(catSpawnrates, "Phyg Spawnrate. 1 is always, higher numbers decrease chances.", 1).getInt(1);
+		flyingcow_spawnrate = config.get(catSpawnrates, "Flying Cow Spawnrate. 1 is always, higher numbers decrease chances.", 1).getInt(1);
+		sheepuff_spawnrate = config.get(catSpawnrates, "Sheepuff Spawnrate. 1 is always, higher numbers decrease chances.", 1).getInt(1);
+		aerbunny_spawnrate = config.get(catSpawnrates, "Aerbunny Spawnrate. 1 is always, higher numbers decrease chances.", 1).getInt(1);
+		moa_spawnrate = config.get(catSpawnrates, "Moa Spawnrate. 1 is always, higher numbers decrease chances.", 1).getInt(1);
+		carrion_sprout_spawnrate = config.get(catSpawnrates, "Carrion Sprout Spawnrate. 1 is always, higher numbers decrease chances.", 1).getInt(1);
+		aerwhale_spawnrate = config.get(catSpawnrates, "Aerwhale Spawnrate. 1 is always, higher numbers decrease chances.", 1).getInt(1);
+		zephyroo_spawnrate = config.get(catSpawnrates, "Zephyroo Spawnrate. 1 is always, higher numbers decrease chances.", 1).getInt(1);
+		thunderlo_spawnrate = config.get(catSpawnrates, "Thunderlo Spawnrate. 1 is always, higher numbers decrease chances.", 1).getInt(1);
+		flynx_spawnrate = config.get(catSpawnrates, "Flynx Spawnrate. 1 is always, higher numbers decrease chances.", 1).getInt(1);
+		zephyr_spawnrate = config.get(catSpawnrates, "Zephyr Spawnrate. 1 is always, higher numbers decrease chances.", 85).getInt(65);
+		tempest_spawnrate = config.get(catSpawnrates, "Tempest Spawnrate. 1 is always, higher numbers decrease chances.", 85).getInt(65);
+		vulturnus_spawnrate = config.get(catSpawnrates, "Vulturnus Spawnrate. 1 is always, higher numbers decrease chances.", 85).getInt(65);
+		cockatrice_spawnrate = config.get(catSpawnrates, "Cockatrice Spawnrate. 1 is always, higher numbers decrease chances.", 45).getInt(45);
+		raptor_spawnrate = config.get(catSpawnrates, "Anzu Spawnrate. 1 is always, higher numbers decrease chances.", 45).getInt(45);
+		cyro_spawnrate = config.get(catSpawnrates, "Cyro Spawnrate. 1 is always, higher numbers decrease chances.", 45).getInt(45);
+		uro_spawnrate = config.get(catSpawnrates, "Uro Spawnrate. 1 is always, higher numbers decrease chances.", 45).getInt(45);
+		aerca_spawnrate = config.get(catSpawnrates, "Aerca Spawnrate. 1 is always, higher numbers decrease chances.", 75).getInt(75);
 		
-		swet_spawnrate = config.get("Spawnrates", "Swet Spawnrate. 1 is always, higher numbers decrease chances.", 20).getInt(20);
-		aechorplant_spawnrate = config.get("Spawnrates", "Aechor Plant Spawnrate. 1 is always, higher numbers decrease chances.", 10).getInt(10);
-		whirlwind_spawnrate = config.get("Spawnrates", "Whirlwind Spawnrate. 1 is always, higher numbers decrease chances.", 55).getInt(55);
+		swet_spawnrate = config.get(catSpawnrates, "Swet Spawnrate. 1 is always, higher numbers decrease chances.", 20).getInt(20);
+		aechorplant_spawnrate = config.get(catSpawnrates, "Aechor Plant Spawnrate. 1 is always, higher numbers decrease chances.", 10).getInt(10);
+		whirlwind_spawnrate = config.get(catSpawnrates, "Whirlwind Spawnrate. 1 is always, higher numbers decrease chances.", 55).getInt(55);
 		
 		config.save();
 	}
