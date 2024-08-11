@@ -209,12 +209,10 @@ public class GuiDivineEnchantmentTable extends GuiContainer
     {
         ItemStack itemstack = this.inventorySlots.getSlot(0).getStack();
 
-        if (!ItemStack.areItemStacksEqual(itemstack, this.field_147077_B))
-        {
+        if (!ItemStack.areItemStacksEqual(itemstack, this.field_147077_B)) {
             this.field_147077_B = itemstack;
 
-            do
-            {
+            do {
                 this.field_147082_x += (float)(this.field_147074_F.nextInt(4) - this.field_147074_F.nextInt(4));
             }
             while (this.field_147071_v <= this.field_147082_x + 1.0F && this.field_147071_v >= this.field_147082_x - 1.0F);
@@ -225,30 +223,23 @@ public class GuiDivineEnchantmentTable extends GuiContainer
         this.field_147076_A = this.field_147080_z;
         boolean flag = false;
 
-        for (int i = 0; i < 3; ++i)
-        {
-            if (this.field_147075_G.enchantLevels[i] != 0)
-            {
+        for (int i = 0; i < 3; ++i) {
+            if (this.field_147075_G.enchantLevels[i] != 0) {
                 flag = true;
             }
         }
 
-        if (flag)
-        {
+        if (flag) {
             this.field_147080_z += 0.2F;
-        }
-        else
-        {
+        } else {
             this.field_147080_z -= 0.2F;
         }
 
-        if (this.field_147080_z < 0.0F)
-        {
+        if (this.field_147080_z < 0.0F) {
             this.field_147080_z = 0.0F;
         }
 
-        if (this.field_147080_z > 1.0F)
-        {
+        if (this.field_147080_z > 1.0F) {
             this.field_147080_z = 1.0F;
         }
 

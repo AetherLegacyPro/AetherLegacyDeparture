@@ -279,7 +279,7 @@ public class AetherMainMenu extends GuiMainMenu
                 }
                 catch (Throwable throwable)
                 {
-                    logger.error("Couldn\'t open link", throwable);
+                    logger.error("Couldn't open link", throwable);
                 }
             }
 

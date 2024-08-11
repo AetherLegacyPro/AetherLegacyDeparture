@@ -25,9 +25,7 @@ public class PacketDisplayDialogue extends AetherPacket<PacketDisplayDialogue> {
 	public PacketDisplayDialogue(String dialogueName, String dialogue, String... dialogueText) {
 		this(dialogueName, dialogue, (ArrayList<String>) null);
 
-		ArrayList<String> array = new ArrayList<>();
-
-		array.addAll(Arrays.asList(dialogueText));
+		ArrayList<String> array = new ArrayList<>(Arrays.asList(dialogueText));
 
 		this.dialogueText = array;
 	}

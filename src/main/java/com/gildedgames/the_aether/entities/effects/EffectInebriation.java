@@ -32,18 +32,13 @@ public class EffectInebriation extends PotionEffect
     }
 
     @Override
-    public boolean isCurativeItem(ItemStack stack)
-    {
-        boolean found = false;
-        for (ItemStack curativeItem : this.curativeItems)
-        {
-            if (curativeItem.isItemEqual(stack))
-            {
-                found = true;
+    public boolean isCurativeItem(ItemStack stack) {
+        for (ItemStack curativeItem : this.curativeItems) {
+            if (curativeItem.isItemEqual(stack)) {
+                return true;
             }
         }
-
-        return found;
+        return false;
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.gildedgames.the_aether.client.gui.dialogue;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import net.minecraft.client.Minecraft;
@@ -50,9 +51,7 @@ public class GuiDialogue extends GuiScreen {
 	}
 
 	public void addDialogueOptions(DialogueOption... options) {
-		for (DialogueOption option : options) {
-			this.dialogueOptions.add(option);
-		}
+		this.dialogueOptions.addAll(Arrays.asList(options));
 	}
 
 	public void addDialogueMessage(String dialogueMessage) {

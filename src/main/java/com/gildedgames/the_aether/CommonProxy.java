@@ -6,7 +6,6 @@ import net.minecraftforge.common.MinecraftForge;
 
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import com.gildedgames.the_aether.vrl.ForgetTheOtherMethodsThisIsWhereTheMagicHappens;
-import com.gildedgames.the_aether.AetherConfig;
 
 import java.io.File;
 import java.util.Random;
