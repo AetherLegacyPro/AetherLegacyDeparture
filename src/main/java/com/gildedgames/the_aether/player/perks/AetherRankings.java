@@ -65,17 +65,17 @@ public class AetherRankings {
 	public static boolean isRankedPlayer(UUID uuid) {
 		if (ranks.get("Celeberity-" + uuid.toString()) != null) {
 			return true;
-		} else if (ranks.get("Aether Legacy Developer-" + uuid.toString()) != null) {
+		} else if (ranks.get("Aether Legacy Developer-" + uuid) != null) {
 			return true;
-		} else if (ranks.get("Aether Legacy Tester-" + uuid.toString()) != null) {
+		} else if (ranks.get("Aether Legacy Tester-" + uuid) != null) {
 			return true;
-		} else if (ranks.get("Gilded Games-" + uuid.toString()) != null) {
+		} else if (ranks.get("Gilded Games-" + uuid) != null) {
 			return true;
-		} else if (ranks.get("Retired Developer-" + uuid.toString()) != null) {
+		} else if (ranks.get("Retired Developer-" + uuid) != null) {
 			return true;
-		} else if (ranks.get("Retired Gilded Games-" + uuid.toString()) != null) {
+		} else if (ranks.get("Retired Gilded Games-" + uuid) != null) {
 			return true;
-		} else if (ranks.get("Aether Legacy Contributor-" + uuid.toString()) != null) {
+		} else if (ranks.get("Aether Legacy Contributor-" + uuid) != null) {
 			return true;
 		}
 
@@ -84,13 +84,13 @@ public class AetherRankings {
 
 	public static boolean isDeveloper(UUID uuid)
 	{
-		if (ranks.get("Aether Legacy Developer-" + uuid.toString()) != null) {
+		if (ranks.get("Aether Legacy Developer-" + uuid) != null) {
 			return true;
-		} else if (ranks.get("Retired Developer-" + uuid.toString()) != null) {
+		} else if (ranks.get("Retired Developer-" + uuid) != null) {
 			return true; }
-		else if (ranks.get("Gilded Games-" + uuid.toString()) != null) {
+		else if (ranks.get("Gilded Games-" + uuid) != null) {
 			return true; }
-		else if (ranks.get("Retired Gilded Games-" + uuid.toString()) != null) {
+		else if (ranks.get("Retired Gilded Games-" + uuid) != null) {
 			return true; }
 
 		return false;

@@ -23,7 +23,7 @@ public class AetherFreezableFuel extends RegistryEntry {
 		this.timeGiven = timeGiven;
 		this.fuelStack = fuelStack;
 
-		this.setRegistryName(fuelStack.getItem().getUnlocalizedName().toString() + "_meta_" + (fuelStack.isItemStackDamageable() ? 0 : fuelStack.getItemDamage()));
+		this.setRegistryName(fuelStack.getItem().getUnlocalizedName() + "_meta_" + (fuelStack.isItemStackDamageable() ? 0 : fuelStack.getItemDamage()));
 	}
 
 	public int getTimeGiven() {

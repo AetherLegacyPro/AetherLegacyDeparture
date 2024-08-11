@@ -53,7 +53,7 @@ public class AetherEnchantment extends RegistryEntry {
 		this.output = output;
 		this.timeRequired = timeRequired;
 
-		this.setRegistryName(input.getItem().getUnlocalizedName().toString() + "_meta_" + (input.isItemStackDamageable() ? 0 : input.getItemDamage()));
+		this.setRegistryName(input.getItem().getUnlocalizedName() + "_meta_" + (input.isItemStackDamageable() ? 0 : input.getItemDamage()));
 	}
 
 	public int getTimeRequired() {
