@@ -87,69 +87,52 @@ public class AetherBiome extends BiomeGenBase {
 	public WorldGenAbstractTree getRandomTreeFeature(final Random random) {
         final int ratio = random.nextInt(88);
         if (ratio <= 35) {
-            return (WorldGenAbstractTree)new AetherGenSkyrootTreeNew(BlocksAether.skyroot_leaves, BlocksAether.skyroot_log, 0);
-        }
-        else if (ratio > 35 && ratio <= 45) {
-            return (WorldGenAbstractTree)new AetherGenSkyrootTreeNew(BlocksAether.blue_skyroot_leaves, BlocksAether.skyroot_log, 0);
-        }
-        else if (ratio > 45 && ratio <= 50) {
-            return (WorldGenAbstractTree)new AetherGenSkyrootTreeNew(BlocksAether.purple_skyroot_leaves, BlocksAether.skyroot_log, 0);
-        }
-        else if (ratio > 50 && ratio <= 52) {
-            return (WorldGenAbstractTree)new AetherGenSkyrootTreeNew(BlocksAether.dark_blue_skyroot_leaves, BlocksAether.skyroot_log, 0);
-        }
-        else if (ratio > 52 && ratio <= 57) {
-            return (WorldGenAbstractTree)new AetherGenMassiveTree(BlocksAether.skyroot_leaves, 8, false);
-        }
-        else if (ratio > 57 && ratio <= 63) {
-            return (WorldGenAbstractTree)new AetherGenMassiveTree(BlocksAether.dark_blue_skyroot_leaves, 8, false);
-        }
-        else if (ratio > 63 && ratio <= 68) {
-            return (WorldGenAbstractTree)new AetherGenMassiveTree(BlocksAether.purple_skyroot_leaves, 8, false);
-        }
-        else if (ratio > 68 && ratio <= 69) {
-            return (WorldGenAbstractTree)new AetherGenLargeTree(BlocksAether.golden_oak_leaves, BlocksAether.golden_oak_new_log, 0);
-        }
-        else if (ratio > 69 && ratio <= 70) {
-            return (WorldGenAbstractTree)new AetherGenLargeTree(BlocksAether.skyroot_leaves, BlocksAether.skyroot_log, 0); 
-        }
-        else if (ratio > 70 && ratio <= 71) {
-            return (WorldGenAbstractTree)new AetherGenLargeTree(BlocksAether.skyroot_leaves, BlocksAether.skyroot_log, 0);
-        }
-        else if (ratio > 71 && ratio <= 73) {
-        	return (WorldGenAbstractTree)new AetherGenFruitTree(BlocksAether.dark_blue_skyroot_leaves, BlocksAether.dark_blue_skyroot_leaves, 50, 5, true);
-        }
-        else if (ratio > 73 && ratio <= 75) {
-        	return (WorldGenAbstractTree)new AetherGenFruitTree(BlocksAether.purple_skyroot_leaves, BlocksAether.purple_skyroot_fruit_leaves, 50, 5, true);
-        }
-        else if (ratio > 75 && ratio <= 77) {
-            return (WorldGenAbstractTree)new AetherGenMassiveTree(BlocksAether.blue_skyroot_leaves, 18, false);
-        }
-        else if (ratio > 77 && ratio <= 78) {
-        	return (WorldGenAbstractTree)new AetherGenFruitTree(BlocksAether.blue_skyroot_leaves, BlocksAether.blue_skyroot_leaves, 35, 5, true);
-        }
-        else if (ratio > 78 && ratio <= 86) {
-            return (WorldGenAbstractTree)new AetherGenSkyrootTreeNew(BlocksAether.skyroot_leaves, BlocksAether.skyroot_log, 0);
-        }
-        else if (ratio > 86 && ratio <= 87) {
+            return new AetherGenSkyrootTreeNew(BlocksAether.skyroot_leaves, BlocksAether.skyroot_log, 0);
+        } else if (ratio <= 45) {
+            return new AetherGenSkyrootTreeNew(BlocksAether.blue_skyroot_leaves, BlocksAether.skyroot_log, 0);
+        } else if (ratio <= 50) {
+            return new AetherGenSkyrootTreeNew(BlocksAether.purple_skyroot_leaves, BlocksAether.skyroot_log, 0);
+        } else if (ratio <= 52) {
+            return new AetherGenSkyrootTreeNew(BlocksAether.dark_blue_skyroot_leaves, BlocksAether.skyroot_log, 0);
+        } else if (ratio <= 57) {
+            return new AetherGenMassiveTree(BlocksAether.skyroot_leaves, 8, false);
+        } else if (ratio <= 63) {
+            return new AetherGenMassiveTree(BlocksAether.dark_blue_skyroot_leaves, 8, false);
+        } else if (ratio <= 68) {
+            return new AetherGenMassiveTree(BlocksAether.purple_skyroot_leaves, 8, false);
+        } else if (ratio <= 69) {
+            return new AetherGenLargeTree(BlocksAether.golden_oak_leaves, BlocksAether.golden_oak_new_log, 0);
+        } else if (ratio <= 70) {
+            return new AetherGenLargeTree(BlocksAether.skyroot_leaves, BlocksAether.skyroot_log, 0);
+        } else if (ratio <= 71) {
+            return new AetherGenLargeTree(BlocksAether.skyroot_leaves, BlocksAether.skyroot_log, 0);
+        } else if (ratio <= 73) {
+        	return new AetherGenFruitTree(BlocksAether.dark_blue_skyroot_leaves, BlocksAether.dark_blue_skyroot_leaves, 50, 5, true);
+        } else if (ratio <= 75) {
+        	return new AetherGenFruitTree(BlocksAether.purple_skyroot_leaves, BlocksAether.purple_skyroot_fruit_leaves, 50, 5, true);
+        } else if (ratio <= 77) {
+            return new AetherGenMassiveTree(BlocksAether.blue_skyroot_leaves, 18, false);
+        } else if (ratio <= 78) {
+        	return new AetherGenFruitTree(BlocksAether.blue_skyroot_leaves, BlocksAether.blue_skyroot_leaves, 35, 5, true);
+        } else if (ratio <= 86) {
+            return new AetherGenSkyrootTreeNew(BlocksAether.skyroot_leaves, BlocksAether.skyroot_log, 0);
+        } else if (ratio <= 87) {
         	int random1 = (int)(1 + Math.random() * 8);
         	if (random1 > 2) {
-        	return (WorldGenAbstractTree)new AetherGenGreatrootTree(BlocksAether.green_light_skyroot_leaves, 40, true);
-        	}
-        	else {
-        		return (WorldGenAbstractTree)new AetherGenMassiveTree(BlocksAether.dark_blue_skyroot_leaves, 35, true);
+        		return new AetherGenGreatrootTree(BlocksAether.green_light_skyroot_leaves, 40, true);
+        	} else {
+        		return new AetherGenMassiveTree(BlocksAether.dark_blue_skyroot_leaves, 35, true);
         	}
         }
-        
-        return (WorldGenAbstractTree)new AetherGenMassiveTree(BlocksAether.dark_blue_skyroot_leaves, 35, true);
+
+        return new AetherGenMassiveTree(BlocksAether.dark_blue_skyroot_leaves, 35, true);
     }
 	
 	public WorldGenerator getRandomWorldGenForGrass(final Random par1Random) {
-        return (WorldGenerator)new WorldGenAetherGrass(BlocksAether.aether_tallgrass, 1);
+        return new WorldGenAetherGrass(BlocksAether.aether_tallgrass, 1);
     }
 
-	private void addCreatureEntry(ArrayList<SpawnListEntry> list)
-	{
+	private void addCreatureEntry(ArrayList<SpawnListEntry> list) {
 		list.add(new SpawnListEntry(EntityAerwhale.class, 6, 4, 4));
 		list.add(new SpawnListEntry(EntityAerwhaleMount.class, 4, 1, 2));
 		list.add(new SpawnListEntry(EntityPhyg.class, 12, 4, 4));
