@@ -827,7 +827,7 @@ public class AetherRegistries {
 		register("golden_oak_trapdoor", new ItemStack(BlocksAether.golden_oak_trapdoor, 2), "XXX", "XXX", 'X', BlocksAether.golden_oak_planks);		
 		register("zanite_trapdoor", new ItemStack(BlocksAether.zanite_trapdoor, 2), "XXX", "XXX", 'X', ItemsAether.zanite_gemstone);		
 		register("glowing_icestone", new ItemStack(BlocksAether.glowing_icestone, 4), "XYX", "YXY", "XYX", 'X', BlocksAether.icestone, 'Y', Blocks.glowstone);		
-		register("aether_enchantment_table", new ItemStack(BlocksAether.aether_enchantment_table, 1), new Object[] {" B ", "D#D", "###", '#', BlocksAether.aerogel, 'B', Items.book, 'D', BlocksAether.enchanted_gravitite});
+		register("aether_enchantment_table", new ItemStack(BlocksAether.aether_enchantment_table, 1), " B ", "D#D", "###", '#', BlocksAether.aerogel, 'B', Items.book, 'D', BlocksAether.enchanted_gravitite);
 		
 		register("auralite_pillar", new ItemStack(BlocksAether.auralite_pillar, 8), " X ", " X ", " X ", 'X', BlocksAether.block_of_auralite);
 		register("luminous_stone", new ItemStack(BlocksAether.luminous_stone, 4), "XYX", "YZY", "XYX", 'X', BlocksAether.block_of_auralite, 'Y', Blocks.glowstone, 'Z', ItemsAether.arkenium_fragement);		

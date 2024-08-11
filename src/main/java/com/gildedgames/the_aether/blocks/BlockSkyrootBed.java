@@ -87,7 +87,7 @@ public class BlockSkyrootBed extends BlockBed
 
                     if (entityplayer1 != null)
                     {
-                        p_149727_5_.addChatComponentMessage(new ChatComponentTranslation("tile.bed.occupied", new Object[0]));
+                        p_149727_5_.addChatComponentMessage(new ChatComponentTranslation("tile.bed.occupied"));
                         return true;
                     }
 
@@ -105,7 +105,7 @@ public class BlockSkyrootBed extends BlockBed
                 {
                     if (enumstatus == EntityPlayer.EnumStatus.NOT_POSSIBLE_NOW)
                     {
-                        p_149727_5_.addChatComponentMessage(new ChatComponentTranslation("tile.bed.noSleep", new Object[0]));
+                        p_149727_5_.addChatComponentMessage(new ChatComponentTranslation("tile.bed.noSleep"));
 
                         if (p_149727_5_.dimension == AetherConfig.getAetherDimensionID())
                         {
@@ -116,7 +116,7 @@ public class BlockSkyrootBed extends BlockBed
                     }
                     else if (enumstatus == EntityPlayer.EnumStatus.NOT_SAFE)
                     {
-                        p_149727_5_.addChatComponentMessage(new ChatComponentTranslation("tile.bed.notSafe", new Object[0]));
+                        p_149727_5_.addChatComponentMessage(new ChatComponentTranslation("tile.bed.notSafe"));
                     }
 
                     return true;
@@ -140,7 +140,7 @@ public class BlockSkyrootBed extends BlockBed
                     d1 = (d1 + (double)p_149727_4_ + 0.5D) / 2.0D;
                 }
 
-                p_149727_1_.newExplosion((Entity)null, (double)((float)p_149727_2_ + 0.5F), (double)((float)p_149727_3_ + 0.5F), (double)((float)p_149727_4_ + 0.5F), 5.0F, true, true);
+                p_149727_1_.newExplosion(null, (float)p_149727_2_ + 0.5F, (float)p_149727_3_ + 0.5F, (float)p_149727_4_ + 0.5F, 5.0F, true, true);
                 return true;
             }
         }

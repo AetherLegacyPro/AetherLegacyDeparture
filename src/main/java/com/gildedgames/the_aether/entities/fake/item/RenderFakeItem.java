@@ -210,10 +210,10 @@ public class RenderFakeItem extends Render
                 GL11.glColor4f(par5, par6, par7, 1.0f);
                 tessellator.startDrawingQuads();
                 tessellator.setNormal(0.0f, 1.0f, 0.0f);
-                tessellator.addVertexWithUV((double)(0.0f - f9), (double)(0.0f - f10), 0.0, (double)f4, (double)f7);
-                tessellator.addVertexWithUV((double)(f8 - f9), (double)(0.0f - f10), 0.0, (double)f5, (double)f7);
-                tessellator.addVertexWithUV((double)(f8 - f9), (double)(1.0f - f10), 0.0, (double)f5, (double)f6);
-                tessellator.addVertexWithUV((double)(0.0f - f9), (double)(1.0f - f10), 0.0, (double)f4, (double)f6);
+                tessellator.addVertexWithUV(0.0f - f9, 0.0f - f10, 0.0, f4, f7);
+                tessellator.addVertexWithUV(f8 - f9, 0.0f - f10, 0.0, f5, f7);
+                tessellator.addVertexWithUV(f8 - f9, 1.0f - f10, 0.0, f5, f6);
+                tessellator.addVertexWithUV(0.0f - f9, 1.0f - f10, 0.0, f4, f6);
                 tessellator.draw();
                 GL11.glPopMatrix();
             }
@@ -258,7 +258,7 @@ public class RenderFakeItem extends Render
                 if (j > 0) {
                     GL11.glTranslatef((random.nextFloat() * 2.0f - 1.0f) * 0.2f / scale, (random.nextFloat() * 2.0f - 1.0f) * 0.2f / scale, (random.nextFloat() * 2.0f - 1.0f) * 0.2f / scale);
                 }
-                customRenderer.renderItem(IItemRenderer.ItemRenderType.ENTITY, item, new Object[] { renderBlocks, entity });
+                customRenderer.renderItem(IItemRenderer.ItemRenderType.ENTITY, item, renderBlocks, entity);
                 GL11.glPopMatrix();
             }
             if (blend) {
@@ -267,7 +267,7 @@ public class RenderFakeItem extends Render
         }
         else {
             GL11.glScalef(0.5f, 0.5f, 0.5f);
-            customRenderer.renderItem(IItemRenderer.ItemRenderType.ENTITY, item, new Object[] { renderBlocks, entity });
+            customRenderer.renderItem(IItemRenderer.ItemRenderType.ENTITY, item, renderBlocks, entity);
         }
         return true;
     }

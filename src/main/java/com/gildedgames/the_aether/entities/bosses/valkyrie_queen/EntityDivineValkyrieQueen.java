@@ -353,7 +353,7 @@ public class EntityDivineValkyrieQueen extends EntityBossMob implements IAetherB
         nbttagcompound.setInteger("DungeonY", this.dungeonY);
         nbttagcompound.setInteger("DungeonZ", this.dungeonZ);
         nbttagcompound.setInteger("DungeonEntranceZ", this.dungeonEntranceZ);
-        nbttagcompound.setTag("SafePos", newDoubleNBTList(new double[]{this.safeX, this.safeY, this.safeZ}));
+        nbttagcompound.setTag("SafePos", newDoubleNBTList(this.safeX, this.safeY, this.safeZ));
         nbttagcompound.setString("BossName", this.getName());
     }
 
@@ -502,9 +502,9 @@ public class EntityDivineValkyrieQueen extends EntityBossMob implements IAetherB
         b *= ((rand.nextInt(2) * 2) - 1); // Negate or Not
         c *= ((rand.nextInt(2) * 2) - 1); // Negate or Not
 
-        x += (double) a;
-        y += (double) b;
-        z += (double) c;
+        x += a;
+        y += b;
+        z += c;
 
         int newX = (int) Math.floor(x - 0.5D);
         int newY = (int) Math.floor(y - 0.5D);

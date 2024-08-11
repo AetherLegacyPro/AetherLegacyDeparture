@@ -13,28 +13,25 @@ import com.gildedgames.the_aether.blocks.BlocksAether;
 
 public enum EnumAetherMultiToolType {
 
-	MULTI(Sets.newHashSet(new Block[]
-			{
-				Blocks.cobblestone, Blocks.double_stone_slab, Blocks.stone_slab,
-				Blocks.stone, Blocks.sandstone, Blocks.mossy_cobblestone, Blocks.iron_ore,
-				Blocks.iron_block, Blocks.coal_ore, Blocks.gold_ore, Blocks.gold_block,
-				Blocks.diamond_ore, Blocks.diamond_block, Blocks.ice, Blocks.netherrack,
-				Blocks.lapis_ore, Blocks.lapis_block, Blocks.redstone_ore, Blocks.lit_redstone_ore,
-				Blocks.rail, Blocks.detector_rail, Blocks.golden_rail, Blocks.activator_rail, Blocks.mob_spawner,
-				BlocksAether.holystone, BlocksAether.holystone_brick, BlocksAether.mossy_holystone,
-				BlocksAether.enchanter, BlocksAether.incubator, BlocksAether.enchanter, BlocksAether.ambrosium_ore,
-				BlocksAether.icestone, BlocksAether.aerogel, BlocksAether.carved_stone, BlocksAether.angelic_stone,
-				BlocksAether.hellfire_stone, BlocksAether.sentry_stone, BlocksAether.light_angelic_stone,
-				BlocksAether.light_hellfire_stone,
-				Blocks.grass, Blocks.dirt, Blocks.sand, Blocks.gravel, Blocks.snow,
-				Blocks.snow_layer, Blocks.clay, Blocks.farmland, Blocks.soul_sand,
-				Blocks.mycelium, BlocksAether.aether_dirt, BlocksAether.aether_grass,
-				BlocksAether.aercloud, BlocksAether.enchanted_aether_grass, BlocksAether.quicksoil,
-				Blocks.planks, Blocks.bookshelf, Blocks.log, Blocks.chest,
-				Blocks.double_stone_slab, Blocks.stone_slab, Blocks.pumpkin,
-				Blocks.lit_pumpkin, BlocksAether.skyroot_log, BlocksAether.golden_oak_log, BlocksAether.skyroot_planks,
-				BlocksAether.chest_mimic
-			})) {
+	MULTI(Sets.newHashSet(Blocks.cobblestone, Blocks.double_stone_slab, Blocks.stone_slab,
+			Blocks.stone, Blocks.sandstone, Blocks.mossy_cobblestone, Blocks.iron_ore,
+			Blocks.iron_block, Blocks.coal_ore, Blocks.gold_ore, Blocks.gold_block,
+			Blocks.diamond_ore, Blocks.diamond_block, Blocks.ice, Blocks.netherrack,
+			Blocks.lapis_ore, Blocks.lapis_block, Blocks.redstone_ore, Blocks.lit_redstone_ore,
+			Blocks.rail, Blocks.detector_rail, Blocks.golden_rail, Blocks.activator_rail, Blocks.mob_spawner,
+			BlocksAether.holystone, BlocksAether.holystone_brick, BlocksAether.mossy_holystone,
+			BlocksAether.enchanter, BlocksAether.incubator, BlocksAether.enchanter, BlocksAether.ambrosium_ore,
+			BlocksAether.icestone, BlocksAether.aerogel, BlocksAether.carved_stone, BlocksAether.angelic_stone,
+			BlocksAether.hellfire_stone, BlocksAether.sentry_stone, BlocksAether.light_angelic_stone,
+			BlocksAether.light_hellfire_stone,
+			Blocks.grass, Blocks.dirt, Blocks.sand, Blocks.gravel, Blocks.snow,
+			Blocks.snow_layer, Blocks.clay, Blocks.farmland, Blocks.soul_sand,
+			Blocks.mycelium, BlocksAether.aether_dirt, BlocksAether.aether_grass,
+			BlocksAether.aercloud, BlocksAether.enchanted_aether_grass, BlocksAether.quicksoil,
+			Blocks.planks, Blocks.bookshelf, Blocks.log, Blocks.chest,
+			Blocks.double_stone_slab, Blocks.stone_slab, Blocks.pumpkin,
+			Blocks.lit_pumpkin, BlocksAether.skyroot_log, BlocksAether.golden_oak_log, BlocksAether.skyroot_planks,
+			BlocksAether.chest_mimic)) {
 		@Override
 		public boolean canHarvestBlock(ToolMaterial toolMaterial, Block state) {
 			Block block = state;

@@ -1,7 +1,5 @@
 package com.gildedgames.the_aether.entities.passive;
 
-import java.util.Random;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.items.ItemsAether;
 
@@ -10,8 +8,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public abstract class EntityAetherAnimal extends EntityAnimal {
-
-	Random random = new Random();
 
 	public EntityAetherAnimal(World worldIn) {
 		super(worldIn);

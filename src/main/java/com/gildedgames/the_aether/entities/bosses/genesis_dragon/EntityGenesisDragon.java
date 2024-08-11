@@ -180,7 +180,7 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
     			dy *= velocity;
     			dz *= velocity;
     			
-    			NewAetherParticleHandler.DRAGON_FLAME.spawn(worldObj, px, py, pz, -dx, dy, -dz, 0.0f, new Object[0]);
+    			NewAetherParticleHandler.DRAGON_FLAME.spawn(worldObj, px, py, pz, -dx, dy, -dz, 0.0f);
     			}   	  
     	}
     }
@@ -254,7 +254,7 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
             {
                 for (int i = 0; i < this.ringBuffer.length; ++i)
                 {
-                    this.ringBuffer[i][0] = (double)this.rotationYaw;
+                    this.ringBuffer[i][0] = this.rotationYaw;
                     this.ringBuffer[i][1] = this.posY;
                 }
             }
@@ -264,7 +264,7 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
                 this.ringBufferIndex = 0;
             }
 
-            this.ringBuffer[this.ringBufferIndex][0] = (double)this.rotationYaw;
+            this.ringBuffer[this.ringBufferIndex][0] = this.rotationYaw;
             this.ringBuffer[this.ringBufferIndex][1] = this.posY;
             double d0;
             double d1;
@@ -321,17 +321,17 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
                     this.setNewTarget();
                 }
 
-                d0 /= (double)MathHelper.sqrt_double(d10 * d10 + d1 * d1);
+                d0 /= MathHelper.sqrt_double(d10 * d10 + d1 * d1);
                 f12 = 0.6F;
 
                 if (d0 < (double)(-f12))
                 {
-                    d0 = (double)(-f12);
+                    d0 = -f12;
                 }
 
                 if (d0 > (double)f12)
                 {
-                    d0 = (double)f12;
+                    d0 = f12;
                 }
 
                 this.motionY += d0 * 0.10000000149011612D;
@@ -350,7 +350,7 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
                 }
 
                 Vec3 vec3 = Vec3.createVectorHelper(this.targetX - this.posX, this.targetY - this.posY, this.targetZ - this.posZ).normalize();
-                Vec3 vec32 = Vec3.createVectorHelper((double)MathHelper.sin(this.rotationYaw * (float)Math.PI / 180.0F), this.motionY, (double)(-MathHelper.cos(this.rotationYaw * (float)Math.PI / 180.0F))).normalize();
+                Vec3 vec32 = Vec3.createVectorHelper(MathHelper.sin(this.rotationYaw * (float)Math.PI / 180.0F), this.motionY, -MathHelper.cos(this.rotationYaw * (float)Math.PI / 180.0F)).normalize();
                 float f5 = (float)(vec32.dotProduct(vec3) + 0.5D) / 1.5F;
 
                 if (f5 < 0.0F)
@@ -385,8 +385,8 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
                 Vec3 vec31 = Vec3.createVectorHelper(this.motionX, this.motionY, this.motionZ).normalize();
                 float f9 = (float)(vec31.dotProduct(vec32) + 1.0D) / 2.0F;
                 f9 = 0.8F + 0.15F * f9;
-                this.motionX *= (double)f9;
-                this.motionZ *= (double)f9;
+                this.motionX *= f9;
+                this.motionZ *= f9;
                 this.motionY *= 0.9100000262260437D; //0.0
             }
 
@@ -550,7 +550,7 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
 
         if (this.rand.nextInt(3) == 0 && !this.worldObj.playerEntities.isEmpty())
         {
-            this.target = (Entity)this.worldObj.playerEntities.get(this.rand.nextInt(this.worldObj.playerEntities.size()));   
+            this.target = this.worldObj.playerEntities.get(this.rand.nextInt(this.worldObj.playerEntities.size()));
                       
         }
         else
@@ -560,10 +560,10 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
             do
             {
                 this.targetX = 0.0D;
-                this.targetY = (double)(70.0F + this.rand.nextFloat() * 50.0F);
+                this.targetY = 70.0F + this.rand.nextFloat() * 50.0F;
                 this.targetZ = 0.0D;
-                this.targetX += (double)(this.rand.nextFloat() * 120.0F - 60.0F);
-                this.targetZ += (double)(this.rand.nextFloat() * 120.0F - 60.0F);
+                this.targetX += this.rand.nextFloat() * 120.0F - 60.0F;
+                this.targetZ += this.rand.nextFloat() * 120.0F - 60.0F;
                 double d0 = this.posX - this.targetX;
                 double d1 = this.posY - this.targetY;
                 double d2 = this.posZ - this.targetZ;

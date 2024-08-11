@@ -112,8 +112,8 @@ public class AetherMainMenu extends GuiMainMenu
 
         if (!GLContext.getCapabilities().OpenGL20 && !OpenGlHelper.func_153193_b())
         {
-            this.field_92025_p = I18n.format("title.oldgl1", new Object[0]);
-            this.field_146972_A = I18n.format("title.oldgl2", new Object[0]);
+            this.field_92025_p = I18n.format("title.oldgl1");
+            this.field_146972_A = I18n.format("title.oldgl2");
             this.field_104024_v = "https://help.mojang.com/customer/portal/articles/325948?ref=game";
         }
     }
@@ -177,7 +177,7 @@ public class AetherMainMenu extends GuiMainMenu
             this.field_92024_r = this.fontRendererObj.getStringWidth(this.field_146972_A);
             int j = Math.max(this.field_92023_s, this.field_92024_r);
             this.field_92022_t = (this.width - j) / 2;
-            this.field_92021_u = ((GuiButton)this.buttonList.get(0)).yPosition - 24;
+            this.field_92021_u = this.buttonList.get(0).yPosition - 24;
             this.field_92020_v = this.field_92022_t + j;
             this.field_92019_w = this.field_92021_u + 24;
         }
@@ -185,14 +185,14 @@ public class AetherMainMenu extends GuiMainMenu
 
     private void addSingleplayerMultiplayerButtons(int p_73969_1_, int p_73969_2_)
     {
-        this.buttonList.add(new AetherMainMenuButton(1, 30, p_73969_1_, I18n.format("menu.singleplayer", new Object[0])));
-        this.buttonList.add(new AetherMainMenuButton(2, 30, p_73969_1_ + p_73969_2_ * 1, I18n.format("menu.multiplayer", new Object[0])));
-        GuiButton realmsButton = new AetherMainMenuButton(14, 30, p_73969_1_ + p_73969_2_ * 2, I18n.format("menu.online", new Object[0]));
+        this.buttonList.add(new AetherMainMenuButton(1, 30, p_73969_1_, I18n.format("menu.singleplayer")));
+        this.buttonList.add(new AetherMainMenuButton(2, 30, p_73969_1_ + p_73969_2_ * 1, I18n.format("menu.multiplayer")));
+        GuiButton realmsButton = new AetherMainMenuButton(14, 30, p_73969_1_ + p_73969_2_ * 2, I18n.format("menu.online"));
         GuiButton fmlModButton = new AetherMainMenuButton(6,  30, p_73969_1_ + p_73969_2_ * 3, "Mods");
         this.buttonList.add(realmsButton);
         this.buttonList.add(fmlModButton);
-        this.buttonList.add(new AetherMainMenuButton(0, 30, p_73969_1_ + p_73969_2_ * 4, I18n.format("menu.options", new Object[0])));
-        this.buttonList.add(new AetherMainMenuButton(4,30, p_73969_1_ + p_73969_2_ * 5, I18n.format("menu.quit", new Object[0])));
+        this.buttonList.add(new AetherMainMenuButton(0, 30, p_73969_1_ + p_73969_2_ * 4, I18n.format("menu.options")));
+        this.buttonList.add(new AetherMainMenuButton(4,30, p_73969_1_ + p_73969_2_ * 5, I18n.format("menu.quit")));
     }
 
     @Override
@@ -274,8 +274,8 @@ public class AetherMainMenu extends GuiMainMenu
                 try
                 {
                     Class oclass = Class.forName("java.awt.Desktop");
-                    Object object = oclass.getMethod("getDesktop", new Class[0]).invoke((Object)null, new Object[0]);
-                    oclass.getMethod("browse", new Class[] {URI.class}).invoke(object, new Object[] {new URI(this.field_104024_v)});
+                    Object object = oclass.getMethod("getDesktop", new Class[0]).invoke(null);
+                    oclass.getMethod("browse", new Class[] {URI.class}).invoke(object, new URI(this.field_104024_v));
                 }
                 catch (Throwable throwable)
                 {
@@ -350,10 +350,10 @@ public class AetherMainMenu extends GuiMainMenu
                 tessellator.startDrawingQuads();
                 tessellator.setColorRGBA_I(16777215, 255 / (k + 1));
                 float f4 = 0.0F;
-                tessellator.addVertexWithUV(-1.0D, -1.0D, 1.0D, (double)(0.0F + f4), (double)(0.0F + f4));
-                tessellator.addVertexWithUV(1.0D, -1.0D, 1.0D, (double)(1.0F - f4), (double)(0.0F + f4));
-                tessellator.addVertexWithUV(1.0D, 1.0D, 1.0D, (double)(1.0F - f4), (double)(1.0F - f4));
-                tessellator.addVertexWithUV(-1.0D, 1.0D, 1.0D, (double)(0.0F + f4), (double)(1.0F - f4));
+                tessellator.addVertexWithUV(-1.0D, -1.0D, 1.0D, 0.0F + f4, 0.0F + f4);
+                tessellator.addVertexWithUV(1.0D, -1.0D, 1.0D, 1.0F - f4, 0.0F + f4);
+                tessellator.addVertexWithUV(1.0D, 1.0D, 1.0D, 1.0F - f4, 1.0F - f4);
+                tessellator.addVertexWithUV(-1.0D, 1.0D, 1.0D, 0.0F + f4, 1.0F - f4);
                 tessellator.draw();
                 GL11.glPopMatrix();
             }
@@ -393,10 +393,10 @@ public class AetherMainMenu extends GuiMainMenu
             int j = this.width;
             int k = this.height;
             float f1 = (float)(i - b0 / 2) / 256.0F;
-            tessellator.addVertexWithUV((double)j, (double)k, (double)this.zLevel, (double)(0.0F + f1), 1.0D);
-            tessellator.addVertexWithUV((double)j, 0.0D, (double)this.zLevel, (double)(1.0F + f1), 1.0D);
-            tessellator.addVertexWithUV(0.0D, 0.0D, (double)this.zLevel, (double)(1.0F + f1), 0.0D);
-            tessellator.addVertexWithUV(0.0D, (double)k, (double)this.zLevel, (double)(0.0F + f1), 0.0D);
+            tessellator.addVertexWithUV(j, k, this.zLevel, 0.0F + f1, 1.0D);
+            tessellator.addVertexWithUV(j, 0.0D, this.zLevel, 1.0F + f1, 1.0D);
+            tessellator.addVertexWithUV(0.0D, 0.0D, this.zLevel, 1.0F + f1, 0.0D);
+            tessellator.addVertexWithUV(0.0D, k, this.zLevel, 0.0F + f1, 0.0D);
         }
 
         tessellator.draw();
@@ -426,10 +426,10 @@ public class AetherMainMenu extends GuiMainMenu
         tessellator.setColorRGBA_F(1.0F, 1.0F, 1.0F, 1.0F);
         int k = this.width;
         int l = this.height;
-        tessellator.addVertexWithUV(0.0D, (double)l, (double)this.zLevel, (double)(0.5F - f2), (double)(0.5F + f3));
-        tessellator.addVertexWithUV((double)k, (double)l, (double)this.zLevel, (double)(0.5F - f2), (double)(0.5F - f3));
-        tessellator.addVertexWithUV((double)k, 0.0D, (double)this.zLevel, (double)(0.5F + f2), (double)(0.5F - f3));
-        tessellator.addVertexWithUV(0.0D, 0.0D, (double)this.zLevel, (double)(0.5F + f2), (double)(0.5F + f3));
+        tessellator.addVertexWithUV(0.0D, l, this.zLevel, 0.5F - f2, 0.5F + f3);
+        tessellator.addVertexWithUV(k, l, this.zLevel, 0.5F - f2, 0.5F - f3);
+        tessellator.addVertexWithUV(k, 0.0D, this.zLevel, 0.5F + f2, 0.5F - f3);
+        tessellator.addVertexWithUV(0.0D, 0.0D, this.zLevel, 0.5F + f2, 0.5F + f3);
         tessellator.draw();
     }
 
@@ -484,28 +484,28 @@ public class AetherMainMenu extends GuiMainMenu
         {
             drawRect(this.field_92022_t - 2, this.field_92021_u - 2, this.field_92020_v + 2, this.field_92019_w - 1, 1428160512);
             this.drawString(this.fontRendererObj, this.field_92025_p, this.field_92022_t, this.field_92021_u, -1);
-            this.drawString(this.fontRendererObj, this.field_146972_A, (this.width - this.field_92024_r) / 2, ((GuiButton)this.buttonList.get(0)).yPosition - 12, -1);
+            this.drawString(this.fontRendererObj, this.field_146972_A, (this.width - this.field_92024_r) / 2, this.buttonList.get(0).yPosition - 12, -1);
         }
 
         for (int j = 0; j < this.buttonList.size(); ++j)
         {
-            ((GuiButton) this.buttonList.get(j)).drawButton(this.mc, p_73863_1_, p_73863_2_);
+            this.buttonList.get(j).drawButton(this.mc, p_73863_1_, p_73863_2_);
 
             //if ((this.buttonList.get(j)).getClass() == AetherMainMenuButton.class)
             if ((this.buttonList.get(j)) instanceof AetherMainMenuButton)
             {
-                if (((GuiButton) this.buttonList.get(j)).func_146115_a())
+                if (this.buttonList.get(j).func_146115_a())
                 {
-                    if (((GuiButton) this.buttonList.get(j)).xPosition < 45)
+                    if (this.buttonList.get(j).xPosition < 45)
                     {
-                        ((GuiButton) this.buttonList.get(j)).xPosition = ((GuiButton) this.buttonList.get(j)).xPosition + 4;
+                        this.buttonList.get(j).xPosition = this.buttonList.get(j).xPosition + 4;
                     }
                 }
                 else
                 {
-                    if (((GuiButton) this.buttonList.get(j)).xPosition > 30)
+                    if (this.buttonList.get(j).xPosition > 30)
                     {
-                        ((GuiButton) this.buttonList.get(j)).xPosition = ((GuiButton) this.buttonList.get(j)).xPosition - 4;
+                        this.buttonList.get(j).xPosition = this.buttonList.get(j).xPosition - 4;
                     }
                 }
             }
@@ -513,7 +513,7 @@ public class AetherMainMenu extends GuiMainMenu
 
         for (int j = 0; j < this.labelList.size(); ++j)
         {
-            ((GuiLabel)this.labelList.get(j)).func_146159_a(this.mc, p_73863_1_, p_73863_2_);
+            this.labelList.get(j).func_146159_a(this.mc, p_73863_1_, p_73863_2_);
         }
     }
 
@@ -524,7 +524,7 @@ public class AetherMainMenu extends GuiMainMenu
         {
             for (int l = 0; l < this.buttonList.size(); ++l)
             {
-                GuiButton guibutton = (GuiButton)this.buttonList.get(l);
+                GuiButton guibutton = this.buttonList.get(l);
 
                 if (guibutton.mousePressed(this.mc, p_73864_1_, p_73864_2_))
                 {

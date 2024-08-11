@@ -78,31 +78,31 @@ public class BlockElysianTotem extends BlockMultiTileEntity
 		}
 		
         int l = p_149734_1_.getBlockMetadata(p_149734_2_, p_149734_3_, p_149734_4_);
-        double d0 = (double)((float)p_149734_2_ + 0.5F + (p_149734_5_.nextFloat()) - (p_149734_5_.nextFloat()));
-        double d1 = (double)((float)p_149734_3_ - 1.0F);
-        double d2 = (double)((float)p_149734_4_ + 0.5F + (p_149734_5_.nextFloat()) - (p_149734_5_.nextFloat()));
+        double d0 = (float)p_149734_2_ + 0.5F + (p_149734_5_.nextFloat()) - (p_149734_5_.nextFloat());
+        double d1 = (float)p_149734_3_ - 1.0F;
+        double d2 = (float)p_149734_4_ + 0.5F + (p_149734_5_.nextFloat()) - (p_149734_5_.nextFloat());
         double d3 = 0.2199999988079071D;
         double d4 = 0.27000001072883606D;
 
         if (l == 1)
         {
-        	NewAetherParticleHandler.ELYSIAN_TELEPORT.spawn(p_149734_1_, d0 - d4, d1 + d3, d2, 0.0D, 0.12D, 0.0D, 0.0f, new Object[0]);
+        	NewAetherParticleHandler.ELYSIAN_TELEPORT.spawn(p_149734_1_, d0 - d4, d1 + d3, d2, 0.0D, 0.12D, 0.0D, 0.0f);
         }
         else if (l == 2)
         {
-        	NewAetherParticleHandler.ELYSIAN_TELEPORT.spawn(p_149734_1_, d0 - d4, d1 + d3, d2, 0.0D, 0.12D, 0.0D, 0.0f, new Object[0]);
+        	NewAetherParticleHandler.ELYSIAN_TELEPORT.spawn(p_149734_1_, d0 - d4, d1 + d3, d2, 0.0D, 0.12D, 0.0D, 0.0f);
         }
         else if (l == 3)
         {
-        	NewAetherParticleHandler.ELYSIAN_TELEPORT.spawn(p_149734_1_, d0 - d4, d1 + d3, d2, 0.0D, 0.12D, 0.0D, 0.0f, new Object[0]);
+        	NewAetherParticleHandler.ELYSIAN_TELEPORT.spawn(p_149734_1_, d0 - d4, d1 + d3, d2, 0.0D, 0.12D, 0.0D, 0.0f);
         }
         else if (l == 4)
         {
-        	NewAetherParticleHandler.ELYSIAN_TELEPORT.spawn(p_149734_1_, d0 - d4, d1 + d3, d2, 0.0D, 0.12D, 0.0D, 0.0f, new Object[0]);
+        	NewAetherParticleHandler.ELYSIAN_TELEPORT.spawn(p_149734_1_, d0 - d4, d1 + d3, d2, 0.0D, 0.12D, 0.0D, 0.0f);
         }
         else
         {
-        	NewAetherParticleHandler.ELYSIAN_TELEPORT.spawn(p_149734_1_, d0 - d4, d1 + d3, d2, 0.0D, 0.12D, 0.0D, 0.0f, new Object[0]);
+        	NewAetherParticleHandler.ELYSIAN_TELEPORT.spawn(p_149734_1_, d0 - d4, d1 + d3, d2, 0.0D, 0.12D, 0.0D, 0.0f);
         }
     }
     

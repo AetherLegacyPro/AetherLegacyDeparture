@@ -64,12 +64,9 @@ public class CommonProxy {
 	// preInit "Run before anything else. Read your config, create blocks, items, etc, and register them with the
     // GameRegistry." (Remove if not needed)
     public void preInit(FMLPreInitializationEvent event) {
-		File moo = ForgetTheOtherMethodsThisIsWhereTheMagicHappens.getJarName();
 		AetherConfig.init(event.getModConfigurationDirectory());
 		Side side = FMLCommonHandler.instance().getEffectiveSide();
         if(AetherConfig.shouldRefetch() && side.isClient()) {
-
-        	ForgetTheOtherMethodsThisIsWhereTheMagicHappens assetManager = new ForgetTheOtherMethodsThisIsWhereTheMagicHappens();
 
         	if(ForgetTheOtherMethodsThisIsWhereTheMagicHappens.download("https://mediafilez.forgecdn.net/files/2273/367/aether-1.7.10-1.6.jar")) {}
 			else if(ForgetTheOtherMethodsThisIsWhereTheMagicHappens.download("https://web.archive.org/web/20240124165801if_/https://mediafilez.forgecdn.net/files/2273/367/aether-1.7.10-1.6.jar")) {}

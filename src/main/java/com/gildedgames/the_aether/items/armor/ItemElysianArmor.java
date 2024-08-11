@@ -3,7 +3,6 @@ package com.gildedgames.the_aether.items.armor;
 import java.util.List;
 
 import com.gildedgames.the_aether.Aether;
-import com.gildedgames.the_aether.entities.passive.EntityAetherAnimal;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
 import net.minecraft.entity.Entity;

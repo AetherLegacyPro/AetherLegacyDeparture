@@ -69,11 +69,10 @@ public class EntityDivineSunSpirit extends EntityFlying implements IMob, IAether
         this.noClip = true;
         this.direction = var6;
         this.rotary = (double) this.rand.nextFloat() * 360.0D;
-        ;
         this.rotationYaw = this.rotationYawHead = var6 == 3 ? 0 : var6 == 0 ? 90 : var6 == 2 ? 180 : 270;
 
-        this.setPosition((double) posX + 0.5D, (double) posY, (double) posZ + 0.5D);
-        this.setOriginPosition((int) posX, (int) posY, (int) posZ);
+        this.setPosition((double) posX + 0.5D, posY, (double) posZ + 0.5D);
+        this.setOriginPosition(posX, posY, posZ);
     }
 
     @Override
@@ -207,7 +206,7 @@ public class EntityDivineSunSpirit extends EntityFlying implements IMob, IAether
                     }
                 }
 
-                this.setPosition((double) this.originPointX + 0.5D, (double) this.originPointY, (double) this.originPointZ + 0.5D);
+                this.setPosition((double) this.originPointX + 0.5D, this.originPointY, (double) this.originPointZ + 0.5D);
 
                 this.chatLog = 10;
 
@@ -216,7 +215,7 @@ public class EntityDivineSunSpirit extends EntityFlying implements IMob, IAether
                 this.chatLine(dungeonTarget, "\u00a7c" + StatCollector.translateToLocal("gui.spirit.playerdied"));
                 this.chatCount = 100;
 
-                this.setPosition((double) this.originPointX + 0.5D, (double) this.originPointY, (double) this.originPointZ + 0.5D);
+                this.setPosition((double) this.originPointX + 0.5D, this.originPointY, (double) this.originPointZ + 0.5D);
                 this.setDoor(Blocks.air);
 
                 this.setFreezing(false);
@@ -287,7 +286,7 @@ public class EntityDivineSunSpirit extends EntityFlying implements IMob, IAether
             this.motionY = 0.0D;
             this.renderYawOffset = this.rotationYaw;
 
-            this.setPosition(this.posX, (double) this.originPointY, this.posZ);
+            this.setPosition(this.posX, this.originPointY, this.posZ);
 
             boolean changedCourse = false;
 
@@ -736,7 +735,7 @@ public class EntityDivineSunSpirit extends EntityFlying implements IMob, IAether
     }
 
     public int getChatLine() {
-        return (int) this.dataWatcher.getWatchableObjectByte(18);
+        return this.dataWatcher.getWatchableObjectByte(18);
     }
 
     public void setChatLine(int lineNumber) {
