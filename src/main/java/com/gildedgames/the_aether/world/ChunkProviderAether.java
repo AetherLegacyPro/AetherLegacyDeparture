@@ -58,9 +58,9 @@ public class ChunkProviderAether implements IChunkProvider {
 
 	private NoiseGeneratorOctaves noiseGen1, perlinNoise1;
 
-	private double buffer[];
+	private double[] buffer;
 
-	double pnr[], ar[], br[];
+	double[] pnr, ar, br;
 	
 	private MapGenBase aetherCaveGenerator;
 	
@@ -246,7 +246,7 @@ public class ChunkProviderAether implements IChunkProvider {
 		*/
 	}
 
-	private double[] setupNoiseGenerators(double buffer[], int x, int z) {
+	private double[] setupNoiseGenerators(double[] buffer, int x, int z) {
 		if (buffer == null) {
 			buffer = new double[3366];
 		}

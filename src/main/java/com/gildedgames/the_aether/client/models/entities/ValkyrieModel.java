@@ -14,10 +14,10 @@ public class ValkyrieModel extends ModelBiped {
 	public ModelRenderer bipedLeftArm2;
 	public ModelRenderer wingLeft;
 	public ModelRenderer wingRight;
-	public ModelRenderer skirt[];
-	public ModelRenderer sword[];
-	public ModelRenderer strand[];
-	public ModelRenderer halo[];
+	public ModelRenderer[] skirt;
+	public ModelRenderer[] sword;
+	public ModelRenderer[] strand;
+	public ModelRenderer[] halo;
 
 	public static final int swordParts = 5;
 	public static final int skirtParts = 6;

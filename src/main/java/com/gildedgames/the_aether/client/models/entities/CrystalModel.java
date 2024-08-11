@@ -8,9 +8,9 @@ import org.lwjgl.opengl.GL11;
 
 public class CrystalModel extends ModelBase {
 
-	public ModelRenderer head[];
+	public ModelRenderer[] head;
 
-	public float sinage[];
+	public float[] sinage;
 
 	private static final float sponge = (180F / 3.141593F);
 

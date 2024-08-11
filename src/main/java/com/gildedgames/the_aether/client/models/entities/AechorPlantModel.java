@@ -8,15 +8,15 @@ import net.minecraft.entity.Entity;
 
 public class AechorPlantModel extends ModelBase {
 
-	private ModelRenderer petal[];
+	private ModelRenderer[] petal;
 
-	private ModelRenderer leaf[];
+	private ModelRenderer[] leaf;
 
-	private ModelRenderer stamen[];
+	private ModelRenderer[] stamen;
 
-	private ModelRenderer stamen2[];
+	private ModelRenderer[] stamen2;
 
-	private ModelRenderer thorn[];
+	private ModelRenderer[] thorn;
 
 	private ModelRenderer stem;
 

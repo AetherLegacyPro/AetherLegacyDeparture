@@ -8,7 +8,7 @@ import net.minecraft.entity.Entity;
 
 public class MiniCloudModel extends ModelBase {
 
-	public ModelRenderer head[];
+	public ModelRenderer[] head;
 
 	public MiniCloudModel() {
 		this(0.0F);
