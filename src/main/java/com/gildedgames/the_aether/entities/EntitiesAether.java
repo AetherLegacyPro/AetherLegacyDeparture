@@ -248,7 +248,7 @@ public class EntitiesAether {
 		}
 
 		if (entity == null) {
-			logger.warn("Skipping Aether Entity with id " + id);
+			logger.warn("Skipping Aether Entity with id {}", id);
 		}
 
 		return entity;

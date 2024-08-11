@@ -175,7 +175,7 @@ public class EntityFakeItem extends Entity
         final ItemStack itemstack = this.getDataWatcher().getWatchableObjectItemStack(10);
         if (itemstack == null) {
             if (this.worldObj != null) {
-                EntityFakeItem.logger.warn("Item entity " + this.getEntityId() + " has no item?!");
+				EntityFakeItem.logger.warn("Item entity {} has no item?!", this.getEntityId());
             }
             return new ItemStack(Blocks.stone);
         }
