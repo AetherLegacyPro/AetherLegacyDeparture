@@ -57,7 +57,7 @@ public class ItemAetherSpawnEgg extends Item {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public int getColorFromItemStack(ItemStack p_82790_1_, int p_82790_2_) {
-		AetherEggInfo entityegginfo = entityEggs.get(Integer.valueOf(p_82790_1_.getItemDamage()));
+		AetherEggInfo entityegginfo = entityEggs.get(p_82790_1_.getItemDamage());
 
 		return entityegginfo != null ? (p_82790_2_ == 0 ? entityegginfo.primaryColor : entityegginfo.secondaryColor) : 16777215;
 	}
@@ -137,7 +137,7 @@ public class ItemAetherSpawnEgg extends Item {
 	}
 
 	public static Entity spawnCreature(World p_77840_0_, int p_77840_1_, double p_77840_2_, double p_77840_4_, double p_77840_6_) {
-		if (!entityEggs.containsKey(Integer.valueOf(p_77840_1_))) {
+		if (!entityEggs.containsKey(p_77840_1_)) {
 			return null;
 		} else {
 			Entity entity = null;

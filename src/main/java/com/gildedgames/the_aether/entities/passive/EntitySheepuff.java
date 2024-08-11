@@ -259,7 +259,7 @@ public class EntitySheepuff extends EntityAetherAnimal {
 
 	public void setFleeceColor(int i) {
 		byte byte0 = this.dataWatcher.getWatchableObjectByte(16);
-		this.dataWatcher.updateObject(16, Byte.valueOf((byte) (byte0 & 240 | i & 15)));
+		this.dataWatcher.updateObject(16, (byte) (byte0 & 240 | i & 15));
 	}
 
 	public boolean getSheared() {
@@ -267,7 +267,7 @@ public class EntitySheepuff extends EntityAetherAnimal {
 	}
 
 	public void setSheared(boolean flag) {
-		this.dataWatcher.updateObject(17, Byte.valueOf((byte) (flag ? 1 : 0)));
+		this.dataWatcher.updateObject(17, (byte) (flag ? 1 : 0));
 	}
 
 	public boolean getPuffed() {
@@ -275,7 +275,7 @@ public class EntitySheepuff extends EntityAetherAnimal {
 	}
 
 	public void setPuffed(boolean flag) {
-		this.dataWatcher.updateObject(18, Byte.valueOf((byte) (flag ? 1 : 0)));
+		this.dataWatcher.updateObject(18, (byte) (flag ? 1 : 0));
 	}
 
 	public static int getRandomFleeceColor(Random random) {

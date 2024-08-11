@@ -66,7 +66,7 @@ public class EntityFlynx extends EntityTameable
     protected void entityInit()
     {
         super.entityInit();
-        this.dataWatcher.addObject(18, Byte.valueOf((byte)0));
+        this.dataWatcher.addObject(18, (byte) 0);
     }
 
     /**
@@ -320,7 +320,7 @@ public class EntityFlynx extends EntityTameable
 
     public void setTameSkin(int p_70912_1_)
     {
-        this.dataWatcher.updateObject(18, Byte.valueOf((byte)p_70912_1_));
+        this.dataWatcher.updateObject(18, (byte) p_70912_1_);
     }
     /**
      * Gets the name of this command sender (usually username, but possibly "Rcon")

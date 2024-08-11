@@ -107,9 +107,9 @@ public class EntityLurker extends EntityBossMob implements IAetherBoss {
 
         this.dataWatcher.addObject(20, (byte) 0);
         this.dataWatcher.addObject(19, AetherNameGen.valkGen());
-        this.dataWatcher.addObject(16, Byte.valueOf((byte) - 1));
-        this.dataWatcher.addObject(17, Byte.valueOf((byte)0));
-        this.dataWatcher.addObject(18, Byte.valueOf((byte)0));
+        this.dataWatcher.addObject(16, (byte) -1);
+        this.dataWatcher.addObject(17, (byte) 0);
+        this.dataWatcher.addObject(18, (byte) 0);
     }
 
     public void registerEntityAI() {
@@ -452,7 +452,7 @@ public class EntityLurker extends EntityBossMob implements IAetherBoss {
     public void readEntityFromNBT(NBTTagCompound nbttagcompound) {
         super.readEntityFromNBT(nbttagcompound);
         
-        this.dataWatcher.updateObject(17, Byte.valueOf((byte)(nbttagcompound.getBoolean("powered") ? 1 : 0)));
+        this.dataWatcher.updateObject(17, (byte) (nbttagcompound.getBoolean("powered") ? 1 : 0));
 
         if (nbttagcompound.hasKey("Fuse", 99))
         {
@@ -626,7 +626,7 @@ public class EntityLurker extends EntityBossMob implements IAetherBoss {
      */
     public void setCreeperState(int p_70829_1_)
     {
-        this.dataWatcher.updateObject(16, Byte.valueOf((byte)p_70829_1_));
+        this.dataWatcher.updateObject(16, (byte) p_70829_1_);
     }
 
     /**
@@ -635,7 +635,7 @@ public class EntityLurker extends EntityBossMob implements IAetherBoss {
     public void onStruckByLightning(EntityLightningBolt p_70077_1_)
     {
         super.onStruckByLightning(p_70077_1_);
-        this.dataWatcher.updateObject(17, Byte.valueOf((byte)1));
+        this.dataWatcher.updateObject(17, (byte) 1);
     }
     
     private void func_146077_cc()
@@ -664,7 +664,7 @@ public class EntityLurker extends EntityBossMob implements IAetherBoss {
 
     public void func_146079_cb()
     {
-        this.dataWatcher.updateObject(18, Byte.valueOf((byte)1));
+        this.dataWatcher.updateObject(18, (byte) 1);
     }
 
 

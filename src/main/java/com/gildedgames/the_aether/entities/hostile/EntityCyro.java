@@ -74,9 +74,9 @@ public class EntityCyro extends EntityAetherMob
     protected void entityInit()
     {
         super.entityInit();
-        this.getDataWatcher().addObject(12, Byte.valueOf((byte)0));
-        this.getDataWatcher().addObject(13, Byte.valueOf((byte)0));
-        this.getDataWatcher().addObject(14, Byte.valueOf((byte)0));
+        this.getDataWatcher().addObject(12, (byte) 0);
+        this.getDataWatcher().addObject(13, (byte) 0);
+        this.getDataWatcher().addObject(14, (byte) 0);
     }
 
     /**

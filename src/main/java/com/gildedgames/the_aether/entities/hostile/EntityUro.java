@@ -93,9 +93,9 @@ public class EntityUro extends EntityMob
     protected void entityInit()
     {
         super.entityInit();
-        this.dataWatcher.addObject(16, Byte.valueOf((byte) - 1));
-        this.dataWatcher.addObject(17, Byte.valueOf((byte)0));
-        this.dataWatcher.addObject(18, Byte.valueOf((byte)0));
+        this.dataWatcher.addObject(16, (byte) -1);
+        this.dataWatcher.addObject(17, (byte) 0);
+        this.dataWatcher.addObject(18, (byte) 0);
     }
 
     /**
@@ -121,7 +121,7 @@ public class EntityUro extends EntityMob
     public void readEntityFromNBT(NBTTagCompound p_70037_1_)
     {
         super.readEntityFromNBT(p_70037_1_);
-        this.dataWatcher.updateObject(17, Byte.valueOf((byte)(p_70037_1_.getBoolean("powered") ? 1 : 0)));
+        this.dataWatcher.updateObject(17, (byte) (p_70037_1_.getBoolean("powered") ? 1 : 0));
 
         if (p_70037_1_.hasKey("Fuse", 99))
         {
@@ -272,7 +272,7 @@ public class EntityUro extends EntityMob
      */
     public void setCreeperState(int p_70829_1_)
     {
-        this.dataWatcher.updateObject(16, Byte.valueOf((byte)p_70829_1_));
+        this.dataWatcher.updateObject(16, (byte) p_70829_1_);
     }
 
     /**
@@ -281,7 +281,7 @@ public class EntityUro extends EntityMob
     public void onStruckByLightning(EntityLightningBolt p_70077_1_)
     {
         super.onStruckByLightning(p_70077_1_);
-        this.dataWatcher.updateObject(17, Byte.valueOf((byte)1));
+        this.dataWatcher.updateObject(17, (byte) 1);
     }
 
     /**
@@ -333,6 +333,6 @@ public class EntityUro extends EntityMob
 
     public void func_146079_cb()
     {
-        this.dataWatcher.updateObject(18, Byte.valueOf((byte)1));
+        this.dataWatcher.updateObject(18, (byte) 1);
     }
 }

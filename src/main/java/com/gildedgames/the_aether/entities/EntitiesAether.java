@@ -223,14 +223,14 @@ public class EntitiesAether {
 	}
 
 	private static void addMapping(Class<?> entityClass, String entityName, int entityID, int primaryEggColor, int secondaryEggColor) {
-		if (IDtoClassMapping.containsKey(Integer.valueOf(entityID))) {
+		if (IDtoClassMapping.containsKey(entityID)) {
 			throw new IllegalArgumentException("ID is already registered: " + entityID);
 		} else {
 			classToStringMapping.put(entityClass, entityName);
-			IDtoClassMapping.put(Integer.valueOf(entityID), entityClass);
-			classToIDMapping.put(entityClass, Integer.valueOf(entityID));
-			stringToIDMapping.put(entityName, Integer.valueOf(entityID));
-			ItemAetherSpawnEgg.entityEggs.put(Integer.valueOf(entityID), new AetherEggInfo(entityID, primaryEggColor, secondaryEggColor));
+			IDtoClassMapping.put(entityID, entityClass);
+			classToIDMapping.put(entityClass, entityID);
+			stringToIDMapping.put(entityName, entityID);
+			ItemAetherSpawnEgg.entityEggs.put(entityID, new AetherEggInfo(entityID, primaryEggColor, secondaryEggColor));
 		}
 	}
 
@@ -260,7 +260,7 @@ public class EntitiesAether {
 	}
 
 	public static Class<?> getClassFromID(int p_90035_0_) {
-		return (Class<?>) IDtoClassMapping.get(Integer.valueOf(p_90035_0_));
+		return (Class<?>) IDtoClassMapping.get(p_90035_0_);
 	}
 
 	public static String getStringFromID(int p_75617_0_) {

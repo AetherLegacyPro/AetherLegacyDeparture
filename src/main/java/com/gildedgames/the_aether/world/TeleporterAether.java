@@ -106,7 +106,7 @@ public class TeleporterAether extends Teleporter {
 		if (d3 >= 0.0D) {
 			if (flag) {
 				this.destinationCoordinateCache.add(j1, new AetherPortalPosition(i, j, k, this.worldServerInstance.getTotalWorldTime()));
-				this.destinationCoordinateKeys.add(Long.valueOf(j1));
+				this.destinationCoordinateKeys.add(j1);
 			}
 
 			double d11 = (double) i + 0.5D;
@@ -404,11 +404,11 @@ public class TeleporterAether extends Teleporter {
 
 			while (iterator.hasNext()) {
 				Long olong = (Long) iterator.next();
-				Teleporter.PortalPosition portalposition = (Teleporter.PortalPosition) this.destinationCoordinateCache.getValueByKey(olong.longValue());
+				Teleporter.PortalPosition portalposition = (Teleporter.PortalPosition) this.destinationCoordinateCache.getValueByKey(olong);
 
 				if (portalposition == null || portalposition.lastUpdateTime < j) {
 					iterator.remove();
-					this.destinationCoordinateCache.remove(olong.longValue());
+					this.destinationCoordinateCache.remove(olong);
 				}
 			}
 		}
