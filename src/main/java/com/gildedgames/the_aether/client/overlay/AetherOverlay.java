@@ -195,7 +195,7 @@ public class AetherOverlay {
 	public static void renderJumps(Minecraft mc) {
 		EntityPlayer player = mc.thePlayer;
 
-		if (player == null || player.ridingEntity == null || !(player.ridingEntity instanceof EntityMoa)) {
+		if (player == null || !(player.ridingEntity instanceof EntityMoa)) {
 			return;
 		}
 

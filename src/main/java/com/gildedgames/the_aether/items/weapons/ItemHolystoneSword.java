@@ -26,7 +26,7 @@ public class ItemHolystoneSword extends ItemSword {
 
 	@Override
 	public boolean hitEntity(ItemStack itemstack, EntityLivingBase entityliving, EntityLivingBase entityliving1) {
-		if ((new Random()).nextInt(20) == 0 && entityliving1 != null && entityliving1 instanceof EntityPlayer && entityliving.hurtTime > 0 && entityliving.deathTime <= 0) {
+		if ((new Random()).nextInt(20) == 0 && entityliving1 instanceof EntityPlayer && entityliving.hurtTime > 0 && entityliving.deathTime <= 0) {
 			if (!entityliving.worldObj.isRemote) {
 				entityliving.dropItem(ItemsAether.ambrosium_shard, 1);
 			}

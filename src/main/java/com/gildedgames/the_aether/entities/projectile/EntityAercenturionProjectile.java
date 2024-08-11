@@ -97,7 +97,7 @@ public class EntityAercenturionProjectile extends EntityArrow implements IThrowa
 			movingobjectposition = new MovingObjectPosition(entity);
 		}
 
-		if (movingobjectposition != null && movingobjectposition.entityHit != null && movingobjectposition.entityHit instanceof EntityPlayer)
+		if (movingobjectposition != null && movingobjectposition.entityHit instanceof EntityPlayer)
 		{
 			EntityPlayer entityplayer = (EntityPlayer)movingobjectposition.entityHit;
 

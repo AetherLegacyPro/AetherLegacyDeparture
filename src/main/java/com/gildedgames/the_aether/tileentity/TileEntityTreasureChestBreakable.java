@@ -214,7 +214,7 @@ public class TileEntityTreasureChestBreakable extends TileEntity implements IInv
   
   private boolean func_94044_a(final int par1, final int par2, final int par3) {
       final Block block = this.worldObj.getBlock(par1, par2, par3);
-      return block != null && block instanceof BlockTreasureChestBreakable && ((BlockTreasureChestBreakable)block).chestType == this.getChestType();
+      return block instanceof BlockTreasureChestBreakable && ((BlockTreasureChestBreakable)block).chestType == this.getChestType();
   }
   
   public void updateEntity() {

@@ -44,7 +44,7 @@ public class ItemAetherSpawnEgg extends Item {
 
 	@Override
 	public String getItemStackDisplayName(ItemStack stack) {
-		String s = ("" + StatCollector.translateToLocal(this.getUnlocalizedName() + ".name")).trim();
+		String s = (StatCollector.translateToLocal(this.getUnlocalizedName() + ".name")).trim();
 		String s1 = EntitiesAether.getStringFromID(stack.getItemDamage());
 
 		if (s1 != null) {
@@ -145,7 +145,7 @@ public class ItemAetherSpawnEgg extends Item {
 			for (int j = 0; j < 1; ++j) {
 				entity = EntitiesAether.createEntityByID(p_77840_1_, p_77840_0_);
 
-				if (entity != null && entity instanceof EntityLivingBase) {
+				if (entity instanceof EntityLivingBase) {
 					EntityLiving entityliving = (EntityLiving) entity;
 					entity.setLocationAndAngles(p_77840_2_, p_77840_4_, p_77840_6_, MathHelper.wrapAngleTo180_float(p_77840_0_.rand.nextFloat() * 360.0F), 0.0F);
 					entityliving.rotationYawHead = entityliving.rotationYaw;

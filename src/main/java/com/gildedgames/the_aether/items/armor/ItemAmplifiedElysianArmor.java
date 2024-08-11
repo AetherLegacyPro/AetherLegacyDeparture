@@ -69,7 +69,7 @@ public class ItemAmplifiedElysianArmor extends ItemArmor {
 				List<EntityLivingBase> volume = world.getEntitiesWithinAABB(EntityLivingBase.class, axisalignedbb.expand(2, 3, 2));
         		int rand = (int)(1 + Math.random() * 76);
         		 for(Entity entity : volume) {
-        			 if(!(entity instanceof EntityPlayer) && !(entity instanceof EntityAetherAnimal) && !(entity instanceof EntityAnimal) 
+        			 if(!(entity instanceof EntityPlayer) && !(entity instanceof EntityAnimal)
         					 && rand == 1) {        				
         				 entity.attackEntityFrom(DamageSource.causeIndirectMagicDamage(player, entity), 3F);
         			 }

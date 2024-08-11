@@ -320,7 +320,7 @@ public class EntityEnhancedSlider extends EntityFlying implements IAetherBoss {
         Block block = this.worldObj.getBlock((int) x, (int) y, (int) z);
         int metadata = this.worldObj.getBlockMetadata((int) x, (int) y, (int) z);
 
-        if (block == Blocks.air || block == BlocksAether.locked_carved_stone || block == BlocksAether.locked_ancient_carved_stone || block == BlocksAether.locked_divine_carved_stone || block == BlocksAether.locked_sentry_stone || block == BlocksAether.locked_ancient_sentry_stone || block == BlocksAether.carved_trap || block == BlocksAether.locked_ancient_sentry_stone  || block == BlocksAether.divine_carved_trap || block == BlocksAether.locked_mythic_carved_stone || block == BlocksAether.locked_mythic_sentry_stone) {
+        if (block == Blocks.air || block == BlocksAether.locked_carved_stone || block == BlocksAether.locked_ancient_carved_stone || block == BlocksAether.locked_divine_carved_stone || block == BlocksAether.locked_sentry_stone || block == BlocksAether.locked_ancient_sentry_stone || block == BlocksAether.carved_trap || block == BlocksAether.divine_carved_trap || block == BlocksAether.locked_mythic_carved_stone || block == BlocksAether.locked_mythic_sentry_stone) {
             return;
         }
 

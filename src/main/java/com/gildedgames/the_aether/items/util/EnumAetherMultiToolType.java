@@ -47,7 +47,7 @@ public enum EnumAetherMultiToolType {
 				return toolMaterial.getHarvestLevel() >= 2;
 			} else if (block == BlocksAether.continuum_ore || block == BlocksAether.continuum_block) {
 				return toolMaterial.getHarvestLevel() >= 3;
-			} else if (block == BlocksAether.primeval_artifact || block == BlocksAether.primeval_artifact) {
+			} else if (block == BlocksAether.primeval_artifact) {
 				return toolMaterial.getHarvestLevel() >= 3;
 			}
 			else if (block == BlocksAether.aerogel) {

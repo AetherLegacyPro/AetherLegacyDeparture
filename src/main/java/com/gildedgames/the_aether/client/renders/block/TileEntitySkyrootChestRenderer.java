@@ -33,7 +33,7 @@ public class TileEntitySkyrootChestRenderer extends TileEntitySpecialRenderer
       else {
           final Block var10 = par1TileEntityChest.getBlockType();
           var9 = par1TileEntityChest.getBlockMetadata();
-          if (var10 != null && var9 == 0 && var10 instanceof BlockSkyrootChest) {
+          if (var9 == 0 && var10 instanceof BlockSkyrootChest) {
               ((BlockSkyrootChest)var10).unifyAdjacentChests(par1TileEntityChest.getWorldObj(), par1TileEntityChest.xCoord, par1TileEntityChest.yCoord, par1TileEntityChest.zCoord);
               var9 = par1TileEntityChest.getBlockMetadata();
           }
