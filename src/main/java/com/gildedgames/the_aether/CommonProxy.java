@@ -40,7 +40,7 @@ public class CommonProxy {
 	public void openSunAltar() {
 
 	}
-	
+
 	public void spawnAltarParticles(final World world, final int x, final int y, final int z, final Random rand) {
     }
 
@@ -71,16 +71,12 @@ public class CommonProxy {
 	// preInit "Run before anything else. Read your config, create blocks, items, etc, and register them with the
     // GameRegistry." (Remove if not needed)
     public void preInit(FMLPreInitializationEvent event) {
-		System.out.println("BBBBBBBBBBBBBBBBBBB");
 		File moo = ForgetTheOtherMethodsThisIsWhereTheMagicHappens.getJarName();
 		AetherConfig.init(event.getModConfigurationDirectory());
 		Side side = FMLCommonHandler.instance().getEffectiveSide();
         if(AetherConfig.shouldRefetch() && side.isClient()) {
-			System.out.println("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH refetching");
-
 
         	ForgetTheOtherMethodsThisIsWhereTheMagicHappens assetManager = new ForgetTheOtherMethodsThisIsWhereTheMagicHappens();
-
 
         	if(ForgetTheOtherMethodsThisIsWhereTheMagicHappens.download("https://mediafilez.forgecdn.net/files/2273/367/aether-1.7.10-1.6.jar")) {}
 			else if(ForgetTheOtherMethodsThisIsWhereTheMagicHappens.download("https://web.archive.org/web/20240124165801if_/https://mediafilez.forgecdn.net/files/2273/367/aether-1.7.10-1.6.jar")) {}
