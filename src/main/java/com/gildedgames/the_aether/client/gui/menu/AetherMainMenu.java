@@ -480,7 +480,7 @@ public class AetherMainMenu extends GuiMainMenu
         String s1 = "Copyright Mojang AB. Do not distribute!";
         this.drawString(this.fontRendererObj, s1, this.width - this.fontRendererObj.getStringWidth(s1) - 2, this.height - 10, -1);
 
-        if (this.field_92025_p != null && this.field_92025_p.length() > 0)
+        if (this.field_92025_p != null && !this.field_92025_p.isEmpty())
         {
             drawRect(this.field_92022_t - 2, this.field_92021_u - 2, this.field_92020_v + 2, this.field_92019_w - 1, 1428160512);
             this.drawString(this.fontRendererObj, this.field_92025_p, this.field_92022_t, this.field_92021_u, -1);
@@ -544,7 +544,7 @@ public class AetherMainMenu extends GuiMainMenu
 
         synchronized (this.field_104025_t)
         {
-            if (this.field_92025_p.length() > 0 && p_73864_1_ >= this.field_92022_t && p_73864_1_ <= this.field_92020_v && p_73864_2_ >= this.field_92021_u && p_73864_2_ <= this.field_92019_w)
+            if (!this.field_92025_p.isEmpty() && p_73864_1_ >= this.field_92022_t && p_73864_1_ <= this.field_92020_v && p_73864_2_ >= this.field_92021_u && p_73864_2_ <= this.field_92019_w)
             {
                 GuiConfirmOpenLink guiconfirmopenlink = new GuiConfirmOpenLink(this, this.field_104024_v, 13, true);
                 guiconfirmopenlink.func_146358_g();

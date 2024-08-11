@@ -87,7 +87,7 @@ public class TileEntityElysianChest extends TileEntity implements IInventory
   }
   
   public boolean hasCustomInventoryName() {
-      return this.customName != null && this.customName.length() > 0;
+      return this.customName != null && !this.customName.isEmpty();
   }
   
   public void setChestGuiName(final String par1Str) {

@@ -271,7 +271,7 @@ public class EntityWhirlwind extends EntityMob {
 			}
 		}
 
-		if (this.particles.size() > 0) {
+		if (!this.particles.isEmpty()) {
 			for (int i1 = 0; i1 < this.particles.size(); i1++) {
 				AetherParticle particle = (AetherParticle) this.particles.get(i1);
 

@@ -142,7 +142,7 @@ public class TileEntityDivineEnchantmentTable extends TileEntity
 
     public boolean func_145921_b()
     {
-        return this.field_145922_s != null && this.field_145922_s.length() > 0;
+        return this.field_145922_s != null && !this.field_145922_s.isEmpty();
     }
 
     public void func_145920_a(String p_145920_1_)

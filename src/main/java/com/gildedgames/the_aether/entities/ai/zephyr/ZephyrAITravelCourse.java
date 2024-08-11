@@ -63,7 +63,7 @@ public class ZephyrAITravelCourse extends EntityAIBase {
         for (int i = 1; (double) i < distance; i++) {
             axisalignedbb.offset(x, y, z);
 
-            if (this.zephyr.worldObj.getCollidingBoundingBoxes(this.zephyr, axisalignedbb).size() > 0) {
+            if (!this.zephyr.worldObj.getCollidingBoundingBoxes(this.zephyr, axisalignedbb).isEmpty()) {
                 return false;
             }
         }
