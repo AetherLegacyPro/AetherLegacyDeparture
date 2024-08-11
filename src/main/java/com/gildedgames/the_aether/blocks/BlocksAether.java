@@ -471,8 +471,8 @@ public class BlocksAether {
 		greatroot_trapdoor = registerMeta("greatroot_trapdoor", new BlockAetherTrapdoor(Material.wood).setBlockTextureName(Aether.find("greatroot_trapdoor")));
 		void_trapdoor = registerMeta("void_trapdoor", new BlockAetherTrapdoor(Material.wood).setBlockTextureName(Aether.find("void_trapdoor")));
 		zanite_trapdoor = registerMeta("zanite_trapdoor", new BlockAetherTrapdoor(Material.iron).setBlockTextureName(Aether.find("zanite_trapdoor")));		
-		skyroot_ladder = registerMeta("skyroot_ladder", new BlockAetherLadder(Material.wood).setBlockTextureName(Aether.findII("skyrootLadder")));
-		
+		skyroot_ladder = registerMeta("skyroot_ladder", new BlockAetherLadder().setBlockTextureName(Aether.findII("skyrootLadder")));
+
 		small_blueberry_bush = registerHidden("small_blueberry_bush", new BlockSmallBerryBushStem().setBlockTextureName(Aether.find("small_blueberry_bush")));
 		medium_blueberry_bush = registerHidden("medium_blueberry_bush", new BlockMediumBerryBushStem().setBlockTextureName(Aether.find("medium_blueberry_bush")));
 		berry_bush_stem = registerHidden("berry_bush_stem", new BlockBerryBushStem());
