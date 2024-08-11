@@ -43,7 +43,7 @@ public class AetherTNTRenderer extends Render
             GL11.glScalef(f3, f3, f3);
         }
         float f2 = (1.0f - (p_76986_1_.fuse - p_76986_9_ + 1.0f) / 100.0f) * 0.8f;
-        this.bindEntityTexture((Entity)p_76986_1_);
+        this.bindEntityTexture(p_76986_1_);
         this.blockRenderer.renderBlockAsItem(BlocksAether.aether_tnt, 0, p_76986_1_.getBrightness(p_76986_9_));
         if (p_76986_1_.fuse / 5 % 2 == 0) {
             GL11.glDisable(3553);

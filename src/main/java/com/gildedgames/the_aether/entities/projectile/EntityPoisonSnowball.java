@@ -82,7 +82,7 @@ public class EntityPoisonSnowball extends EntityArrow implements IThrowableEntit
 			if (entity1.canBeCollidedWith() && (entity1 != this.shootingEntity))
 			{
 				f1 = 0.3F;
-				AxisAlignedBB axisalignedbb1 = entity1.boundingBox.expand((double)f1, (double)f1, (double)f1);
+				AxisAlignedBB axisalignedbb1 = entity1.boundingBox.expand(f1, f1, f1);
 				MovingObjectPosition movingobjectposition1 = axisalignedbb1.calculateIntercept(vec31, vec3);
 
 				if (movingobjectposition1 != null)

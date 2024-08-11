@@ -82,7 +82,7 @@ public class EntityZojzSnowball extends EntityArrow implements IThrowableEntity 
 			if (entity1.canBeCollidedWith() && (entity1 != this.shootingEntity))
 			{
 				f1 = 0.3F;
-				AxisAlignedBB axisalignedbb1 = entity1.boundingBox.expand((double)f1, (double)f1, (double)f1);
+				AxisAlignedBB axisalignedbb1 = entity1.boundingBox.expand(f1, f1, f1);
 				MovingObjectPosition movingobjectposition1 = axisalignedbb1.calculateIntercept(vec31, vec3);
 
 				if (movingobjectposition1 != null)
@@ -106,8 +106,8 @@ public class EntityZojzSnowball extends EntityArrow implements IThrowableEntity 
 		if (movingobjectposition != null && movingobjectposition.entityHit instanceof EntityPlayer)
 		{
 			EntityPlayer entityplayer = (EntityPlayer)movingobjectposition.entityHit;					
-			((EntityLivingBase)movingobjectposition.entityHit).attackEntityFrom(DamageSource.generic, 6.0F);
-			((EntityLivingBase)movingobjectposition.entityHit).attackEntityFrom(DamageSource.magic, 2.0F);
+			movingobjectposition.entityHit.attackEntityFrom(DamageSource.generic, 6.0F);
+			movingobjectposition.entityHit.attackEntityFrom(DamageSource.magic, 2.0F);
 			((EntityLivingBase)movingobjectposition.entityHit).addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 120, 1));
 			((EntityLivingBase)movingobjectposition.entityHit).addPotionEffect(new PotionEffect(Potion.digSlowdown.id, 120, 1));
 			 summonLightning();

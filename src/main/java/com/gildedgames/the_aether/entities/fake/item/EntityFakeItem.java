@@ -85,7 +85,7 @@ public class EntityFakeItem extends Entity
         if (itemstack2.hasTagCompound() ^ itemstack.hasTagCompound()) {
             return false;
         }
-        if (itemstack2.hasTagCompound() && !itemstack2.getTagCompound().equals((Object)itemstack.getTagCompound())) {
+        if (itemstack2.hasTagCompound() && !itemstack2.getTagCompound().equals(itemstack.getTagCompound())) {
             return false;
         }
         if (itemstack2.getItem().getHasSubtypes() && itemstack2.getItemDamage() != itemstack.getItemDamage()) {
@@ -111,7 +111,7 @@ public class EntityFakeItem extends Entity
     }
     
     public boolean handleWaterMovement() {
-        return this.worldObj.handleMaterialAcceleration(this.boundingBox, Material.water, (Entity)this);
+        return this.worldObj.handleMaterialAcceleration(this.boundingBox, Material.water, this);
     }
     
     protected void dealFireDamage(final int par1) {
@@ -134,10 +134,10 @@ public class EntityFakeItem extends Entity
     }
     
     public void writeEntityToNBT(final NBTTagCompound par1NBTTagCompound) {
-        par1NBTTagCompound.setShort("Health", (short)(byte)this.health);
+        par1NBTTagCompound.setShort("Health", (byte)this.health);
         par1NBTTagCompound.setShort("Age", (short)this.age);
         if (this.getEntityItem() != null) {
-            par1NBTTagCompound.setTag("Item", (NBTBase)this.getEntityItem().writeToNBT(new NBTTagCompound()));
+            par1NBTTagCompound.setTag("Item", this.getEntityItem().writeToNBT(new NBTTagCompound()));
         }
     }
     
@@ -183,7 +183,7 @@ public class EntityFakeItem extends Entity
     }
     
     public void setEntityItemStack(final ItemStack par1ItemStack) {
-        this.getDataWatcher().updateObject(10, (Object)par1ItemStack);
+        this.getDataWatcher().updateObject(10, par1ItemStack);
         this.getDataWatcher().setObjectWatched(10);
     }
     

@@ -38,13 +38,13 @@ public class AechorPlantRenderer extends RenderLiving {
     protected void preRenderCallback(EntityLivingBase entity, float f) {
         EntityAechorPlant plant = (EntityAechorPlant) entity;
 
-        float f1 = (float) Math.sin((double) plant.sinage);
+        float f1 = (float) Math.sin(plant.sinage);
         float f3;
 
         if (plant.hurtTime > 0) {
             f1 *= 0.45F;
             f1 -= 0.125F;
-            f3 = 1.75F + (float) Math.sin((double) (plant.sinage + 2.0F)) * 1.5F;
+            f3 = 1.75F + (float) Math.sin(plant.sinage + 2.0F) * 1.5F;
         } else {
             f1 *= 0.125F;
             f3 = 1.75F;

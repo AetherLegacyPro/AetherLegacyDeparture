@@ -18,8 +18,8 @@ public class TempestRenderer extends RenderLiving
     public TempestModel tempestModel;
     
     public TempestRenderer(final TempestModel model) {
-        super((ModelBase)model, 0.5f);
-        this.setRenderPassModel((ModelBase)model);
+        super(model, 0.5f);
+        this.setRenderPassModel(model);
         this.tempestModel = model;
     }
     

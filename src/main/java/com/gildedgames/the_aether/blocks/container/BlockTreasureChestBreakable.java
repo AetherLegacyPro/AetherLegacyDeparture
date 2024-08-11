@@ -114,26 +114,26 @@ public class BlockTreasureChestBreakable extends BlockContainer
           b0 = 4;
       }
       if (l != this && i1 != this && j1 != this && k1 != this) {
-          par1World.setBlockMetadataWithNotify(par2, par3, par4, (int)b0, 3);
+          par1World.setBlockMetadataWithNotify(par2, par3, par4, b0, 3);
       }
       else {
           if ((l == this || i1 == this) && (b0 == 4 || b0 == 5)) {
               if (l == this) {
-                  par1World.setBlockMetadataWithNotify(par2, par3, par4 - 1, (int)b0, 3);
+                  par1World.setBlockMetadataWithNotify(par2, par3, par4 - 1, b0, 3);
               }
               else {
-                  par1World.setBlockMetadataWithNotify(par2, par3, par4 + 1, (int)b0, 3);
+                  par1World.setBlockMetadataWithNotify(par2, par3, par4 + 1, b0, 3);
               }
-              par1World.setBlockMetadataWithNotify(par2, par3, par4, (int)b0, 3);
+              par1World.setBlockMetadataWithNotify(par2, par3, par4, b0, 3);
           }
           if ((j1 == this || k1 == this) && (b0 == 2 || b0 == 3)) {
               if (j1 == this) {
-                  par1World.setBlockMetadataWithNotify(par2 - 1, par3, par4, (int)b0, 3);
+                  par1World.setBlockMetadataWithNotify(par2 - 1, par3, par4, b0, 3);
               }
               else {
-                  par1World.setBlockMetadataWithNotify(par2 + 1, par3, par4, (int)b0, 3);
+                  par1World.setBlockMetadataWithNotify(par2 + 1, par3, par4, b0, 3);
               }
-              par1World.setBlockMetadataWithNotify(par2, par3, par4, (int)b0, 3);
+              par1World.setBlockMetadataWithNotify(par2, par3, par4, b0, 3);
           }
       }
       if (par6ItemStack.hasDisplayName()) {
@@ -207,7 +207,7 @@ public class BlockTreasureChestBreakable extends BlockContainer
                   b0 = 4;
               }
           }
-          par1World.setBlockMetadataWithNotify(par2, par3, par4, (int)b0, 3);
+          par1World.setBlockMetadataWithNotify(par2, par3, par4, b0, 3);
       }
   }
   
@@ -256,7 +256,7 @@ public class BlockTreasureChestBreakable extends BlockContainer
                       }
                       final ItemStack itemStack = itemstack;
                       itemStack.stackSize -= k1;
-                      final EntityItem entityitem = new EntityItem(par1World, (double)(par2 + f), (double)(par3 + f2), (double)(par4 + f3), new ItemStack(itemstack.getItem(), k1, itemstack.getItemDamage()));
+                      final EntityItem entityitem = new EntityItem(par1World, par2 + f, par3 + f2, par4 + f3, new ItemStack(itemstack.getItem(), k1, itemstack.getItemDamage()));
                       final float f4 = 0.05f;
                       entityitem.motionX = (float)this.random.nextGaussian() * f4;
                       entityitem.motionY = (float)this.random.nextGaussian() * f4 + 0.2f;
@@ -264,7 +264,7 @@ public class BlockTreasureChestBreakable extends BlockContainer
                       if (itemstack.hasTagCompound()) {
                           entityitem.getEntityItem().setTagCompound((NBTTagCompound)itemstack.getTagCompound().copy());
                       }
-                      par1World.spawnEntityInWorld((Entity)entityitem);
+                      par1World.spawnEntityInWorld(entityitem);
                   }
               }
           }

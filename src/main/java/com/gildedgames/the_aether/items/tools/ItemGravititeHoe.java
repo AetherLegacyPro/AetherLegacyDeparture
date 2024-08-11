@@ -18,7 +18,7 @@ public class ItemGravititeHoe extends ItemHoe
 {
     public ItemGravititeHoe() {
         super(ToolMaterial.EMERALD);
-        this.setCreativeTab((CreativeTabs)AetherCreativeTabs.tools);
+        this.setCreativeTab(AetherCreativeTabs.tools);
     }
     
     @Override
@@ -52,7 +52,7 @@ public class ItemGravititeHoe extends ItemHoe
             if (p_77648_7_ != 0 && p_77648_3_.getBlock(p_77648_4_, p_77648_5_ + 1, p_77648_6_).isAir(p_77648_3_, p_77648_4_, p_77648_5_ + 1, p_77648_6_) && (block == BlocksAether.aether_grass || block == BlocksAether.arctic_grass || block == BlocksAether.verdant_grass || block == BlocksAether.aether_dirt))
             {
                 Block block1 = BlocksAether.aether_farmland;
-                p_77648_3_.playSoundEffect((double)((float)p_77648_4_ + 0.5F), (double)((float)p_77648_5_ + 0.5F), (double)((float)p_77648_6_ + 0.5F), block1.stepSound.getStepResourcePath(), (block1.stepSound.getVolume() + 1.0F) / 2.0F, block1.stepSound.getPitch() * 0.8F);
+                p_77648_3_.playSoundEffect((float)p_77648_4_ + 0.5F, (float)p_77648_5_ + 0.5F, (float)p_77648_6_ + 0.5F, block1.stepSound.getStepResourcePath(), (block1.stepSound.getVolume() + 1.0F) / 2.0F, block1.stepSound.getPitch() * 0.8F);
 
                 if (p_77648_3_.isRemote)
                 {

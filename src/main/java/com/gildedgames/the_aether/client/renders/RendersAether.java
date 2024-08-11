@@ -263,7 +263,7 @@ public class RendersAether {
 		register(EntityCinerarium.class, new CinerariumRenderer());
 		register(EntityUligo.class, new UligoRenderer(new UligoModel(16), new UligoModel(0), 0.25F));
 		register(EntityFallenValkyrie.class, new FallenValkyrieRenderer());
-		register(EntityAercenturion.class, new AercenturionRenderer((ModelBiped)new AercenturionModel(), 1.0f));
+		register(EntityAercenturion.class, new AercenturionRenderer(new AercenturionModel(), 1.0f));
 		register(EntityZarnillys.class, new ZarnillysRenderer());
 		register(EntityElderZarnillys.class, new ElderZarnillysRenderer());
 		register(EntityHellfireCinder.class, new HellfireCinderRenderer());
@@ -300,7 +300,7 @@ public class RendersAether {
 		RenderingRegistry.registerBlockHandler(new BerryBushRenderer());
 		RenderingRegistry.registerBlockHandler(new TreasureChestBlockRenderer());
 		RenderingRegistry.registerBlockHandler(new AetherFlowerRenderer());
-		RenderingRegistry.registerEntityRenderingHandler((Class)EntityFakeItem.class, (Render)new RenderFakeItem());
+		RenderingRegistry.registerEntityRenderingHandler(EntityFakeItem.class, new RenderFakeItem());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTreasureChest.class, new TreasureChestRenderer());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAetherEnchantmentTable.class, new AetherEnchantmentTableRenderer());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityDivineEnchantmentTable.class, new DivineEnchantmentTableRenderer());

@@ -36,7 +36,7 @@ public class BlockAncientEnchanter extends BlockContainer
             final ItemStack itemStack = player.getCurrentEquippedItem();
             if (!enchanter.canEnchant()) {
                 if (world.isRemote) {
-                    FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage((IChatComponent)new ChatComponentText("Altar is being blocked by something above!"));
+                    FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(new ChatComponentText("Altar is being blocked by something above!"));
                 }
                 return true;
             }
@@ -124,7 +124,7 @@ public class BlockAncientEnchanter extends BlockContainer
                         }
                         final ItemStack itemStack = var9;
                         itemStack.stackSize -= var13;
-                        final EntityItem var14 = new EntityItem(par1World, (double)(par2 + var10), (double)(par3 + var11), (double)(par4 + var12), new ItemStack(var9.getItem(), var13, var9.getItemDamage()));
+                        final EntityItem var14 = new EntityItem(par1World, par2 + var10, par3 + var11, par4 + var12, new ItemStack(var9.getItem(), var13, var9.getItemDamage()));
                         if (var9.hasTagCompound()) {
                             var14.getEntityItem().setTagCompound((NBTTagCompound)var9.getTagCompound().copy());
                         }
@@ -132,7 +132,7 @@ public class BlockAncientEnchanter extends BlockContainer
                         var14.motionX = (float)this.EnchanterRand.nextGaussian() * var15;
                         var14.motionY = (float)this.EnchanterRand.nextGaussian() * var15 + 0.2f;
                         var14.motionZ = (float)this.EnchanterRand.nextGaussian() * var15;
-                        par1World.spawnEntityInWorld((Entity)var14);
+                        par1World.spawnEntityInWorld(var14);
                     }
                 }
             }
@@ -161,7 +161,7 @@ public class BlockAncientEnchanter extends BlockContainer
         if (k2.isOpaqueCube() && !j2.isOpaqueCube()) {
             byte0 = 4;
         }
-        world.setBlockMetadataWithNotify(i, j, k, (int)byte0, 4);
+        world.setBlockMetadataWithNotify(i, j, k, byte0, 4);
     }
     
     public boolean isOpaqueCube() {

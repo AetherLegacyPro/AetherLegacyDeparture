@@ -73,7 +73,7 @@ public class BlockDivineEnchantmentTable extends BlockEnchantmentTable
                                 break;
                             }
 
-                            p_149734_1_.spawnParticle("enchantmenttable", (double)p_149734_2_ + 0.5D, (double)p_149734_3_ + 2.0D, (double)p_149734_4_ + 0.5D, (double)((float)(l - p_149734_2_) + p_149734_5_.nextFloat()) - 0.5D, (double)((float)(j1 - p_149734_3_) - p_149734_5_.nextFloat() - 1.0F), (double)((float)(i1 - p_149734_4_) + p_149734_5_.nextFloat()) - 0.5D);
+                            p_149734_1_.spawnParticle("enchantmenttable", (double)p_149734_2_ + 0.5D, (double)p_149734_3_ + 2.0D, (double)p_149734_4_ + 0.5D, (double)((float)(l - p_149734_2_) + p_149734_5_.nextFloat()) - 0.5D, (float)(j1 - p_149734_3_) - p_149734_5_.nextFloat() - 1.0F, (double)((float)(i1 - p_149734_4_) + p_149734_5_.nextFloat()) - 0.5D);
                         }
                     }
                 }
@@ -113,7 +113,7 @@ public class BlockDivineEnchantmentTable extends BlockEnchantmentTable
             || (world.getBlock(x, y, z - 2) == BlocksAether.golden_oak_bookshelf && world.getBlock(x, y, z - 2) == BlocksAether.golden_oak_bookshelf && world.getBlock(x, y, z + 2) == BlocksAether.golden_oak_bookshelf)) {
        
         final int guiID = 10;
-        player.openGui((Object)Aether.instance, guiID, world, x, y, z);
+        player.openGui(Aether.instance, guiID, world, x, y, z);
         player.triggerAchievement(AchievementsAether.next_level_enchantments);
         return true;
         }

@@ -256,17 +256,17 @@ public class EntitiesAether {
 
 	public static int getEntityID(Entity p_75619_0_) {
 		Class<?> oclass = p_75619_0_.getClass();
-		return classToIDMapping.containsKey(oclass) ? ((Integer) classToIDMapping.get(oclass)).intValue() : -1;
+		return classToIDMapping.containsKey(oclass) ? classToIDMapping.get(oclass).intValue() : -1;
 	}
 
 	public static Class<?> getClassFromID(int p_90035_0_) {
-		return (Class<?>) IDtoClassMapping.get(p_90035_0_);
+		return IDtoClassMapping.get(p_90035_0_);
 	}
 
 	public static String getStringFromID(int p_75617_0_) {
 		Class<?> oclass = getClassFromID(p_75617_0_);
 
-		return oclass != null ? (String) classToStringMapping.get(oclass) : null;
+		return oclass != null ? classToStringMapping.get(oclass) : null;
 	}
 
 	public static class AetherEggInfo

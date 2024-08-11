@@ -64,7 +64,7 @@ public class EntityTempestSnowball extends EntityProjectileBase {
 			if (object.typeOfHit == MovingObjectPosition.MovingObjectType.ENTITY)
 			{
 				
-				((EntityLivingBase)object.entityHit).attackEntityFrom(DamageSource.generic, 3.0F);
+				object.entityHit.attackEntityFrom(DamageSource.generic, 3.0F);
 				((EntityLivingBase)object.entityHit).addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 120, 1));
 				((EntityLivingBase)object.entityHit).addPotionEffect(new PotionEffect(Potion.digSlowdown.id, 120, 1));
 				

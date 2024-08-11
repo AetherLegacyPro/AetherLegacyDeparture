@@ -73,7 +73,7 @@ public class EntityFireProofItemAether extends EntityItem
             this.extinguish();
         }
         final ItemStack stack = this.getDataWatcher().getWatchableObjectItemStack(10);
-        if (stack != null && stack.getItem() != null && stack.getItem().onEntityItemUpdate((EntityItem)this)) {
+        if (stack != null && stack.getItem() != null && stack.getItem().onEntityItemUpdate(this)) {
             return;
         }
         if (this.getEntityItem() == null) {
@@ -114,8 +114,8 @@ public class EntityFireProofItemAether extends EntityItem
             final ItemStack item = this.getDataWatcher().getWatchableObjectItemStack(10);
             if (!this.worldObj.isRemote && this.age >= this.lifespan) {
                 if (item != null) {
-                    final ItemExpireEvent event = new ItemExpireEvent((EntityItem)this, (item.getItem() == null) ? 6000 : item.getItem().getEntityLifespan(item, this.worldObj));
-                    if (MinecraftForge.EVENT_BUS.post((Event)event)) {
+                    final ItemExpireEvent event = new ItemExpireEvent(this, (item.getItem() == null) ? 6000 : item.getItem().getEntityLifespan(item, this.worldObj));
+                    if (MinecraftForge.EVENT_BUS.post(event)) {
                         this.lifespan += event.extraLife;
                     }
                     else {
@@ -153,7 +153,7 @@ public class EntityFireProofItemAether extends EntityItem
         if (itemstack2.hasTagCompound() ^ itemstack.hasTagCompound()) {
             return false;
         }
-        if (itemstack2.hasTagCompound() && !itemstack2.getTagCompound().equals((Object)itemstack.getTagCompound())) {
+        if (itemstack2.hasTagCompound() && !itemstack2.getTagCompound().equals(itemstack.getTagCompound())) {
             return false;
         }
         if (itemstack2.getItem() == null) {
@@ -163,7 +163,7 @@ public class EntityFireProofItemAether extends EntityItem
             return false;
         }
         if (itemstack2.stackSize < itemstack.stackSize) {
-            return p_70289_1_.combineItems((EntityItem)this);
+            return p_70289_1_.combineItems(this);
         }
         if (itemstack2.stackSize + itemstack.stackSize > itemstack2.getMaxStackSize()) {
             return false;

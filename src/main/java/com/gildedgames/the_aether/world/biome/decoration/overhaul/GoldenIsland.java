@@ -199,7 +199,7 @@ public class GoldenIsland extends WorldGenerator {
          for(int i1 = 0; i1 < k; ++i1) {
             int j1 = l - this.centerX;
             int k1 = i1 - this.centerZ;
-            double d = Math.sqrt((double)(j1 * j1 + k1 * k1));
+            double d = Math.sqrt(j1 * j1 + k1 * k1);
             if (d == 0.0D) {
                d = 0.001D;
             }
@@ -333,7 +333,7 @@ public class GoldenIsland extends WorldGenerator {
         	  return rand.nextInt(10) == 0 ? BlocksAether.ambrosium_ore : BlocksAether.holystone;  
         }
       else {
-         return (Block)(flag ? BlocksAether.enchanted_aether_grass : BlocksAether.aether_dirt);
+         return flag ? BlocksAether.enchanted_aether_grass : BlocksAether.aether_dirt;
       }
    }
 

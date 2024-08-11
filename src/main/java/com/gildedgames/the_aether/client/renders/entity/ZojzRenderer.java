@@ -18,8 +18,8 @@ public class ZojzRenderer extends RenderLiving
     public ZojzModel zojzModel;
     
     public ZojzRenderer(final ZojzModel model) {
-        super((ModelBase)model, 0.5f);
-        this.setRenderPassModel((ModelBase)model);
+        super(model, 0.5f);
+        this.setRenderPassModel(model);
         this.zojzModel = model;
     }
     

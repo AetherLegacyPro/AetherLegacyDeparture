@@ -45,7 +45,7 @@ public class EntityAetherTNT extends Entity
     
     private void explode() {
         final float f = 4.5f;
-        this.worldObj.createExplosion((Entity)this, this.posX, this.posY, this.posZ, 4.5f, true);
+        this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, 4.5f, true);
     }
     
     @SideOnly(Side.CLIENT)

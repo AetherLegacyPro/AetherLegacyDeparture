@@ -59,9 +59,9 @@ public class AetherOverlay {
 			mc.renderEngine.bindTexture(TEXTURE_POISON_VIGNETTE);
 
 			tessellator.startDrawingQuads();
-			tessellator.addVertexWithUV(0.0D, (double) height, -90.0D, 0.0D, 1.0D);
-			tessellator.addVertexWithUV((double) width, (double) height, -90.0D, 1.0D, 1.0D);
-			tessellator.addVertexWithUV((double) width, 0.0D, -90.0D, 1.0D, 0.0D);
+			tessellator.addVertexWithUV(0.0D, height, -90.0D, 0.0D, 1.0D);
+			tessellator.addVertexWithUV(width, height, -90.0D, 1.0D, 1.0D);
+			tessellator.addVertexWithUV(width, 0.0D, -90.0D, 1.0D, 0.0D);
 			tessellator.addVertexWithUV(0.0D, 0.0D, -90.0D, 0.0D, 0.0D);
 			tessellator.draw();
 
@@ -95,9 +95,9 @@ public class AetherOverlay {
 			mc.renderEngine.bindTexture(TEXTURE_CURE_VIGNETTE);
 
 			tessellator.startDrawingQuads();
-			tessellator.addVertexWithUV(0.0D, (double) height, -90.0D, 0.0D, 1.0D);
-			tessellator.addVertexWithUV((double) width, (double) height, -90.0D, 1.0D, 1.0D);
-			tessellator.addVertexWithUV((double) width, 0.0D, -90.0D, 1.0D, 0.0D);
+			tessellator.addVertexWithUV(0.0D, height, -90.0D, 0.0D, 1.0D);
+			tessellator.addVertexWithUV(width, height, -90.0D, 1.0D, 1.0D);
+			tessellator.addVertexWithUV(width, 0.0D, -90.0D, 1.0D, 0.0D);
 			tessellator.addVertexWithUV(0.0D, 0.0D, -90.0D, 0.0D, 0.0D);
 			tessellator.draw();
 
@@ -247,10 +247,10 @@ public class AetherOverlay {
 		float f3 = iicon.getMaxV();
 		Tessellator tessellator = Tessellator.instance;
 		tessellator.startDrawingQuads();
-		tessellator.addVertexWithUV(0.0D, (double) scaledRes.getScaledHeight(), -90.0D, (double) f, (double) f3);
-		tessellator.addVertexWithUV((double) scaledRes.getScaledWidth(), (double) scaledRes.getScaledHeight(), -90.0D, (double) f2, (double) f3);
-		tessellator.addVertexWithUV((double) scaledRes.getScaledWidth(), 0.0D, -90.0D, (double) f2, (double) f1);
-		tessellator.addVertexWithUV(0.0D, 0.0D, -90.0D, (double) f, (double) f1);
+		tessellator.addVertexWithUV(0.0D, scaledRes.getScaledHeight(), -90.0D, f, f3);
+		tessellator.addVertexWithUV(scaledRes.getScaledWidth(), scaledRes.getScaledHeight(), -90.0D, f2, f3);
+		tessellator.addVertexWithUV(scaledRes.getScaledWidth(), 0.0D, -90.0D, f2, f1);
+		tessellator.addVertexWithUV(0.0D, 0.0D, -90.0D, f, f1);
 		tessellator.draw();
 		GL11.glDepthMask(true);
 		GL11.glEnable(GL11.GL_DEPTH_TEST);
@@ -261,7 +261,7 @@ public class AetherOverlay {
 	public static void renderBossHP(Minecraft mc) {
 		PlayerAether player = PlayerAether.get(mc.thePlayer);
 
-		IAetherBoss boss = (IAetherBoss) player.getFocusedBoss();
+		IAetherBoss boss = player.getFocusedBoss();
 
 		if (player.getFocusedBoss() != null) {
 			if (player.getFocusedBoss().getBossHealth() <= 0.0F) {
@@ -300,10 +300,10 @@ public class AetherOverlay {
 		float var8 = 0.00390625F;
 		Tessellator tessellator = Tessellator.instance;
 		tessellator.startDrawingQuads();
-		tessellator.addVertexWithUV((double) (x + 0), (double) (y + height), (double) zLevel, (double) ((float) (u + 0) * var7), (double) ((float) (v + height) * var8));
-		tessellator.addVertexWithUV((double) (x + width), (double) (y + height), (double) zLevel, (double) ((float) (u + width) * var7), (double) ((float) (v + height) * var8));
-		tessellator.addVertexWithUV((double) (x + width), (double) (y + 0), (double) zLevel, (double) ((float) (u + width) * var7), (double) ((float) (v + 0) * var8));
-		tessellator.addVertexWithUV((double) (x + 0), (double) (y + 0), (double) zLevel, (double) ((float) (u + 0) * var7), (double) ((float) (v + 0) * var8));
+		tessellator.addVertexWithUV(x + 0, y + height, zLevel, (u + 0) * var7, (v + height) * var8);
+		tessellator.addVertexWithUV(x + width, y + height, zLevel, (u + width) * var7, (v + height) * var8);
+		tessellator.addVertexWithUV(x + width, y + 0, zLevel, (u + width) * var7, (v + 0) * var8);
+		tessellator.addVertexWithUV(x + 0, y + 0, zLevel, (u + 0) * var7, (v + 0) * var8);
 		tessellator.draw();
 	}
 

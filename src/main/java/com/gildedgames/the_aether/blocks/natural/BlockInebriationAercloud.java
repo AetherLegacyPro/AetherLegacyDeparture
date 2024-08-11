@@ -61,7 +61,7 @@ public class BlockInebriationAercloud extends Block implements IColoredBlock, IN
 									
 			if (entity instanceof EntityPlayer) {
 				EntityPlayer player = (EntityPlayer) entity;
-				((EntityLivingBase) player).addPotionEffect(new PotionEffect(7, 20, 1));
+				player.addPotionEffect(new PotionEffect(7, 20, 1));
 
 				
 				}
@@ -73,7 +73,7 @@ public class BlockInebriationAercloud extends Block implements IColoredBlock, IN
 		else if (world.getBlockMetadata(x, y, z) == 0) {
 			if (entity instanceof EntityPlayer) {
 				EntityPlayer player = (EntityPlayer) entity;
-				((EntityLivingBase) player).addPotionEffect(new EffectInebriation(PotionInebriation.inebriation.id, 150, 0));
+				player.addPotionEffect(new EffectInebriation(PotionInebriation.inebriation.id, 150, 0));
 
 				
 				}

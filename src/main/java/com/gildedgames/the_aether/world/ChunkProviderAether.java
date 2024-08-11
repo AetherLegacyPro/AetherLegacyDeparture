@@ -349,7 +349,7 @@ public class ChunkProviderAether implements IChunkProvider {
 		
 		this.setBlocksInChunk(x, z, ablock);
 		this.buildSurfaces(x, z, ablock);
-		((MapGenAetherCaves) this.aetherCaveGenerator).generate((IChunkProvider)this, this.aetherWorld, x, z, ablock, metadata);
+		((MapGenAetherCaves) this.aetherCaveGenerator).generate(this, this.aetherWorld, x, z, ablock, metadata);
 		this.quicksoilGen.func_151539_a(this, this.worldObj, x, z, ablock);
 
 
@@ -378,15 +378,15 @@ public class ChunkProviderAether implements IChunkProvider {
 
 	@Override
 	public void recreateStructures(int x, int z) {
-		this.largeColdAercloudStructure.func_151539_a(this, this.worldObj, x, z, (Block[]) null);
-		this.aether_caves.func_151539_a(this, this.worldObj, x, z, (Block[]) null);
-		this.silverDungeonStructure.func_151539_a(this, this.worldObj, x, z, (Block[]) null);
-		this.ancientsilverDungeonStructure.func_151539_a(this, this.worldObj, x, z, (Block[]) null);
-		this.divinesilverDungeonStructure.func_151539_a(this, this.worldObj, x, z, (Block[]) null);
-		this.goldenDungeonStructure.func_151539_a(this, this.worldObj, x, z, (Block[]) null);
-		this.ancientGoldenDungeonStructure.func_151539_a(this, this.worldObj, x, z, (Block[]) null);
-		this.divineGoldenDungeonStructure.func_151539_a(this, this.worldObj, x, z, (Block[]) null);
-		this.osmiumDungeonStructure.func_151539_a(this, this.worldObj, x, z, (Block[]) null);
+		this.largeColdAercloudStructure.func_151539_a(this, this.worldObj, x, z, null);
+		this.aether_caves.func_151539_a(this, this.worldObj, x, z, null);
+		this.silverDungeonStructure.func_151539_a(this, this.worldObj, x, z, null);
+		this.ancientsilverDungeonStructure.func_151539_a(this, this.worldObj, x, z, null);
+		this.divinesilverDungeonStructure.func_151539_a(this, this.worldObj, x, z, null);
+		this.goldenDungeonStructure.func_151539_a(this, this.worldObj, x, z, null);
+		this.ancientGoldenDungeonStructure.func_151539_a(this, this.worldObj, x, z, null);
+		this.divineGoldenDungeonStructure.func_151539_a(this, this.worldObj, x, z, null);
+		this.osmiumDungeonStructure.func_151539_a(this, this.worldObj, x, z, null);
 	}
 
 	@Override
@@ -556,7 +556,7 @@ public class ChunkProviderAether implements IChunkProvider {
 		for (int numberoftreegen = 3, i2 = 0; i2 < numberoftreegen; ++i2) {
             final int k2 = x + this.rand.nextInt(16) + 8;
             final int j2 = z + this.rand.nextInt(16) + 8;
-            final WorldGenerator worldgenerator = (WorldGenerator)((AetherBiome) biomegenbase).getRandomTreeFeature(this.rand);
+            final WorldGenerator worldgenerator = ((AetherBiome) biomegenbase).getRandomTreeFeature(this.rand);
             worldgenerator.setScale(1.0, 1.0, 1.0);
             worldgenerator.generate(this.worldObj, this.rand, k2, this.worldObj.getHeightValue(k2, j2), j2);
         }
@@ -674,7 +674,7 @@ public class ChunkProviderAether implements IChunkProvider {
 		for (int i2 = 0; i2 < numberofgrassgen; ++i2) {
             final int k2 = x + this.rand.nextInt(16) + 8;
             final int j2 = z + this.rand.nextInt(16) + 8;
-            final WorldGenerator worldgenerator = (WorldGenerator)((AetherBiome) biomegenbase).getRandomWorldGenForGrass(this.rand);
+            final WorldGenerator worldgenerator = biomegenbase.getRandomWorldGenForGrass(this.rand);
             worldgenerator.setScale(1.0, 1.0, 1.0);
             worldgenerator.generate(this.worldObj, this.rand, k2, this.worldObj.getHeightValue(k2, j2), j2);
         }

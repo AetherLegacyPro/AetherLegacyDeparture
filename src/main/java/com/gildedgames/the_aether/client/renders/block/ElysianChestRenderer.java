@@ -26,7 +26,7 @@ public class ElysianChestRenderer implements ISimpleBlockRenderingHandler
             GL11.glRotatef(90.0f, 0.0f, 1.0f, 0.0f);
             GL11.glScalef(1.0f, 1.0f, 1.0f);
             GL11.glTranslatef(-0.5f, -0.5f, -0.5f);
-            TileEntityRendererDispatcher.instance.renderTileEntityAt((TileEntity)this.tileEntity, 0.0, 0.0, 0.0, 0.0f);
+            TileEntityRendererDispatcher.instance.renderTileEntityAt(this.tileEntity, 0.0, 0.0, 0.0, 0.0f);
             GL11.glTranslatef(0.5f, 0.5f, 0.5f);
             GL11.glPopMatrix();
         }

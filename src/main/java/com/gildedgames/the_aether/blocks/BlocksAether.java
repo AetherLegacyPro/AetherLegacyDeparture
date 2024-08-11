@@ -1093,7 +1093,7 @@ public class BlocksAether {
 		slab1.setBlockName(name);
 		slab1.setCreativeTab(AetherCreativeTabs.blocks);
 
-		GameRegistry.registerBlock(slab1, ItemAetherSlab.class, name, (BlockAetherSlab) slab1, (BlockAetherSlab) slab2, false);
+		GameRegistry.registerBlock(slab1, ItemAetherSlab.class, name, slab1, slab2, false);
 
 		return slab1;
 	}
@@ -1119,7 +1119,7 @@ public class BlocksAether {
 	 	block.setBlockName(name);
 		block.setCreativeTab(AetherCreativeTabs.blocks);
 		
-        GameRegistry.registerBlock(block, (Class)itemBlockClass, block.getUnlocalizedName().replace("tile.", ""));
+        GameRegistry.registerBlock(block, itemBlockClass, block.getUnlocalizedName().replace("tile.", ""));
         return block;
     }
 

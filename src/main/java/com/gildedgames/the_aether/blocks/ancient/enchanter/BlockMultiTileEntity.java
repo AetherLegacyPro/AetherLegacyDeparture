@@ -70,7 +70,7 @@ public abstract class BlockMultiTileEntity extends BlockContainer
     }
     
     public void setBlockSize(final float minX, final float minY, final float minZ, final float maxX, final float maxY, final float maxZ) {
-        this.size = AxisAlignedBB.getBoundingBox((double)minX, (double)minY, (double)minZ, (double)maxX, (double)maxY, (double)maxZ);
+        this.size = AxisAlignedBB.getBoundingBox(minX, minY, minZ, maxX, maxY, maxZ);
     }
     
     public AxisAlignedBB getBlockSize() {

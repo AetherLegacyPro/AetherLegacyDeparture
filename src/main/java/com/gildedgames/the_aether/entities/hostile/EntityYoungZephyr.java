@@ -33,8 +33,8 @@ public class EntityYoungZephyr extends EntityAetherIIMob implements IMob, IFlyin
         this.puffedUp = false;
         this.attackCooldown = 80;
         this.setSize(2.0f, 1.0f);
-        this.flyingAI = new AIEntityFlyingMob(this.rand, (EntityLiving)this);
-        this.tasks.addTask(1, (EntityAIBase)this.flyingAI);
+        this.flyingAI = new AIEntityFlyingMob(this.rand, this);
+        this.tasks.addTask(1, this.flyingAI);
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(10.0);
         this.setHealth(10.0f);
     }
@@ -48,9 +48,9 @@ public class EntityYoungZephyr extends EntityAetherIIMob implements IMob, IFlyin
     
     protected void entityInit() {
         super.entityInit();
-        this.dataWatcher.addObject(16, (Object)0);
-        this.dataWatcher.addObject(17, (Object)0);
-        this.dataWatcher.addObject(18, (Object)0.0f);
+        this.dataWatcher.addObject(16, 0);
+        this.dataWatcher.addObject(17, 0);
+        this.dataWatcher.addObject(18, 0.0f);
     }
     
     public boolean isAttacking() {
@@ -63,15 +63,15 @@ public class EntityYoungZephyr extends EntityAetherIIMob implements IMob, IFlyin
     
     public void setAttacking(final boolean attacking) {
         if (attacking) {
-            this.dataWatcher.updateObject(17, (Object)1);
+            this.dataWatcher.updateObject(17, 1);
         }
         else {
-            this.dataWatcher.updateObject(17, (Object)0);
+            this.dataWatcher.updateObject(17, 0);
         }
     }
     
     public void setAttackTimeSecs(final int time) {
-        this.dataWatcher.updateObject(16, (Object)time);
+        this.dataWatcher.updateObject(16, time);
     }
     
     public boolean isAIEnabled() {
@@ -114,7 +114,7 @@ public class EntityYoungZephyr extends EntityAetherIIMob implements IMob, IFlyin
                     final double d6 = this.flyingAI.targetY - (this.posY + 1.0);
                     final double d7 = this.flyingAI.targetZ - this.posZ;
                     final double range2 = MathHelper.sqrt_double(d5 * d5 + d6 * d6 + d7 * d7);
-                    final List list = this.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)this, this.boundingBox.addCoord(d5 / range2, d6 / range2, d7 / range2).expand(0.5, 0.1, 0.5));
+                    final List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.addCoord(d5 / range2, d6 / range2, d7 / range2).expand(0.5, 0.1, 0.5));
                     for (final Object aList : list) {
                         final Entity entity1 = (Entity)aList;
                         if (!(entity1 instanceof EntityZephyr)) {
@@ -141,11 +141,11 @@ public class EntityYoungZephyr extends EntityAetherIIMob implements IMob, IFlyin
         }
         if (this.isAttacking()) {
             if (!this.puffedUp) {
-                this.worldObj.playSoundAtEntity((Entity)this, "aether_legacy:aemob.zephyr.puff", this.getSoundVolume(), ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.2f + 1.0f) / 0.8f);
+                this.worldObj.playSoundAtEntity(this, "aether_legacy:aemob.zephyr.puff", this.getSoundVolume(), ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.2f + 1.0f) / 0.8f);
                 this.puffedUp = true;
             }
             else if (this.getAttackTimeSecs() == 25) {
-                this.worldObj.playSoundAtEntity((Entity)this, "aether_legacy:aemob.zephyr.blow", this.getSoundVolume() * 0.6f, ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.2f + 1.0f) / 0.8f);
+                this.worldObj.playSoundAtEntity(this, "aether_legacy:aemob.zephyr.blow", this.getSoundVolume() * 0.6f, ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.2f + 1.0f) / 0.8f);
             }
         }
         else {
@@ -180,7 +180,7 @@ public class EntityYoungZephyr extends EntityAetherIIMob implements IMob, IFlyin
     }
     
     public void setRotationYaw(final float yaw) {
-        this.dataWatcher.updateObject(18, (Object)yaw);
+        this.dataWatcher.updateObject(18, yaw);
     }
     
     protected void updateEntityActionState() {

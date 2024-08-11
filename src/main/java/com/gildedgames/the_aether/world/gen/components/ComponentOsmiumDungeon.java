@@ -440,7 +440,7 @@ public class ComponentOsmiumDungeon extends AetherStructure {
 		this.generateVoidSapling(90, 1, 12);
 		this.generateVoidSapling(90, 1, 42); 
 
-		EntityLurker lurker = new EntityLurker(this.worldObj, (double) this.getActualX(40, 15), (double) this.getActualY(1) + 0.5D, (double) this.getActualZ(40, 15));
+		EntityLurker lurker = new EntityLurker(this.worldObj, this.getActualX(40, 15), (double) this.getActualY(1) + 0.5D, this.getActualZ(40, 15));
 
 		lurker.setPosition(this.getActualX(40, 15), this.getActualY(2), this.getActualZ(40, 15));
 		lurker.setDungeon(this.getActualX(26, 24), this.getActualY(0), this.getActualZ(26, 24));

@@ -44,7 +44,7 @@ public class BlockSkyrootWorkbench extends BlockWorkbench
             return true;
         }
         final int guiID = 8;
-        player.openGui((Object)Aether.instance, guiID, world, x, y, z);
+        player.openGui(Aether.instance, guiID, world, x, y, z);
         return true;
     }
 }

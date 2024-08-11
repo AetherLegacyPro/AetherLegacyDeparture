@@ -140,7 +140,7 @@ public abstract class EntityMountable extends EntityAetherAnimal {
 				this.motionY = this.getMountJumpStrength() * (double) this.jumpPower;
 
 				if (this.isPotionActive(Potion.jump)) {
-					this.motionY += (double) ((float) (this.getActivePotionEffect(Potion.jump).getAmplifier() + 1) * 0.1F);
+					this.motionY += (float) (this.getActivePotionEffect(Potion.jump).getAmplifier() + 1) * 0.1F;
 				}
 
 				this.setMountJumping(true);

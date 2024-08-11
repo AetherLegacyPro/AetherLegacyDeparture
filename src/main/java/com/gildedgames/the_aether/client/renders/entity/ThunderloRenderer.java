@@ -44,7 +44,7 @@ public class ThunderloRenderer extends RenderLiving
     }
     
     protected int shouldRenderPass(final EntityLivingBase entityliving, final int i, final float f) {
-        return this.a((EntityThunderlo)entityliving, i, f);
+        return this.a(entityliving, i, f);
     }
     
     protected ResourceLocation getEntityTexture(final Entity entity) {

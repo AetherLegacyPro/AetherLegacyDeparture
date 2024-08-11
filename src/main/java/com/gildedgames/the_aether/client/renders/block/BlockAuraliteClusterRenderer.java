@@ -48,9 +48,9 @@ public class BlockAuraliteClusterRenderer implements ISimpleBlockRenderingHandle
 	      }
 
 	      tessellator.setColorOpaque_F(f * f1, f * f2, f * f3);
-	      double renX1 = (double)x;
-	      double renY1 = (double)y;
-	      double renZ = (double)z;
+	      double renX1 = x;
+	      double renY1 = y;
+	      double renZ = z;
 	      if(block == Blocks.tallgrass) {
 	         long meta = (long)(x * 3129871) ^ (long)x * 116129781L ^ (long)y;
 	         meta = meta * meta * 42317861L + meta * 11L;
@@ -103,10 +103,10 @@ public class BlockAuraliteClusterRenderer implements ISimpleBlockRenderingHandle
 	      }
 
 	      double fix = 0.45D;
-	      double minU = (double)icon.getMinU();
-	      double minV = (double)icon.getMinV();
-	      double maxU = (double)icon.getMaxU();
-	      double maxV = (double)icon.getMaxV();
+	      double minU = icon.getMinU();
+	      double minV = icon.getMinV();
+	      double maxU = icon.getMaxU();
+	      double maxV = icon.getMaxV();
 	      double yMin;
 	      double yMax;
 	      double xMin;

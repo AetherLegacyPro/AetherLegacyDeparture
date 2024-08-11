@@ -102,24 +102,24 @@ public class ClientProxy extends CommonProxy {
 		aetherFlowerRenderID = RenderingRegistry.getNextAvailableRenderId();
 		ancientEnchanterID = RenderingRegistry.getNextAvailableRenderId();
 		
-		ClientRegistry.bindTileEntitySpecialRenderer((Class)TileEntitySkyrootChest.class, (TileEntitySpecialRenderer)new TileEntitySkyrootChestRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySkyrootChest.class, new TileEntitySkyrootChestRenderer());
 		BlocksAether.SkyrootChestRenderId = RenderingRegistry.getNextAvailableRenderId();
-		RenderingRegistry.registerBlockHandler((ISimpleBlockRenderingHandler)new SkyrootChestRenderer(new TileEntitySkyrootChest()));
+		RenderingRegistry.registerBlockHandler(new SkyrootChestRenderer(new TileEntitySkyrootChest()));
 		
-		ClientRegistry.bindTileEntitySpecialRenderer((Class)TileEntityElysianChest.class, (TileEntitySpecialRenderer)new TileEntityElysianChestRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityElysianChest.class, new TileEntityElysianChestRenderer());
 		BlocksAether.ElysianChestRenderId = RenderingRegistry.getNextAvailableRenderId();
-		RenderingRegistry.registerBlockHandler((ISimpleBlockRenderingHandler)new ElysianChestRenderer(new TileEntityElysianChest()));
+		RenderingRegistry.registerBlockHandler(new ElysianChestRenderer(new TileEntityElysianChest()));
 
-		ClientRegistry.bindTileEntitySpecialRenderer((Class)TileEntityTreasureChestBreakable.class, (TileEntitySpecialRenderer)new TileEntityTreasureChestBreakableRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTreasureChestBreakable.class, new TileEntityTreasureChestBreakableRenderer());
 		BlocksAether.TreasureChestBreakbleRenderId = RenderingRegistry.getNextAvailableRenderId();
-		RenderingRegistry.registerBlockHandler((ISimpleBlockRenderingHandler)new TreasureChestBreakableRenderer(new TileEntityTreasureChestBreakable()));
+		RenderingRegistry.registerBlockHandler(new TreasureChestBreakableRenderer(new TileEntityTreasureChestBreakable()));
 		
 		BlocksAether.AncientEnchanterRenderId = RenderingRegistry.getNextAvailableRenderId();
-		RenderingRegistry.registerBlockHandler((ISimpleBlockRenderingHandler)new RenderHandlerTileEntity(new TileEntityAncientEnchanter(), BlocksAether.AncientEnchanterRenderId));
+		RenderingRegistry.registerBlockHandler(new RenderHandlerTileEntity(new TileEntityAncientEnchanter(), BlocksAether.AncientEnchanterRenderId));
 		
 		BlocksAether.ElysianTotemRenderId = RenderingRegistry.getNextAvailableRenderId();
-		ClientRegistry.bindTileEntitySpecialRenderer((Class)TileEntityElysianTotem.class, (TileEntitySpecialRenderer)new TileEntityElysianTotemRenderer());
-		RenderingRegistry.registerBlockHandler((ISimpleBlockRenderingHandler)new RenderHandlerTileEntity(new TileEntityElysianTotem(), BlocksAether.ElysianTotemRenderId, 0.6f).setYOffset(-0.5f));
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityElysianTotem.class, new TileEntityElysianTotemRenderer());
+		RenderingRegistry.registerBlockHandler(new RenderHandlerTileEntity(new TileEntityElysianTotem(), BlocksAether.ElysianTotemRenderId, 0.6f).setYOffset(-0.5f));
 		
 		BlocksAether.AuraliteClusterRenderId = RenderingRegistry.getNextAvailableRenderId();
 		RenderingRegistry.registerBlockHandler(new BlockAuraliteClusterRenderer());
@@ -129,7 +129,7 @@ public class ClientProxy extends CommonProxy {
 		
 		Minecraft.getMinecraft().entityRenderer = new AetherEntityRenderer(Minecraft.getMinecraft(), previousRenderer, Minecraft.getMinecraft().getResourceManager());
 		
-		ClientRegistry.bindTileEntitySpecialRenderer((Class)TileEntityAncientEnchanter.class, (TileEntitySpecialRenderer)new TileEntityAncientEnchanterRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAncientEnchanter.class, new TileEntityAncientEnchanterRenderer());
 		
 		RendersAether.initialization();
 
@@ -181,7 +181,7 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public void spawnAltarParticles(final World world, final int x, final int y, final int z, final Random rand) {
 	    for (int particleAmount = 50, count = 0; count < particleAmount; ++count) {
-	       final EntityFX particles = (EntityFX)new EntityGoldenFX(world, x + rand.nextFloat(), y + ((count > particleAmount / 2) ? 0.3f : 0.5f), z + rand.nextFloat(), 0.0, 1.0, 0.0);
+	       final EntityFX particles = new EntityGoldenFX(world, x + rand.nextFloat(), y + ((count > particleAmount / 2) ? 0.3f : 0.5f), z + rand.nextFloat(), 0.0, 1.0, 0.0);
 	       FMLClientHandler.instance().getClient().effectRenderer.addEffect(particles);
 	   }
 	}

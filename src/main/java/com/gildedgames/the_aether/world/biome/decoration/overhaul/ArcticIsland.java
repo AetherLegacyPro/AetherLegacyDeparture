@@ -200,7 +200,7 @@ public class ArcticIsland extends WorldGenerator {
          for(int i1 = 0; i1 < k; ++i1) {
             int j1 = l - this.centerX;
             int k1 = i1 - this.centerZ;
-            double d = Math.sqrt((double)(j1 * j1 + k1 * k1));
+            double d = Math.sqrt(j1 * j1 + k1 * k1);
             if (d == 0.0D) {
                d = 0.001D;
             }
@@ -347,7 +347,7 @@ public class ArcticIsland extends WorldGenerator {
         	 return rand.nextInt(10) == 0 ? BlocksAether.aether_dirt : BlocksAether.holystone;  
         }
       else {
-          return (Block)(flag ? BlocksAether.arctic_grass : BlocksAether.holystone);
+          return flag ? BlocksAether.arctic_grass : BlocksAether.holystone;
        }
    }
 

@@ -117,7 +117,7 @@ public class ItemAetherSpawnEgg extends Item {
 					}
 
 					if (p_77659_2_.getBlock(i, j, k) instanceof BlockLiquid) {
-						Entity entity = spawnCreature(p_77659_2_, p_77659_1_.getItemDamage(), (double) i, (double) j, (double) k);
+						Entity entity = spawnCreature(p_77659_2_, p_77659_1_.getItemDamage(), i, j, k);
 
 						if (entity != null) {
 							if (entity instanceof EntityLivingBase && p_77659_1_.hasDisplayName()) {
@@ -150,7 +150,7 @@ public class ItemAetherSpawnEgg extends Item {
 					entity.setLocationAndAngles(p_77840_2_, p_77840_4_, p_77840_6_, MathHelper.wrapAngleTo180_float(p_77840_0_.rand.nextFloat() * 360.0F), 0.0F);
 					entityliving.rotationYawHead = entityliving.rotationYaw;
 					entityliving.renderYawOffset = entityliving.rotationYaw;
-					entityliving.onSpawnWithEgg((IEntityLivingData) null);
+					entityliving.onSpawnWithEgg(null);
 					p_77840_0_.spawnEntityInWorld(entity);
 					entityliving.playLivingSound();
 				}

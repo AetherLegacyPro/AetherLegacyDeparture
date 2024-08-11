@@ -173,7 +173,7 @@ public class EntityCyro extends EntityAetherMob
                         if (itemstack.getItemDamageForDisplay() >= itemstack.getMaxDamage())
                         {
                             this.renderBrokenItemStack(itemstack);
-                            this.setCurrentItemOrArmor(4, (ItemStack)null);
+                            this.setCurrentItemOrArmor(4, null);
                         }
                     }
 
@@ -319,7 +319,7 @@ public class EntityCyro extends EntityAetherMob
             EntityCyro entityzombie = new EntityCyro(this.worldObj);
             entityzombie.copyLocationAndAnglesFrom(p_70074_1_);
             this.worldObj.removeEntity(p_70074_1_);
-            entityzombie.onSpawnWithEgg((IEntityLivingData)null);
+            entityzombie.onSpawnWithEgg(null);
 
             //if (p_70074_1_.isChild())
             //{
@@ -327,7 +327,7 @@ public class EntityCyro extends EntityAetherMob
             //}
 
             this.worldObj.spawnEntityInWorld(entityzombie);
-            this.worldObj.playAuxSFXAtEntity((EntityPlayer)null, 1016, (int)this.posX, (int)this.posY, (int)this.posZ, 0);
+            this.worldObj.playAuxSFXAtEntity(null, 1016, (int)this.posX, (int)this.posY, (int)this.posZ, 0);
         }
     }
 

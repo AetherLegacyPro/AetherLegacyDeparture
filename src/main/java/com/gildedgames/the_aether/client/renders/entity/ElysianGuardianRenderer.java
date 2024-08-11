@@ -20,8 +20,8 @@ public class ElysianGuardianRenderer extends RenderLiving {
     public ElysianGuardianModel elysianModel;
     
     public ElysianGuardianRenderer(final ElysianGuardianModel model) {
-        super((ModelBase)model, 0.5f);
-        this.setRenderPassModel((ModelBase)model);
+        super(model, 0.5f);
+        this.setRenderPassModel(model);
         this.elysianModel = model;
     }
     

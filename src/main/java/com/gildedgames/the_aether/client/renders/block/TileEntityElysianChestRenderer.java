@@ -22,7 +22,7 @@ public class TileEntityElysianChestRenderer extends TileEntitySpecialRenderer
   
   public TileEntityElysianChestRenderer() {
       this.chestModel = new ModelChest();
-      this.largeChestModel = (ModelChest)new ModelLargeChest();
+      this.largeChestModel = new ModelLargeChest();
   }
   
   public void renderTileEntityChestAt(final TileEntityElysianChest par1TileEntityChest, final double par2, final double par4, final double par6, final float par8) {
@@ -73,7 +73,7 @@ public class TileEntityElysianChestRenderer extends TileEntitySpecialRenderer
           if (var9 == 5 && par1TileEntityChest.adjacentChestZPosition != null) {
               GL11.glTranslatef(0.0f, 0.0f, -1.0f);
           }
-          GL11.glRotatef((float)var12, 0.0f, 1.0f, 0.0f);
+          GL11.glRotatef(var12, 0.0f, 1.0f, 0.0f);
           GL11.glTranslatef(-0.5f, -0.5f, -0.5f);
           float var13 = par1TileEntityChest.prevLidAngle + (par1TileEntityChest.lidAngle - par1TileEntityChest.prevLidAngle) * par8;
           if (par1TileEntityChest.adjacentChestZNeg != null) {

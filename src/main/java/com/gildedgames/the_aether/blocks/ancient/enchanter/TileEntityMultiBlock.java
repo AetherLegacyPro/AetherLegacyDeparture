@@ -112,7 +112,7 @@ public class TileEntityMultiBlock extends TileEntity implements IRotatable
     
     public void rotate(final World world, final Rotation rotation, final int x, final int y, final int z) {
         if (rotation != null) {
-            rotation.rotate(world, (IRotatable)this, x, y, z);
+            rotation.rotate(world, this, x, y, z);
         }
     }
     
@@ -150,7 +150,7 @@ public class TileEntityMultiBlock extends TileEntity implements IRotatable
             };
             final Object checked = this.iterateSize(checkLoadedChunks, this.worldObj);
             if (!(checked instanceof Boolean)) {
-                block.onBlockPlacedBy(this.worldObj, this.xCoord, this.yCoord, this.zCoord, (EntityLivingBase)null, (ItemStack)null);
+                block.onBlockPlacedBy(this.worldObj, this.xCoord, this.yCoord, this.zCoord, null, null);
                 this.hasInit = true;
             }
         }
@@ -163,7 +163,7 @@ public class TileEntityMultiBlock extends TileEntity implements IRotatable
     public Packet getDescriptionPacket() {
         final NBTTagCompound var1 = new NBTTagCompound();
         this.writeToNBT(var1);
-        return (Packet)new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, var1);
+        return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, var1);
     }
     
     @SideOnly(Side.CLIENT)

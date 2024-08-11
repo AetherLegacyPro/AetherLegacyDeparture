@@ -59,12 +59,12 @@ public class ItemAmplifiedPhoenixArmor extends ItemArmor {
             hasPhoenixBoots = (boots.getItem() == ItemsAether.amplified_phoenix_boots);
         }
         if (hasPhoenixHelmet && hasPhoenixChest && hasPhoenixLegs && hasPhoenixBoots) {
-        	((EntityLivingBase)player).addPotionEffect(new PotionEffect(Potion.nightVision.id, 220, 0));
+        	player.addPotionEffect(new PotionEffect(Potion.nightVision.id, 220, 0));
     		
     		if (world.provider.dimensionId == -1) {
     		
-    		((EntityLivingBase)player).addPotionEffect(new PotionEffect(Potion.damageBoost.id, 20, 1));
-    		((EntityLivingBase)player).addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 20, 1));
+    		player.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 20, 1));
+    		player.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 20, 1));
     		player.triggerAchievement(AchievementsAether.phoenix_set);
     			
     		}
@@ -114,7 +114,7 @@ public class ItemAmplifiedPhoenixArmor extends ItemArmor {
     }
     
     public Entity createEntity(final World world, final Entity location, final ItemStack itemstack) {
-        return (Entity)new EntityFireProofItemAether(world, location, itemstack);
+        return new EntityFireProofItemAether(world, location, itemstack);
     }
 
 }

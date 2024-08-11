@@ -41,7 +41,7 @@ public class EntityZephyroo extends EntityAetherAnimal
    	      final int i = MathHelper.floor_double(this.posX);
    	      final int j = MathHelper.floor_double(this.boundingBox.minY);
    	      final int k = MathHelper.floor_double(this.posZ);
-   	      final boolean canSpawn = this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes((Entity)this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);          
+   	      final boolean canSpawn = this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
    	      return (this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_dirt || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.arctic_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.verdant_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.enchanted_aether_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.divine_grass) && this.worldObj.getBlockLightValue(i, j, k) > 7 && canSpawn && this.rand.nextInt(AetherConfig.getZephyrooSpawnrate()) == 0 && super.getCanSpawnHere();
    	                       
    	}
@@ -53,7 +53,7 @@ public class EntityZephyroo extends EntityAetherAnimal
     @Override
     public void onUpdate() {
         super.onUpdate();
-       final List<Entity> entitiesAround = (List<Entity>)this.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)this, this.boundingBox.expand(5.5, 1.75, 5.5));
+       final List<Entity> entitiesAround = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(5.5, 1.75, 5.5));
        boolean foundPlayer = false;
        if (this.riddenByEntity != null && this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).getAttributeValue() != 25.0) {
             this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(25.0);
@@ -78,14 +78,14 @@ public class EntityZephyroo extends EntityAetherAnimal
     	if (this.riddenByEntity == null || entityplayer == this.riddenByEntity) {
             if (this.riddenByEntity == null) {
                if (!entityplayer.worldObj.isRemote) {
-                   entityplayer.mountEntity((Entity)this);
+                   entityplayer.mountEntity(this);
                    final float rotationYaw = this.rotationYaw;
                    entityplayer.rotationYaw = rotationYaw;
                     entityplayer.prevRotationYaw = rotationYaw;
                  }
             }
              else if (!entityplayer.worldObj.isRemote && (this.onGround || entityplayer.capabilities.isCreativeMode)) {
-                 entityplayer.mountEntity((Entity)null);
+                 entityplayer.mountEntity(null);
              }
             return true;
          }
@@ -110,8 +110,8 @@ public class EntityZephyroo extends EntityAetherAnimal
     @Override
 	public void entityInit() {
         super.entityInit();
-        this.dataWatcher.addObject(18, (Object)0);
-        this.dataWatcher.addObject(19, (Object)0);
+        this.dataWatcher.addObject(18, 0);
+        this.dataWatcher.addObject(19, 0);
     }
     
     protected void updateEntityActionState() {
@@ -128,7 +128,7 @@ public class EntityZephyroo extends EntityAetherAnimal
                 this.timeTilJump = 10;
         		}
         	}
-        	this.dataWatcher.updateObject(18, (Object)this.timeTilJump);
+        	this.dataWatcher.updateObject(18, this.timeTilJump);
         }
     
     public float getTimeTilJump() {

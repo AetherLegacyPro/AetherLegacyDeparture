@@ -31,7 +31,7 @@ public class AetherGenCloudLayerFoilage extends WorldGenerator {
 			int j1 = (y + random.nextInt(4)) - random.nextInt(4);
 			int k1 = (z + random.nextInt(8)) - random.nextInt(8);
 
-			if (world.isAirBlock(i1, j1, k1) && ((BlockAercloudLayer) this.cloudState).canBlockStay(world, i1, j1, k1)) {
+			if (world.isAirBlock(i1, j1, k1) && this.cloudState.canBlockStay(world, i1, j1, k1)) {
 				this.setBlockAndNotifyAdequately(world, i1, j1, k1, this.cloudState, 0);
 				}
 			}

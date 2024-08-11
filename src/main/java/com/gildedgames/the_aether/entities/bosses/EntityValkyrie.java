@@ -121,9 +121,9 @@ public class EntityValkyrie extends EntityAetherMob {
 		b *= ((this.rand.nextInt(2) * 2) - 1);
 		c *= ((this.rand.nextInt(2) * 2) - 1);
 
-		x += (double) a;
-		y += (double) b;
-		z += (double) c;
+		x += a;
+		y += b;
+		z += c;
 
 		int newX = (int) Math.floor(x - 0.5D);
 		int newY = (int) Math.floor(y - 0.5D);
@@ -403,7 +403,7 @@ public class EntityValkyrie extends EntityAetherMob {
         final int i = MathHelper.floor_double(this.posX);
         final int j = MathHelper.floor_double(this.boundingBox.minY);
         final int k = MathHelper.floor_double(this.posZ);
-        final boolean canSpawn = this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes((Entity)this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);          
+        final boolean canSpawn = this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
         return (this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_angelic_stone || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_light_angelic_stone || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_divine_angelic_stone || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_divine_light_angelic_stone || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_mythic_light_angelic_stone || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_mythic_angelic_stone || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_ancient_angelic_stone || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_ancient_light_angelic_stone) && this.worldObj.getBlockLightValue(i, j, k) < 14 && canSpawn;
                        
     }

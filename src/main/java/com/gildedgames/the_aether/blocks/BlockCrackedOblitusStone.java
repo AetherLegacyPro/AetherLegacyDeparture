@@ -29,7 +29,7 @@ public class BlockCrackedOblitusStone extends Block {
         if (!p_149664_1_.isRemote && this == BlocksAether.cracked_oblitus_stone)
         {
             EntityCyro entitycyro = new EntityCyro(p_149664_1_);
-            entitycyro.setLocationAndAngles((double)p_149664_2_ + 0.5D, (double)p_149664_3_, (double)p_149664_4_ + 0.5D, 0.0F, 0.0F);
+            entitycyro.setLocationAndAngles((double)p_149664_2_ + 0.5D, p_149664_3_, (double)p_149664_4_ + 0.5D, 0.0F, 0.0F);
             p_149664_1_.spawnEntityInWorld(entitycyro);
             entitycyro.spawnExplosionParticle();
         }

@@ -36,14 +36,14 @@ public class EntityThunderlo extends EntityAetherAnimal
         this.setSize(2.0f, 2.0f);
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(30.0);
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.23000000417232513D);
-        this.tasks.addTask(0, (EntityAIBase)new EntityAISwimming((EntityLiving)this));
+        this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(3, new EntityAIMate(this, 1.0D));
 		this.tasks.addTask(3, new EntityAITempt(this, 1.25D, ItemsAether.strawberry, false));
-        this.tasks.addTask(4, (EntityAIBase)new EntityAIFollowParent((EntityAnimal)this, 0.25));
-        this.tasks.addTask(6, (EntityAIBase)new EntityAIWander((EntityCreature)this, 0.25));
-        this.tasks.addTask(7, (EntityAIBase)new EntityAIWatchClosest((EntityLiving)this, (Class)EntityPlayer.class, 6.0f));
-        this.tasks.addTask(8, (EntityAIBase)new EntityAILookIdle((EntityLiving)this));
-        this.tasks.addTask(9, (EntityAIBase)new EntityAIAttackOnCollide((EntityCreature)this, 1.0, true));
+        this.tasks.addTask(4, new EntityAIFollowParent(this, 0.25));
+        this.tasks.addTask(6, new EntityAIWander(this, 0.25));
+        this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0f));
+        this.tasks.addTask(8, new EntityAILookIdle(this));
+        this.tasks.addTask(9, new EntityAIAttackOnCollide(this, 1.0, true));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
         this.setHealth(30);
     }  
@@ -53,7 +53,7 @@ public class EntityThunderlo extends EntityAetherAnimal
 	      final int i = MathHelper.floor_double(this.posX);
 	      final int j = MathHelper.floor_double(this.boundingBox.minY);
 	      final int k = MathHelper.floor_double(this.posZ);
-	      final boolean canSpawn = this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes((Entity)this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);          
+	      final boolean canSpawn = this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
 	      return (this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_dirt || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.arctic_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.verdant_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.enchanted_aether_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.divine_grass) && this.worldObj.getBlockLightValue(i, j, k) > 7 && canSpawn && (AetherConfig.getThunderloSpawnrate()) == 0 && super.getCanSpawnHere();
 	                       
 	}
@@ -103,7 +103,7 @@ public class EntityThunderlo extends EntityAetherAnimal
     @Override
     public void onUpdate() {
     	super.onUpdate();
-        final List<Entity> entitiesAround = (List<Entity>)this.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)this, this.boundingBox.expand(5.5, 1.75, 5.5));
+        final List<Entity> entitiesAround = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(5.5, 1.75, 5.5));
         boolean foundPlayer = false;
         if (this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).getAttributeValue() != 25.0) {
             this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(25.0);

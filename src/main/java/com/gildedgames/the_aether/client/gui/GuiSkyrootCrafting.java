@@ -16,7 +16,7 @@ public class GuiSkyrootCrafting extends GuiContainer
     private static final ResourceLocation TEXTURE_CRAFTING;
     
     public GuiSkyrootCrafting(final InventoryPlayer par1InventoryPlayer, final World par2World, final int par3, final int par4, final int par5) {
-        super((Container)new ContainerSkyrootWorkbench(par1InventoryPlayer, par2World, par3, par4, par5));
+        super(new ContainerSkyrootWorkbench(par1InventoryPlayer, par2World, par3, par4, par5));
     }
     
     protected void drawGuiContainerForegroundLayer(final int par1, final int par2) {

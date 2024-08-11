@@ -88,12 +88,12 @@ public class ThunderloModel extends ModelBase
 		horn2.setTextureSize(128, 64);
 		setRotation(horn2, 0F, 0F, 0.4886922F);
 		convertToChild(head1, horn2);		
-		(tail1 = new ModelRenderer((ModelBase)this, 87, 28)).addBox(-4.0f, -4.0f, 0.0f, 8, 8, 8);
+		(tail1 = new ModelRenderer(this, 87, 28)).addBox(-4.0f, -4.0f, 0.0f, 8, 8, 8);
         tail1.setRotationPoint(0.0f, 5.5f, 13.0f); //-1.0f, 5.0f, 24.0f
         tail1.setTextureSize(128, 64);
         tail1.mirror = true;
         setRotation(this.tail1, -0.3141593f, 0.0f, 0.0f);        
-        (this.tail2 = new ModelRenderer((ModelBase)this, 87, 47)).addBox(-3.0f, -1.0f, 9.0f, 6, 6, 6);
+        (this.tail2 = new ModelRenderer(this, 87, 47)).addBox(-3.0f, -1.0f, 9.0f, 6, 6, 6);
         tail2.setRotationPoint(0.0f, 5.5f, 13.5f);
         tail2.setTextureSize(128, 64);
         tail2.mirror = true;

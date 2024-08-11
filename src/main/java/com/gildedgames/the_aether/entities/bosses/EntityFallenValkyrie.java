@@ -93,9 +93,9 @@ public class EntityFallenValkyrie extends EntityMob {
 		b *= ((this.rand.nextInt(2) * 2) - 1);
 		c *= ((this.rand.nextInt(2) * 2) - 1);
 
-		x += (double) a;
-		y += (double) b;
-		z += (double) c;
+		x += a;
+		y += b;
+		z += c;
 
 		int newX = (int) Math.floor(x - 0.5D);
 		int newY = (int) Math.floor(y - 0.5D);
@@ -341,7 +341,7 @@ public class EntityFallenValkyrie extends EntityMob {
         final int i = MathHelper.floor_double(this.posX);
         final int j = MathHelper.floor_double(this.boundingBox.minY);
         final int k = MathHelper.floor_double(this.posZ);
-        final boolean canSpawn = this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes((Entity)this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);          
+        final boolean canSpawn = this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
         return (this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_creeping_stone || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_fuse_stone) && this.worldObj.getBlockLightValue(i, j, k) < 14 && canSpawn;
                        
     }

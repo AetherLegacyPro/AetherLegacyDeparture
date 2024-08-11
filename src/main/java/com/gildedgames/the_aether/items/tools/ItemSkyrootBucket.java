@@ -282,7 +282,7 @@ public class ItemSkyrootBucket extends Item {
 				return false;
 			} else {
 				if (world.provider.isHellWorld) {
-					world.playSoundEffect((double) x, (double) y, (double) z, "random.fizz", 0.5F, 2.6F + (world.rand.nextFloat() - world.rand.nextFloat()) * 0.8F);
+					world.playSoundEffect(x, y, z, "random.fizz", 0.5F, 2.6F + (world.rand.nextFloat() - world.rand.nextFloat()) * 0.8F);
 
 					for (int l = 0; l < 8; ++l) {
 						world.spawnParticle("largesmoke", (double) x + Math.random(), (double) y + Math.random(), (double) z + Math.random(), 0.0D, 0.0D, 0.0D);
@@ -302,7 +302,7 @@ public class ItemSkyrootBucket extends Item {
 
 	@Override
 	public ItemStack onEaten(ItemStack stack, World worldIn, EntityPlayer entityLiving) {
-		return this.onBucketUsed(stack, worldIn, (EntityPlayer) entityLiving);
+		return this.onBucketUsed(stack, worldIn, entityLiving);
 	}
 
 	public ItemStack onBucketUsed(ItemStack itemstack, World world, EntityPlayer entityplayer) {

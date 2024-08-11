@@ -34,7 +34,7 @@ public abstract class EntityAetherIIAnimal extends EntityAnimal
         final int i = MathHelper.floor_double(this.posX);
         final int j = MathHelper.floor_double(this.boundingBox.minY);
         final int k = MathHelper.floor_double(this.posZ);
-        return this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_grass && this.worldObj.getFullBlockLightValue(i, j, k) > 8 && this.getBlockPathWeight(i, j, k) >= 0.0f && this.getBlockPathWeight(i, j, k) >= 0.0f && this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes((Entity)this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
+        return this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_grass && this.worldObj.getFullBlockLightValue(i, j, k) > 8 && this.getBlockPathWeight(i, j, k) >= 0.0f && this.getBlockPathWeight(i, j, k) >= 0.0f && this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
     }
     
     public boolean isBreedingItem(final ItemStack par1ItemStack) {

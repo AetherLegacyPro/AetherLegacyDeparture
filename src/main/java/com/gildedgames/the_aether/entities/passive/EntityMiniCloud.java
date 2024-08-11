@@ -55,7 +55,7 @@ public class EntityMiniCloud extends EntityFlying implements IEntityAdditionalSp
 			this.targetY = this.owner.posY + 1.10000000149011612D;
 			this.targetZ = this.owner.posZ;
 		} else {
-			double var1 = (double) this.owner.rotationYaw;
+			double var1 = this.owner.rotationYaw;
 
 			if (this.direction) {
 				var1 -= 90.0D;

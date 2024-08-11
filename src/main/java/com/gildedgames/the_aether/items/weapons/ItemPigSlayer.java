@@ -34,7 +34,7 @@ public class ItemPigSlayer extends ItemSword {
 			return false;
 		}
 
-		String s = EntityList.getEntityString((Entity) entityliving);
+		String s = EntityList.getEntityString(entityliving);
 
 		if (s != null && (s.toLowerCase().contains("pig") || s.toLowerCase().contains("phyg") || s.toLowerCase().contains("taegore") || s.toLowerCase().contains("piglin") || entityliving.getUniqueID().toString().equals("1d680bb6-2a9a-4f25-bf2f-a1af74361d69"))) {
 			if (entityliving.getHealth() > 0) {

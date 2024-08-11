@@ -105,7 +105,7 @@ public class EntityMoa extends EntitySaddleMount {
    	      final int i = MathHelper.floor_double(this.posX);
    	      final int j = MathHelper.floor_double(this.boundingBox.minY);
    	      final int k = MathHelper.floor_double(this.posZ);
-   	      final boolean canSpawn = this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes((Entity)this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);          
+   	      final boolean canSpawn = this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
    	      return (this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_dirt || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.arctic_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.verdant_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.enchanted_aether_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.divine_grass) && this.worldObj.getBlockLightValue(i, j, k) > 7 && canSpawn && this.rand.nextInt(AetherConfig.getMoaSpawnrate()) == 0 && super.getCanSpawnHere();
    	                       
    	}
@@ -135,7 +135,7 @@ public class EntityMoa extends EntitySaddleMount {
     }
 
     public void increaseAmountFed(int amountFed) {
-        int amount = (int) this.getAmountFed();
+        int amount = this.getAmountFed();
 
         this.setAmountFed(amount + amountFed);
     }
@@ -153,7 +153,7 @@ public class EntityMoa extends EntitySaddleMount {
     }
 
     public int getRemainingJumps() {
-        return (int) this.dataWatcher.getWatchableObjectByte(21);
+        return this.dataWatcher.getWatchableObjectByte(21);
     }
 
 
@@ -162,11 +162,11 @@ public class EntityMoa extends EntitySaddleMount {
     }
 
     public int getMoaTypeId() {
-        return (int) this.dataWatcher.getWatchableObjectShort(20);
+        return this.dataWatcher.getWatchableObjectShort(20);
     }
 
     public AetherMoaType getMoaType() {
-        int id = (int) this.dataWatcher.getWatchableObjectShort(20);
+        int id = this.dataWatcher.getWatchableObjectShort(20);
 
         return AetherAPI.instance().getMoaType(id);
     }

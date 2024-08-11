@@ -263,8 +263,8 @@ public class PlayerAetherRenderer {
                     double d1 = player.field_71096_bN + (player.field_71095_bQ - player.field_71096_bN) * (double) partialTicks - (player.prevPosY + (player.posY - player.prevPosY) * (double) partialTicks);
                     double d2 = player.field_71097_bO + (player.field_71085_bR - player.field_71097_bO) * (double) partialTicks - (player.prevPosZ + (player.posZ - player.prevPosZ) * (double) partialTicks);
                     float f = player.prevRenderYawOffset + (player.renderYawOffset - player.prevRenderYawOffset) * partialTicks;
-                    double d3 = (double) MathHelper.sin(f * (float) Math.PI / 180.0F);
-                    double d4 = (double) (-MathHelper.cos(f * (float) Math.PI / 180.0F));
+                    double d3 = MathHelper.sin(f * (float) Math.PI / 180.0F);
+                    double d4 = -MathHelper.cos(f * (float) Math.PI / 180.0F);
                     float f1 = (float) d1 * 10.0F;
                     f1 = MathHelper.clamp_float(f1, -6.0F, 32.0F);
                     float f2 = (float) (d0 * d3 + d2 * d4) * 100.0F;

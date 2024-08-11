@@ -92,7 +92,7 @@ public class EntityWhirlwind extends EntityMob {
 	}
 
 	public int getColorData() {
-		return (int) this.dataWatcher.getWatchableObjectByte(21);
+		return this.dataWatcher.getWatchableObjectByte(21);
 	}
 
 	public void setEvil(boolean isEvil) {

@@ -102,10 +102,10 @@ public class TileEntityAncientEnchanterRenderer extends TileEntitySpecialRendere
             GL11.glRotatef(180.0f + RenderManager.instance.playerViewY, 0.0f, -1.0f, 0.0f);
             var3.startDrawingQuads();
             var3.setNormal(0.0f, 1.0f, 0.0f);
-            var3.addVertexWithUV((double)(0.0f - var9), (double)(0.0f - var10), 0.0, (double)var4, (double)var7);
-            var3.addVertexWithUV((double)(var8 - var9), (double)(0.0f - var10), 0.0, (double)var5, (double)var7);
-            var3.addVertexWithUV((double)(var8 - var9), (double)(1.0f - var10), 0.0, (double)var5, (double)var6);
-            var3.addVertexWithUV((double)(0.0f - var9), (double)(1.0f - var10), 0.0, (double)var4, (double)var6);
+            var3.addVertexWithUV(0.0f - var9, 0.0f - var10, 0.0, var4, var7);
+            var3.addVertexWithUV(var8 - var9, 0.0f - var10, 0.0, var5, var7);
+            var3.addVertexWithUV(var8 - var9, 1.0f - var10, 0.0, var5, var6);
+            var3.addVertexWithUV(0.0f - var9, 1.0f - var10, 0.0, var4, var6);
             var3.draw();
             GL11.glPopMatrix();
         }

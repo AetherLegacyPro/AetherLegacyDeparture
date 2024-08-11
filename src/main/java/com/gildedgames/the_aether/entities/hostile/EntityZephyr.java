@@ -78,7 +78,7 @@ public class EntityZephyr extends EntityFlying implements IMob {
 		if (this.courseChangeCooldown-- <= 0)
 		{
 			this.courseChangeCooldown += this.rand.nextInt(5) + 2;
-			d3 = (double)MathHelper.sqrt_double(d3);
+			d3 = MathHelper.sqrt_double(d3);
 
 			if (this.isCourseTraversable(this.waypointX, this.waypointY, this.waypointZ, d3))
 			{

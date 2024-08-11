@@ -15,8 +15,8 @@ public class SlotIncubator extends Slot {
 	private EntityPlayer player;
 
 	public SlotIncubator(TileEntityIncubator inv, int slot, int x, int y, EntityPlayer player) {
-		super((IInventory) inv, slot, x, y);
-		this.incubator = (TileEntityIncubator) inv;
+		super(inv, slot, x, y);
+		this.incubator = inv;
 		this.player = player;
 	}
 

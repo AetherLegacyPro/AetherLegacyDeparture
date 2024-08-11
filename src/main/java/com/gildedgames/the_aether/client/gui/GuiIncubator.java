@@ -21,7 +21,7 @@ public class GuiIncubator extends GuiContainer {
 	public GuiIncubator(EntityPlayer player, InventoryPlayer inventoryplayer, TileEntityIncubator tileentityIncubator) {
 		super(new ContainerIncubator(player, inventoryplayer, tileentityIncubator));
 
-		this.incubatorInventory = (TileEntityIncubator) tileentityIncubator;
+		this.incubatorInventory = tileentityIncubator;
 	}
 
 	@Override

@@ -208,8 +208,8 @@ public class EntityAercenturion extends EntityMob
             if (hasdivineralHelmet || hasdivineralChest || hasdivineralLegs || hasdivineralBoots) {
 
             	target.attackEntityFrom(DamageSource.magic, 6.0F);
-            	this.worldObj.setEntityState((Entity)this, (byte)4);
-                final boolean flag = target.attackEntityFrom(DamageSource.causeMobDamage((EntityLivingBase)this), (float)(6 + this.rand.nextInt(5)));
+            	this.worldObj.setEntityState(this, (byte)4);
+                final boolean flag = target.attackEntityFrom(DamageSource.causeMobDamage(this), (float)(6 + this.rand.nextInt(5)));
                 if (flag) {
                 	target.motionY += 0.4000000059604645;
                 }
@@ -219,8 +219,8 @@ public class EntityAercenturion extends EntityMob
             
             else {
             	target.attackEntityFrom(DamageSource.magic, 10.0F);
-            	this.worldObj.setEntityState((Entity)this, (byte)4);
-                final boolean flag = target.attackEntityFrom(DamageSource.causeMobDamage((EntityLivingBase)this), (float)(12 + this.rand.nextInt(5)));
+            	this.worldObj.setEntityState(this, (byte)4);
+                final boolean flag = target.attackEntityFrom(DamageSource.causeMobDamage(this), (float)(12 + this.rand.nextInt(5)));
                 if (flag) {
                 	target.motionY += 0.4000000059604645;
                 }

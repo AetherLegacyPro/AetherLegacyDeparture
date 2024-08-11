@@ -330,7 +330,7 @@ public class EntitySlider extends EntityFlying implements IAetherBoss {
                     double d0 = ((double) j + 0.5D) / 4.0D;
                     double d1 = ((double) k + 0.5D) / 4.0D;
                     double d2 = ((double) l + 0.5D) / 4.0D;
-                    this.worldObj.spawnParticle("blockcrack_" + Block.getIdFromBlock(block) + "_" + metadata, (double) x + d0, (double) y + d1, (double) z + d2, d0 - 0.5D, d1 - 0.5D, d2 - 0.5D);
+                    this.worldObj.spawnParticle("blockcrack_" + Block.getIdFromBlock(block) + "_" + metadata, x + d0, y + d1, z + d2, d0 - 0.5D, d1 - 0.5D, d2 - 0.5D);
                 }
             }
         }
@@ -578,7 +578,7 @@ public class EntitySlider extends EntityFlying implements IAetherBoss {
                             double d0 = ((double) j + 0.5D) / 4.0D;
                             double d1 = ((double) k + 0.5D) / 4.0D;
                             double d2 = ((double) l + 0.5D) / 4.0D;
-                            this.worldObj.spawnParticle("blockcrack_" + Blocks.stone + "_0", (double) a + d0, (double) b + d1, (double) c + d2, d0 - 0.5D, d1 - 0.5D, d2 - 0.5D);
+                            this.worldObj.spawnParticle("blockcrack_" + Blocks.stone + "_0", a + d0, b + d1, c + d2, d0 - 0.5D, d1 - 0.5D, d2 - 0.5D);
                         }
                     }
                 }

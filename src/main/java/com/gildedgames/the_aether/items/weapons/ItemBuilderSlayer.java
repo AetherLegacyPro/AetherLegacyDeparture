@@ -34,7 +34,7 @@ public class ItemBuilderSlayer extends ItemSword {
 			return false;
 		}
 
-		String s = EntityList.getEntityString((Entity) entityliving);
+		String s = EntityList.getEntityString(entityliving);
 
 		if (s != null && (s.toLowerCase().contains("player") || s.toLowerCase().contains("valkyrie") || s.toLowerCase().contains("fallen_valkyrie") || s.toLowerCase().contains("elite_valkyrie") || s.toLowerCase().contains("villager") || s.toLowerCase().contains("pillager") || s.toLowerCase().contains("piglin") || s.toLowerCase().contains("iceologer"))) {
 			if (entityliving.getHealth() > 0) {

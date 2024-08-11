@@ -106,7 +106,7 @@ public class CrystalDragonRenderer extends RenderLiving
     public void doRender(EntityCrystalDragon p_76986_1_, double p_76986_2_, double p_76986_4_, double p_76986_6_, float p_76986_8_, float p_76986_9_)
     {
         
-        super.doRender((EntityLiving)p_76986_1_, p_76986_2_, p_76986_4_, p_76986_6_, p_76986_8_, p_76986_9_);
+        super.doRender(p_76986_1_, p_76986_2_, p_76986_4_, p_76986_6_, p_76986_8_, p_76986_9_);
 
         if (p_76986_1_.healingEnderCrystal != null)
         {
@@ -120,8 +120,8 @@ public class CrystalDragonRenderer extends RenderLiving
             float f8 = MathHelper.sqrt_float(f4 * f4 + f5 * f5 + f6 * f6);
             GL11.glPushMatrix();
             GL11.glTranslatef((float)p_76986_2_, (float)p_76986_4_ + 2.0F, (float)p_76986_6_);
-            GL11.glRotatef((float)(-Math.atan2((double)f6, (double)f4)) * 180.0F / (float)Math.PI - 90.0F, 0.0F, 1.0F, 0.0F);
-            GL11.glRotatef((float)(-Math.atan2((double)f7, (double)f5)) * 180.0F / (float)Math.PI - 90.0F, 1.0F, 0.0F, 0.0F);
+            GL11.glRotatef((float)(-Math.atan2(f6, f4)) * 180.0F / (float)Math.PI - 90.0F, 0.0F, 1.0F, 0.0F);
+            GL11.glRotatef((float)(-Math.atan2(f7, f5)) * 180.0F / (float)Math.PI - 90.0F, 1.0F, 0.0F, 0.0F);
             Tessellator tessellator = Tessellator.instance;
             RenderHelper.disableStandardItemLighting();
             GL11.glDisable(GL11.GL_CULL_FACE);
@@ -138,9 +138,9 @@ public class CrystalDragonRenderer extends RenderLiving
                 float f12 = MathHelper.cos((float)(i % b0) * (float)Math.PI * 2.0F / (float)b0) * 0.75F;
                 float f13 = (float)(i % b0) * 1.0F / (float)b0;
                 tessellator.setColorOpaque_I(0);
-                tessellator.addVertexWithUV((double)(f11 * 0.2F), (double)(f12 * 0.2F), 0.0D, (double)f13, (double)f10);
+                tessellator.addVertexWithUV(f11 * 0.2F, f12 * 0.2F, 0.0D, f13, f10);
                 tessellator.setColorOpaque_I(16777215);
-                tessellator.addVertexWithUV((double)f11, (double)f12, (double)f8, (double)f13, (double)f9);
+                tessellator.addVertexWithUV(f11, f12, f8, f13, f9);
             }
 
             tessellator.draw();
@@ -200,10 +200,10 @@ public class CrystalDragonRenderer extends RenderLiving
                 tessellator.setColorRGBA_I(16777215, (int)(255.0F * (1.0F - f2)));
                 tessellator.addVertex(0.0D, 0.0D, 0.0D);
                 tessellator.setColorRGBA_I(16711935, 0);
-                tessellator.addVertex(-0.866D * (double)f4, (double)f3, (double)(-0.5F * f4));
-                tessellator.addVertex(0.866D * (double)f4, (double)f3, (double)(-0.5F * f4));
-                tessellator.addVertex(0.0D, (double)f3, (double)(1.0F * f4));
-                tessellator.addVertex(-0.866D * (double)f4, (double)f3, (double)(-0.5F * f4));
+                tessellator.addVertex(-0.866D * (double)f4, f3, -0.5F * f4);
+                tessellator.addVertex(0.866D * (double)f4, f3, -0.5F * f4);
+                tessellator.addVertex(0.0D, f3, 1.0F * f4);
+                tessellator.addVertex(-0.866D * (double)f4, f3, -0.5F * f4);
                 tessellator.draw();
             }
 

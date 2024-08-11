@@ -24,9 +24,9 @@ public class CarrionSproutModel extends ModelBase
         this.textureHeight = 64;
         this.petal = new ModelRenderer[CarrionSproutModel.petals];
         for (int i = 0; i < CarrionSproutModel.petals; ++i) {
-            this.petal[i] = new ModelRenderer((ModelBase)this, 43, 49);
+            this.petal[i] = new ModelRenderer(this, 43, 49);
             if (i % 2 == 0) {
-                (this.petal[i] = new ModelRenderer((ModelBase)this, 43, 49)).addBox(-2.8f, -1.0f, -10.8f, 6, 0, 9);
+                (this.petal[i] = new ModelRenderer(this, 43, 49)).addBox(-2.8f, -1.0f, -10.8f, 6, 0, 9);
                 this.petal[i].setRotationPoint(0.0f, 1.0f, 0.0f);
             }
             else {
@@ -34,29 +34,29 @@ public class CarrionSproutModel extends ModelBase
                 this.petal[i].setRotationPoint(0.0f, 1.0f, 0.0f);
             }
         }
-        (this.Head = new ModelRenderer((ModelBase)this, 0, 0)).addBox(-3.0f, -3.0f, -3.0f, 6, 2, 6);
+        (this.Head = new ModelRenderer(this, 0, 0)).addBox(-3.0f, -3.0f, -3.0f, 6, 2, 6);
         this.Head.setRotationPoint(0.0f, 0.0f, 0.0f);
-        (this.TopStem = new ModelRenderer((ModelBase)this, 8, 25)).addBox(0.0f, 0.0f, 0.0f, 2, 6, 2);
+        (this.TopStem = new ModelRenderer(this, 8, 25)).addBox(0.0f, 0.0f, 0.0f, 2, 6, 2);
         this.TopStem.setRotationPoint(-1.0f, 14.0f, -3.0f);
         this.TopStem.setTextureSize(64, 64);
         this.TopStem.mirror = true;
         this.setRotation(this.TopStem, 0.3490659f, 0.0f, 0.0f);
-        (this.BottomStem = new ModelRenderer((ModelBase)this, 0, 25)).addBox(0.0f, 0.0f, 0.0f, 2, 5, 2);
+        (this.BottomStem = new ModelRenderer(this, 0, 25)).addBox(0.0f, 0.0f, 0.0f, 2, 5, 2);
         this.BottomStem.setRotationPoint(-1.0f, 19.0f, -1.0f);
         this.BottomStem.setTextureSize(64, 64);
         this.BottomStem.mirror = true;
         this.setRotation(this.BottomStem, 0.0f, 0.0f, 0.0f);
-        (this.HeadRoof = new ModelRenderer((ModelBase)this, 20, 16)).addBox(0.0f, 0.0f, 0.0f, 11, 5, 11);
+        (this.HeadRoof = new ModelRenderer(this, 20, 16)).addBox(0.0f, 0.0f, 0.0f, 11, 5, 11);
         this.HeadRoof.setRotationPoint(-5.5f, 4.0f, -7.5f);
         this.HeadRoof.setTextureSize(64, 64);
         this.HeadRoof.mirror = true;
         this.setRotation(this.HeadRoof, -0.3490659f, 0.0f, 0.0f);
-        (this.Teeth = new ModelRenderer((ModelBase)this, 0, 33)).addBox(0.0f, 0.0f, 0.0f, 9, 1, 9);
+        (this.Teeth = new ModelRenderer(this, 0, 33)).addBox(0.0f, 0.0f, 0.0f, 9, 1, 9);
         this.Teeth.setRotationPoint(-4.5f, 8.5f, -8.5f);
         this.Teeth.setTextureSize(64, 64);
         this.Teeth.mirror = true;
         this.setRotation(this.Teeth, -0.3490659f, 0.0f, 0.0f);
-        (this.Jaw = new ModelRenderer((ModelBase)this, 24, 1)).addBox(0.0f, 0.0f, -9.0f, 10, 2, 10);
+        (this.Jaw = new ModelRenderer(this, 24, 1)).addBox(0.0f, 0.0f, -9.0f, 10, 2, 10);
         this.Jaw.setRotationPoint(-5.0f, 12.0f, 0.0f);
         this.Jaw.setTextureSize(64, 64);
         this.Jaw.mirror = true;

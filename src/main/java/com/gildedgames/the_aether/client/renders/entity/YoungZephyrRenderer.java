@@ -16,7 +16,7 @@ public class YoungZephyrRenderer extends RenderLiving
     public YoungZephyrModel newZephyrModel;
     
     public YoungZephyrRenderer(final YoungZephyrModel model) {
-        super((ModelBase)model, 0.5f);
+        super(model, 0.5f);
         this.newZephyrModel = model;
     }
     

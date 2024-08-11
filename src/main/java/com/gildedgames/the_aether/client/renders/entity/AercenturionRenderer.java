@@ -21,7 +21,7 @@ public class AercenturionRenderer extends RenderBiped {
 	
 	public AercenturionRenderer(final ModelBiped model, final float f) {
         super(model, f);
-        this.setRenderPassModel((ModelBase)model);
+        this.setRenderPassModel(model);
     }
     
     protected int setMarkingBrightness(final EntityAercenturion golem, final int i, final float f) {

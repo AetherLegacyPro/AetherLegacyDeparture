@@ -115,16 +115,16 @@ public class BlockFreezer extends BlockAetherContainer {
 						}
 
 						itemstack.stackSize -= j1;
-						EntityItem entityitem = new EntityItem(worldIn, (double) ((float) x + f), (double) ((float) y + f1), (double) ((float) z + f2), new ItemStack(itemstack.getItem(), j1, itemstack.getItemDamage()));
+						EntityItem entityitem = new EntityItem(worldIn, (float) x + f, (float) y + f1, (float) z + f2, new ItemStack(itemstack.getItem(), j1, itemstack.getItemDamage()));
 
 						if (itemstack.hasTagCompound()) {
 							entityitem.getEntityItem().setTagCompound((NBTTagCompound) itemstack.getTagCompound().copy());
 						}
 
 						float f3 = 0.05F;
-						entityitem.motionX = (double) ((float) worldIn.rand.nextGaussian() * f3);
-						entityitem.motionY = (double) ((float) worldIn.rand.nextGaussian() * f3 + 0.2F);
-						entityitem.motionZ = (double) ((float) worldIn.rand.nextGaussian() * f3);
+						entityitem.motionX = (float) worldIn.rand.nextGaussian() * f3;
+						entityitem.motionY = (float) worldIn.rand.nextGaussian() * f3 + 0.2F;
+						entityitem.motionZ = (float) worldIn.rand.nextGaussian() * f3;
 						worldIn.spawnEntityInWorld(entityitem);
 					}
 				}

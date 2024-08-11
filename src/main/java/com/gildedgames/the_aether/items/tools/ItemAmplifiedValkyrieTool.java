@@ -66,7 +66,7 @@ public class ItemAmplifiedValkyrieTool extends ItemAetherTool {
     }
     
     public Entity createEntity(final World world, final Entity location, final ItemStack itemstack) {
-        return (Entity)new EntityFireProofItemAether(world, location, itemstack);
+        return new EntityFireProofItemAether(world, location, itemstack);
     }
 
 }

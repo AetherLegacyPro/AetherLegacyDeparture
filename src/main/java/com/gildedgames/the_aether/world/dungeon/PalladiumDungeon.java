@@ -197,7 +197,7 @@ public class PalladiumDungeon extends WorldGenerator {
          for(int i1 = 0; i1 < k; ++i1) {
             int j1 = l - this.centerX;
             int k1 = i1 - this.centerZ;
-            double d = Math.sqrt((double)(j1 * j1 + k1 * k1));
+            double d = Math.sqrt(j1 * j1 + k1 * k1);
             if (d == 0.0D) {
                d = 0.001D;
             }
@@ -337,7 +337,7 @@ public class PalladiumDungeon extends WorldGenerator {
         	  return rand.nextInt(10) == 0 ? BlocksAether.light_genesis_stone : BlocksAether.genesis_stone; //put 3rd variant for this block here   
       }
       else {
-         return (Block)(flag ? BlocksAether.light_genesis_stone : BlocksAether.genesis_stone);
+         return flag ? BlocksAether.light_genesis_stone : BlocksAether.genesis_stone;
       }
    }
 

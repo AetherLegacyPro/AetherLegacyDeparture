@@ -83,7 +83,7 @@ public class AetherEntityRenderer extends EntityRenderer {
 				this.pointedEntity = null;
 				Vec3 vec33 = null;
 				float f1 = 1.0F;
-				List<?> list = this.mc.theWorld.getEntitiesWithinAABBExcludingEntity(this.mc.renderViewEntity, this.mc.renderViewEntity.boundingBox.addCoord(vec31.xCoord * d0, vec31.yCoord * d0, vec31.zCoord * d0).expand((double) f1, (double) f1, (double) f1));
+				List<?> list = this.mc.theWorld.getEntitiesWithinAABBExcludingEntity(this.mc.renderViewEntity, this.mc.renderViewEntity.boundingBox.addCoord(vec31.xCoord * d0, vec31.yCoord * d0, vec31.zCoord * d0).expand(f1, f1, f1));
 				double d2 = d1;
 
 				for (int i = 0; i < list.size(); ++i) {
@@ -91,7 +91,7 @@ public class AetherEntityRenderer extends EntityRenderer {
 
 					if (entity.canBeCollidedWith()) {
 						float f2 = entity.getCollisionBorderSize();
-						AxisAlignedBB axisalignedbb = entity.boundingBox.expand((double) f2, (double) f2, (double) f2);
+						AxisAlignedBB axisalignedbb = entity.boundingBox.expand(f2, f2, f2);
 						MovingObjectPosition movingobjectposition = axisalignedbb.calculateIntercept(vec3, vec32);
 
 						if (axisalignedbb.isVecInside(vec3)) {

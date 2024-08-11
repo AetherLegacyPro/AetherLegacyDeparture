@@ -52,7 +52,7 @@ public class ContainerIncubator extends Container {
 		super.detectAndSendChanges();
 
 		for (int i = 0; i < this.crafters.size(); ++i) {
-			ICrafting icrafting = (ICrafting) this.crafters.get(i);
+			ICrafting icrafting = this.crafters.get(i);
 
 			if (this.progress != this.incubator.progress) {
 				icrafting.sendProgressBarUpdate(this, 0, this.incubator.progress);
@@ -87,7 +87,7 @@ public class ContainerIncubator extends Container {
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer entityplayer, int index) {
 		ItemStack itemstack = null;
-		Slot slot = (Slot) this.inventorySlots.get(index);
+		Slot slot = this.inventorySlots.get(index);
 
 		if (slot != null && slot.getHasStack()) {
 			ItemStack itemstack1 = slot.getStack();
@@ -110,7 +110,7 @@ public class ContainerIncubator extends Container {
 			}
 
 			if (itemstack1.stackSize == 0) {
-				slot.putStack((ItemStack) null);
+				slot.putStack(null);
 			} else {
 				slot.onSlotChanged();
 			}
