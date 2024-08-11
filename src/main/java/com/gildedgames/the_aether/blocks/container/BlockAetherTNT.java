@@ -85,9 +85,8 @@ public class BlockAetherTNT extends Block
     }
     
     public void onEntityCollidedWithBlock(final World world, final int x, final int y, final int z, final Entity entity) {
-        if (entity instanceof EntityArrow && !world.isRemote) {
-            final EntityArrow entityarrow = (EntityArrow)entity;
-            if (entityarrow.isBurning()) {
+        if (entity instanceof EntityArrow entityarrow && !world.isRemote) {
+			if (entityarrow.isBurning()) {
                 this.func_150114_a(world, x, y, z, 1, (EntityLivingBase) ((entityarrow.shootingEntity instanceof EntityLivingBase) ? entityarrow.shootingEntity : null));
                 world.setBlockToAir(x, y, z);
             }

@@ -213,10 +213,9 @@ public class EntityAncientValkyrieQueen extends EntityBossMob implements IAether
             this.moveStrafing = this.moveForward = 0;
         } else {
             if (this.getEntityToAttack() != null) {
-                if (this.getEntityToAttack() instanceof EntityPlayer) {
-                    EntityPlayer target = (EntityPlayer) this.getEntityToAttack();
+                if (this.getEntityToAttack() instanceof EntityPlayer target) {
 
-                    if (target != null) {
+					if (target != null) {
                         if (target.posY > this.posY) {
                             timeUntilTeleportToPlayer++;
 
@@ -375,10 +374,9 @@ public class EntityAncientValkyrieQueen extends EntityBossMob implements IAether
 
     @Override
     public boolean attackEntityFrom(DamageSource ds, float i) {
-        if (ds.getEntity() instanceof EntityPlayer) {
-            EntityPlayer player = (EntityPlayer) ds.getEntity();
+        if (ds.getEntity() instanceof EntityPlayer player) {
 
-            if (this.worldObj.difficultySetting == EnumDifficulty.PEACEFUL) {
+			if (this.worldObj.difficultySetting == EnumDifficulty.PEACEFUL) {
                 this.spawnExplosionParticle();
                 chatItUp(player, StatCollector.translateToLocal("gui.queen.peaceful"));
                 return false;
@@ -434,10 +432,9 @@ public class EntityAncientValkyrieQueen extends EntityBossMob implements IAether
         this.swingArm();
         flag = entity.attackEntityFrom(DamageSource.causeMobDamage(this), 20);
 
-        if (entity != null && this.getEntityToAttack() != null && entity == this.getEntityToAttack() && entity instanceof EntityPlayer) {
-            EntityPlayer player = (EntityPlayer) entity;
+        if (entity != null && this.getEntityToAttack() != null && entity == this.getEntityToAttack() && entity instanceof EntityPlayer player) {
 
-            if (player.getHealth() <= 0 || player.isDead) {
+			if (player.getHealth() <= 0 || player.isDead) {
                 this.setTarget(null);
                 this.angerLevel = this.chatTime = 0;
                 this.chatItUp(player, StatCollector.translateToLocal("gui.queen.lost"));

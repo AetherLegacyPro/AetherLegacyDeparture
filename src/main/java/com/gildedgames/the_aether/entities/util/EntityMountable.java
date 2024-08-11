@@ -107,8 +107,7 @@ public abstract class EntityMountable extends EntityAetherAnimal {
 	public void moveEntityWithHeading(float par1, float par2) {
 		Entity entity = this.riddenByEntity;
 
-		if (entity instanceof EntityPlayer) {
-			EntityPlayer player = (EntityPlayer) entity;
+		if (entity instanceof EntityPlayer player) {
 
 			this.prevRotationYaw = this.rotationYaw = player.rotationYaw;
 			this.prevRotationPitch = this.rotationPitch = player.rotationPitch;

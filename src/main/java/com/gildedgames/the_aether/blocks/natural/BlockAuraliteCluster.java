@@ -49,8 +49,7 @@ public class BlockAuraliteCluster extends BlockAuralite implements ISubBlocksBlo
 	
 	@Override
 	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
-		if (entity instanceof EntityPlayer) {
-			EntityPlayer player = (EntityPlayer) entity;
+		if (entity instanceof EntityPlayer player) {
 			((EntityLivingBase) entity).addPotionEffect(new PotionEffect(1, 500, 0));
 
 		}	

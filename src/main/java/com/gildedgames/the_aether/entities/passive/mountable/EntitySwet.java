@@ -73,11 +73,10 @@ public class EntitySwet extends EntityMountable
 
         if (!this.hasPrey())
         {
-            if (entityIn instanceof EntityPlayer)
+            if (entityIn instanceof EntityPlayer player)
             {
-                EntityPlayer player = (EntityPlayer) entityIn;
 
-                if (this.getAttackTarget() != null)
+				if (this.getAttackTarget() != null)
                 {
                     if (this.getAttackTarget() == player)
                     {

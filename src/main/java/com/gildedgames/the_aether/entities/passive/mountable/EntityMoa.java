@@ -6,7 +6,6 @@ import com.gildedgames.the_aether.api.moa.AetherMoaType;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 
 import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAILookIdle;

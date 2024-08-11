@@ -12,7 +12,6 @@ import com.gildedgames.the_aether.entities.passive.EntityMiniCloud;
 import com.gildedgames.the_aether.entities.passive.EntitySheepuff;
 import com.gildedgames.the_aether.entities.passive.EntityThunderlo;
 
-import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
 import net.minecraftforge.client.MinecraftForgeClient;

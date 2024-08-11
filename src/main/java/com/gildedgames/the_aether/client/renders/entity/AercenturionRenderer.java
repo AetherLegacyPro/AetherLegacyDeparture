@@ -5,7 +5,6 @@ import org.lwjgl.opengl.GL11;
 import com.gildedgames.the_aether.client.models.entities.AercenturionModel;
 import com.gildedgames.the_aether.entities.hostile.EntityAercenturion;
 
-import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.RenderBiped;

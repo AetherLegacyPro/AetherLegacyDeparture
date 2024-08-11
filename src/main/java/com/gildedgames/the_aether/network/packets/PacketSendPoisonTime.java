@@ -44,11 +44,10 @@ public class PacketSendPoisonTime extends AetherPacket<PacketSendPoisonTime>
         {
             Entity entity = player.worldObj.getEntityByID(message.entityID);
 
-            if (entity instanceof EntityPlayer)
+            if (entity instanceof EntityPlayer parent)
             {
-                EntityPlayer parent = (EntityPlayer) entity;
 
-                IPlayerAether iPlayerAether = AetherAPI.get(parent);
+				IPlayerAether iPlayerAether = AetherAPI.get(parent);
 
                 if (iPlayerAether != null)
                 {

@@ -88,79 +88,68 @@ public class BlockHellFire extends BlockFire
     
     @Override
 	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
-		if (entity instanceof EntityPlayer) {
-			EntityPlayer player = (EntityPlayer) entity;
-			
+		if (entity instanceof EntityPlayer player) {
+
 			entity.attackEntityFrom(DamageSource.magic, 1.0F);
 			entity.setFire(15);
 			player.addPotionEffect(new PotionEffect(Potion.weakness.id, 200, 0));
 			player.addPotionEffect(new PotionEffect(Potion.wither.id, 140, 0));
 		
 		}
-		if (entity instanceof EntityCyro) {
-			EntityCyro player = (EntityCyro) entity;
-			
+		if (entity instanceof EntityCyro player) {
+
 			entity.attackEntityFrom(DamageSource.magic, 3.0F);
 			entity.setFire(30);
 			player.addPotionEffect(new PotionEffect(Potion.weakness.id, 200, 0));
 			player.addPotionEffect(new PotionEffect(Potion.wither.id, 140, 0));
 		
 		}
-		if (entity instanceof EntityCyroGuardian) {
-			EntityCyroGuardian player = (EntityCyroGuardian) entity;
-			
+		if (entity instanceof EntityCyroGuardian player) {
+
 			entity.attackEntityFrom(DamageSource.magic, 3.0F);
 			entity.setFire(30);
 			player.addPotionEffect(new PotionEffect(Potion.weakness.id, 200, 0));
 			player.addPotionEffect(new PotionEffect(Potion.wither.id, 140, 0));
 		
 		}		
-		if (entity instanceof EntityPlayer && entity.isImmuneToFire()) {
-			EntityPlayer player = (EntityPlayer) entity;
-			
+		if (entity instanceof EntityPlayer player && entity.isImmuneToFire()) {
+
 			entity.attackEntityFrom(DamageSource.magic, 3.0F);
 			player.addPotionEffect(new PotionEffect(Potion.weakness.id, 200, 0));
 			player.addPotionEffect(new PotionEffect(Potion.wither.id, 140, 0));
         }
-		if (entity instanceof EntityCinerarium) {
-			EntityCinerarium mob = (EntityCinerarium) entity;
-			
+		if (entity instanceof EntityCinerarium mob) {
+
 			mob.addPotionEffect(new PotionEffect(Potion.regeneration.id, 300, 0));
 			mob.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 500, 0));
         }
-		if (entity instanceof EntityFireMinion) {
-			EntityFireMinion mob = (EntityFireMinion) entity;
-			
+		if (entity instanceof EntityFireMinion mob) {
+
 			mob.addPotionEffect(new PotionEffect(Potion.regeneration.id, 300, 0));
 			mob.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 500, 0));
         }
-		if (entity instanceof EntityAncientFireMinion) {
-			EntityAncientFireMinion mob = (EntityAncientFireMinion) entity;
-			
+		if (entity instanceof EntityAncientFireMinion mob) {
+
 			mob.addPotionEffect(new PotionEffect(Potion.regeneration.id, 300, 0));
 			mob.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 500, 0));
         }
-		if (entity instanceof EntityDivineFireMinion) {
-			EntityDivineFireMinion mob = (EntityDivineFireMinion) entity;
-			
+		if (entity instanceof EntityDivineFireMinion mob) {
+
 			mob.addPotionEffect(new PotionEffect(Potion.regeneration.id, 300, 0));
 			mob.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 500, 0));
         }
-		if (entity instanceof EntityMythicFireMinion) {
-			EntityMythicFireMinion mob = (EntityMythicFireMinion) entity;
-			
+		if (entity instanceof EntityMythicFireMinion mob) {
+
 			mob.addPotionEffect(new PotionEffect(Potion.regeneration.id, 300, 0));
 			mob.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 500, 0));
         }
-		if (entity instanceof EntityBlaze) {
-			EntityBlaze mob = (EntityBlaze) entity;
-			
+		if (entity instanceof EntityBlaze mob) {
+
 			mob.addPotionEffect(new PotionEffect(Potion.regeneration.id, 300, 0));
 			mob.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 500, 0));
         }
-		if (entity instanceof EntityWither) {
-			EntityWither boss = (EntityWither) entity;
-			
+		if (entity instanceof EntityWither boss) {
+
 			((EntityLivingBase)boss).addPotionEffect(new PotionEffect(Potion.regeneration.id, 200, 0));
 			((EntityLivingBase)boss).addPotionEffect(new PotionEffect(Potion.damageBoost.id, 300, 0));       
         }

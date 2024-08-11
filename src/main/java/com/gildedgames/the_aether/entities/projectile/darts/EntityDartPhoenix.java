@@ -106,9 +106,8 @@ public class EntityDartPhoenix extends EntityDartBase implements IThrowableEntit
 			movingobjectposition = new MovingObjectPosition(entity);
 		}
 
-		if (movingobjectposition != null && movingobjectposition.entityHit instanceof EntityPlayer)
+		if (movingobjectposition != null && movingobjectposition.entityHit instanceof EntityPlayer entityplayer)
 		{
-			EntityPlayer entityplayer = (EntityPlayer)movingobjectposition.entityHit;
 
 			if (entityplayer.capabilities.disableDamage || this.shootingEntity instanceof EntityPlayer && !((EntityPlayer)this.shootingEntity).canAttackPlayer(entityplayer))
 			{

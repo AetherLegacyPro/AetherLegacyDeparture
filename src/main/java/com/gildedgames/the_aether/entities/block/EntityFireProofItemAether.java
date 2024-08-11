@@ -8,7 +8,6 @@ import net.minecraft.util.*;
 import net.minecraft.block.material.*;
 import net.minecraftforge.event.entity.item.*;
 import net.minecraftforge.common.*;
-import cpw.mods.fml.common.eventhandler.*;
 
 public class EntityFireProofItemAether extends EntityItem
 {

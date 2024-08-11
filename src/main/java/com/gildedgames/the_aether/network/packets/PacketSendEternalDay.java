@@ -38,11 +38,10 @@ public class PacketSendEternalDay extends AetherPacket<PacketSendEternalDay>
         {
             WorldProvider provider = player.worldObj.provider;
 
-            if (provider instanceof AetherWorldProvider)
+            if (provider instanceof AetherWorldProvider providerAether)
             {
-                AetherWorldProvider providerAether = (AetherWorldProvider) provider;
 
-                providerAether.setIsEternalDay(message.eternalDay);
+				providerAether.setIsEternalDay(message.eternalDay);
             }
         }
     }

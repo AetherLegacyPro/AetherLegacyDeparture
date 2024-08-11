@@ -7,7 +7,6 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockBed;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -177,26 +176,18 @@ public class BlockSkyrootBed extends BlockBed
         this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.5625F, 1.0F);
     }
 
-    public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
-    {
+    public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_) {
         return isBlockHeadOfBed(p_149650_1_) ? Item.getItemById(0) : ItemsAether.skyroot_bed_item;
     }
 
     @SideOnly(Side.CLIENT)
-    public Item getItem(World p_149694_1_, int p_149694_2_, int p_149694_3_, int p_149694_4_)
-    {
+    public Item getItem(World p_149694_1_, int p_149694_2_, int p_149694_3_, int p_149694_4_) {
         return ItemsAether.skyroot_bed_item;
     }
 
     @Override
-    public boolean isBed(IBlockAccess world, int x, int y, int z, EntityLivingBase player)
-    {
+    public boolean isBed(IBlockAccess world, int x, int y, int z, EntityLivingBase player) {
         return true;
     }
 
-    @Override
-    public boolean isBedFoot(IBlockAccess world, int x, int y, int z)
-    {
-        return BlockSkyrootBed.isBlockHeadOfBed(world.getBlockMetadata(x,  y, z));
-    }
 }

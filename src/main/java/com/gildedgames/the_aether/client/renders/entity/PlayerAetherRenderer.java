@@ -72,10 +72,9 @@ public class PlayerAetherRenderer {
         if (stack != null) {
             Item item = stack.getItem();
 
-            if (item instanceof ItemAetherArmor) {
-                ItemAetherArmor itemarmor = (ItemAetherArmor) item;
+            if (item instanceof ItemAetherArmor itemarmor) {
 
-                this.mc.getTextureManager().bindTexture(RenderBiped.getArmorResource(playerAether.getEntity(), stack, slotType, null));
+				this.mc.getTextureManager().bindTexture(RenderBiped.getArmorResource(playerAether.getEntity(), stack, slotType, null));
                 ModelBiped modelbiped = slotType == 2 ? renderPlayer.modelArmor : renderPlayer.modelArmorChestplate;
                 modelbiped.bipedHead.showModel = slotType == 0;
                 modelbiped.bipedHeadwear.showModel = slotType == 0;
@@ -163,9 +162,8 @@ public class PlayerAetherRenderer {
         float f3 = this.interpolateRotation(player.prevRotationYawHead, player.rotationYawHead, partialTicks);
         float f4;
 
-        if (player.isRiding() && player.ridingEntity instanceof EntityLivingBase) {
-            EntityLivingBase entitylivingbase1 = (EntityLivingBase) player.ridingEntity;
-            f2 = this.interpolateRotation(entitylivingbase1.prevRenderYawOffset, entitylivingbase1.renderYawOffset, partialTicks);
+        if (player.isRiding() && player.ridingEntity instanceof EntityLivingBase entitylivingbase1) {
+			f2 = this.interpolateRotation(entitylivingbase1.prevRenderYawOffset, entitylivingbase1.renderYawOffset, partialTicks);
             f4 = MathHelper.wrapAngleTo180_float(f3 - f2);
 
             if (f4 < -85.0F) {

@@ -4,7 +4,6 @@ import net.minecraft.client.gui.inventory.*;
 import cpw.mods.fml.relauncher.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.world.*;
-import net.minecraft.inventory.*;
 import net.minecraft.util.*;
 import org.lwjgl.opengl.*;
 

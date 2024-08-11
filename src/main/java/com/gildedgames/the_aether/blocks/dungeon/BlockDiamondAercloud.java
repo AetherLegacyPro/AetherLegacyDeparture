@@ -44,8 +44,7 @@ public class BlockDiamondAercloud extends Block implements IColoredBlock, INamed
 		
 		//diamond aercloud
 			if (world.getBlockMetadata(x, y, z) == 0) {
-				if (entity instanceof EntityPlayer) {
-					EntityPlayer player = (EntityPlayer) entity;									
+				if (entity instanceof EntityPlayer player) {
 
 					entity.motionY = 2.5D;
 				} else {
@@ -65,9 +64,8 @@ public class BlockDiamondAercloud extends Block implements IColoredBlock, INamed
 		
 		//sapphire aercloud
 		if (world.getBlockMetadata(x, y, z) == 1) {
-			if (entity instanceof EntityPlayer) {
-				EntityPlayer player = (EntityPlayer) entity;
-				
+			if (entity instanceof EntityPlayer player) {
+
 				entity.motionX = 2.5D;
 				entity.motionZ = 2.5D;
 			} else {
@@ -86,9 +84,8 @@ public class BlockDiamondAercloud extends Block implements IColoredBlock, INamed
 		}
 		//amethyst aercloud
 		else if (world.getBlockMetadata(x, y, z) == 2) {
-				if (entity instanceof EntityPlayer) {
-					EntityPlayer player = (EntityPlayer) entity;
-									
+				if (entity instanceof EntityPlayer player) {
+
 					entity.motionX = -2.5D;
 					entity.motionZ = -2.5D;
 				} else {

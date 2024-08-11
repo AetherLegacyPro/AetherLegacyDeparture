@@ -50,9 +50,8 @@ public class AIEntityFlyingMob extends EntityAIBase
     }
     
     public void updateTask() {
-        if (this.targetedEntity instanceof EntityPlayer) {
-            final EntityPlayer player = (EntityPlayer)this.targetedEntity;
-            if (player.capabilities.isCreativeMode) {
+        if (this.targetedEntity instanceof EntityPlayer player) {
+			if (player.capabilities.isCreativeMode) {
                 this.targetedEntity = null;
             }
         }

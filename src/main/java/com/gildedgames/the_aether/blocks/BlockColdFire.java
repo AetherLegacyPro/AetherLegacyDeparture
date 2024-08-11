@@ -80,23 +80,20 @@ public class BlockColdFire extends BlockFire
     
     @Override
 	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
-		if (entity instanceof EntityPlayer) {
-			EntityPlayer player = (EntityPlayer) entity;
-			
+		if (entity instanceof EntityPlayer player) {
+
 			entity.attackEntityFrom(DamageSource.magic, 1.0F);
 			player.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 120, 0));
 			player.addPotionEffect(new PotionEffect(Potion.digSlowdown.id, 140, 0));
 		
 		}
-		if (entity instanceof EntityCyro) {
-			EntityCyro player = (EntityCyro) entity;
-			
+		if (entity instanceof EntityCyro player) {
+
 			player.addPotionEffect(new PotionEffect(Potion.regeneration.id, 60, 1));
 		
 		}
-		if (entity instanceof EntityCyroGuardian) {
-			EntityCyroGuardian player = (EntityCyroGuardian) entity;
-			
+		if (entity instanceof EntityCyroGuardian player) {
+
 			player.addPotionEffect(new PotionEffect(Potion.regeneration.id, 100, 3));
 		
 		}

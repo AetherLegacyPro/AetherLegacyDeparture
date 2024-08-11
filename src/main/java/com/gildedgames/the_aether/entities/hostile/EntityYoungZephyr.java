@@ -2,7 +2,6 @@ package com.gildedgames.the_aether.entities.hostile;
 
 import net.minecraft.entity.monster.*;
 import net.minecraft.world.*;
-import net.minecraft.entity.ai.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.util.*;
 import net.minecraft.entity.*;
@@ -80,9 +79,8 @@ public class EntityYoungZephyr extends EntityAetherIIMob implements IMob, IFlyin
     
     public void onLivingUpdate() {
         super.onLivingUpdate();
-        if (this.entityToAttack instanceof EntityPlayer) {
-            final EntityPlayer player = (EntityPlayer)this.entityToAttack;
-            if (player.capabilities.isCreativeMode) {
+        if (this.entityToAttack instanceof EntityPlayer player) {
+			if (player.capabilities.isCreativeMode) {
                 this.entityToAttack = null;
             }
         }
@@ -280,11 +278,10 @@ public class EntityYoungZephyr extends EntityAetherIIMob implements IMob, IFlyin
     {
         super.onDeath(p_70645_1_);
 
-        if (p_70645_1_.getEntity() instanceof EntityPlayer)
+        if (p_70645_1_.getEntity() instanceof EntityPlayer entityplayer)
         {
-            EntityPlayer entityplayer = (EntityPlayer)p_70645_1_.getEntity();
-            
-            entityplayer.triggerAchievement(AchievementsAether.aether_hunter);
+
+			entityplayer.triggerAchievement(AchievementsAether.aether_hunter);
             
         }
             

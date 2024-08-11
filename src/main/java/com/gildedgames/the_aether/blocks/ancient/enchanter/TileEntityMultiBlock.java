@@ -6,8 +6,6 @@ import net.minecraft.util.*;
 import net.minecraft.nbt.*;
 import net.minecraft.block.*;
 import net.minecraft.world.chunk.*;
-import net.minecraft.entity.*;
-import net.minecraft.item.*;
 import net.minecraft.network.play.server.*;
 import net.minecraft.network.*;
 import cpw.mods.fml.relauncher.*;
@@ -134,9 +132,8 @@ public class TileEntityMultiBlock extends TileEntity implements IRotatable
     }
     
     public void updateEntity() {
-        if (!this.hasInit && this.getBlockType() instanceof BlockMultiTileEntity) {
-            final BlockMultiTileEntity block = (BlockMultiTileEntity)this.getBlockType();
-            final Action checkLoadedChunks = new Action(block) {
+        if (!this.hasInit && this.getBlockType() instanceof BlockMultiTileEntity block) {
+			final Action checkLoadedChunks = new Action(block) {
                 @Override
                 public Object onAction(final World world, final int x, final int y, final int z, final Block blockID, final int blockMetadata) {
                     return false;

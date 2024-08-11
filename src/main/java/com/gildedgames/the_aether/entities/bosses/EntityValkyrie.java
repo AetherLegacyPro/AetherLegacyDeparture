@@ -235,8 +235,7 @@ public class EntityValkyrie extends EntityAetherMob {
 			this.sinage -= (3.141593F * 2F);
 		}
 
-		if (this.getAttackTarget() instanceof EntityPlayer) {
-			EntityPlayer player = (EntityPlayer) this.getAttackTarget();
+		if (this.getAttackTarget() instanceof EntityPlayer player) {
 
 			if (this.getHealth() <= 0) {
 				int pokey = rand.nextInt(3);
@@ -352,8 +351,7 @@ public class EntityValkyrie extends EntityAetherMob {
 			this.attackTime = 20;
 			swingArm();
 			flag = entity.attackEntityFrom(DamageSource.causeMobDamage(this), 7);
-			if (entity != null && this.getAttackTarget() != null && entity == getAttackTarget() && entity instanceof EntityPlayer) {
-				EntityPlayer player = (EntityPlayer) entity;
+			if (entity != null && this.getAttackTarget() != null && entity == getAttackTarget() && entity instanceof EntityPlayer player) {
 				if (player.getHealth() <= 0) {
 					int pokey = this.rand.nextInt(3);
 

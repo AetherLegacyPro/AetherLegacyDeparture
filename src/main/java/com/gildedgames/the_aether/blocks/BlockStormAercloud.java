@@ -42,8 +42,7 @@ public class BlockStormAercloud extends Block implements IColoredBlock, INamedBl
 		entity.fallDistance = 0;
 
 		if (world.getBlockMetadata(x, y, z) == 1) {
-			if (entity instanceof EntityPlayer) {
-				EntityPlayer player = (EntityPlayer) entity;
+			if (entity instanceof EntityPlayer player) {
 
 				player.triggerAchievement(AchievementsAether.blue_cloud);
 

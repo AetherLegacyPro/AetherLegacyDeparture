@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.entities.hostile;
 
 import net.minecraft.entity.EnumCreatureAttribute;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Vec3;
 
@@ -237,11 +236,10 @@ public class EntityAercenturion extends EntityMob
     {
         super.onDeath(p_70645_1_);
 
-        if (p_70645_1_.getEntity() instanceof EntityPlayer)
+        if (p_70645_1_.getEntity() instanceof EntityPlayer entityplayer)
         {
-            EntityPlayer entityplayer = (EntityPlayer)p_70645_1_.getEntity();
-            
-            entityplayer.triggerAchievement(AchievementsAether.kill_aercenturion);
+
+			entityplayer.triggerAchievement(AchievementsAether.kill_aercenturion);
             
         }
             

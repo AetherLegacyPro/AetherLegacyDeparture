@@ -103,8 +103,7 @@ public class EntitySentry extends EntityAetherMob implements IMob {
 
 			entity.attackEntityFrom(DamageSource.causeMobDamage(this), 2.0F);
 
-			if (entity instanceof EntityLivingBase) {
-				EntityLivingBase entityliving = (EntityLivingBase) entity;
+			if (entity instanceof EntityLivingBase entityliving) {
 
 				double d = entityliving.posX - this.posX;
 				double d2;

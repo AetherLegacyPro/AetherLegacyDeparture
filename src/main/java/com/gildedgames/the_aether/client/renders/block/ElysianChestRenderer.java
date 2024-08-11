@@ -9,7 +9,6 @@ import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.tileentity.TileEntityElysianChest;
 
 import net.minecraft.client.renderer.tileentity.*;
-import net.minecraft.tileentity.*;
 import net.minecraft.world.*;
 
 public class ElysianChestRenderer implements ISimpleBlockRenderingHandler

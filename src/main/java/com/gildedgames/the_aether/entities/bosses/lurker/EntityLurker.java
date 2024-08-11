@@ -259,10 +259,9 @@ public class EntityLurker extends EntityBossMob implements IAetherBoss {
             this.moveStrafing = this.moveForward = 0;
         } else {
             if (this.getEntityToAttack() != null) {
-                if (this.getEntityToAttack() instanceof EntityPlayer) {
-                    EntityPlayer target = (EntityPlayer) this.getEntityToAttack();
+                if (this.getEntityToAttack() instanceof EntityPlayer target) {
 
-                    if (target != null) {
+					if (target != null) {
                         if (target.posY > this.posY) {
                             timeUntilTeleportToPlayer++;
 
@@ -487,16 +486,14 @@ public class EntityLurker extends EntityBossMob implements IAetherBoss {
 
     @Override
     public boolean attackEntityFrom(DamageSource ds, float i) {
-        if (ds.getEntity() instanceof EntityPlayer) {
+        if (ds.getEntity() instanceof EntityPlayer player) {
         	
         	if (ds.isExplosion())
             {
                 return false;
             }
-        	
-            EntityPlayer player = (EntityPlayer) ds.getEntity();
 
-            if (this.worldObj.difficultySetting == EnumDifficulty.PEACEFUL) {
+			if (this.worldObj.difficultySetting == EnumDifficulty.PEACEFUL) {
                 this.spawnExplosionParticle();
                 chatItUp(player, StatCollector.translateToLocal("gui.urker.dialog.peaceful"));
                 return false;
@@ -683,10 +680,9 @@ public class EntityLurker extends EntityBossMob implements IAetherBoss {
         flag = entity.attackEntityFrom(DamageSource.magic, 14);	
          }
         }
-        if (entity != null && this.getEntityToAttack() != null && entity == this.getEntityToAttack() && entity instanceof EntityPlayer) {
-            EntityPlayer player = (EntityPlayer) entity;
+        if (entity != null && this.getEntityToAttack() != null && entity == this.getEntityToAttack() && entity instanceof EntityPlayer player) {
 
-            if (player.getHealth() <= 0 || player.isDead) {
+			if (player.getHealth() <= 0 || player.isDead) {
                 this.setTarget(null);
                 this.angerLevel = this.chatTime = 0;
                 this.chatItUp(player, StatCollector.translateToLocal("gui.urker.dialog.lost"));

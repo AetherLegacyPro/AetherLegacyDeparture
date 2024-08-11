@@ -9,7 +9,6 @@ import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.tileentity.TileEntityTreasureChestBreakable;
 
 import net.minecraft.client.renderer.tileentity.*;
-import net.minecraft.tileentity.*;
 import net.minecraft.world.*;
 
 public class TreasureChestBreakableRenderer implements ISimpleBlockRenderingHandler

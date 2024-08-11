@@ -45,11 +45,10 @@ public class PacketUpdateDexterityShardCount extends AetherPacket<PacketUpdateDe
         {
             Entity entity = player.worldObj.getEntityByID(message.entityID);
 
-            if (entity instanceof EntityPlayer)
+            if (entity instanceof EntityPlayer parent)
             {
-                EntityPlayer parent = (EntityPlayer) entity;
 
-                IPlayerAether iPlayerAether = AetherAPI.get(parent);
+				IPlayerAether iPlayerAether = AetherAPI.get(parent);
 
                 if (iPlayerAether != null)
                 {

@@ -302,14 +302,13 @@ public class EntityFlynx extends EntityTameable
         {
             return false;
         }
-        else if (!(p_70878_1_ instanceof EntityFlynx))
+        else if (!(p_70878_1_ instanceof EntityFlynx entityflynx))
         {
             return false;
         }
         else
         {
-        	EntityFlynx entityflynx = (EntityFlynx)p_70878_1_;
-            return !entityflynx.isTamed() ? false : this.isInLove() && entityflynx.isInLove();
+			return !entityflynx.isTamed() ? false : this.isInLove() && entityflynx.isInLove();
         }
     }
 

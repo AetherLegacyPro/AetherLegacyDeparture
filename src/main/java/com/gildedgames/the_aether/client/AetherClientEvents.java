@@ -574,8 +574,7 @@ public class AetherClientEvents {
 
 	@SubscribeEvent
 	public void onMouseClicked(DrawScreenEvent.Post event) {
-		if (Minecraft.getMinecraft().currentScreen instanceof GuiContainerCreative) {
-			GuiContainerCreative guiScreen = (GuiContainerCreative) Minecraft.getMinecraft().currentScreen;
+		if (Minecraft.getMinecraft().currentScreen instanceof GuiContainerCreative guiScreen) {
 
 			if (previousSelectedTabIndex != guiScreen.func_147056_g()) {
 				List<GuiButton> buttonList = ObfuscationReflectionHelper.getPrivateValue(GuiScreen.class, (GuiScreen) guiScreen, 4);

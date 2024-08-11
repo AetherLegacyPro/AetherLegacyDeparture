@@ -62,9 +62,8 @@ public class BlockSunAltar extends Block {
 
 		if (player.dimension == AetherConfig.getAetherDimensionID())
 		{
-			if (world.provider instanceof AetherWorldProvider)
+			if (world.provider instanceof AetherWorldProvider provider)
 			{
-				AetherWorldProvider provider = (AetherWorldProvider) world.provider;
 
 				MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
 

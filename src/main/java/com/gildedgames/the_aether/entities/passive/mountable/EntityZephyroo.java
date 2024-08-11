@@ -59,10 +59,9 @@ public class EntityZephyroo extends EntityAetherAnimal
             this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(25.0);
         }
         for (final Entity entity : entitiesAround) {
-            if (entity instanceof EntityPlayer) {
-                final EntityPlayer player = (EntityPlayer)entity;
-                
-            }
+            if (entity instanceof EntityPlayer player) {
+
+			}
         }
         if (!foundPlayer) {
             this.entityToAttack = null;
@@ -162,11 +161,10 @@ public class EntityZephyroo extends EntityAetherAnimal
     {
         super.onDeath(p_70645_1_);
 
-        if (p_70645_1_.getEntity() instanceof EntityPlayer)
+        if (p_70645_1_.getEntity() instanceof EntityPlayer entityplayer)
         {
-            EntityPlayer entityplayer = (EntityPlayer)p_70645_1_.getEntity();
-            
-            entityplayer.triggerAchievement(AchievementsAether.kill_zephyroo);
+
+			entityplayer.triggerAchievement(AchievementsAether.kill_zephyroo);
             
         }
             

@@ -86,8 +86,7 @@ public class TileEntityIncubator extends AetherTileEntity {
 		}
 
 		if (this.progress >= this.ticksRequired) {
-			if (this.getStackInSlot(1).getItem() instanceof ItemMoaEgg) {
-				ItemMoaEgg moaEgg = (ItemMoaEgg) this.getStackInSlot(1).getItem();
+			if (this.getStackInSlot(1).getItem() instanceof ItemMoaEgg moaEgg) {
 
 				if (this.owner != null) {
 					this.owner.triggerAchievement(AchievementsAether.incubator);

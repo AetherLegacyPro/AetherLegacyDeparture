@@ -113,11 +113,10 @@ public class ItemSwettyBall extends Item {
             return true;
         }
 
-        if (block instanceof IGrowable)
+        if (block instanceof IGrowable igrowable)
         {
-            IGrowable igrowable = (IGrowable)block;
 
-            if (igrowable.func_149851_a(p_150919_1_, p_150919_2_, p_150919_3_, p_150919_4_, p_150919_1_.isRemote))
+			if (igrowable.func_149851_a(p_150919_1_, p_150919_2_, p_150919_3_, p_150919_4_, p_150919_1_.isRemote))
             {
                 if (!p_150919_1_.isRemote)
                 {

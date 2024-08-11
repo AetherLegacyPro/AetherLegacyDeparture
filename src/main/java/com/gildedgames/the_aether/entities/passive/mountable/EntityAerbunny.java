@@ -6,17 +6,14 @@ import com.gildedgames.the_aether.entities.passive.EntityAetherAnimal;
 import com.gildedgames.the_aether.items.ItemsAether;
 
 import io.netty.buffer.ByteBuf;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIFollowParent;
 import net.minecraft.entity.ai.EntityAIMate;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAITempt;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
-import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -156,10 +153,9 @@ public class EntityAerbunny extends EntityAetherAnimal implements IEntityAdditio
             this.motionY = -0.1D;
         }
 
-        if (this.ridingEntity != null && this.ridingEntity instanceof EntityPlayer) {
-            EntityPlayer player = (EntityPlayer) this.ridingEntity;
+        if (this.ridingEntity != null && this.ridingEntity instanceof EntityPlayer player) {
 
-            if (this.worldObj.isRemote) {
+			if (this.worldObj.isRemote) {
                 for (int k = 0; k < 3; k++) {
                     double d2 = (float) this.posX + this.rand.nextFloat() * 0.25F;
                     double d5 = (float) this.posY + this.height + 0.125F;

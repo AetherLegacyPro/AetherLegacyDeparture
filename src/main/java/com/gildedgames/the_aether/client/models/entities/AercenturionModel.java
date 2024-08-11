@@ -111,9 +111,8 @@ public class AercenturionModel extends ModelBiped
     
     public void setRotationAngles(final float f, final float f1, final float f2, final float f3, final float f4, final float f5, final Entity entity) {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-        if (entity instanceof EntityAercenturion) {
-            final EntityAercenturion entityS = (EntityAercenturion)entity;
-            //this.armState = entityS.getHandState();
+        if (entity instanceof EntityAercenturion entityS) {
+			//this.armState = entityS.getHandState();
             //if (entityS.progress < this.armsAngles[this.armState]) {
                // final EntityAercenturion entitySentryGolem = entityS;
                 //entitySentryGolem.progress += 0.02f;

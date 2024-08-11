@@ -44,8 +44,7 @@ public class BlockGreenAercloud extends Block implements IColoredBlock, INamedBl
 		
 		//green
 		if (world.getBlockMetadata(x, y, z) == 0) {
-			if (entity instanceof EntityPlayer) {
-				EntityPlayer player = (EntityPlayer) entity;
+			if (entity instanceof EntityPlayer player) {
 
 				if (player.isSneaking()) {
 					if (entity.motionX < 0) {
@@ -71,8 +70,7 @@ public class BlockGreenAercloud extends Block implements IColoredBlock, INamedBl
 		}
 			//gold aercloud
 		else if (world.getBlockMetadata(x, y, z) == 1) {
-				if (entity instanceof EntityPlayer) {
-					EntityPlayer player = (EntityPlayer) entity;
+				if (entity instanceof EntityPlayer player) {
 
 					if (player.isSneaking()) {
 						if (entity.motionX < 0) {
@@ -96,8 +94,7 @@ public class BlockGreenAercloud extends Block implements IColoredBlock, INamedBl
 		}
 		
 		else if (world.getBlockMetadata(x, y, z) == 2) {
-			if (entity instanceof EntityPlayer) {
-				EntityPlayer player = (EntityPlayer) entity;
+			if (entity instanceof EntityPlayer player) {
 
 				if (player.isSneaking()) {
 					if (entity.motionX < 0) {

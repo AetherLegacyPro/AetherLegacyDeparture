@@ -70,8 +70,7 @@ public class AetherEnchantment extends RegistryEntry {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof AetherEnchantment) {
-			AetherEnchantment freezable = (AetherEnchantment) obj;
+		if (obj instanceof AetherEnchantment freezable) {
 
 			boolean inputCheck = this.getInput().getItem() == freezable.getInput().getItem() && this.getInput().getItemDamage() == freezable.getInput().getItemDamage();
 			boolean outputCheck = this.getOutput().getItem() == freezable.getOutput().getItem() && this.getOutput().getItemDamage() == freezable.getOutput().getItemDamage();

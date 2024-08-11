@@ -46,8 +46,7 @@ public class BlockDungeonTrap2 extends Block {
 	@Override
 	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
 		if (world.getBlockMetadata(x, y, z) == 0) {
-			if (entity instanceof EntityPlayer) {
-				EntityPlayer player = (EntityPlayer) entity;
+			if (entity instanceof EntityPlayer player) {
 
 				if (player.isSneaking()) {
 					if (entity.motionY < 0) {

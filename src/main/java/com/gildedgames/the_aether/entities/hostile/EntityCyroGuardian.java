@@ -183,11 +183,10 @@ public class EntityCyroGuardian extends EntityBossMob implements IAetherBoss
     
     @Override
     public boolean attackEntityFrom(DamageSource ds, float var2) {
-    	if (ds.getEntity() == null || !(ds.getEntity() instanceof EntityPlayer)) {
+    	if (ds.getEntity() == null || !(ds.getEntity() instanceof EntityPlayer player)) {
     		 return false;
     	}
-    	EntityPlayer player = (EntityPlayer) ds.getEntity();
-    	boolean flag = super.attackEntityFrom(ds, Math.max(0, var2));
+		boolean flag = super.attackEntityFrom(ds, Math.max(0, var2));
     	
     	if (flag) {
     	if (this.getHealth() <= 0 || this.isDead) {

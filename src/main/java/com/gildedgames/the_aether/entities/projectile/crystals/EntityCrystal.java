@@ -158,10 +158,9 @@ public class EntityCrystal extends EntityFlying implements IEntityAdditionalSpaw
         super.applyEntityCollision(entity);
         boolean flag;
 
-        if (entity instanceof EntityCrystal && this.worldObj.difficultySetting == EnumDifficulty.HARD) {
-            EntityCrystal crystal = (EntityCrystal) entity;
+        if (entity instanceof EntityCrystal crystal && this.worldObj.difficultySetting == EnumDifficulty.HARD) {
 
-            if (this.type != crystal.type) {
+			if (this.type != crystal.type) {
                 this.explode();
                 this.expire();
                 this.setDead();

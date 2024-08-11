@@ -19,9 +19,8 @@ public class ZephyrooRenderer extends RenderLiving
     
     public void doRender(final EntityLiving par1EntityLiving, final double par2, final double par4, final double par6, final float par8, final float par9) {
         super.doRender(par1EntityLiving, par2, par4, par6, par8, par9);
-        if (par1EntityLiving instanceof EntityZephyroo) {
-            final EntityZephyroo roo = (EntityZephyroo)par1EntityLiving;           
-        }
+        if (par1EntityLiving instanceof EntityZephyroo roo) {
+		}
     }
     
     protected ResourceLocation getEntityTexture(final Entity entity) {

@@ -61,8 +61,7 @@ public class BlockAercloudLayer3 extends Block
 		
 		//blue aercloud
 		if (world.getBlockMetadata(x, y, z) == 1) {
-			if (entity instanceof EntityPlayer) {
-				EntityPlayer player = (EntityPlayer) entity;
+			if (entity instanceof EntityPlayer player) {
 
 				if (player.isSneaking()) {
 					if (entity.motionY < 0) {
@@ -88,8 +87,7 @@ public class BlockAercloudLayer3 extends Block
 		}
 		
 		else if (world.getBlockMetadata(x, y, z) == 3) {
-			if (entity instanceof EntityPlayer) {
-				EntityPlayer player = (EntityPlayer) entity;
+			if (entity instanceof EntityPlayer player) {
 
 				if (player.isSneaking()) {
 					if (entity.motionZ < 0) {
@@ -115,8 +113,7 @@ public class BlockAercloudLayer3 extends Block
 		}
 		
 		else if (world.getBlockMetadata(x, y, z) == 4) {
-			if (entity instanceof EntityPlayer) {
-				EntityPlayer player = (EntityPlayer) entity;
+			if (entity instanceof EntityPlayer player) {
 
 				if (player.isSneaking()) {
 					if (entity.motionX < 0) {
@@ -142,8 +139,7 @@ public class BlockAercloudLayer3 extends Block
 		}
 			//gold aercloud
 		else if (world.getBlockMetadata(x, y, z) == 2) {
-				if (entity instanceof EntityPlayer) {
-					EntityPlayer player = (EntityPlayer) entity;
+				if (entity instanceof EntityPlayer player) {
 
 					if (player.isSneaking()) {
 						if (entity.motionY < 0) {

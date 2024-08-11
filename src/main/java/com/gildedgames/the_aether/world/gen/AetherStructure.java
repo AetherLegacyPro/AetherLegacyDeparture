@@ -279,9 +279,7 @@ public abstract class AetherStructure extends StructureComponent {
 		if (this.dungeonBoundingBox.isVecInside(posX, posY, posZ)) {
 			entity.setLocationAndAngles((double) posX + 0.5D, (double) posY + 0.5D, (double) posZ + 0.5D, 0.0F, 0.0F);
 
-			if (entity instanceof EntityLivingBase) {
-				EntityLivingBase livingEntity = ((EntityLivingBase) entity);
-
+			if (entity instanceof EntityLivingBase livingEntity) {
 				livingEntity.heal(livingEntity.getMaxHealth());
 			}
 

@@ -70,8 +70,7 @@ public class AetherAmplifier extends RegistryEntry {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof AetherAmplifier) {
-			AetherAmplifier freezable = (AetherAmplifier) obj;
+		if (obj instanceof AetherAmplifier freezable) {
 
 			boolean inputCheck = this.getInput().getItem() == freezable.getInput().getItem() && this.getInput().getItemDamage() == freezable.getInput().getItemDamage();
 			boolean outputCheck = this.getOutput().getItem() == freezable.getOutput().getItem() && this.getOutput().getItemDamage() == freezable.getOutput().getItemDamage();

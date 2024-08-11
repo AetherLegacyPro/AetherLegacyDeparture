@@ -96,8 +96,7 @@ public class BlockEnchanter extends BlockAetherContainer {
 	public void breakBlock(World worldIn, int x, int y, int z, Block block, int meta) {
 		TileEntity tileentity = worldIn.getTileEntity(x, y, z);
 
-		if (tileentity instanceof TileEntityEnchanter) {
-			TileEntityEnchanter tile = (TileEntityEnchanter) tileentity;
+		if (tileentity instanceof TileEntityEnchanter tile) {
 
 			for (int i1 = 0; i1 < tile.getSizeInventory(); ++i1) {
 				ItemStack itemstack = tile.getStackInSlot(i1);

@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Random;
 
 import com.gildedgames.the_aether.player.PlayerAether;
-import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;

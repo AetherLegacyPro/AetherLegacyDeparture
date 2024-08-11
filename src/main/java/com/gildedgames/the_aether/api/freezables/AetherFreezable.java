@@ -66,8 +66,7 @@ public class AetherFreezable extends RegistryEntry {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof AetherFreezable) {
-			AetherFreezable freezable = (AetherFreezable) obj;
+		if (obj instanceof AetherFreezable freezable) {
 
 			boolean inputCheck = this.getInput().getItem() == freezable.getInput().getItem() && this.getInput().getItemDamage() == freezable.getInput().getItemDamage();
 			boolean outputCheck = this.getOutput().getItem() == freezable.getOutput().getItem() && this.getOutput().getItemDamage() == freezable.getOutput().getItemDamage();

@@ -8,7 +8,6 @@ import cpw.mods.fml.client.*;
 import net.minecraft.util.*;
 import net.minecraft.init.*;
 import net.minecraft.entity.item.*;
-import net.minecraft.entity.*;
 import cpw.mods.fml.relauncher.*;
 import net.minecraft.network.play.server.*;
 import net.minecraft.network.*;

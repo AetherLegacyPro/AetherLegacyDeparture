@@ -48,8 +48,7 @@ public class BlockPinkAercloud extends Block implements IColoredBlock, INamedBlo
 		//pink aercloud
 	if (AetherConfig.shouldPinkAercloudRegen()) {	
 		if (world.getBlockMetadata(x, y, z) == 0) {
-			if (entity instanceof EntityPlayer) {
-				EntityPlayer player = (EntityPlayer) entity;
+			if (entity instanceof EntityPlayer player) {
 				((EntityLivingBase) entity).addPotionEffect(new PotionEffect(10, 20, 0));
 
 				}
@@ -58,8 +57,7 @@ public class BlockPinkAercloud extends Block implements IColoredBlock, INamedBlo
 		
 			//magenta aercloud		
 		else if (world.getBlockMetadata(x, y, z) == 1) {
-				if (entity instanceof EntityPlayer) {
-					EntityPlayer player = (EntityPlayer) entity;
+				if (entity instanceof EntityPlayer player) {
 					((EntityLivingBase) entity).addPotionEffect(new PotionEffect(10, 20, 0));
 					}
 				}
@@ -68,10 +66,9 @@ public class BlockPinkAercloud extends Block implements IColoredBlock, INamedBlo
 		
 		//orange aercloud
 		else if (world.getBlockMetadata(x, y, z) == 2) {
-				if (entity instanceof EntityPlayer) {
-					EntityPlayer player = (EntityPlayer) entity;
+				if (entity instanceof EntityPlayer player) {
 
-				
+
 				}
 
 			}

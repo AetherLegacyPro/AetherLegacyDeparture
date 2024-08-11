@@ -870,11 +870,10 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
      	
      	
         
-        if (ds.getEntity() == null || !(ds.getEntity() instanceof EntityPlayer)) {
+        if (ds.getEntity() == null || !(ds.getEntity() instanceof EntityPlayer player)) {
    		 return false;
         }
-        EntityPlayer player = (EntityPlayer) ds.getEntity();
-   		boolean flag = super.attackEntityFrom(ds, Math.max(0, i));
+		boolean flag = super.attackEntityFrom(ds, Math.max(0, i));
    	
    		if (flag) {
    		if (this.getHealth() <= 0 || this.isDead) {
@@ -1005,11 +1004,10 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
     {
         super.onDeath(p_70645_1_);
 
-        if (p_70645_1_.getEntity() instanceof EntityPlayer)
+        if (p_70645_1_.getEntity() instanceof EntityPlayer entityplayer)
         {
-            EntityPlayer entityplayer = (EntityPlayer)p_70645_1_.getEntity();
-            
-            entityplayer.triggerAchievement(AchievementsAether.defeat_palladium);
+
+			entityplayer.triggerAchievement(AchievementsAether.defeat_palladium);
             
         }
             

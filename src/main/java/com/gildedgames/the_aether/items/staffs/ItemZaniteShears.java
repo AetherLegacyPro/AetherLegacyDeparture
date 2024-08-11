@@ -63,10 +63,9 @@ public class ItemZaniteShears extends ItemShears
         {
             return false;
         }
-        if (entity instanceof IShearable)
+        if (entity instanceof IShearable target)
         {
-            IShearable target = (IShearable)entity;
-            if (target.isShearable(itemstack, entity.worldObj, (int)entity.posX, (int)entity.posY, (int)entity.posZ))
+			if (target.isShearable(itemstack, entity.worldObj, (int)entity.posX, (int)entity.posY, (int)entity.posZ))
             {
                 ArrayList<ItemStack> drops = target.onSheared(itemstack, entity.worldObj, (int)entity.posX, (int)entity.posY, (int)entity.posZ,
                         EnchantmentHelper.getEnchantmentLevel(Enchantment.fortune.effectId, itemstack));
@@ -94,10 +93,9 @@ public class ItemZaniteShears extends ItemShears
             return false;
         }
         Block block = player.worldObj.getBlock(x, y, z);
-        if (block instanceof IShearable)
+        if (block instanceof IShearable target)
         {
-            IShearable target = (IShearable)block;
-            if (target.isShearable(itemstack, player.worldObj, x, y, z))
+			if (target.isShearable(itemstack, player.worldObj, x, y, z))
             {
                 ArrayList<ItemStack> drops = target.onSheared(itemstack, player.worldObj, x, y, z,
                         EnchantmentHelper.getEnchantmentLevel(Enchantment.fortune.effectId, itemstack));

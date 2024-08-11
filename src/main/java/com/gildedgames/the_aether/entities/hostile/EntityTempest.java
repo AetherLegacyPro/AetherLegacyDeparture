@@ -223,9 +223,8 @@ public class EntityTempest extends EntityAetherMob implements IMob
     }
     
     protected void attackEntity(final Entity entity, final float f) {
-        if (entity instanceof EntityLivingBase) {
-            EntityLivingBase target = (EntityLivingBase)entity;
-            if (f < 10.0f) {
+        if (entity instanceof EntityLivingBase target) {
+			if (f < 10.0f) {
                 final double d = entity.posX - this.posX;
                 final double d2 = entity.posZ - this.posZ;
                 if (target != null) {
@@ -268,11 +267,10 @@ public class EntityTempest extends EntityAetherMob implements IMob
     {
         super.onDeath(p_70645_1_);
 
-        if (p_70645_1_.getEntity() instanceof EntityPlayer)
+        if (p_70645_1_.getEntity() instanceof EntityPlayer entityplayer)
         {
-            EntityPlayer entityplayer = (EntityPlayer)p_70645_1_.getEntity();
-            
-            entityplayer.triggerAchievement(AchievementsAether.aether_hunter);
+
+			entityplayer.triggerAchievement(AchievementsAether.aether_hunter);
             
         }
             

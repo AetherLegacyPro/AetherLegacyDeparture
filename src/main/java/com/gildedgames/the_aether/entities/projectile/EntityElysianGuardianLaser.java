@@ -8,7 +8,6 @@ import com.gildedgames.the_aether.blocks.BlocksAether;
 
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.entity.monster.EntityEnderman;
-import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S12PacketEntityVelocity;
 import net.minecraft.network.play.server.S2BPacketChangeGameState;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -16,7 +15,6 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.block.material.Material;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -275,9 +273,8 @@ public class EntityElysianGuardianLaser extends Entity implements IProjectile
             if (entity != null) {
                 movingobjectposition = new MovingObjectPosition(entity);
             }
-            if (movingobjectposition != null && movingobjectposition.entityHit instanceof EntityPlayer) {
-                final EntityPlayer entityplayer = (EntityPlayer)movingobjectposition.entityHit;
-                if (entityplayer.capabilities.disableDamage || (this.shootingEntity instanceof EntityPlayer && !((EntityPlayer)this.shootingEntity).canAttackPlayer(entityplayer))) {
+            if (movingobjectposition != null && movingobjectposition.entityHit instanceof EntityPlayer entityplayer) {
+				if (entityplayer.capabilities.disableDamage || (this.shootingEntity instanceof EntityPlayer && !((EntityPlayer)this.shootingEntity).canAttackPlayer(entityplayer))) {
                     movingobjectposition = null;
                 }
             }
@@ -295,9 +292,8 @@ public class EntityElysianGuardianLaser extends Entity implements IProjectile
                         this.setDead();
                     }
                     if (movingobjectposition.entityHit.attackEntityFrom(damagesource, (float)k)) {
-                        if (movingobjectposition.entityHit instanceof EntityLivingBase) {
-                            final EntityLivingBase entitylivingbase = (EntityLivingBase)movingobjectposition.entityHit;
-                            if (this.shootingEntity != null && this.shootingEntity instanceof EntityLivingBase) {
+                        if (movingobjectposition.entityHit instanceof EntityLivingBase entitylivingbase) {
+							if (this.shootingEntity != null && this.shootingEntity instanceof EntityLivingBase) {
                                 EnchantmentHelper.func_151384_a(entitylivingbase, this.shootingEntity);
                                 EnchantmentHelper.func_151385_b((EntityLivingBase)this.shootingEntity, entitylivingbase);
                             }

@@ -73,8 +73,7 @@ public class EntityHook implements IExtendedEntityProperties {
 
 		this.entity.worldObj.theProfiler.endSection();
 
-		if (this.entity instanceof EntityLiving) {
-			EntityLiving livingEntity = (EntityLiving) this.entity;
+		if (this.entity instanceof EntityLiving livingEntity) {
 
 			if (livingEntity.getAttackTarget() instanceof EntityPlayer) {
 				PlayerAether playerAether = PlayerAether.get((EntityPlayer) livingEntity.getAttackTarget());
@@ -85,8 +84,7 @@ public class EntityHook implements IExtendedEntityProperties {
 			}
 		}
 
-		if (this.entity instanceof EntityCreature) {
-			EntityCreature creature = (EntityCreature) this.entity;
+		if (this.entity instanceof EntityCreature creature) {
 
 			if (creature.getEntityToAttack() instanceof EntityPlayer) {
 				PlayerAether playerAether = PlayerAether.get((EntityPlayer) creature.getEntityToAttack());
@@ -97,9 +95,8 @@ public class EntityHook implements IExtendedEntityProperties {
 			}
 		}
 
-		if (this.entity instanceof EntityLivingBase)
+		if (this.entity instanceof EntityLivingBase living)
 		{
-			EntityLivingBase living = (EntityLivingBase) this.entity;
 
 			if (living.getAITarget() instanceof EntityPlayer) {
 				PlayerAether playerAether = PlayerAether.get((EntityPlayer) living.getAITarget());

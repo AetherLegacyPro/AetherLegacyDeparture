@@ -5,7 +5,6 @@ import org.lwjgl.opengl.GL11;
 import com.gildedgames.the_aether.client.models.entities.ElysianGuardianModel;
 import com.gildedgames.the_aether.entities.bosses.EntityElysianGuardian;
 
-import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;

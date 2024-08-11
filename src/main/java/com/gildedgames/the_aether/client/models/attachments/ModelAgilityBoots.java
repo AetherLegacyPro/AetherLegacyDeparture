@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.client.models.attachments;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.model.ModelBiped;
 

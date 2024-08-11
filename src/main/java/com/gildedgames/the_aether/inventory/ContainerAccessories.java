@@ -63,8 +63,7 @@ public class ContainerAccessories extends ContainerPlayer {
 		int slotID = 0;
 
 		for (Slot checkSlot : this.inventorySlots) {
-			if (checkSlot instanceof SlotAccessory && !checkSlot.getHasStack()) {
-				SlotAccessory accessorySlot = (SlotAccessory) checkSlot;
+			if (checkSlot instanceof SlotAccessory accessorySlot && !checkSlot.getHasStack()) {
 
 				if (accessorySlot.getAccessoryType() == type) {
 					return slotID;

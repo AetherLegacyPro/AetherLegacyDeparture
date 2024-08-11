@@ -3,7 +3,6 @@ package com.gildedgames.the_aether.client.gui.dialogue;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;

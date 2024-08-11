@@ -103,9 +103,8 @@ public class EntityPoisonSnowball extends EntityArrow implements IThrowableEntit
 			movingobjectposition = new MovingObjectPosition(entity);
 		}
 
-		if (movingobjectposition != null && movingobjectposition.entityHit instanceof EntityPlayer)
+		if (movingobjectposition != null && movingobjectposition.entityHit instanceof EntityPlayer entityplayer)
 		{
-			EntityPlayer entityplayer = (EntityPlayer)movingobjectposition.entityHit;					
 			((EntityLivingBase) movingobjectposition.entityHit).addPotionEffect(new EffectInebriation(Potion.poison.id, 150, 1));
 	        ((EntityLivingBase) movingobjectposition.entityHit).addPotionEffect(new EffectInebriation(PotionInebriation.inebriation.id, 150, 0));
 	        

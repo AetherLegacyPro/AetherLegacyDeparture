@@ -5,8 +5,6 @@ import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.entity.EntityLivingBase;
 import org.lwjgl.opengl.GL11;
 
-import com.gildedgames.the_aether.entities.passive.EntityThunderlo;
-
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.client.renderer.entity.RenderLiving;

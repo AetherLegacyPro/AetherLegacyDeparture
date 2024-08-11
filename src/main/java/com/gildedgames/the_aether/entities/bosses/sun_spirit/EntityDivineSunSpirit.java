@@ -178,10 +178,9 @@ public class EntityDivineSunSpirit extends EntityFlying implements IMob, IAether
         this.velocity = 0.5D - (double) this.getHealth() / 70.0D * 0.2D;
         this.width = this.height = 2.0F;
 
-        if (this.getAttackTarget() instanceof EntityPlayer) {
+        if (this.getAttackTarget() instanceof EntityPlayer dungeonTarget) {
             List<?> dungeonPlayers = this.getPlayersInDungeon();
-            EntityPlayer dungeonTarget = (EntityPlayer) this.getAttackTarget();
-            PlayerAether playerAether = PlayerAether.get(dungeonTarget);
+			PlayerAether playerAether = PlayerAether.get(dungeonTarget);
 
             for (int i = 0; i < dungeonPlayers.size(); ++i) {
                 Entity entity = (Entity) dungeonPlayers.get(i);

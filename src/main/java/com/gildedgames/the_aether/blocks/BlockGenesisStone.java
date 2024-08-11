@@ -37,9 +37,8 @@ public class BlockGenesisStone extends Block {
 	
 	@Override
 	public void onEntityWalking(World world, int x, int y, int z, Entity entity) {
- 		if (entity instanceof EntityPlayer) {
-			EntityPlayer player = (EntityPlayer) entity;		
-		
+ 		if (entity instanceof EntityPlayer player) {
+
 		}
  		
  		if (entity instanceof EntityPlayer) {

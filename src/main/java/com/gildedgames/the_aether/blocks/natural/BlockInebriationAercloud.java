@@ -48,8 +48,7 @@ public class BlockInebriationAercloud extends Block implements IColoredBlock, IN
 		
 			//freezing aercloud
 		if (world.getBlockMetadata(x, y, z) == 1) {
-			if (entity instanceof EntityPlayer) {
-				EntityPlayer player = (EntityPlayer) entity;
+			if (entity instanceof EntityPlayer player) {
 				((EntityLivingBase) entity).addPotionEffect(new PotionEffect(2, 60, 3));
 
 				
@@ -59,8 +58,7 @@ public class BlockInebriationAercloud extends Block implements IColoredBlock, IN
 			//creeping aercloud
 		else if (world.getBlockMetadata(x, y, z) == 2) {
 									
-			if (entity instanceof EntityPlayer) {
-				EntityPlayer player = (EntityPlayer) entity;
+			if (entity instanceof EntityPlayer player) {
 				player.addPotionEffect(new PotionEffect(7, 20, 1));
 
 				
@@ -71,8 +69,7 @@ public class BlockInebriationAercloud extends Block implements IColoredBlock, IN
 		} 
 		    //inebriation aercloud
 		else if (world.getBlockMetadata(x, y, z) == 0) {
-			if (entity instanceof EntityPlayer) {
-				EntityPlayer player = (EntityPlayer) entity;
+			if (entity instanceof EntityPlayer player) {
 				player.addPotionEffect(new EffectInebriation(PotionInebriation.inebriation.id, 150, 0));
 
 				

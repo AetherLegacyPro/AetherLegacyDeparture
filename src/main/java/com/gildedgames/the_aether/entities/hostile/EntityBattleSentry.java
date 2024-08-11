@@ -107,8 +107,7 @@ public class EntityBattleSentry extends EntityLiving implements IMob {
 
 			entity.attackEntityFrom(DamageSource.causeMobDamage(this), 6.0F);
 
-			if (entity instanceof EntityLivingBase) {
-				EntityLivingBase entityliving = (EntityLivingBase) entity;
+			if (entity instanceof EntityLivingBase entityliving) {
 
 				double d = entityliving.posX - this.posX;
 				double d2;

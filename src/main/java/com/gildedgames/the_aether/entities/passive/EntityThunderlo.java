@@ -11,13 +11,9 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIFollowParent;
-import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.ai.EntityAITempt;
-import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.ai.EntityAIMate;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.ai.EntityAIBase;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.world.World;
@@ -109,10 +105,9 @@ public class EntityThunderlo extends EntityAetherAnimal
             this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(25.0);
         }
         for (final Entity entity : entitiesAround) {
-            if (entity instanceof EntityPlayer) {
-                final EntityPlayer player = (EntityPlayer)entity;
-                
-            }
+            if (entity instanceof EntityPlayer player) {
+
+			}
         }
         if (!foundPlayer) {
             this.entityToAttack = null;
@@ -157,11 +152,10 @@ public class EntityThunderlo extends EntityAetherAnimal
     {
         super.onDeath(p_70645_1_);
 
-        if (p_70645_1_.getEntity() instanceof EntityPlayer)
+        if (p_70645_1_.getEntity() instanceof EntityPlayer entityplayer)
         {
-            EntityPlayer entityplayer = (EntityPlayer)p_70645_1_.getEntity();
-            
-            entityplayer.triggerAchievement(AchievementsAether.kill_thunderlo);
+
+			entityplayer.triggerAchievement(AchievementsAether.kill_thunderlo);
             
         }
             

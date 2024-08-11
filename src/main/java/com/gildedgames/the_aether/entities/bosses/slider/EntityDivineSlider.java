@@ -471,9 +471,8 @@ public class EntityDivineSlider extends EntityFlying implements IAetherBoss {
         if (this.isAwake() && this.isMoving()) {
             boolean flag = entity.attackEntityFrom(new EntityDamageSource("crush", this), 20);
 
-            if (flag && entity instanceof EntityLivingBase) {
-                EntityLivingBase collidedEntity = (EntityLivingBase) entity;
-                collidedEntity.addVelocity(collidedEntity.motionY, 0.8D, collidedEntity.motionZ);
+            if (flag && entity instanceof EntityLivingBase collidedEntity) {
+				collidedEntity.addVelocity(collidedEntity.motionY, 0.8D, collidedEntity.motionZ);
                 this.worldObj.playSoundEffect(this.posX, this.posY, this.posZ, "aether_legacy:aeboss.slider.collide", 3F, 1.0F / (this.rand.nextFloat() * 0.3F + 0.8F));
 
                 this.stop();
@@ -535,12 +534,11 @@ public class EntityDivineSlider extends EntityFlying implements IAetherBoss {
 
     @Override
     public boolean attackEntityFrom(DamageSource ds, float var2) {
-        if (ds.getEntity() == null || !(ds.getEntity() instanceof EntityPlayer) || ds.isProjectile() || ds.isMagicDamage() || ds.isExplosion() || ds.isFireDamage()) {
+        if (ds.getEntity() == null || !(ds.getEntity() instanceof EntityPlayer player) || ds.isProjectile() || ds.isMagicDamage() || ds.isExplosion() || ds.isFireDamage()) {
             return false;
         }
 
-        EntityPlayer player = (EntityPlayer) ds.getEntity();
-        ItemStack stack = player.inventory.getCurrentItem();
+		ItemStack stack = player.inventory.getCurrentItem();
 
         if (stack == null || stack.getItem() == null) {
             return false;

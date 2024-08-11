@@ -36,8 +36,7 @@ public class AetherFreezableFuel extends RegistryEntry {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof AetherFreezableFuel) {
-			AetherFreezableFuel fuel = (AetherFreezableFuel) obj;
+		if (obj instanceof AetherFreezableFuel fuel) {
 
 			return this.getFuelStack().getItem() == fuel.getFuelStack().getItem() && this.getFuelStack().getItemDamage() == fuel.getFuelStack().getItemDamage();
 		}

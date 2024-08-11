@@ -37,8 +37,7 @@ public class AetherEnchantmentFuel extends RegistryEntry {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof AetherEnchantmentFuel) {
-			AetherEnchantmentFuel fuel = (AetherEnchantmentFuel) obj;
+		if (obj instanceof AetherEnchantmentFuel fuel) {
 
 			return this.getFuelStack().getItem() == fuel.getFuelStack().getItem() && this.getFuelStack().getItemDamage() == fuel.getFuelStack().getItemDamage();
 		}

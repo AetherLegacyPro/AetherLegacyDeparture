@@ -10,7 +10,6 @@ import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.client.models.entities.AercaModel;
 import com.gildedgames.the_aether.entities.hostile.EntityAerca;
 
-import net.minecraft.client.model.ModelBase;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.RenderLiving;

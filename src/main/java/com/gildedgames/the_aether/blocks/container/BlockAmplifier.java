@@ -190,8 +190,7 @@ public class BlockAmplifier extends BlockAetherContainer {
 	public void breakBlock(World worldIn, int x, int y, int z, Block block, int meta) {
 		TileEntity tileentity = worldIn.getTileEntity(x, y, z);
 
-		if (tileentity instanceof TileEntityAmplifier) {
-			TileEntityAmplifier tile = (TileEntityAmplifier) tileentity;
+		if (tileentity instanceof TileEntityAmplifier tile) {
 
 			for (int i1 = 0; i1 < tile.getSizeInventory(); ++i1) {
 				ItemStack itemstack = tile.getStackInSlot(i1);

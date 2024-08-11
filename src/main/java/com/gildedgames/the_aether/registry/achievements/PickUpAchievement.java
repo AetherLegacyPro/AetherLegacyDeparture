@@ -6,7 +6,6 @@ import com.gildedgames.the_aether.items.ItemsAether;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
 import net.minecraft.item.ItemStack;
-import net.minecraft.stats.StatBase;
 
 public class PickUpAchievement {
 	

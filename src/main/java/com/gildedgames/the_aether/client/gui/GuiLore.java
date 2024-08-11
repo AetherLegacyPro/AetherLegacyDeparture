@@ -1,7 +1,5 @@
 package com.gildedgames.the_aether.client.gui;
 
-import java.util.List;
-
 import com.gildedgames.the_aether.Aether;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiButton;

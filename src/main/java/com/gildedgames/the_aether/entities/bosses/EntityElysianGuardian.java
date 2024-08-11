@@ -6,7 +6,6 @@ import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
@@ -213,8 +212,7 @@ public class EntityElysianGuardian extends EntityMob {
 			this.sinage -= (3.141593F * 2F);
 		}
 
-		if (this.getAttackTarget() instanceof EntityPlayer) {
-			EntityPlayer player = (EntityPlayer) this.getAttackTarget();
+		if (this.getAttackTarget() instanceof EntityPlayer player) {
 
 			if (this.getHealth() <= 0) {			
 
@@ -258,8 +256,7 @@ public class EntityElysianGuardian extends EntityMob {
 	}
 
 	public boolean attackEntityFrom(DamageSource ds, float i) {
-		if (ds.getEntity() instanceof EntityPlayer && worldObj.difficultySetting != EnumDifficulty.PEACEFUL) {
-			EntityPlayer player = (EntityPlayer) ds.getEntity();
+		if (ds.getEntity() instanceof EntityPlayer player && worldObj.difficultySetting != EnumDifficulty.PEACEFUL) {
 
 			if (this.getAttackTarget() == null) {				
 
@@ -382,11 +379,10 @@ public class EntityElysianGuardian extends EntityMob {
     {
         super.onDeath(p_70645_1_);
 
-        if (p_70645_1_.getEntity() instanceof EntityPlayer)
+        if (p_70645_1_.getEntity() instanceof EntityPlayer entityplayer)
         {
-            EntityPlayer entityplayer = (EntityPlayer)p_70645_1_.getEntity();
-            
-            entityplayer.triggerAchievement(AchievementsAether.kill_elysian_guardian);
+
+			entityplayer.triggerAchievement(AchievementsAether.kill_elysian_guardian);
             
         }
             
