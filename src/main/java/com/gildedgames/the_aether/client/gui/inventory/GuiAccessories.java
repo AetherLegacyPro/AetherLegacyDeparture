@@ -2,7 +2,6 @@ package com.gildedgames.the_aether.client.gui.inventory;
 
 import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.client.AetherKeybinds;
-import com.gildedgames.the_aether.client.gui.button.GuiAccessoryButton;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -10,7 +9,6 @@ import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
 
-import net.minecraftforge.client.event.GuiScreenEvent;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
@@ -51,7 +49,7 @@ public class GuiAccessories extends GuiContainer {
 		super.setWorldAndResolution(mc, width, height);
 
 		for (int size = 0; size < this.buttonList.size(); ++size) {
-			GuiButton button = (GuiButton) this.buttonList.get(size);
+			GuiButton button = buttonList.get(size);
 			int id = button.id;
 
 			if (id == 13211) {
@@ -84,7 +82,6 @@ public class GuiAccessories extends GuiContainer {
 
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
-		;
 		GL11.glColor3d(1.0D, 1.0D, 1.0D);
 
 		this.mc.renderEngine.bindTexture(ACCESSORIES);

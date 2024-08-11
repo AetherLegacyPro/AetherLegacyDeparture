@@ -39,7 +39,7 @@ public class EntityZephyrSnowball extends EntityProjectileBase {
 	@Override
 	protected void onImpact(MovingObjectPosition object) {
 		if (object.entityHit instanceof EntityLivingBase) {
-			if (object.entityHit instanceof EntityPlayer && (PlayerAether.get((EntityPlayer) object.entityHit).getAccessoryInventory().wearingArmor(new ItemStack(ItemsAether.sentry_boots)) || PlayerAether.get((EntityPlayer) object.entityHit).getAccessoryInventory().wearingArmor(new ItemStack(ItemsAether.amplified_sentry_boots)) || PlayerAether.get((EntityPlayer) object.entityHit).getAccessoryInventory().wearingArmor(new ItemStack(ItemsAether.scaled_sentry_boots)))) {
+			if (object.entityHit instanceof EntityPlayer && (PlayerAether.get((EntityPlayer) object.entityHit).getAccessoryInventory().wearingArmor(ItemsAether.sentry_boots) || PlayerAether.get((EntityPlayer) object.entityHit).getAccessoryInventory().wearingArmor(ItemsAether.amplified_sentry_boots) || PlayerAether.get((EntityPlayer) object.entityHit).getAccessoryInventory().wearingArmor(ItemsAether.scaled_sentry_boots))) {
 				this.setDead();
 
 				return;

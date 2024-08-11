@@ -1,27 +1,14 @@
 package com.gildedgames.the_aether.player.abilities;
 
-import com.gildedgames.the_aether.api.accessories.AccessoryType;
 import com.gildedgames.the_aether.api.player.IPlayerAether;
 import com.gildedgames.the_aether.api.player.util.IAetherAbility;
 import com.gildedgames.the_aether.items.ItemsAether;
-import net.minecraft.block.Block;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.MathHelper;
-
 
 public class AbilityAuraliteRing implements IAetherAbility {
 
 	private final IPlayerAether player;
-
-	private boolean invisibilityUpdate;
-
-	private boolean stepUpdate;
 
 	public AbilityAuraliteRing(IPlayerAether player) {
 		this.player = player;
@@ -38,7 +25,7 @@ public class AbilityAuraliteRing implements IAetherAbility {
 	
 		Entity entity = this.player.getEntity();
 
-		if (this.player.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.auralite_ring)) || this.player.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.auralite_pendant)) || this.player.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.reinforced_auralite_pendant))) {
+		if (this.player.getAccessoryInventory().wearingAccessory(ItemsAether.auralite_ring) || this.player.getAccessoryInventory().wearingAccessory(ItemsAether.auralite_pendant) || this.player.getAccessoryInventory().wearingAccessory(ItemsAether.reinforced_auralite_pendant)) {
 			EntityLivingBase entityLiving = (EntityLivingBase) entity;
 
 			float movementLR = this.negativeDifference(entityLiving, entityLiving.moveStrafing);
@@ -57,7 +44,7 @@ public class AbilityAuraliteRing implements IAetherAbility {
 					}
 			
 				}
-		else if (this.player.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.auralite_ring)) && (this.player.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.auralite_pendant)) || this.player.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.reinforced_auralite_pendant)))) {
+		else if (this.player.getAccessoryInventory().wearingAccessory(ItemsAether.auralite_ring) && (this.player.getAccessoryInventory().wearingAccessory(ItemsAether.auralite_pendant) || this.player.getAccessoryInventory().wearingAccessory(ItemsAether.reinforced_auralite_pendant))) {
 			EntityLivingBase entityLiving = (EntityLivingBase) entity;
 
 			float movementLR = this.negativeDifference(entityLiving, entityLiving.moveStrafing);
@@ -77,7 +64,7 @@ public class AbilityAuraliteRing implements IAetherAbility {
 			
 				}
 		
-		else if (this.player.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.amplified_auralite_pendant))) {
+		else if (this.player.getAccessoryInventory().wearingAccessory(ItemsAether.amplified_auralite_pendant)) {
 			EntityLivingBase entityLiving = (EntityLivingBase) entity;
 
 			float movementLR = this.negativeDifference(entityLiving, entityLiving.moveStrafing);

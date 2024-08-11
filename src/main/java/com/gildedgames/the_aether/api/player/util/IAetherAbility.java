@@ -4,8 +4,12 @@ import net.minecraft.util.DamageSource;
 
 public interface IAetherAbility {
 
-	public void onUpdate();
+	void onUpdate();
 
-	public boolean shouldExecute();
+	boolean shouldExecute();
+
+	default boolean onPlayerAttacked(DamageSource source) {
+		return false;
+	}
 
 }

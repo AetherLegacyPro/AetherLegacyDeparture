@@ -645,7 +645,7 @@ public class AetherClientEvents {
 		PlayerAether playerAether = PlayerAether.get(player);
 
 		if (playerAether != null) {
-			if (playerAether.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.invisibility_cape))) {
+			if (playerAether.getAccessoryInventory().wearingAccessory(ItemsAether.invisibility_cape)) {
 				event.setCanceled(true);
 			}
 			

@@ -5,6 +5,7 @@ import io.netty.buffer.ByteBuf;
 import java.util.List;
 
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -13,130 +14,136 @@ import com.gildedgames.the_aether.api.accessories.AccessoryType;
 
 public interface IAccessoryInventory extends IInventory {
 
-	public void dropAccessories();
+	void dropAccessories();
 
-	public void damageAccessory(int damage, AccessoryType type);
+	void damageAccessory(int damage, AccessoryType type);
 
-	public void damageWornStack(int damage, ItemStack stack);
+	@Deprecated
+	void damageWornStack(int damage, ItemStack stack);
+	void damageWornItem(int damage, Item item);
 
-	public void setAccessorySlot(AccessoryType type, ItemStack stack);
+	void setAccessorySlot(AccessoryType type, ItemStack stack);
 
-	public ItemStack getStackInSlot(AccessoryType type);
+	ItemStack getStackInSlot(AccessoryType type);
 
-	public ItemStack removeStackFromAccessorySlot(AccessoryType type);
+	ItemStack removeStackFromAccessorySlot(AccessoryType type);
 
-	public boolean setAccessorySlot(ItemStack stack);
+	boolean setAccessorySlot(ItemStack stack);
 
-	public boolean wearingAccessory(ItemStack stack);
+	@Deprecated
+	boolean wearingAccessory(ItemStack stack);
+	boolean wearingAccessory(Item accessory);
 
-	public boolean wearingArmor(ItemStack stack);
+	@Deprecated
+	boolean wearingArmor(ItemStack stack);
+	boolean wearingArmor(Item armor);
 
-	public NBTTagList writeToNBT(NBTTagCompound compound);
+	NBTTagList writeToNBT(NBTTagCompound compound);
 
-	public void readFromNBT(NBTTagList list);
+	void readFromNBT(NBTTagList list);
 
-	public void writeData(ByteBuf buf);
+	void writeData(ByteBuf buf);
 
-	public void readData(ByteBuf buf);
+	void readData(ByteBuf buf);
 
-	public boolean isWearingZaniteSet();
+	boolean isWearingZaniteSet();
 
 	//---------------- Phoenix Armor
-	public boolean isWearingPhoenixSet();
+	boolean isWearingPhoenixSet();
 	
-	public boolean isWearingPhoenixComboSet();
+	boolean isWearingPhoenixComboSet();
 	
-	public boolean isWearingAmplifiedPhoenixSet();
+	boolean isWearingAmplifiedPhoenixSet();
 	
-	//public boolean isWearingScaledPhoenixSet();
+	//boolean isWearingScaledPhoenixSet();
 
 	//---------------- Obsidian Armor
-	public boolean isWearingObsidianSet();
+	boolean isWearingObsidianSet();
 	
-	public boolean isWearingObsidianComboSet();
+	boolean isWearingObsidianComboSet();
 	
-	public boolean isWearingAmplifiedObsidianSet();
+	boolean isWearingAmplifiedObsidianSet();
 	
-	//public boolean isWearingScaledObsidianSet();
+	//boolean isWearingScaledObsidianSet();
 	
 	//--------------- Arkenium Armor
-	public boolean isWearingArkeniumSet();
+	boolean isWearingArkeniumSet();
 	
-	public boolean isWearingArkeniumComboSet();
+	boolean isWearingArkeniumComboSet();
 	
-	public boolean isWearingAmplifiedArkeniumSet();
+	boolean isWearingAmplifiedArkeniumSet();
 	
-	//public boolean isWearingScaledArkeniumSet();
+	//boolean isWearingScaledArkeniumSet();
 	
 	//--------------- Continuum Armor
-	public boolean isWearingContinuumSet();
+	boolean isWearingContinuumSet();
 	
-	public boolean isWearingContinuumComboSet();
+	boolean isWearingContinuumComboSet();
 	
-	public boolean isWearingAmplifiedContinuumSet();
+	boolean isWearingAmplifiedContinuumSet();
 	
-	//public boolean isWearingScaledContinuumSet();
+	//boolean isWearingScaledContinuumSet();
 	
 	//---------------- Gravitite & Divineral CDFS
-	public boolean isWearingGravititeSet();
+	boolean isWearingGravititeSet();
 	
-	public boolean isWearingGravititeAndDivineralSet();
+	boolean isWearingGravititeAndDivineralSet();
 	
-	public boolean isWearingDivineralSet();
+	boolean isWearingDivineralSet();
 	
-	//public boolean isWearingScaledGravititeSet();
+	//boolean isWearingScaledGravititeSet();
 	
 	//---------------- Valkyrie Armor CDFS
-	public boolean isWearingValkyrieSet();
+	boolean isWearingValkyrieSet();
 	
-	public boolean isWearingValkyrieComboSet();
+	boolean isWearingValkyrieComboSet();
 	
-	public boolean isWearingAmplifiedValkyrieSet();
+	boolean isWearingAmplifiedValkyrieSet();
 	
 	//---------------- Neptune Armor CDFS
-	public boolean isWearingNeptuneSet();
+	boolean isWearingNeptuneSet();
 	
-	public boolean isWearingAmplifiedNeptuneSet();
+	boolean isWearingAmplifiedNeptuneSet();
 	
-	public boolean isWearingComboNeptuneSet();
+	boolean isWearingComboNeptuneSet();
 	
 	//---------------- Elysian Armor CDFS
-	public boolean isWearingElysianSet();
+	boolean isWearingElysianSet();
 	
 	//---------------- Agility Boots CDFS
-	public boolean isWearingAgilityBootsAndCape();
+	boolean isWearingAgilityBootsAndCape();
 	
-	public boolean isWearingAgilityBoots();
+	boolean isWearingAgilityBoots();
 	
-	public boolean isWearingAmplifiedAgilityBoots();
+	boolean isWearingAmplifiedAgilityBoots();
 	
-	public boolean isWearingAmplifiedAgilityBootsAndCape();
+	boolean isWearingAmplifiedAgilityBootsAndCape();
 	
-	public boolean isWearingPureSpeed();
+	boolean isWearingPureSpeed();
 	
 	//---------------- Valkyrie Ring CDFS
-	public boolean isWearingValkyrieRing();
+	boolean isWearingValkyrieRing();
 	
-	public boolean isWearingValkyrieRingAndAmplifiedArmor();
+	boolean isWearingValkyrieRingAndAmplifiedArmor();
 	
-	public boolean isWearingAmplifiedValkyrieRingAndAmplifiedArmor();
+	boolean isWearingAmplifiedValkyrieRingAndAmplifiedArmor();
 	
 	//---------------- Haste Ring CDFS
-	public boolean isWearingHasteRing();
+	boolean isWearingHasteRing();
 	
-	public boolean isWearingHasteRingAndArkenium();
+	boolean isWearingHasteRingAndArkenium();
 	
-	public boolean isWearingHasteRingAndArkeniumCombo();
+	boolean isWearingHasteRingAndArkeniumCombo();
 	
-	public boolean isWearingHasteRingAmpilifedArkenium();
+	boolean isWearingHasteRingAmpilifedArkenium();
 	
 	//--------------- Discharge Cape
-	public boolean isWearingDischargeCape();
+	boolean isWearingDischargeCape();
 	
-	public boolean isWearingAscensiteSet();
+	boolean isWearingAscensiteSet();
 
-	public List<ItemStack> getAccessories();
+	List<ItemStack> getAccessories();
 
-	public int getAccessoryCount(ItemStack stack);
+	int getAccessoryCount(ItemStack stack);
 
 }

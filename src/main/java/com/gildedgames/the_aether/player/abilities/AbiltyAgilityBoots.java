@@ -38,7 +38,7 @@ public class AbiltyAgilityBoots implements IAetherAbility {
 	
 		Entity entity = this.player.getEntity();
 
-		if ((this.player.getAccessoryInventory().wearingArmor(new ItemStack(ItemsAether.agility_boots)) || this.player.getAccessoryInventory().wearingArmor(new ItemStack(ItemsAether.scaled_agility_boots))))  {
+		if ((this.player.getAccessoryInventory().wearingArmor(ItemsAether.agility_boots) || this.player.getAccessoryInventory().wearingArmor(ItemsAether.scaled_agility_boots)))  {
 			EntityLivingBase entityLiving = (EntityLivingBase) entity;
 
 			float movementLR = this.negativeDifference(entityLiving, entityLiving.moveStrafing);
@@ -60,7 +60,7 @@ public class AbiltyAgilityBoots implements IAetherAbility {
 		
 		
 	
-		if (this.player.getAccessoryInventory().wearingArmor(new ItemStack(ItemsAether.agility_boots)) || this.player.getAccessoryInventory().wearingArmor(new ItemStack(ItemsAether.scaled_agility_boots))) {
+		if (this.player.getAccessoryInventory().wearingArmor(ItemsAether.agility_boots) || this.player.getAccessoryInventory().wearingArmor(ItemsAether.scaled_agility_boots)) {
 			if (!this.player.getEntity().isSneaking())
 			{
 				this.player.getEntity().stepHeight = 1.0F;

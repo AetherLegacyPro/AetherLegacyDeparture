@@ -35,7 +35,7 @@ public class ContainerAccessories extends ContainerPlayer {
 		this.playerAether = PlayerAether.get(player);
 		this.inventoryInstance = inventory;
 
-		for (Slot slot : (ArrayList<Slot>) this.inventorySlots) {
+		for (Slot slot : this.inventorySlots) {
 			if (slot.slotNumber == 0) {
 				slot.xDisplayPosition += 10;
 				slot.yDisplayPosition -= 8;
@@ -65,7 +65,7 @@ public class ContainerAccessories extends ContainerPlayer {
 	public int getAccessorySlot(AccessoryType type) {
 		int slotID = 0;
 
-		for (Slot checkSlot : (List<Slot>) this.inventorySlots) {
+		for (Slot checkSlot : this.inventorySlots) {
 			if (checkSlot instanceof SlotAccessory && !checkSlot.getHasStack()) {
 				SlotAccessory accessorySlot = (SlotAccessory) checkSlot;
 
@@ -82,7 +82,7 @@ public class ContainerAccessories extends ContainerPlayer {
 
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer player, int slotNumber) {
-		Slot slot = (Slot) this.inventorySlots.get(slotNumber);
+		Slot slot = this.inventorySlots.get(slotNumber);
 
 		if (slot != null && slot.getHasStack()) {
 			ItemStack stack = slot.getStack();
@@ -101,7 +101,7 @@ public class ContainerAccessories extends ContainerPlayer {
 				}
 
 				if (newSlotIndex != -1) {
-					Slot accessorySlot = (SlotAccessory) this.inventorySlots.get(newSlotIndex);
+					Slot accessorySlot = this.inventorySlots.get(newSlotIndex);
 					accessorySlot.putStack(stack);
 					slot.putStack(null);
 

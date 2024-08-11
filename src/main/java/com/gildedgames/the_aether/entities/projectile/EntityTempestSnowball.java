@@ -46,7 +46,7 @@ public class EntityTempestSnowball extends EntityProjectileBase {
 	@Override
 	protected void onImpact(MovingObjectPosition object) {
 		if (object.entityHit instanceof EntityLivingBase) {			
-			if (object.entityHit instanceof EntityPlayer && PlayerAether.get((EntityPlayer) object.entityHit).getAccessoryInventory().wearingArmor(new ItemStack(ItemsAether.amplified_sentry_boots))) {
+			if (object.entityHit instanceof EntityPlayer && PlayerAether.get((EntityPlayer) object.entityHit).getAccessoryInventory().wearingArmor(ItemsAether.amplified_sentry_boots)) {
 				this.setDead();
 
 				return;

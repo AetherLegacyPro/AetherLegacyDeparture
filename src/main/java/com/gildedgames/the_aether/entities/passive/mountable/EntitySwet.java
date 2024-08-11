@@ -411,7 +411,7 @@ public class EntitySwet extends EntityMountable
     public boolean isPlayerFriendly(EntityPlayer player)
     {
         IPlayerAether iPlayerAether = AetherAPI.get(player);
-        return iPlayerAether.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.swet_cape));
+        return iPlayerAether.getAccessoryInventory().wearingAccessory(ItemsAether.swet_cape);
     }
 
     public boolean isFriendly()

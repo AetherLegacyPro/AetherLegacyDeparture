@@ -251,7 +251,7 @@ public class PlayerAetherRenderer {
             GL11.glColor3f(1.0F, 1.0F, 1.0F);
         }
 
-        if (playerAether.getAccessoryInventory().getStackInSlot(AccessoryType.CAPE) != null && !playerAether.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.invisibility_cape))) {
+        if (playerAether.getAccessoryInventory().getStackInSlot(AccessoryType.CAPE) != null && !playerAether.getAccessoryInventory().wearingAccessory(ItemsAether.invisibility_cape)) {
             ItemAccessory cape = (ItemAccessory) playerAether.getAccessoryInventory().getStackInSlot(AccessoryType.CAPE).getItem();
 
             if (!player.isInvisible()) {
@@ -406,7 +406,7 @@ public class PlayerAetherRenderer {
             }
         }
         
-        if (playerAether.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.false_wings))) {
+        if (playerAether.getAccessoryInventory().wearingAccessory(ItemsAether.false_wings)) {
         	this.mc.getTextureManager().bindTexture(TEXTURE_VALKYRIE);
         	
         	this.modelWings.setWingSinage(playerAether.wingSinage);
@@ -436,7 +436,7 @@ public class PlayerAetherRenderer {
             player.triggerAchievement(AchievementsAether.not_balanced_flight);
         }
         
-        if (playerAether.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.amplified_valkyrie_ring))) {
+        if (playerAether.getAccessoryInventory().wearingAccessory(ItemsAether.amplified_valkyrie_ring)) {
         	this.mc.getTextureManager().bindTexture(TEXTURE_VALKYRIE);
         	
         	this.modelWings.setWingSinage(playerAether.wingSinage);

@@ -5,10 +5,8 @@ import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.api.accessories.AccessoryType;
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
 
-import net.minecraft.block.Block;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.common.util.EnumHelper;
@@ -729,7 +727,6 @@ public class ItemsAether {
 		tipped_gravitite_sword = register("tipped_gravitite_sword", new ItemTippedGravititeSword().setTextureName(Aether.find("weapons/tipped_gravitite_sword")));
 		divineral_sword = register("divineral_sword", new ItemDivineralSword().setTextureName(Aether.find("weapons/divineral_sword")));
 		tipped_divineral_sword = register("tipped_divineral_sword", new ItemTippedDivineralSword().setTextureName(Aether.find("weapons/tipped_divineral_sword")));
-		
 
 		flaming_sword = register("flaming_sword", new ItemElementalSword().setTextureName(Aether.find("weapons/flaming_sword")));
 		tipped_flaming_sword = register("tipped_flaming_sword", new ItemTippedFlamingSword().setTextureName(Aether.find("weapons/tipped_flaming_sword")));
@@ -769,7 +766,7 @@ public class ItemsAether {
 		amplified_dragon_bane = register("amplified_dragon_bane", new ItemAmplifiedDragonSlayer().setTextureName(Aether.find("weapons/amplified_dragon_bane")));	
 		
 		if (Loader.isModLoaded("nova_craft") && AetherConfig.enable_ascensite) {
-		ascensite_sword = register("ascensite_sword", new ItemAscensiteSword().setTextureName(Aether.find("weapons/ascensite_sword")));
+			ascensite_sword = register("ascensite_sword", new ItemAscensiteSword().setTextureName(Aether.find("weapons/ascensite_sword")));
 		}
 		
 		leather_gloves = register("leather_gloves", new ItemAccessoryDyed(AccessoryType.GLOVES).setMaxDamage(82).setTextureName(Aether.find("accessories/leather_gloves")));
@@ -778,10 +775,10 @@ public class ItemsAether {
 		chain_gloves = register("chain_gloves", new ItemAccessory(AccessoryType.GLOVES).setTexture("chain").setMaxDamage(122).setTextureName(Aether.find("accessories/chain_gloves")));
 		diamond_gloves = register("diamond_gloves", new ItemAccessory(AccessoryType.GLOVES).setColor(0x33ebcb).setMaxDamage(352).setTextureName(Aether.find("accessories/solid_gloves")));
 		
-		if (Loader.isModLoaded("etfuturum") && AetherConfig.enable_copper_recipes == true) {
+		if (Loader.isModLoaded("etfuturum") && AetherConfig.enable_copper_recipes) {
 		copper_gloves = register("copper_gloves", new ItemAccessory(AccessoryType.GLOVES).setTexture("copper").setMaxDamage(92).setTextureName(Aether.find("accessories/copper_gloves")));
 		}
-		if (Loader.isModLoaded("etfuturum") && AetherConfig.enable_netherite_recipes == true) {
+		if (Loader.isModLoaded("etfuturum") && AetherConfig.enable_netherite_recipes) {
 		netherite_gloves = register("netherite_gloves", new ItemAccessory(AccessoryType.GLOVES).setTexture("netherite").setMaxDamage(552).setTextureName(Aether.find("accessories/netherite_gloves")));
 		}
 			
@@ -825,11 +822,11 @@ public class ItemsAether {
 		golden_ring = register("golden_ring", new ItemAccessory(AccessoryType.RING).setTextureName(Aether.find("accessories/golden_ring")));
 		diamond_ring = register("diamond_ring", new ItemAccessory(AccessoryType.RING).setMaxDamage(323).setTextureName(Aether.find("accessories/diamond_ring")));
 		
-		if (Loader.isModLoaded("etfuturum") && AetherConfig.enable_copper_recipes == true) {
+		if (Loader.isModLoaded("etfuturum") && AetherConfig.enable_copper_recipes) {
 		copper_ring = register("copper_ring", new ItemAccessory(AccessoryType.RING).setMaxDamage(56).setTextureName(Aether.find("accessories/copper_ring")));
 		}
 		
-		if (Loader.isModLoaded("etfuturum") && AetherConfig.enable_netherite_recipes == true) {
+		if (Loader.isModLoaded("etfuturum") && AetherConfig.enable_netherite_recipes) {
 		netherite_ring = register("netherite_ring", new ItemAccessory(AccessoryType.RING).setMaxDamage(493).setTextureName(Aether.find("accessories/netherite_ring")));
 		}
 		
@@ -861,11 +858,11 @@ public class ItemsAether {
 		golden_pendant = register("golden_pendant", new ItemAccessory(AccessoryType.PENDANT).setColor(0xeaee57).setTextureName(Aether.find("accessories/pendant_base")));
 		diamond_pendant = register("diamond_pendant", new ItemAccessory(AccessoryType.PENDANT).setTexture("diamond").setMaxDamage(363).setTextureName(Aether.find("accessories/diamond_pendant")));
 		
-		if (Loader.isModLoaded("etfuturum") && AetherConfig.enable_copper_recipes == true) {
+		if (Loader.isModLoaded("etfuturum") && AetherConfig.enable_copper_recipes) {
 		copper_pendant = register("copper_pendant", new ItemAccessory(AccessoryType.PENDANT).setTexture("copper").setMaxDamage(94).setTextureName(Aether.find("accessories/copper_pendant")));
 		}
 		
-		if (Loader.isModLoaded("etfuturum") && AetherConfig.enable_netherite_recipes == true) {
+		if (Loader.isModLoaded("etfuturum") && AetherConfig.enable_netherite_recipes) {
 		netherite_pendant = register("netherite_pendant", new ItemAccessory(AccessoryType.PENDANT).setTexture("netherite").setMaxDamage(503).setTextureName(Aether.find("accessories/netherite_pendant")));
 		}
 		
@@ -960,11 +957,6 @@ public class ItemsAether {
 		skyroot_bed_item = register("skyroot_bed_item", new ItemSkyrootBed().setTextureName(Aether.find("skyroot_bed_item")));
 
 		aether_portal_frame = register("aether_portal_frame", new ItemAetherPortalFrame().setTextureName(Aether.find("aether_portal_frame")));
-	}
-
-	private static Item extend(String string, Item setTextureName) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	public static Item register(String name, Item item) {

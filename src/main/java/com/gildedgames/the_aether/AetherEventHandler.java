@@ -403,7 +403,7 @@ AetherEventHandler {
 		{
 			IPlayerAether playerAether = PlayerAether.get((EntityPlayer) event.entity);
 			EntityPlayer player = (EntityPlayer) event.entity;
-			if (playerAether.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.discharge_cape)))				
+			if (playerAether.getAccessoryInventory().wearingAccessory(ItemsAether.discharge_cape))
 			{ 	
 				event.setCanceled(true);
 				player.triggerAchievement(AchievementsAether.discharged);
@@ -573,32 +573,27 @@ AetherEventHandler {
 	}
 
 	@SubscribeEvent
-	public void onFall(LivingFallEvent event)
-	{
-		if (event.entityLiving instanceof EntityPlayer)
-		{
+	public void onFall(LivingFallEvent event) {
+		if (event.entityLiving instanceof EntityPlayer) {
 			IPlayerAether playerAether = PlayerAether.get((EntityPlayer) event.entityLiving);
 
-			if (playerAether.getAccessoryInventory().wearingArmor(new ItemStack(ItemsAether.sentry_boots))
-					|| playerAether.getAccessoryInventory().wearingArmor(new ItemStack(ItemsAether.scaled_sentry_boots)) 
-					|| playerAether.getAccessoryInventory().wearingArmor(new ItemStack(ItemsAether.amplified_sentry_boots)) 
+			if (playerAether.getAccessoryInventory().wearingArmor(ItemsAether.sentry_boots)
+					|| playerAether.getAccessoryInventory().wearingArmor(ItemsAether.scaled_sentry_boots)
+					|| playerAether.getAccessoryInventory().wearingArmor(ItemsAether.amplified_sentry_boots)
 					|| (playerAether.getAccessoryInventory().isWearingGravititeSet()) 
 					|| (playerAether.getAccessoryInventory().isWearingValkyrieSet())
 					|| (playerAether.getAccessoryInventory().isWearingValkyrieComboSet())
 					|| (playerAether.getAccessoryInventory().isWearingValkyrieRingAndAmplifiedArmor())
 					|| (playerAether.getAccessoryInventory().isWearingAmplifiedValkyrieRingAndAmplifiedArmor())
 					|| (playerAether.getAccessoryInventory().isWearingAmplifiedValkyrieSet())
-					|| (playerAether.getAccessoryInventory().isWearingAscensiteSet()))
-			{
+					|| (playerAether.getAccessoryInventory().isWearingAscensiteSet())) {
 				event.setCanceled(true);
 			}
 		}
 	}
 
-	private void performTimeSet(PlayerWakeUpEvent event, World world, WorldServer worldServer)
-	{
-		if (world.getGameRules().getGameRuleBooleanValue("doDaylightCycle") && event.entityPlayer.isPlayerFullyAsleep())
-		{
+	private void performTimeSet(PlayerWakeUpEvent event, World world, WorldServer worldServer) {
+		if (world.getGameRules().getGameRuleBooleanValue("doDaylightCycle") && event.entityPlayer.isPlayerFullyAsleep()) {
 			final long i = worldServer.getWorldInfo().getWorldTime() + 24000L;
 
 			worldServer.getWorldInfo().setWorldTime(i - i % 24000L);

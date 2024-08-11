@@ -7,19 +7,14 @@ import com.gildedgames.the_aether.api.player.IPlayerAether;
 import com.gildedgames.the_aether.api.player.util.IAetherAbility;
 import com.gildedgames.the_aether.entities.projectile.EntityProjectileBase;
 import com.gildedgames.the_aether.items.ItemsAether;
-import com.gildedgames.the_aether.player.PlayerAether;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.IProjectile;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.entity.projectile.EntityFireball;
 import net.minecraft.entity.projectile.EntityThrowable;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.WorldServer;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.registry.IThrowableEntity;
 
 public class AbilityZaniteShield implements IAetherAbility {
@@ -34,7 +29,7 @@ public class AbilityZaniteShield implements IAetherAbility {
 
 	@Override
 	public boolean shouldExecute() {
-		return this.player.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.zanite_shield));
+		return player.getAccessoryInventory().wearingAccessory(ItemsAether.zanite_shield);
 	}
 
 	@Override
@@ -78,31 +73,14 @@ public class AbilityZaniteShield implements IAetherAbility {
 				((WorldServer) this.player.getEntity().worldObj).func_147487_a("flame", projectile.posX, projectile.posY, projectile.posZ, 12, packX, packY, packZ, 0.625F);
 
 				this.player.getEntity().worldObj.playSoundAtEntity(this.player.getEntity(), "note.snare", 1.0F, 1.0F);
-				this.player.getAccessoryInventory().damageWornStack(1, new ItemStack(ItemsAether.zanite_shield));
+				this.player.getAccessoryInventory().damageWornItem(1, ItemsAether.zanite_shield);
 			}
 		}
 	}
-	
-	@SubscribeEvent
-	public void onLivingHurt(LivingHurtEvent event) {
-		if (event.entityLiving instanceof EntityPlayer) {
-			PlayerAether playerAether = PlayerAether.get((EntityPlayer) event.entityLiving);
 
-			if (playerAether.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.zanite_shield))) {
-				float original = event.ammount;
-
-				event.ammount = original - 1;
-			}
-		}
-	}
-	
-
+	@Override
 	public boolean onPlayerAttacked(DamageSource source) {
-		if (isProjectile(source.getEntity())) {
-			return true;
-		}
-
-		return false;
+		return isProjectile(source.getEntity());
 	}
 
 	private Entity getShooter(Entity ent) {
