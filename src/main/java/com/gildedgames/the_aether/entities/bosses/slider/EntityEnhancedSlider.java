@@ -64,9 +64,9 @@ public class EntityEnhancedSlider extends EntityFlying implements IAetherBoss {
     public void entityInit() {
         super.entityInit();
 
-        this.dataWatcher.addObject(18, new Byte((byte) 0));
+        this.dataWatcher.addObject(18, (byte) 0);
         this.dataWatcher.addObject(19, AetherNameGen.gen());
-        this.dataWatcher.addObject(20, new Byte((byte) 0));
+        this.dataWatcher.addObject(20, (byte) 0);
     }
 
     @Override
@@ -765,7 +765,7 @@ public class EntityEnhancedSlider extends EntityFlying implements IAetherBoss {
     }
 
     public void setAwake(boolean isAwake) {
-        this.dataWatcher.updateObject(18, new Byte(isAwake ? (byte) 1 : (byte) 0));
+        this.dataWatcher.updateObject(18, isAwake ? (byte) 1 : (byte) 0);
     }
 
     public boolean isAwake() {
@@ -773,7 +773,7 @@ public class EntityEnhancedSlider extends EntityFlying implements IAetherBoss {
     }
 
     public void setMoving(boolean moving) {
-        this.dataWatcher.updateObject(20, new Byte(moving ? (byte) 1 : (byte) 0));
+        this.dataWatcher.updateObject(20, moving ? (byte) 1 : (byte) 0);
     }
 
     public boolean isMoving() {

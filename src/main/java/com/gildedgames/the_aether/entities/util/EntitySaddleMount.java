@@ -16,7 +16,7 @@ public abstract class EntitySaddleMount extends EntityMountable {
 	public void entityInit() {
 		super.entityInit();
 
-		this.dataWatcher.addObject(19, new Byte((byte) 0));
+		this.dataWatcher.addObject(19, (byte) 0);
 	}
 
 	@Override

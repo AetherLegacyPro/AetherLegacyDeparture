@@ -76,14 +76,14 @@ public class EntityMoa extends EntitySaddleMount {
 
         AetherMoaType moaType = AetherAPI.instance().getRandomMoaType();
 
-        this.dataWatcher.addObject(20, new Short((short) AetherAPI.instance().getMoaTypeId(moaType)));
-        this.dataWatcher.addObject(21, new Byte((byte) moaType.getMoaProperties().getMaxJumps()));
-        this.dataWatcher.addObject(22, new Byte((byte) 0));
-        this.dataWatcher.addObject(23, new Byte((byte) 0));
-        this.dataWatcher.addObject(24, new Byte((byte) 0));
-        this.dataWatcher.addObject(25, new Byte((byte) 0));
-        this.dataWatcher.addObject(26, new Byte((byte) 0));
-        this.dataWatcher.addObject(27, new Byte((byte) 0));
+        this.dataWatcher.addObject(20, (short) AetherAPI.instance().getMoaTypeId(moaType));
+        this.dataWatcher.addObject(21, (byte) moaType.getMoaProperties().getMaxJumps());
+        this.dataWatcher.addObject(22, (byte) 0);
+        this.dataWatcher.addObject(23, (byte) 0);
+        this.dataWatcher.addObject(24, (byte) 0);
+        this.dataWatcher.addObject(25, (byte) 0);
+        this.dataWatcher.addObject(26, (byte) 0);
+        this.dataWatcher.addObject(27, (byte) 0);
 
     }
 
@@ -172,8 +172,8 @@ public class EntityMoa extends EntitySaddleMount {
     }
 
     public void setMoaType(AetherMoaType type) {
-        this.dataWatcher.updateObject(20, new Short((short) AetherAPI.instance().getMoaTypeId(type)));
-        this.dataWatcher.updateObject(21, new Byte((byte) type.getMoaProperties().getMaxJumps()));
+        this.dataWatcher.updateObject(20, (short) AetherAPI.instance().getMoaTypeId(type));
+        this.dataWatcher.updateObject(21, (byte) type.getMoaProperties().getMaxJumps());
     }
 
     @Override

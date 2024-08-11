@@ -45,7 +45,7 @@ public class EntityCarrionSprout extends EntityAetherAnimal {
 	public void entityInit() {
 		super.entityInit();
 
-		this.dataWatcher.addObject(20, new Byte((byte) 0));
+		this.dataWatcher.addObject(20, (byte) 0);
 	}
 
 	@Override

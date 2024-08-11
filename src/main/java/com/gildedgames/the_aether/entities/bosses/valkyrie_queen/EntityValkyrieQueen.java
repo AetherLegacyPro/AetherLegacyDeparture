@@ -83,7 +83,7 @@ public class EntityValkyrieQueen extends EntityBossMob implements IAetherBoss {
     public void entityInit() {
         super.entityInit();
 
-        this.dataWatcher.addObject(18, new Byte((byte) 0));
+        this.dataWatcher.addObject(18, (byte)0);
         this.dataWatcher.addObject(19, AetherNameGen.valkGen());
     }
 
@@ -622,7 +622,7 @@ public class EntityValkyrieQueen extends EntityBossMob implements IAetherBoss {
     }
 
     public void setBossReady(boolean isReady) {
-        this.dataWatcher.updateObject(18, new Byte(isReady ? (byte) 1 : (byte) 0));
+        this.dataWatcher.updateObject(18, isReady ? (byte)1 : (byte) 0);
     }
 
     public boolean isBossReady() {

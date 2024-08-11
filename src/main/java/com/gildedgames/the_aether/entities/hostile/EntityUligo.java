@@ -49,9 +49,9 @@ public class EntityUligo extends EntityLiving implements IMob
     protected void entityInit()
     {
         super.entityInit();
-        this.dataWatcher.addObject(16, new Byte((byte)1));
-        this.dataWatcher.addObject(15, Byte.valueOf((byte) - 1));
-        this.dataWatcher.addObject(17, Byte.valueOf((byte)0));
+        this.dataWatcher.addObject(16, (byte) 1);
+        this.dataWatcher.addObject(15, (byte) -1);
+        this.dataWatcher.addObject(17, (byte) 0);
         this.dataWatcher.addObject(18, Byte.valueOf((byte)0));
     }
     
@@ -66,7 +66,7 @@ public class EntityUligo extends EntityLiving implements IMob
 
     protected void setSlimeSize(int p_70799_1_)
     {
-        this.dataWatcher.updateObject(16, new Byte((byte)p_70799_1_));
+        this.dataWatcher.updateObject(16, (byte)p_70799_1_);
         this.setSize(0.6F * (float)p_70799_1_, 0.6F * (float)p_70799_1_);
         this.setPosition(this.posX, this.posY, this.posZ);
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue((double)(p_70799_1_ * p_70799_1_));

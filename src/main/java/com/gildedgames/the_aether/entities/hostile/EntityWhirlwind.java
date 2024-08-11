@@ -83,8 +83,8 @@ public class EntityWhirlwind extends EntityMob {
 	protected void entityInit() {
 		super.entityInit();
 
-		this.dataWatcher.addObject(20, new Byte((byte) 0));
-		this.dataWatcher.addObject(21, new Byte((byte) 15));
+		this.dataWatcher.addObject(20, (byte) 0);
+		this.dataWatcher.addObject(21, (byte) 15);
 	}
 
 	public void setColorData(int data) {

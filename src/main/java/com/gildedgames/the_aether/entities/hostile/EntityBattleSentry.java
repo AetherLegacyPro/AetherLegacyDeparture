@@ -43,7 +43,7 @@ public class EntityBattleSentry extends EntityLiving implements IMob {
 	public void entityInit() {
 		super.entityInit();
 
-		this.dataWatcher.addObject(20, new Byte((byte) 0));
+		this.dataWatcher.addObject(20, (byte) 0);
 	}
 
 	@Override

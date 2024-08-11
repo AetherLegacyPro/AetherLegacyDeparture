@@ -105,7 +105,7 @@ public class EntityLurker extends EntityBossMob implements IAetherBoss {
     public void entityInit() {
         super.entityInit();
 
-        this.dataWatcher.addObject(20, new Byte((byte) 0));
+        this.dataWatcher.addObject(20, (byte) 0);
         this.dataWatcher.addObject(19, AetherNameGen.valkGen());
         this.dataWatcher.addObject(16, Byte.valueOf((byte) - 1));
         this.dataWatcher.addObject(17, Byte.valueOf((byte)0));
@@ -881,7 +881,7 @@ public class EntityLurker extends EntityBossMob implements IAetherBoss {
     }
 
     public void setBossReady(boolean isReady) {
-        this.dataWatcher.updateObject(20, new Byte(isReady ? (byte) 1 : (byte) 0));
+        this.dataWatcher.updateObject(20, isReady ? (byte) 1 : (byte) 0);
     }
 
     public boolean isBossReady() {

@@ -45,7 +45,7 @@ public class EntityAerca extends EntityFlying implements IMob
     
     protected void entityInit() {
         super.entityInit();
-        this.dataWatcher.addObject(16, (Object)new Byte((byte)0));
+        this.dataWatcher.addObject(16, (byte) 0);
     }
     
     public void onUpdate() {

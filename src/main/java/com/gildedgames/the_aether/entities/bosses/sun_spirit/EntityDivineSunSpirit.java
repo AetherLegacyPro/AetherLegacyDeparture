@@ -80,8 +80,8 @@ public class EntityDivineSunSpirit extends EntityFlying implements IMob, IAether
     public void entityInit() {
         super.entityInit();
 
-        this.dataWatcher.addObject(18, new Byte((byte) 0));
-        this.dataWatcher.addObject(19, new Byte((byte) 0));
+        this.dataWatcher.addObject(18, (byte) 0);
+        this.dataWatcher.addObject(19, (byte) 0);
         this.dataWatcher.addObject(20, AetherNameGen.gen());
     }
 
@@ -741,7 +741,7 @@ public class EntityDivineSunSpirit extends EntityFlying implements IMob, IAether
 
     public void setChatLine(int lineNumber) {
         this.chatCount = 100;
-        this.dataWatcher.updateObject(18, new Byte((byte) lineNumber));
+        this.dataWatcher.updateObject(18, (byte) lineNumber);
     }
 
     public boolean isFreezing() {
@@ -749,7 +749,7 @@ public class EntityDivineSunSpirit extends EntityFlying implements IMob, IAether
     }
 
     public void setFreezing(boolean isFreezing) {
-        this.dataWatcher.updateObject(19, new Byte(isFreezing ? (byte) 1 : (byte) 0));
+        this.dataWatcher.updateObject(19, isFreezing ? (byte) 1 : (byte) 0);
     }
 
     public void setBossName(String name) {

@@ -29,8 +29,8 @@ public abstract class EntityMountable extends EntityAetherAnimal {
 	public void entityInit() {
 		super.entityInit();
 
-		this.dataWatcher.addObject(17, new Byte((byte) 0)); //onGroundClient
-		this.dataWatcher.addObject(18, new Byte((byte) 0));
+		this.dataWatcher.addObject(17, (byte) 0); //onGroundClient
+		this.dataWatcher.addObject(18, (byte) 0);
 	}
 
 	@Override
