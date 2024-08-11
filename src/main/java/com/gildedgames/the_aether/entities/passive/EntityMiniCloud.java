@@ -142,7 +142,7 @@ public class EntityMiniCloud extends EntityFlying implements IEntityAdditionalSp
 					if (this.shotTimer <= 0 && this.owner.swingProgress > 0.0F) {
 						float var7 = this.rotationYaw - (this.direction ? 1.0F : -1.0F);
 						double var1 = this.posX + Math.sin((double) var7 / -(180D / Math.PI)) * 1.6D;
-						double var3 = this.posY - -1.0D;
+						double var3 = this.posY + 1.0D;
 						double var5 = this.posZ + Math.cos((double) var7 / -(180D / Math.PI)) * 1.6D;
 						EntityCrystal crystal = new EntityCrystal(this.worldObj, var1, var3, var5, EnumCrystalType.CLOUD);
 						Vec3 var9 = this.getLookVec();

@@ -50,7 +50,7 @@ public class DivineSliderRenderer extends RenderLiving {
             char c0 = 61680;
             int j = c0 % 65536;
             int k = c0 / 65536;
-            OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float) j / 1.0F, (float) k / 1.0F);
+            OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float) j, (float) k);
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 
             return 1;

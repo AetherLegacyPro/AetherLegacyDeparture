@@ -135,12 +135,12 @@ public class AechorPlantModel extends ModelBase {
 			if (i < 3) {
 				this.stamen[i].rotateAngleX = 0.2F + ((float) i / 15F);
 				this.stamen[i].rotateAngleY = head.rotateAngleY + 0.1F;
-				this.stamen[i].rotateAngleY += ((Math.PI * 2) / (float) 3) * (float) i;
+				this.stamen[i].rotateAngleY += ((Math.PI * 2) / 3F) * (float) i;
 				this.stamen[i].rotateAngleX += sinage * 0.4F;
 
 				this.stamen2[i].rotateAngleX = 0.2F + ((float) i / 15F);
 				this.stamen2[i].rotateAngleY = head.rotateAngleY + 0.1F;
-				this.stamen2[i].rotateAngleY += ((Math.PI * 2) / (float) 3) * (float) i;
+				this.stamen2[i].rotateAngleY += ((Math.PI * 2) / 3F) * (float) i;
 				this.stamen2[i].rotateAngleX += sinage * 0.4F;
 
 				this.stamen[i].rotationPointY = boff + ((sinage) * 2F);
@@ -155,12 +155,12 @@ public class AechorPlantModel extends ModelBase {
 			this.petal[i].rotateAngleX = ((i % 2 == 0) ? -0.25F : -0.4125F);
 			this.petal[i].rotateAngleX += sinage;
 			this.petal[i].rotateAngleY = head.rotateAngleY;
-			this.petal[i].rotateAngleY += ((Math.PI * 2) / (float) 10) * (float) i;
+			this.petal[i].rotateAngleY += ((Math.PI * 2) / 10F) * (float) i;
 
 			this.leaf[i].rotateAngleX = ((i % 2 == 0) ? 0.1F : 0.2F);
 			this.leaf[i].rotateAngleX += sinage * 0.75F;
 			this.leaf[i].rotateAngleY = (float) (head.rotateAngleY + ((Math.PI * 2) / (float) 10 / 2F));
-			this.leaf[i].rotateAngleY += ((Math.PI * 2) / (float) 10) * (float) i;
+			this.leaf[i].rotateAngleY += ((Math.PI * 2) / 10F) * (float) i;
 
 			this.petal[i].rotationPointY = boff;
 			this.leaf[i].rotationPointY = boff;

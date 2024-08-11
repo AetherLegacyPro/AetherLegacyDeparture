@@ -31,19 +31,19 @@ public class MoaModel extends ModelBase {
 
 		this.body = new ModelRenderer(this, 0, 0);
 		this.body.addBox(-3.0F, -3.0F, 0.0F, 6, 8, 5, scale);
-		this.body.setRotationPoint(0.0F, (float) (0 + 16), 0.0F);
+		this.body.setRotationPoint(0.0F, 16F, 0.0F);
 
 		this.legs = new ModelRenderer(this, 22, 0);
 		this.legs.addBox(-1.0F, -1.0F, -1.0F, 2, 9, 2, 0.0F);
-		this.legs.setRotationPoint(-2.0F, (float) (0 + 16), 1.0F);
+		this.legs.setRotationPoint(-2.0F, 16F, 1.0F);
 
 		this.legs2 = new ModelRenderer(this, 22, 0);
 		this.legs2.addBox(-1.0F, -1.0F, -1.0F, 2, 9, 2, 0.0F);
-		this.legs2.setRotationPoint(2.0F, (float) (0 + 16), 1.0F);
+		this.legs2.setRotationPoint(2.0F, 16F, 1.0F);
 
 		this.wings = new ModelRenderer(this, 52, 0);
 		this.wings.addBox(-1.0F, -0.0F, -1.0F, 1, 8, 4);
-		this.wings.setRotationPoint(-3.0F, (float) (16), 2.0F);
+		this.wings.setRotationPoint(-3.0F, 16F, 2.0F);
 
 		this.wings2 = new ModelRenderer(this, 52, 0);
 		this.wings2.addBox(0.0F, -0.0F, -1.0F, 1, 8, 4);
@@ -125,15 +125,15 @@ public class MoaModel extends ModelBase {
 		}
 
 		if (moa.isSitting()) {
-			this.head.setRotationPoint(0.0F, (float) (-8 + 24), -4.0F);
-			this.jaw.setRotationPoint(0.0F, (float) (-8 + 24), -4.0F);
-			this.body.setRotationPoint(0.0F, (float) (0 + 24), 0.0F);
-			this.legs.setRotationPoint(-2.0F, (float) (0 + 24), 1.0F);
-			this.legs2.setRotationPoint(2.0F, (float) (0 + 24), 1.0F);
-			this.neck.setRotationPoint(0.0F, (float) (-2 + 24), -4.0F);
-			this.feather1.setRotationPoint(0.0F, (float) (1 + 24), 1.0F);
-			this.feather2.setRotationPoint(0.0F, (float) (1 + 24), 1.0F);
-			this.feather3.setRotationPoint(0.0F, (float) (1 + 24), 1.0F);
+			this.head.setRotationPoint(0.0F, (-8F + 24F), -4.0F);
+			this.jaw.setRotationPoint(0.0F, (-8F + 24F), -4.0F);
+			this.body.setRotationPoint(0.0F, 24F, 0.0F);
+			this.legs.setRotationPoint(-2.0F, 24F, 1.0F);
+			this.legs2.setRotationPoint(2.0F, 24F, 1.0F);
+			this.neck.setRotationPoint(0.0F, (-2F + 24F), -4.0F);
+			this.feather1.setRotationPoint(0.0F, (1F + 24F), 1.0F);
+			this.feather2.setRotationPoint(0.0F, (1F + 24F), 1.0F);
+			this.feather3.setRotationPoint(0.0F, (1F + 24F), 1.0F);
 
 			this.jaw.rotateAngleX = -0.3F;
 			this.head.rotateAngleX = 0F;
@@ -141,15 +141,15 @@ public class MoaModel extends ModelBase {
 			this.wings.rotationPointY = 22F;
 			this.wings2.rotationPointY = 22F;
 		} else {
-			this.head.setRotationPoint(0.0F, (float) (-8 + 16), -4.0F);
-			this.jaw.setRotationPoint(0.0F, (float) (-8 + 16), -4.0F);
-			this.body.setRotationPoint(0.0F, (float) (0 + 16), 0.0F);
-			this.legs.setRotationPoint(-2.0F, (float) (0 + 16), 1.0F);
-			this.legs2.setRotationPoint(2.0F, (float) (0 + 16), 1.0F);
-			this.neck.setRotationPoint(0.0F, (float) (-2 + 16), -4.0F);
-			this.feather1.setRotationPoint(0.0F, (float) (1 + 16), 1.0F);
-			this.feather2.setRotationPoint(0.0F, (float) (1 + 16), 1.0F);
-			this.feather3.setRotationPoint(0.0F, (float) (1 + 16), 1.0F);
+			this.head.setRotationPoint(0.0F, (-8F + 16F), -4.0F);
+			this.jaw.setRotationPoint(0.0F,  (-8F + 16F), -4.0F);
+			this.body.setRotationPoint(0.0F, 16F, 0.0F);
+			this.legs.setRotationPoint(-2.0F, 16F, 1.0F);
+			this.legs2.setRotationPoint(2.0F, 16F, 1.0F);
+			this.neck.setRotationPoint(0.0F, (-2F + 16F), -4.0F);
+			this.feather1.setRotationPoint(0.0F, (1F + 16F), 1.0F);
+			this.feather2.setRotationPoint(0.0F, (1F + 16F), 1.0F);
+			this.feather3.setRotationPoint(0.0F, (1F + 16F), 1.0F);
 		}
 
 		this.feather1.rotateAngleY = -0.375F;

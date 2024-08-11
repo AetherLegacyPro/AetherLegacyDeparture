@@ -117,7 +117,7 @@ public class AetherItemRenderer extends ItemRenderer {
         int i = this.mc.theWorld.getLightBrightnessForSkyBlocks(MathHelper.floor_double(entityclientplayermp.posX), MathHelper.floor_double(entityclientplayermp.posY), MathHelper.floor_double(entityclientplayermp.posZ), 0);
         int j = i % 65536;
         int k = i / 65536;
-        OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float)j / 1.0F, (float)k / 1.0F);
+        OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float)j, (float)k);
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         float f5;
         float f6;
@@ -205,10 +205,10 @@ public class AetherItemRenderer extends ItemRenderer {
             GL11.glNormal3f(0.0F, 0.0F, -1.0F);
             tessellator.startDrawingQuads();
             byte b0 = 7;
-            tessellator.addVertexWithUV(0 - b0, 128 + b0, 0.0D, 0.0D, 1.0D);
+            tessellator.addVertexWithUV(-b0, 128 + b0, 0.0D, 0.0D, 1.0D);
             tessellator.addVertexWithUV(128 + b0, 128 + b0, 0.0D, 1.0D, 1.0D);
-            tessellator.addVertexWithUV(128 + b0, 0 - b0, 0.0D, 1.0D, 0.0D);
-            tessellator.addVertexWithUV(0 - b0, 0 - b0, 0.0D, 0.0D, 0.0D);
+            tessellator.addVertexWithUV(128 + b0, -b0, 0.0D, 1.0D, 0.0D);
+            tessellator.addVertexWithUV(-b0, -b0, 0.0D, 0.0D, 0.0D);
             tessellator.draw();
 
             IItemRenderer custom = MinecraftForgeClient.getItemRenderer(itemstack, FIRST_PERSON_MAP);
@@ -332,7 +332,7 @@ public class AetherItemRenderer extends ItemRenderer {
                     f10 = (float)(k1 >> 16 & 255) / 255.0F;
                     f11 = (float)(k1 >> 8 & 255) / 255.0F;
                     f12 = (float)(k1 & 255) / 255.0F;
-                    GL11.glColor4f(1.0F * f10, 1.0F * f11, 1.0F * f12, 1.0F);
+                    GL11.glColor4f(f10, f11, f12, 1.0F);
                     this.renderItem(entityclientplayermp, itemstack, x, EQUIPPED_FIRST_PERSON);
                 }
             }

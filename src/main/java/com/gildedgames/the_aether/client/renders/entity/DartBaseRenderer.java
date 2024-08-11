@@ -39,12 +39,12 @@ public class DartBaseRenderer extends Render {
         byte i = 1;
         float f2 = 0.0F;
         float f3 = 0.5F;
-        float f4 = (float) (0 + i * 10) / 32.0F;
-        float f5 = (float) (5 + i * 10) / 32.0F;
+        float f4 = (i * 10F) / 32.0F;
+        float f5 = (5F + i * 10F) / 32.0F;
         float f6 = 0.0F;
         float f7 = 0.15625F;
-        float f8 = (float) (5 + i * 10) / 32.0F;
-        float f9 = (float) (10 + i * 10) / 32.0F;
+        float f8 = (5F + i * 10F) / 32.0F;
+        float f9 = (10F + i * 10F) / 32.0F;
         float f10 = 0.05625F;
         GL11.glEnable(GL12.GL_RESCALE_NORMAL);
         float f11 = (float) dart.dartShake - f1;

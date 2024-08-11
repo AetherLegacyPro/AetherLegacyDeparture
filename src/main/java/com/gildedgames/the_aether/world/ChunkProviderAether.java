@@ -130,7 +130,7 @@ public class ChunkProviderAether implements IChunkProvider {
 						double d13 = (d4 - d2) * 0.125D;
 
 						for (int i2 = 0; i2 < 8; i2++) {
-							int j2 = i2 + i1 * 8 << 11 | 0 + j1 * 8 << 7 | k1 * 4 + l1;
+							int j2 = i2 + i1 * 8 << 11 | j1 * 8 << 7 | k1 * 4 + l1;
 							char c = '\200';
 							double d15 = d10;
 							double d16 = (d11 - d10) * 0.125D;

@@ -136,7 +136,7 @@ public class GenesisDragonRenderer extends RenderLiving
             {
                 float f11 = MathHelper.sin((float)(i % b0) * (float)Math.PI * 2.0F / (float)b0) * 0.75F;
                 float f12 = MathHelper.cos((float)(i % b0) * (float)Math.PI * 2.0F / (float)b0) * 0.75F;
-                float f13 = (float)(i % b0) * 1.0F / (float)b0;
+                float f13 = (float)(i % b0) / (float)b0;
                 tessellator.setColorOpaque_I(0);
                 tessellator.addVertexWithUV(f11 * 0.2F, f12 * 0.2F, 0.0D, f13, f10);
                 tessellator.setColorOpaque_I(16777215);
@@ -202,7 +202,7 @@ public class GenesisDragonRenderer extends RenderLiving
                 tessellator.setColorRGBA_I(16711935, 0);
                 tessellator.addVertex(-0.866D * (double)f4, f3, -0.5F * f4);
                 tessellator.addVertex(0.866D * (double)f4, f3, -0.5F * f4);
-                tessellator.addVertex(0.0D, f3, 1.0F * f4);
+                tessellator.addVertex(0.0D, f3, f4);
                 tessellator.addVertex(-0.866D * (double)f4, f3, -0.5F * f4);
                 tessellator.draw();
             }
@@ -244,7 +244,7 @@ public class GenesisDragonRenderer extends RenderLiving
             char c0 = 61680;
             int j = c0 % 65536;
             int k = c0 / 65536;
-            OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float)j / 1.0F, (float)k / 1.0F);
+            OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float) j, (float) k);
             GL11.glEnable(GL11.GL_LIGHTING);
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
             return 1;

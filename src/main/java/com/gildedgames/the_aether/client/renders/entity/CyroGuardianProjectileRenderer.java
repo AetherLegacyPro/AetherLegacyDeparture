@@ -37,7 +37,7 @@ public class CyroGuardianProjectileRenderer extends Render
         GL11.glTranslatef((float)p_76986_2_, (float)p_76986_4_, (float)p_76986_6_);
         GL11.glEnable(GL12.GL_RESCALE_NORMAL);
         float f2 = this.field_77002_a;
-        GL11.glScalef(f2 / 1.0F, f2 / 1.0F, f2 / 1.0F);
+        GL11.glScalef(f2, f2, f2);
         IIcon iicon = Items.snowball.getIconFromDamage(0);
         Tessellator tessellator = Tessellator.instance;
         float f3 = iicon.getMinU();

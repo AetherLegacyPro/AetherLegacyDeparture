@@ -255,7 +255,7 @@ public abstract class EntityProjectileBase extends Entity implements IProjectile
 		compound.setByte("shake", (byte) this.throwableShake);
 		compound.setByte("inGround", (byte) (this.inGround ? 1 : 0));
 
-		if ((this.throwerName == null || this.throwerName.length() == 0) && this.thrower != null && this.thrower instanceof EntityPlayer) {
+		if ((this.throwerName == null || this.throwerName.isEmpty()) && this.thrower != null && this.thrower instanceof EntityPlayer) {
 			this.throwerName = this.thrower.getCommandSenderName();
 		}
 
@@ -272,7 +272,7 @@ public abstract class EntityProjectileBase extends Entity implements IProjectile
 		this.inGround = compound.getByte("inGround") == 1;
 		this.throwerName = compound.getString("ownerName");
 
-		if (this.throwerName != null && this.throwerName.length() == 0) {
+		if (this.throwerName != null && this.throwerName.isEmpty()) {
 			this.throwerName = null;
 		}
 	}
@@ -292,7 +292,7 @@ public abstract class EntityProjectileBase extends Entity implements IProjectile
 
 	@Override
 	public EntityLivingBase getThrower() {
-		if (this.thrower == null && this.throwerName != null && this.throwerName.length() > 0) {
+		if (this.thrower == null && this.throwerName != null && !this.throwerName.isEmpty()) {
 			this.thrower = this.worldObj.getPlayerEntityByName(this.throwerName);
 		}
 

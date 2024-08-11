@@ -239,8 +239,8 @@ public class ElysianGuardianModel extends ModelBase
 
 
 		if (this.isRiding) {
-			this.right_upperarm.rotateAngleX += -0.6283185F;
-			this.left_upperarm.rotateAngleX += -0.6283185F;
+			this.right_upperarm.rotateAngleX -= 0.6283185F;
+			this.left_upperarm.rotateAngleX -= 0.6283185F;
 			this.top_right_leg.rotateAngleX = -1.256637F;
 			this.top_left_leg.rotateAngleX = -1.256637F;
 			this.top_right_leg.rotateAngleY = 0.3141593F;

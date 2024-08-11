@@ -54,7 +54,7 @@ public class TempestRenderer extends RenderLiving
         final char var5 = '\uf0f0';
         final int var6 = var5 % 65536;
         final int var7 = var5 / 65536;
-        OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, var6 / 1.0f, var7 / 1.0f);
+        OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, var6, var7);
         GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
         GL11.glColor4f(1.0f, 1.0f, 1.0f, var4);
         return 1;

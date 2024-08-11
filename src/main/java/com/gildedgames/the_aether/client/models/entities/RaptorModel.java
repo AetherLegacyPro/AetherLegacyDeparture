@@ -28,15 +28,15 @@ public class RaptorModel extends ModelBase {
 
 		this.body = new ModelRenderer(this, 0, 0);
 		this.body.addBox(-3.0F, -3.0F, 0.0F, 6, 8, 5, 0.0F);
-		this.body.setRotationPoint(0.0F, (float) (0 + 16), 0.0F);
+		this.body.setRotationPoint(0.0F, 16F, 0.0F);
 
 		this.legs = new ModelRenderer(this, 22, 0);
 		this.legs.addBox(-1.0F, -1.0F, -1.0F, 2, 9, 2);
-		this.legs.setRotationPoint(-2.0F, (float) (0 + 16), 1.0F);
+		this.legs.setRotationPoint(-2.0F, 16F, 1.0F);
 
 		this.legs2 = new ModelRenderer(this, 22, 0);
 		this.legs2.addBox(-1.0F, -1.0F, -1.0F, 2, 9, 2);
-		this.legs2.setRotationPoint(2.0F, (float) (0 + 16), 1.0F);
+		this.legs2.setRotationPoint(2.0F, 16F, 1.0F);
 
 		this.wings = new ModelRenderer(this, 52, 0);
 		this.wings.addBox(-1.0F, -0.0F, -1.0F, 1, 8, 4);

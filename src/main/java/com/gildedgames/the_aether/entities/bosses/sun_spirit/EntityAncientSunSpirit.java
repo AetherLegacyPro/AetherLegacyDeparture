@@ -163,9 +163,9 @@ public class EntityAncientSunSpirit extends EntityFlying implements IMob, IAethe
         this.SpiritPartHead.onUpdate();
         this.SpiritPartHead.setLocationAndAngles(this.posX, this.posY + 1.5f, this.posZ, 0F, 0F);
         this.SpiritPartShoulder1.onUpdate();
-        this.SpiritPartShoulder1.setLocationAndAngles(this.posX - f2 * 1.0F, this.posY - 0.25F, this.posZ - f1 * 1.0F, 0F, 0F);
+        this.SpiritPartShoulder1.setLocationAndAngles(this.posX - f2, this.posY - 0.25F, this.posZ - f1, 0F, 0F);
         this.SpiritPartShoulder2.onUpdate();
-        this.SpiritPartShoulder2.setLocationAndAngles(this.posX + f2 * 1.0F, this.posY - 0.25F, this.posZ + f1 * 1.0F, 0F, 0F);
+        this.SpiritPartShoulder2.setLocationAndAngles(this.posX + f2, this.posY - 0.25F, this.posZ + f1, 0F, 0F);
     }
 
     public Entity[] getParts()

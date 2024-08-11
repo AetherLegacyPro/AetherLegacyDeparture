@@ -290,8 +290,8 @@ public class FallenValkyrieModel extends ModelBiped {
 		}
 
 		if (this.isRiding) {
-			this.bipedRightArm.rotateAngleX += -0.6283185F;
-			this.bipedLeftArm.rotateAngleX += -0.6283185F;
+			this.bipedRightArm.rotateAngleX -= 0.6283185F;
+			this.bipedLeftArm.rotateAngleX -= 0.6283185F;
 			this.bipedRightLeg.rotateAngleX = -1.256637F;
 			this.bipedLeftLeg.rotateAngleX = -1.256637F;
 			this.bipedRightLeg.rotateAngleY = 0.3141593F;

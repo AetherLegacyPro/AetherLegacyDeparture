@@ -170,8 +170,8 @@ public class CrystalDragonModel extends ModelBase
         this.head.rotationPointZ = f9;
         this.head.rotationPointX = f10;
         double[] adouble2 = entitydragon.getMovementOffsets(0, this.partialTicks);
-        this.head.rotateAngleY = this.updateRotations(adouble2[0] - adouble[0]) * (float)Math.PI / 180.0F * 1.0F;
-        this.head.rotateAngleZ = -this.updateRotations(adouble2[0] - (double)f13) * (float)Math.PI / 180.0F * 1.0F;
+        this.head.rotateAngleY = this.updateRotations(adouble2[0] - adouble[0]) * (float)Math.PI / 180.0F;
+        this.head.rotateAngleZ = -this.updateRotations(adouble2[0] - (double)f13) * (float)Math.PI / 180.0F;
         this.head.render(p_78088_7_);
         GL11.glPushMatrix();
         GL11.glTranslatef(0.0F, 1.0F, 0.0F);

@@ -106,7 +106,7 @@ public class AIEntityFlyingMob extends EntityAIBase
         final AxisAlignedBB axisalignedbb = this.flyingMob.boundingBox.copy();
         for (int i = 1; i < d3; ++i) {
             axisalignedbb.offset(d4, d5, d6);
-            if (!this.flyingMob.worldObj.getCollidingBoundingBoxes((Entity) this.flyingMob, axisalignedbb).isEmpty()) {
+            if (!this.flyingMob.worldObj.getCollidingBoundingBoxes(this.flyingMob, axisalignedbb).isEmpty()) {
                 return false;
             }
         }

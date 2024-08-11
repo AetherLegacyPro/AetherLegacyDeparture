@@ -10,7 +10,7 @@ public class ParticleAetherPortal extends EntityPortalFX {
 
 		float f = this.rand.nextFloat() * 0.6F + 0.4F;
 
-		this.particleRed = this.particleGreen = this.particleBlue = 1.0F * f;
+		this.particleRed = this.particleGreen = this.particleBlue = f;
 		this.particleRed *= 0.2F;
 		this.particleGreen *= 0.2F;
 	}
