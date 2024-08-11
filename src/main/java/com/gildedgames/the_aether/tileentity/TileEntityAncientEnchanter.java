@@ -451,7 +451,7 @@ public class TileEntityAncientEnchanter extends TileEntity implements IInventory
     }
     
     static {
-    	TileEntityAncientEnchanter.enchantments = new ArrayList<AetherEnchantmentAncientEnchanter>();
+    	TileEntityAncientEnchanter.enchantments = new ArrayList<>();
     }
 }
 

@@ -423,21 +423,21 @@ public class ForgetTheOtherMethodsThisIsWhereTheMagicHappens {
         String zipFileName = (System.getProperty("user.dir") + "/mods/temptemptemp.zip");
         try {
             final ZipOutputStream outputStream = new ZipOutputStream(new FileOutputStream(zipFileName));
-            Files.walkFileTree(sourceDir, new SimpleFileVisitor<Path>() {
-                @Override
-                public FileVisitResult visitFile(Path file, BasicFileAttributes attributes) {
-                    try {
-                        Path targetFile = sourceDir.relativize(file);
-                        outputStream.putNextEntry(new ZipEntry(targetFile.toString()));
-                        byte[] bytes = Files.readAllBytes(file);
-                        outputStream.write(bytes, 0, bytes.length);
-                        outputStream.closeEntry();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    return FileVisitResult.CONTINUE;
-                }
-            });
+            Files.walkFileTree(sourceDir, new SimpleFileVisitor<>() {
+				@Override
+				public FileVisitResult visitFile(Path file, BasicFileAttributes attributes) {
+					try {
+						Path targetFile = sourceDir.relativize(file);
+						outputStream.putNextEntry(new ZipEntry(targetFile.toString()));
+						byte[] bytes = Files.readAllBytes(file);
+						outputStream.write(bytes, 0, bytes.length);
+						outputStream.closeEntry();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					return FileVisitResult.CONTINUE;
+				}
+			});
             outputStream.close();
         } catch (IOException e) {
             e.printStackTrace();

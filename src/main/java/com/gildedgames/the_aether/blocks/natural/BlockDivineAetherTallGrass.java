@@ -56,7 +56,7 @@ public class BlockDivineAetherTallGrass extends BlockBush implements IShearable 
 
 	@Override
 	public ArrayList<ItemStack> onSheared(ItemStack item, IBlockAccess world, int x, int y, int z, int fortune) {
-		 ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
+		 ArrayList<ItemStack> ret = new ArrayList<>();
 	            ret.add(new ItemStack(BlocksAether.divine_aether_tallgrass));
 	        return ret;
 	}

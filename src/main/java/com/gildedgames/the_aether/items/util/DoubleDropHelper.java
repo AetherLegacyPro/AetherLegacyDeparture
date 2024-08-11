@@ -30,7 +30,7 @@ public class DoubleDropHelper {
 		}
 
 		if (block.canSilkHarvest(player.worldObj, player, x, y, z, meta) && EnchantmentHelper.getEnchantmentLevel(Enchantment.silkTouch.effectId, stack) > 0) {
-			ArrayList<ItemStack> items = new ArrayList<ItemStack>();
+			ArrayList<ItemStack> items = new ArrayList<>();
 			ItemStack itemstack = createStackedBlock(meta, block);
 
 			items.add(itemstack);

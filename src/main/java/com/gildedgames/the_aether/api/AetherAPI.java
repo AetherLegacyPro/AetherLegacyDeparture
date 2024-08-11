@@ -21,14 +21,14 @@ import net.minecraft.util.ResourceLocation;
 
 public class AetherAPI {
 
-	private static final HashMap<ResourceLocation, AetherAccessory> iAccessoryRegistry = new HashMap<ResourceLocation, AetherAccessory>(4096);
-	private static final HashMap<ResourceLocation, AetherEnchantment> iEnchantmentRegistry = new HashMap<ResourceLocation, AetherEnchantment>(4096);
-	private static final HashMap<ResourceLocation, AetherEnchantmentFuel> iEnchantmentFuelRegistry = new HashMap<ResourceLocation, AetherEnchantmentFuel>(4096);
-	private static final HashMap<ResourceLocation, AetherAmplifier> iAmplifierRegistry = new HashMap<ResourceLocation, AetherAmplifier>(4096);
-	private static final HashMap<ResourceLocation, AetherAmplifierFuel> iAmplifierFuelRegistry = new HashMap<ResourceLocation, AetherAmplifierFuel>(4096);
-	private static final HashMap<ResourceLocation, AetherFreezable> iFreezableRegistry = new HashMap<ResourceLocation, AetherFreezable>(4096);
-	private static final HashMap<ResourceLocation, AetherFreezableFuel> iFreezableFuelRegistry = new HashMap<ResourceLocation, AetherFreezableFuel>(4096);
-	private static final HashMap<ResourceLocation, AetherMoaType> iMoaTypeRegistry = new HashMap<ResourceLocation, AetherMoaType>(4096);
+	private static final HashMap<ResourceLocation, AetherAccessory> iAccessoryRegistry = new HashMap<>(4096);
+	private static final HashMap<ResourceLocation, AetherEnchantment> iEnchantmentRegistry = new HashMap<>(4096);
+	private static final HashMap<ResourceLocation, AetherEnchantmentFuel> iEnchantmentFuelRegistry = new HashMap<>(4096);
+	private static final HashMap<ResourceLocation, AetherAmplifier> iAmplifierRegistry = new HashMap<>(4096);
+	private static final HashMap<ResourceLocation, AetherAmplifierFuel> iAmplifierFuelRegistry = new HashMap<>(4096);
+	private static final HashMap<ResourceLocation, AetherFreezable> iFreezableRegistry = new HashMap<>(4096);
+	private static final HashMap<ResourceLocation, AetherFreezableFuel> iFreezableFuelRegistry = new HashMap<>(4096);
+	private static final HashMap<ResourceLocation, AetherMoaType> iMoaTypeRegistry = new HashMap<>(4096);
 
 	private static final AetherAPI instance = new AetherAPI();
 
@@ -168,19 +168,19 @@ public class AetherAPI {
 	}
 
 	public List<AetherEnchantment> getEnchantmentValues() {
-		return new ArrayList<AetherEnchantment>(iEnchantmentRegistry.values());
+		return new ArrayList<>(iEnchantmentRegistry.values());
 	}
 	
 	public List<AetherAmplifier> getAmplifierValues() {
-		return new ArrayList<AetherAmplifier>(iAmplifierRegistry.values());
+		return new ArrayList<>(iAmplifierRegistry.values());
 	}
 
 	public List<AetherFreezable> getFreezableValues() {
-		return new ArrayList<AetherFreezable>(iFreezableRegistry.values());
+		return new ArrayList<>(iFreezableRegistry.values());
 	}
 
 	public List<AetherMoaType> getMoaTypeValues() {
-		return new ArrayList<AetherMoaType>(iMoaTypeRegistry.values());
+		return new ArrayList<>(iMoaTypeRegistry.values());
 	}
 
 	public int getMoaTypeId(AetherMoaType type) {

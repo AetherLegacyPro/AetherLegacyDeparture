@@ -5,7 +5,7 @@ import java.util.UUID;
 
 public class AetherRankings {
 
-	public static HashMap<String, UUID> ranks = new HashMap<String, UUID>();
+	public static HashMap<String, UUID> ranks = new HashMap<>();
 
 	public static void initialization() {
 

@@ -53,7 +53,7 @@ public class BlockAetherLog extends BlockLog {
 
 		if (this.canSilkHarvest(worldIn, player, x, y, z, meta) && EnchantmentHelper.getSilkTouchModifier(player))
 		{
-			ArrayList<ItemStack> items = new ArrayList<ItemStack>();
+			ArrayList<ItemStack> items = new ArrayList<>();
 			ItemStack itemstack = this.createStackedBlock(meta);
 
 			if (itemstack != null)

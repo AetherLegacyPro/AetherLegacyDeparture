@@ -30,7 +30,7 @@ public class TeleporterAether extends Teleporter {
 
 	private final LongHashMap destinationCoordinateCache = new LongHashMap();
 
-	private final List<Long> destinationCoordinateKeys = new ArrayList<Long>();
+	private final List<Long> destinationCoordinateKeys = new ArrayList<>();
 
 	public TeleporterAether(boolean portalSpawn, WorldServer worldIn) {
 		super(worldIn);

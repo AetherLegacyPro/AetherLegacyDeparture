@@ -62,7 +62,7 @@ public class AetherBiome extends BiomeGenBase {
 		this.spawnableMonsterList.clear();
 		this.spawnableWaterCreatureList.clear();
 
-		ArrayList<SpawnListEntry> list = new ArrayList<SpawnListEntry>();
+		ArrayList<SpawnListEntry> list = new ArrayList<>();
 		
 		this.addMobEntry(list);
 

@@ -10,7 +10,7 @@ import net.minecraft.util.ChatComponentText;
 
 public class GuiDialogue extends GuiScreen {
 
-	private ArrayList<DialogueOption> dialogueOptions = new ArrayList<DialogueOption>();
+	private ArrayList<DialogueOption> dialogueOptions = new ArrayList<>();
 
 	private String dialogue;
 

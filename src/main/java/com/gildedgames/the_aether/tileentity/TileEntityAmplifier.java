@@ -23,7 +23,7 @@ public class TileEntityAmplifier extends AetherTileEntity {
 
 	public int progress, ticksRequired, powerRemaining;
 
-	private final FilledList<ItemStack> amplifiedItemStacks = new FilledList<ItemStack>(3, null);
+	private final FilledList<ItemStack> amplifiedItemStacks = new FilledList<>(3, null);
 
 	private AetherAmplifier currentAmplifier;
 

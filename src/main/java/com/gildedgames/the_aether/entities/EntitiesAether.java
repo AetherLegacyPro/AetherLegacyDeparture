@@ -105,13 +105,13 @@ import cpw.mods.fml.common.registry.EntityRegistry;
 
 public class EntitiesAether {
 
-	public static Map<Class<?>, String> classToStringMapping = new HashMap<Class<?>, String>();
+	public static Map<Class<?>, String> classToStringMapping = new HashMap<>();
 
-	public static Map<Integer, Class<?>> IDtoClassMapping = new HashMap<Integer, Class<?>>();
+	public static Map<Integer, Class<?>> IDtoClassMapping = new HashMap<>();
 
-	private static Map<Class<?>, Integer> classToIDMapping = new HashMap<Class<?>, Integer>();
+	private static Map<Class<?>, Integer> classToIDMapping = new HashMap<>();
 
-	private static Map<String, Integer> stringToIDMapping = new HashMap<String, Integer>();
+	private static Map<String, Integer> stringToIDMapping = new HashMap<>();
 
 	private static final Logger logger = LogManager.getLogger();
 

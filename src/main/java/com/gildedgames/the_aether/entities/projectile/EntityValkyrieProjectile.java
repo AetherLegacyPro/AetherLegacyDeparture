@@ -14,7 +14,7 @@ import com.gildedgames.the_aether.entities.util.EntitySaddleMount;
 
 public class EntityValkyrieProjectile extends EntityProjectileBase {
 
-	public ArrayList<Block> harvestBlockBans = new ArrayList<Block>();
+	public ArrayList<Block> harvestBlockBans = new ArrayList<>();
 
 	public EntityValkyrieProjectile(World worldIn) {
 		super(worldIn);

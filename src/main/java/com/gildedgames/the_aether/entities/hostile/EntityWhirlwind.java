@@ -32,7 +32,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityWhirlwind extends EntityMob {
 
-	public ArrayList<Object> particles = new ArrayList<Object>();
+	public ArrayList<Object> particles = new ArrayList<>();
 
 	public int lifeLeft;
 

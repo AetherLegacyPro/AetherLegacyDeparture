@@ -14,7 +14,7 @@ import com.gildedgames.the_aether.entities.util.EntitySaddleMount;
 
 public class EntityBattleSentryHammerProjectile extends EntityProjectileBase {
 
-	public ArrayList<Block> harvestBlockBans = new ArrayList<Block>();
+	public ArrayList<Block> harvestBlockBans = new ArrayList<>();
 
 	public EntityBattleSentryHammerProjectile(World worldIn) {
 		super(worldIn);

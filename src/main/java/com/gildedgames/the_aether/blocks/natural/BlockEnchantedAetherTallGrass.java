@@ -55,7 +55,7 @@ public class BlockEnchantedAetherTallGrass extends BlockBush implements IShearab
 	
 	@Override
 	public ArrayList<ItemStack> onSheared(ItemStack item, IBlockAccess world, int x, int y, int z, int fortune) {
-		 ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
+		 ArrayList<ItemStack> ret = new ArrayList<>();
 	            ret.add(new ItemStack(BlocksAether.enchanted_aether_tallgrass));
 	        return ret;
 	}

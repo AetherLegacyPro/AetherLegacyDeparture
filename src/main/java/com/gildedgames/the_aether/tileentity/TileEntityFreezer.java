@@ -23,7 +23,7 @@ public class TileEntityFreezer extends AetherTileEntity {
 
 	public int progress, ticksRequired, powerRemaining;
 
-	private final FilledList<ItemStack> frozenItemStacks = new FilledList<ItemStack>(3, null);
+	private final FilledList<ItemStack> frozenItemStacks = new FilledList<>(3, null);
 
 	private AetherFreezable currentFreezable;
 

@@ -32,7 +32,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemAetherSpawnEgg extends Item {
 
-	public static HashMap<Integer, AetherEggInfo> entityEggs = new LinkedHashMap<Integer, AetherEggInfo>();
+	public static HashMap<Integer, AetherEggInfo> entityEggs = new LinkedHashMap<>();
 
 	@SideOnly(Side.CLIENT)
 	private IIcon theIcon;

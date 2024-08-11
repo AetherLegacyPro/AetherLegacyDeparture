@@ -27,7 +27,7 @@ public class TileEntityIncubator extends AetherTileEntity {
 
 	public int ticksRequired = 5700;
 
-	private final FilledList<ItemStack> incubatorItemStacks = new FilledList<ItemStack>(3, null);
+	private final FilledList<ItemStack> incubatorItemStacks = new FilledList<>(3, null);
 
 	public TileEntityIncubator() {
 		super("Incubator");
