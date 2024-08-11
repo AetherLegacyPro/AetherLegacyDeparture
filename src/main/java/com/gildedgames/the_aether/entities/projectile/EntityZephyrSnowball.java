@@ -6,7 +6,6 @@ import com.gildedgames.the_aether.player.PlayerAether;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.ItemStack;
 import net.minecraft.network.play.server.S12PacketEntityVelocity;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;

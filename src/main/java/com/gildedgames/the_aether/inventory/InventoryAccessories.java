@@ -1,9 +1,15 @@
 package com.gildedgames.the_aether.inventory;
 
+import com.gildedgames.the_aether.api.accessories.AccessoryType;
+import com.gildedgames.the_aether.api.player.IPlayerAether;
+import com.gildedgames.the_aether.api.player.util.IAccessoryInventory;
+import com.gildedgames.the_aether.items.ItemsAether;
+import com.gildedgames.the_aether.items.accessories.ItemAccessory;
+import com.gildedgames.the_aether.network.AetherNetwork;
+import com.gildedgames.the_aether.network.packets.PacketAccessory;
+import com.gildedgames.the_aether.util.FilledList;
+import cpw.mods.fml.common.network.ByteBufUtils;
 import io.netty.buffer.ByteBuf;
-
-import java.util.List;
-
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -13,16 +19,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.ObjectIntIdentityMap;
 
-import com.gildedgames.the_aether.api.accessories.AccessoryType;
-import com.gildedgames.the_aether.api.player.IPlayerAether;
-import com.gildedgames.the_aether.api.player.util.IAccessoryInventory;
-import com.gildedgames.the_aether.items.ItemsAether;
-import com.gildedgames.the_aether.items.accessories.ItemAccessory;
-import com.gildedgames.the_aether.network.AetherNetwork;
-import com.gildedgames.the_aether.network.packets.PacketAccessory;
-import com.gildedgames.the_aether.util.FilledList;
-
-import cpw.mods.fml.common.network.ByteBufUtils;
+import java.util.List;
 
 public class InventoryAccessories implements IAccessoryInventory {
 

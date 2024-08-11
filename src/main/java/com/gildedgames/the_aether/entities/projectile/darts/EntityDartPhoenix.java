@@ -1,6 +1,5 @@
 package com.gildedgames.the_aether.entities.projectile.darts;
 
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityEnderman;

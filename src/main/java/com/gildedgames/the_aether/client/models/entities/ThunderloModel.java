@@ -7,7 +7,6 @@ import com.gildedgames.the_aether.entities.passive.EntityThunderlo;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.MathHelper;
 
 public class ThunderloModel extends ModelBase

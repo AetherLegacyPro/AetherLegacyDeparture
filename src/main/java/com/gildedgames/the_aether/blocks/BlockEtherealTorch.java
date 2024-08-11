@@ -7,7 +7,6 @@ import java.util.*;
 import com.gildedgames.the_aether.entities.particles.NewAetherParticleHandler;
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
 
-import net.minecraft.init.*;
 import cpw.mods.fml.relauncher.*;
 
 public class BlockEtherealTorch extends BlockTorch

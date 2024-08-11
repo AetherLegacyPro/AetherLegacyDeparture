@@ -7,12 +7,8 @@ import com.gildedgames.the_aether.world.biome.decoration.AetherGenGoldenFruitTre
 import com.gildedgames.the_aether.world.biome.decoration.AetherGenOakTree;
 
 import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import net.minecraft.world.gen.feature.WorldGenBigTree;
 import net.minecraft.world.gen.feature.WorldGenTallGrass;
-import net.minecraft.world.gen.feature.WorldGenTrees;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
 public class GoldenIsland extends WorldGenerator {

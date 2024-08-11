@@ -11,7 +11,6 @@ import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.items.ItemsAether;
 
 import net.minecraft.entity.*;
-import net.minecraft.item.*;
 
 public class EntityAerwhale extends EntityFlying implements IMob
 {

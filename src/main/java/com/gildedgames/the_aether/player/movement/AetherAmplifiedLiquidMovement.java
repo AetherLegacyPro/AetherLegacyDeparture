@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.player.movement;
 
 import com.gildedgames.the_aether.api.player.IPlayerAether;
-import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;

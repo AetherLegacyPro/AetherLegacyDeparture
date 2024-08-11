@@ -14,19 +14,15 @@ import com.gildedgames.the_aether.entities.passive.EntityThunderlo;
 
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.client.renderer.entity.RenderLightningBolt;
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraftforge.client.MinecraftForgeClient;
 
 import com.gildedgames.the_aether.client.models.entities.AercenturionModel;
-import com.gildedgames.the_aether.client.models.entities.CarrionSproutModel;
 import com.gildedgames.the_aether.client.models.entities.ElysianGuardianModel;
 import com.gildedgames.the_aether.client.models.entities.TempestModel;
 import com.gildedgames.the_aether.client.models.entities.ThunderloModel;
 import com.gildedgames.the_aether.client.models.entities.UligoModel;
 import com.gildedgames.the_aether.client.models.entities.YoungZephyrModel;
-import com.gildedgames.the_aether.client.models.entities.ZarnillysModel;
 import com.gildedgames.the_aether.client.models.entities.ZephyrooModel;
 import com.gildedgames.the_aether.client.models.entities.ZojzModel;
 import com.gildedgames.the_aether.client.renders.block.AetherEnchantmentTableRenderer;
@@ -34,7 +30,6 @@ import com.gildedgames.the_aether.client.renders.block.AetherFlowerRenderer;
 import com.gildedgames.the_aether.client.renders.block.AetherTNTRenderer;
 import com.gildedgames.the_aether.client.renders.block.BerryBushRenderer;
 import com.gildedgames.the_aether.client.renders.block.DivineEnchantmentTableRenderer;
-import com.gildedgames.the_aether.client.renders.block.SkyrootChestRenderer;
 import com.gildedgames.the_aether.client.renders.block.TreasureChestBlockRenderer;
 import com.gildedgames.the_aether.client.renders.entity.AechorPlantRenderer;
 import com.gildedgames.the_aether.client.renders.entity.AerbunnyRenderer;
@@ -190,11 +185,9 @@ import com.gildedgames.the_aether.entities.projectile.darts.EntityDartBase;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.tileentity.TileEntityAetherEnchantmentTable;
 import com.gildedgames.the_aether.tileentity.TileEntityDivineEnchantmentTable;
-import com.gildedgames.the_aether.tileentity.TileEntitySkyrootChest;
 import com.gildedgames.the_aether.tileentity.TileEntityTreasureChest;
 
 import cpw.mods.fml.client.registry.ClientRegistry;
-import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 
 public class RendersAether {

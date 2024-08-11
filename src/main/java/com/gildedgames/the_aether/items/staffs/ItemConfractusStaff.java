@@ -1,16 +1,11 @@
 package com.gildedgames.the_aether.items.staffs;
 
 import com.gildedgames.the_aether.blocks.BlocksAether;
-import com.gildedgames.the_aether.entities.particles.ParticleDivineGrass;
-import com.gildedgames.the_aether.entities.passive.EntityMiniCloud;
 import com.gildedgames.the_aether.items.ItemsAether;
-import com.gildedgames.the_aether.player.PlayerAether;
 import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
 
-import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.EnumRarity;

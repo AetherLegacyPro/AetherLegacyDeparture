@@ -4,17 +4,10 @@ import java.util.Random;
 
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.world.biome.decoration.AetherGenDivineTree;
-import com.gildedgames.the_aether.world.biome.decoration.AetherGenGoldenFruitTree;
-import com.gildedgames.the_aether.world.biome.decoration.AetherGenMassiveTree;
-import com.gildedgames.the_aether.world.biome.decoration.AetherGenOakTree;
 
 import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import net.minecraft.world.gen.feature.WorldGenBigTree;
 import net.minecraft.world.gen.feature.WorldGenTallGrass;
-import net.minecraft.world.gen.feature.WorldGenTrees;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
 public class DivineIsland extends WorldGenerator {

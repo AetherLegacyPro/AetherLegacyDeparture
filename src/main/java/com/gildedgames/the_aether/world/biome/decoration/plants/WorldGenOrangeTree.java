@@ -3,7 +3,6 @@ package com.gildedgames.the_aether.world.biome.decoration.plants;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.block.*;
 import net.minecraft.world.*;
-import net.minecraft.world.gen.feature.WorldGenerator;
 
 import java.util.*;
 

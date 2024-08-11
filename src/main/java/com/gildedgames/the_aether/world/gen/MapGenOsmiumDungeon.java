@@ -2,11 +2,9 @@ package com.gildedgames.the_aether.world.gen;
 
 import java.util.Random;
 
-import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.world.gen.components.ComponentOsmiumDungeon;
 import com.gildedgames.the_aether.world.util.RandomTracker;
 
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.MapGenStructure;

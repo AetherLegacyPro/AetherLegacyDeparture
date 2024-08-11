@@ -2,7 +2,6 @@ package com.gildedgames.the_aether.entities.bosses;
 
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.entities.hostile.EntityAetherMob;
-import com.gildedgames.the_aether.items.ItemsAether;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;

@@ -5,19 +5,14 @@ import java.util.Random;
 import com.gildedgames.the_aether.api.player.IPlayerAether;
 import com.gildedgames.the_aether.api.player.util.IAetherAbility;
 import com.gildedgames.the_aether.items.ItemsAether;
-import com.gildedgames.the_aether.player.PlayerAether;
 import com.gildedgames.the_aether.player.movement.AetherAmplifiedLiquidMovement;
 import com.gildedgames.the_aether.player.movement.AetherLiquidMovement;
-import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 
-import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerRespawnEvent;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 
 public class AbilityArmor implements IAetherAbility {

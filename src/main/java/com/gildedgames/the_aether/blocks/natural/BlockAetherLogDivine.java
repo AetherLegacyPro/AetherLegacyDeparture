@@ -5,7 +5,6 @@ import java.util.Random;
 
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.items.ItemsAether;
-import com.gildedgames.the_aether.items.tools.*;
 import com.gildedgames.the_aether.items.util.EnumAetherToolType;
 import com.gildedgames.the_aether.items.tools.*;
 import net.minecraft.block.BlockLog;

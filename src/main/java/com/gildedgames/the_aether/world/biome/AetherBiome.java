@@ -8,9 +8,7 @@ import com.gildedgames.the_aether.entities.bosses.EntityAncientFireMinion;
 import com.gildedgames.the_aether.entities.bosses.EntityDivineFireMinion;
 import com.gildedgames.the_aether.entities.bosses.EntityEliteValkyrie;
 import com.gildedgames.the_aether.entities.bosses.EntityFallenValkyrie;
-import com.gildedgames.the_aether.entities.bosses.EntityFireMinion;
 import com.gildedgames.the_aether.entities.bosses.EntityValkyrie;
-import com.gildedgames.the_aether.entities.bosses.crystal_dragon.EntityCrystalDragon;
 import com.gildedgames.the_aether.entities.hostile.EntityAechorPlant;
 import com.gildedgames.the_aether.entities.hostile.EntityAerca;
 import com.gildedgames.the_aether.entities.hostile.EntityBattleSentry;
@@ -33,7 +31,6 @@ import com.gildedgames.the_aether.entities.passive.EntityFlynx;
 import com.gildedgames.the_aether.entities.passive.EntitySheepuff;
 import com.gildedgames.the_aether.entities.passive.EntityThunderlo;
 
-import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
@@ -47,21 +44,12 @@ import com.gildedgames.the_aether.entities.passive.mountable.EntityMoa;
 import com.gildedgames.the_aether.entities.passive.mountable.EntityPhyg;
 import com.gildedgames.the_aether.entities.passive.mountable.EntitySwet;
 import com.gildedgames.the_aether.entities.passive.mountable.EntityZephyroo;
-import com.gildedgames.the_aether.world.biome.decoration.AetherTrueCaveGen;
 import com.gildedgames.the_aether.world.biome.decoration.plants.WorldGenAetherGrass;
-import com.gildedgames.the_aether.world.biome.decoration.plants.WorldGenBerryBush;
-import com.gildedgames.the_aether.world.biome.decoration.AetherGenOakTree;
-import com.gildedgames.the_aether.world.biome.decoration.AetherGenSkyrootTree;
 import com.gildedgames.the_aether.world.biome.decoration.AetherGenSkyrootTreeNew;
-import com.gildedgames.the_aether.world.biome.decoration.AetherGenBlueSkyrootTree;
-import com.gildedgames.the_aether.world.biome.decoration.AetherGenDarkBlueSkyrootTree;
 import com.gildedgames.the_aether.world.biome.decoration.AetherGenFruitTree;
-import com.gildedgames.the_aether.world.biome.decoration.AetherGenGoldenFruitTree;
 import com.gildedgames.the_aether.world.biome.decoration.AetherGenGreatrootTree;
-import com.gildedgames.the_aether.world.biome.decoration.AetherGenGreatwoodTree;
 import com.gildedgames.the_aether.world.biome.decoration.AetherGenLargeTree;
 import com.gildedgames.the_aether.world.biome.decoration.AetherGenMassiveTree;
-import com.gildedgames.the_aether.world.biome.decoration.AetherGenWisprootTree;
 
 public class AetherBiome extends BiomeGenBase {
 

@@ -12,7 +12,6 @@ import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 
 import net.minecraft.entity.*;
-import net.minecraft.item.*;
 
 public class EntityAerca extends EntityFlying implements IMob
 {

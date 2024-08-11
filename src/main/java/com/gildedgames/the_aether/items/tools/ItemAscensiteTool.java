@@ -1,18 +1,13 @@
 package com.gildedgames.the_aether.items.tools;
 
-import com.gildedgames.the_aether.AetherConfig;
-import com.gildedgames.the_aether.entities.block.EntityFloatingBlock;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.items.tools.ItemAetherTool;
 import com.gildedgames.the_aether.items.util.EnumAetherToolType;
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
 
 import net.minecraft.block.Block;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeHooks;
 
 public class ItemAscensiteTool extends ItemAetherTool {
 

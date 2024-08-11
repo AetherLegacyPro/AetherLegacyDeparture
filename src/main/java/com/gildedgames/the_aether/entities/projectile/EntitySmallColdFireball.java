@@ -1,10 +1,6 @@
 package com.gildedgames.the_aether.entities.projectile;
 
-import com.gildedgames.the_aether.entities.effects.EffectInebriation;
-import com.gildedgames.the_aether.entities.effects.PotionInebriation;
-
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.projectile.EntityFireball;
 import net.minecraft.entity.projectile.EntitySmallFireball;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.DamageSource;

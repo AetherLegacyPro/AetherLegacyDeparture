@@ -4,7 +4,6 @@ import java.util.*;
 
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.items.ItemsAether;
-import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 import com.gildedgames.the_aether.tileentity.TileEntityAncientEnchanter;
 
 import net.minecraft.block.material.*;

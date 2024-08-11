@@ -10,7 +10,6 @@ import net.minecraft.init.*;
 import net.minecraft.entity.item.*;
 import net.minecraft.entity.*;
 import cpw.mods.fml.relauncher.*;
-import net.minecraft.stats.*;
 import net.minecraft.network.play.server.*;
 import net.minecraft.network.*;
 import cpw.mods.fml.common.*;
@@ -22,7 +21,6 @@ import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.blocks.ancient.enchanter.AetherEnchantmentAncientEnchanter;
 import com.gildedgames.the_aether.entities.fake.item.EntityFakeItem;
 import com.gildedgames.the_aether.items.ItemsAether;
-import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 
 public class TileEntityAncientEnchanter extends TileEntity implements IInventory
 {

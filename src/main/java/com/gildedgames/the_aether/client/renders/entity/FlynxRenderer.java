@@ -2,7 +2,6 @@ package com.gildedgames.the_aether.client.renders.entity;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -11,7 +10,6 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 import com.gildedgames.the_aether.Aether;
-import com.gildedgames.the_aether.client.models.entities.CockatriceModel;
 import com.gildedgames.the_aether.client.models.entities.FlynxModel;
 import com.gildedgames.the_aether.entities.passive.EntityFlynx;
 

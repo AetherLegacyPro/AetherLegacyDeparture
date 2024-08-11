@@ -2,7 +2,6 @@ package com.gildedgames.the_aether.network.packets;
 
 import com.gildedgames.the_aether.world.AetherWorldProvider;
 import io.netty.buffer.ByteBuf;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.WorldProvider;
 

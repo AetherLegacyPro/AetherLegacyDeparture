@@ -3,7 +3,6 @@ package com.gildedgames.the_aether.entities.util;
 import com.gildedgames.the_aether.items.ItemsAether;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;

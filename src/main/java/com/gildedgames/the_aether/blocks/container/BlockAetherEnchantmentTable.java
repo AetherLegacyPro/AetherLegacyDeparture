@@ -14,7 +14,6 @@ import net.minecraft.client.renderer.texture.*;
 import net.minecraft.world.*;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.*;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 

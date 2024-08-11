@@ -4,19 +4,13 @@ import com.gildedgames.the_aether.AetherConfig;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MathHelper;
-import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.entities.passive.EntityAetherAnimal;
-import com.gildedgames.the_aether.entities.projectile.EntityPoisonNeedle;
 import com.gildedgames.the_aether.items.ItemsAether;
-import com.gildedgames.the_aether.items.util.EnumSkyrootBucketType;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

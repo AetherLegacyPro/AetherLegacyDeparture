@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.blocks.container;
 
 import net.minecraft.block.material.*;
-import net.minecraft.creativetab.*;
 import net.minecraft.block.*;
 import net.minecraft.world.*;
 import net.minecraft.item.*;
@@ -11,7 +10,6 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
 import net.minecraftforge.common.util.*;
 import net.minecraft.tileentity.*;
-import net.minecraft.entity.passive.*;
 import net.minecraft.util.*;
 import java.util.*;
 

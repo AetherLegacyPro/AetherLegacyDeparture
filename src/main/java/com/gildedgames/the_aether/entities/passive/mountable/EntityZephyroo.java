@@ -2,32 +2,20 @@ package com.gildedgames.the_aether.entities.passive.mountable;
 
 import net.minecraft.world.*;
 import net.minecraft.entity.player.*;
-import net.minecraft.init.Items;
 
 import java.util.*;
 
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.blocks.BlocksAether;
-import com.gildedgames.the_aether.entities.hostile.EntityAetherMob;
 import com.gildedgames.the_aether.entities.passive.EntityAetherAnimal;
-import com.gildedgames.the_aether.entities.passive.EntityThunderlo;
-import com.gildedgames.the_aether.entities.util.EntitySaddleMount;
 import com.gildedgames.the_aether.items.ItemsAether;
-import com.gildedgames.the_aether.player.PlayerAether;
 import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 
 import net.minecraft.entity.*;
-import net.minecraft.block.Block;
 import net.minecraft.entity.ai.*;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.passive.EntityAnimal;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
-import net.minecraft.world.World;
 
 public class EntityZephyroo extends EntityAetherAnimal
 {

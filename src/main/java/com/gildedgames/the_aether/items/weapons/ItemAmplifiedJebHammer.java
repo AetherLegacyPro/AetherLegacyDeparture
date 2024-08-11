@@ -1,24 +1,19 @@
 package com.gildedgames.the_aether.items.weapons;
 
 import com.gildedgames.the_aether.entities.block.EntityFireProofItemAether;
-import com.gildedgames.the_aether.entities.block.EntityFloatingBlock;
 import com.gildedgames.the_aether.entities.projectile.EntityAmplifiedJebHammerProjectile;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.player.PlayerAether;
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
-import net.minecraft.network.play.server.S12PacketEntityVelocity;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeHooks;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;

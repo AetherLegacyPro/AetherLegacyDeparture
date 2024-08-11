@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.blocks.container;
 
 import net.minecraft.block.*;
-import net.minecraft.block.material.Material;
 import net.minecraft.util.*;
 
 import com.gildedgames.the_aether.Aether;

@@ -7,8 +7,6 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
-import com.gildedgames.the_aether.blocks.BlocksAether;
-
 public class AetherTrueCaveGen extends WorldGenerator {
 
 	private Block hollowBlock;

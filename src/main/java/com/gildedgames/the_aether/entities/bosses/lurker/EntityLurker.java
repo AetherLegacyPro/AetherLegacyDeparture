@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.entities.bosses.lurker;
 
 import java.util.List;
-import java.util.Random;
 
 import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.entities.util.EntityBossMob;
@@ -20,7 +19,6 @@ import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -37,7 +35,6 @@ import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.blocks.dungeon.BlockDungeonBaseOsmium;
 import com.gildedgames.the_aether.client.gui.dialogue.entity.GuiLurkerDialogue;
 import com.gildedgames.the_aether.entities.ai.EntityAIAttackContinuously;
-import com.gildedgames.the_aether.entities.ai.valkyrie_queen.ValkyrieQueenAIWander;
 import com.gildedgames.the_aether.entities.hostile.EntityUligo;
 import com.gildedgames.the_aether.entities.hostile.EntityUro;
 import com.gildedgames.the_aether.entities.effects.EffectInebriation;

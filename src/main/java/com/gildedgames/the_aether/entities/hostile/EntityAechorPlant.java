@@ -13,7 +13,6 @@ import net.minecraft.world.World;
 
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.entities.hostile.swet.EnumAechorPlantType;
-import com.gildedgames.the_aether.entities.hostile.swet.EnumSwetType;
 import com.gildedgames.the_aether.entities.passive.EntityAetherAnimal;
 import com.gildedgames.the_aether.entities.projectile.EntityPoisonNeedle;
 import com.gildedgames.the_aether.items.ItemsAether;

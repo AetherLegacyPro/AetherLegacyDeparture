@@ -1,8 +1,5 @@
 package com.gildedgames.the_aether.inventory;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.gildedgames.the_aether.api.AetherAPI;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ContainerPlayer;

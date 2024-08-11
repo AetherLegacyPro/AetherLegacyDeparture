@@ -3,8 +3,6 @@ package com.gildedgames.the_aether.client.models.entities;
 import org.lwjgl.opengl.GL11;
 
 import com.gildedgames.the_aether.entities.passive.mountable.EntityZephyroo;
-import com.google.common.collect.ImmutableList;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;

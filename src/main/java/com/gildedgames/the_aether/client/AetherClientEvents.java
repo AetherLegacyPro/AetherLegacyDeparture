@@ -1,13 +1,9 @@
 package com.gildedgames.the_aether.client;
 
-import java.security.Key;
 import java.util.List;
 
 import com.gildedgames.the_aether.client.gui.GuiCustomizationScreen;
 import com.gildedgames.the_aether.client.gui.GuiEnterAether;
-import com.gildedgames.the_aether.client.gui.button.GuiAccessoryButton;
-import com.gildedgames.the_aether.client.gui.button.GuiCapeButton;
-import com.gildedgames.the_aether.client.gui.button.GuiCustomizationScreenButton;
 import com.gildedgames.the_aether.client.gui.button.*;
 import com.gildedgames.the_aether.client.gui.inventory.GuiAccessories;
 import com.gildedgames.the_aether.client.gui.menu.AetherMainMenu;
@@ -15,7 +11,6 @@ import com.gildedgames.the_aether.client.gui.menu.GuiMenuToggleButton;
 import com.gildedgames.the_aether.network.packets.PacketCapeChanged;
 import com.gildedgames.the_aether.network.packets.PacketExtendedAttack;
 import com.gildedgames.the_aether.player.perks.AetherRankings;
-import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.gameevent.InputEvent;
@@ -27,7 +22,6 @@ import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.client.renderer.entity.RenderPlayer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.settings.GameSettings;
-import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.boss.EntityDragon;
@@ -43,7 +37,6 @@ import net.minecraftforge.client.event.GuiScreenEvent.DrawScreenEvent;
 import net.minecraftforge.client.event.RenderPlayerEvent.SetArmorModel;
 
 import com.gildedgames.the_aether.AetherConfig;
-import com.gildedgames.the_aether.api.player.IPlayerAether;
 import com.gildedgames.the_aether.client.gui.AetherLoadingScreen;
 import com.gildedgames.the_aether.client.renders.entity.PlayerAetherRenderer;
 import com.gildedgames.the_aether.entities.EntitiesAether;
@@ -58,7 +51,6 @@ import com.gildedgames.the_aether.player.PlayerAether;
 import cpw.mods.fml.common.ObfuscationReflectionHelper;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
-import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
 public class AetherClientEvents {

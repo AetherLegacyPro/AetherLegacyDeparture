@@ -21,7 +21,6 @@ import com.gildedgames.the_aether.items.tools.ItemAscensiteTool;
 import com.gildedgames.the_aether.items.tools.ItemValkyrieTool;
 import com.gildedgames.the_aether.items.tools.tipped.ItemTippedArkeniumTool;
 import com.gildedgames.the_aether.items.tools.tipped.ItemTippedValkyrieTool;
-import com.gildedgames.the_aether.items.weapons.ItemArkeniumSword;
 
 import cpw.mods.fml.common.ObfuscationReflectionHelper;
 

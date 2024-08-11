@@ -6,7 +6,6 @@ import com.gildedgames.the_aether.entities.bosses.lurker.EntityLurker;
 
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.StatCollector;
 import net.minecraft.world.EnumDifficulty;
 
 import com.gildedgames.the_aether.items.ItemsAether;

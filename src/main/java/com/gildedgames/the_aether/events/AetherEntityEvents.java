@@ -6,7 +6,6 @@ import com.gildedgames.the_aether.player.PlayerAether;
 import com.gildedgames.the_aether.world.TeleporterAether;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.TickEvent;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;

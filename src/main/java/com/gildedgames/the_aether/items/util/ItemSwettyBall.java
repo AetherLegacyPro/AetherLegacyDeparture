@@ -9,15 +9,11 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
-import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.FakePlayerFactory;
 import net.minecraftforge.event.entity.player.BonemealEvent;
 
-import java.util.Random;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
-import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
 
 import cpw.mods.fml.common.eventhandler.Event.Result;
 

@@ -2,7 +2,6 @@ package com.gildedgames.the_aether.client.renders.entity;
 
 import org.lwjgl.opengl.GL11;
 
-import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.client.models.entities.ElysianGuardianModel;
 import com.gildedgames.the_aether.entities.bosses.EntityElysianGuardian;
 

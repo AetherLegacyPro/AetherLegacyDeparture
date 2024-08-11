@@ -1,6 +1,5 @@
 package com.gildedgames.the_aether.blocks.dungeon;
 
-import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.entities.hostile.EntityUligo;
 
 import net.minecraft.block.Block;

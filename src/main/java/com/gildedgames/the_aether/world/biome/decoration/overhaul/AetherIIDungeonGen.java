@@ -2,23 +2,13 @@ package com.gildedgames.the_aether.world.biome.decoration.overhaul;
 
 import java.util.Random;
 
-import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.registry.ExternalContentNovaCraft;
 
-import cpw.mods.fml.common.Loader;
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntityChest;
-import net.minecraft.tileentity.TileEntityMobSpawner;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import net.minecraftforge.common.DungeonHooks;
 
 public class AetherIIDungeonGen extends WorldGenerator {
 	//Credit Goes to Roadhog360

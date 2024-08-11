@@ -5,9 +5,6 @@ import net.minecraft.block.material.Material;
 
 import com.gildedgames.the_aether.Aether;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
 public class BlockAerScalesBlock extends BlockBreakable {
 
 	public BlockAerScalesBlock() {

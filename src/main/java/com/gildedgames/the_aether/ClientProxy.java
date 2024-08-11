@@ -18,7 +18,6 @@ import com.gildedgames.the_aether.blocks.elysian_totem.TileEntityElysianTotemRen
 import com.gildedgames.the_aether.client.AetherClientEvents;
 import com.gildedgames.the_aether.client.AetherKeybinds;
 import com.gildedgames.the_aether.client.audio.AetherMusicHandler;
-import com.gildedgames.the_aether.client.gui.AetherLoadingScreen;
 import com.gildedgames.the_aether.client.gui.GuiAetherInGame;
 import com.gildedgames.the_aether.client.gui.GuiSunAltar;
 import com.gildedgames.the_aether.client.renders.AetherEntityRenderer;

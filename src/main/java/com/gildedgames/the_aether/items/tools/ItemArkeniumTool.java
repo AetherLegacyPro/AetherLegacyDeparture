@@ -3,10 +3,7 @@ package com.gildedgames.the_aether.items.tools;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.items.util.EnumAetherToolType;
 import net.minecraft.block.Block;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
 
 public class ItemArkeniumTool extends ItemAetherTool {
 

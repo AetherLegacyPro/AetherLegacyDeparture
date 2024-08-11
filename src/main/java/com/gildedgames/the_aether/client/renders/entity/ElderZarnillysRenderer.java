@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.client.renders.entity;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 
 import org.lwjgl.opengl.GL11;
@@ -10,8 +9,6 @@ import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.client.models.entities.ElderZarnillysModel;
 import com.gildedgames.the_aether.entities.bosses.EntityElderZarnillys;
 
-import net.minecraft.client.model.ModelBase;
-import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.client.renderer.entity.RenderLiving;
 

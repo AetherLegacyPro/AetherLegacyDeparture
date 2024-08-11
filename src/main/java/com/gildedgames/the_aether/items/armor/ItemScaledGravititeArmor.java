@@ -1,24 +1,15 @@
 package com.gildedgames.the_aether.items.armor;
 
-import java.util.List;
-import java.util.Random;
-
-import com.gildedgames.the_aether.api.player.IPlayerAether;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.items.armor.base.ItemArkeniumArmorBase;
-import com.gildedgames.the_aether.player.PlayerAether;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
-import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.ISpecialArmor;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 public class ItemScaledGravititeArmor extends ItemArkeniumArmorBase implements ISpecialArmor {
 

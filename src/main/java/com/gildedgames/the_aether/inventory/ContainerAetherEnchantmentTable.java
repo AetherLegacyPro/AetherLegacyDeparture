@@ -5,7 +5,6 @@ import com.gildedgames.the_aether.blocks.BlocksAether;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ContainerEnchantment;
-import net.minecraft.inventory.ContainerWorkbench;
 import net.minecraft.world.World;
 
 public class ContainerAetherEnchantmentTable extends ContainerEnchantment

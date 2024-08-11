@@ -2,7 +2,6 @@ package com.gildedgames.the_aether.network;
 
 import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.network.packets.*;
-import com.gildedgames.the_aether.network.packets.*;
 import net.minecraft.entity.player.EntityPlayerMP;
 
 import cpw.mods.fml.common.network.NetworkRegistry;

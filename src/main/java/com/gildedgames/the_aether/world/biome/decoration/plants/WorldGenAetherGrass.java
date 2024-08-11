@@ -2,7 +2,6 @@ package com.gildedgames.the_aether.world.biome.decoration.plants;
 
 import java.util.Random;
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 

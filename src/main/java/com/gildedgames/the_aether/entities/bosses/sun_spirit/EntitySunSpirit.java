@@ -34,7 +34,6 @@ import net.minecraft.world.World;
 
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.blocks.dungeon.BlockDungeonBase;
-import net.minecraft.world.WorldProvider;
 
 public class EntitySunSpirit extends EntityFlying implements IMob, IAetherBoss, IEntityMultiPart {
 

@@ -3,8 +3,6 @@ package com.gildedgames.the_aether.player.abilities;
 import com.gildedgames.the_aether.api.player.IPlayerAether;
 import com.gildedgames.the_aether.api.player.util.IAetherAbility;
 
-import net.minecraft.util.DamageSource;
-
 public class AbilityFlight implements IAetherAbility {
 
 	private int flightCount;

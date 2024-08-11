@@ -5,16 +5,12 @@ import java.util.Random;
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.world.AetherWorld;
-import com.gildedgames.the_aether.world.dungeon.PalladiumDungeon;
 
 import cpw.mods.fml.common.IWorldGenerator;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockSand;
-import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.IChunkProvider;
-import net.minecraft.world.gen.feature.WorldGenMinable;
 
 public class DivineIslandWorldGen implements IWorldGenerator {
 	

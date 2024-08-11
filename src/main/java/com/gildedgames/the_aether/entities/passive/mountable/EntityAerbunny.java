@@ -3,7 +3,6 @@ package com.gildedgames.the_aether.entities.passive.mountable;
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.entities.passive.EntityAetherAnimal;
-import com.gildedgames.the_aether.entities.passive.EntityThunderlo;
 import com.gildedgames.the_aether.items.ItemsAether;
 
 import io.netty.buffer.ByteBuf;

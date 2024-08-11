@@ -5,20 +5,15 @@ import java.util.Collections;
 import java.util.Random;
 
 import com.gildedgames.the_aether.items.ItemsAether;
-import com.gildedgames.the_aether.registry.ExternalContentNovaCraft;
-import com.gildedgames.the_aether.registry.OtherModBlocks;
 import com.gildedgames.the_aether.tileentity.TileEntitySkyrootChest;
 import com.gildedgames.the_aether.world.util.RandomTracker;
 
-import cpw.mods.fml.common.Loader;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityMobSpawner;
 import net.minecraft.world.World;
 
-import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.entities.bosses.slider.EntityDivineSlider;
 import com.gildedgames.the_aether.world.dungeon.util.AetherDungeon;

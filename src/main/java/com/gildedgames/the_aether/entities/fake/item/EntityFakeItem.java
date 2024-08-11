@@ -3,7 +3,6 @@ package com.gildedgames.the_aether.entities.fake.item;
 import net.minecraft.entity.*;
 import net.minecraft.world.*;
 import net.minecraft.item.*;
-import java.util.*;
 import net.minecraft.block.material.*;
 import net.minecraft.nbt.*;
 import net.minecraft.entity.player.*;

@@ -1,11 +1,8 @@
 package com.gildedgames.the_aether.entities.projectile;
 
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.effect.EntityLightningBolt;
-import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.potion.Potion;
@@ -18,9 +15,6 @@ import net.minecraft.world.World;
 import cpw.mods.fml.common.registry.IThrowableEntity;
 
 import java.util.List;
-
-import com.gildedgames.the_aether.blocks.BlocksAether;
-import com.gildedgames.the_aether.entities.effects.PotionInebriation;
 
 public class EntityZojzSnowball extends EntityArrow implements IThrowableEntity {
 

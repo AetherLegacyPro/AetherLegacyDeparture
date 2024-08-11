@@ -1,13 +1,11 @@
 package com.gildedgames.the_aether.client.renders.entity;
 
 import com.gildedgames.the_aether.Aether;
-import com.gildedgames.the_aether.entities.hostile.swet.EnumSwetType;
 import com.gildedgames.the_aether.entities.passive.mountable.EntitySwet;
 import net.minecraft.client.model.ModelSlime;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;

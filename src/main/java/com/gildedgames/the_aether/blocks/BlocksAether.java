@@ -13,7 +13,6 @@ import com.gildedgames.the_aether.world.biome.decoration.AetherGenCrystalTree;
 import com.gildedgames.the_aether.world.biome.decoration.AetherGenDarkBlueSkyrootTree;
 import com.gildedgames.the_aether.world.biome.decoration.AetherGenDivineTree;
 import com.gildedgames.the_aether.world.biome.decoration.AetherGenGreatrootTree;
-import com.gildedgames.the_aether.world.biome.decoration.AetherGenGreatwoodTree;
 import com.gildedgames.the_aether.world.biome.decoration.AetherGenOakTree;
 import com.gildedgames.the_aether.world.biome.decoration.AetherGenPurpleSkyrootTree;
 import com.gildedgames.the_aether.world.biome.decoration.AetherGenSkyrootTree;
@@ -21,7 +20,6 @@ import com.gildedgames.the_aether.world.biome.decoration.AetherGenVoidTree;
 import com.gildedgames.the_aether.world.biome.decoration.AetherGenWisprootTree;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockSlab;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 
@@ -33,7 +31,6 @@ import com.gildedgames.the_aether.blocks.container.BlockElysianChest;
 import com.gildedgames.the_aether.blocks.container.BlockEnchanter;
 import com.gildedgames.the_aether.blocks.container.BlockFreezer;
 import com.gildedgames.the_aether.blocks.container.BlockIncubator;
-import com.gildedgames.the_aether.blocks.container.BlockProtector;
 import com.gildedgames.the_aether.blocks.container.BlockSkyrootChest;
 import com.gildedgames.the_aether.blocks.container.BlockSkyrootWorkbench;
 import com.gildedgames.the_aether.blocks.container.BlockSunAltar;
@@ -164,9 +161,6 @@ import com.gildedgames.the_aether.blocks.ancient.enchanter.BlockAncientEnchanter
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemBlock;
-import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
 
 public class BlocksAether {
 

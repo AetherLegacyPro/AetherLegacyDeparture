@@ -1,22 +1,16 @@
 package com.gildedgames.the_aether.items.weapons;
 
 import com.gildedgames.the_aether.entities.block.EntityFireProofItemAether;
-import com.gildedgames.the_aether.entities.block.EntityFloatingBlock;
-import com.gildedgames.the_aether.entities.projectile.EntityAmplifiedBattleSentryHammerProjectile;
-import com.gildedgames.the_aether.entities.projectile.EntityBattleSentryHammerProjectile;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.items.tools.ItemAetherMultiTool;
 import com.gildedgames.the_aether.items.util.EnumAetherMultiToolType;
-import com.gildedgames.the_aether.player.PlayerAether;
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeHooks;
 
 public class ItemAmplifiedBattleSentryHammer extends ItemAetherMultiTool {
 

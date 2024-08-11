@@ -2,7 +2,6 @@ package com.gildedgames.the_aether.entities.hostile;
 
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.entities.uro.uroswell.EntityAIUligoSwell;
-import com.gildedgames.the_aether.entities.uro.uroswell.EntityAIUroSwell;
 import com.gildedgames.the_aether.items.ItemsAether;
 
 import cpw.mods.fml.relauncher.Side;
@@ -22,9 +21,6 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldType;
-import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraft.world.chunk.Chunk;
 
 public class EntityUligo extends EntityLiving implements IMob
 {

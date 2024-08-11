@@ -1,9 +1,7 @@
 package com.gildedgames.the_aether.items.armor;
 
 import com.gildedgames.the_aether.Aether;
-import com.gildedgames.the_aether.api.player.util.IAetherAbility;
 import com.gildedgames.the_aether.entities.block.EntityFireProofItemAether;
-import com.gildedgames.the_aether.entities.effects.EffectInebriation;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;

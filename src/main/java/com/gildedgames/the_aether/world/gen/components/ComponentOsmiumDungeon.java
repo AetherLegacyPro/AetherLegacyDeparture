@@ -2,11 +2,8 @@ package com.gildedgames.the_aether.world.gen.components;
 
 import java.util.Random;
 
-import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.entities.bosses.EntityElderZarnillys;
 import com.gildedgames.the_aether.entities.bosses.lurker.EntityLurker;
-import com.gildedgames.the_aether.entities.util.AetherMoaTypes;
-import com.gildedgames.the_aether.items.ItemMoaEgg;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.tileentity.TileEntitySkyrootChest;
 import com.gildedgames.the_aether.world.gen.AetherGenUtils;
@@ -16,8 +13,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityMobSpawner;
-import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 
 import com.gildedgames.the_aether.blocks.BlocksAether;

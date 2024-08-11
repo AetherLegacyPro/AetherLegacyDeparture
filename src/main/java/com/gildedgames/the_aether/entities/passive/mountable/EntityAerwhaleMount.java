@@ -1,11 +1,9 @@
 package com.gildedgames.the_aether.entities.passive.mountable;
 
-import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 
-import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -20,8 +18,6 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-import com.gildedgames.the_aether.entities.passive.EntityThunderlo;
-import com.gildedgames.the_aether.entities.util.EntitySaddleMount;
 import com.gildedgames.the_aether.entities.util.EntityZephyrooSaddleMount;
 
 public class EntityAerwhaleMount extends EntityZephyrooSaddleMount {

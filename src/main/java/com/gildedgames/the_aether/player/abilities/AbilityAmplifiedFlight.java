@@ -6,7 +6,6 @@ import java.util.Random;
 import com.gildedgames.the_aether.api.player.IPlayerAether;
 import com.gildedgames.the_aether.api.player.util.IAetherAbilityAmplified;
 import com.gildedgames.the_aether.entities.projectile.EntityProjectileBase;
-import com.gildedgames.the_aether.items.ItemsAether;
 
 import cpw.mods.fml.common.registry.IThrowableEntity;
 import net.minecraft.entity.Entity;
@@ -14,9 +13,7 @@ import net.minecraft.entity.IProjectile;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.entity.projectile.EntityFireball;
 import net.minecraft.entity.projectile.EntityThrowable;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
-import net.minecraft.world.WorldServer;
 
 public class AbilityAmplifiedFlight implements IAetherAbilityAmplified {
 
