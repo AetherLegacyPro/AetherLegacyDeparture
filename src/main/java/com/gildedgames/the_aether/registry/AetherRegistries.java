@@ -670,25 +670,44 @@ public class AetherRegistries {
 		initializeShapelessRecipes();
 
 		GameRegistry.addRecipe(new RecipeAccessoryDyes());
-		FurnaceRecipes.smelting().func_151394_a(new ItemStack(BlocksAether.skyroot_log, 1, 1), new ItemStack(Items.coal, 1, 1), 0.15F);
-		FurnaceRecipes.smelting().func_151394_a(new ItemStack(BlocksAether.golden_oak_log, 1, 1), new ItemStack(Items.coal, 1, 1), 0.15F);
-		FurnaceRecipes.smelting().func_151394_a(new ItemStack(BlocksAether.greatroot_log, 1, 1), new ItemStack(Items.coal, 1, 1), 0.15F);
-		FurnaceRecipes.smelting().func_151394_a(new ItemStack(BlocksAether.wisproot_log, 1, 1), new ItemStack(Items.coal, 1, 1), 0.15F);
-		FurnaceRecipes.smelting().func_151394_a(new ItemStack(BlocksAether.void_log, 1, 1), new ItemStack(Items.coal, 1, 1), 0.15F);
-		FurnaceRecipes.smelting().func_151394_a(new ItemStack(BlocksAether.divine_oak_log, 1, 1), new ItemStack(Items.coal, 1, 1), 0.15F);
+		final ItemStack charcoal = new ItemStack(Items.coal, 1, 1);
+		FurnaceRecipes.smelting().func_151394_a(new ItemStack(BlocksAether.skyroot_log, 1, 1), charcoal, 0.15F);
+		FurnaceRecipes.smelting().func_151394_a(new ItemStack(BlocksAether.golden_oak_log, 1, 1), charcoal, 0.15F);
+		FurnaceRecipes.smelting().func_151394_a(new ItemStack(BlocksAether.greatroot_log, 1, 1), charcoal, 0.15F);
+		FurnaceRecipes.smelting().func_151394_a(new ItemStack(BlocksAether.wisproot_log, 1, 1), charcoal, 0.15F);
+		FurnaceRecipes.smelting().func_151394_a(new ItemStack(BlocksAether.void_log, 1, 1), charcoal, 0.15F);
+		FurnaceRecipes.smelting().func_151394_a(new ItemStack(BlocksAether.divine_oak_log, 1, 1), charcoal, 0.15F);
 
+		//Stick
 		OreDictionary.registerOre("stickWood", ItemsAether.skyroot_stick);
+		//Gems
+		OreDictionary.registerOre("gemContinuum", ItemsAether.continuum_gemstone);
+		OreDictionary.registerOre("gemZanite", ItemsAether.zanite_gemstone);
+		//Ingots
+		OreDictionary.registerOre("ingotArkenium", ItemsAether.arkenium_ingot);
+		OreDictionary.registerOre("ingotDivineral", ItemsAether.divineral_ingot);
+		OreDictionary.registerOre("ingotValkyrie", ItemsAether.valkyrie_ingot);
+		//Nuggets
+		OreDictionary.registerOre("nuggetArkenium", ItemsAether.arkenium_nugget);
+		OreDictionary.registerOre("nuggetContinuum", ItemsAether.continuum_nugget);
+		OreDictionary.registerOre("nuggetDivineral", ItemsAether.divineral_nugget);
+		OreDictionary.registerOre("nuggetGravitite", ItemsAether.gravitite_nugget);
+		OreDictionary.registerOre("nuggetValkyrie", ItemsAether.valkyrie_nugget);
+		OreDictionary.registerOre("nuggetZanite", ItemsAether.zanite_nugget);
+		//Dye
+		OreDictionary.registerOre("dye", ItemsAether.black_dye);
+		OreDictionary.registerOre("dye", ItemsAether.white_dye);
+		OreDictionary.registerOre("dye", ItemsAether.blue_dye);
+		OreDictionary.registerOre("dyeBlack", ItemsAether.black_dye);
+		OreDictionary.registerOre("dyeWhite", ItemsAether.white_dye);
+		OreDictionary.registerOre("dyeBlue", ItemsAether.blue_dye);
+		//Records
+		OreDictionary.registerOre("record", ItemsAether.aether_tune);
+		OreDictionary.registerOre("record", ItemsAether.ascending_dawn);
+		OreDictionary.registerOre("record", ItemsAether.welcoming_skies);
+		OreDictionary.registerOre("record", ItemsAether.legacy);
+		//Other
 		OreDictionary.registerOre("feather", ItemsAether.cockatrice_feather);
-		OreDictionary.registerOre("dye", new ItemStack(ItemsAether.black_dye));
-		OreDictionary.registerOre("dye", new ItemStack(ItemsAether.white_dye));
-		OreDictionary.registerOre("dye", new ItemStack(ItemsAether.blue_dye));
-		OreDictionary.registerOre("dyeBlack", new ItemStack(ItemsAether.black_dye));
-		OreDictionary.registerOre("dyeWhite", new ItemStack(ItemsAether.white_dye));
-		OreDictionary.registerOre("dyeBlue", new ItemStack(ItemsAether.blue_dye));
-		OreDictionary.registerOre("record", new ItemStack(ItemsAether.aether_tune));
-		OreDictionary.registerOre("record", new ItemStack(ItemsAether.ascending_dawn));
-		OreDictionary.registerOre("record", new ItemStack(ItemsAether.welcoming_skies));
-		OreDictionary.registerOre("record", new ItemStack(ItemsAether.legacy));
 	}
 
 	private static void initializeShapelessRecipes() {
