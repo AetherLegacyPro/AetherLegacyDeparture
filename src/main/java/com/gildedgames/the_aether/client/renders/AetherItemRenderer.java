@@ -55,7 +55,7 @@ public class AetherItemRenderer extends ItemRenderer {
 	
 	public void renderFirstPersonArm(RenderPlayer renderPlayer, EntityClientPlayerMP playerIn) {
 		PlayerAether playerAether = PlayerAether.get(playerIn);
-		ItemStack gloves = playerAether.getAccessoryInventory().getStackInSlot(AccessoryType.GLOVES);
+		ItemStack gloves = playerAether.getAccessoryInventory().getFirstStackIfWearing(AccessoryType.GLOVES);
 
 		this.mc.getTextureManager().bindTexture(playerIn.getLocationSkin());
 
@@ -67,9 +67,8 @@ public class AetherItemRenderer extends ItemRenderer {
 
 		renderPlayer.renderFirstPersonArm(playerIn);
 
-		if (gloves.getItem() instanceof ItemAccessory)
-		{
-			this.mc.getTextureManager().bindTexture(((ItemAccessory) gloves.getItem()).texture);
+		if (gloves.getItem() instanceof ItemAccessory accessory) {
+			this.mc.getTextureManager().bindTexture(accessory.texture);
 
 			int colour = gloves.getItem().getColorFromItemStack(gloves, 0);
 			float red = ((colour >> 16) & 0xff) / 255F;

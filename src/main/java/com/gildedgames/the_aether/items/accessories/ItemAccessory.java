@@ -133,7 +133,7 @@ public class ItemAccessory extends Item {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public int getColorFromItemStack(ItemStack stack, int meta) {
-		return this.colorHex;
+		return colorHex;
 	}
 
 	public ItemAccessory setDungeonLoot() {

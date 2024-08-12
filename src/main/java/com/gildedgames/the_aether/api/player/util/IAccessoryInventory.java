@@ -13,17 +13,16 @@ import com.gildedgames.the_aether.api.accessories.AccessoryType;
 
 public interface IAccessoryInventory {
 
-	float getCurrentPlayerStrVsBlock(float original);
-
 	void dropAccessories();
 
 	void damageWornItem(int damage, Item item);
+	void damageWornItem(int damage, Item item, Item transformInto);
 
 	void damageWornItemsAtRate(DegradationRate degradationrate);
 
-	void setAccessorySlot(AccessoryType type, ItemStack stack);
-
-	ItemStack getStackInSlot(AccessoryType type);
+	ItemStack getFirstStackIfWearing(AccessoryType type);
+	ItemStack getFirstStackIfWearing(Item item);
+	ItemStack getSecondStackIfWearing(Item item);
 
 	boolean setAccessorySlot(ItemStack stack);
 
@@ -40,6 +39,42 @@ public interface IAccessoryInventory {
 	void writeData(ByteBuf buf);
 
 	void readData(ByteBuf buf);
+
+	default float getCurrentPlayerStrVsBlock(float original) {
+		float modifier = original;
+
+		ItemStack checkItem = getFirstStackIfWearing(ItemsAether.diamond_pendant);
+		if (checkItem != null) {
+			modifier *= (2F + ((float)checkItem.getItemDamage() / ((float)checkItem.getMaxDamage() * 2F)));
+		}
+
+		checkItem = getFirstStackIfWearing(ItemsAether.diamond_ring);
+		if (checkItem != null) {
+			modifier *= (2F + ((float)checkItem.getItemDamage() / ((float)checkItem.getMaxDamage() * 2F)));
+		}
+
+		checkItem = getSecondStackIfWearing(ItemsAether.diamond_ring);
+		if (checkItem != null) {
+			modifier *= (2F + ((float)checkItem.getItemDamage() / ((float)checkItem.getMaxDamage() * 2F)));
+		}
+
+		checkItem = getFirstStackIfWearing(ItemsAether.zanite_pendant);
+		if (checkItem != null) {
+			modifier *= (1F + ((float)checkItem.getItemDamage() / ((float)checkItem.getMaxDamage() * 3F)));
+		}
+
+		checkItem = getFirstStackIfWearing(ItemsAether.zanite_ring);
+		if (checkItem != null) {
+			modifier *= (1F + ((float)checkItem.getItemDamage() / ((float)checkItem.getMaxDamage() * 3F)));
+		}
+
+		checkItem = getSecondStackIfWearing(ItemsAether.zanite_ring);
+		if (checkItem != null) {
+			modifier *= (1F + ((float)checkItem.getItemDamage() / ((float)checkItem.getMaxDamage() * 3F)));
+		}
+
+		return modifier == original ? original : modifier + original;
+	}
 
 	default boolean isWearingZaniteSet() {
 		return ((wearingArmor(ItemsAether.zanite_helmet) || wearingArmor(ItemsAether.scaled_zanite_helmet))
