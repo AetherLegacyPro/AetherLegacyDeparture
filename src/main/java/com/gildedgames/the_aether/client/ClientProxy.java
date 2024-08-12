@@ -131,13 +131,15 @@ public class ClientProxy extends CommonProxy {
 		
 		RendersAether.initialization();
 
-		AetherKeybinds.initialization();
+		if(!AetherConfig.UseBaublesExpandedMenu()) {
+			AetherKeybinds.initialization();
+		}
 
 		registerEvent(new AetherMusicHandler());
 		registerEvent(new AetherClientEvents());
 		registerEvent(new GuiAetherInGame(Minecraft.getMinecraft()));
 		
-		if (Loader.isModLoaded("battlegear2") && AetherConfig.enable_battlegear2_compatibility == true) {
+		if (Loader.isModLoaded("battlegear2") && AetherConfig.enable_battlegear2_compatibility) {
 		AetherClientCompatibility.initialization();
 		}
 	}

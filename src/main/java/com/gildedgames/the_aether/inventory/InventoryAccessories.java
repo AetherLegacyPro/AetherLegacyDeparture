@@ -1,5 +1,6 @@
 package com.gildedgames.the_aether.inventory;
 
+import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.api.accessories.AccessoryType;
 import com.gildedgames.the_aether.api.accessories.DegradationRate;
 import com.gildedgames.the_aether.api.player.IPlayerAether;
@@ -93,7 +94,7 @@ public class InventoryAccessories implements IInventory, IAccessoryInventory {
 
 	@Override
 	public void markDirty() {
-		if (!playerAether.getEntity().worldObj.isRemote && playerAether.getEntity() instanceof EntityPlayer) {
+		if (!playerAether.getEntity().worldObj.isRemote) {
 			AetherNetwork.sendToAll(new PacketAccessory(playerAether));
 		}
 	}
@@ -115,6 +116,9 @@ public class InventoryAccessories implements IInventory, IAccessoryInventory {
 
 	@Override
 	public boolean isItemValidForSlot(int slot, ItemStack stack) {
+		if(AetherConfig.UseBaublesExpandedMenu()) {
+			return false;
+		}
 		if (stack != null && stack.getItem() instanceof ItemAccessory accessory) {
 			return (orderedList.func_148745_a(slot) == accessory.getType() || (orderedList.func_148745_a(slot) == accessory.getExtraType())) && getStackInSlot(slot) == null;
 		}
@@ -166,7 +170,6 @@ public class InventoryAccessories implements IInventory, IAccessoryInventory {
 					ItemStack transformedStack = new ItemStack(transformInto);
 					EnchantmentHelper.setEnchantments(EnchantmentHelper.getEnchantments(stack), transformedStack);
 					setInventorySlotContents(slot, transformedStack);
-					playerAether.getEntity().renderBrokenItemStack(stack);
 				}
 				return;
 			}
@@ -190,12 +193,10 @@ public class InventoryAccessories implements IInventory, IAccessoryInventory {
 
 	@Override
 	public ItemStack getFirstStackIfWearing(AccessoryType type) {
-		for (int i = 0; i < getSizeInventory(); ++i) {
-			ItemStack accessoryStack = getStackInSlot(i);
-			if (accessoryStack != null && accessoryStack.getItem() instanceof ItemAccessory accessory
-					&& (accessory.getType() == type || accessory.getExtraType() == type)) {
-				return accessoryStack;
-			}
+		int slot = orderedList.func_148747_b(type);
+		ItemStack accessoryStack = getStackInSlot(slot);
+		if (accessoryStack != null && accessoryStack.getItem() instanceof ItemAccessory) {
+			return accessoryStack;
 		}
 		return null;
 	}
@@ -205,8 +206,17 @@ public class InventoryAccessories implements IInventory, IAccessoryInventory {
 		if(!(item instanceof ItemAccessory accessory)) {
 			return null;
 		}
-		for (int i = 0; i < getSizeInventory(); ++i) {
-			ItemStack accessoryStack = getStackInSlot(i);
+		//Check primary slot
+		int slot = orderedList.func_148747_b(accessory.getType());
+		ItemStack accessoryStack = getStackInSlot(slot);
+		if (accessoryStack != null && accessoryStack.getItem() == accessory) {
+			return accessoryStack;
+		}
+		//Check secondary slot
+		AccessoryType extraType = accessory.getExtraType();
+		if(extraType != null) {
+			slot = orderedList.func_148747_b(extraType);
+			accessoryStack = getStackInSlot(slot);
 			if (accessoryStack != null && accessoryStack.getItem() == accessory) {
 				return accessoryStack;
 			}
@@ -219,14 +229,19 @@ public class InventoryAccessories implements IInventory, IAccessoryInventory {
 		if(!(item instanceof ItemAccessory accessory)) {
 			return null;
 		}
-		boolean foundOne = false;
-		for (int i = 0; i < getSizeInventory(); ++i) {
-			ItemStack accessoryStack = getStackInSlot(i);
+		//Check primary slot
+		int slot = orderedList.func_148747_b(accessory.getType());
+		ItemStack accessoryStack = getStackInSlot(slot);
+		if (accessoryStack == null || accessoryStack.getItem() != accessory) {
+			return null;
+		}
+		//Check secondary slot
+		AccessoryType extraType = accessory.getExtraType();
+		if(extraType != null) {
+			slot = orderedList.func_148747_b(extraType);
+			accessoryStack = getStackInSlot(slot);
 			if (accessoryStack != null && accessoryStack.getItem() == accessory) {
-				if(foundOne) {
-					return accessoryStack;
-				}
-				foundOne = true;
+				return accessoryStack;
 			}
 		}
 		return null;
@@ -234,9 +249,24 @@ public class InventoryAccessories implements IInventory, IAccessoryInventory {
 
 	@Override
 	public boolean setAccessorySlot(ItemStack stack) {
-		for (int i = 0; i < getSizeInventory(); ++i) {
-			if (isItemValidForSlot(i, stack)) {
-				stacks.set(i, stack);
+		if(stack == null || !(stack.getItem() instanceof ItemAccessory accessory)) {
+			return false;
+		}
+		//Check primary slot
+		int slot = orderedList.func_148747_b(accessory.getType());
+		ItemStack accessoryStack = getStackInSlot(slot);
+		if (accessoryStack == null && isItemValidForSlot(slot, stack)) {
+			stacks.set(slot, stack);
+			markDirty();
+			return true;
+		}
+		//Check secondary slot
+		AccessoryType extraType = accessory.getExtraType();
+		if(extraType != null) {
+			slot = orderedList.func_148747_b(extraType);
+			accessoryStack = getStackInSlot(slot);
+			if (accessoryStack == null && isItemValidForSlot(slot, stack)) {
+				stacks.set(slot, stack);
 				markDirty();
 				return true;
 			}
@@ -249,8 +279,17 @@ public class InventoryAccessories implements IInventory, IAccessoryInventory {
 		if(!(item instanceof ItemAccessory accessory)) {
 			return false;
 		}
-		for (int i = 0; i < getSizeInventory(); ++i) {
-			ItemStack accessoryStack = getStackInSlot(i);
+		//Check primary slot
+		int slot = orderedList.func_148747_b(accessory.getType());
+		ItemStack accessoryStack = getStackInSlot(slot);
+		if (accessoryStack != null && accessoryStack.getItem() == accessory) {
+			return true;
+		}
+		//Check secondary slot
+		AccessoryType extraType = accessory.getExtraType();
+		if(extraType != null) {
+			slot = orderedList.func_148747_b(extraType);
+			accessoryStack = getStackInSlot(slot);
 			if (accessoryStack != null && accessoryStack.getItem() == accessory) {
 				return true;
 			}
@@ -260,28 +299,35 @@ public class InventoryAccessories implements IInventory, IAccessoryInventory {
 
 	@Override
 	public boolean wearingArmor(Item item) {
-		if(!(item instanceof ItemArmor armor)) {
-			return false;
+		if(item instanceof ItemArmor armor) {
+			ItemStack armorStack = playerAether.getEntity().getCurrentArmor(3 - armor.armorType);
+			return armorStack != null && armorStack.getItem() == armor;
 		}
-		ItemStack armorStack;
-		if (playerAether.getEntity() instanceof EntityPlayer player) {
-			armorStack = player.getCurrentArmor(armor.armorType);
-		} else {
-			armorStack = playerAether.getEntity().getEquipmentInSlot(armor.armorType);
-		}
-		return armorStack != null && armorStack.getItem() == armor;
+		return false;
 	}
 
 	@Override
 	public int getAccessoryCount(Item item) {
-		int count = 0;
-		for (int slot = 0; slot < getSizeInventory(); ++slot) {
-			ItemStack accessoryStack = getStackInSlot(slot);
-			if (accessoryStack != null && accessoryStack.getItem() == item) {
-				++count;
+		if(!(item instanceof ItemAccessory accessory)) {
+			return 0;
+		}
+		int total = 0;
+		//Check primary slot
+		int slot = orderedList.func_148747_b(accessory.getType());
+		ItemStack accessoryStack = getStackInSlot(slot);
+		if (accessoryStack != null && accessoryStack.getItem() == accessory) {
+			++total;
+		}
+		//Check secondary slot
+		AccessoryType extraType = accessory.getExtraType();
+		if(extraType != null) {
+			slot = orderedList.func_148747_b(extraType);
+			accessoryStack = getStackInSlot(slot);
+			if (accessoryStack != null && accessoryStack.getItem() == accessory) {
+				++total;
 			}
 		}
-		return count;
+		return total;
 	}
 
 	@Override

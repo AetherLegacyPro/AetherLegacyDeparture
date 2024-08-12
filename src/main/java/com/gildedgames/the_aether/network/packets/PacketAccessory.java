@@ -1,7 +1,9 @@
 package com.gildedgames.the_aether.network.packets;
 
+import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.api.player.IPlayerAether;
 import com.gildedgames.the_aether.api.player.util.IAccessoryInventory;
+import com.gildedgames.the_aether.compatibility.inventory.InventoryBaubles;
 import com.gildedgames.the_aether.inventory.InventoryAccessories;
 import com.gildedgames.the_aether.player.PlayerAether;
 import io.netty.buffer.ByteBuf;
@@ -20,7 +22,7 @@ public class PacketAccessory extends AetherPacket<PacketAccessory> {
 	}
 
 	public PacketAccessory(IPlayerAether player) {
-		this.accessories = player.getAccessoryInventory();
+		accessories = player.getAccessoryInventory();
 		this.entityID = player.getEntity().getEntityId();
 	}
 
@@ -33,7 +35,7 @@ public class PacketAccessory extends AetherPacket<PacketAccessory> {
 	@Override
 	public void toBytes(ByteBuf buf) {
 		buf.writeInt(this.entityID);
-		this.accessories.writeData(buf);
+		accessories.writeData(buf);
 	}
 
 	@Override
@@ -42,7 +44,8 @@ public class PacketAccessory extends AetherPacket<PacketAccessory> {
 			EntityPlayer parent = (EntityPlayer) player.worldObj.getEntityByID(message.entityID);
 
 			if (parent != null) {
-				InventoryAccessories newInventory = new InventoryAccessories(PlayerAether.get(parent));
+				PlayerAether playerAether = PlayerAether.get(parent);
+				IAccessoryInventory newInventory = AetherConfig.UseBaublesExpandedMenu() ? new InventoryBaubles(playerAether) : new InventoryAccessories(playerAether);
 
 				newInventory.readData(message.readBuf);
 

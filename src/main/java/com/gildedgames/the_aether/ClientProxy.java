@@ -1,6 +1,5 @@
 package com.gildedgames.the_aether;
 
-import com.gildedgames.the_aether.AetherConfig;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityFX;
 import net.minecraft.client.renderer.EntityRenderer;
@@ -9,7 +8,6 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
-import com.gildedgames.the_aether.CommonProxy;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.blocks.ancient.enchanter.RenderHandlerTileEntity;
 import com.gildedgames.the_aether.blocks.elysian_totem.TileEntityElysianTotem;
@@ -66,12 +64,9 @@ import java.util.Random;
 
 				File[] directories = new File[] {buckets, weapons, armor, accessories};
 
-				if (AetherConfig.installResourcepack())
-				{
-					for (File file : directories)
-					{
-						if (!file.exists())
-						{
+				if (AetherConfig.installResourcepack()) {
+					for (File file : directories) {
+						if (!file.exists()) {
 							file.mkdirs();
 						}
 					}
@@ -133,13 +128,15 @@ import java.util.Random;
 			
 			RendersAether.initialization();
 
-			AetherKeybinds.initialization();
+			if(!AetherConfig.UseBaublesExpandedMenu()) {
+				AetherKeybinds.initialization();
+			}
 
 			registerEvent(new AetherMusicHandler());
 			registerEvent(new AetherClientEvents());
 			registerEvent(new GuiAetherInGame(Minecraft.getMinecraft()));
 
-			if (Loader.isModLoaded("battlegear2") && AetherConfig.enable_battlegear2_compatibility == true) {
+			if (Loader.isModLoaded("battlegear2") && AetherConfig.enable_battlegear2_compatibility) {
 			AetherClientCompatibility.initialization();
 			}
 		}

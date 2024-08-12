@@ -79,9 +79,7 @@ import cpw.mods.fml.common.SidedProxy;
 
 import java.util.Random;
 
-public class
-AetherEventHandler {
-	//@SidedProxy(clientSide = "com.myname.mymodid.ClientProxy", serverSide = "com.myname.mymodid.CommonProxy")
+public class AetherEventHandler {
 	@SidedProxy(clientSide = "com.gildedgames.the_aether.ClientProxy", serverSide = "com.gildedgames.the_aether.CommonProxy")
     public static CommonProxy proxy;
 

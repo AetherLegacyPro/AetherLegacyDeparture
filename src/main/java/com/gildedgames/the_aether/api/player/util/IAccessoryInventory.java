@@ -2,6 +2,7 @@ package com.gildedgames.the_aether.api.player.util;
 
 import com.gildedgames.the_aether.api.accessories.DegradationRate;
 import com.gildedgames.the_aether.items.ItemsAether;
+import cpw.mods.fml.common.Loader;
 import io.netty.buffer.ByteBuf;
 
 import net.minecraft.item.Item;
@@ -362,6 +363,9 @@ public interface IAccessoryInventory {
 	}
 
 	default boolean isWearingAscensiteSet() {
+		if(!Loader.isModLoaded("nova_craft")) {
+			return false;
+		}
 		return wearingArmor(ItemsAether.ascensite_helmet)
 				&& wearingArmor(ItemsAether.ascensite_chestplate)
 				&& wearingArmor(ItemsAether.ascensite_leggings)

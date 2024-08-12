@@ -58,7 +58,7 @@ public class AetherClientEvents {
 	private static boolean wasInAether = false;
 
 	@SubscribeEvent
-	public void onClientTick(TickEvent.ClientTickEvent event) throws Exception {
+	public void onClientTick(TickEvent.ClientTickEvent event) {
 		Minecraft mc = Minecraft.getMinecraft();
 		TickEvent.Phase phase = event.phase;
 		TickEvent.Type type = event.type;
@@ -114,12 +114,10 @@ public class AetherClientEvents {
 							Entity found = null;
 							double foundLen = 0.0D;
 
-							for (Object o : locatedEntities) {
-								if (o == player) {
+							for (Entity ent : locatedEntities) {
+								if (ent == player) {
 									continue;
 								}
-
-								Entity ent = (Entity) o;
 
 								if (!ent.canBeCollidedWith() && !(ent instanceof EntityDragon)) {
 									continue;
@@ -161,12 +159,10 @@ public class AetherClientEvents {
 							Entity foundd = null;
 							double foundLen = 0.0D;
 
-							for (Object oo : locatedEntitiess) {
-								if (oo == player) {
+							for (Entity entt : locatedEntitiess) {
+								if (entt == player) {
 									continue;
 								}
-
-								Entity entt = (Entity) oo;
 
 								if (!entt.canBeCollidedWith() && !(entt instanceof EntityDragon)) {
 									continue;
@@ -208,12 +204,10 @@ public class AetherClientEvents {
 							Entity foundd = null;
 							double foundLen = 0.0D;
 
-							for (Object oo : locatedEntitiess) {
-								if (oo == player) {
+							for (Entity entt : locatedEntitiess) {
+								if (entt == player) {
 									continue;
 								}
-
-								Entity entt = (Entity) oo;
 
 								if (!entt.canBeCollidedWith() && !(entt instanceof EntityDragon)) {
 									continue;
@@ -255,12 +249,10 @@ public class AetherClientEvents {
 							Entity foundd = null;
 							double foundLen = 0.0D;
 
-							for (Object oo : locatedEntitiess) {
-								if (oo == player) {
+							for (Entity entt : locatedEntitiess) {
+								if (entt == player) {
 									continue;
 								}
-
-								Entity entt = (Entity) oo;
 
 								if (!entt.canBeCollidedWith() && !(entt instanceof EntityDragon)) {
 									continue;
@@ -302,12 +294,10 @@ public class AetherClientEvents {
 							Entity foundd = null;
 							double foundLen = 0.0D;
 
-							for (Object oo : locatedEntitiess) {
-								if (oo == player) {
+							for (Entity entt : locatedEntitiess) {
+								if (entt == player) {
 									continue;
 								}
-
-								Entity entt = (Entity) oo;
 
 								if (!entt.canBeCollidedWith() && !(entt instanceof EntityDragon)) {
 									continue;
@@ -346,9 +336,8 @@ public class AetherClientEvents {
 		
 	}
 
-	public boolean isValkyrieItem(Item stackID)
-	{
-		return stackID == ItemsAether.valkyrie_shovel || stackID == ItemsAether.valkyrie_axe || stackID == ItemsAether.valkyrie_pickaxe || stackID == ItemsAether.valkyrie_lance || stackID == ItemsAether.tipped_valkyrie_lance || stackID == ItemsAether.tipped_valkyrie_pickaxe || stackID == ItemsAether.tipped_valkyrie_shovel || stackID == ItemsAether.tipped_valkyrie_axe;
+	public boolean isValkyrieItem(Item item) {
+		return item == ItemsAether.valkyrie_shovel || item == ItemsAether.valkyrie_axe || item == ItemsAether.valkyrie_pickaxe || item == ItemsAether.valkyrie_lance || item == ItemsAether.tipped_valkyrie_lance || item == ItemsAether.tipped_valkyrie_pickaxe || item == ItemsAether.tipped_valkyrie_shovel || item == ItemsAether.tipped_valkyrie_axe;
 	}
 	
 	public boolean isAmplifiedValkyrieItem(Item stackIDD)
@@ -379,23 +368,17 @@ public class AetherClientEvents {
 	
 
 	@SubscribeEvent
-	public void onOpenGui(GuiOpenEvent event)
-	{
+	public void onOpenGui(GuiOpenEvent event) {
 		Minecraft mc = FMLClientHandler.instance().getClient();
 
-		if (mc.thePlayer != null && event.gui instanceof GuiDownloadTerrain)
-		{
+		if (mc.thePlayer != null && event.gui instanceof GuiDownloadTerrain) {
 			GuiEnterAether enterAether = new GuiEnterAether(true);
 			GuiEnterAether exitAether = new GuiEnterAether(false);
 
-			if (mc.thePlayer.dimension == AetherConfig.getAetherDimensionID())
-			{
+			if (mc.thePlayer.dimension == AetherConfig.getAetherDimensionID()) {
 				event.gui = enterAether;
 				wasInAether = true;
-			}
-
-			else if (wasInAether)
-			{
+			} else if (wasInAether) {
 				event.gui = exitAether;
 				wasInAether = false;
 			}
@@ -501,51 +484,42 @@ public class AetherClientEvents {
 	public void onGuiOpened(GuiScreenEvent.InitGuiEvent.Post event) {
 		if (event.gui instanceof GuiContainer) {
 			EntityPlayer player = Minecraft.getMinecraft().thePlayer;
-			Class<?> clazz = event.gui.getClass();
 
 			int guiLeft = ObfuscationReflectionHelper.getPrivateValue(GuiContainer.class, (GuiContainer) event.gui, "guiLeft", "field_147003_i");
 			int guiTop = ObfuscationReflectionHelper.getPrivateValue(GuiContainer.class, (GuiContainer) event.gui, "guiTop", "field_147009_r");
 			int xSize = ObfuscationReflectionHelper.getPrivateValue(GuiContainer.class, (GuiContainer) event.gui, "xSize", "field_146999_f");
 			int ySize = ObfuscationReflectionHelper.getPrivateValue(GuiContainer.class, (GuiContainer) event.gui, "ySize", "field_147000_g");
-			
-			if (player.capabilities.isCreativeMode) {
-				if (event.gui instanceof GuiContainerCreative) {
-					if (((GuiContainerCreative) event.gui).func_147056_g() == CreativeTabs.tabInventory.getTabIndex()) {
-						event.buttonList.add(ACCESSORY_BUTTON.setPosition(guiLeft + 28, guiTop + 38));
-						previousSelectedTabIndex = CreativeTabs.tabInventory.getTabIndex();
+
+			if(!AetherConfig.UseBaublesExpandedMenu()) {
+				if (player.capabilities.isCreativeMode) {
+					if (event.gui instanceof GuiContainerCreative guiContainerCreative) {
+						if (guiContainerCreative.func_147056_g() == CreativeTabs.tabInventory.getTabIndex()) {
+							event.buttonList.add(ACCESSORY_BUTTON.setPosition(guiLeft + 28, guiTop + 38));
+							previousSelectedTabIndex = CreativeTabs.tabInventory.getTabIndex();
+						}
 					}
+				} else if (event.gui instanceof GuiInventory) {
+					// We place the buttons where they would be if the inventory was its original size, for consistency with Baubles's button placement algorithm
+					int xSizeOriginal = 176;
+					int ySizeOriginal = 166;
+					event.buttonList.add(ACCESSORY_BUTTON.setPosition((xSize - xSizeOriginal) / 2 + guiLeft + 26, (ySize - ySizeOriginal) / 2 + guiTop + 65));
 				}
-			//} else if (clazz == GuiInventory.class) {
-			//	event.buttonList.add(ACCESSORY_BUTTON.setPosition(guiLeft + 26, guiTop + 65));
-			//}
-			} else if (event.gui instanceof GuiInventory) {
-				// We place the buttons where they would be if the inventory was its original size, for consistency with Baubles's button placement algorithm
-				int xSizeOriginal = 176;
-				int ySizeOriginal = 166;
-				event.buttonList.add(ACCESSORY_BUTTON.setPosition((xSize - xSizeOriginal) / 2 + guiLeft + 26, (ySize - ySizeOriginal) / 2 + guiTop + 65));
 			}
-			
-			//if (clazz == GuiAccessories.class)
-			if (event.gui instanceof GuiAccessories)
-			{
-				if (!shouldRemoveButton)
-				{
+
+			if (event.gui instanceof GuiAccessories) {
+				if (!shouldRemoveButton) {
 					event.buttonList.add(ACCESSORY_BUTTON.setPosition(guiLeft + 8, guiTop + 65));
-				}
-				else
-				{
+				} else {
 					shouldRemoveButton = false;
 				}
 			}
 		}
 
-		if (AetherConfig.menuButtonEnabled() && event.gui instanceof GuiMainMenu)
-		{
+		if (AetherConfig.menuButtonEnabled() && event.gui instanceof GuiMainMenu) {
 			event.buttonList.add(MAIN_MENU_BUTTON.setPosition(event.gui.width - 24, 4));
 		}
 
-		if (AetherConfig.getMenuEnabled() && event.gui.getClass() == GuiMainMenu.class)
-		{
+		if (AetherConfig.getMenuEnabled() && event.gui instanceof GuiMainMenu) {
 			Minecraft.getMinecraft().displayGuiScreen(new AetherMainMenu());
 		}
 
@@ -574,8 +548,7 @@ public class AetherClientEvents {
 
 	@SubscribeEvent
 	public void onMouseClicked(DrawScreenEvent.Post event) {
-		if (Minecraft.getMinecraft().currentScreen instanceof GuiContainerCreative guiScreen) {
-
+		if (Minecraft.getMinecraft().currentScreen instanceof GuiContainerCreative guiScreen && !AetherConfig.UseBaublesExpandedMenu()) {
 			if (previousSelectedTabIndex != guiScreen.func_147056_g()) {
 				List<GuiButton> buttonList = ObfuscationReflectionHelper.getPrivateValue(GuiScreen.class, (GuiScreen) guiScreen, 4);
 
@@ -658,18 +631,14 @@ public class AetherClientEvents {
 	}
 
 	@SubscribeEvent
-	public void onKeyInputEvent(InputEvent.KeyInputEvent event)
-	{
-		if (Minecraft.getMinecraft().thePlayer != null)
-		{
-			if (AetherKeybinds.keyBindingAccessories.isPressed())
-			{
-				if (Minecraft.getMinecraft().currentScreen == null)
-				{
-					AetherNetwork.sendToServer(new PacketOpenContainer(AetherGuiHandler.accessories));
-					shouldRemoveButton = true;
-				}
-			}
+	public void onKeyInputEvent(InputEvent.KeyInputEvent event) {
+		Minecraft mc = Minecraft.getMinecraft();
+		if (mc.thePlayer == null || mc.currentScreen == null) {
+			return;
+		}
+		if (!AetherConfig.UseBaublesExpandedMenu() && AetherKeybinds.keyBindingAccessories.isPressed()) {
+			AetherNetwork.sendToServer(new PacketOpenContainer(AetherGuiHandler.accessories));
+			shouldRemoveButton = true;
 		}
 	}
 

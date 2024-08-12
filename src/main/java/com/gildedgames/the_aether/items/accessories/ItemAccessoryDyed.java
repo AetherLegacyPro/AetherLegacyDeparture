@@ -21,7 +21,7 @@ public class ItemAccessoryDyed extends ItemAccessory {
 
 	public ItemAccessoryDyed(AccessoryType type) {
 		super(type);
-		this.texture = Aether.locate("textures/armor/accessory_leather.png");
+		texture = Aether.locate("textures/armor/accessory_leather.png");
 	}
 
 	@Override
@@ -57,21 +57,14 @@ public class ItemAccessoryDyed extends ItemAccessory {
 //		return nbttagcompound1 == null ? super.getColor() : (nbttagcompound1.hasKey("color", 3) ? nbttagcompound1.getInteger("color") : super.getColor());
 //	}
 
-
-
 	@SideOnly(Side.CLIENT)
-	public int getColorFromItemStack(ItemStack stack, int meta)
-	{
-		if (meta > 0)
-		{
+	public int getColorFromItemStack(ItemStack stack, int meta) {
+		if (meta > 0) {
 			return 16777215;
-		}
-		else
-		{
+		} else {
 			int j = this.getColor(stack);
 
-			if (j < 0)
-			{
+			if (j < 0) {
 				j = 16777215;
 			}
 
@@ -79,36 +72,26 @@ public class ItemAccessoryDyed extends ItemAccessory {
 		}
 	}
 
-	public boolean hasColor(ItemStack p_82816_1_)
-	{
-		return (p_82816_1_.hasTagCompound() && (p_82816_1_.getTagCompound().hasKey("display", 10) && p_82816_1_.getTagCompound().getCompoundTag("display").hasKey("color", 3)));
+	public boolean hasColor(ItemStack stack) {
+		return (stack.hasTagCompound() && (stack.getTagCompound().hasKey("display", 10) && stack.getTagCompound().getCompoundTag("display").hasKey("color", 3)));
 	}
 
-	public int getColor(ItemStack p_82814_1_)
-	{
+	public int getColor(ItemStack p_82814_1_) {
 		NBTTagCompound nbttagcompound = p_82814_1_.getTagCompound();
 
-		if (nbttagcompound == null)
-		{
+		if (nbttagcompound == null) {
 			return 10511680;
-		}
-		else
-		{
+		} else {
 			NBTTagCompound nbttagcompound1 = nbttagcompound.getCompoundTag("display");
 			return nbttagcompound1 == null ? 10511680 : (nbttagcompound1.hasKey("color", 3) ? nbttagcompound1.getInteger("color") : 10511680);
 		}
 	}
 
-	public void removeColor(ItemStack p_82815_1_)
-	{
-		NBTTagCompound nbttagcompound = p_82815_1_.getTagCompound();
-
-		if (nbttagcompound != null)
-		{
+	public void removeColor(ItemStack stack) {
+		NBTTagCompound nbttagcompound = stack.getTagCompound();
+		if (nbttagcompound != null) {
 			NBTTagCompound nbttagcompound1 = nbttagcompound.getCompoundTag("display");
-
-			if (nbttagcompound1.hasKey("color"))
-			{
+			if (nbttagcompound1.hasKey("color")) {
 				nbttagcompound1.removeTag("color");
 			}
 		}
@@ -135,24 +118,21 @@ public class ItemAccessoryDyed extends ItemAccessory {
 	}
 
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IIconRegister registry)
-	{
+	public void registerIcons(IIconRegister registry) {
 		super.registerIcons(registry);
 
-		this.overlayIcon = registry.registerIcon(Aether.find("accessories/leather_gloves_overlay"));
-		this.emptySlotIcon = registry.registerIcon(Aether.find("accessories/leather_gloves"));
+		overlayIcon = registry.registerIcon(Aether.find("accessories/leather_gloves_overlay"));
+		emptySlotIcon = registry.registerIcon(Aether.find("accessories/leather_gloves"));
 	}
 
 	@SideOnly(Side.CLIENT)
-	public IIcon getIconFromDamageForRenderPass(int p_77618_1_, int p_77618_2_)
-	{
+	public IIcon getIconFromDamageForRenderPass(int p_77618_1_, int p_77618_2_) {
 		return p_77618_2_ == 1 ? this.overlayIcon : super.getIconFromDamageForRenderPass(p_77618_1_, p_77618_2_);
 	}
 
-
 	@SideOnly(Side.CLIENT)
-	public boolean requiresMultipleRenderPasses()
-	{
+	public boolean requiresMultipleRenderPasses() {
 		return true;
 	}
+
 }

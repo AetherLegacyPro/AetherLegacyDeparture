@@ -23,9 +23,7 @@ import com.gildedgames.the_aether.world.biome.decoration.overhaul.ArcticIslandWo
 import com.gildedgames.the_aether.world.biome.decoration.overhaul.DivineIslandWorldGen;
 import com.gildedgames.the_aether.world.biome.decoration.overhaul.GoldenIslandWorldGen;
 import com.gildedgames.the_aether.world.biome.decoration.overhaul.PalladiumDungeonWorldGen;
-import com.gildedgames.the_aether.vrl.ForgetTheOtherMethodsThisIsWhereTheMagicHappens;
 
-import cpw.mods.fml.common.IWorldGenerator;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -56,6 +54,9 @@ public class Aether {
 		AetherRankings.initialization();
 		AetherNetwork.preInitialization();
 		AetherConfig.init(event.getModConfigurationDirectory());
+		if(AetherConfig.UseBaublesExpandedMenu()) {
+			com.gildedgames.the_aether.compatibility.BaublesExpandedCompatibility.tryAssignSlots();
+		}
 	}
 
 	@EventHandler
@@ -69,10 +70,10 @@ public class Aether {
 		AetherTileEntities.initialization();
 		AetherEnchantmentsAncientEnchanter.init();
 		
-		GameRegistry.registerWorldGenerator((IWorldGenerator)new ArcticIslandWorldGen(), Integer.MAX_VALUE);
-		GameRegistry.registerWorldGenerator((IWorldGenerator)new GoldenIslandWorldGen(), Integer.MAX_VALUE);				
-		GameRegistry.registerWorldGenerator((IWorldGenerator)new DivineIslandWorldGen(), Integer.MAX_VALUE);
-		GameRegistry.registerWorldGenerator((IWorldGenerator)new PalladiumDungeonWorldGen(), Integer.MAX_VALUE);
+		GameRegistry.registerWorldGenerator(new ArcticIslandWorldGen(), Integer.MAX_VALUE);
+		GameRegistry.registerWorldGenerator(new GoldenIslandWorldGen(), Integer.MAX_VALUE);
+		GameRegistry.registerWorldGenerator(new DivineIslandWorldGen(), Integer.MAX_VALUE);
+		GameRegistry.registerWorldGenerator(new PalladiumDungeonWorldGen(), Integer.MAX_VALUE);
 		
 		AetherWorld.initialization();
 		AchievementsAether.initialization();
@@ -82,12 +83,16 @@ public class Aether {
 		CommonProxy.registerEvent(new PlayerAetherEvents());
 		CommonProxy.registerEvent(new AetherEventHandler());
 		CommonProxy.registerEvent(new AetherEntityEvents());
+
+		if(AetherConfig.UseBaublesExpandedMenu()) {
+			com.gildedgames.the_aether.compatibility.BaublesExpandedCompatibility.initializeSlotTypeData();
+		}
 	}
 	
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
-		GameRegistry.registerWorldGenerator((IWorldGenerator)new AetherGenStoneOverhaul(), 0);
-		GameRegistry.registerWorldGenerator((IWorldGenerator)new AetherGenOverhaulLate(), 1);
+		GameRegistry.registerWorldGenerator(new AetherGenStoneOverhaul(), 0);
+		GameRegistry.registerWorldGenerator(new AetherGenOverhaulLate(), 1);
 	}
 
 	public static ResourceLocation locate(String location) {

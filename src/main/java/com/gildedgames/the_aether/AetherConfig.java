@@ -1,8 +1,8 @@
 package com.gildedgames.the_aether;
 
 import java.io.File;
-import java.io.IOException;
 
+import cpw.mods.fml.common.Loader;
 import net.minecraftforge.common.config.Configuration;
 
 public class AetherConfig {
@@ -54,6 +54,8 @@ public class AetherConfig {
 	
 	private static boolean divineral_recipe_hardmore, netherite_required_divineral_ingot;
 
+	private static boolean use_baubles_expanded_menu;
+
 	private static int phyg_spawnrate, flyingcow_spawnrate, sheepuff_spawnrate, aerbunny_spawnrate, moa_spawnrate, aerwhale_spawnrate, raptor_spawnrate, carrion_sprout_spawnrate, zephyroo_spawnrate, thunderlo_spawnrate, flynx_spawnrate;
 
 	private static int zephyr_spawnrate, vulturnus_spawnrate, tempest_spawnrate, cockatrice_spawnrate, swet_spawnrate, aechorplant_spawnrate, whirlwind_spawnrate, cyro_spawnrate, uro_spawnrate, aerca_spawnrate;
@@ -72,6 +74,7 @@ public class AetherConfig {
 	public static final String catWorld = "New World Gen Options";
 	public static final String catSpawnrates = "Spawnrates";
 	public static final String catEtFuturum = "Et Futurum Requiem Options";
+	public static final String catBaublesExpanded = "Baubles Expanded Options";
 
 	private static boolean redownloadFiles;
 	
@@ -181,7 +184,9 @@ public class AetherConfig {
 		enable_copper_recipes = config.getBoolean("enable_copper_recipes", catEtFuturum, false, "Enables Recipes with copper ingots from Et Futurum Requiem.");
 		enable_netherite_recipes = config.getBoolean("enable_netherite_recipes", catEtFuturum, false, "Enables Recipes with netherite ingots from Et Futurum Requiem.");
 		netherite_required_divineral_ingot = config.getBoolean("netheriteRequiredInDivineralIngot", catEtFuturum, false, "If Et Futurum Requiem is installed should netherite ingots be required in the divineral ingot recipe?");
-		
+
+		use_baubles_expanded_menu = config.getBoolean("useBaublesExpandedMenu", catBaublesExpanded, false, "If Baubles Expanded is installed should its menu be used for accessories?");
+
 		//Spawnrates
 		phyg_spawnrate = config.get(catSpawnrates, "Phyg Spawnrate. 1 is always, higher numbers decrease chances.", 1).getInt(1);
 		flyingcow_spawnrate = config.get(catSpawnrates, "Flying Cow Spawnrate. 1 is always, higher numbers decrease chances.", 1).getInt(1);
@@ -205,7 +210,11 @@ public class AetherConfig {
 		swet_spawnrate = config.get(catSpawnrates, "Swet Spawnrate. 1 is always, higher numbers decrease chances.", 20).getInt(20);
 		aechorplant_spawnrate = config.get(catSpawnrates, "Aechor Plant Spawnrate. 1 is always, higher numbers decrease chances.", 10).getInt(10);
 		whirlwind_spawnrate = config.get(catSpawnrates, "Whirlwind Spawnrate. 1 is always, higher numbers decrease chances.", 55).getInt(55);
-		
+
+		if(!Loader.isModLoaded("Baubles|Expanded")) {
+			use_baubles_expanded_menu = false;
+		}
+
 		config.save();
 	}
 	
@@ -363,6 +372,10 @@ public class AetherConfig {
 	
 	public static boolean NetheriteRequiredInDivineralIngot() {
 		return AetherConfig.netherite_required_divineral_ingot;
+	}
+
+	public static boolean UseBaublesExpandedMenu() {
+		return use_baubles_expanded_menu;
 	}
 	
 	public static boolean MiscItemDamageable() {
