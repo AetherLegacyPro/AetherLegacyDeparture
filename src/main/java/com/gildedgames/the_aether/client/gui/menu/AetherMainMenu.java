@@ -124,16 +124,7 @@ public class AetherMainMenu extends GuiMainMenu
         ++this.panoramaTimer;
     }
 
-    @Override
-    public boolean doesGuiPauseGame()
-    {
-        return false;
-    }
-
-    @Override
-    protected void keyTyped(char p_73869_1_, int p_73869_2_) {}
-
-    @Override
+	@Override
     public void initGui()
     {
         this.viewportTexture = new DynamicTexture(256, 256);

@@ -84,11 +84,6 @@ public class BlockStormAercloud extends Block implements IColoredBlock, INamedBl
 	}
 
 	@Override
-	public boolean isOpaqueCube() {
-		return true;
-	}
-
-	@Override
 	public int damageDropped(int meta) {
 		return meta;
 	}

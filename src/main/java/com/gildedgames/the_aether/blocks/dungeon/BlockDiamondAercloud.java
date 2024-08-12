@@ -118,11 +118,6 @@ public class BlockDiamondAercloud extends Block implements IColoredBlock, INamed
 		}
 
 	@Override
-	public boolean renderAsNormalBlock() {
-		return true;
-	}
-
-	@Override
 	@SideOnly(Side.CLIENT)
 	public int getRenderBlockPass() {
 		return 1;

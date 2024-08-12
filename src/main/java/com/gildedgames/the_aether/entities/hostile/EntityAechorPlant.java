@@ -266,11 +266,6 @@ public class EntityAechorPlant extends EntityAetherAnimal {
 	}
 
 	@Override
-	protected boolean canDespawn() {
-		return false;
-	}
-	
-	@Override
 	public boolean getCanSpawnHere() {
         final int i = MathHelper.floor_double(this.posX);
         final int j = MathHelper.floor_double(this.boundingBox.minY);

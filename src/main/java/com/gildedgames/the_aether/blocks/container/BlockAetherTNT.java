@@ -99,12 +99,8 @@ public class BlockAetherTNT extends Block
             world.setBlockToAir(x, y, z);
         }
     }
-    
-    public int quantityDropped(final Random random) {
-        return 1;
-    }
-    
-    @Override
+
+	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta){
 		return side == 0 || side == 1 ? iconTop : meta >= 1 && side-1 == meta ? iconFace : blockIcon;

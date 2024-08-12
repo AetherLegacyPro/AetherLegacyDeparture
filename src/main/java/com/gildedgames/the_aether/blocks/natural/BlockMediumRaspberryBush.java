@@ -44,11 +44,6 @@ public class BlockMediumRaspberryBush extends BlockAetherFlower implements IGrow
 		}
 	}
 
-	@Override
-	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
-		return null;
-	}
-
 	@SideOnly(Side.CLIENT)
 	public boolean shouldSideBeRendered(IBlockAccess worldIn, int x, int y, int z, int side) {
 		return true;

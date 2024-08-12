@@ -244,8 +244,5 @@ public class EntityAercenturion extends EntityMob
         }
             
     }
-    
-    public EnumCreatureAttribute getCreatureAttribute() {
-        return EnumCreatureAttribute.UNDEFINED;
-    }
+
 }

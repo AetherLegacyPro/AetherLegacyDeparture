@@ -35,11 +35,6 @@ public class BlockGrapeTreeMature extends BlockAetherFlower {
         return true;
     }
 
-	@Override
-	public boolean isOpaqueCube() {
-		return false;
-	}
-	
 
 	@Override
 	public void harvestBlock(World world, EntityPlayer entityplayer, int x, int y, int z, int meta) {
@@ -90,11 +85,6 @@ public class BlockGrapeTreeMature extends BlockAetherFlower {
 			this.dropBlockAsItem(world, x, y, z, new ItemStack(ItemsAether.grapes, randomNum, 0));
 			world.setBlock(x, y, z, BlocksAether.grape_tree_stage_one);
 		}
-	}
-
-	@Override
-	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
-		return null;
 	}
 
 	@Override

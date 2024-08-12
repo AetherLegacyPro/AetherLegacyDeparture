@@ -35,11 +35,6 @@ public class BlockMatureOrangeTree extends BlockAetherFlower {
         return true;
     }
 
-	@Override
-	public boolean isOpaqueCube() {
-		return false;
-	}
-	
 
 	@Override
 	public void harvestBlock(World world, EntityPlayer entityplayer, int x, int y, int z, int meta) {
@@ -90,11 +85,6 @@ public class BlockMatureOrangeTree extends BlockAetherFlower {
 			this.dropBlockAsItem(world, x, y, z, new ItemStack(ItemsAether.orange, randomNum, 0));
 			world.setBlock(x, y, z, BlocksAether.small_orange_tree);
 		}
-	}
-
-	@Override
-	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
-		return null;
 	}
 
 	@Override

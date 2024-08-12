@@ -62,8 +62,4 @@ public class FlyingCowWingModel extends ModelBase {
 		GL11.glPopMatrix();
 	}
 
-	@Override
-	public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn) {
-	}
-
 }

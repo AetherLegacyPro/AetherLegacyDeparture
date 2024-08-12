@@ -187,18 +187,8 @@ public class EntityAerwhale extends EntityFlying implements IMob
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(140.0);
     }
-    
-    protected void fall(final float p_70069_1_) {
-    }
-    
-    protected void updateFallState(final double p_70064_1_, final boolean p_70064_3_) {
-    }
-    
-    public boolean isOnLadder() {
-        return false;
-    }
-    
-    @Override
+
+	@Override
 	public String getLivingSound() {
 		return "aether_legacy:aemob.aerwhale.call";
 	}

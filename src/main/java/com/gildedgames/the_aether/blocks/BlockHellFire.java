@@ -34,12 +34,8 @@ public class BlockHellFire extends BlockFire
         this.setLightLevel(1.0f);
         this.setBlockBounds(0.0f, 0.0f, 0.0f, 1.0f, 0.015625f, 1.0f);
     }
-    
-    public AxisAlignedBB getCollisionBoundingBoxFromPool(final World p_149668_1_, final int p_149668_2_, final int p_149668_3_, final int p_149668_4_) {
-        return null;
-    }
-    
-    public boolean isCollidable() {
+
+	public boolean isCollidable() {
         return true;
     }
     

@@ -134,11 +134,6 @@ public class BlockPurpleAercloud extends Block implements IColoredBlock, INamedB
 		}
 
 	@Override
-	public boolean renderAsNormalBlock() {
-		return true;
-	}
-
-	@Override
 	@SideOnly(Side.CLIENT)
 	public int getRenderBlockPass() {
 		return 1;

@@ -222,12 +222,8 @@ public class EntityZarnillys extends EntityMob
         }
             
     }
-    
-    public EnumCreatureAttribute getCreatureAttribute() {
-        return EnumCreatureAttribute.UNDEFINED;
-    }
-    
-    protected String getLivingSound() {
+
+	protected String getLivingSound() {
         return "aether_legacy:aemob.zarnillys.say";
     }
     

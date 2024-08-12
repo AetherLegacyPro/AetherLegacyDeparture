@@ -78,11 +78,6 @@ public class BlockInebriationAercloud extends Block implements IColoredBlock, IN
 		}
 
 	@Override
-	public boolean renderAsNormalBlock() {
-		return true;
-	}
-
-	@Override
 	@SideOnly(Side.CLIENT)
 	public int getRenderBlockPass() {
 		return 1;

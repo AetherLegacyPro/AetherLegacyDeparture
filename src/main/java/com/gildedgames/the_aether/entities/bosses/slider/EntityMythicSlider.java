@@ -715,12 +715,7 @@ public class EntityMythicSlider extends EntityFlying implements IAetherBoss {
         return false;
     }
 
-    @Override
-    public boolean canBeCollidedWith() {
-        return !this.isDead;
-    }
-
-    @Override
+	@Override
     public void addVelocity(double d, double d1, double d2) {
     }
 

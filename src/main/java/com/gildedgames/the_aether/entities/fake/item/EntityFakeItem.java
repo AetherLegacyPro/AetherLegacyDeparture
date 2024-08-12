@@ -152,11 +152,8 @@ public class EntityFakeItem extends Entity
             this.setDead();
         }
     }
-    
-    public void onCollideWithPlayer(final EntityPlayer par1EntityPlayer) {
-    }
-    
-    public String getCommandSenderName() {
+
+	public String getCommandSenderName() {
         return StatCollector.translateToLocal("item." + this.getEntityItem().getUnlocalizedName());
     }
     

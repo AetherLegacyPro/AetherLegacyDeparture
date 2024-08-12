@@ -489,23 +489,13 @@ public abstract class EntityDartBase extends EntityArrow implements IProjectile,
         return this.shootingEntity;
     }
 
-    @Override
-    protected boolean canTriggerWalking() {
-        return false;
-    }
-
-    @Override
+	@Override
     @SideOnly(Side.CLIENT)
     public float getShadowSize() {
         return 0.0F;
     }
 
-    @Override
-    public boolean canAttackWithItem() {
-        return false;
-    }
-
-    public static DamageSource causeDartDamage(EntityDartBase dart, Entity thrower) {
+	public static DamageSource causeDartDamage(EntityDartBase dart, Entity thrower) {
         return (new EntityDamageSourceIndirect("aether_legacy.dart", dart, thrower)).setProjectile();
     }
 

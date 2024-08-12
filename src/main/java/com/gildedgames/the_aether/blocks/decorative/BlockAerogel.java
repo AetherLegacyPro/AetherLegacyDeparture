@@ -26,9 +26,4 @@ public class BlockAerogel extends BlockBreakable {
 		return 1;
 	}
 
-	@Override
-	public boolean renderAsNormalBlock() {
-		return true;
-	}
-
 }

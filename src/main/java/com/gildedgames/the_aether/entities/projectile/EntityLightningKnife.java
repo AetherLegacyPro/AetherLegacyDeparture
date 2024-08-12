@@ -40,9 +40,4 @@ public class EntityLightningKnife extends EntityProjectileBase {
 		this.setDead();
 	}
 
-	@Override
-	public void onCollideWithPlayer(EntityPlayer entityplayer) {
-
-	}
-
 }

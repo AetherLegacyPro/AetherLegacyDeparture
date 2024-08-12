@@ -44,11 +44,6 @@ public class EntityAIAttackContinuously extends EntityAIBase {
 	}
 
 	@Override
-	public void startExecuting() {
-
-	}
-
-	@Override
 	public void resetTask() {
 		EntityLivingBase entitylivingbase = (EntityLivingBase) this.attacker.getEntityToAttack();
 

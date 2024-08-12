@@ -133,13 +133,8 @@ public class EntityIrk extends EntityMob
 		this.dropItem(ItemsAether.aceninum_shard, 1);
 		 
 	}
-	
-	public EnumCreatureAttribute getCreatureAttribute()
-    {
-        return EnumCreatureAttribute.UNDEFINED;
-    }
-    
-    protected String getHurtSound() {
+
+	protected String getHurtSound() {
         return "aether_legacy:aemob.urk.hurt";
     }
     

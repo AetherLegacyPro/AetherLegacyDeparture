@@ -192,16 +192,6 @@ public class ItemAmplifiedCyroBow extends ItemBow {
 	}
 
 	@Override
-	public int getMaxItemUseDuration(ItemStack stack) {
-		return 72000;
-	}
-
-	@Override
-	public EnumAction getItemUseAction(ItemStack stack) {
-		return EnumAction.bow;
-	}
-
-	@Override
 	public ItemStack onItemRightClick(ItemStack heldItem, World worldIn, EntityPlayer playerIn) {
 		boolean flag = this.findAmmo(playerIn) != null;
 
@@ -216,11 +206,6 @@ public class ItemAmplifiedCyroBow extends ItemBow {
 		}
 
 		return heldItem;
-	}
-
-	@Override
-	public int getItemEnchantability() {
-		return 1;
 	}
 
 }

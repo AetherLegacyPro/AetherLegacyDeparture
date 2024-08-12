@@ -92,17 +92,4 @@ public class GuiAetherButton extends GuiButton {
 		}
 	}
 
-	@Override
-	protected void mouseDragged(Minecraft var1, int var2, int var3) {
-	}
-
-	@Override
-	public void mouseReleased(int var1, int var2) {
-	}
-
-	@Override
-	public boolean mousePressed(Minecraft var1, int var2, int var3) {
-		return this.enabled && this.visible && var2 >= this.xPosition && var3 >= this.yPosition && var2 < this.xPosition + this.width && var3 < this.yPosition + this.height;
-	}
-
 }

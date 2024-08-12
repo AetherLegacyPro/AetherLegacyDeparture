@@ -211,18 +211,8 @@ public class EntityAerca extends EntityFlying implements IMob
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(80.0);
     }
-    
-    protected void fall(final float p_70069_1_) {
-    }
-    
-    protected void updateFallState(final double p_70064_1_, final boolean p_70064_3_) {
-    }
-    
-    public boolean isOnLadder() {
-        return false;
-    }
-    
-    public void onEntityUpdate() {
+
+	public void onEntityUpdate() {
         super.onEntityUpdate();
         if (this.worldObj.isRemote) {
             final float f = MathHelper.cos((48 + this.ticksExisted) * 0.13f + 3.1415927f);

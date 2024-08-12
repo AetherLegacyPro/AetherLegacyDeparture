@@ -75,11 +75,6 @@ public class BlockPinkAercloud extends Block implements IColoredBlock, INamedBlo
 		}
 
 	@Override
-	public boolean renderAsNormalBlock() {
-		return true;
-	}
-
-	@Override
 	@SideOnly(Side.CLIENT)
 	public int getRenderBlockPass() {
 		return 1;

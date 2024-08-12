@@ -101,15 +101,7 @@ public class EntityFlynx extends EntityTameable
         }
     }
 
-    /**
-     * Determines if an entity can be despawned, used on idle far away entities
-     */
-    protected boolean canDespawn()
-    {
-        return false;
-    }
-
-    /**
+	/**
      * Returns true if the newer Entity AI code should be run
      */
     public boolean isAIEnabled()

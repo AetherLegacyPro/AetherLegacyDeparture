@@ -256,7 +256,7 @@ public class EntitiesAether {
 
 	public static int getEntityID(Entity p_75619_0_) {
 		Class<?> oclass = p_75619_0_.getClass();
-		return classToIDMapping.containsKey(oclass) ? classToIDMapping.get(oclass).intValue() : -1;
+		return classToIDMapping.containsKey(oclass) ? classToIDMapping.get(oclass) : -1;
 	}
 
 	public static Class<?> getClassFromID(int p_90035_0_) {

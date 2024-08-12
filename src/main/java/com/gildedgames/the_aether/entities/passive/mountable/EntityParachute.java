@@ -109,12 +109,7 @@ public class EntityParachute extends Entity implements IEntityAdditionalSpawnDat
         return this.worldObj.isAABBInMaterial(this.boundingBox, Material.water);
     }
 
-    @Override
-    public void onCollideWithPlayer(EntityPlayer entityplayer) {
-
-    }
-
-    public void die() {
+	public void die() {
         if (this.ridingPlayer != null) {
             this.spawnExplosionParticle();
         }

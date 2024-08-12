@@ -241,15 +241,7 @@ public class EntityCyro extends EntityAetherMob
         return ItemsAether.cyro_rod;
     }
 
-    /**
-     * Get this Entity's EnumCreatureAttribute
-     */
-    public EnumCreatureAttribute getCreatureAttribute()
-    {
-        return EnumCreatureAttribute.UNDEFINED;
-    }
-
-    protected void dropRareDrop(int p_70600_1_)
+	protected void dropRareDrop(int p_70600_1_)
     {
         switch (this.rand.nextInt(3))
         {
@@ -370,15 +362,12 @@ public class EntityCyro extends EntityAetherMob
         super.setSize(this.field_146074_bv * p_146069_1_, this.field_146073_bw * p_146069_1_);
     }
 
-    class GroupData implements IEntityLivingData
+    static class GroupData implements IEntityLivingData
     {
         public boolean field_142048_a;
         public boolean field_142046_b;
 
-        private GroupData(boolean p_i2348_2_, boolean p_i2348_3_)
-        {
-            this.field_142048_a = false;
-            this.field_142046_b = false;
+        private GroupData(boolean p_i2348_2_, boolean p_i2348_3_) {
             this.field_142048_a = p_i2348_2_;
             this.field_142046_b = p_i2348_3_;
         }

@@ -39,11 +39,6 @@ public class BlockRaspberryBush extends BlockAetherFlower {
     }
 
 	@Override
-	public boolean isOpaqueCube() {
-		return false;
-	}
-
-	@Override
 	public void harvestBlock(World world, EntityPlayer entityplayer, int x, int y, int z, int meta) {
 		int min, max;
 

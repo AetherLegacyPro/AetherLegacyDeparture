@@ -194,16 +194,6 @@ public class ItemAmplifiedPhoenixBow extends ItemBow {
 	}
 
 	@Override
-	public int getMaxItemUseDuration(ItemStack stack) {
-		return 72000;
-	}
-
-	@Override
-	public EnumAction getItemUseAction(ItemStack stack) {
-		return EnumAction.bow;
-	}
-
-	@Override
 	public ItemStack onItemRightClick(ItemStack heldItem, World worldIn, EntityPlayer playerIn) {
 		boolean flag = this.findAmmo(playerIn) != null;
 
@@ -227,10 +217,5 @@ public class ItemAmplifiedPhoenixBow extends ItemBow {
     public Entity createEntity(final World world, final Entity location, final ItemStack itemstack) {
         return new EntityFireProofItemAether(world, location, itemstack);
     }
-
-	@Override
-	public int getItemEnchantability() {
-		return 1;
-	}
 
 }
