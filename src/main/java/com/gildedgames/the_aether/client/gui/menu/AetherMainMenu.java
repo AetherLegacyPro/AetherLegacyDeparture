@@ -177,7 +177,7 @@ public class AetherMainMenu extends GuiMainMenu
     private void addSingleplayerMultiplayerButtons(int p_73969_1_, int p_73969_2_)
     {
         this.buttonList.add(new AetherMainMenuButton(1, 30, p_73969_1_, I18n.format("menu.singleplayer")));
-        this.buttonList.add(new AetherMainMenuButton(2, 30, p_73969_1_ + p_73969_2_ * 1, I18n.format("menu.multiplayer")));
+        this.buttonList.add(new AetherMainMenuButton(2, 30, p_73969_1_ + p_73969_2_, I18n.format("menu.multiplayer")));
         GuiButton realmsButton = new AetherMainMenuButton(14, 30, p_73969_1_ + p_73969_2_ * 2, I18n.format("menu.online"));
         GuiButton fmlModButton = new AetherMainMenuButton(6,  30, p_73969_1_ + p_73969_2_ * 3, "Mods");
         this.buttonList.add(realmsButton);

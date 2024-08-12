@@ -94,8 +94,6 @@ public class AetherMusicHandler {
 		} else if (category == SoundCategory.RECORDS && !(event.name.contains("note"))) {
 			this.musicTicker.trackRecord(event.sound);
 			this.mc.getSoundHandler().stopSounds();
-
-			return;
 		}
 	}
 

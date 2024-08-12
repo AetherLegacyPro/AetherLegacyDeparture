@@ -424,15 +424,11 @@ public class ArcticIsland extends WorldGenerator {
         {
         case 1: (new WorldGenTallGrass(BlocksAether.arctic_tallgrass, 1)).generate(world, rand, j1, l1, k1);
         break;
-        case 2: (new WorldGenTallGrass(BlocksAether.white_rose, 1)).generate(world, rand, j1, l1, k1);
+        case 2, 5: (new WorldGenTallGrass(BlocksAether.white_rose, 1)).generate(world, rand, j1, l1, k1);
         break;
-        case 3: (new WorldGenTallGrass(BlocksAether.white_flower, 1)).generate(world, rand, j1, l1, k1);
+        case 3, 4: (new WorldGenTallGrass(BlocksAether.white_flower, 1)).generate(world, rand, j1, l1, k1);
         break;
-        case 4: (new WorldGenTallGrass(BlocksAether.white_flower, 1)).generate(world, rand, j1, l1, k1);
-        break;
-        case 5: (new WorldGenTallGrass(BlocksAether.white_rose, 1)).generate(world, rand, j1, l1, k1);
-        break;
-        }
+		}
      	(new WorldGenTallGrass(BlocksAether.arctic_tallgrass, 1)).generate(world, rand, j1, l1, k1);
      	
          }

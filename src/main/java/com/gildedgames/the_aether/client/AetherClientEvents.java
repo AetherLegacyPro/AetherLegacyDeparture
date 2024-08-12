@@ -594,38 +594,26 @@ public class AetherClientEvents {
 	}
 
 	@SubscribeEvent
-	public void onDrawGui(GuiScreenEvent.DrawScreenEvent.Pre event)
-	{
-		//if (!AetherConfig.config.get("Misc", "Enables the Aether Menu", false).getBoolean() && event.gui.getClass() == AetherMainMenu.class)
-		if (!AetherConfig.getMenuEnabled() && event.gui instanceof AetherMainMenu)
-		{
+	public void onDrawGui(GuiScreenEvent.DrawScreenEvent.Pre event) {
+		if (!AetherConfig.getMenuEnabled() && event.gui instanceof AetherMainMenu) {
 			Minecraft.getMinecraft().displayGuiScreen(new GuiMainMenu());
 		}
 	}
 
 	@SubscribeEvent
 	public void onButtonPressed(GuiScreenEvent.ActionPerformedEvent.Pre event) {
-		//Class<?> clazz = event.gui.getClass();
-
-		//if ((clazz == GuiInventory.class || clazz == GuiContainerCreative.class) && event.button.id == 18067) {
 		if ((event.gui instanceof GuiInventory || event.gui instanceof GuiContainerCreative) && event.button.id == 18067) {
 			AetherNetwork.sendToServer(new PacketOpenContainer(AetherGuiHandler.accessories));
 		}
 
-		//if (event.button.getClass() == GuiCustomizationScreenButton.class)
-		if (event.button instanceof GuiCustomizationScreenButton)
-		{
+		if (event.button instanceof GuiCustomizationScreenButton) {
 			Minecraft.getMinecraft().displayGuiScreen(new GuiCustomizationScreen(event.gui));
 		}
 
-		//if (event.button.getClass() == GuiCapeButton.class)
-		if (event.button instanceof GuiCapeButton)
-		{
+		if (event.button instanceof GuiCapeButton) {
 			PlayerAether player = PlayerAether.get(Minecraft.getMinecraft().thePlayer);
 
-			boolean enableCape = !player.shouldRenderCape;
-
-			player.shouldRenderCape = enableCape;
+			player.shouldRenderCape = !player.shouldRenderCape;
 			AetherNetwork.sendToServer(new PacketCapeChanged(player.getEntity().getEntityId(), player.shouldRenderCape));
 		}
 	}

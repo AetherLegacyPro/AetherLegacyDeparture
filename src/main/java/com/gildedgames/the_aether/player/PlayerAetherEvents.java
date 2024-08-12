@@ -3,7 +3,6 @@ package com.gildedgames.the_aether.player;
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.api.player.util.IAccessoryInventory;
 import com.gildedgames.the_aether.api.player.util.IAetherAbility;
-import com.gildedgames.the_aether.inventory.InventoryAccessories;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 import com.gildedgames.the_aether.registry.achievements.AetherAchievement;

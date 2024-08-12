@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.items;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -175,10 +174,8 @@ public class ItemAetherSpawnEgg extends Item {
 	@SideOnly(Side.CLIENT)
 	@SuppressWarnings({"unchecked", "rawtypes"})
 	public void getSubItems(Item p_150895_1_, CreativeTabs p_150895_2_, List p_150895_3_) {
-		Iterator<AetherEggInfo> iterator = entityEggs.values().iterator();
 
-		while (iterator.hasNext()) {
-			AetherEggInfo entityegginfo = iterator.next();
+		for (AetherEggInfo entityegginfo : entityEggs.values()) {
 			p_150895_3_.add(new ItemStack(p_150895_1_, 1, entityegginfo.spawnedID));
 		}
 	}

@@ -7,7 +7,6 @@ import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.blocks.BlocksAether.ISubBlocksBlock;
 import com.gildedgames.the_aether.client.renders.RenderIDs;
-import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.items.block.ItemAuraliteCluster;
 
 import cpw.mods.fml.relauncher.Side;

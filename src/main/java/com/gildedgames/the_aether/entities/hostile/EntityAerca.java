@@ -251,16 +251,10 @@ public class EntityAerca extends EntityFlying implements IMob
     protected void dropFewItems(boolean recentlyHit, int lootLevel) {
         int j = this.rand.nextInt(3) + this.rand.nextInt(1 + lootLevel);
         int k;
-        
+
         int rand = (int)(1 + Math.random() * 3);
-		switch (rand)
-        {
-        case 1: this.dropItem(ItemsAether.aerca_tooth, 1 + lootLevel);
-        	break;
-        case 2: 
-        	break;
-        case 3: 
-        	break;
+        if(rand == 1) {
+            dropItem(ItemsAether.aerca_tooth, 1 + lootLevel);
         }
 
         for (k = 0; k < j; ++k) {

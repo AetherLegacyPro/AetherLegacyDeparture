@@ -1,6 +1,5 @@
 package com.gildedgames.the_aether.entities.hostile;
 
-import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Vec3;
 

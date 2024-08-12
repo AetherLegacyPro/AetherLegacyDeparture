@@ -141,8 +141,7 @@ public class BlockDivineralPile extends Block
     {
     	int meta = world.getBlockMetadata(x, y, z);
     	switch (meta) {
-    	case 0: return 1;
-		case 1: return 1 + random.nextInt(1);
+			case 1: return 1 + random.nextInt(1);
 		case 2: return 2 + random.nextInt(2);
 		case 3: return 2 + random.nextInt(3);
 		case 4: return 3 + random.nextInt(3);   		

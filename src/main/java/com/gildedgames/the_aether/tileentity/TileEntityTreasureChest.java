@@ -168,9 +168,7 @@ public class TileEntityTreasureChest extends TileEntityChest {
 	private void sendToAllInOurWorld(Packet pkt) {
 		ServerConfigurationManager scm = FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager();
 
-		for (Object obj : scm.playerEntityList) {
-			EntityPlayerMP player = (EntityPlayerMP) obj;
-
+		for (EntityPlayerMP player : scm.playerEntityList) {
 			if (this.worldObj == player.worldObj) {
 				player.playerNetServerHandler.sendPacket(pkt);
 			}

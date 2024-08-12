@@ -284,14 +284,8 @@ public class EntityCyroGuardian extends EntityBossMob implements IAetherBoss
         }
         
         int rand2 = (int)(1 + Math.random() * 3);
-		switch (rand2)
-        {
-        case 1: this.dropItem(ItemsAether.divine_essence, 1 + rand.nextInt(2));
-        break;
-        case 2: 
-        break;
-        case 3: 
-        break;
+		if(rand2 == 1) {
+            dropItem(ItemsAether.divine_essence, 1 + rand.nextInt(2));
         }
     }
 

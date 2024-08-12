@@ -411,8 +411,7 @@ public class TileEntityAncientEnchanter extends TileEntity implements IInventory
     
     private void sendToAllInOurWorld(final Packet pkt) {
         final ServerConfigurationManager scm = FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager();
-        for (final Object obj : scm.playerEntityList) {
-            final EntityPlayerMP player = (EntityPlayerMP)obj;
+        for (final EntityPlayerMP player : scm.playerEntityList) {
             if (player.worldObj == this.worldObj) {
                 player.playerNetServerHandler.sendPacket(pkt);
             }

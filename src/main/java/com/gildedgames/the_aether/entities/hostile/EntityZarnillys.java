@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.entities.hostile;
 
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.DamageSource;

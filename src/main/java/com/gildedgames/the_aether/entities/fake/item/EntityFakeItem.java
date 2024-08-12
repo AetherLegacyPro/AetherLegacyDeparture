@@ -5,7 +5,6 @@ import net.minecraft.world.*;
 import net.minecraft.item.*;
 import net.minecraft.block.material.*;
 import net.minecraft.nbt.*;
-import net.minecraft.entity.player.*;
 import net.minecraft.util.*;
 import net.minecraft.init.*;
 import org.apache.logging.log4j.*;

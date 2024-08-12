@@ -1,6 +1,5 @@
 package com.gildedgames.the_aether.player.abilities;
 
-import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.api.accessories.AccessoryType;
 import com.gildedgames.the_aether.api.accessories.DegradationRate;
 import com.gildedgames.the_aether.api.player.IPlayerAether;

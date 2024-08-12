@@ -9,7 +9,6 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.init.*;
 import net.minecraft.entity.projectile.*;
-import java.util.*;
 
 import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.entities.block.EntityAetherTNT;
