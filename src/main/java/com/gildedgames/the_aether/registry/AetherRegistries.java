@@ -679,9 +679,16 @@ public class AetherRegistries {
 
 		OreDictionary.registerOre("stickWood", ItemsAether.skyroot_stick);
 		OreDictionary.registerOre("feather", ItemsAether.cockatrice_feather);
+		OreDictionary.registerOre("dye", new ItemStack(ItemsAether.black_dye));
+		OreDictionary.registerOre("dye", new ItemStack(ItemsAether.white_dye));
+		OreDictionary.registerOre("dye", new ItemStack(ItemsAether.blue_dye));
 		OreDictionary.registerOre("dyeBlack", new ItemStack(ItemsAether.black_dye));
 		OreDictionary.registerOre("dyeWhite", new ItemStack(ItemsAether.white_dye));
 		OreDictionary.registerOre("dyeBlue", new ItemStack(ItemsAether.blue_dye));
+		OreDictionary.registerOre("record", new ItemStack(ItemsAether.aether_tune));
+		OreDictionary.registerOre("record", new ItemStack(ItemsAether.ascending_dawn));
+		OreDictionary.registerOre("record", new ItemStack(ItemsAether.welcoming_skies));
+		OreDictionary.registerOre("record", new ItemStack(ItemsAether.legacy));
 	}
 
 	private static void initializeShapelessRecipes() {
