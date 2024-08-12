@@ -2,6 +2,7 @@ package com.gildedgames.the_aether.client.gui.inventory;
 
 import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.client.AetherKeybinds;
+import com.gildedgames.the_aether.inventory.InventoryAccessories;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -21,13 +22,12 @@ public class GuiAccessories extends GuiContainer {
 
 	private static final ResourceLocation ACCESSORIES = Aether.locate("textures/gui/inventory/accessories.png");
 
-	private PlayerAether playerAether;
+	//private PlayerAether playerAether;
 
-	public GuiAccessories(PlayerAether player) {
-		super(new ContainerAccessories(player.getAccessoryInventory(), player.getEntity()));
-
-		this.playerAether = player;
-		this.allowUserInput = true;
+	public GuiAccessories(PlayerAether player, InventoryAccessories inventory) {
+		super(new ContainerAccessories(inventory, player.getEntity()));
+		//playerAether = player;
+		allowUserInput = true;
 	}
 
 	@Override
@@ -37,11 +37,11 @@ public class GuiAccessories extends GuiContainer {
 
 		/*
 		if (AetherRankings.isRankedPlayer(this.playerAether.getEntity().getUniqueID()) || this.playerAether.isDonator()) {
-			this.buttonList.add(new GuiButtonPerks(this.width / 2 - 108, this.height / 2 - 83));
+			buttonList.add(new GuiButtonPerks(this.width / 2 - 108, this.height / 2 - 83));
 		}
 		 */
 
-		//this.buttonList.add(new GuiAccessoryButton(this.guiLeft + 8, this.guiTop + 65));
+		//buttonList.add(new GuiAccessoryButton(this.guiLeft + 8, this.guiTop + 65));
 	}
 
 	@Override
@@ -66,11 +66,11 @@ public class GuiAccessories extends GuiContainer {
 	@Override
 	protected void actionPerformed(GuiButton button) {
 		if (button.id == 24) {
-			this.mc.displayGuiScreen(new GuiAetherPerks());
+			mc.displayGuiScreen(new GuiAetherPerks());
 		}
 
 		if (button.id == 18067) {
-			this.mc.displayGuiScreen(new GuiInventory(this.mc.thePlayer));
+			mc.displayGuiScreen(new GuiInventory(this.mc.thePlayer));
 			AetherNetwork.sendToServer(new PacketOpenContainer(-1));
 		}
 	}

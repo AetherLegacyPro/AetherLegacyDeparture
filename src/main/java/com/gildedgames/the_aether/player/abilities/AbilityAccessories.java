@@ -2,12 +2,12 @@ package com.gildedgames.the_aether.player.abilities;
 
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.api.accessories.AccessoryType;
+import com.gildedgames.the_aether.api.accessories.DegradationRate;
 import com.gildedgames.the_aether.api.player.IPlayerAether;
 import com.gildedgames.the_aether.api.player.util.IAccessoryInventory;
 import com.gildedgames.the_aether.api.player.util.IAetherAbility;
 import com.gildedgames.the_aether.items.ItemsAether;
 
-import cpw.mods.fml.common.Loader;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.init.Blocks;
@@ -38,101 +38,16 @@ public class AbilityAccessories implements IAetherAbility {
 		final IAccessoryInventory accessoryInventory = player.getAccessoryInventory();
 		final float ticksExisted = player.getEntity().ticksExisted;
 		if (ticksExisted % 400 == 0) {
-			accessoryInventory.damageWornItem(1, ItemsAether.zanite_ring);
-			accessoryInventory.damageWornItem(1, ItemsAether.zanite_pendant);
-
-			accessoryInventory.damageWornItem(1, ItemsAether.auralite_ring);
-			accessoryInventory.damageWornItem(1, ItemsAether.auralite_pendant);
-			accessoryInventory.damageWornItem(1, ItemsAether.reinforced_auralite_pendant);
-			
-			if (Loader.isModLoaded("etfuturum")) {
-				accessoryInventory.damageWornItem(1, ItemsAether.copper_ring);
-				accessoryInventory.damageWornItem(1, ItemsAether.copper_pendant);
-			}
-			
+			accessoryInventory.damageWornItemsAtRate(DegradationRate.VERY_FAST);
 		}
-		
 		if (ticksExisted % 1200 == 0) {
-			accessoryInventory.damageWornItem(1, ItemsAether.diamond_ring);
-			accessoryInventory.damageWornItem(1, ItemsAether.diamond_pendant);
-
-			accessoryInventory.damageWornItem(1, ItemsAether.divineral_ring);
-			accessoryInventory.damageWornItem(1, ItemsAether.divineral_pendant);
-			
-			if (Loader.isModLoaded("etfuturum")) {
-				accessoryInventory.damageWornItem(1, ItemsAether.netherite_ring);
-				accessoryInventory.damageWornItem(1, ItemsAether.netherite_pendant);
-			}
+			accessoryInventory.damageWornItemsAtRate(DegradationRate.FAST);
 		}
-		
 		if (ticksExisted % 2000 == 0) {
-			accessoryInventory.damageWornItem(1, ItemsAether.valkyrie_ring);
-			accessoryInventory.damageWornItem(1, ItemsAether.reinforced_valkyrie_ring);
-			accessoryInventory.damageWornItem(1, ItemsAether.amplified_valkyrie_ring);
-			accessoryInventory.damageWornItem(1, ItemsAether.haste_ring);
-			accessoryInventory.damageWornItem(1, ItemsAether.reinforced_haste_ring);
-			accessoryInventory.damageWornItem(1, ItemsAether.amplified_haste_ring);
+			accessoryInventory.damageWornItemsAtRate(DegradationRate.SLOW);
 		}
-		
 		if (ticksExisted % 2500 == 0 && AetherConfig.MiscItemDamageable()) {
-			accessoryInventory.damageWornItem(1, ItemsAether.golden_feather);
-			accessoryInventory.damageWornItem(1, ItemsAether.reinforced_golden_feather);
-			accessoryInventory.damageWornItem(1, ItemsAether.amplified_golden_feather);
-			accessoryInventory.damageWornItem(1, ItemsAether.regeneration_stone);
-			accessoryInventory.damageWornItem(1, ItemsAether.reinforced_regeneration_stone);
-			accessoryInventory.damageWornItem(1, ItemsAether.iron_bubble);
-			accessoryInventory.damageWornItem(1, ItemsAether.reinforced_iron_bubble);
-			accessoryInventory.damageWornItem(1, ItemsAether.amplified_iron_bubble);
-			accessoryInventory.damageWornItem(1, ItemsAether.healing_matrix);
-			accessoryInventory.damageWornItem(1, ItemsAether.amplified_auralite_pendant);
-
-			accessoryInventory.damageWornItem(1, ItemsAether.elysian_ring);
-			accessoryInventory.damageWornItem(1, ItemsAether.reinforced_elysian_ring);
-			accessoryInventory.damageWornItem(1, ItemsAether.amplified_elysian_ring);
-		}
-		
-		if (ticksExisted % 2000 == 0 && AetherConfig.GlovesDamageable()) {
-			accessoryInventory.damageWornItem(1, ItemsAether.leather_gloves);
-			accessoryInventory.damageWornItem(1, ItemsAether.chain_gloves);
-			accessoryInventory.damageWornItem(1, ItemsAether.iron_gloves);
-			accessoryInventory.damageWornItem(1, ItemsAether.golden_gloves);
-			accessoryInventory.damageWornItem(1, ItemsAether.diamond_gloves);
-
-			accessoryInventory.damageWornItem(1, ItemsAether.zanite_gloves);
-			accessoryInventory.damageWornItem(1, ItemsAether.arkenium_gloves);
-			accessoryInventory.damageWornItem(1, ItemsAether.continuum_gloves);
-			accessoryInventory.damageWornItem(1, ItemsAether.gravitite_gloves);
-			accessoryInventory.damageWornItem(1, ItemsAether.phoenix_gloves);
-			accessoryInventory.damageWornItem(1, ItemsAether.obsidian_gloves);
-			accessoryInventory.damageWornItem(1, ItemsAether.valkyrie_gloves);
-			accessoryInventory.damageWornItem(1, ItemsAether.neptune_gloves);
-			accessoryInventory.damageWornItem(1, ItemsAether.elysian_gloves);
-
-			accessoryInventory.damageWornItem(1, ItemsAether.divineral_gloves);
-			accessoryInventory.damageWornItem(1, ItemsAether.amplified_arkenium_gloves);
-			accessoryInventory.damageWornItem(1, ItemsAether.amplified_continuum_gloves);
-			accessoryInventory.damageWornItem(1, ItemsAether.amplified_neptune_gloves);
-			accessoryInventory.damageWornItem(1, ItemsAether.amplified_valkyrie_gloves);
-			accessoryInventory.damageWornItem(1, ItemsAether.amplified_obsidian_gloves);
-			accessoryInventory.damageWornItem(1, ItemsAether.amplified_phoenix_gloves);
-			accessoryInventory.damageWornItem(1, ItemsAether.amplified_zanite_gloves);
-			accessoryInventory.damageWornItem(1, ItemsAether.amplified_elysian_gloves);
-
-			if (Loader.isModLoaded("etfuturum")) {
-				accessoryInventory.damageWornItem(1, ItemsAether.copper_gloves);
-				accessoryInventory.damageWornItem(1, ItemsAether.netherite_gloves);
-			}
-
-			if (Loader.isModLoaded("nova_craft")) {
-				accessoryInventory.damageWornItem(1, ItemsAether.vanite_gloves);
-				accessoryInventory.damageWornItem(1, ItemsAether.klangite_gloves);
-				accessoryInventory.damageWornItem(1, ItemsAether.ascensite_gloves);
-			}
-
-			if (Loader.isModLoaded("netherlicious")) {
-				accessoryInventory.damageWornItem(1, ItemsAether.effrine_gloves);
-				accessoryInventory.damageWornItem(1, ItemsAether.heavy_blaze_gloves);
-			}
+			accessoryInventory.damageWornItemsAtRate(DegradationRate.MISC);
 		}
 
 		if (!player.getEntity().worldObj.isRemote && (accessoryInventory.wearingAccessory(ItemsAether.ice_ring) || accessoryInventory.wearingAccessory(ItemsAether.ice_pendant))) {

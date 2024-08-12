@@ -1,6 +1,7 @@
 package com.gildedgames.the_aether.network;
 
 import com.gildedgames.the_aether.client.gui.inventory.GuiAccessories;
+import com.gildedgames.the_aether.inventory.InventoryAccessories;
 import com.gildedgames.the_aether.player.PlayerAether;
 import com.gildedgames.the_aether.tileentity.TileEntityAmplifier;
 import com.gildedgames.the_aether.tileentity.TileEntityEnchanter;
@@ -42,7 +43,8 @@ public class AetherGuiHandler implements IGuiHandler {
 	@Override
 	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
 		if (ID == accessories) {
-			return new ContainerAccessories(PlayerAether.get(player).getAccessoryInventory(), player);
+			return PlayerAether.get(player).getAccessoryInventory() instanceof InventoryAccessories inventory ?
+					new ContainerAccessories(inventory, player) : null;
 		} else if (ID == enchanter) {
 			return world.getTileEntity(x, y, z) instanceof TileEntityEnchanter enchanterInv ?
 					new ContainerEnchanter(player.inventory, enchanterInv) : null;
@@ -75,7 +77,9 @@ public class AetherGuiHandler implements IGuiHandler {
 	@SideOnly(Side.CLIENT)
 	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
 		if (ID == accessories) {
-			return new GuiAccessories(PlayerAether.get(player));
+			PlayerAether playerAether = PlayerAether.get(player);
+			return playerAether.getAccessoryInventory() instanceof InventoryAccessories inventory ?
+					new GuiAccessories(playerAether, inventory) : null;
 		} else if (ID == enchanter) {
 			return world.getTileEntity(x, y, z) instanceof TileEntityEnchanter enchanterInv ?
 					new GuiEnchanter(player.inventory, enchanterInv) : null;

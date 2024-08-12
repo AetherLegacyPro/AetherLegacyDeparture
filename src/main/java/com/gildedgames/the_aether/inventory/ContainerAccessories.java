@@ -10,7 +10,6 @@ import net.minecraft.util.ObjectIntIdentityMap;
 
 import com.gildedgames.the_aether.api.accessories.AccessoryType;
 import com.gildedgames.the_aether.api.accessories.AetherAccessory;
-import com.gildedgames.the_aether.api.player.util.IAccessoryInventory;
 import com.gildedgames.the_aether.inventory.slots.SlotAccessory;
 import com.gildedgames.the_aether.player.PlayerAether;
 
@@ -20,12 +19,12 @@ public class ContainerAccessories extends ContainerPlayer {
 
 	public PlayerAether playerAether;
 
-	private IAccessoryInventory inventoryInstance;
+	private InventoryAccessories inventoryInstance;
 
 	private ObjectIntIdentityMap orderedList = AccessoryType.createCompleteList();
 
 	@SuppressWarnings("unchecked")
-	public ContainerAccessories(IAccessoryInventory inventory, EntityPlayer player) {
+	public ContainerAccessories(InventoryAccessories inventory, EntityPlayer player) {
 		super(player.inventory, !player.worldObj.isRemote, player);
 
 		this.player = player;

@@ -227,7 +227,7 @@ public class PlayerAetherEvents {
 
 	@SubscribeEvent
 	public void onUpdateBreakSpeed(BreakSpeed event) {
-		((InventoryAccessories) PlayerAether.get(event.entityPlayer).getAccessoryInventory()).getCurrentPlayerStrVsBlock(event.newSpeed);
+		PlayerAether.get(event.entityPlayer).getAccessoryInventory().getCurrentPlayerStrVsBlock(event.newSpeed);
 	}
 
 	@SubscribeEvent
