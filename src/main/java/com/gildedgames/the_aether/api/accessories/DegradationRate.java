@@ -4,6 +4,6 @@ public enum DegradationRate {
 	VERY_FAST,
 	FAST,
 	SLOW,
-	MISC,
+	VERY_SLOW,
 	NEVER;
 }

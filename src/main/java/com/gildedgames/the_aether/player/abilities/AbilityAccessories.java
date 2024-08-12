@@ -46,8 +46,8 @@ public class AbilityAccessories implements IAetherAbility {
 		if (ticksExisted % 2000 == 0) {
 			accessoryInventory.damageWornItemsAtRate(DegradationRate.SLOW);
 		}
-		if (ticksExisted % 2500 == 0 && AetherConfig.MiscItemDamageable()) {
-			accessoryInventory.damageWornItemsAtRate(DegradationRate.MISC);
+		if (ticksExisted % 2500 == 0) {
+			accessoryInventory.damageWornItemsAtRate(DegradationRate.VERY_SLOW);
 		}
 
 		if (!player.getEntity().worldObj.isRemote && (accessoryInventory.wearingAccessory(ItemsAether.ice_ring) || accessoryInventory.wearingAccessory(ItemsAether.ice_pendant))) {

@@ -195,7 +195,8 @@ public class InventoryAccessories implements IInventory, IAccessoryInventory {
 	public void damageWornItemsAtRate(DegradationRate degradationrate) {
 		for (int slot = 0; slot < stacks.size(); ++slot) {
 			ItemStack stack = stacks.get(slot);
-			if(stack != null && stack.getItem() instanceof ItemAccessory accessory && accessory.getDegradationRate() == degradationrate) {
+			if(stack != null && stack.getItem() instanceof ItemAccessory accessory
+					&& accessory.getDegradationRate() == degradationrate && accessory.getType().degrades()) {
 				stack.damageItem(1, playerAether.getEntity());
 				if (stack.stackSize <= 0) {
 					setInventorySlotContents(slot, null);
