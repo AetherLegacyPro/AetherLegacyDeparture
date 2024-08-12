@@ -45,7 +45,7 @@ public class AetherMusicHandler {
 			musicTicker.trackRecord(null);
 		}
 
-		if (AetherConfig.config.get("Misc", "Enables the Aether Menu", false).getBoolean() && Minecraft.getMinecraft().theWorld == null && !(screen instanceof GuiScreenWorking))
+		if (AetherConfig.getMenuEnabled() && Minecraft.getMinecraft().theWorld == null && !(screen instanceof GuiScreenWorking))
 		{
 			if (!musicTicker.playingMenuMusic())
 			{
@@ -86,7 +86,7 @@ public class AetherMusicHandler {
 			{
 				musicTicker.trackMinecraftMusic(sound);
 
-				if (AetherConfig.config.get("Misc", "Enables the Aether Menu", false).getBoolean() && Minecraft.getMinecraft().theWorld == null && !(screen instanceof GuiScreenWorking))
+				if (AetherConfig.getMenuEnabled() && Minecraft.getMinecraft().theWorld == null && !(screen instanceof GuiScreenWorking))
 				{
 					event.result = null;
 				}

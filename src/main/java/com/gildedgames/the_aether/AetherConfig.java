@@ -7,7 +7,8 @@ import net.minecraftforge.common.config.Configuration;
 
 public class AetherConfig {
 
-	public static Configuration config;
+	//This should really not be persisted, but it has to be until menu_enabled is stored in an options.txt type file.
+	private static Configuration config;
 
 	private static int max_life_shards, max_power_shards, max_dex_shards;
 
@@ -59,14 +60,14 @@ public class AetherConfig {
 
 	public static boolean arctic_island_enable, golden_island_enable, divine_island_enable, palladium_dungeon_enable;	
 	public static int arctic_island_rarity, golden_island_rarity, divine_island_rarity, palladium_dungeon_rarity;
-	
+
 	public static boolean enable_log_reporting_biomes, enable_assets_message, disable_1stperson_glove_renderer;
 	public static boolean enable_ascensite;
-	
+
 	public static boolean cloud_icon, enable_battlegear2_compatibility;
-	
+
 	public static boolean enable_copper_recipes, enable_netherite_recipes;
-	
+
 	public static final String catMisc = "New Misc Options";
 	public static final String catWorld = "New World Gen Options";
 	public static final String catSpawnrates = "Spawnrates";
@@ -76,12 +77,6 @@ public class AetherConfig {
 	
 	public static void init(File location) {
 		File newFile = new File(location + "/aether" + "/AetherI.cfg");
-
-		try {
-			newFile.createNewFile();
-		} catch (IOException e) {
-
-		}
 
 		config = new Configuration(newFile);
 
@@ -416,9 +411,17 @@ public class AetherConfig {
 		return AetherConfig.golden_feather;
 	}
 
-	public static boolean menuEnabled()
+	public static boolean getMenuEnabled()
 	{
 		return AetherConfig.menu_enabled;
+	}
+
+	public static void setMenuEnabled(boolean enabled)
+	{
+		menu_enabled = enabled;
+		//This should *really* use an options.txt like file, but this is still an improvement to before.
+		config.get("Misc", "Enables the Aether Menu", false).set(menu_enabled);
+		config.save();
 	}
 
 	public static boolean menuButtonEnabled()

@@ -539,12 +539,12 @@ public class AetherClientEvents {
 			}
 		}
 
-		if (AetherConfig.config.get("Misc", "Enables the Aether Menu toggle button", false).getBoolean() && event.gui instanceof GuiMainMenu)
+		if (AetherConfig.menuButtonEnabled() && event.gui instanceof GuiMainMenu)
 		{
 			event.buttonList.add(MAIN_MENU_BUTTON.setPosition(event.gui.width - 24, 4));
 		}
 
-		if (AetherConfig.config.get("Misc", "Enables the Aether Menu", false).getBoolean() && event.gui.getClass() == GuiMainMenu.class)
+		if (AetherConfig.getMenuEnabled() && event.gui.getClass() == GuiMainMenu.class)
 		{
 			Minecraft.getMinecraft().displayGuiScreen(new AetherMainMenu());
 		}
@@ -597,7 +597,7 @@ public class AetherClientEvents {
 	public void onDrawGui(GuiScreenEvent.DrawScreenEvent.Pre event)
 	{
 		//if (!AetherConfig.config.get("Misc", "Enables the Aether Menu", false).getBoolean() && event.gui.getClass() == AetherMainMenu.class)
-		if (!AetherConfig.config.get("Misc", "Enables the Aether Menu", false).getBoolean() && event.gui instanceof AetherMainMenu)
+		if (!AetherConfig.getMenuEnabled() && event.gui instanceof AetherMainMenu)
 		{
 			Minecraft.getMinecraft().displayGuiScreen(new GuiMainMenu());
 		}
