@@ -28,7 +28,7 @@ Parachute code needs to be rewritten to not be so buggy.
 Other mod integration
 ----------------------
 Having machines such as the enchanter, freezer, and amplifier show recipes in NEI
-Baubles support for the aether accessories (Can be turned off if need to, do not want it to be a dependency)
+B̶a̶u̶b̶l̶e̶s̶ ̶s̶u̶p̶p̶o̶r̶t̶ ̶f̶o̶r̶ ̶t̶h̶e̶ ̶a̶e̶t̶h̶e̶r̶ ̶a̶c̶c̶e̶s̶s̶o̶r̶i̶e̶s̶ ̶(̶C̶a̶n̶ ̶b̶e̶ ̶t̶u̶r̶n̶e̶d̶ ̶o̶f̶f̶ ̶i̶f̶ ̶n̶e̶e̶d̶ ̶t̶o̶,̶ ̶d̶o̶ ̶n̶o̶t̶ ̶w̶a̶n̶t̶ ̶i̶t̶ ̶t̶o̶ ̶b̶e̶ ̶a̶ ̶d̶e̶p̶e̶n̶d̶e̶n̶c̶y̶)̶  -> has been added thanks to jss2a98aj
 Tinkers support?
 
 Other notes
