@@ -195,19 +195,19 @@ public interface IAccessoryInventory {
 	
 	//---------------- Gravitite & Divineral CDFS
 	default boolean isWearingGravititeSet() {
-		return (wearingArmor(ItemsAether.gravitite_helmet)) || wearingArmor(ItemsAether.scaled_gravitite_helmet)
+		return ((wearingArmor(ItemsAether.gravitite_helmet) || wearingArmor(ItemsAether.scaled_gravitite_helmet))
 				&& (wearingArmor(ItemsAether.gravitite_chestplate) || wearingArmor(ItemsAether.scaled_gravitite_chestplate))
 				&& (wearingArmor(ItemsAether.gravitite_leggings) || wearingArmor(ItemsAether.scaled_gravitite_leggings))
 				&& (wearingArmor(ItemsAether.gravitite_boots) || wearingArmor(ItemsAether.amplified_agility_boots) || wearingArmor(ItemsAether.amplified_sentry_boots) || wearingArmor(ItemsAether.scaled_gravitite_boots))
-				&& wearingAccessory(ItemsAether.gravitite_gloves);
+				&& wearingAccessory(ItemsAether.gravitite_gloves));
 	}
 
 	default boolean isWearingGravititeAndDivineralSet() {
-		return (wearingArmor(ItemsAether.gravitite_helmet) || wearingArmor(ItemsAether.divineral_helmet) || wearingArmor(ItemsAether.scaled_gravitite_helmet))
+		return ((wearingArmor(ItemsAether.gravitite_helmet) || wearingArmor(ItemsAether.divineral_helmet) || wearingArmor(ItemsAether.scaled_gravitite_helmet))
 				&& (wearingArmor(ItemsAether.gravitite_chestplate) || wearingArmor(ItemsAether.divineral_chestplate) || wearingArmor(ItemsAether.scaled_gravitite_chestplate))
 				&& (wearingArmor(ItemsAether.gravitite_leggings) || wearingArmor(ItemsAether.divineral_leggings) || wearingArmor(ItemsAether.scaled_gravitite_leggings))
 				&& (wearingArmor(ItemsAether.gravitite_boots) || wearingArmor(ItemsAether.amplified_agility_boots) || wearingArmor(ItemsAether.amplified_sentry_boots) || wearingArmor(ItemsAether.divineral_boots) || wearingArmor(ItemsAether.scaled_gravitite_boots))
-				&& (wearingAccessory(ItemsAether.gravitite_gloves) || wearingAccessory(ItemsAether.divineral_gloves));
+				&& (wearingAccessory(ItemsAether.gravitite_gloves) || wearingAccessory(ItemsAether.divineral_gloves)));
 	}
 
 	default boolean isWearingDivineralSet() {
