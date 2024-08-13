@@ -1,113 +1,80 @@
 package com.gildedgames.the_aether.inventory;
 
+import com.gildedgames.the_aether.AetherConfig;
+import com.gildedgames.the_aether.api.accessories.AccessoryType;
+import com.gildedgames.the_aether.api.accessories.DegradationRate;
+import com.gildedgames.the_aether.api.player.IPlayerAether;
+import com.gildedgames.the_aether.api.player.util.IAccessoryInventory;
+import com.gildedgames.the_aether.items.accessories.ItemAccessory;
+import com.gildedgames.the_aether.network.AetherNetwork;
+import com.gildedgames.the_aether.network.packets.PacketAccessory;
+import com.gildedgames.the_aether.util.FilledList;
+import cpw.mods.fml.common.network.ByteBufUtils;
 import io.netty.buffer.ByteBuf;
-
-import java.util.List;
-
 import net.minecraft.block.material.Material;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.ObjectIntIdentityMap;
 
-import com.gildedgames.the_aether.api.accessories.AccessoryType;
-import com.gildedgames.the_aether.api.player.IPlayerAether;
-import com.gildedgames.the_aether.api.player.util.IAccessoryInventory;
-import com.gildedgames.the_aether.items.ItemsAether;
-import com.gildedgames.the_aether.items.accessories.ItemAccessory;
-import com.gildedgames.the_aether.network.AetherNetwork;
-import com.gildedgames.the_aether.network.packets.PacketAccessory;
-import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
-import com.gildedgames.the_aether.util.FilledList;
+public class InventoryAccessories implements IInventory, IAccessoryInventory {
 
-import cpw.mods.fml.common.network.ByteBufUtils;
+	private final FilledList<ItemStack> stacks = new FilledList<>(8, null);
 
-public class InventoryAccessories implements IAccessoryInventory {
+	private final IPlayerAether playerAether;
 
-	private final FilledList<ItemStack> stacks = new FilledList<ItemStack>(8, null);
-
-	private ObjectIntIdentityMap orderedList = AccessoryType.createCompleteList();
-
-	private IPlayerAether playerAether;
+	private final ObjectIntIdentityMap orderedList = AccessoryType.createCompleteList();
 
 	public InventoryAccessories(IPlayerAether playerAether) {
 		this.playerAether = playerAether;
 	}
 
-	public float getCurrentPlayerStrVsBlock(float original) {
-		float f = original;
-		
-		if (this.wearingAccessory(new ItemStack(ItemsAether.diamond_pendant))) {
-			f *= (2F + ((float) (this.getStackInSlot(AccessoryType.PENDANT).getItemDamage()) / ((float) (this.getStackInSlot(AccessoryType.PENDANT).getMaxDamage()) * 2F)));
-		}
-		
-		if (this.getStackInSlot(AccessoryType.RING) != null && this.getStackInSlot(AccessoryType.RING).getItem() == ItemsAether.diamond_ring) {
-			f *= (2F + ((float) (this.getStackInSlot(AccessoryType.RING).getItemDamage()) / ((float) (this.getStackInSlot(AccessoryType.RING).getMaxDamage()) * 2F)));
-		}
-		
-		if (this.getStackInSlot(AccessoryType.EXTRA_RING) != null && this.getStackInSlot(AccessoryType.EXTRA_RING).getItem() == ItemsAether.diamond_ring) {
-			f *= (2F + ((float) (this.getStackInSlot(AccessoryType.EXTRA_RING).getItemDamage()) / ((float) (this.getStackInSlot(AccessoryType.EXTRA_RING).getMaxDamage()) * 2F)));
-		}
-		
-		if (this.wearingAccessory(new ItemStack(ItemsAether.zanite_pendant))) {
-			f *= (1F + ((float) (this.getStackInSlot(AccessoryType.PENDANT).getItemDamage()) / ((float) (this.getStackInSlot(AccessoryType.PENDANT).getMaxDamage()) * 3F)));
-		}
-		
-		if (this.getStackInSlot(AccessoryType.RING) != null && this.getStackInSlot(AccessoryType.RING).getItem() == ItemsAether.zanite_ring) {
-			f *= (1F + ((float) (this.getStackInSlot(AccessoryType.RING).getItemDamage()) / ((float) (this.getStackInSlot(AccessoryType.RING).getMaxDamage()) * 3F)));
-		}
-
-		if (this.getStackInSlot(AccessoryType.EXTRA_RING) != null && this.getStackInSlot(AccessoryType.EXTRA_RING).getItem() == ItemsAether.zanite_ring) {
-			f *= (1F + ((float) (this.getStackInSlot(AccessoryType.EXTRA_RING).getItemDamage()) / ((float) (this.getStackInSlot(AccessoryType.EXTRA_RING).getMaxDamage()) * 3F)));
-		}
-
-		return f == original ? original : f + original;
-	}
+	//IInventory
 
 	@Override
 	public int getSizeInventory() {
-		return this.stacks.size();
+		return stacks.size();
 	}
 
 	@Override
 	public ItemStack getStackInSlot(int slot) {
-		return this.stacks.get(slot);
+		return stacks.get(slot);
 	}
 
 	@Override
 	public ItemStack decrStackSize(int slot, int size) {
-		ItemStack stack = this.getStackInSlot(slot);
+		ItemStack stack = getStackInSlot(slot);
 
 		if (stack.stackSize <= size) {
-			this.setInventorySlotContents(slot, null);
-
+			setInventorySlotContents(slot, null);
 			return stack;
 		}
 
 		if (stack.stackSize == 0) {
-			this.setInventorySlotContents(slot, null);
+			setInventorySlotContents(slot, null);
 		}
 
-		return this.stacks.get(slot).splitStack(size);
+		return stacks.get(slot).splitStack(size);
 	}
 
 	@Override
 	public ItemStack getStackInSlotOnClosing(int slot) {
-		ItemStack stack = this.getStackInSlot(slot);
-
-		if (this.getStackInSlot(slot) != null) {
-			this.setInventorySlotContents(slot, null);
+		ItemStack stack = getStackInSlot(slot);
+		if (getStackInSlot(slot) != null) {
+			setInventorySlotContents(slot, null);
 		}
-
 		return stack;
 	}
 
 	@Override
 	public void setInventorySlotContents(int slot, ItemStack stack) {
-		this.stacks.set(slot, stack);
-		this.markDirty();
+		stacks.set(slot, stack);
+		markDirty();
 	}
 
 	@Override
@@ -127,8 +94,8 @@ public class InventoryAccessories implements IAccessoryInventory {
 
 	@Override
 	public void markDirty() {
-		if (!this.playerAether.getEntity().worldObj.isRemote && this.playerAether.getEntity() instanceof EntityPlayer) {
-			AetherNetwork.sendToAll(new PacketAccessory(this.playerAether));
+		if (!playerAether.getEntity().worldObj.isRemote) {
+			AetherNetwork.sendToAll(new PacketAccessory(playerAether));
 		}
 	}
 
@@ -149,167 +116,226 @@ public class InventoryAccessories implements IAccessoryInventory {
 
 	@Override
 	public boolean isItemValidForSlot(int slot, ItemStack stack) {
-		if (stack != null && stack.getItem() instanceof ItemAccessory) {
-			return ((this.orderedList.func_148745_a(slot) == ((ItemAccessory) stack.getItem()).getType()) || (this.orderedList.func_148745_a(slot) == ((ItemAccessory) stack.getItem()).getExtraType())) && this.getStackInSlot(slot) == null;
+		if(AetherConfig.UseBaublesExpandedMenu()) {
+			return false;
 		}
-
+		if (stack != null && stack.getItem() instanceof ItemAccessory accessory) {
+			return (orderedList.func_148745_a(slot) == accessory.getType() || (orderedList.func_148745_a(slot) == accessory.getExtraType())) && getStackInSlot(slot) == null;
+		}
 		return false;
 	}
 
+	//IAccessoryInventory
+
 	@Override
 	public void dropAccessories() {
-		for (int i = 0; i < this.getSizeInventory(); ++i) {
-			ItemStack stack = this.getStackInSlot(i);
+		for (int i = 0; i < getSizeInventory(); ++i) {
+			ItemStack stack = getStackInSlot(i);
 
 			if (stack != null) {
-				this.playerAether.getEntity().dropItem(stack.getItem(), stack.stackSize);
+				playerAether.getEntity().dropItem(stack.getItem(), stack.stackSize);
 			}
 		}
-
-		this.markDirty();
+		markDirty();
 	}
 
 	@Override
-	public void damageAccessory(int damage, AccessoryType type) {
-		ItemStack stack = this.getStackInSlot(type);
-
-		if (stack != null) {
-			stack.damageItem(damage, this.playerAether.getEntity());
+	public void damageWornItem(int damage, Item item) {
+		if(!(item instanceof ItemAccessory accessory)) {
+			return;
 		}
-	}
-
-	@Override
-	public void damageWornStack(int damage, ItemStack search) {
-		int slot = -1;
-
-		for (int i = 0; i < this.stacks.size(); ++i) {
-			ItemStack index = this.stacks.get(i);
-
-			if (slot == -1 && index != null && search.getItem() == index.getItem()) {
-				slot = i;
-			}
-		}
-
-		if (slot != -1) {
-			this.stacks.get(slot).damageItem(damage, this.playerAether.getEntity());
-
-			ItemStack stack = this.stacks.get(slot);
-
-			if (stack.stackSize == 0) {
-				this.setInventorySlotContents(slot, null);
-				this.playerAether.getEntity().renderBrokenItemStack(stack);
+		for (int slot = 0; slot < stacks.size(); ++slot) {
+			ItemStack stack = stacks.get(slot);
+			if (stack != null && accessory == stack.getItem()) {
+				stack.damageItem(damage, playerAether.getEntity());
+				if (stack.stackSize <= 0) {
+					setInventorySlotContents(slot, null);
+					playerAether.getEntity().renderBrokenItemStack(stack);
+				}
+				return;
 			}
 		}
 	}
 
 	@Override
-	public void setAccessorySlot(AccessoryType type, ItemStack stack) {
-		if (stack.getItem() instanceof ItemAccessory) {
-			if (this.getStackInSlot(type) == null) {
-				this.setInventorySlotContents(this.orderedList.func_148747_b(type), stack);
-			} else if (this.getStackInSlot(((ItemAccessory) stack.getItem()).getExtraType()) == null) {
-				this.setAccessorySlot(((ItemAccessory) stack.getItem()).getExtraType(), stack);
+	public void damageWornItem(int damage, Item item, Item transformInto) {
+		if(!(item instanceof ItemAccessory accessory)) {
+			return;
+		}
+		for (int slot = 0; slot < stacks.size(); ++slot) {
+			ItemStack stack = stacks.get(slot);
+			if (stack != null && accessory == stack.getItem()) {
+				stack.damageItem(damage, playerAether.getEntity());
+				if (stack.stackSize <= 0) {
+					ItemStack transformedStack = new ItemStack(transformInto);
+					EnchantmentHelper.setEnchantments(EnchantmentHelper.getEnchantments(stack), transformedStack);
+					setInventorySlotContents(slot, transformedStack);
+				}
+				return;
 			}
 		}
 	}
 
 	@Override
-	public ItemStack getStackInSlot(AccessoryType type) {
-		return this.getStackInSlot(this.orderedList.func_148747_b(type));
-	}
-
-	@Override
-	public ItemStack removeStackFromAccessorySlot(AccessoryType type) {
-		ItemStack stack = this.getStackInSlot(this.orderedList.func_148747_b(type));
-
-		if (stack != null) {
-			this.setAccessorySlot(type, null);
-		}
-
-		return stack;
-	}
-
-	@Override
-	public int getAccessoryCount(ItemStack stack) {
-		int count = 0;
-
-		for (int i = 0; i < this.getSizeInventory(); ++i) {
-			ItemStack accessoryStack = this.getStackInSlot(i);
-
-			if (accessoryStack != null && accessoryStack.getItem() == stack.getItem()) {
-				++count;
+	public void damageWornItemsAtRate(DegradationRate degradationrate) {
+		for (int slot = 0; slot < stacks.size(); ++slot) {
+			ItemStack stack = stacks.get(slot);
+			if(stack != null && stack.getItem() instanceof ItemAccessory accessory
+					&& accessory.getDegradationRate() == degradationrate && accessory.getType().degrades()) {
+				stack.damageItem(1, playerAether.getEntity());
+				if (stack.stackSize <= 0) {
+					setInventorySlotContents(slot, null);
+					playerAether.getEntity().renderBrokenItemStack(stack);
+				}
 			}
 		}
+	}
 
-		return count;
+	@Override
+	public ItemStack getFirstStackIfWearing(AccessoryType type) {
+		int slot = orderedList.func_148747_b(type);
+		ItemStack accessoryStack = getStackInSlot(slot);
+		if (accessoryStack != null && accessoryStack.getItem() instanceof ItemAccessory) {
+			return accessoryStack;
+		}
+		return null;
+	}
+
+	@Override
+	public ItemStack getFirstStackIfWearing(Item item) {
+		if(!(item instanceof ItemAccessory accessory)) {
+			return null;
+		}
+		//Check primary slot
+		int slot = orderedList.func_148747_b(accessory.getType());
+		ItemStack accessoryStack = getStackInSlot(slot);
+		if (accessoryStack != null && accessoryStack.getItem() == accessory) {
+			return accessoryStack;
+		}
+		//Check secondary slot
+		AccessoryType extraType = accessory.getExtraType();
+		if(extraType != null) {
+			slot = orderedList.func_148747_b(extraType);
+			accessoryStack = getStackInSlot(slot);
+			if (accessoryStack != null && accessoryStack.getItem() == accessory) {
+				return accessoryStack;
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public ItemStack getSecondStackIfWearing(Item item) {
+		if(!(item instanceof ItemAccessory accessory)) {
+			return null;
+		}
+		//Check primary slot
+		int slot = orderedList.func_148747_b(accessory.getType());
+		ItemStack accessoryStack = getStackInSlot(slot);
+		if (accessoryStack == null || accessoryStack.getItem() != accessory) {
+			return null;
+		}
+		//Check secondary slot
+		AccessoryType extraType = accessory.getExtraType();
+		if(extraType != null) {
+			slot = orderedList.func_148747_b(extraType);
+			accessoryStack = getStackInSlot(slot);
+			if (accessoryStack != null && accessoryStack.getItem() == accessory) {
+				return accessoryStack;
+			}
+		}
+		return null;
 	}
 
 	@Override
 	public boolean setAccessorySlot(ItemStack stack) {
-		for (int i = 0; i < this.getSizeInventory(); ++i) {
-			if (this.isItemValidForSlot(i, stack)) {
-				this.stacks.set(i, stack);
-				this.markDirty();
-
+		if(stack == null || !(stack.getItem() instanceof ItemAccessory accessory)) {
+			return false;
+		}
+		//Check primary slot
+		int slot = orderedList.func_148747_b(accessory.getType());
+		ItemStack accessoryStack = getStackInSlot(slot);
+		if (accessoryStack == null && isItemValidForSlot(slot, stack)) {
+			stacks.set(slot, stack);
+			markDirty();
+			return true;
+		}
+		//Check secondary slot
+		AccessoryType extraType = accessory.getExtraType();
+		if(extraType != null) {
+			slot = orderedList.func_148747_b(extraType);
+			accessoryStack = getStackInSlot(slot);
+			if (accessoryStack == null && isItemValidForSlot(slot, stack)) {
+				stacks.set(slot, stack);
+				markDirty();
 				return true;
 			}
 		}
-
 		return false;
 	}
 
 	@Override
-	public boolean wearingAccessory(ItemStack stack) {
-		boolean flag = false;
-
-		for (int i = 0; i < this.getSizeInventory(); ++i) {
-			ItemStack accessoryStack = this.getStackInSlot(i);
-
-			if (!flag && accessoryStack != null && accessoryStack.getItem() == stack.getItem()) {
-				flag = true;
+	public boolean wearingAccessory(Item item) {
+		if(!(item instanceof ItemAccessory accessory)) {
+			return false;
+		}
+		//Check primary slot
+		int slot = orderedList.func_148747_b(accessory.getType());
+		ItemStack accessoryStack = getStackInSlot(slot);
+		if (accessoryStack != null && accessoryStack.getItem() == accessory) {
+			return true;
+		}
+		//Check secondary slot
+		AccessoryType extraType = accessory.getExtraType();
+		if(extraType != null) {
+			slot = orderedList.func_148747_b(extraType);
+			accessoryStack = getStackInSlot(slot);
+			if (accessoryStack != null && accessoryStack.getItem() == accessory) {
+				return true;
 			}
 		}
-
-		return flag;
+		return false;
 	}
 
 	@Override
-	public boolean wearingArmor(ItemStack stack) {
-		if (this.playerAether.getEntity() instanceof EntityPlayer) {
-			EntityPlayer player = (EntityPlayer) this.playerAether.getEntity();
-			boolean flag = false;
-
-			for (int i = 0; i < player.inventory.armorInventory.length; ++i) {
-				ItemStack armorStack = player.getCurrentArmor(i);
-
-				if (!flag && armorStack != null && armorStack.getItem() == stack.getItem()) {
-					flag = true;
-				}
-			}
-
-			return flag;
-		} else {
-			EntityLivingBase entityLiving = this.playerAether.getEntity();
-			boolean flag = false;
-
-			for (int i = 1; i < 5; ++i) {
-				ItemStack armorStack = entityLiving.getEquipmentInSlot(i);
-
-				if (!flag && armorStack != null && armorStack.getItem() == stack.getItem()) {
-					flag = true;
-				}
-			}
-
-			return flag;
+	public boolean wearingArmor(Item item) {
+		if(item instanceof ItemArmor armor) {
+			ItemStack armorStack = playerAether.getEntity().getCurrentArmor(3 - armor.armorType);
+			return armorStack != null && armorStack.getItem() == armor;
 		}
+		return false;
+	}
+
+	@Override
+	public int getAccessoryCount(Item item) {
+		if(!(item instanceof ItemAccessory accessory)) {
+			return 0;
+		}
+		int total = 0;
+		//Check primary slot
+		int slot = orderedList.func_148747_b(accessory.getType());
+		ItemStack accessoryStack = getStackInSlot(slot);
+		if (accessoryStack != null && accessoryStack.getItem() == accessory) {
+			++total;
+		}
+		//Check secondary slot
+		AccessoryType extraType = accessory.getExtraType();
+		if(extraType != null) {
+			slot = orderedList.func_148747_b(extraType);
+			accessoryStack = getStackInSlot(slot);
+			if (accessoryStack != null && accessoryStack.getItem() == accessory) {
+				++total;
+			}
+		}
+		return total;
 	}
 
 	@Override
 	public NBTTagList writeToNBT(NBTTagCompound compound) {
 		NBTTagList nbttaglist = new NBTTagList();
 
-		for (int i = 0; i < this.getSizeInventory(); ++i) {
-			ItemStack stack = this.getStackInSlot(i);
+		for (int i = 0; i < getSizeInventory(); ++i) {
+			ItemStack stack = getStackInSlot(i);
 
 			if (stack != null) {
 				NBTTagCompound stackCompound = new NBTTagCompound();
@@ -329,18 +355,16 @@ public class InventoryAccessories implements IAccessoryInventory {
 			byte slot = stackCompound.getByte("Slot");
 
 			if (slot >= 0 && slot < this.getSizeInventory()) {
-				this.stacks.set(slot, ItemStack.loadItemStackFromNBT(stackCompound));
+				stacks.set(slot, ItemStack.loadItemStackFromNBT(stackCompound));
 			}
 		}
 	}
 
 	@Override
 	public void writeData(ByteBuf buf) {
-		buf.writeInt(this.getAccessories().size());
-
-		for (int i = 0; i < this.getSizeInventory(); ++i) {
-			ItemStack stack = this.getStackInSlot(i);
-
+		buf.writeInt(stacks.size());
+		for (int i = 0; i < getSizeInventory(); ++i) {
+			ItemStack stack = getStackInSlot(i);
 			ByteBufUtils.writeItemStack(buf, stack);
 		}
 	}
@@ -348,323 +372,9 @@ public class InventoryAccessories implements IAccessoryInventory {
 	@Override
 	public void readData(ByteBuf buf) {
 		int size = buf.readInt();
-
 		for (int i = 0; i < size; ++i) {
 			this.stacks.set(i, ByteBufUtils.readItemStack(buf));
 		}
-	}
-
-	@Override
-	public boolean isWearingZaniteSet() {
-		return ((wearingArmor(new ItemStack(ItemsAether.zanite_helmet)) || wearingArmor(new ItemStack((ItemsAether.scaled_zanite_helmet))))
-				&& (wearingArmor(new ItemStack(ItemsAether.zanite_chestplate)) || wearingArmor(new ItemStack((ItemsAether.scaled_zanite_chestplate)))) 
-				&& (wearingArmor(new ItemStack(ItemsAether.zanite_leggings)) || wearingArmor(new ItemStack((ItemsAether.scaled_zanite_leggings)))) 
-				&& (wearingArmor(new ItemStack(ItemsAether.zanite_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_agility_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_sentry_boots)) || wearingArmor(new ItemStack(ItemsAether.scaled_zanite_boots)))  
-				&& wearingAccessory(new ItemStack(ItemsAether.zanite_gloves)));
-	}
-
-	@Override
-	public boolean isWearingGravititeSet() {
-		return ((wearingArmor(new ItemStack(ItemsAether.gravitite_helmet)) || wearingArmor(new ItemStack((ItemsAether.scaled_gravitite_helmet))))
-				&& (wearingArmor(new ItemStack(ItemsAether.gravitite_chestplate)) || wearingArmor(new ItemStack((ItemsAether.scaled_gravitite_chestplate))))  
-				&& (wearingArmor(new ItemStack(ItemsAether.gravitite_leggings)) || wearingArmor(new ItemStack((ItemsAether.scaled_gravitite_leggings))))  
-				&& (wearingArmor(new ItemStack(ItemsAether.gravitite_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_agility_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_sentry_boots)) || wearingArmor(new ItemStack(ItemsAether.scaled_gravitite_boots)))  
-				&& wearingAccessory(new ItemStack(ItemsAether.gravitite_gloves)));
-	}
-	
-	@Override
-	public boolean isWearingGravititeAndDivineralSet() {
-		return  (((wearingArmor(new ItemStack(ItemsAether.gravitite_helmet)) || wearingArmor(new ItemStack(ItemsAether.divineral_helmet)) || wearingArmor(new ItemStack(ItemsAether.scaled_gravitite_helmet)))) 
-				&& (wearingArmor(new ItemStack(ItemsAether.gravitite_chestplate)) || wearingArmor(new ItemStack(ItemsAether.divineral_chestplate)) || wearingArmor(new ItemStack(ItemsAether.scaled_gravitite_chestplate))) 
-				&& (wearingArmor(new ItemStack(ItemsAether.gravitite_leggings)) || wearingArmor(new ItemStack(ItemsAether.divineral_leggings)) || wearingArmor(new ItemStack(ItemsAether.scaled_gravitite_leggings))) 
-				&& (wearingArmor(new ItemStack(ItemsAether.gravitite_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_agility_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_sentry_boots)) || wearingArmor(new ItemStack(ItemsAether.divineral_boots)) || wearingArmor(new ItemStack(ItemsAether.scaled_gravitite_boots))) 
-				&& (wearingAccessory(new ItemStack(ItemsAether.gravitite_gloves)) || wearingAccessory(new ItemStack(ItemsAether.divineral_gloves))));
-	}
-	
-	@Override
-	public boolean isWearingDivineralSet() {
-		return (wearingArmor(new ItemStack(ItemsAether.divineral_helmet)) 
-				&& wearingArmor(new ItemStack(ItemsAether.divineral_chestplate))
-				&& wearingArmor(new ItemStack(ItemsAether.divineral_leggings)) 
-				&& (wearingArmor(new ItemStack(ItemsAether.divineral_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_agility_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_sentry_boots))) 
-				&& wearingAccessory(new ItemStack(ItemsAether.divineral_gloves)));
-	}
-
-	@Override
-	public boolean isWearingNeptuneSet() {
-		return  (wearingArmor(new ItemStack(ItemsAether.scaled_neptune_helmet)) || wearingArmor(new ItemStack(ItemsAether.neptune_helmet))) 
-			   && (wearingArmor(new ItemStack(ItemsAether.scaled_neptune_chestplate)) || wearingArmor(new ItemStack(ItemsAether.neptune_chestplate))) 
-			   && (wearingArmor(new ItemStack(ItemsAether.scaled_neptune_leggings)) || wearingArmor(new ItemStack(ItemsAether.neptune_leggings))) 
-			   && (wearingArmor(new ItemStack(ItemsAether.scaled_neptune_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_agility_boots)) || wearingArmor(new ItemStack(ItemsAether.neptune_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_sentry_boots))) 
-			   && (wearingAccessory(new ItemStack(ItemsAether.neptune_gloves)));
-	}
-	
-	@Override
-	public boolean isWearingComboNeptuneSet() {
-		return  (wearingArmor(new ItemStack(ItemsAether.neptune_helmet)) || wearingArmor(new ItemStack(ItemsAether.amplified_neptune_helmet)) || wearingArmor(new ItemStack(ItemsAether.scaled_neptune_helmet))) 
-			   && (wearingArmor(new ItemStack(ItemsAether.neptune_chestplate)) || wearingArmor(new ItemStack(ItemsAether.amplified_neptune_chestplate)) || wearingArmor(new ItemStack(ItemsAether.scaled_neptune_chestplate))) 
-			   && (wearingArmor(new ItemStack(ItemsAether.neptune_leggings)) || wearingArmor(new ItemStack(ItemsAether.amplified_neptune_leggings)) || wearingArmor(new ItemStack(ItemsAether.scaled_neptune_leggings))) 
-			   && (wearingArmor(new ItemStack(ItemsAether.neptune_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_agility_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_neptune_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_sentry_boots)) || wearingArmor(new ItemStack(ItemsAether.scaled_neptune_boots))) 
-			   && (wearingAccessory(new ItemStack(ItemsAether.neptune_gloves)) || wearingAccessory(new ItemStack(ItemsAether.amplified_neptune_gloves)));
-	}
-	
-	@Override
-	public boolean isWearingAmplifiedNeptuneSet() {
-		return wearingArmor(new ItemStack(ItemsAether.amplified_neptune_helmet)) 
-				&& wearingArmor(new ItemStack(ItemsAether.amplified_neptune_chestplate)) 
-				&& wearingArmor(new ItemStack(ItemsAether.amplified_neptune_leggings)) 
-				&& (wearingArmor(new ItemStack(ItemsAether.amplified_neptune_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_agility_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_sentry_boots)))  
-				&& wearingAccessory(new ItemStack(ItemsAether.amplified_neptune_gloves));
-	}
-
-	@Override
-	public boolean isWearingPhoenixSet() {
-		return ((wearingArmor(new ItemStack(ItemsAether.phoenix_helmet)) || wearingArmor(new ItemStack(ItemsAether.scaled_phoenix_helmet)))  
-				&& (wearingArmor(new ItemStack(ItemsAether.phoenix_chestplate)) || wearingArmor(new ItemStack(ItemsAether.scaled_phoenix_chestplate))) 
-				&& (wearingArmor(new ItemStack(ItemsAether.phoenix_leggings)) || wearingArmor(new ItemStack(ItemsAether.scaled_phoenix_leggings))) 
-				&& (wearingArmor(new ItemStack(ItemsAether.phoenix_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_agility_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_sentry_boots)) || wearingArmor(new ItemStack(ItemsAether.scaled_phoenix_boots))) 
-				&& wearingAccessory(new ItemStack(ItemsAether.phoenix_gloves)));
-	}
-	
-	@Override
-	public boolean isWearingPhoenixComboSet() {
-		return  (((wearingArmor(new ItemStack(ItemsAether.phoenix_helmet)) || wearingArmor(new ItemStack(ItemsAether.amplified_phoenix_helmet)) || wearingArmor(new ItemStack(ItemsAether.scaled_phoenix_helmet)))) 
-				   && (wearingArmor(new ItemStack(ItemsAether.phoenix_chestplate)) || wearingArmor(new ItemStack(ItemsAether.amplified_phoenix_chestplate)) || wearingArmor(new ItemStack(ItemsAether.scaled_phoenix_chestplate))) 
-				   && (wearingArmor(new ItemStack(ItemsAether.phoenix_leggings)) || wearingArmor(new ItemStack(ItemsAether.amplified_phoenix_leggings)) || wearingArmor(new ItemStack(ItemsAether.scaled_phoenix_leggings))) 
-				   && (wearingArmor(new ItemStack(ItemsAether.phoenix_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_agility_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_phoenix_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_sentry_boots)) || wearingArmor(new ItemStack(ItemsAether.scaled_phoenix_boots))) 
-				   && (wearingAccessory(new ItemStack(ItemsAether.phoenix_gloves)) || wearingAccessory(new ItemStack(ItemsAether.amplified_phoenix_gloves))));
-	}
-	
-	@Override
-	public boolean isWearingAmplifiedPhoenixSet() {
-		return wearingArmor(new ItemStack(ItemsAether.amplified_phoenix_helmet)) 
-				&& wearingArmor(new ItemStack(ItemsAether.amplified_phoenix_chestplate)) 
-				&& wearingArmor(new ItemStack(ItemsAether.amplified_phoenix_leggings)) 
-				&& (wearingArmor(new ItemStack(ItemsAether.amplified_phoenix_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_agility_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_sentry_boots))) 
-				&& wearingAccessory(new ItemStack(ItemsAether.amplified_phoenix_gloves));
-	}
-
-	@Override
-	public boolean isWearingValkyrieSet() {
-		return (wearingArmor(new ItemStack(ItemsAether.valkyrie_helmet)) || wearingArmor(new ItemStack(ItemsAether.scaled_valkyrie_helmet))) 
-				&& (wearingArmor(new ItemStack(ItemsAether.valkyrie_chestplate)) || wearingArmor(new ItemStack(ItemsAether.scaled_valkyrie_chestplate))) 
-				&& (wearingArmor(new ItemStack(ItemsAether.valkyrie_leggings)) || wearingArmor(new ItemStack(ItemsAether.scaled_valkyrie_leggings))) 
-				&& (wearingArmor(new ItemStack(ItemsAether.valkyrie_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_agility_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_sentry_boots)) || wearingArmor(new ItemStack(ItemsAether.scaled_valkyrie_boots)))
-				&& (wearingAccessory(new ItemStack(ItemsAether.valkyrie_gloves)));
-	}
-	
-	@Override
-	public boolean isWearingValkyrieComboSet() {
-		return  (wearingArmor(new ItemStack(ItemsAether.valkyrie_helmet)) || wearingArmor(new ItemStack(ItemsAether.amplified_valkyrie_helmet)) || wearingArmor(new ItemStack(ItemsAether.scaled_valkyrie_helmet))) 
-			   && (wearingArmor(new ItemStack(ItemsAether.valkyrie_chestplate)) || wearingArmor(new ItemStack(ItemsAether.amplified_valkyrie_chestplate)) || wearingArmor(new ItemStack(ItemsAether.scaled_valkyrie_chestplate))) 
-			   && (wearingArmor(new ItemStack(ItemsAether.valkyrie_leggings)) || wearingArmor(new ItemStack(ItemsAether.amplified_valkyrie_leggings)) || wearingArmor(new ItemStack(ItemsAether.scaled_valkyrie_leggings))) 
-			   && (wearingArmor(new ItemStack(ItemsAether.valkyrie_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_agility_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_valkyrie_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_sentry_boots)) || wearingArmor(new ItemStack(ItemsAether.scaled_valkyrie_boots)))
-			   && (wearingAccessory(new ItemStack(ItemsAether.valkyrie_gloves)) || wearingAccessory(new ItemStack(ItemsAether.amplified_valkyrie_gloves)));
-	}
-	
-	@Override
-	public boolean isWearingAmplifiedValkyrieSet() {
-		return wearingArmor(new ItemStack(ItemsAether.amplified_valkyrie_helmet)) 
-				&& wearingArmor(new ItemStack(ItemsAether.amplified_valkyrie_chestplate)) 
-				&& wearingArmor(new ItemStack(ItemsAether.amplified_valkyrie_leggings)) 
-				&& (wearingArmor(new ItemStack(ItemsAether.amplified_valkyrie_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_agility_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_sentry_boots)))  
-				&& wearingAccessory(new ItemStack(ItemsAether.amplified_valkyrie_gloves));
-	}
-
-	@Override
-	public boolean isWearingObsidianSet() {
-		return ((wearingArmor(new ItemStack(ItemsAether.obsidian_helmet)) || wearingArmor(new ItemStack(ItemsAether.scaled_obsidian_helmet))) 
-				&& (wearingArmor(new ItemStack(ItemsAether.obsidian_chestplate)) || wearingArmor(new ItemStack(ItemsAether.scaled_obsidian_chestplate))) 
-				&& (wearingArmor(new ItemStack(ItemsAether.obsidian_leggings)) || wearingArmor(new ItemStack(ItemsAether.scaled_obsidian_leggings))) 
-				&& (wearingArmor(new ItemStack(ItemsAether.obsidian_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_agility_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_sentry_boots)) || wearingArmor(new ItemStack(ItemsAether.scaled_obsidian_boots))) 
-				&& wearingAccessory(new ItemStack(ItemsAether.obsidian_gloves)));
-	}
-	
-	@Override
-	public boolean isWearingObsidianComboSet() {
-		return  ((wearingArmor(new ItemStack(ItemsAether.obsidian_helmet)) || wearingArmor(new ItemStack(ItemsAether.amplified_obsidian_helmet)) || wearingArmor(new ItemStack(ItemsAether.scaled_obsidian_helmet))) 
-			   && (wearingArmor(new ItemStack(ItemsAether.obsidian_chestplate)) || wearingArmor(new ItemStack(ItemsAether.amplified_obsidian_chestplate)) || wearingArmor(new ItemStack(ItemsAether.scaled_obsidian_chestplate))) 
-			   && (wearingArmor(new ItemStack(ItemsAether.obsidian_leggings)) || wearingArmor(new ItemStack(ItemsAether.amplified_obsidian_leggings)) || wearingArmor(new ItemStack(ItemsAether.scaled_obsidian_leggings))) 
-			   && (wearingArmor(new ItemStack(ItemsAether.obsidian_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_agility_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_obsidian_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_sentry_boots)) || wearingArmor(new ItemStack(ItemsAether.scaled_obsidian_boots))) 
-			   && (wearingAccessory(new ItemStack(ItemsAether.obsidian_gloves)) || wearingAccessory(new ItemStack(ItemsAether.amplified_obsidian_gloves))));
-	}
-	
-	@Override
-	public boolean isWearingAmplifiedObsidianSet() {
-		return (wearingArmor(new ItemStack(ItemsAether.amplified_obsidian_helmet))
-				&& wearingArmor(new ItemStack(ItemsAether.amplified_obsidian_chestplate)) 
-				&& wearingArmor(new ItemStack(ItemsAether.amplified_obsidian_leggings)) 
-				&& (wearingArmor(new ItemStack(ItemsAether.amplified_obsidian_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_agility_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_sentry_boots))) 
-				&& wearingAccessory(new ItemStack(ItemsAether.amplified_obsidian_gloves)));
-	}
-	
-	@Override
-	public boolean isWearingArkeniumSet() {
-		return ((wearingArmor(new ItemStack(ItemsAether.arkenium_helmet)) || (wearingArmor(new ItemStack(ItemsAether.scaled_arkenium_helmet)))) 
-				&& (wearingArmor(new ItemStack(ItemsAether.arkenium_chestplate)) || (wearingArmor(new ItemStack(ItemsAether.scaled_arkenium_chestplate)))) 
-				&& (wearingArmor(new ItemStack(ItemsAether.arkenium_leggings)) || wearingArmor(new ItemStack(ItemsAether.scaled_arkenium_leggings))) 
-				&& (wearingArmor(new ItemStack(ItemsAether.arkenium_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_agility_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_sentry_boots)) || wearingArmor(new ItemStack(ItemsAether.scaled_arkenium_boots))) 
-				&& wearingAccessory(new ItemStack(ItemsAether.arkenium_gloves)));
-	}
-	
-	@Override
-	public boolean isWearingArkeniumComboSet() {
-		return  ((wearingArmor(new ItemStack(ItemsAether.arkenium_helmet)) || wearingArmor(new ItemStack(ItemsAether.amplified_arkenium_helmet)) || wearingArmor(new ItemStack(ItemsAether.scaled_arkenium_helmet))) 
-			   && (wearingArmor(new ItemStack(ItemsAether.arkenium_chestplate)) || wearingArmor(new ItemStack(ItemsAether.amplified_arkenium_chestplate)) || wearingArmor(new ItemStack(ItemsAether.scaled_arkenium_chestplate))) 
-			   && (wearingArmor(new ItemStack(ItemsAether.arkenium_leggings)) || wearingArmor(new ItemStack(ItemsAether.amplified_arkenium_leggings)) || wearingArmor(new ItemStack(ItemsAether.scaled_arkenium_leggings))) 
-			   && (wearingArmor(new ItemStack(ItemsAether.arkenium_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_agility_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_arkenium_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_sentry_boots)) || wearingArmor(new ItemStack(ItemsAether.scaled_arkenium_boots))) 
-			   && (wearingAccessory(new ItemStack(ItemsAether.arkenium_gloves)) || wearingAccessory(new ItemStack(ItemsAether.amplified_arkenium_gloves))));
-	}
-	
-	@Override
-	public boolean isWearingAmplifiedArkeniumSet() {
-		return wearingArmor(new ItemStack(ItemsAether.amplified_arkenium_helmet))
-				&& wearingArmor(new ItemStack(ItemsAether.amplified_arkenium_chestplate)) 
-				&& wearingArmor(new ItemStack(ItemsAether.amplified_arkenium_leggings)) 
-				&& (wearingArmor(new ItemStack(ItemsAether.amplified_arkenium_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_agility_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_sentry_boots))) 
-				&& wearingAccessory(new ItemStack(ItemsAether.amplified_arkenium_gloves));
-	}
-	
-	@Override
-	public boolean isWearingContinuumSet() {
-		return ((wearingArmor(new ItemStack(ItemsAether.continuum_helmet)) || wearingArmor(new ItemStack(ItemsAether.scaled_continuum_helmet))) 
-				&& (wearingArmor(new ItemStack(ItemsAether.continuum_chestplate)) || wearingArmor(new ItemStack(ItemsAether.scaled_continuum_chestplate))) 
-				&& (wearingArmor(new ItemStack(ItemsAether.continuum_leggings)) || wearingArmor(new ItemStack(ItemsAether.scaled_continuum_leggings))) 
-				&& (wearingArmor(new ItemStack(ItemsAether.continuum_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_agility_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_sentry_boots)) || wearingArmor(new ItemStack(ItemsAether.scaled_continuum_boots))) 
-				&& wearingAccessory(new ItemStack(ItemsAether.continuum_gloves)));
-	}
-	
-	@Override
-	public boolean isWearingContinuumComboSet() {
-		return  ((wearingArmor(new ItemStack(ItemsAether.continuum_helmet)) || wearingArmor(new ItemStack(ItemsAether.amplified_continuum_helmet)) || wearingArmor(new ItemStack(ItemsAether.scaled_continuum_helmet))) 
-			   && (wearingArmor(new ItemStack(ItemsAether.continuum_chestplate)) || wearingArmor(new ItemStack(ItemsAether.amplified_continuum_chestplate)) || wearingArmor(new ItemStack(ItemsAether.scaled_continuum_chestplate))) 
-			   && (wearingArmor(new ItemStack(ItemsAether.continuum_leggings)) || wearingArmor(new ItemStack(ItemsAether.amplified_continuum_leggings)) || wearingArmor(new ItemStack(ItemsAether.scaled_continuum_leggings))) 
-			   && (wearingArmor(new ItemStack(ItemsAether.continuum_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_agility_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_continuum_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_sentry_boots)) || wearingArmor(new ItemStack(ItemsAether.scaled_continuum_boots))) 
-			   && (wearingAccessory(new ItemStack(ItemsAether.continuum_gloves)) || wearingAccessory(new ItemStack(ItemsAether.amplified_continuum_gloves))));
-	}
-	
-	@Override
-	public boolean isWearingAmplifiedContinuumSet() {
-		return wearingArmor(new ItemStack(ItemsAether.amplified_continuum_helmet)) 
-				&& wearingArmor(new ItemStack(ItemsAether.amplified_continuum_chestplate)) 
-				&& wearingArmor(new ItemStack(ItemsAether.amplified_continuum_leggings)) 
-				&& (wearingArmor(new ItemStack(ItemsAether.amplified_continuum_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_agility_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_sentry_boots))) 
-				&& wearingAccessory(new ItemStack(ItemsAether.amplified_continuum_gloves));
-	}
-	
-	@Override
-	public boolean isWearingAgilityBoots() {
-		return (wearingArmor(new ItemStack(ItemsAether.agility_boots)) || wearingArmor(new ItemStack(ItemsAether.scaled_agility_boots)));
-	}
-	
-	@Override
-	public boolean isWearingValkyrieRing() {
-		return (wearingAccessory(new ItemStack(ItemsAether.valkyrie_ring)) || wearingAccessory(new ItemStack(ItemsAether.reinforced_valkyrie_ring)) || wearingAccessory(new ItemStack(ItemsAether.amplified_valkyrie_ring)));
-	}
-	
-	@Override
-	public boolean isWearingValkyrieRingAndAmplifiedArmor() {
-		return wearingArmor(new ItemStack(ItemsAether.amplified_valkyrie_helmet)) 
-				&& wearingArmor(new ItemStack(ItemsAether.amplified_valkyrie_chestplate)) 
-				&& wearingArmor(new ItemStack(ItemsAether.amplified_valkyrie_leggings)) 
-				&& (wearingArmor(new ItemStack(ItemsAether.amplified_valkyrie_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_agility_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_sentry_boots)))  
-				&& (wearingAccessory(new ItemStack(ItemsAether.valkyrie_ring)) || wearingAccessory(new ItemStack(ItemsAether.reinforced_valkyrie_ring)))
-				&& wearingAccessory(new ItemStack(ItemsAether.amplified_valkyrie_gloves));
-	}
-	
-	@Override
-	public boolean isWearingAmplifiedValkyrieRingAndAmplifiedArmor() {
-		return wearingArmor(new ItemStack(ItemsAether.amplified_valkyrie_helmet)) 
-				&& wearingArmor(new ItemStack(ItemsAether.amplified_valkyrie_chestplate)) 
-				&& wearingArmor(new ItemStack(ItemsAether.amplified_valkyrie_leggings)) 
-				&& (wearingArmor(new ItemStack(ItemsAether.amplified_valkyrie_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_agility_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_sentry_boots)))  
-				&& wearingAccessory(new ItemStack(ItemsAether.amplified_valkyrie_ring))
-				&& wearingAccessory(new ItemStack(ItemsAether.amplified_valkyrie_gloves));
-	}
-	
-	@Override
-	public boolean isWearingAmplifiedAgilityBoots() {
-		return wearingArmor(new ItemStack(ItemsAether.amplified_agility_boots));
-	}
-	
-	@Override
-	public boolean isWearingHasteRing() {
-		return (wearingAccessory(new ItemStack(ItemsAether.haste_ring)) || wearingAccessory(new ItemStack(ItemsAether.reinforced_haste_ring)) || wearingAccessory(new ItemStack(ItemsAether.amplified_haste_ring)));
-	}
-	
-	@Override
-	public boolean isWearingHasteRingAndArkenium() {
-		return wearingArmor(new ItemStack(ItemsAether.arkenium_helmet)) 
-				&& wearingArmor(new ItemStack(ItemsAether.arkenium_chestplate)) 
-				&& wearingArmor(new ItemStack(ItemsAether.arkenium_leggings)) 
-				&& (wearingArmor(new ItemStack(ItemsAether.arkenium_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_agility_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_sentry_boots))) 
-				&& wearingAccessory(new ItemStack(ItemsAether.arkenium_gloves))
-				&& (wearingAccessory(new ItemStack(ItemsAether.haste_ring)) || wearingAccessory(new ItemStack(ItemsAether.reinforced_haste_ring)) || wearingAccessory(new ItemStack(ItemsAether.amplified_haste_ring)));
-	}
-	
-	@Override
-	public boolean isWearingHasteRingAndArkeniumCombo() {
-		return  (wearingArmor(new ItemStack(ItemsAether.arkenium_helmet)) || wearingArmor(new ItemStack(ItemsAether.amplified_arkenium_helmet))) 
-			   && (wearingArmor(new ItemStack(ItemsAether.arkenium_chestplate)) || wearingArmor(new ItemStack(ItemsAether.amplified_arkenium_chestplate))) 
-			   && (wearingArmor(new ItemStack(ItemsAether.arkenium_leggings)) || wearingArmor(new ItemStack(ItemsAether.amplified_arkenium_leggings))) 
-			   && (wearingArmor(new ItemStack(ItemsAether.arkenium_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_agility_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_arkenium_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_sentry_boots))) 
-			   && (wearingAccessory(new ItemStack(ItemsAether.arkenium_gloves)) || wearingAccessory(new ItemStack(ItemsAether.amplified_arkenium_gloves)))
-			   && (wearingAccessory(new ItemStack(ItemsAether.haste_ring)) || wearingAccessory(new ItemStack(ItemsAether.reinforced_haste_ring)) || wearingAccessory(new ItemStack(ItemsAether.amplified_haste_ring)));
-	}
-	
-	@Override
-	public boolean isWearingHasteRingAmpilifedArkenium() {
-		return wearingArmor(new ItemStack(ItemsAether.amplified_arkenium_helmet)) 
-				&& wearingArmor(new ItemStack(ItemsAether.amplified_arkenium_chestplate)) 
-				&& wearingArmor(new ItemStack(ItemsAether.amplified_arkenium_leggings)) 
-				&& (wearingArmor(new ItemStack(ItemsAether.amplified_arkenium_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_agility_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_sentry_boots))) 
-				&& wearingAccessory(new ItemStack(ItemsAether.amplified_arkenium_gloves))
-				&& wearingAccessory(new ItemStack(ItemsAether.amplified_haste_ring));
-	}
-	
-	@Override
-	public boolean isWearingAgilityBootsAndCape() {
-		return (wearingArmor(new ItemStack(ItemsAether.agility_boots)) || wearingArmor(new ItemStack(ItemsAether.scaled_agility_boots))) && wearingAccessory(new ItemStack(ItemsAether.agility_cape));
-	}
-	
-	@Override
-	public boolean isWearingAmplifiedAgilityBootsAndCape() {
-		return (wearingArmor(new ItemStack(ItemsAether.amplified_agility_boots)) && wearingAccessory(new ItemStack(ItemsAether.agility_cape)));
-	}
-	
-	@Override
-	public boolean isWearingPureSpeed() {
-		return (wearingArmor(new ItemStack(ItemsAether.amplified_agility_boots)) && wearingAccessory(new ItemStack(ItemsAether.agility_cape))
-				&& (wearingAccessory(new ItemStack(ItemsAether.auralite_pendant)) || wearingAccessory(new ItemStack(ItemsAether.reinforced_auralite_pendant)) || wearingAccessory(new ItemStack(ItemsAether.amplified_auralite_pendant))) 
-				&& wearingAccessory(new ItemStack(ItemsAether.auralite_ring))); 
-	}
-	
-	@Override
-	public boolean isWearingElysianSet() {
-		return (wearingArmor(new ItemStack(ItemsAether.elysian_helmet)) || wearingArmor(new ItemStack(ItemsAether.elysian_helmet))) 
-				&& (wearingArmor(new ItemStack(ItemsAether.elysian_chestplate)) || wearingArmor(new ItemStack(ItemsAether.elysian_chestplate))) 
-				&& (wearingArmor(new ItemStack(ItemsAether.elysian_leggings)) || wearingArmor(new ItemStack(ItemsAether.elysian_leggings))) 
-				&& (wearingArmor(new ItemStack(ItemsAether.elysian_boots)) || wearingArmor(new ItemStack(ItemsAether.elysian_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_sentry_boots)) || wearingArmor(new ItemStack(ItemsAether.scaled_valkyrie_boots)))
-				&& (wearingAccessory(new ItemStack(ItemsAether.elysian_gloves)));
-	}
-	
-	@Override
-	public boolean isWearingDischargeCape() {
-		return wearingAccessory(new ItemStack(ItemsAether.discharge_cape));
-	}
-	
-	@Override
-	public boolean isWearingAscensiteSet() {
-		return wearingArmor(new ItemStack(ItemsAether.ascensite_helmet)) 
-				&& wearingArmor(new ItemStack(ItemsAether.ascensite_chestplate)) 
-				&& wearingArmor(new ItemStack(ItemsAether.ascensite_leggings)) 
-				&& (wearingArmor(new ItemStack(ItemsAether.ascensite_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_agility_boots)) || wearingArmor(new ItemStack(ItemsAether.amplified_sentry_boots)))  
-				&& wearingAccessory(new ItemStack(ItemsAether.ascensite_gloves));
-	}
-
-	@Override
-	public List<ItemStack> getAccessories() {
-		return this.stacks;
 	}
 
 }

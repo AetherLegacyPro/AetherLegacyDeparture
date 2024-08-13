@@ -2,8 +2,6 @@ package com.gildedgames.the_aether.blocks.dungeon;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.world.World;
 
 public class BlockGenesisStone2 extends Block {
 

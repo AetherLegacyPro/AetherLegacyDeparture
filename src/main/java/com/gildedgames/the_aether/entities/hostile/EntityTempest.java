@@ -97,7 +97,7 @@ public class EntityTempest extends EntityAetherMob implements IMob
 		if (this.courseChangeCooldown-- <= 0)
 		{
 			this.courseChangeCooldown += this.rand.nextInt(5) + 2;
-			d3 = (double)MathHelper.sqrt_double(d3);
+			d3 = MathHelper.sqrt_double(d3);
 
 			if (this.isCourseTraversable(this.waypointX, this.waypointY, this.waypointZ, d3))
 			{
@@ -223,13 +223,12 @@ public class EntityTempest extends EntityAetherMob implements IMob
     }
     
     protected void attackEntity(final Entity entity, final float f) {
-        if (entity instanceof EntityLivingBase) {
-            EntityLivingBase target = (EntityLivingBase)entity;
-            if (f < 10.0f) {
+        if (entity instanceof EntityLivingBase target) {
+			if (f < 10.0f) {
                 final double d = entity.posX - this.posX;
                 final double d2 = entity.posZ - this.posZ;
                 if (target != null) {
-                    if (target.isDead || target.getDistanceToEntity((Entity)this) > 12.0 || target instanceof EntityZephyr || target instanceof EntityTempest) {
+                    if (target.isDead || target.getDistanceToEntity(this) > 12.0 || target instanceof EntityZephyr || target instanceof EntityTempest) {
                         target = null;
                         this.entityToAttack = null;
                         return;
@@ -237,7 +236,7 @@ public class EntityTempest extends EntityAetherMob implements IMob
                     if (this.attackTime >= this.timeUntilShoot) {
                         this.shootTarget(target);
                     }
-                    if (this.attackTime >= this.timeUntilShoot && this.canEntityBeSeen((Entity)target)) {
+                    if (this.attackTime >= this.timeUntilShoot && this.canEntityBeSeen(target)) {
                         this.attackTime = -10;
                     }
                     if (this.attackTime < this.timeUntilShoot) {
@@ -256,11 +255,11 @@ public class EntityTempest extends EntityAetherMob implements IMob
         final double d5 = target.posX - this.posX;
         final double d6 = target.boundingBox.minY + target.height / 2.0f - (this.posY + this.height / 2.0f);
         final double d7 = target.posZ - this.posZ;
-        final EntityTempestSnowball snowball = new EntityTempestSnowball(this.worldObj, (EntityLiving)this, d5, d6, d7);
+        final EntityTempestSnowball snowball = new EntityTempestSnowball(this.worldObj, this, d5, d6, d7);
         snowball.posY = this.posY + 1.0;
-        this.worldObj.playSoundAtEntity((Entity)this, "aether_legacy:aemob.zephyr.call", 2.0f, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2f + 1.0f);
+        this.worldObj.playSoundAtEntity(this, "aether_legacy:aemob.zephyr.call", 2.0f, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2f + 1.0f);
         if (!this.worldObj.isRemote) {
-            this.worldObj.spawnEntityInWorld((Entity)snowball);
+            this.worldObj.spawnEntityInWorld(snowball);
         }
     }
     
@@ -268,11 +267,10 @@ public class EntityTempest extends EntityAetherMob implements IMob
     {
         super.onDeath(p_70645_1_);
 
-        if (p_70645_1_.getEntity() instanceof EntityPlayer)
+        if (p_70645_1_.getEntity() instanceof EntityPlayer entityplayer)
         {
-            EntityPlayer entityplayer = (EntityPlayer)p_70645_1_.getEntity();
-            
-            entityplayer.triggerAchievement(AchievementsAether.aether_hunter);
+
+			entityplayer.triggerAchievement(AchievementsAether.aether_hunter);
             
         }
             

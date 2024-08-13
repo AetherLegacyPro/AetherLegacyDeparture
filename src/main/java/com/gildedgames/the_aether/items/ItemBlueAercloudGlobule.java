@@ -1,9 +1,7 @@
 package com.gildedgames.the_aether.items;
 
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
-import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs.AetherTab;
 
-import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;

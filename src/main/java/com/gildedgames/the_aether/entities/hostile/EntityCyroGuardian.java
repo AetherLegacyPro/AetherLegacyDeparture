@@ -13,11 +13,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntitySmallFireball;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
@@ -46,7 +42,7 @@ public class EntityCyroGuardian extends EntityBossMob implements IAetherBoss
     protected void entityInit()
     {
         super.entityInit();
-        this.dataWatcher.addObject(16, new Byte((byte)0));
+        this.dataWatcher.addObject(16, (byte) 0);
         this.dataWatcher.addObject(19, AetherNameGen.gen());
     }
     
@@ -187,11 +183,10 @@ public class EntityCyroGuardian extends EntityBossMob implements IAetherBoss
     
     @Override
     public boolean attackEntityFrom(DamageSource ds, float var2) {
-    	if (ds.getEntity() == null || !(ds.getEntity() instanceof EntityPlayer)) {
+    	if (ds.getEntity() == null || !(ds.getEntity() instanceof EntityPlayer player)) {
     		 return false;
     	}
-    	EntityPlayer player = (EntityPlayer) ds.getEntity();
-    	boolean flag = super.attackEntityFrom(ds, Math.max(0, var2));
+		boolean flag = super.attackEntityFrom(ds, Math.max(0, var2));
     	
     	if (flag) {
     	if (this.getHealth() <= 0 || this.isDead) {
@@ -242,7 +237,7 @@ public class EntityCyroGuardian extends EntityBossMob implements IAetherBoss
                 if (this.field_70846_g > 1)
                 {
                     float f1 = MathHelper.sqrt_float(p_70785_2_) * 0.5F;
-                    this.worldObj.playAuxSFXAtEntity((EntityPlayer)null, 1009, (int)this.posX, (int)this.posY, (int)this.posZ, 0);
+                    this.worldObj.playAuxSFXAtEntity(null, 1009, (int)this.posX, (int)this.posY, (int)this.posZ, 0);
 
                     for (int i = 0; i < 3; ++i)
                     {
@@ -289,14 +284,8 @@ public class EntityCyroGuardian extends EntityBossMob implements IAetherBoss
         }
         
         int rand2 = (int)(1 + Math.random() * 3);
-		switch (rand2)
-        {
-        case 1: this.dropItem(ItemsAether.divine_essence, 1 + rand.nextInt(2));
-        break;
-        case 2: 
-        break;
-        case 3: 
-        break;
+		if(rand2 == 1) {
+            dropItem(ItemsAether.divine_essence, 1 + rand.nextInt(2));
         }
     }
 
@@ -318,7 +307,7 @@ public class EntityCyroGuardian extends EntityBossMob implements IAetherBoss
             b0 &= -2;
         }
 
-        this.dataWatcher.updateObject(16, Byte.valueOf(b0));
+        this.dataWatcher.updateObject(16, b0);
     }
     
     protected void onDeathUpdate()

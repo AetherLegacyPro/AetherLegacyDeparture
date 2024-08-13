@@ -9,8 +9,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
@@ -41,7 +39,7 @@ public class EntityCinerarium extends EntityMob
     protected void entityInit()
     {
         super.entityInit();
-        this.dataWatcher.addObject(16, new Byte((byte)0));
+        this.dataWatcher.addObject(16, (byte) 0);
     }
 
     /**
@@ -167,7 +165,7 @@ public class EntityCinerarium extends EntityMob
                 if (this.field_70846_g > 1)
                 {
                     float f1 = MathHelper.sqrt_float(p_70785_2_) * 0.5F;
-                    this.worldObj.playAuxSFXAtEntity((EntityPlayer)null, 1009, (int)this.posX, (int)this.posY, (int)this.posZ, 0);
+                    this.worldObj.playAuxSFXAtEntity(null, 1009, (int)this.posX, (int)this.posY, (int)this.posZ, 0);
 
                     for (int i = 0; i < 3; ++i)
                     {
@@ -241,7 +239,7 @@ public class EntityCinerarium extends EntityMob
             b0 &= -2;
         }
 
-        this.dataWatcher.updateObject(16, Byte.valueOf(b0));
+        this.dataWatcher.updateObject(16, b0);
     }
 
     /**
@@ -256,7 +254,7 @@ public class EntityCinerarium extends EntityMob
         final int i = MathHelper.floor_double(this.posX);
         final int j = MathHelper.floor_double(this.boundingBox.minY);
         final int k = MathHelper.floor_double(this.posZ);
-        final boolean canSpawn = this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes((Entity)this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);          
+        final boolean canSpawn = this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
         return (this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_hellfire_stone || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_light_hellfire_stone || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_divine_hellfire_stone || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_divine_hellfire_stone || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_divine_hellfire_stone || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_divine_hellfire_stone || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_ancient_hellfire_stone || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_ancient_light_hellfire_stone) && this.worldObj.getBlockLightValue(i, j, k) < 14 && canSpawn;
                        
     }

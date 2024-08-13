@@ -9,12 +9,10 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.world.World;
 
-import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.entities.block.EntityFireProofItemAether;
 
 public class ItemAmplifiedHolystoneSword extends ItemSword {
@@ -32,7 +30,7 @@ public class ItemAmplifiedHolystoneSword extends ItemSword {
 
 	@Override
 	public boolean hitEntity(ItemStack itemstack, EntityLivingBase entityliving, EntityLivingBase entityliving1) {
-		if ((new Random()).nextInt(20) == 0 && entityliving1 != null && entityliving1 instanceof EntityPlayer && entityliving.hurtTime > 0 && entityliving.deathTime <= 0) {
+		if ((new Random()).nextInt(20) == 0 && entityliving1 instanceof EntityPlayer && entityliving.hurtTime > 0 && entityliving.deathTime <= 0) {
 			if (!entityliving.worldObj.isRemote) {
 				entityliving.dropItem(ItemsAether.ambrosium_shard, 10);
 			}
@@ -52,6 +50,6 @@ public class ItemAmplifiedHolystoneSword extends ItemSword {
     }
     
     public Entity createEntity(final World world, final Entity location, final ItemStack itemstack) {
-        return (Entity)new EntityFireProofItemAether(world, location, itemstack);
+        return new EntityFireProofItemAether(world, location, itemstack);
     }
 }

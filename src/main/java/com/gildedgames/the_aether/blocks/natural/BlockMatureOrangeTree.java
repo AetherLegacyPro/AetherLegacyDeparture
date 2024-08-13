@@ -2,8 +2,6 @@ package com.gildedgames.the_aether.blocks.natural;
 
 import java.util.Random;
 
-import com.gildedgames.the_aether.Aether;
-import com.gildedgames.the_aether.CommonProxy;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.items.ItemsAether;
 import net.minecraft.block.Block;
@@ -11,7 +9,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
-import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -37,11 +34,6 @@ public class BlockMatureOrangeTree extends BlockAetherFlower {
         return true;
     }
 
-	@Override
-	public boolean isOpaqueCube() {
-		return false;
-	}
-	
 
 	@Override
 	public void harvestBlock(World world, EntityPlayer entityplayer, int x, int y, int z, int meta) {
@@ -92,11 +84,6 @@ public class BlockMatureOrangeTree extends BlockAetherFlower {
 			this.dropBlockAsItem(world, x, y, z, new ItemStack(ItemsAether.orange, randomNum, 0));
 			world.setBlock(x, y, z, BlocksAether.small_orange_tree);
 		}
-	}
-
-	@Override
-	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
-		return null;
 	}
 
 	@Override

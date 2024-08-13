@@ -11,7 +11,6 @@ import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
@@ -44,12 +43,7 @@ public class ItemZaniteShears extends ItemShears
         }
     }
 
-    public boolean func_150897_b(Block p_150897_1_)
-    {
-        return p_150897_1_ == Blocks.web || p_150897_1_ == Blocks.redstone_wire || p_150897_1_ == Blocks.tripwire;
-    }
-
-    public float func_150893_a(ItemStack p_150893_1_, Block p_150893_2_)
+	public float func_150893_a(ItemStack p_150893_1_, Block p_150893_2_)
     {
         return p_150893_2_ != Blocks.web && p_150893_2_.getMaterial() != Material.leaves ? (p_150893_2_ == Blocks.wool ? 5.0F : super.func_150893_a(p_150893_1_, p_150893_2_)) : 15.0F;
     }
@@ -64,10 +58,9 @@ public class ItemZaniteShears extends ItemShears
         {
             return false;
         }
-        if (entity instanceof IShearable)
+        if (entity instanceof IShearable target)
         {
-            IShearable target = (IShearable)entity;
-            if (target.isShearable(itemstack, entity.worldObj, (int)entity.posX, (int)entity.posY, (int)entity.posZ))
+			if (target.isShearable(itemstack, entity.worldObj, (int)entity.posX, (int)entity.posY, (int)entity.posZ))
             {
                 ArrayList<ItemStack> drops = target.onSheared(itemstack, entity.worldObj, (int)entity.posX, (int)entity.posY, (int)entity.posZ,
                         EnchantmentHelper.getEnchantmentLevel(Enchantment.fortune.effectId, itemstack));
@@ -95,10 +88,9 @@ public class ItemZaniteShears extends ItemShears
             return false;
         }
         Block block = player.worldObj.getBlock(x, y, z);
-        if (block instanceof IShearable)
+        if (block instanceof IShearable target)
         {
-            IShearable target = (IShearable)block;
-            if (target.isShearable(itemstack, player.worldObj, x, y, z))
+			if (target.isShearable(itemstack, player.worldObj, x, y, z))
             {
                 ArrayList<ItemStack> drops = target.onSheared(itemstack, player.worldObj, x, y, z,
                         EnchantmentHelper.getEnchantmentLevel(Enchantment.fortune.effectId, itemstack));

@@ -10,15 +10,10 @@ import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.stats.StatList;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -50,7 +45,7 @@ public class BlockContinuumPile extends Block
     {
         int l = p_149668_1_.getBlockMetadata(p_149668_2_, p_149668_3_, p_149668_4_) & 7;
         float f = 0.125F;
-        return AxisAlignedBB.getBoundingBox((double)p_149668_2_ + this.minX, (double)p_149668_3_ + this.minY, (double)p_149668_4_ + this.minZ, (double)p_149668_2_ + this.maxX, (double)((float)p_149668_3_ + (float)l * f), (double)p_149668_4_ + this.maxZ);
+        return AxisAlignedBB.getBoundingBox((double)p_149668_2_ + this.minX, (double)p_149668_3_ + this.minY, (double)p_149668_4_ + this.minZ, (double)p_149668_2_ + this.maxX, (float)p_149668_3_ + (float)l * f, (double)p_149668_4_ + this.maxZ);
     }
 
     /**
@@ -146,8 +141,7 @@ public class BlockContinuumPile extends Block
     {
     	int meta = world.getBlockMetadata(x, y, z);
     	switch (meta) {
-    	case 0: return 1;
-		case 1: return 1 + random.nextInt(1);
+			case 1: return 1 + random.nextInt(1);
 		case 2: return 2 + random.nextInt(2);
 		case 3: return 2 + random.nextInt(3);
 		case 4: return 3 + random.nextInt(3);   		

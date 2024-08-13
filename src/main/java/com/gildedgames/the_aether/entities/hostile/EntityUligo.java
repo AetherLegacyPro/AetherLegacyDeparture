@@ -2,12 +2,10 @@ package com.gildedgames.the_aether.entities.hostile;
 
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.entities.uro.uroswell.EntityAIUligoSwell;
-import com.gildedgames.the_aether.entities.uro.uroswell.EntityAIUroSwell;
 import com.gildedgames.the_aether.items.ItemsAether;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -22,9 +20,6 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldType;
-import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraft.world.chunk.Chunk;
 
 public class EntityUligo extends EntityLiving implements IMob
 {
@@ -53,10 +48,10 @@ public class EntityUligo extends EntityLiving implements IMob
     protected void entityInit()
     {
         super.entityInit();
-        this.dataWatcher.addObject(16, new Byte((byte)1));
-        this.dataWatcher.addObject(15, Byte.valueOf((byte) - 1));
-        this.dataWatcher.addObject(17, Byte.valueOf((byte)0));
-        this.dataWatcher.addObject(18, Byte.valueOf((byte)0));
+        this.dataWatcher.addObject(16, (byte) 1);
+        this.dataWatcher.addObject(15, (byte) -1);
+        this.dataWatcher.addObject(17, (byte) 0);
+        this.dataWatcher.addObject(18, (byte) 0);
     }
     
     public int getMaxSafePointTries()
@@ -70,10 +65,10 @@ public class EntityUligo extends EntityLiving implements IMob
 
     protected void setSlimeSize(int p_70799_1_)
     {
-        this.dataWatcher.updateObject(16, new Byte((byte)p_70799_1_));
+        this.dataWatcher.updateObject(16, (byte)p_70799_1_);
         this.setSize(0.6F * (float)p_70799_1_, 0.6F * (float)p_70799_1_);
         this.setPosition(this.posX, this.posY, this.posZ);
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue((double)(p_70799_1_ * p_70799_1_));
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(p_70799_1_ * p_70799_1_);
         this.setHealth(this.getMaxHealth());
         this.experienceValue = p_70799_1_;
     }
@@ -111,7 +106,7 @@ public class EntityUligo extends EntityLiving implements IMob
     public void onStruckByLightning(EntityLightningBolt p_70077_1_)
     {
         super.onStruckByLightning(p_70077_1_);
-        this.dataWatcher.updateObject(17, Byte.valueOf((byte)1));
+        this.dataWatcher.updateObject(17, (byte) 1);
     }
 
     /**
@@ -129,7 +124,7 @@ public class EntityUligo extends EntityLiving implements IMob
 
         this.setSlimeSize(i + 1);
         
-        this.dataWatcher.updateObject(17, Byte.valueOf((byte)(p_70037_1_.getBoolean("powered") ? 1 : 0)));
+        this.dataWatcher.updateObject(17, (byte) (p_70037_1_.getBoolean("powered") ? 1 : 0));
 
         if (p_70037_1_.hasKey("Fuse", 99))
         {
@@ -255,7 +250,7 @@ public class EntityUligo extends EntityLiving implements IMob
             }
 
             this.moveStrafing = 1.0F - this.rand.nextFloat() * 2.0F;
-            this.moveForward = (float)(1 * this.getSlimeSize());
+            this.moveForward = (float)(getSlimeSize());
         }
         else
         {
@@ -522,7 +517,7 @@ public class EntityUligo extends EntityLiving implements IMob
 
     public void func_146079_cb()
     {
-        this.dataWatcher.updateObject(18, Byte.valueOf((byte)1));
+        this.dataWatcher.updateObject(18, (byte) 1);
     }
     
     /**
@@ -538,7 +533,7 @@ public class EntityUligo extends EntityLiving implements IMob
      */
     public void setCreeperState(int p_70829_1_)
     {
-        this.dataWatcher.updateObject(15, Byte.valueOf((byte)p_70829_1_));
+        this.dataWatcher.updateObject(15, (byte) p_70829_1_);
     }
     
     public boolean canDespawn() {
@@ -553,7 +548,7 @@ public class EntityUligo extends EntityLiving implements IMob
         final int i = MathHelper.floor_double(this.posX);
         final int j = MathHelper.floor_double(this.boundingBox.minY);
         final int k = MathHelper.floor_double(this.posZ);
-        final boolean canSpawn = this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes((Entity)this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);          
+        final boolean canSpawn = this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
         return (this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_creeping_stone || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_fuse_stone) && this.worldObj.getBlockLightValue(i, j, k) < 14 && canSpawn;
                        
     }

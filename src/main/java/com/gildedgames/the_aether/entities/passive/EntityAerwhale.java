@@ -11,7 +11,6 @@ import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.items.ItemsAether;
 
 import net.minecraft.entity.*;
-import net.minecraft.item.*;
 
 public class EntityAerwhale extends EntityFlying implements IMob
 {
@@ -28,8 +27,8 @@ public class EntityAerwhale extends EntityFlying implements IMob
     public EntityAerwhale(final World p_i1731_1_) {
         super(p_i1731_1_);
         this.targetObstructedTicks = 0;
-        this.tasks.addTask(0, (EntityAIBase)new EntityAIWatchClosest((EntityLiving)this, (Class)EntityPlayer.class, 8.0f));
-        this.tasks.addTask(1, (EntityAIBase)new EntityAILookIdle((EntityLiving)this));
+        this.tasks.addTask(0, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0f));
+        this.tasks.addTask(1, new EntityAILookIdle(this));
         this.setSize(1.5f, 1.0f);
         this.isImmuneToFire = false;
         this.experienceValue = 1;
@@ -45,7 +44,7 @@ public class EntityAerwhale extends EntityFlying implements IMob
     
     protected void entityInit() {
         super.entityInit();
-        this.dataWatcher.addObject(16, (Object)new Byte((byte)0));
+        this.dataWatcher.addObject(16, (byte) 0);
     }
     
     public void onUpdate() {
@@ -58,7 +57,7 @@ public class EntityAerwhale extends EntityFlying implements IMob
             }
             if (this.targetedEntity != null) {
                 if (this.targetedEntity instanceof EntityPlayer) {
-                    if (!this.getEntitySenses().canSee((Entity)this.targetedEntity)) {
+                    if (!this.getEntitySenses().canSee(this.targetedEntity)) {
                         ++this.targetObstructedTicks;
                     }
                     else {
@@ -155,7 +154,7 @@ public class EntityAerwhale extends EntityFlying implements IMob
         final AxisAlignedBB axisalignedbb = this.boundingBox.copy();
         for (int i = 1; i < distance; ++i) {
             axisalignedbb.offset(boxX, boxY, boxZ);
-            if (!this.worldObj.getCollidingBoundingBoxes((Entity)this, axisalignedbb).isEmpty()) {
+            if (!this.worldObj.getCollidingBoundingBoxes(this, axisalignedbb).isEmpty()) {
                 return false;
             }
         }
@@ -188,18 +187,8 @@ public class EntityAerwhale extends EntityFlying implements IMob
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(140.0);
     }
-    
-    protected void fall(final float p_70069_1_) {
-    }
-    
-    protected void updateFallState(final double p_70064_1_, final boolean p_70064_3_) {
-    }
-    
-    public boolean isOnLadder() {
-        return false;
-    }
-    
-    @Override
+
+	@Override
 	public String getLivingSound() {
 		return "aether_legacy:aemob.aerwhale.call";
 	}
@@ -224,7 +213,7 @@ public class EntityAerwhale extends EntityFlying implements IMob
 	      final int i = MathHelper.floor_double(this.posX);
 	      final int j = MathHelper.floor_double(this.boundingBox.minY);
 	      final int k = MathHelper.floor_double(this.posZ);
-	      final boolean canSpawn = this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes((Entity)this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);          
+	      final boolean canSpawn = this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
 	      return (this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.arctic_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.verdant_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.enchanted_aether_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.divine_grass) && this.worldObj.getBlockLightValue(i, j, k) > 7 && canSpawn && this.rand.nextInt(AetherConfig.getAerwhaleSpawnrate()) == 0 && super.getCanSpawnHere();
 	                       
 	}

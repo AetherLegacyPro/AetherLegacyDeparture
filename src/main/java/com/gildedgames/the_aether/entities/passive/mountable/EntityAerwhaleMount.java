@@ -1,12 +1,9 @@
 package com.gildedgames.the_aether.entities.passive.mountable;
 
-import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 
-import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
@@ -20,8 +17,6 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-import com.gildedgames.the_aether.entities.passive.EntityThunderlo;
-import com.gildedgames.the_aether.entities.util.EntitySaddleMount;
 import com.gildedgames.the_aether.entities.util.EntityZephyrooSaddleMount;
 
 public class EntityAerwhaleMount extends EntityZephyrooSaddleMount {
@@ -223,7 +218,7 @@ public class EntityAerwhaleMount extends EntityZephyrooSaddleMount {
    	      final int i = MathHelper.floor_double(this.posX);
    	      final int j = MathHelper.floor_double(this.boundingBox.minY);
    	      final int k = MathHelper.floor_double(this.posZ);
-   	      final boolean canSpawn = this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes((Entity)this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);          
+   	      final boolean canSpawn = this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
    	      return (this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_dirt || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.arctic_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.verdant_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.enchanted_aether_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.divine_grass) && this.worldObj.getBlockLightValue(i, j, k) > 7 && canSpawn;
    	                       
    	}

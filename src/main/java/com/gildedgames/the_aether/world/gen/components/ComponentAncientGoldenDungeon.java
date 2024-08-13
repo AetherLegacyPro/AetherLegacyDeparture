@@ -6,7 +6,6 @@ import com.gildedgames.the_aether.entities.bosses.sun_spirit.EntityAncientSunSpi
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.world.gen.AetherStructure;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 

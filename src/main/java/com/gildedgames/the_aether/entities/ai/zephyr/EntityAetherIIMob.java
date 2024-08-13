@@ -4,8 +4,6 @@ import net.minecraft.entity.monster.*;
 import java.util.*;
 import net.minecraft.world.*;
 import net.minecraft.entity.*;
-import net.minecraft.util.*;
-import net.minecraft.item.*;
 
 public abstract class EntityAetherIIMob extends EntityMob implements IMob
 {

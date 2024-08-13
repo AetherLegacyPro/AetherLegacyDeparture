@@ -43,9 +43,9 @@ public class AetherFlowerRenderer implements ISimpleBlockRenderingHandler {
 		}
 
 		tessellator.setColorOpaque_F(f, f1, f2);
-		double d1 = (double) x;
-		double d2 = (double) y;
-		double d0 = (double) z;
+		double d1 = x;
+		double d2 = y;
+		double d0 = z;
 		long i1;
 
 		if (block instanceof BlockAetherFlower) {

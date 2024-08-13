@@ -54,7 +54,7 @@ public class ContainerFreezer extends Container {
 		super.detectAndSendChanges();
 
 		for (int i = 0; i < this.crafters.size(); ++i) {
-			ICrafting icrafting = (ICrafting) this.crafters.get(i);
+			ICrafting icrafting = this.crafters.get(i);
 
 			if (this.progress != this.freezer.progress) {
 				icrafting.sendProgressBarUpdate(this, 0, this.freezer.progress);
@@ -98,7 +98,7 @@ public class ContainerFreezer extends Container {
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int par2) {
 		ItemStack itemstack = null;
-		Slot slot = (Slot) this.inventorySlots.get(par2);
+		Slot slot = this.inventorySlots.get(par2);
 
 		if (slot != null && slot.getHasStack()) {
 			ItemStack itemstack1 = slot.getStack();

@@ -21,14 +21,14 @@ import net.minecraft.util.ResourceLocation;
 
 public class AetherAPI {
 
-	private static final HashMap<ResourceLocation, AetherAccessory> iAccessoryRegistry = new HashMap<ResourceLocation, AetherAccessory>(4096);
-	private static final HashMap<ResourceLocation, AetherEnchantment> iEnchantmentRegistry = new HashMap<ResourceLocation, AetherEnchantment>(4096);
-	private static final HashMap<ResourceLocation, AetherEnchantmentFuel> iEnchantmentFuelRegistry = new HashMap<ResourceLocation, AetherEnchantmentFuel>(4096);
-	private static final HashMap<ResourceLocation, AetherAmplifier> iAmplifierRegistry = new HashMap<ResourceLocation, AetherAmplifier>(4096);
-	private static final HashMap<ResourceLocation, AetherAmplifierFuel> iAmplifierFuelRegistry = new HashMap<ResourceLocation, AetherAmplifierFuel>(4096);
-	private static final HashMap<ResourceLocation, AetherFreezable> iFreezableRegistry = new HashMap<ResourceLocation, AetherFreezable>(4096);
-	private static final HashMap<ResourceLocation, AetherFreezableFuel> iFreezableFuelRegistry = new HashMap<ResourceLocation, AetherFreezableFuel>(4096);
-	private static final HashMap<ResourceLocation, AetherMoaType> iMoaTypeRegistry = new HashMap<ResourceLocation, AetherMoaType>(4096);
+	private static final HashMap<ResourceLocation, AetherAccessory> iAccessoryRegistry = new HashMap<>(4096);
+	private static final HashMap<ResourceLocation, AetherEnchantment> iEnchantmentRegistry = new HashMap<>(4096);
+	private static final HashMap<ResourceLocation, AetherEnchantmentFuel> iEnchantmentFuelRegistry = new HashMap<>(4096);
+	private static final HashMap<ResourceLocation, AetherAmplifier> iAmplifierRegistry = new HashMap<>(4096);
+	private static final HashMap<ResourceLocation, AetherAmplifierFuel> iAmplifierFuelRegistry = new HashMap<>(4096);
+	private static final HashMap<ResourceLocation, AetherFreezable> iFreezableRegistry = new HashMap<>(4096);
+	private static final HashMap<ResourceLocation, AetherFreezableFuel> iFreezableFuelRegistry = new HashMap<>(4096);
+	private static final HashMap<ResourceLocation, AetherMoaType> iMoaTypeRegistry = new HashMap<>(4096);
 
 	private static final AetherAPI instance = new AetherAPI();
 
@@ -38,7 +38,7 @@ public class AetherAPI {
 
 	public AetherAccessory register(AetherAccessory type) {
 		ItemStack stack = type.getAccessoryStack();
-		ResourceLocation registryName = new ResourceLocation(stack.getItem().getUnlocalizedName().toString() + "_meta_" + (stack.isItemStackDamageable() ? 0 : stack.getItemDamage()));
+		ResourceLocation registryName = new ResourceLocation(stack.getItem().getUnlocalizedName() + "_meta_" + (stack.isItemStackDamageable() ? 0 : stack.getItemDamage()));
 
 		iAccessoryRegistry.put(registryName, (AetherAccessory) type.setRegistryName(registryName));
 
@@ -47,7 +47,7 @@ public class AetherAPI {
 
 	public AetherEnchantment register(AetherEnchantment type) {
 		ItemStack stack = type.getInput();
-		ResourceLocation registryName = new ResourceLocation(stack.getItem().getUnlocalizedName().toString() + "_meta_" + (stack.isItemStackDamageable() ? 0 : stack.getItemDamage()));
+		ResourceLocation registryName = new ResourceLocation(stack.getItem().getUnlocalizedName() + "_meta_" + (stack.isItemStackDamageable() ? 0 : stack.getItemDamage()));
 
 		iEnchantmentRegistry.put(registryName, (AetherEnchantment) type.setRegistryName(registryName));
 
@@ -56,7 +56,7 @@ public class AetherAPI {
 
 	public AetherEnchantmentFuel register(AetherEnchantmentFuel type) {
 		ItemStack stack = type.getFuelStack();
-		ResourceLocation registryName = new ResourceLocation(stack.getItem().getUnlocalizedName().toString() + "_meta_" + (stack.isItemStackDamageable() ? 0 : stack.getItemDamage()));
+		ResourceLocation registryName = new ResourceLocation(stack.getItem().getUnlocalizedName() + "_meta_" + (stack.isItemStackDamageable() ? 0 : stack.getItemDamage()));
 
 		iEnchantmentFuelRegistry.put(registryName, (AetherEnchantmentFuel) type.setRegistryName(registryName));
 
@@ -65,7 +65,7 @@ public class AetherAPI {
 //-----------------------------------	
 	public AetherAmplifier register(AetherAmplifier type) {
 		ItemStack stack = type.getInput();
-		ResourceLocation registryName = new ResourceLocation(stack.getItem().getUnlocalizedName().toString() + "_meta_" + (stack.isItemStackDamageable() ? 0 : stack.getItemDamage()));
+		ResourceLocation registryName = new ResourceLocation(stack.getItem().getUnlocalizedName() + "_meta_" + (stack.isItemStackDamageable() ? 0 : stack.getItemDamage()));
 
 		iAmplifierRegistry.put(registryName, (AetherAmplifier) type.setRegistryName(registryName));
 
@@ -74,7 +74,7 @@ public class AetherAPI {
 
 	public AetherAmplifierFuel register(AetherAmplifierFuel type) {
 		ItemStack stack = type.getFuelStack();
-		ResourceLocation registryName = new ResourceLocation(stack.getItem().getUnlocalizedName().toString() + "_meta_" + (stack.isItemStackDamageable() ? 0 : stack.getItemDamage()));
+		ResourceLocation registryName = new ResourceLocation(stack.getItem().getUnlocalizedName() + "_meta_" + (stack.isItemStackDamageable() ? 0 : stack.getItemDamage()));
 
 		iAmplifierFuelRegistry.put(registryName, (AetherAmplifierFuel) type.setRegistryName(registryName));
 
@@ -83,7 +83,7 @@ public class AetherAPI {
 //-----------------------------------
 	public AetherFreezable register(AetherFreezable type) {
 		ItemStack stack = type.getInput();
-		ResourceLocation registryName = new ResourceLocation(stack.getItem().getUnlocalizedName().toString() + "_meta_" + (stack.isItemStackDamageable() ? 0 : stack.getItemDamage()));
+		ResourceLocation registryName = new ResourceLocation(stack.getItem().getUnlocalizedName() + "_meta_" + (stack.isItemStackDamageable() ? 0 : stack.getItemDamage()));
 
 		iFreezableRegistry.put(registryName, (AetherFreezable) type.setRegistryName(registryName));
 
@@ -92,7 +92,7 @@ public class AetherAPI {
 
 	public AetherFreezableFuel register(AetherFreezableFuel type) {
 		ItemStack stack = type.getFuelStack();
-		ResourceLocation registryName = new ResourceLocation(stack.getItem().getUnlocalizedName().toString() + "_meta_" + (stack.isItemStackDamageable() ? 0 : stack.getItemDamage()));
+		ResourceLocation registryName = new ResourceLocation(stack.getItem().getUnlocalizedName() + "_meta_" + (stack.isItemStackDamageable() ? 0 : stack.getItemDamage()));
 
 		iFreezableFuelRegistry.put(registryName, (AetherFreezableFuel) type.setRegistryName(registryName));
 
@@ -112,75 +112,75 @@ public class AetherAPI {
 	}
 
 	public boolean isAccessory(ItemStack stack) {
-		return iAccessoryRegistry.containsKey(new ResourceLocation(stack.getItem().getUnlocalizedName().toString() + "_meta_" + (stack.isItemStackDamageable() ? 0 : stack.getItemDamage())));
+		return iAccessoryRegistry.containsKey(new ResourceLocation(stack.getItem().getUnlocalizedName() + "_meta_" + (stack.isItemStackDamageable() ? 0 : stack.getItemDamage())));
 	}
 
 	public AetherAccessory getAccessory(ItemStack stack) {
-		return iAccessoryRegistry.get(new ResourceLocation(stack.getItem().getUnlocalizedName().toString() + "_meta_" + (stack.isItemStackDamageable() ? 0 : stack.getItemDamage())));
+		return iAccessoryRegistry.get(new ResourceLocation(stack.getItem().getUnlocalizedName() + "_meta_" + (stack.isItemStackDamageable() ? 0 : stack.getItemDamage())));
 	}
 
 	public boolean hasEnchantment(ItemStack stack) {
-		return iEnchantmentRegistry.containsKey(new ResourceLocation(stack.getItem().getUnlocalizedName().toString() + "_meta_" + (stack.isItemStackDamageable() ? 0 : stack.getItemDamage())));
+		return iEnchantmentRegistry.containsKey(new ResourceLocation(stack.getItem().getUnlocalizedName() + "_meta_" + (stack.isItemStackDamageable() ? 0 : stack.getItemDamage())));
 	}
 
 	public AetherEnchantment getEnchantment(ItemStack stack) {
-		return iEnchantmentRegistry.get(new ResourceLocation(stack.getItem().getUnlocalizedName().toString() + "_meta_" + (stack.isItemStackDamageable() ? 0 : stack.getItemDamage())));
+		return iEnchantmentRegistry.get(new ResourceLocation(stack.getItem().getUnlocalizedName() + "_meta_" + (stack.isItemStackDamageable() ? 0 : stack.getItemDamage())));
 	}
 //----------------
 	public boolean hasAmplifier(ItemStack stack) {
-		return iAmplifierRegistry.containsKey(new ResourceLocation(stack.getItem().getUnlocalizedName().toString() + "_meta_" + (stack.isItemStackDamageable() ? 0 : stack.getItemDamage())));
+		return iAmplifierRegistry.containsKey(new ResourceLocation(stack.getItem().getUnlocalizedName() + "_meta_" + (stack.isItemStackDamageable() ? 0 : stack.getItemDamage())));
 	}
 
 	public AetherAmplifier getAmplifier(ItemStack stack) {
-		return iAmplifierRegistry.get(new ResourceLocation(stack.getItem().getUnlocalizedName().toString() + "_meta_" + (stack.isItemStackDamageable() ? 0 : stack.getItemDamage())));
+		return iAmplifierRegistry.get(new ResourceLocation(stack.getItem().getUnlocalizedName() + "_meta_" + (stack.isItemStackDamageable() ? 0 : stack.getItemDamage())));
 	}
 //----------------
 	public boolean isEnchantmentFuel(ItemStack stack) {
-		return iEnchantmentFuelRegistry.containsKey(new ResourceLocation(stack.getItem().getUnlocalizedName().toString() + "_meta_" + (stack.isItemStackDamageable() ? 0 : stack.getItemDamage())));
+		return iEnchantmentFuelRegistry.containsKey(new ResourceLocation(stack.getItem().getUnlocalizedName() + "_meta_" + (stack.isItemStackDamageable() ? 0 : stack.getItemDamage())));
 	}
 
 	public AetherEnchantmentFuel getEnchantmentFuel(ItemStack stack) {
-		return iEnchantmentFuelRegistry.get(new ResourceLocation(stack.getItem().getUnlocalizedName().toString() + "_meta_" + (stack.isItemStackDamageable() ? 0 : stack.getItemDamage())));
+		return iEnchantmentFuelRegistry.get(new ResourceLocation(stack.getItem().getUnlocalizedName() + "_meta_" + (stack.isItemStackDamageable() ? 0 : stack.getItemDamage())));
 	}
 //----------------
 	public boolean isAmplifierFuel(ItemStack stack) {
-		return iAmplifierFuelRegistry.containsKey(new ResourceLocation(stack.getItem().getUnlocalizedName().toString() + "_meta_" + (stack.isItemStackDamageable() ? 0 : stack.getItemDamage())));
+		return iAmplifierFuelRegistry.containsKey(new ResourceLocation(stack.getItem().getUnlocalizedName() + "_meta_" + (stack.isItemStackDamageable() ? 0 : stack.getItemDamage())));
 	}
 
 	public AetherAmplifierFuel getAmplifierFuel(ItemStack stack) {
-		return iAmplifierFuelRegistry.get(new ResourceLocation(stack.getItem().getUnlocalizedName().toString() + "_meta_" + (stack.isItemStackDamageable() ? 0 : stack.getItemDamage())));
+		return iAmplifierFuelRegistry.get(new ResourceLocation(stack.getItem().getUnlocalizedName() + "_meta_" + (stack.isItemStackDamageable() ? 0 : stack.getItemDamage())));
 	}
 //---------------
 	public boolean hasFreezable(ItemStack stack) {
-		return iFreezableRegistry.containsKey(new ResourceLocation(stack.getItem().getUnlocalizedName().toString() + "_meta_" + (stack.isItemStackDamageable() ? 0 : stack.getItemDamage())));
+		return iFreezableRegistry.containsKey(new ResourceLocation(stack.getItem().getUnlocalizedName() + "_meta_" + (stack.isItemStackDamageable() ? 0 : stack.getItemDamage())));
 	}
 
 	public AetherFreezable getFreezable(ItemStack stack) {
-		return iFreezableRegistry.get(new ResourceLocation(stack.getItem().getUnlocalizedName().toString() + "_meta_" + (stack.isItemStackDamageable() ? 0 : stack.getItemDamage())));
+		return iFreezableRegistry.get(new ResourceLocation(stack.getItem().getUnlocalizedName() + "_meta_" + (stack.isItemStackDamageable() ? 0 : stack.getItemDamage())));
 	}
 
 	public boolean isFreezableFuel(ItemStack stack) {
-		return iFreezableFuelRegistry.containsKey(new ResourceLocation(stack.getItem().getUnlocalizedName().toString() + "_meta_" + (stack.isItemStackDamageable() ? 0 : stack.getItemDamage())));
+		return iFreezableFuelRegistry.containsKey(new ResourceLocation(stack.getItem().getUnlocalizedName() + "_meta_" + (stack.isItemStackDamageable() ? 0 : stack.getItemDamage())));
 	}
 
 	public AetherFreezableFuel getFreezableFuel(ItemStack stack) {
-		return iFreezableFuelRegistry.get(new ResourceLocation(stack.getItem().getUnlocalizedName().toString() + "_meta_" + (stack.isItemStackDamageable() ? 0 : stack.getItemDamage())));
+		return iFreezableFuelRegistry.get(new ResourceLocation(stack.getItem().getUnlocalizedName() + "_meta_" + (stack.isItemStackDamageable() ? 0 : stack.getItemDamage())));
 	}
 
 	public List<AetherEnchantment> getEnchantmentValues() {
-		return new ArrayList<AetherEnchantment>(iEnchantmentRegistry.values());
+		return new ArrayList<>(iEnchantmentRegistry.values());
 	}
 	
 	public List<AetherAmplifier> getAmplifierValues() {
-		return new ArrayList<AetherAmplifier>(iAmplifierRegistry.values());
+		return new ArrayList<>(iAmplifierRegistry.values());
 	}
 
 	public List<AetherFreezable> getFreezableValues() {
-		return new ArrayList<AetherFreezable>(iFreezableRegistry.values());
+		return new ArrayList<>(iFreezableRegistry.values());
 	}
 
 	public List<AetherMoaType> getMoaTypeValues() {
-		return new ArrayList<AetherMoaType>(iMoaTypeRegistry.values());
+		return new ArrayList<>(iMoaTypeRegistry.values());
 	}
 
 	public int getMoaTypeId(AetherMoaType type) {

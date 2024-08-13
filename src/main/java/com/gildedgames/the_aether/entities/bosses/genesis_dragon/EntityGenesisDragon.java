@@ -14,47 +14,25 @@ import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.player.PlayerAether;
 import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 import com.gildedgames.the_aether.tileentity.TileEntityElysianChest;
-import com.gildedgames.the_aether.tileentity.TileEntitySkyrootChest;
 import com.gildedgames.the_aether.tileentity.TileEntityTreasureChestBreakable;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockEndPortal;
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityFlying;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.IEntityMultiPart;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
-import net.minecraft.entity.boss.IBossDisplayData;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.item.EntityEnderCrystal;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityLargeFireball;
-import net.minecraft.entity.projectile.EntitySmallFireball;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.StatCollector;
 import net.minecraft.util.Vec3;
-import net.minecraft.world.EnumDifficulty;
-import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GIEntityMultiPart, IMob
 {
@@ -159,8 +137,8 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
         }
 
         p_70974_2_ = 1.0F - p_70974_2_;
-        int j = this.ringBufferIndex - p_70974_1_ * 1 & 63;
-        int k = this.ringBufferIndex - p_70974_1_ * 1 - 1 & 63;
+        int j = this.ringBufferIndex - p_70974_1_ & 63;
+        int k = this.ringBufferIndex - p_70974_1_ - 1 & 63;
         double[] adouble = new double[3];
         double d0 = this.ringBuffer[j][0];
         double d1 = MathHelper.wrapAngleTo180_double(this.ringBuffer[k][0] - d0);
@@ -202,7 +180,7 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
     			dy *= velocity;
     			dz *= velocity;
     			
-    			NewAetherParticleHandler.DRAGON_FLAME.spawn(worldObj, px, py, pz, -dx, dy, -dz, 0.0f, new Object[0]);
+    			NewAetherParticleHandler.DRAGON_FLAME.spawn(worldObj, px, py, pz, -dx, dy, -dz, 0.0f);
     			}   	  
     	}
     }
@@ -276,7 +254,7 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
             {
                 for (int i = 0; i < this.ringBuffer.length; ++i)
                 {
-                    this.ringBuffer[i][0] = (double)this.rotationYaw;
+                    this.ringBuffer[i][0] = this.rotationYaw;
                     this.ringBuffer[i][1] = this.posY;
                 }
             }
@@ -286,7 +264,7 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
                 this.ringBufferIndex = 0;
             }
 
-            this.ringBuffer[this.ringBufferIndex][0] = (double)this.rotationYaw;
+            this.ringBuffer[this.ringBufferIndex][0] = this.rotationYaw;
             this.ringBuffer[this.ringBufferIndex][1] = this.posY;
             double d0;
             double d1;
@@ -343,17 +321,17 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
                     this.setNewTarget();
                 }
 
-                d0 /= (double)MathHelper.sqrt_double(d10 * d10 + d1 * d1);
+                d0 /= MathHelper.sqrt_double(d10 * d10 + d1 * d1);
                 f12 = 0.6F;
 
                 if (d0 < (double)(-f12))
                 {
-                    d0 = (double)(-f12);
+                    d0 = -f12;
                 }
 
                 if (d0 > (double)f12)
                 {
-                    d0 = (double)f12;
+                    d0 = f12;
                 }
 
                 this.motionY += d0 * 0.10000000149011612D;
@@ -372,7 +350,7 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
                 }
 
                 Vec3 vec3 = Vec3.createVectorHelper(this.targetX - this.posX, this.targetY - this.posY, this.targetZ - this.posZ).normalize();
-                Vec3 vec32 = Vec3.createVectorHelper((double)MathHelper.sin(this.rotationYaw * (float)Math.PI / 180.0F), this.motionY, (double)(-MathHelper.cos(this.rotationYaw * (float)Math.PI / 180.0F))).normalize();
+                Vec3 vec32 = Vec3.createVectorHelper(MathHelper.sin(this.rotationYaw * (float)Math.PI / 180.0F), this.motionY, -MathHelper.cos(this.rotationYaw * (float)Math.PI / 180.0F)).normalize();
                 float f5 = (float)(vec32.dotProduct(vec3) + 0.5D) / 1.5F;
 
                 if (f5 < 0.0F)
@@ -407,8 +385,8 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
                 Vec3 vec31 = Vec3.createVectorHelper(this.motionX, this.motionY, this.motionZ).normalize();
                 float f9 = (float)(vec31.dotProduct(vec32) + 1.0D) / 2.0F;
                 f9 = 0.8F + 0.15F * f9;
-                this.motionX *= (double)f9;
-                this.motionZ *= (double)f9;
+                this.motionX *= f9;
+                this.motionZ *= f9;
                 this.motionY *= 0.9100000262260437D; //0.0
             }
 
@@ -572,7 +550,7 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
 
         if (this.rand.nextInt(3) == 0 && !this.worldObj.playerEntities.isEmpty())
         {
-            this.target = (Entity)this.worldObj.playerEntities.get(this.rand.nextInt(this.worldObj.playerEntities.size()));   
+            this.target = this.worldObj.playerEntities.get(this.rand.nextInt(this.worldObj.playerEntities.size()));
                       
         }
         else
@@ -582,10 +560,10 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
             do
             {
                 this.targetX = 0.0D;
-                this.targetY = (double)(70.0F + this.rand.nextFloat() * 50.0F);
+                this.targetY = 70.0F + this.rand.nextFloat() * 50.0F;
                 this.targetZ = 0.0D;
-                this.targetX += (double)(this.rand.nextFloat() * 120.0F - 60.0F);
-                this.targetZ += (double)(this.rand.nextFloat() * 120.0F - 60.0F);
+                this.targetX += this.rand.nextFloat() * 120.0F - 60.0F;
+                this.targetZ += this.rand.nextFloat() * 120.0F - 60.0F;
                 double d0 = this.posX - this.targetX;
                 double d1 = this.posY - this.targetY;
                 double d2 = this.posZ - this.targetZ;
@@ -892,11 +870,10 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
      	
      	
         
-        if (ds.getEntity() == null || !(ds.getEntity() instanceof EntityPlayer)) {
+        if (ds.getEntity() == null || !(ds.getEntity() instanceof EntityPlayer player)) {
    		 return false;
         }
-        EntityPlayer player = (EntityPlayer) ds.getEntity();
-   		boolean flag = super.attackEntityFrom(ds, Math.max(0, i));
+		boolean flag = super.attackEntityFrom(ds, Math.max(0, i));
    	
    		if (flag) {
    		if (this.getHealth() <= 0 || this.isDead) {
@@ -1027,11 +1004,10 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
     {
         super.onDeath(p_70645_1_);
 
-        if (p_70645_1_.getEntity() instanceof EntityPlayer)
+        if (p_70645_1_.getEntity() instanceof EntityPlayer entityplayer)
         {
-            EntityPlayer entityplayer = (EntityPlayer)p_70645_1_.getEntity();
-            
-            entityplayer.triggerAchievement(AchievementsAether.defeat_palladium);
+
+			entityplayer.triggerAchievement(AchievementsAether.defeat_palladium);
             
         }
             

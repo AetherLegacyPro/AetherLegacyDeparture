@@ -14,10 +14,10 @@ public class ValkyrieModel extends ModelBiped {
 	public ModelRenderer bipedLeftArm2;
 	public ModelRenderer wingLeft;
 	public ModelRenderer wingRight;
-	public ModelRenderer skirt[];
-	public ModelRenderer sword[];
-	public ModelRenderer strand[];
-	public ModelRenderer halo[];
+	public ModelRenderer[] skirt;
+	public ModelRenderer[] sword;
+	public ModelRenderer[] strand;
+	public ModelRenderer[] halo;
 
 	public static final int swordParts = 5;
 	public static final int skirtParts = 6;
@@ -290,8 +290,8 @@ public class ValkyrieModel extends ModelBiped {
 		}
 
 		if (this.isRiding) {
-			this.bipedRightArm.rotateAngleX += -0.6283185F;
-			this.bipedLeftArm.rotateAngleX += -0.6283185F;
+			this.bipedRightArm.rotateAngleX -= 0.6283185F;
+			this.bipedLeftArm.rotateAngleX -= 0.6283185F;
 			this.bipedRightLeg.rotateAngleX = -1.256637F;
 			this.bipedLeftLeg.rotateAngleX = -1.256637F;
 			this.bipedRightLeg.rotateAngleY = 0.3141593F;

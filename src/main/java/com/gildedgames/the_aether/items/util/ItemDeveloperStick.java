@@ -2,7 +2,6 @@ package com.gildedgames.the_aether.items.util;
 
 import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.player.perks.AetherRankings;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;

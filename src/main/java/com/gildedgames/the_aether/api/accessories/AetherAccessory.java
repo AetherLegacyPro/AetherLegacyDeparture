@@ -27,7 +27,7 @@ public class AetherAccessory extends RegistryEntry {
 		this.accessoryStack = stack;
 		this.extraType = type == AccessoryType.RING ? AccessoryType.EXTRA_RING : type == AccessoryType.MISC ? AccessoryType.EXTRA_MISC : null;
 
-		this.setRegistryName(stack.getItem().getUnlocalizedName().toString() + "_meta_" + (stack.isItemStackDamageable() ? 0 : stack.getItemDamage()));
+		this.setRegistryName(stack.getItem().getUnlocalizedName() + "_meta_" + (stack.isItemStackDamageable() ? 0 : stack.getItemDamage()));
 	}
 
 	public AccessoryType getAccessoryType() {

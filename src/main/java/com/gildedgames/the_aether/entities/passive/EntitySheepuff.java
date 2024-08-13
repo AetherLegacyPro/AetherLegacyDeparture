@@ -6,7 +6,6 @@ import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.items.ItemsAether;
 import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
@@ -89,7 +88,7 @@ public class EntitySheepuff extends EntityAetherAnimal {
 	      final int i = MathHelper.floor_double(this.posX);
 	      final int j = MathHelper.floor_double(this.boundingBox.minY);
 	      final int k = MathHelper.floor_double(this.posZ);
-	      final boolean canSpawn = this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes((Entity)this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);          
+	      final boolean canSpawn = this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
 	      return (this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_dirt || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.arctic_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.verdant_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.enchanted_aether_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.divine_grass) && this.worldObj.getBlockLightValue(i, j, k) > 7 && canSpawn && this.rand.nextInt(AetherConfig.getSheepuffSpawnrate()) == 0 && super.getCanSpawnHere();
 	                       
 	}
@@ -259,7 +258,7 @@ public class EntitySheepuff extends EntityAetherAnimal {
 
 	public void setFleeceColor(int i) {
 		byte byte0 = this.dataWatcher.getWatchableObjectByte(16);
-		this.dataWatcher.updateObject(16, Byte.valueOf((byte) (byte0 & 240 | i & 15)));
+		this.dataWatcher.updateObject(16, (byte) (byte0 & 240 | i & 15));
 	}
 
 	public boolean getSheared() {
@@ -267,7 +266,7 @@ public class EntitySheepuff extends EntityAetherAnimal {
 	}
 
 	public void setSheared(boolean flag) {
-		this.dataWatcher.updateObject(17, Byte.valueOf((byte) (flag ? 1 : 0)));
+		this.dataWatcher.updateObject(17, (byte) (flag ? 1 : 0));
 	}
 
 	public boolean getPuffed() {
@@ -275,7 +274,7 @@ public class EntitySheepuff extends EntityAetherAnimal {
 	}
 
 	public void setPuffed(boolean flag) {
-		this.dataWatcher.updateObject(18, Byte.valueOf((byte) (flag ? 1 : 0)));
+		this.dataWatcher.updateObject(18, (byte) (flag ? 1 : 0));
 	}
 
 	public static int getRandomFleeceColor(Random random) {

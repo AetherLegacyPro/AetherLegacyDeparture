@@ -44,16 +44,11 @@ public class EntityAIAttackContinuously extends EntityAIBase {
 	}
 
 	@Override
-	public void startExecuting() {
-
-	}
-
-	@Override
 	public void resetTask() {
 		EntityLivingBase entitylivingbase = (EntityLivingBase) this.attacker.getEntityToAttack();
 
 		if (entitylivingbase instanceof EntityPlayer && ((EntityPlayer) entitylivingbase).capabilities.isCreativeMode) {
-			this.attacker.setAttackTarget((EntityLivingBase) null);
+			this.attacker.setAttackTarget(null);
 		}
 	}
 
@@ -87,7 +82,7 @@ public class EntityAIAttackContinuously extends EntityAIBase {
 	}
 
 	protected double getAttackReachSqr(EntityLivingBase attackTarget) {
-		return (double) (this.attacker.width * 2.0F * this.attacker.width * 2.0F + attackTarget.width);
+		return this.attacker.width * 2.0F * this.attacker.width * 2.0F + attackTarget.width;
 	}
 
 }

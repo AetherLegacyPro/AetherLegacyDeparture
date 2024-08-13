@@ -52,10 +52,10 @@ public class EntityEtherealTorchFlame extends EntityFX
         par1Tessellator.startDrawingQuads();
         par1Tessellator.setBrightness(this.getBrightnessForRender(partialTicks));
         par1Tessellator.setColorRGBA_F(r, g, b, a);
-        par1Tessellator.addVertexWithUV((double)(ipx - rx * this.scale - ryz * this.scale), (double)(ipy - rxz * this.scale), (double)(ipz - rz * this.scale - rxy * this.scale), 1.0, (this.currentTexture + 1) * this.relativeTextureHeight);
-        par1Tessellator.addVertexWithUV((double)(ipx - rx * this.scale + ryz * this.scale), (double)(ipy + rxz * this.scale), (double)(ipz - rz * this.scale + rxy * this.scale), 1.0, this.currentTexture * this.relativeTextureHeight);
-        par1Tessellator.addVertexWithUV((double)(ipx + rx * this.scale + ryz * this.scale), (double)(ipy + rxz * this.scale), (double)(ipz + rz * this.scale + rxy * this.scale), 0.0, this.currentTexture * this.relativeTextureHeight);
-        par1Tessellator.addVertexWithUV((double)(ipx + rx * this.scale - ryz * this.scale), (double)(ipy - rxz * this.scale), (double)(ipz + rz * this.scale - rxy * this.scale), 0.0, (this.currentTexture + 1) * this.relativeTextureHeight);
+        par1Tessellator.addVertexWithUV(ipx - rx * this.scale - ryz * this.scale, ipy - rxz * this.scale, ipz - rz * this.scale - rxy * this.scale, 1.0, (this.currentTexture + 1) * this.relativeTextureHeight);
+        par1Tessellator.addVertexWithUV(ipx - rx * this.scale + ryz * this.scale, ipy + rxz * this.scale, ipz - rz * this.scale + rxy * this.scale, 1.0, this.currentTexture * this.relativeTextureHeight);
+        par1Tessellator.addVertexWithUV(ipx + rx * this.scale + ryz * this.scale, ipy + rxz * this.scale, ipz + rz * this.scale + rxy * this.scale, 0.0, this.currentTexture * this.relativeTextureHeight);
+        par1Tessellator.addVertexWithUV(ipx + rx * this.scale - ryz * this.scale, ipy - rxz * this.scale, ipz + rz * this.scale - rxy * this.scale, 0.0, (this.currentTexture + 1) * this.relativeTextureHeight);
         par1Tessellator.draw();
         GL11.glBindTexture(3553, prevTex);
     }

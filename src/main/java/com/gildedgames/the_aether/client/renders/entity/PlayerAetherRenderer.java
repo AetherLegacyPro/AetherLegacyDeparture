@@ -1,6 +1,7 @@
 package com.gildedgames.the_aether.client.renders.entity;
 
 import com.gildedgames.the_aether.Aether;
+import com.gildedgames.the_aether.api.player.util.IAccessoryInventory;
 import com.gildedgames.the_aether.client.models.attachments.ModelAetherWings;
 import com.gildedgames.the_aether.client.models.attachments.ModelAgilityBoots;
 import com.gildedgames.the_aether.client.models.attachments.ModelHalo;
@@ -39,17 +40,13 @@ public class PlayerAetherRenderer {
     
     private static final ResourceLocation TEXTURE_AGILITY_WINGS = Aether.locate("textures/other/agility_wings.png");
 
-    private Minecraft mc;
+    private final Minecraft mc;
 
-    private ModelHalo modelHalo;
-
-    public ModelBiped modelMisc;
-
-    public ModelBiped modelGlow;
-
-    private ModelAetherWings modelWings;
-    
-    private ModelAgilityBoots modelAgilityBoots;
+    private final ModelHalo modelHalo = new ModelHalo();
+    public final ModelBiped modelMisc = new ModelBiped(1.0F);
+    public final ModelBiped modelGlow = new ModelBiped(0.7F);
+    private final ModelAetherWings modelWings = new ModelAetherWings(1.0F);
+    private final ModelAgilityBoots modelAgilityBoots = new ModelAgilityBoots();
 
     private float partialTicks;
 
@@ -59,23 +56,16 @@ public class PlayerAetherRenderer {
 
     public PlayerAetherRenderer() {
         super();
-
-        this.mc = Minecraft.getMinecraft();
-        this.modelHalo = new ModelHalo();
-        this.modelGlow = new ModelBiped(0.7F);
-        this.modelMisc = new ModelBiped(1.0F);
-        this.modelWings = new ModelAetherWings(1.0F);
-        this.modelAgilityBoots = new ModelAgilityBoots();
+        mc = Minecraft.getMinecraft();
     }
 
     public int renderAetherArmor(PlayerAether playerAether, RenderPlayer renderPlayer, ItemStack stack, int slotType) {
         if (stack != null) {
             Item item = stack.getItem();
 
-            if (item instanceof ItemAetherArmor) {
-                ItemAetherArmor itemarmor = (ItemAetherArmor) item;
+            if (item instanceof ItemAetherArmor itemArmor) {
 
-                this.mc.getTextureManager().bindTexture(RenderBiped.getArmorResource(playerAether.getEntity(), stack, slotType, null));
+				mc.getTextureManager().bindTexture(RenderBiped.getArmorResource(playerAether.getEntity(), stack, slotType, null));
                 ModelBiped modelbiped = slotType == 2 ? renderPlayer.modelArmor : renderPlayer.modelArmorChestplate;
                 modelbiped.bipedHead.showModel = slotType == 0;
                 modelbiped.bipedHeadwear.showModel = slotType == 0;
@@ -90,7 +80,7 @@ public class PlayerAetherRenderer {
                 modelbiped.isRiding = renderPlayer.modelBipedMain.isRiding;
                 modelbiped.isChild = renderPlayer.modelBipedMain.isChild;
 
-                int j = itemarmor.getColorFromItemStack(stack, 0);
+                int j = itemArmor.getColorFromItemStack(stack, 0);
 
                 if (j != -1) {
                     float f1 = (float) (j >> 16 & 255) / 255.0F;
@@ -163,9 +153,8 @@ public class PlayerAetherRenderer {
         float f3 = this.interpolateRotation(player.prevRotationYawHead, player.rotationYawHead, partialTicks);
         float f4;
 
-        if (player.isRiding() && player.ridingEntity instanceof EntityLivingBase) {
-            EntityLivingBase entitylivingbase1 = (EntityLivingBase) player.ridingEntity;
-            f2 = this.interpolateRotation(entitylivingbase1.prevRenderYawOffset, entitylivingbase1.renderYawOffset, partialTicks);
+        if (player.isRiding() && player.ridingEntity instanceof EntityLivingBase entitylivingbase1) {
+			f2 = this.interpolateRotation(entitylivingbase1.prevRenderYawOffset, entitylivingbase1.renderYawOffset, partialTicks);
             f4 = MathHelper.wrapAngleTo180_float(f3 - f2);
 
             if (f4 < -85.0F) {
@@ -184,13 +173,13 @@ public class PlayerAetherRenderer {
         }
 
         float f13 = player.prevRotationPitch + (player.rotationPitch - player.prevRotationPitch) * partialTicks;
-        this.renderLivingAt(player, x, y, z);
+        renderLivingAt(x, y, z);
         f4 = this.handleRotationFloat(player, partialTicks);
-        this.rotateCorpse(player, f4, f2, partialTicks);
+        rotateCorpse(player, f4, f2, partialTicks);
         float f5 = 0.0625F;
         GL11.glEnable(GL12.GL_RESCALE_NORMAL);
         GL11.glScalef(-1.0F, -1.0F, 1.0F);
-        this.preRenderCallback(player, partialTicks);
+        preRenderCallback();
         GL11.glTranslatef(0.0F, -24.0F * f5 - 0.0078125F, 0.0F);
         float f6 = player.prevLimbSwingAmount + (player.limbSwingAmount - player.prevLimbSwingAmount) * partialTicks;
         float f7 = player.limbSwing - player.limbSwingAmount * (1.0F - partialTicks);
@@ -219,270 +208,39 @@ public class PlayerAetherRenderer {
 
     private void renderModel(PlayerAether playerAether, float limbSwing, float prevLimbSwing, float rotation, float interpolateRotation, float prevRotationPitch, float scale, float partialTicks) {
         EntityPlayer player = playerAether.getEntity();
+        IAccessoryInventory accessoryInventory = playerAether.getAccessoryInventory();
 
         GL11.glPushMatrix();
 
-        this.setCapeRendering(playerAether.getAccessoryInventory().getStackInSlot(AccessoryType.CAPE) != null);
+        modelMisc.setRotationAngles(limbSwing, prevLimbSwing, rotation, interpolateRotation, prevRotationPitch, scale, player);
+        modelWings.setRotationAngles(limbSwing, prevLimbSwing, rotation, interpolateRotation, prevRotationPitch, scale, player);
+        modelHalo.setRotationAngles(limbSwing, prevLimbSwing, rotation, interpolateRotation, prevRotationPitch, scale, player);
+        modelGlow.setRotationAngles(limbSwing, prevLimbSwing, rotation, interpolateRotation, prevRotationPitch, scale, player);
+        modelAgilityBoots.setRotationAngles(limbSwing, prevLimbSwing, rotation, interpolateRotation, prevRotationPitch, scale, player);
 
-        this.modelMisc.setRotationAngles(limbSwing, prevLimbSwing, rotation, interpolateRotation, prevRotationPitch, scale, player);
-        this.modelWings.setRotationAngles(limbSwing, prevLimbSwing, rotation, interpolateRotation, prevRotationPitch, scale, player);
-        this.modelHalo.setRotationAngles(limbSwing, prevLimbSwing, rotation, interpolateRotation, prevRotationPitch, scale, player);
-        this.modelGlow.setRotationAngles(limbSwing, prevLimbSwing, rotation, interpolateRotation, prevRotationPitch, scale, player);
-        this.modelAgilityBoots.setRotationAngles(limbSwing, prevLimbSwing, rotation, interpolateRotation, prevRotationPitch, scale, player);
-
-        if (playerAether.getAccessoryInventory().getStackInSlot(AccessoryType.PENDANT) != null) {
-            ItemAccessory pendant = (ItemAccessory) playerAether.getAccessoryInventory().getStackInSlot(AccessoryType.PENDANT).getItem();
-
-            this.mc.getTextureManager().bindTexture(pendant.texture);
-
-            int colour = pendant.getColorFromItemStack(new ItemStack(pendant, 1, 0), 1);
-            float red = ((colour >> 16) & 0xff) / 255F;
-            float green = ((colour >> 8) & 0xff) / 255F;
-            float blue = (colour & 0xff) / 255F;
-
-            if (player.hurtTime > 0) {
-                GL11.glColor3f(1.0F, 0.5F, 0.5F);
-            } else {
-                GL11.glColor3f(red, green, blue);
-            }
-
-            this.modelMisc.bipedBody.render(scale);
-
-            GL11.glColor3f(1.0F, 1.0F, 1.0F);
-        }
-
-        if (playerAether.getAccessoryInventory().getStackInSlot(AccessoryType.CAPE) != null && !playerAether.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.invisibility_cape))) {
-            ItemAccessory cape = (ItemAccessory) playerAether.getAccessoryInventory().getStackInSlot(AccessoryType.CAPE).getItem();
-
-            if (!player.isInvisible()) {
-                if (playerAether.shouldRenderCape) {
-                    GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-                    GL11.glPushMatrix();
-                    GL11.glTranslatef(0.0F, 0.0F, 0.125F);
-                    double d0 = player.field_71091_bM + (player.field_71094_bP - player.field_71091_bM) * (double) partialTicks - (player.prevPosX + (player.posX - player.prevPosX) * (double) partialTicks);
-                    double d1 = player.field_71096_bN + (player.field_71095_bQ - player.field_71096_bN) * (double) partialTicks - (player.prevPosY + (player.posY - player.prevPosY) * (double) partialTicks);
-                    double d2 = player.field_71097_bO + (player.field_71085_bR - player.field_71097_bO) * (double) partialTicks - (player.prevPosZ + (player.posZ - player.prevPosZ) * (double) partialTicks);
-                    float f = player.prevRenderYawOffset + (player.renderYawOffset - player.prevRenderYawOffset) * partialTicks;
-                    double d3 = (double) MathHelper.sin(f * (float) Math.PI / 180.0F);
-                    double d4 = (double) (-MathHelper.cos(f * (float) Math.PI / 180.0F));
-                    float f1 = (float) d1 * 10.0F;
-                    f1 = MathHelper.clamp_float(f1, -6.0F, 32.0F);
-                    float f2 = (float) (d0 * d3 + d2 * d4) * 100.0F;
-                    float f3 = (float) (d0 * d4 - d2 * d3) * 100.0F;
-
-                    if (f2 < 0.0F) {
-                        f2 = 0.0F;
-                    }
-
-                    float f4 = player.prevCameraYaw + (player.cameraYaw - player.prevCameraYaw) * partialTicks;
-                    f1 = f1 + MathHelper.sin((player.prevDistanceWalkedModified + (player.distanceWalkedModified - player.prevDistanceWalkedModified) * partialTicks) * 6.0F) * 32.0F * f4;
-
-                    if (player.isSneaking()) {
-                        f1 += 25.0F;
-                    }
-
-                    GL11.glRotatef(6.0F + f2 / 2.0F + f1, 1.0F, 0.0F, 0.0F);
-                    GL11.glRotatef(f3 / 2.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glRotatef(-f3 / 2.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glRotatef(180.0F, 0.0F, 1.0F, 0.0F);
-
-                    int colour = cape.getColorFromItemStack(playerAether.getAccessoryInventory().getStackInSlot(AccessoryType.CAPE), 0);
-
-                    float red = ((colour >> 16) & 0xff) / 255F;
-                    float green = ((colour >> 8) & 0xff) / 255F;
-                    float blue = (colour & 0xff) / 255F;
-
-                    if (player.hurtTime > 0) {
-                        GL11.glColor3f(1.0F, 0.5F, 0.5F);
-                    } else {
-                        GL11.glColor3f(red, green, blue);
-                    }
-
-                    this.mc.getTextureManager().bindTexture(cape.texture);
-
-                    GL11.glTranslatef(0.0F, 0.015625F, -0.0625F);
-                    GL11.glScalef(0.8F, 0.9375F, 0.234375F);
-
-                    this.modelMisc.renderCloak(scale);
-                    GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-                    GL11.glPopMatrix();
-                }
-            }
-        }
-
+        renderPendant(accessoryInventory.getFirstStackIfWearing(AccessoryType.PENDANT), player, scale);
+        renderCape(accessoryInventory.getFirstStackIfWearing(AccessoryType.CAPE), player, scale, playerAether.shouldRenderCape);
         GL11.glScalef(0.9375F, 0.9375F, 0.9375F);
+        renderGloves(accessoryInventory.getFirstStackIfWearing(AccessoryType.GLOVES), player, scale);
+        renderShield(accessoryInventory.getFirstStackIfWearing(AccessoryType.SHIELD), player, limbSwing, prevLimbSwing, rotation, interpolateRotation, prevRotationPitch, scale);
 
-        if (playerAether.getAccessoryInventory().getStackInSlot(AccessoryType.GLOVES) != null) {
-            ItemAccessory gloves = (ItemAccessory) playerAether.getAccessoryInventory().getStackInSlot(AccessoryType.GLOVES).getItem();
-
-            this.mc.getTextureManager().bindTexture(gloves.texture);
-
-            int colour = gloves.getColorFromItemStack(playerAether.getAccessoryInventory().getStackInSlot(AccessoryType.GLOVES), 0);
-            float red = ((colour >> 16) & 0xff) / 255F;
-            float green = ((colour >> 8) & 0xff) / 255F;
-            float blue = (colour & 0xff) / 255F;
-
-            if (player.hurtTime > 0) {
-                GL11.glColor3f(1.0F, 0.5F, 0.5F);
-            } else if (gloves != ItemsAether.phoenix_gloves) {
-                GL11.glColor3f(red, green, blue);
-            }
-
-            this.modelMisc.bipedLeftArm.render(scale);
-            this.modelMisc.bipedRightArm.render(scale);
-
-            GL11.glColor3f(1.0F, 1.0F, 1.0F);
-        }
-
-        if (playerAether.getAccessoryInventory().getStackInSlot(AccessoryType.SHIELD) != null) {
-            ItemAccessory shield = (ItemAccessory) playerAether.getAccessoryInventory().getStackInSlot(AccessoryType.SHIELD).getItem();
-
-            if (player.motionX == 0.0 && (player.motionY == -0.0784000015258789 || player.motionY == 0.0) && player.motionZ == 0.0 && shield.hasInactiveTexture())
-            {
-                this.mc.getTextureManager().bindTexture(shield.texture);
-            }
-            else
-            {
-                this.mc.getTextureManager().bindTexture(shield.texture_inactive);
-            }
-
-            GL11.glPushMatrix();
-            GL11.glEnable(GL11.GL_BLEND);
-            GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-            GL11.glScalef(1.125F, 1.125F, 1.2F); //1.1
-
-            if (player.hurtResistantTime > 0) {
-                GL11.glColor4f(1.0F, 0.5F, 0.5F, 1.0F);
-            } else {
-                GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-            }
-
-            this.modelGlow.render(player, limbSwing, prevLimbSwing, rotation, interpolateRotation, prevRotationPitch, scale);
-
-            GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-            GL11.glDisable(GL11.GL_BLEND);
-            GL11.glPopMatrix();
-        }
-
-        if (playerAether.getAccessoryInventory().isWearingValkyrieSet()) {
-            this.mc.getTextureManager().bindTexture(TEXTURE_VALKYRIE);
-
-            this.modelWings.setWingSinage(playerAether.wingSinage);
-            this.modelWings.wingLeft.render(scale);
-            this.modelWings.wingRight.render(scale);
-
-            if (player.hurtResistantTime > 0) {
-                GL11.glColor3f(1.0F, 0.5F, 0.5F);
-            } else {
-                GL11.glColor3f(1.0F, 1.0F, 1.0F);
-            }
-        }
-        
-        if (playerAether.getAccessoryInventory().isWearingValkyrieComboSet()) {
-            this.mc.getTextureManager().bindTexture(TEXTURE_VALKYRIE);
-
-            this.modelWings.setWingSinage(playerAether.wingSinage);
-            this.modelWings.wingLeft.render(scale);
-            this.modelWings.wingRight.render(scale);
-
-            if (player.hurtResistantTime > 0) {
-                GL11.glColor3f(1.0F, 0.5F, 0.5F);
-            } else {
-                GL11.glColor3f(1.0F, 1.0F, 1.0F);
-            }
-        }
-        
-        if (playerAether.getAccessoryInventory().isWearingAmplifiedValkyrieSet() || playerAether.getAccessoryInventory().isWearingAscensiteSet()) {
-            this.mc.getTextureManager().bindTexture(TEXTURE_VALKYRIE);
-
-            this.modelWings.setWingSinage(playerAether.wingSinage);
-            this.modelWings.wingLeft.render(scale);
-            this.modelWings.wingRight.render(scale);
-
-            if (player.hurtResistantTime > 0) {
-                GL11.glColor3f(1.0F, 0.5F, 0.5F);
-            } else {
-                GL11.glColor3f(1.0F, 1.0F, 1.0F);
-            }
-        }
-        
-        if (playerAether.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.false_wings))) {
-        	this.mc.getTextureManager().bindTexture(TEXTURE_VALKYRIE);
-        	
-        	this.modelWings.setWingSinage(playerAether.wingSinage);
-            this.modelWings.wingLeft.render(scale);
-            this.modelWings.wingRight.render(scale);
-
-            if (player.hurtResistantTime > 0) {
-                GL11.glColor3f(1.0F, 0.5F, 0.5F);
-            } else {
-                GL11.glColor3f(1.0F, 1.0F, 1.0F);
-            }
-        }
-        
-        if (playerAether.getAccessoryInventory().isWearingAmplifiedValkyrieRingAndAmplifiedArmor()) {
-        	this.mc.getTextureManager().bindTexture(TEXTURE_VALKYRIE_RING);
-        	
-        	this.modelWings.setWingSinage(playerAether.wingSinage);
-            this.modelWings.wingLeft.render(scale);
-            this.modelWings.wingRight.render(scale);
-
-            if (player.hurtResistantTime > 0) {
-                GL11.glColor3f(1.0F, 0.5F, 0.5F);
-            } else {
-                GL11.glColor3f(1.0F, 1.0F, 1.0F);
-            }
-            
-            player.triggerAchievement(AchievementsAether.not_balanced_flight);
-        }
-        
-        if (playerAether.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.amplified_valkyrie_ring))) {
-        	this.mc.getTextureManager().bindTexture(TEXTURE_VALKYRIE);
-        	
-        	this.modelWings.setWingSinage(playerAether.wingSinage);
-            this.modelWings.wingLeft.render(scale);
-            this.modelWings.wingRight.render(scale);
-
-            if (player.hurtResistantTime > 0) {
-                GL11.glColor3f(1.0F, 0.5F, 0.5F);
-            } else {
-                GL11.glColor3f(1.0F, 1.0F, 1.0F);
-            }
-            
+        if (accessoryInventory.wearingAccessory(ItemsAether.amplified_valkyrie_ring)) {
+            renderWings(player, scale, playerAether.wingSinage);
             player.triggerAchievement(AchievementsAether.balanced_flight);
+        } else if (accessoryInventory.isWearingAmplifiedValkyrieRingAndAmplifiedArmor()) {
+            renderWings(player, scale, playerAether.wingSinage);
+            player.triggerAchievement(AchievementsAether.not_balanced_flight);
+        } else if (
+                accessoryInventory.isWearingValkyrieRing()
+                || accessoryInventory.wearingAccessory(ItemsAether.false_wings)
+                || accessoryInventory.isWearingValkyrieSet()
+                || accessoryInventory.isWearingAmplifiedValkyrieSet()
+                || accessoryInventory.isWearingValkyrieComboSet()
+                || accessoryInventory.isWearingAscensiteSet()) {
+            renderWings(player, scale, playerAether.wingSinage);
         }
-        
-        if (playerAether.getAccessoryInventory().isWearingValkyrieRing()) {
-        	this.mc.getTextureManager().bindTexture(TEXTURE_VALKYRIE_RING);
-        	
-        	this.modelWings.setWingSinage(playerAether.wingSinage);
-            this.modelWings.wingLeft.render(scale);
-            this.modelWings.wingRight.render(scale);
 
-            if (player.hurtResistantTime > 0) {
-                GL11.glColor3f(1.0F, 0.5F, 0.5F);
-            } else {
-                GL11.glColor3f(1.0F, 1.0F, 1.0F);
-            }
-            
-        }
-        
-        if (playerAether.getAccessoryInventory().isWearingValkyrieRingAndAmplifiedArmor()) {
-        	this.mc.getTextureManager().bindTexture(TEXTURE_VALKYRIE_RING);
-        	
-        	this.modelWings.setWingSinage(playerAether.wingSinage);
-            this.modelWings.wingLeft.render(scale);
-            this.modelWings.wingRight.render(scale);
-
-            if (player.hurtResistantTime > 0) {
-                GL11.glColor3f(1.0F, 0.5F, 0.5F);
-            } else {
-                GL11.glColor3f(1.0F, 1.0F, 1.0F);
-            }
-            
-        }
-        
-        if (playerAether.getAccessoryInventory().isWearingAgilityBoots() || playerAether.getAccessoryInventory().isWearingAmplifiedAgilityBoots()) {
+        if (accessoryInventory.isWearingAgilityBoots() || accessoryInventory.isWearingAmplifiedAgilityBoots()) {
         	 float f9 = player.prevRotationYaw + (player.rotationYaw - player.prevRotationYaw) * partialTicks - (player.prevRenderYawOffset + (player.renderYawOffset - player.prevRenderYawOffset) * partialTicks);
 
              GL11.glPushMatrix();
@@ -498,9 +256,6 @@ public class PlayerAetherRenderer {
             this.modelAgilityBoots.renderWings(scale);
             GL11.glPopMatrix();
         }
-        
-    
-        
 
         if (AetherRankings.isRankedPlayer(player.getUniqueID()) && PlayerAether.get(player).shouldRenderHalo && !player.isInvisible()) {
             float f9 = player.prevRotationYaw + (player.rotationYaw - player.prevRotationYaw) * partialTicks - (player.prevRenderYawOffset + (player.renderYawOffset - player.prevRenderYawOffset) * partialTicks);
@@ -538,20 +293,169 @@ public class PlayerAetherRenderer {
         GL11.glPopMatrix();
     }
 
-    private void preRenderCallback(EntityLivingBase entity, float partialTicks) {
+    private void renderPendant(ItemStack pendantStack, EntityPlayer player, float scale) {
+        if(pendantStack == null) {
+            return;
+        }
+        ItemAccessory pendant = (ItemAccessory)pendantStack.getItem();
+        mc.getTextureManager().bindTexture(pendant.texture);
+
+        final int colour = pendant.getColorFromItemStack(pendantStack, 0);
+        final float red = ((colour >> 16) & 0xff) / 255F;
+        final float green = ((colour >> 8) & 0xff) / 255F;
+        final float blue = (colour & 0xff) / 255F;
+
+        if (player.hurtTime > 0) {
+            GL11.glColor3f(1.0F, 0.5F, 0.5F);
+        } else {
+            GL11.glColor3f(red, green, blue);
+        }
+
+        modelMisc.bipedBody.render(scale);
+        GL11.glColor3f(1.0F, 1.0F, 1.0F);
+    }
+
+    private void renderCape(ItemStack capeStack, EntityPlayer player, float scale, boolean shouldRenderCape) {
+        if(capeStack == null) {
+            return;
+        }
+        isCapeRendering = true;
+        ItemAccessory cape = (ItemAccessory)capeStack.getItem();
+        if(!shouldRenderCape || player.isInvisible() || cape == ItemsAether.invisibility_cape) {
+            return;
+        }
+
+        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+        GL11.glPushMatrix();
+        GL11.glTranslatef(0.0F, 0.0F, 0.125F);
+        double d0 = player.field_71091_bM + (player.field_71094_bP - player.field_71091_bM) * (double) partialTicks - (player.prevPosX + (player.posX - player.prevPosX) * (double) partialTicks);
+        double d1 = player.field_71096_bN + (player.field_71095_bQ - player.field_71096_bN) * (double) partialTicks - (player.prevPosY + (player.posY - player.prevPosY) * (double) partialTicks);
+        double d2 = player.field_71097_bO + (player.field_71085_bR - player.field_71097_bO) * (double) partialTicks - (player.prevPosZ + (player.posZ - player.prevPosZ) * (double) partialTicks);
+        float f = player.prevRenderYawOffset + (player.renderYawOffset - player.prevRenderYawOffset) * partialTicks;
+        double d3 = MathHelper.sin(f * (float) Math.PI / 180.0F);
+        double d4 = -MathHelper.cos(f * (float) Math.PI / 180.0F);
+        float f1 = (float) d1 * 10.0F;
+        f1 = MathHelper.clamp_float(f1, -6.0F, 32.0F);
+        float f2 = (float) (d0 * d3 + d2 * d4) * 100.0F;
+        float f3 = (float) (d0 * d4 - d2 * d3) * 100.0F;
+
+        if (f2 < 0.0F) {
+            f2 = 0.0F;
+        }
+
+        float f4 = player.prevCameraYaw + (player.cameraYaw - player.prevCameraYaw) * partialTicks;
+        f1 = f1 + MathHelper.sin((player.prevDistanceWalkedModified + (player.distanceWalkedModified - player.prevDistanceWalkedModified) * partialTicks) * 6.0F) * 32.0F * f4;
+
+        if (player.isSneaking()) {
+            f1 += 25.0F;
+        }
+
+        GL11.glRotatef(6.0F + f2 / 2.0F + f1, 1.0F, 0.0F, 0.0F);
+        GL11.glRotatef(f3 / 2.0F, 0.0F, 0.0F, 1.0F);
+        GL11.glRotatef(-f3 / 2.0F, 0.0F, 1.0F, 0.0F);
+        GL11.glRotatef(180.0F, 0.0F, 1.0F, 0.0F);
+
+        final int colour = cape.getColorFromItemStack(capeStack, 0);
+        final float red = ((colour >> 16) & 0xff) / 255F;
+        final float green = ((colour >> 8) & 0xff) / 255F;
+        final float blue = (colour & 0xff) / 255F;
+
+        if (player.hurtTime > 0) {
+            GL11.glColor3f(1.0F, 0.5F, 0.5F);
+        } else {
+            GL11.glColor3f(red, green, blue);
+        }
+
+        mc.getTextureManager().bindTexture(cape.texture);
+
+        GL11.glTranslatef(0.0F, 0.015625F, -0.0625F);
+        GL11.glScalef(0.8F, 0.9375F, 0.234375F);
+
+        modelMisc.renderCloak(scale);
+        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+        GL11.glPopMatrix();
+    }
+
+    private void renderGloves(ItemStack capeStack, EntityPlayer player, float scale) {
+        if (capeStack == null) {
+            return;
+        }
+        ItemAccessory gloves = (ItemAccessory)capeStack.getItem();
+        mc.getTextureManager().bindTexture(gloves.texture);
+
+        final int colour = gloves.getColorFromItemStack(capeStack, 0);
+        final float red = ((colour >> 16) & 0xff) / 255F;
+        final float green = ((colour >> 8) & 0xff) / 255F;
+        final float blue = (colour & 0xff) / 255F;
+
+        if (player.hurtTime > 0) {
+            GL11.glColor3f(1.0F, 0.5F, 0.5F);
+        } else if (gloves != ItemsAether.phoenix_gloves) {
+            GL11.glColor3f(red, green, blue);
+        }
+
+        modelMisc.bipedLeftArm.render(scale);
+        modelMisc.bipedRightArm.render(scale);
+        GL11.glColor3f(1.0F, 1.0F, 1.0F);
+    }
+
+    private void renderShield(ItemStack shieldStack, EntityPlayer player, float limbSwing, float prevLimbSwing, float rotation, float interpolateRotation, float prevRotationPitch, float scale) {
+        if (shieldStack == null) {
+            return;
+        }
+        ItemAccessory shield = (ItemAccessory)shieldStack.getItem();
+        if (player.motionX == 0.0 && (player.motionY == -0.0784000015258789 || player.motionY == 0.0) && player.motionZ == 0.0 && shield.hasInactiveTexture()) {
+            mc.getTextureManager().bindTexture(shield.texture);
+        } else {
+            mc.getTextureManager().bindTexture(shield.texture_inactive);
+        }
+
+        GL11.glPushMatrix();
+        GL11.glEnable(GL11.GL_BLEND);
+        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+        GL11.glScalef(1.125F, 1.125F, 1.2F); //1.1
+
+        if (player.hurtResistantTime > 0) {
+            GL11.glColor4f(1.0F, 0.5F, 0.5F, 1.0F);
+        } else {
+            GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+        }
+
+        modelGlow.render(player, limbSwing, prevLimbSwing, rotation, interpolateRotation, prevRotationPitch, scale);
+
+        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+        GL11.glDisable(GL11.GL_BLEND);
+        GL11.glPopMatrix();
+    }
+
+    private void renderWings(EntityPlayer player, float scale, float wingSinage) {
+        mc.getTextureManager().bindTexture(TEXTURE_VALKYRIE);
+
+        modelWings.setWingSinage(wingSinage);
+        modelWings.wingLeft.render(scale);
+        modelWings.wingRight.render(scale);
+
+        if (player.hurtResistantTime > 0) {
+            GL11.glColor3f(1.0F, 0.5F, 0.5F);
+        } else {
+            GL11.glColor3f(1.0F, 1.0F, 1.0F);
+        }
+    }
+
+    private void preRenderCallback() {
         float f1 = 0.9375F;
         GL11.glScalef(f1, f1, f1);
     }
 
-    protected float getDeathMaxRotation(EntityLivingBase entity) {
+    protected float getDeathMaxRotation() {
         return 90.0F;
     }
 
     private float handleRotationFloat(EntityLivingBase entity, float partialTicks) {
-        return (float) entity.ticksExisted + partialTicks;
+        return (float)entity.ticksExisted + partialTicks;
     }
 
-    private void renderLivingAt(EntityLivingBase entity, double x, double y, double z) {
+    private void renderLivingAt(double x, double y, double z) {
         GL11.glTranslatef((float) x, (float) y, (float) z);
     }
 
@@ -566,7 +470,7 @@ public class PlayerAetherRenderer {
                 f3 = 1.0F;
             }
 
-            GL11.glRotatef(f3 * this.getDeathMaxRotation(entity), 0.0F, 0.0F, 1.0F);
+            GL11.glRotatef(f3 * getDeathMaxRotation(), 0.0F, 0.0F, 1.0F);
         } else {
             String s = EnumChatFormatting.getTextWithoutFormattingCodes(entity.getCommandSenderName());
 
@@ -580,9 +484,7 @@ public class PlayerAetherRenderer {
     private float interpolateRotation(float p_77034_1_, float p_77034_2_, float p_77034_3_) {
         float f3;
 
-        for (f3 = p_77034_2_ - p_77034_1_; f3 < -180.0F; f3 += 360.0F) {
-            ;
-        }
+        for (f3 = p_77034_2_ - p_77034_1_; f3 < -180.0F; f3 += 360.0F);
 
         while (f3 >= 180.0F) {
             f3 -= 360.0F;
@@ -596,15 +498,11 @@ public class PlayerAetherRenderer {
     }
 
     public float getPartialTicks() {
-        return this.partialTicks;
-    }
-
-    private void setCapeRendering(boolean isRendering) {
-        this.isCapeRendering = isRendering;
+        return partialTicks;
     }
 
     public boolean isCapeRendering() {
-        return this.isCapeRendering;
+        return isCapeRendering;
     }
 
     public static PlayerAetherRenderer instance() {

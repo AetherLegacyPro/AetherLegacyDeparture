@@ -2,26 +2,18 @@ package com.gildedgames.the_aether.items.weapons;
 
 import java.util.Random;
 
-import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.items.util.EnumAetherToolType;
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.EnumAction;
-import net.minecraft.item.EnumRarity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.item.Item.ToolMaterial;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.Vec3;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 
@@ -42,10 +34,10 @@ public class ItemContinuumSword extends ItemSword {
 
 	@Override
 	public Multimap<String, AttributeModifier> getAttributeModifiers(ItemStack stack) {
-		Multimap<String, AttributeModifier> multimap = HashMultimap.<String, AttributeModifier>create();
+		Multimap<String, AttributeModifier> multimap = HashMultimap.create();
 
 		if (stack.getItem() instanceof ItemContinuumSword) {
-			multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(field_111210_e, "Weapon modifier", (double) this.calculateIncrease(stack), 0));
+			multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(field_111210_e, "Weapon modifier", this.calculateIncrease(stack), 0));
 		}
 
 		return multimap;
@@ -69,7 +61,7 @@ public class ItemContinuumSword extends ItemSword {
 	
 	@Override
 	public boolean hitEntity(ItemStack itemstack, EntityLivingBase entityliving, EntityLivingBase entityliving1) {
-		if ((new Random()).nextInt(5) == 0 && entityliving1 != null && entityliving1 instanceof EntityPlayer && entityliving.hurtTime > 0 && entityliving.deathTime <= 0) {
+		if ((new Random()).nextInt(5) == 0 && entityliving1 instanceof EntityPlayer && entityliving.hurtTime > 0 && entityliving.deathTime <= 0) {
 			if (!entityliving.worldObj.isRemote) {
 				entityliving.dropItem(ItemsAether.ambrosium_shard, 1);
 			}

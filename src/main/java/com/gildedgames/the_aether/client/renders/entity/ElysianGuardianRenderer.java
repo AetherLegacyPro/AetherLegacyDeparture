@@ -2,11 +2,9 @@ package com.gildedgames.the_aether.client.renders.entity;
 
 import org.lwjgl.opengl.GL11;
 
-import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.client.models.entities.ElysianGuardianModel;
 import com.gildedgames.the_aether.entities.bosses.EntityElysianGuardian;
 
-import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
@@ -21,8 +19,8 @@ public class ElysianGuardianRenderer extends RenderLiving {
     public ElysianGuardianModel elysianModel;
     
     public ElysianGuardianRenderer(final ElysianGuardianModel model) {
-        super((ModelBase)model, 0.5f);
-        this.setRenderPassModel((ModelBase)model);
+        super(model, 0.5f);
+        this.setRenderPassModel(model);
         this.elysianModel = model;
     }
     
@@ -55,7 +53,7 @@ public class ElysianGuardianRenderer extends RenderLiving {
         final char var5 = '\uf0f0';
         final int var6 = var5 % 65536;
         final int var7 = var5 / 65536;
-        OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, var6 / 1.0f, var7 / 1.0f);
+        OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, var6, var7);
         GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
         GL11.glColor4f(1.0f, 1.0f, 1.0f, var4);
         return 1;

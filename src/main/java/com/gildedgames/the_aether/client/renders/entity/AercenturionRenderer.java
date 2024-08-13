@@ -2,18 +2,13 @@ package com.gildedgames.the_aether.client.renders.entity;
 
 import org.lwjgl.opengl.GL11;
 
-import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.client.models.entities.AercenturionModel;
 import com.gildedgames.the_aether.entities.hostile.EntityAercenturion;
 
-import net.minecraft.block.material.Material;
-import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.RenderBiped;
-import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
 
@@ -25,7 +20,7 @@ public class AercenturionRenderer extends RenderBiped {
 	
 	public AercenturionRenderer(final ModelBiped model, final float f) {
         super(model, f);
-        this.setRenderPassModel((ModelBase)model);
+        this.setRenderPassModel(model);
     }
     
     protected int setMarkingBrightness(final EntityAercenturion golem, final int i, final float f) {
@@ -46,7 +41,7 @@ public class AercenturionRenderer extends RenderBiped {
         final char var5 = '\uf0f0';
         final int var6 = var5 % 65536;
         final int var7 = var5 / 65536;
-        OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, var6 / 1.0f, var7 / 1.0f);
+        OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, var6, var7);
         GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
         GL11.glColor4f(1.0f, 1.0f, 1.0f, var4);
         return 1;

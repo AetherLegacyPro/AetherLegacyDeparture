@@ -9,11 +9,8 @@ import com.gildedgames.the_aether.blocks.BlocksAether;
 
 import net.minecraft.enchantment.EnchantmentData;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ICrafting;
@@ -21,8 +18,6 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
 
@@ -108,7 +103,7 @@ public class DivineEnchantmentTableContainer extends Container
 
         for (int i = 0; i < this.crafters.size(); ++i)
         {
-            ICrafting icrafting = (ICrafting)this.crafters.get(i);
+            ICrafting icrafting = this.crafters.get(i);
             icrafting.sendProgressBarUpdate(this, 0, this.enchantLevels[0]);
             icrafting.sendProgressBarUpdate(this, 1, this.enchantLevels[1]);
             icrafting.sendProgressBarUpdate(this, 2, this.enchantLevels[2]);
@@ -297,7 +292,7 @@ public class DivineEnchantmentTableContainer extends Container
     public ItemStack transferStackInSlot(EntityPlayer p_82846_1_, int p_82846_2_)
     {
         ItemStack itemstack = null;
-        Slot slot = (Slot)this.inventorySlots.get(p_82846_2_);
+        Slot slot = this.inventorySlots.get(p_82846_2_);
 
         if (slot != null && slot.getHasStack())
         {
@@ -313,26 +308,26 @@ public class DivineEnchantmentTableContainer extends Container
             }
             else
             {
-                if (((Slot)this.inventorySlots.get(0)).getHasStack() || !((Slot)this.inventorySlots.get(0)).isItemValid(itemstack1))
+                if (this.inventorySlots.get(0).getHasStack() || !this.inventorySlots.get(0).isItemValid(itemstack1))
                 {
                     return null;
                 }
 
                 if (itemstack1.hasTagCompound() && itemstack1.stackSize == 1)
                 {
-                    ((Slot)this.inventorySlots.get(0)).putStack(itemstack1.copy());
+                    this.inventorySlots.get(0).putStack(itemstack1.copy());
                     itemstack1.stackSize = 0;
                 }
                 else if (itemstack1.stackSize >= 1)
                 {
-                    ((Slot)this.inventorySlots.get(0)).putStack(new ItemStack(itemstack1.getItem(), 1, itemstack1.getItemDamage()));
+                    this.inventorySlots.get(0).putStack(new ItemStack(itemstack1.getItem(), 1, itemstack1.getItemDamage()));
                     --itemstack1.stackSize;
                 }
             }
 
             if (itemstack1.stackSize == 0)
             {
-                slot.putStack((ItemStack)null);
+                slot.putStack(null);
             }
             else
             {

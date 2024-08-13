@@ -1,37 +1,47 @@
 package com.gildedgames.the_aether.api.accessories;
 
+import com.gildedgames.the_aether.AetherConfig;
 import net.minecraft.util.ObjectIntIdentityMap;
 
 public enum AccessoryType {
-	RING("ring", 11, 3),
-	EXTRA_RING("ring", 11, 3),
-	PENDANT("pendant", 16, 7),
-	CAPE("cape", 15, 5),
-	SHIELD("shield", 13, 0),
-	GLOVES("gloves", 10, 0),
-	MISC("misc", 10, 0),
-	EXTRA_MISC("misc", 10, 0);
+	RING("ring", 11),
+	EXTRA_RING("ring", 11),
+	PENDANT("pendant", 16),
+	CAPE("cape", 15),
+	SHIELD("shield", 13),
+	GLOVES("gloves", 10) {
+		@Override
+		public boolean degrades() {
+			return AetherConfig.GlovesDamageable();
+		}
+	},
+	MISC("misc", 10) {
+		@Override
+		public boolean degrades() {
+			return AetherConfig.MiscItemDamageable();
+		}
+	},
+	EXTRA_MISC("misc", 10);
 
-	private int maxDamage, damagedReduced;
+	private final int maxDamage;
 
-	private String displayName;
+	private final String displayName;
 
-	AccessoryType(String displayName, int maxDamage, int damageReduced) {
+	AccessoryType(String displayName, int maxDamage) {
 		this.displayName = displayName;
 		this.maxDamage = maxDamage;
-		this.damagedReduced = damageReduced;
 	}
 
 	public int getMaxDamage() {
-		return this.maxDamage;
-	}
-
-	public int getDamageReduced() {
-		return this.damagedReduced;
+		return maxDamage;
 	}
 
 	public String getDisplayName() {
-		return this.displayName;
+		return displayName;
+	}
+
+	public boolean degrades() {
+		return true;
 	}
 
 	public static ObjectIntIdentityMap createCompleteList() {

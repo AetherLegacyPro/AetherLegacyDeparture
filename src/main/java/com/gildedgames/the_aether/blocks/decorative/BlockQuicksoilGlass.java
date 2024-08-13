@@ -34,11 +34,6 @@ public class BlockQuicksoilGlass extends BlockBreakable {
 	}
 
 	@Override
-	public boolean renderAsNormalBlock() {
-		return true;
-	}
-
-	@Override
 	protected boolean canSilkHarvest() {
 		return true;
 	}

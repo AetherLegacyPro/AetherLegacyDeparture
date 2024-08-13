@@ -25,7 +25,7 @@ public class ItemOrangeSeeds extends Item
 		if ((world.getBlock(x, y, z) == BlocksAether.aether_farmland || world.getBlock(x, y, z) == BlocksAether.enchanted_aether_farmland) && world.getBlock(x, y + 1, z) == Blocks.air) {
 			
 			world.setBlock(x, y + 1, z, BlocksAether.small_orange_tree);
-			world.playSoundEffect((double)(x + 0.5f), (double)(y + 0.5f), (double)(z + 0.5f), Blocks.tallgrass.stepSound.func_150496_b(), (Blocks.tallgrass.stepSound.getVolume() + 1.0f) / 2.0f, Blocks.tallgrass.stepSound.getPitch() * 0.8f);
+			world.playSoundEffect(x + 0.5f, y + 0.5f, z + 0.5f, Blocks.tallgrass.stepSound.func_150496_b(), (Blocks.tallgrass.stepSound.getVolume() + 1.0f) / 2.0f, Blocks.tallgrass.stepSound.getPitch() * 0.8f);
 			--heldItem.stackSize;
 	}
 		

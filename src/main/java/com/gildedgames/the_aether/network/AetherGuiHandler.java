@@ -1,6 +1,7 @@
 package com.gildedgames.the_aether.network;
 
 import com.gildedgames.the_aether.client.gui.inventory.GuiAccessories;
+import com.gildedgames.the_aether.inventory.InventoryAccessories;
 import com.gildedgames.the_aether.player.PlayerAether;
 import com.gildedgames.the_aether.tileentity.TileEntityAmplifier;
 import com.gildedgames.the_aether.tileentity.TileEntityEnchanter;
@@ -9,7 +10,6 @@ import com.gildedgames.the_aether.tileentity.TileEntityIncubator;
 import com.gildedgames.the_aether.tileentity.TileEntityTreasureChest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ContainerChest;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.world.World;
 
 import com.gildedgames.the_aether.blocks.BlocksAether;
@@ -43,25 +43,32 @@ public class AetherGuiHandler implements IGuiHandler {
 	@Override
 	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
 		if (ID == accessories) {
-			return new ContainerAccessories(PlayerAether.get(player).getAccessoryInventory(), player);
+			return PlayerAether.get(player).getAccessoryInventory() instanceof InventoryAccessories inventory ?
+					new ContainerAccessories(inventory, player) : null;
 		} else if (ID == enchanter) {
-			return new ContainerEnchanter(player.inventory, (TileEntityEnchanter) world.getTileEntity(x, y, z));
+			return world.getTileEntity(x, y, z) instanceof TileEntityEnchanter enchanterInv ?
+					new ContainerEnchanter(player.inventory, enchanterInv) : null;
 		} else if (ID == freezer) {
-			return new ContainerFreezer(player.inventory, (TileEntityFreezer) world.getTileEntity(x, y, z));
+			return world.getTileEntity(x, y, z) instanceof TileEntityFreezer freezerInv ?
+					new ContainerFreezer(player.inventory, freezerInv) : null;
 		} else if (ID == incubator) {
-			return new ContainerIncubator(player, player.inventory, (TileEntityIncubator) world.getTileEntity(x, y, z));
+			return world.getTileEntity(x, y, z) instanceof TileEntityIncubator incubatorInv ?
+					new ContainerIncubator(player, player.inventory, incubatorInv) : null;
 		} else if (ID == treasure_chest) {
-			return new ContainerChest(player.inventory, (IInventory) world.getTileEntity(x, y, z));
+			return world.getTileEntity(x, y, z) instanceof TileEntityTreasureChest chestInv ?
+					new ContainerChest(player.inventory, chestInv) : null;
 		} else if (ID == lore) {
 			return new ContainerLore(player.inventory);
 		}  else if (ID == amplifier) {
-			return new ContainerAmplifier(player.inventory, (TileEntityAmplifier) world.getTileEntity(x, y, z));
+			return world.getTileEntity(x, y, z) instanceof TileEntityAmplifier amplifierInv ?
+					new ContainerAmplifier(player.inventory, amplifierInv) : null;
 		} else if (ID == crafting) {
 			return new ContainerSkyrootWorkbench(player.inventory, player.worldObj, x, y, z);
 		} else if (ID == aether_enchantment_table) {
 			return new ContainerAetherEnchantmentTable(player.inventory, player.worldObj, x, y, z);
 		} else if (ID == divine_enchantment_table) {
-			return (world.getBlock(x, y, z) == BlocksAether.divine_enchantment_table) ? new DivineEnchantmentTableContainer(player.inventory, player.worldObj, x, y, z) : null;
+			return (world.getBlock(x, y, z) == BlocksAether.divine_enchantment_table) ?
+					new DivineEnchantmentTableContainer(player.inventory, player.worldObj, x, y, z) : null;
 		}
 		return null;
 	}
@@ -70,27 +77,34 @@ public class AetherGuiHandler implements IGuiHandler {
 	@SideOnly(Side.CLIENT)
 	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
 		if (ID == accessories) {
-			return new GuiAccessories(PlayerAether.get(player));
+			PlayerAether playerAether = PlayerAether.get(player);
+			return playerAether.getAccessoryInventory() instanceof InventoryAccessories inventory ?
+					new GuiAccessories(playerAether, inventory) : null;
 		} else if (ID == enchanter) {
-			return new GuiEnchanter(player.inventory, (TileEntityEnchanter) world.getTileEntity(x, y, z));
+			return world.getTileEntity(x, y, z) instanceof TileEntityEnchanter enchanterInv ?
+					new GuiEnchanter(player.inventory, enchanterInv) : null;
 		} else if (ID == freezer) {
-			return new GuiFreezer(player.inventory, (TileEntityFreezer) world.getTileEntity(x, y, z));
+			return world.getTileEntity(x, y, z) instanceof TileEntityFreezer freezerInv ?
+					new GuiFreezer(player.inventory, freezerInv) : null;
 		} else if (ID == incubator) {
-			return new GuiIncubator(player, player.inventory, (TileEntityIncubator) world.getTileEntity(x, y, z));
+			return world.getTileEntity(x, y, z) instanceof TileEntityIncubator incubatorInv ?
+					new GuiIncubator(player, player.inventory, incubatorInv) : null;
 		} else if (ID == treasure_chest) {
-			return new GuiTreasureChest(player.inventory, (TileEntityTreasureChest) world.getTileEntity(x, y, z));
+			return world.getTileEntity(x, y, z) instanceof TileEntityTreasureChest chestInv ?
+					new GuiTreasureChest(player.inventory, chestInv) : null;
 		} else if (ID == lore) {
 			return new GuiLore(player.inventory);
 		} else if (ID == amplifier) {
-			return new GuiAmplifier(player.inventory, (TileEntityAmplifier) world.getTileEntity(x, y, z));
+			return world.getTileEntity(x, y, z) instanceof TileEntityAmplifier amplifierInv ?
+					new GuiAmplifier(player.inventory, amplifierInv) : null;
 		} else if (ID == crafting) {
 			return new GuiSkyrootCrafting(player.inventory, player.worldObj, x, y, z);
 		} else if (ID == aether_enchantment_table) {
 			return new GuiAetherEnchantmentTable(player.inventory, player.worldObj, x, y, z, null);
 		} else if (ID == divine_enchantment_table) {
-			return new GuiDivineEnchantmentTable(player.inventory, player.worldObj, x, y, z, null);
+			return (world.getBlock(x, y, z) == BlocksAether.divine_enchantment_table) ?
+					new GuiDivineEnchantmentTable(player.inventory, player.worldObj, x, y, z, null) : null;
 		}
-
 		return null;
 	}
 

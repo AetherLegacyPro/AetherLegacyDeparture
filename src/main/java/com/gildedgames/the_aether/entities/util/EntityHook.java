@@ -10,7 +10,6 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.boss.IBossDisplayData;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Direction;
@@ -74,38 +73,35 @@ public class EntityHook implements IExtendedEntityProperties {
 
 		this.entity.worldObj.theProfiler.endSection();
 
-		if (this.entity instanceof EntityLiving) {
-			EntityLiving livingEntity = (EntityLiving) this.entity;
+		if (this.entity instanceof EntityLiving livingEntity) {
 
 			if (livingEntity.getAttackTarget() instanceof EntityPlayer) {
 				PlayerAether playerAether = PlayerAether.get((EntityPlayer) livingEntity.getAttackTarget());
 
-				if (playerAether.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.invisibility_cape))) {
+				if (playerAether.getAccessoryInventory().wearingAccessory(ItemsAether.invisibility_cape)) {
 					livingEntity.setAttackTarget(null);
 				}
 			}
 		}
 
-		if (this.entity instanceof EntityCreature) {
-			EntityCreature creature = (EntityCreature) this.entity;
+		if (this.entity instanceof EntityCreature creature) {
 
 			if (creature.getEntityToAttack() instanceof EntityPlayer) {
 				PlayerAether playerAether = PlayerAether.get((EntityPlayer) creature.getEntityToAttack());
 
-				if (playerAether.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.invisibility_cape))) {
+				if (playerAether.getAccessoryInventory().wearingAccessory(ItemsAether.invisibility_cape)) {
 					creature.setTarget(null);
 				}
 			}
 		}
 
-		if (this.entity instanceof EntityLivingBase)
+		if (this.entity instanceof EntityLivingBase living)
 		{
-			EntityLivingBase living = (EntityLivingBase) this.entity;
 
 			if (living.getAITarget() instanceof EntityPlayer) {
 				PlayerAether playerAether = PlayerAether.get((EntityPlayer) living.getAITarget());
 
-				if (playerAether.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.invisibility_cape))) {
+				if (playerAether.getAccessoryInventory().wearingAccessory(ItemsAether.invisibility_cape)) {
 					living.setRevengeTarget(null);
 				}
 			}

@@ -4,32 +4,22 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 import java.util.List;
-import java.util.Random;
 
-import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.blocks.BlocksAether;
-import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.items.block.IColoredBlock;
 import com.gildedgames.the_aether.items.block.INamedBlock;
-import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.stats.StatList;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.Facing;
-import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -83,8 +73,7 @@ public class BlockAercloudLayer extends Block implements IColoredBlock, INamedBl
 		
 		//blue aercloud
 		if (world.getBlockMetadata(x, y, z) == 1) {
-			if (entity instanceof EntityPlayer) {
-				EntityPlayer player = (EntityPlayer) entity;
+			if (entity instanceof EntityPlayer player) {
 
 				if (player.isSneaking()) {
 					if (entity.motionY < 0) {
@@ -110,8 +99,7 @@ public class BlockAercloudLayer extends Block implements IColoredBlock, INamedBl
 		}
 		
 		else if (world.getBlockMetadata(x, y, z) == 3) {
-			if (entity instanceof EntityPlayer) {
-				EntityPlayer player = (EntityPlayer) entity;
+			if (entity instanceof EntityPlayer player) {
 
 				if (player.isSneaking()) {
 					if (entity.motionZ < 0) {
@@ -137,8 +125,7 @@ public class BlockAercloudLayer extends Block implements IColoredBlock, INamedBl
 		}
 		
 		else if (world.getBlockMetadata(x, y, z) == 4) {
-			if (entity instanceof EntityPlayer) {
-				EntityPlayer player = (EntityPlayer) entity;
+			if (entity instanceof EntityPlayer player) {
 
 				if (player.isSneaking()) {
 					if (entity.motionX < 0) {
@@ -165,8 +152,7 @@ public class BlockAercloudLayer extends Block implements IColoredBlock, INamedBl
 		
 			//gold aercloud
 		else if (world.getBlockMetadata(x, y, z) == 2) {
-				if (entity instanceof EntityPlayer) {
-					EntityPlayer player = (EntityPlayer) entity;
+				if (entity instanceof EntityPlayer player) {
 
 					if (player.isSneaking()) {
 						if (entity.motionY < 0) {

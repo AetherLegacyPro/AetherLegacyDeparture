@@ -74,7 +74,7 @@ public abstract class ItemAetherTool extends ItemTool {
 	@SuppressWarnings({"unchecked", "rawtypes"})
 	public Multimap getItemAttributeModifiers() {
 		Multimap multimap = super.getItemAttributeModifiers();
-		multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(field_111210_e, "Tool modifier", (double) this.attackDamage, 0));
+		multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(field_111210_e, "Tool modifier", this.attackDamage, 0));
 		return multimap;
 	}
 

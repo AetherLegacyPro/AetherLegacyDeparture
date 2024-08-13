@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.items;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -13,7 +12,6 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -32,7 +30,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemAetherSpawnEgg extends Item {
 
-	public static HashMap<Integer, AetherEggInfo> entityEggs = new LinkedHashMap<Integer, AetherEggInfo>();
+	public static HashMap<Integer, AetherEggInfo> entityEggs = new LinkedHashMap<>();
 
 	@SideOnly(Side.CLIENT)
 	private IIcon theIcon;
@@ -44,7 +42,7 @@ public class ItemAetherSpawnEgg extends Item {
 
 	@Override
 	public String getItemStackDisplayName(ItemStack stack) {
-		String s = ("" + StatCollector.translateToLocal(this.getUnlocalizedName() + ".name")).trim();
+		String s = (StatCollector.translateToLocal(this.getUnlocalizedName() + ".name")).trim();
 		String s1 = EntitiesAether.getStringFromID(stack.getItemDamage());
 
 		if (s1 != null) {
@@ -57,7 +55,7 @@ public class ItemAetherSpawnEgg extends Item {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public int getColorFromItemStack(ItemStack p_82790_1_, int p_82790_2_) {
-		AetherEggInfo entityegginfo = entityEggs.get(Integer.valueOf(p_82790_1_.getItemDamage()));
+		AetherEggInfo entityegginfo = entityEggs.get(p_82790_1_.getItemDamage());
 
 		return entityegginfo != null ? (p_82790_2_ == 0 ? entityegginfo.primaryColor : entityegginfo.secondaryColor) : 16777215;
 	}
@@ -117,7 +115,7 @@ public class ItemAetherSpawnEgg extends Item {
 					}
 
 					if (p_77659_2_.getBlock(i, j, k) instanceof BlockLiquid) {
-						Entity entity = spawnCreature(p_77659_2_, p_77659_1_.getItemDamage(), (double) i, (double) j, (double) k);
+						Entity entity = spawnCreature(p_77659_2_, p_77659_1_.getItemDamage(), i, j, k);
 
 						if (entity != null) {
 							if (entity instanceof EntityLivingBase && p_77659_1_.hasDisplayName()) {
@@ -137,7 +135,7 @@ public class ItemAetherSpawnEgg extends Item {
 	}
 
 	public static Entity spawnCreature(World p_77840_0_, int p_77840_1_, double p_77840_2_, double p_77840_4_, double p_77840_6_) {
-		if (!entityEggs.containsKey(Integer.valueOf(p_77840_1_))) {
+		if (!entityEggs.containsKey(p_77840_1_)) {
 			return null;
 		} else {
 			Entity entity = null;
@@ -145,12 +143,12 @@ public class ItemAetherSpawnEgg extends Item {
 			for (int j = 0; j < 1; ++j) {
 				entity = EntitiesAether.createEntityByID(p_77840_1_, p_77840_0_);
 
-				if (entity != null && entity instanceof EntityLivingBase) {
+				if (entity instanceof EntityLivingBase) {
 					EntityLiving entityliving = (EntityLiving) entity;
 					entity.setLocationAndAngles(p_77840_2_, p_77840_4_, p_77840_6_, MathHelper.wrapAngleTo180_float(p_77840_0_.rand.nextFloat() * 360.0F), 0.0F);
 					entityliving.rotationYawHead = entityliving.rotationYaw;
 					entityliving.renderYawOffset = entityliving.rotationYaw;
-					entityliving.onSpawnWithEgg((IEntityLivingData) null);
+					entityliving.onSpawnWithEgg(null);
 					p_77840_0_.spawnEntityInWorld(entity);
 					entityliving.playLivingSound();
 				}
@@ -176,10 +174,8 @@ public class ItemAetherSpawnEgg extends Item {
 	@SideOnly(Side.CLIENT)
 	@SuppressWarnings({"unchecked", "rawtypes"})
 	public void getSubItems(Item p_150895_1_, CreativeTabs p_150895_2_, List p_150895_3_) {
-		Iterator<AetherEggInfo> iterator = entityEggs.values().iterator();
 
-		while (iterator.hasNext()) {
-			AetherEggInfo entityegginfo = iterator.next();
+		for (AetherEggInfo entityegginfo : entityEggs.values()) {
 			p_150895_3_.add(new ItemStack(p_150895_1_, 1, entityegginfo.spawnedID));
 		}
 	}

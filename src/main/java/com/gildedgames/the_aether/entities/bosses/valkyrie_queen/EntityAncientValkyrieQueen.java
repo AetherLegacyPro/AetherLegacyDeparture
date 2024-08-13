@@ -83,7 +83,7 @@ public class EntityAncientValkyrieQueen extends EntityBossMob implements IAether
     public void entityInit() {
         super.entityInit();
 
-        this.dataWatcher.addObject(18, new Byte((byte) 0));
+        this.dataWatcher.addObject(18, (byte) 0);
         this.dataWatcher.addObject(19, AetherNameGen.valkGen());
     }
 
@@ -213,10 +213,9 @@ public class EntityAncientValkyrieQueen extends EntityBossMob implements IAether
             this.moveStrafing = this.moveForward = 0;
         } else {
             if (this.getEntityToAttack() != null) {
-                if (this.getEntityToAttack() instanceof EntityPlayer) {
-                    EntityPlayer target = (EntityPlayer) this.getEntityToAttack();
+                if (this.getEntityToAttack() instanceof EntityPlayer target) {
 
-                    if (target != null) {
+					if (target != null) {
                         if (target.posY > this.posY) {
                             timeUntilTeleportToPlayer++;
 
@@ -351,7 +350,7 @@ public class EntityAncientValkyrieQueen extends EntityBossMob implements IAether
         nbttagcompound.setInteger("DungeonY", this.dungeonY);
         nbttagcompound.setInteger("DungeonZ", this.dungeonZ);
         nbttagcompound.setInteger("DungeonEntranceZ", this.dungeonEntranceZ);
-        nbttagcompound.setTag("SafePos", newDoubleNBTList(new double[]{this.safeX, this.safeY, this.safeZ}));
+        nbttagcompound.setTag("SafePos", newDoubleNBTList(this.safeX, this.safeY, this.safeZ));
         nbttagcompound.setString("BossName", this.getName());
     }
 
@@ -375,10 +374,9 @@ public class EntityAncientValkyrieQueen extends EntityBossMob implements IAether
 
     @Override
     public boolean attackEntityFrom(DamageSource ds, float i) {
-        if (ds.getEntity() instanceof EntityPlayer) {
-            EntityPlayer player = (EntityPlayer) ds.getEntity();
+        if (ds.getEntity() instanceof EntityPlayer player) {
 
-            if (this.worldObj.difficultySetting == EnumDifficulty.PEACEFUL) {
+			if (this.worldObj.difficultySetting == EnumDifficulty.PEACEFUL) {
                 this.spawnExplosionParticle();
                 chatItUp(player, StatCollector.translateToLocal("gui.queen.peaceful"));
                 return false;
@@ -434,10 +432,9 @@ public class EntityAncientValkyrieQueen extends EntityBossMob implements IAether
         this.swingArm();
         flag = entity.attackEntityFrom(DamageSource.causeMobDamage(this), 20);
 
-        if (entity != null && this.getEntityToAttack() != null && entity == this.getEntityToAttack() && entity instanceof EntityPlayer) {
-            EntityPlayer player = (EntityPlayer) entity;
+        if (entity != null && this.getEntityToAttack() != null && entity == this.getEntityToAttack() && entity instanceof EntityPlayer player) {
 
-            if (player.getHealth() <= 0 || player.isDead) {
+			if (player.getHealth() <= 0 || player.isDead) {
                 this.setTarget(null);
                 this.angerLevel = this.chatTime = 0;
                 this.chatItUp(player, StatCollector.translateToLocal("gui.queen.lost"));
@@ -455,14 +452,8 @@ public class EntityAncientValkyrieQueen extends EntityBossMob implements IAether
         this.dropItem(Items.golden_sword, 1);
         
         int rand2 = (int)(1 + Math.random() * 3);
-		switch (rand2)
-        {
-        case 1: this.dropItem(ItemsAether.divine_essence, 1 + rand.nextInt(2));
-        break;
-        case 2: 
-        break;
-        case 3: 
-        break;
+        if(rand2 == 1) {
+            dropItem(ItemsAether.divine_essence, 1 + rand.nextInt(2));
         }
     }
 
@@ -494,9 +485,9 @@ public class EntityAncientValkyrieQueen extends EntityBossMob implements IAether
         b *= ((rand.nextInt(2) * 2) - 1); // Negate or Not
         c *= ((rand.nextInt(2) * 2) - 1); // Negate or Not
 
-        x += (double) a;
-        y += (double) b;
-        z += (double) c;
+        x += a;
+        y += b;
+        z += c;
 
         int newX = (int) Math.floor(x - 0.5D);
         int newY = (int) Math.floor(y - 0.5D);
@@ -569,7 +560,7 @@ public class EntityAncientValkyrieQueen extends EntityBossMob implements IAether
         int i = MathHelper.floor_double(this.posX);
         int j = MathHelper.floor_double(this.boundingBox.minY);
         int k = MathHelper.floor_double(this.posZ);
-        return this.worldObj.checkBlockCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).size() == 0;
+        return this.worldObj.checkBlockCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty();
     }
 
     public int getMedals(EntityPlayer entityplayer) {
@@ -624,7 +615,7 @@ public class EntityAncientValkyrieQueen extends EntityBossMob implements IAether
     }
 
     public void setBossReady(boolean isReady) {
-        this.dataWatcher.updateObject(18, new Byte(isReady ? (byte) 1 : (byte) 0));
+        this.dataWatcher.updateObject(18, isReady ? (byte) 1 : (byte) 0);
     }
 
     public boolean isBossReady() {

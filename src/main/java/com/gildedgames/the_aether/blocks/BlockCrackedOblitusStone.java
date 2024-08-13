@@ -3,14 +3,11 @@ package com.gildedgames.the_aether.blocks;
 import java.util.Random;
 
 import com.gildedgames.the_aether.entities.hostile.EntityCyro;
-import com.gildedgames.the_aether.entities.hostile.EntitySentry;
-import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
 
@@ -32,7 +29,7 @@ public class BlockCrackedOblitusStone extends Block {
         if (!p_149664_1_.isRemote && this == BlocksAether.cracked_oblitus_stone)
         {
             EntityCyro entitycyro = new EntityCyro(p_149664_1_);
-            entitycyro.setLocationAndAngles((double)p_149664_2_ + 0.5D, (double)p_149664_3_, (double)p_149664_4_ + 0.5D, 0.0F, 0.0F);
+            entitycyro.setLocationAndAngles((double)p_149664_2_ + 0.5D, p_149664_3_, (double)p_149664_4_ + 0.5D, 0.0F, 0.0F);
             p_149664_1_.spawnEntityInWorld(entitycyro);
             entitycyro.spawnExplosionParticle();
         }

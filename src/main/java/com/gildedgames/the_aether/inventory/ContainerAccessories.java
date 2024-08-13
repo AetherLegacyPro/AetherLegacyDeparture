@@ -1,8 +1,5 @@
 package com.gildedgames.the_aether.inventory;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.gildedgames.the_aether.api.AetherAPI;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ContainerPlayer;
@@ -13,7 +10,6 @@ import net.minecraft.util.ObjectIntIdentityMap;
 
 import com.gildedgames.the_aether.api.accessories.AccessoryType;
 import com.gildedgames.the_aether.api.accessories.AetherAccessory;
-import com.gildedgames.the_aether.api.player.util.IAccessoryInventory;
 import com.gildedgames.the_aether.inventory.slots.SlotAccessory;
 import com.gildedgames.the_aether.player.PlayerAether;
 
@@ -23,19 +19,19 @@ public class ContainerAccessories extends ContainerPlayer {
 
 	public PlayerAether playerAether;
 
-	private IAccessoryInventory inventoryInstance;
+	private InventoryAccessories inventoryInstance;
 
 	private ObjectIntIdentityMap orderedList = AccessoryType.createCompleteList();
 
 	@SuppressWarnings("unchecked")
-	public ContainerAccessories(IAccessoryInventory inventory, EntityPlayer player) {
+	public ContainerAccessories(InventoryAccessories inventory, EntityPlayer player) {
 		super(player.inventory, !player.worldObj.isRemote, player);
 
 		this.player = player;
 		this.playerAether = PlayerAether.get(player);
 		this.inventoryInstance = inventory;
 
-		for (Slot slot : (ArrayList<Slot>) this.inventorySlots) {
+		for (Slot slot : this.inventorySlots) {
 			if (slot.slotNumber == 0) {
 				slot.xDisplayPosition += 10;
 				slot.yDisplayPosition -= 8;
@@ -65,9 +61,8 @@ public class ContainerAccessories extends ContainerPlayer {
 	public int getAccessorySlot(AccessoryType type) {
 		int slotID = 0;
 
-		for (Slot checkSlot : (List<Slot>) this.inventorySlots) {
-			if (checkSlot instanceof SlotAccessory && !checkSlot.getHasStack()) {
-				SlotAccessory accessorySlot = (SlotAccessory) checkSlot;
+		for (Slot checkSlot : this.inventorySlots) {
+			if (checkSlot instanceof SlotAccessory accessorySlot && !checkSlot.getHasStack()) {
 
 				if (accessorySlot.getAccessoryType() == type) {
 					return slotID;
@@ -82,7 +77,7 @@ public class ContainerAccessories extends ContainerPlayer {
 
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer player, int slotNumber) {
-		Slot slot = (Slot) this.inventorySlots.get(slotNumber);
+		Slot slot = this.inventorySlots.get(slotNumber);
 
 		if (slot != null && slot.getHasStack()) {
 			ItemStack stack = slot.getStack();
@@ -101,7 +96,7 @@ public class ContainerAccessories extends ContainerPlayer {
 				}
 
 				if (newSlotIndex != -1) {
-					Slot accessorySlot = (SlotAccessory) this.inventorySlots.get(newSlotIndex);
+					Slot accessorySlot = this.inventorySlots.get(newSlotIndex);
 					accessorySlot.putStack(stack);
 					slot.putStack(null);
 

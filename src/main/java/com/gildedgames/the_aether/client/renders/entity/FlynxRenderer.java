@@ -2,7 +2,6 @@ package com.gildedgames.the_aether.client.renders.entity;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -11,7 +10,6 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 import com.gildedgames.the_aether.Aether;
-import com.gildedgames.the_aether.client.models.entities.CockatriceModel;
 import com.gildedgames.the_aether.client.models.entities.FlynxModel;
 import com.gildedgames.the_aether.entities.passive.EntityFlynx;
 
@@ -38,7 +36,7 @@ public class FlynxRenderer extends RenderLiving
      */
     public void doRender(EntityFlynx p_76986_1_, double p_76986_2_, double p_76986_4_, double p_76986_6_, float p_76986_8_, float p_76986_9_)
     {
-        super.doRender((EntityLiving)p_76986_1_, p_76986_2_, p_76986_4_, p_76986_6_, p_76986_8_, p_76986_9_);
+        super.doRender(p_76986_1_, p_76986_2_, p_76986_4_, p_76986_6_, p_76986_8_, p_76986_9_);
     }
 
     /**

@@ -11,7 +11,6 @@ public enum EnumGummySwetType {
 
 	EnumGummySwetType(int meta, String name) {
 		this.meta = meta;
-		;
 		this.name = name;
 	}
 

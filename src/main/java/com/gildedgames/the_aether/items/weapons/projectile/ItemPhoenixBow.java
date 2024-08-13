@@ -12,7 +12,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
-import net.minecraft.item.EnumAction;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemBow;
 import net.minecraft.item.ItemStack;
@@ -101,8 +100,8 @@ public class ItemPhoenixBow extends ItemBow {
 
 	@Override
 	public void onPlayerStoppedUsing(ItemStack stack, World worldIn, EntityPlayer entityLiving, int timeLeft) {
-		if (entityLiving instanceof EntityPlayer) {
-			EntityPlayer entityplayer = (EntityPlayer) entityLiving;
+		if (entityLiving != null) {
+			EntityPlayer entityplayer = entityLiving;
 			boolean flag = entityplayer.capabilities.isCreativeMode || EnchantmentHelper.getEnchantmentLevel(Enchantment.infinity.effectId, stack) > 0;
 			ItemStack itemstack = this.findAmmo(entityplayer);
 
@@ -194,16 +193,6 @@ public class ItemPhoenixBow extends ItemBow {
 	}
 
 	@Override
-	public int getMaxItemUseDuration(ItemStack stack) {
-		return 72000;
-	}
-
-	@Override
-	public EnumAction getItemUseAction(ItemStack stack) {
-		return EnumAction.bow;
-	}
-
-	@Override
 	public ItemStack onItemRightClick(ItemStack heldItem, World worldIn, EntityPlayer playerIn) {
 		boolean flag = this.findAmmo(playerIn) != null;
 
@@ -225,12 +214,7 @@ public class ItemPhoenixBow extends ItemBow {
     }
     
     public Entity createEntity(final World world, final Entity location, final ItemStack itemstack) {
-        return (Entity)new EntityFireProofItemAether(world, location, itemstack);
+        return new EntityFireProofItemAether(world, location, itemstack);
     }
-
-	@Override
-	public int getItemEnchantability() {
-		return 1;
-	}
 
 }

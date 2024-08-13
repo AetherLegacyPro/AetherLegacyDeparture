@@ -31,20 +31,20 @@ public class FlyingCowWingModel extends ModelBase {
 		EntityFlyingCow flyingcow = ((EntityFlyingCow) entityIn);
 		GL11.glTranslatef(0.0F, -10.0F * scale, 0.0F);
 
-		float wingBend = -((float) Math.acos((double) flyingcow.wingFold));
+		float wingBend = -((float) Math.acos(flyingcow.wingFold));
 
 		float x = 32.0F * flyingcow.wingFold / 4.0F;
-		float y = -32.0F * (float) Math.sqrt((double) (1.0F - flyingcow.wingFold * flyingcow.wingFold)) / 4.0F;
+		float y = -32.0F * (float) Math.sqrt(1.0F - flyingcow.wingFold * flyingcow.wingFold) / 4.0F;
 
-		float x2 = x * (float) Math.cos((double) flyingcow.wingAngle) - y * (float) Math.sin((double) flyingcow.wingAngle);
-		float y2 = x * (float) Math.sin((double) flyingcow.wingAngle) + y * (float) Math.cos((double) flyingcow.wingAngle);
+		float x2 = x * (float) Math.cos(flyingcow.wingAngle) - y * (float) Math.sin(flyingcow.wingAngle);
+		float y2 = x * (float) Math.sin(flyingcow.wingAngle) + y * (float) Math.cos(flyingcow.wingAngle);
 
 		this.leftWingInner.setRotationPoint(4.0F + x2, y2 + 12.0F, 0.0F);
 		this.rightWingInner.setRotationPoint(-4.0F - x2, y2 + 12.0F, 0.0F);
 
 		x *= 3.0F;
-		x2 = x * (float) Math.cos((double) flyingcow.wingAngle) - y * (float) Math.sin((double) flyingcow.wingAngle);
-		y2 = x * (float) Math.sin((double) flyingcow.wingAngle) + y * (float) Math.cos((double) flyingcow.wingAngle);
+		x2 = x * (float) Math.cos(flyingcow.wingAngle) - y * (float) Math.sin(flyingcow.wingAngle);
+		y2 = x * (float) Math.sin(flyingcow.wingAngle) + y * (float) Math.cos(flyingcow.wingAngle);
 
 		this.leftWingOuter.setRotationPoint(4.0F + x2, y2 + 12.0F, 0.0F);
 		this.rightWingOuter.setRotationPoint(-4.0F - x2, y2 + 12.0F, 0.0F);
@@ -60,10 +60,6 @@ public class FlyingCowWingModel extends ModelBase {
 		this.rightWingInner.render(scale);
 
 		GL11.glPopMatrix();
-	}
-
-	@Override
-	public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn) {
 	}
 
 }

@@ -5,10 +5,7 @@ import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
 
 import cpw.mods.fml.common.eventhandler.Event.Result;
 import net.minecraft.block.Block;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemStack;
@@ -20,7 +17,7 @@ public class ItemHolystoneHoe extends ItemHoe
 {
     public ItemHolystoneHoe() {
         super(ToolMaterial.STONE);
-        this.setCreativeTab((CreativeTabs)AetherCreativeTabs.tools);
+        this.setCreativeTab(AetherCreativeTabs.tools);
     }
     
     @Override
@@ -54,7 +51,7 @@ public class ItemHolystoneHoe extends ItemHoe
             if (p_77648_7_ != 0 && p_77648_3_.getBlock(p_77648_4_, p_77648_5_ + 1, p_77648_6_).isAir(p_77648_3_, p_77648_4_, p_77648_5_ + 1, p_77648_6_) && (block == BlocksAether.aether_grass || block == BlocksAether.arctic_grass || block == BlocksAether.verdant_grass || block == BlocksAether.aether_dirt))
             {
                 Block block1 = BlocksAether.aether_farmland;
-                p_77648_3_.playSoundEffect((double)((float)p_77648_4_ + 0.5F), (double)((float)p_77648_5_ + 0.5F), (double)((float)p_77648_6_ + 0.5F), block1.stepSound.getStepResourcePath(), (block1.stepSound.getVolume() + 1.0F) / 2.0F, block1.stepSound.getPitch() * 0.8F);
+                p_77648_3_.playSoundEffect((float)p_77648_4_ + 0.5F, (float)p_77648_5_ + 0.5F, (float)p_77648_6_ + 0.5F, block1.stepSound.getStepResourcePath(), (block1.stepSound.getVolume() + 1.0F) / 2.0F, block1.stepSound.getPitch() * 0.8F);
 
                 if (p_77648_3_.isRemote)
                 {

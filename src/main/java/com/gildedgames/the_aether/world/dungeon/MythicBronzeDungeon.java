@@ -9,7 +9,6 @@ import com.gildedgames.the_aether.tileentity.TileEntitySkyrootChest;
 import com.gildedgames.the_aether.world.util.RandomTracker;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityMobSpawner;
 import net.minecraft.world.World;

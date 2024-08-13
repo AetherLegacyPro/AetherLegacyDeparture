@@ -121,9 +121,9 @@ public class EntityValkyrie extends EntityAetherMob {
 		b *= ((this.rand.nextInt(2) * 2) - 1);
 		c *= ((this.rand.nextInt(2) * 2) - 1);
 
-		x += (double) a;
-		y += (double) b;
-		z += (double) c;
+		x += a;
+		y += b;
+		z += c;
 
 		int newX = (int) Math.floor(x - 0.5D);
 		int newY = (int) Math.floor(y - 0.5D);
@@ -235,8 +235,7 @@ public class EntityValkyrie extends EntityAetherMob {
 			this.sinage -= (3.141593F * 2F);
 		}
 
-		if (this.getAttackTarget() instanceof EntityPlayer) {
-			EntityPlayer player = (EntityPlayer) this.getAttackTarget();
+		if (this.getAttackTarget() instanceof EntityPlayer player) {
 
 			if (this.getHealth() <= 0) {
 				int pokey = rand.nextInt(3);
@@ -352,8 +351,7 @@ public class EntityValkyrie extends EntityAetherMob {
 			this.attackTime = 20;
 			swingArm();
 			flag = entity.attackEntityFrom(DamageSource.causeMobDamage(this), 7);
-			if (entity != null && this.getAttackTarget() != null && entity == getAttackTarget() && entity instanceof EntityPlayer) {
-				EntityPlayer player = (EntityPlayer) entity;
+			if (entity != null && this.getAttackTarget() != null && entity == getAttackTarget() && entity instanceof EntityPlayer player) {
 				if (player.getHealth() <= 0) {
 					int pokey = this.rand.nextInt(3);
 
@@ -403,7 +401,7 @@ public class EntityValkyrie extends EntityAetherMob {
         final int i = MathHelper.floor_double(this.posX);
         final int j = MathHelper.floor_double(this.boundingBox.minY);
         final int k = MathHelper.floor_double(this.posZ);
-        final boolean canSpawn = this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes((Entity)this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);          
+        final boolean canSpawn = this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
         return (this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_angelic_stone || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_light_angelic_stone || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_divine_angelic_stone || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_divine_light_angelic_stone || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_mythic_light_angelic_stone || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_mythic_angelic_stone || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_ancient_angelic_stone || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_ancient_light_angelic_stone) && this.worldObj.getBlockLightValue(i, j, k) < 14 && canSpawn;
                        
     }

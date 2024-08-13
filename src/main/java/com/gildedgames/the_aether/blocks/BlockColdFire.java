@@ -27,12 +27,8 @@ public class BlockColdFire extends BlockFire
         this.setLightLevel(0.20f);
         this.setBlockBounds(0.0f, 0.0f, 0.0f, 1.0f, 0.015625f, 1.0f);
     }
-    
-    public AxisAlignedBB getCollisionBoundingBoxFromPool(final World p_149668_1_, final int p_149668_2_, final int p_149668_3_, final int p_149668_4_) {
-        return null;
-    }
-    
-    public boolean isCollidable() {
+
+	public boolean isCollidable() {
         return true;
     }
     
@@ -56,18 +52,18 @@ public class BlockColdFire extends BlockFire
     }
     
     private boolean canNeighborBurn(final World world, final int x, final int y, final int z) {
-        return Blocks.fire.canCatchFire((IBlockAccess)world, x + 1, y, z, ForgeDirection.WEST) || Blocks.fire.canCatchFire((IBlockAccess)world, x - 1, y, z, ForgeDirection.EAST) || Blocks.fire.canCatchFire((IBlockAccess)world, x, y - 1, z, ForgeDirection.UP) || Blocks.fire.canCatchFire((IBlockAccess)world, x, y + 1, z, ForgeDirection.DOWN) || Blocks.fire.canCatchFire((IBlockAccess)world, x, y, z - 1, ForgeDirection.SOUTH) || Blocks.fire.canCatchFire((IBlockAccess)world, x, y, z + 1, ForgeDirection.NORTH);
+        return Blocks.fire.canCatchFire(world, x + 1, y, z, ForgeDirection.WEST) || Blocks.fire.canCatchFire(world, x - 1, y, z, ForgeDirection.EAST) || Blocks.fire.canCatchFire(world, x, y - 1, z, ForgeDirection.UP) || Blocks.fire.canCatchFire(world, x, y + 1, z, ForgeDirection.DOWN) || Blocks.fire.canCatchFire(world, x, y, z - 1, ForgeDirection.SOUTH) || Blocks.fire.canCatchFire(world, x, y, z + 1, ForgeDirection.NORTH);
     }
     
     private void tryCatchFire(final World world, final int x, final int y, final int z, final int i1, final Random rand, final int i2, final ForgeDirection face) {
-        final int j1 = world.getBlock(x, y, z).getFlammability((IBlockAccess)world, x, y, z, face);
+        final int j1 = world.getBlock(x, y, z).getFlammability(world, x, y, z, face);
         if (rand.nextInt(i1) < j1) {
             final boolean flag = world.getBlock(x, y, z) == Blocks.tnt;
             int k1 = i2 + rand.nextInt(5) / 4;
             if (k1 > 15) {
                 k1 = 15;
             }
-            world.setBlock(x, y, z, (Block)Blocks.fire, k1, 3);
+            world.setBlock(x, y, z, Blocks.fire, k1, 3);
             if (flag) {
                 Blocks.tnt.onBlockDestroyedByPlayer(world, x, y, z, 1);
             }
@@ -80,24 +76,21 @@ public class BlockColdFire extends BlockFire
     
     @Override
 	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
-		if (entity instanceof EntityPlayer) {
-			EntityPlayer player = (EntityPlayer) entity;
-			
+		if (entity instanceof EntityPlayer player) {
+
 			entity.attackEntityFrom(DamageSource.magic, 1.0F);
-			((EntityLivingBase)player).addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 120, 0));
-			((EntityLivingBase)player).addPotionEffect(new PotionEffect(Potion.digSlowdown.id, 140, 0));
+			player.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 120, 0));
+			player.addPotionEffect(new PotionEffect(Potion.digSlowdown.id, 140, 0));
 		
 		}
-		if (entity instanceof EntityCyro) {
-			EntityCyro player = (EntityCyro) entity;
-			
-			((EntityLivingBase)player).addPotionEffect(new PotionEffect(Potion.regeneration.id, 60, 1));
+		if (entity instanceof EntityCyro player) {
+
+			player.addPotionEffect(new PotionEffect(Potion.regeneration.id, 60, 1));
 		
 		}
-		if (entity instanceof EntityCyroGuardian) {
-			EntityCyroGuardian player = (EntityCyroGuardian) entity;
-			
-			((EntityLivingBase)player).addPotionEffect(new PotionEffect(Potion.regeneration.id, 100, 3));
+		if (entity instanceof EntityCyroGuardian player) {
+
+			player.addPotionEffect(new PotionEffect(Potion.regeneration.id, 100, 3));
 		
 		}
 		else  {
@@ -112,12 +105,12 @@ public class BlockColdFire extends BlockFire
             return 0;
         }
         int l = b0;
-        l = this.getChanceToEncourageFire((IBlockAccess)world, x + 1, y, z, l, ForgeDirection.WEST);
-        l = this.getChanceToEncourageFire((IBlockAccess)world, x - 1, y, z, l, ForgeDirection.EAST);
-        l = this.getChanceToEncourageFire((IBlockAccess)world, x, y - 1, z, l, ForgeDirection.UP);
-        l = this.getChanceToEncourageFire((IBlockAccess)world, x, y + 1, z, l, ForgeDirection.DOWN);
-        l = this.getChanceToEncourageFire((IBlockAccess)world, x, y, z - 1, l, ForgeDirection.SOUTH);
-        l = this.getChanceToEncourageFire((IBlockAccess)world, x, y, z + 1, l, ForgeDirection.NORTH);
+        l = this.getChanceToEncourageFire(world, x + 1, y, z, l, ForgeDirection.WEST);
+        l = this.getChanceToEncourageFire(world, x - 1, y, z, l, ForgeDirection.EAST);
+        l = this.getChanceToEncourageFire(world, x, y - 1, z, l, ForgeDirection.UP);
+        l = this.getChanceToEncourageFire(world, x, y + 1, z, l, ForgeDirection.DOWN);
+        l = this.getChanceToEncourageFire(world, x, y, z - 1, l, ForgeDirection.SOUTH);
+        l = this.getChanceToEncourageFire(world, x, y, z + 1, l, ForgeDirection.NORTH);
         return l;
     }
     
@@ -136,7 +129,7 @@ public class BlockColdFire extends BlockFire
         		 f = (float)p_149734_2_ + p_149734_5_.nextFloat() * 0.1F;
                  f1 = (float)p_149734_3_ + p_149734_5_.nextFloat();
                  f2 = (float)p_149734_4_ + p_149734_5_.nextFloat();
-                 p_149734_1_.spawnParticle("snowshovel", (double)f, (double)f1, (double)f2, 0.0D, 0.0D, 0.0D);
+                 p_149734_1_.spawnParticle("snowshovel", f, f1, f2, 0.0D, 0.0D, 0.0D);
              }        	    
         }
     }
@@ -155,9 +148,9 @@ public class BlockColdFire extends BlockFire
                 if (l < 15) {
                     world.setBlockMetadataWithNotify(x, y, z, l + rand.nextInt(3) / 2, 4);
                 }
-                world.scheduleBlockUpdate(x, y, z, (Block)this, this.tickRate(world) + rand.nextInt(10));
+                world.scheduleBlockUpdate(x, y, z, this, this.tickRate(world) + rand.nextInt(10));
                 if (!flag && !this.canNeighborBurn(world, x, y, z)) {
-                    if (!World.doesBlockHaveSolidTopSurface((IBlockAccess)world, x, y - 1, z) || l > 3) {
+                    if (!World.doesBlockHaveSolidTopSurface(world, x, y - 1, z) || l > 3) {
                         world.setBlockToAir(x, y, z);
                     }
                 }
@@ -192,7 +185,7 @@ public class BlockColdFire extends BlockFire
                                             if (k2 > 15) {
                                                 k2 = 15;
                                             }
-                                            world.setBlock(i1, k1, j1, (Block)Blocks.fire, k2, 3);
+                                            world.setBlock(i1, k1, j1, Blocks.fire, k2, 3);
                                         }
                                     }
                                 }

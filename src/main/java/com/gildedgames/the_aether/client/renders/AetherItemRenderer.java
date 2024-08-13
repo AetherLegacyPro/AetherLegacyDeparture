@@ -25,7 +25,6 @@ import net.minecraftforge.client.MinecraftForgeClient;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.api.accessories.AccessoryType;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.items.accessories.ItemAccessory;
@@ -56,7 +55,7 @@ public class AetherItemRenderer extends ItemRenderer {
 	
 	public void renderFirstPersonArm(RenderPlayer renderPlayer, EntityClientPlayerMP playerIn) {
 		PlayerAether playerAether = PlayerAether.get(playerIn);
-		ItemStack gloves = playerAether.getAccessoryInventory().getStackInSlot(AccessoryType.GLOVES);
+		ItemStack gloves = playerAether.getAccessoryInventory().getFirstStackIfWearing(AccessoryType.GLOVES);
 
 		this.mc.getTextureManager().bindTexture(playerIn.getLocationSkin());
 
@@ -68,9 +67,8 @@ public class AetherItemRenderer extends ItemRenderer {
 
 		renderPlayer.renderFirstPersonArm(playerIn);
 
-		if (gloves.getItem() instanceof ItemAccessory)
-		{
-			this.mc.getTextureManager().bindTexture(((ItemAccessory) gloves.getItem()).texture);
+		if (gloves.getItem() instanceof ItemAccessory accessory) {
+			this.mc.getTextureManager().bindTexture(accessory.texture);
 
 			int colour = gloves.getItem().getColorFromItemStack(gloves, 0);
 			float red = ((colour >> 16) & 0xff) / 255F;
@@ -102,7 +100,7 @@ public class AetherItemRenderer extends ItemRenderer {
         GL11.glRotatef(entityclientplayermp.prevRotationYaw + (entityclientplayermp.rotationYaw - entityclientplayermp.prevRotationYaw) * partialTicks, 0.0F, 1.0F, 0.0F);
         RenderHelper.enableStandardItemLighting();
         GL11.glPopMatrix();
-        EntityPlayerSP entityplayersp = (EntityPlayerSP)entityclientplayermp;
+        EntityPlayerSP entityplayersp = entityclientplayermp;
         float f3 = entityplayersp.prevRenderArmPitch + (entityplayersp.renderArmPitch - entityplayersp.prevRenderArmPitch) * partialTicks;
         float f4 = entityplayersp.prevRenderArmYaw + (entityplayersp.renderArmYaw - entityplayersp.prevRenderArmYaw) * partialTicks;
         GL11.glRotatef((entityclientplayermp.rotationPitch - f3) * 0.1F, 1.0F, 0.0F, 0.0F);
@@ -118,7 +116,7 @@ public class AetherItemRenderer extends ItemRenderer {
         int i = this.mc.theWorld.getLightBrightnessForSkyBlocks(MathHelper.floor_double(entityclientplayermp.posX), MathHelper.floor_double(entityclientplayermp.posY), MathHelper.floor_double(entityclientplayermp.posZ), 0);
         int j = i % 65536;
         int k = i / 65536;
-        OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float)j / 1.0F, (float)k / 1.0F);
+        OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float)j, (float)k);
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         float f5;
         float f6;
@@ -206,10 +204,10 @@ public class AetherItemRenderer extends ItemRenderer {
             GL11.glNormal3f(0.0F, 0.0F, -1.0F);
             tessellator.startDrawingQuads();
             byte b0 = 7;
-            tessellator.addVertexWithUV((double)(0 - b0), (double)(128 + b0), 0.0D, 0.0D, 1.0D);
-            tessellator.addVertexWithUV((double)(128 + b0), (double)(128 + b0), 0.0D, 1.0D, 1.0D);
-            tessellator.addVertexWithUV((double)(128 + b0), (double)(0 - b0), 0.0D, 1.0D, 0.0D);
-            tessellator.addVertexWithUV((double)(0 - b0), (double)(0 - b0), 0.0D, 0.0D, 0.0D);
+            tessellator.addVertexWithUV(-b0, 128 + b0, 0.0D, 0.0D, 1.0D);
+            tessellator.addVertexWithUV(128 + b0, 128 + b0, 0.0D, 1.0D, 1.0D);
+            tessellator.addVertexWithUV(128 + b0, -b0, 0.0D, 1.0D, 0.0D);
+            tessellator.addVertexWithUV(-b0, -b0, 0.0D, 0.0D, 0.0D);
             tessellator.draw();
 
             IItemRenderer custom = MinecraftForgeClient.getItemRenderer(itemstack, FIRST_PERSON_MAP);
@@ -333,7 +331,7 @@ public class AetherItemRenderer extends ItemRenderer {
                     f10 = (float)(k1 >> 16 & 255) / 255.0F;
                     f11 = (float)(k1 >> 8 & 255) / 255.0F;
                     f12 = (float)(k1 & 255) / 255.0F;
-                    GL11.glColor4f(1.0F * f10, 1.0F * f11, 1.0F * f12, 1.0F);
+                    GL11.glColor4f(f10, f11, f12, 1.0F);
                     this.renderItem(entityclientplayermp, itemstack, x, EQUIPPED_FIRST_PERSON);
                 }
             }

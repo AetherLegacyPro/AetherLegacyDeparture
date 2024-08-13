@@ -133,8 +133,8 @@ public class CrystalDragonModel extends ModelBase
         GL11.glPushMatrix();
         EntityCrystalDragon entitydragon = (EntityCrystalDragon)p_78088_1_;
         float f6 = entitydragon.prevAnimTime + (entitydragon.animTime - entitydragon.prevAnimTime) * this.partialTicks;
-        this.jaw.rotateAngleX = (float)(Math.sin((double)(f6 * (float)Math.PI * 2.0F)) + 1.0D) * 0.2F;
-        float f7 = (float)(Math.sin((double)(f6 * (float)Math.PI * 2.0F - 1.0F)) + 1.0D);
+        this.jaw.rotateAngleX = (float)(Math.sin(f6 * (float)Math.PI * 2.0F) + 1.0D) * 0.2F;
+        float f7 = (float)(Math.sin(f6 * (float)Math.PI * 2.0F - 1.0F) + 1.0D);
         f7 = (f7 * f7 * 1.0F + f7 * 2.0F) * 0.05F;
         GL11.glTranslatef(0.0F, f7 - 2.0F, -3.0F);
         GL11.glRotatef(f7 * 2.0F, 1.0F, 0.0F, 0.0F);
@@ -153,16 +153,16 @@ public class CrystalDragonModel extends ModelBase
         for (int i = 0; i < 5; ++i)
         {
             double[] adouble1 = entitydragon.getMovementOffsets(5 - i, this.partialTicks);
-            f15 = (float)Math.cos((double)((float)i * 0.45F + f14)) * 0.15F;
+            f15 = (float)Math.cos((float)i * 0.45F + f14) * 0.15F;
             this.spine.rotateAngleY = this.updateRotations(adouble1[0] - adouble[0]) * (float)Math.PI / 180.0F * f11;
             this.spine.rotateAngleX = f15 + (float)(adouble1[1] - adouble[1]) * (float)Math.PI / 180.0F * f11 * 5.0F;
             this.spine.rotateAngleZ = -this.updateRotations(adouble1[0] - (double)f13) * (float)Math.PI / 180.0F * f11;
             this.spine.rotationPointY = f8;
             this.spine.rotationPointZ = f9;
             this.spine.rotationPointX = f10;
-            f8 = (float)((double)f8 + Math.sin((double)this.spine.rotateAngleX) * 10.0D);
-            f9 = (float)((double)f9 - Math.cos((double)this.spine.rotateAngleY) * Math.cos((double)this.spine.rotateAngleX) * 10.0D);
-            f10 = (float)((double)f10 - Math.sin((double)this.spine.rotateAngleY) * Math.cos((double)this.spine.rotateAngleX) * 10.0D);
+            f8 = (float)((double)f8 + Math.sin(this.spine.rotateAngleX) * 10.0D);
+            f9 = (float)((double)f9 - Math.cos(this.spine.rotateAngleY) * Math.cos(this.spine.rotateAngleX) * 10.0D);
+            f10 = (float)((double)f10 - Math.sin(this.spine.rotateAngleY) * Math.cos(this.spine.rotateAngleX) * 10.0D);
             this.spine.render(p_78088_7_);
         }
 
@@ -170,8 +170,8 @@ public class CrystalDragonModel extends ModelBase
         this.head.rotationPointZ = f9;
         this.head.rotationPointX = f10;
         double[] adouble2 = entitydragon.getMovementOffsets(0, this.partialTicks);
-        this.head.rotateAngleY = this.updateRotations(adouble2[0] - adouble[0]) * (float)Math.PI / 180.0F * 1.0F;
-        this.head.rotateAngleZ = -this.updateRotations(adouble2[0] - (double)f13) * (float)Math.PI / 180.0F * 1.0F;
+        this.head.rotateAngleY = this.updateRotations(adouble2[0] - adouble[0]) * (float)Math.PI / 180.0F;
+        this.head.rotateAngleZ = -this.updateRotations(adouble2[0] - (double)f13) * (float)Math.PI / 180.0F;
         this.head.render(p_78088_7_);
         GL11.glPushMatrix();
         GL11.glTranslatef(0.0F, 1.0F, 0.0F);
@@ -184,10 +184,10 @@ public class CrystalDragonModel extends ModelBase
         {
             GL11.glEnable(GL11.GL_CULL_FACE);
             f15 = f6 * (float)Math.PI * 2.0F;
-            this.wing.rotateAngleX = 0.125F - (float)Math.cos((double)f15) * 0.2F;
+            this.wing.rotateAngleX = 0.125F - (float)Math.cos(f15) * 0.2F;
             this.wing.rotateAngleY = 0.25F;
-            this.wing.rotateAngleZ = (float)(Math.sin((double)f15) + 0.125D) * 0.8F;
-            this.wingTip.rotateAngleZ = -((float)(Math.sin((double)(f15 + 2.0F)) + 0.5D)) * 0.75F;
+            this.wing.rotateAngleZ = (float)(Math.sin(f15) + 0.125D) * 0.8F;
+            this.wingTip.rotateAngleZ = -((float)(Math.sin(f15 + 2.0F) + 0.5D)) * 0.75F;
             this.rearLeg.rotateAngleX = 1.0F + f7 * 0.1F;
             this.rearLegTip.rotateAngleX = 0.5F + f7 * 0.1F;
             this.rearFoot.rotateAngleX = 0.75F + f7 * 0.1F;
@@ -208,7 +208,7 @@ public class CrystalDragonModel extends ModelBase
         GL11.glPopMatrix();
         GL11.glCullFace(GL11.GL_BACK);
         GL11.glDisable(GL11.GL_CULL_FACE);
-        float f16 = -((float)Math.sin((double)(f6 * (float)Math.PI * 2.0F))) * 0.0F;
+        float f16 = -((float)Math.sin(f6 * (float)Math.PI * 2.0F)) * 0.0F;
         f14 = f6 * (float)Math.PI * 2.0F;
         f8 = 10.0F;
         f9 = 60.0F;
@@ -218,16 +218,16 @@ public class CrystalDragonModel extends ModelBase
         for (int k = 0; k < 12; ++k)
         {
             adouble2 = entitydragon.getMovementOffsets(12 + k, this.partialTicks);
-            f16 = (float)((double)f16 + Math.sin((double)((float)k * 0.45F + f14)) * 0.05000000074505806D);
+            f16 = (float)((double)f16 + Math.sin((float)k * 0.45F + f14) * 0.05000000074505806D);
             this.spine.rotateAngleY = (this.updateRotations(adouble2[0] - adouble[0]) * f11 + 180.0F) * (float)Math.PI / 180.0F;
             this.spine.rotateAngleX = f16 + (float)(adouble2[1] - adouble[1]) * (float)Math.PI / 180.0F * f11 * 5.0F;
             this.spine.rotateAngleZ = this.updateRotations(adouble2[0] - (double)f13) * (float)Math.PI / 180.0F * f11;
             this.spine.rotationPointY = f8;
             this.spine.rotationPointZ = f9;
             this.spine.rotationPointX = f10;
-            f8 = (float)((double)f8 + Math.sin((double)this.spine.rotateAngleX) * 10.0D);
-            f9 = (float)((double)f9 - Math.cos((double)this.spine.rotateAngleY) * Math.cos((double)this.spine.rotateAngleX) * 10.0D);
-            f10 = (float)((double)f10 - Math.sin((double)this.spine.rotateAngleY) * Math.cos((double)this.spine.rotateAngleX) * 10.0D);
+            f8 = (float)((double)f8 + Math.sin(this.spine.rotateAngleX) * 10.0D);
+            f9 = (float)((double)f9 - Math.cos(this.spine.rotateAngleY) * Math.cos(this.spine.rotateAngleX) * 10.0D);
+            f10 = (float)((double)f10 - Math.sin(this.spine.rotateAngleY) * Math.cos(this.spine.rotateAngleX) * 10.0D);
             this.spine.render(p_78088_7_);
         }
 

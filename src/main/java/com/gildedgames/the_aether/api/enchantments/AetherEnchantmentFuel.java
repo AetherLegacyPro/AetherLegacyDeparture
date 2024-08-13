@@ -24,7 +24,7 @@ public class AetherEnchantmentFuel extends RegistryEntry {
 		this.timeGiven = timeGiven;
 		this.fuelStack = fuelStack;
 
-		this.setRegistryName(fuelStack.getItem().getUnlocalizedName().toString() + "_meta_" + (fuelStack.isItemStackDamageable() ? 0 : fuelStack.getItemDamage()));
+		this.setRegistryName(fuelStack.getItem().getUnlocalizedName() + "_meta_" + (fuelStack.isItemStackDamageable() ? 0 : fuelStack.getItemDamage()));
 	}
 
 	public int getTimeGiven() {
@@ -37,8 +37,7 @@ public class AetherEnchantmentFuel extends RegistryEntry {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof AetherEnchantmentFuel) {
-			AetherEnchantmentFuel fuel = (AetherEnchantmentFuel) obj;
+		if (obj instanceof AetherEnchantmentFuel fuel) {
 
 			return this.getFuelStack().getItem() == fuel.getFuelStack().getItem() && this.getFuelStack().getItemDamage() == fuel.getFuelStack().getItemDamage();
 		}

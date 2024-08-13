@@ -15,8 +15,7 @@ public class AetherLiquidMovement {
 	public void onUpdate() {
 		Entity entity = this.player.getEntity();
 
-		if (entity instanceof EntityLivingBase) {
-			EntityLivingBase entityLiving = (EntityLivingBase) entity;
+		if (entity instanceof EntityLivingBase entityLiving) {
 
 			float movementLR = this.negativeDifference(entityLiving, entityLiving.moveStrafing);
 			float movementFB = this.negativeDifference(entityLiving, entityLiving.moveForward);

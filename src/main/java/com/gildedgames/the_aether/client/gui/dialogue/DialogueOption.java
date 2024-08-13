@@ -27,7 +27,7 @@ public class DialogueOption extends Gui {
 
 	public void renderDialogue(int mouseX, int mouseY) {
 		this.drawGradientRect(this.xPosition, this.yPosition, this.xPosition + this.width, this.yPosition + this.height, 0x66000000, 0x66000000);
-		this.drawString(this.mc.fontRenderer, this.isMouseOver(mouseX, mouseY) ? EnumChatFormatting.YELLOW.toString() + this.getDialogueText() : this.getDialogueText(), this.xPosition + 2, this.yPosition + 2, 0xffffff);
+		this.drawString(this.mc.fontRenderer, this.isMouseOver(mouseX, mouseY) ? EnumChatFormatting.YELLOW + this.getDialogueText() : this.getDialogueText(), this.xPosition + 2, this.yPosition + 2, 0xffffff);
 	}
 
 	public boolean isMouseOver(int mouseX, int mouseY) {

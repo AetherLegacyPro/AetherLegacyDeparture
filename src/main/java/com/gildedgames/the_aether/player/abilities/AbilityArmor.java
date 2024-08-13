@@ -3,21 +3,18 @@ package com.gildedgames.the_aether.player.abilities;
 import java.util.Random;
 
 import com.gildedgames.the_aether.api.player.IPlayerAether;
+import com.gildedgames.the_aether.api.player.util.IAccessoryInventory;
 import com.gildedgames.the_aether.api.player.util.IAetherAbility;
 import com.gildedgames.the_aether.items.ItemsAether;
-import com.gildedgames.the_aether.player.PlayerAether;
 import com.gildedgames.the_aether.player.movement.AetherAmplifiedLiquidMovement;
 import com.gildedgames.the_aether.player.movement.AetherLiquidMovement;
-import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 
-import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerRespawnEvent;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 
 public class AbilityArmor implements IAetherAbility {
@@ -36,7 +33,6 @@ public class AbilityArmor implements IAetherAbility {
 		this.player_movement = new AetherLiquidMovement(player);
 		this.amplified_player_movement = new AetherAmplifiedLiquidMovement(player);
 	}
-	
 
 	@Override
 	public boolean shouldExecute() {
@@ -45,209 +41,199 @@ public class AbilityArmor implements IAetherAbility {
 
 	@Override
 	public void onUpdate() {
-		
-		if (this.player.getAccessoryInventory().isWearingNeptuneSet()) {
+
+		IAccessoryInventory accessoryInventory = player.getAccessoryInventory();
+
+		EntityPlayer playerEntity = player.getEntity();
+
+		if (accessoryInventory.isWearingNeptuneSet()) {
 			this.player_movement.onUpdate();
 		}
 		
-		if (this.player.getAccessoryInventory().isWearingComboNeptuneSet()) {
+		if (accessoryInventory.isWearingComboNeptuneSet()) {
 			this.player_movement.onUpdate();
 		}
 		
-		if (this.player.getAccessoryInventory().isWearingAmplifiedNeptuneSet()) {
+		if (accessoryInventory.isWearingAmplifiedNeptuneSet()) {
 			this.amplified_player_movement.onUpdate();
 		}
 		
 		//Gravitite
-		else if (this.player.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.aer_cape)) && this.player.getAccessoryInventory().isWearingGravititeSet()) {
+		else if (accessoryInventory.wearingAccessory(ItemsAether.aer_cape) && accessoryInventory.isWearingGravititeSet()) {
 			if (this.player.isJumping() && !this.jumpBoosted) {
-			this.player.getEntity().motionY = 1.5D;
+				playerEntity.motionY = 1.5D;
 			this.jumpBoosted = true;
 			}
-			
-			this.player.getEntity().fallDistance = 0F;
+
+			playerEntity.fallDistance = 0F;
 		
 		}
 		
-		else if (this.player.getAccessoryInventory().isWearingDivineralSet()) {
+		else if (accessoryInventory.isWearingDivineralSet()) {
 			if (this.player.isJumping() && !this.jumpBoosted) {
-				this.player.getEntity().motionY = 1.5D;
+				playerEntity.motionY = 1.5D;
 				this.jumpBoosted = true;
 			}
-			
-			this.player.getEntity().fallDistance = 0F;
+
+			playerEntity.fallDistance = 0F;
 		}
 
-		else if (this.player.getAccessoryInventory().isWearingGravititeSet()) {
+		else if (accessoryInventory.isWearingGravititeSet()) {
 			if (this.player.isJumping() && !this.jumpBoosted) {
-				this.player.getEntity().motionY = 1D;
+				playerEntity.motionY = 1D;
 				this.jumpBoosted = true;
-				this.player.getEntity().fallDistance = 0F;
+				playerEntity.fallDistance = 0F;
 			}
 			
 		}
 		
-		else if (this.player.getAccessoryInventory().isWearingGravititeAndDivineralSet()) {
+		else if (accessoryInventory.isWearingGravititeAndDivineralSet()) {
 			if (this.player.isJumping() && !this.jumpBoosted) {
-				this.player.getEntity().motionY = 1D;
+				playerEntity.motionY = 1D;
 				this.jumpBoosted = true;
 			}
-			
-			this.player.getEntity().fallDistance = 0F;
+
+			playerEntity.fallDistance = 0F;
 		}
 		
 		//Divineral
-		else if (this.player.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.aer_cape)) && this.player.getAccessoryInventory().isWearingDivineralSet()) {
+		else if (accessoryInventory.wearingAccessory(ItemsAether.aer_cape) && accessoryInventory.isWearingDivineralSet()) {
 			if (this.player.isJumping() && !this.jumpBoosted) {
-			this.player.getEntity().motionY = 2D;
-			this.player.getEntity().fallDistance = 0F;
+				playerEntity.motionY = 2D;
+				playerEntity.fallDistance = 0F;
 			this.jumpBoosted = true;
 			}
 		}
 				
 		//Continuum
-		else if (this.player.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.aer_cape)) && this.player.getAccessoryInventory().isWearingContinuumSet()) {
+		else if (accessoryInventory.wearingAccessory(ItemsAether.aer_cape) && accessoryInventory.isWearingContinuumSet()) {
 			if (this.player.isJumping() && !this.jumpBoosted) {
-			this.player.getEntity().motionY = 1D;
+				playerEntity.motionY = 1D;
 			this.jumpBoosted = true;
 			}
-			
-			this.player.getEntity().fallDistance = 0F; 
+
+			playerEntity.fallDistance = 0F;
 		}
 		
 		//Continuum Combo
-		else if (this.player.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.aer_cape)) && this.player.getAccessoryInventory().isWearingContinuumComboSet()) {
+		else if (accessoryInventory.wearingAccessory(ItemsAether.aer_cape) && accessoryInventory.isWearingContinuumComboSet()) {
 			if (this.player.isJumping() && !this.jumpBoosted) {
-			this.player.getEntity().motionY = 1D;
+				playerEntity.motionY = 1D;
 			this.jumpBoosted = true;
 			}
-			
-			this.player.getEntity().fallDistance = 0F; 
+
+			playerEntity.fallDistance = 0F;
 		}
 		
 		//Amplified Continuum
-		else if (this.player.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.aer_cape)) && this.player.getAccessoryInventory().isWearingAmplifiedContinuumSet()) {
+		else if (accessoryInventory.wearingAccessory(ItemsAether.aer_cape) && accessoryInventory.isWearingAmplifiedContinuumSet()) {
 			if (this.player.isJumping() && !this.jumpBoosted) {
-			this.player.getEntity().motionY = 1D;
+				playerEntity.motionY = 1D;
 			this.jumpBoosted = true;
 			}
-			
-			this.player.getEntity().fallDistance = 0F; 
+
+			playerEntity.fallDistance = 0F;
 		}
 		
-		else if (this.player.getAccessoryInventory().isWearingContinuumSet()) {
+		else if (accessoryInventory.isWearingContinuumSet()) {
 			if (this.player.isJumping() && !this.jumpBoosted) {
-				this.player.getEntity().motionY = .5D;
+				playerEntity.motionY = .5D;
 				this.jumpBoosted = true;
 			}
 		}
 		
-		else if (this.player.getAccessoryInventory().isWearingContinuumComboSet()) {
+		else if (accessoryInventory.isWearingContinuumComboSet()) {
 			if (this.player.isJumping() && !this.jumpBoosted) {
-				this.player.getEntity().motionY = .5D;
+				playerEntity.motionY = .5D;
 				this.jumpBoosted = true;
 			}
 		}
 		
-		else if (this.player.getAccessoryInventory().isWearingAmplifiedContinuumSet()) {
+		else if (accessoryInventory.isWearingAmplifiedContinuumSet()) {
 			if (this.player.isJumping() && !this.jumpBoosted) {
-				this.player.getEntity().motionY = .75D;
+				playerEntity.motionY = .75D;
 				this.jumpBoosted = true;
 			}
 		}
 		
-		else if (this.player.getAccessoryInventory().isWearingAgilityBoots()) {
+		else if (accessoryInventory.isWearingAgilityBoots()) {
 			if (this.player.isJumping() && !this.jumpBoosted) {
-				this.player.getEntity().motionY = .5D;
+				playerEntity.motionY = .5D;
 				this.jumpBoosted = true;
 			}
 		}
 		
-		else if (this.player.getAccessoryInventory().isWearingAmplifiedAgilityBoots()) {
+		else if (accessoryInventory.isWearingAmplifiedAgilityBoots()) {
 			if (this.player.isJumping() && !this.jumpBoosted) {
-				this.player.getEntity().motionY = .5D;
-				this.jumpBoosted = true;
-			}
-		}
-		
-		else if (this.player.getAccessoryInventory().isWearingAgilityBootsAndCape()) {
-			if (this.player.isJumping() && !this.jumpBoosted) {
-				this.player.getEntity().motionY = .5D;
-				this.jumpBoosted = true;
-			}
-		}
-		
-		else if (this.player.getAccessoryInventory().isWearingAmplifiedAgilityBootsAndCape()) {
-			if (this.player.isJumping() && !this.jumpBoosted) {
-				this.player.getEntity().motionY = .5D;
+				playerEntity.motionY = .5D;
 				this.jumpBoosted = true;
 			}
 		}
 		
 		//Aer Cape
-		else if (this.player.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.aer_cape))) {
+		else if (accessoryInventory.wearingAccessory(ItemsAether.aer_cape)) {
 			if (this.player.isJumping() && !this.jumpBoosted) {
-				this.player.getEntity().motionY = .5D;
+				playerEntity.motionY = .5D;
 				this.jumpBoosted = true;
 										
 			}
 		}
 
-		if (this.player.getEntity().isWet()) {
-			if (this.player.getAccessoryInventory().wearingArmor(new ItemStack(ItemsAether.phoenix_boots))) {
-				this.damagePhoenixArmor(this.player.getEntity(), ItemsAether.obsidian_boots, 0);
+		if (playerEntity.isWet()) {
+			if (accessoryInventory.wearingArmor(ItemsAether.phoenix_boots)) {
+				this.damagePhoenixArmor(playerEntity, ItemsAether.obsidian_boots, 0);
 			}
 
-			if (this.player.getAccessoryInventory().wearingArmor(new ItemStack(ItemsAether.phoenix_leggings))) {
-				this.damagePhoenixArmor(this.player.getEntity(), ItemsAether.obsidian_leggings, 1);
+			if (accessoryInventory.wearingArmor(ItemsAether.phoenix_leggings)) {
+				this.damagePhoenixArmor(playerEntity, ItemsAether.obsidian_leggings, 1);
 			}
 
-			if (this.player.getAccessoryInventory().wearingArmor(new ItemStack(ItemsAether.phoenix_chestplate))) {
-				this.damagePhoenixArmor(this.player.getEntity(), ItemsAether.obsidian_chestplate, 2);
+			if (accessoryInventory.wearingArmor(ItemsAether.phoenix_chestplate)) {
+				this.damagePhoenixArmor(playerEntity, ItemsAether.obsidian_chestplate, 2);
 			}
 
-			if (this.player.getAccessoryInventory().wearingArmor(new ItemStack(ItemsAether.phoenix_helmet))) {
-				this.damagePhoenixArmor(this.player.getEntity(), ItemsAether.obsidian_helmet, 3);
+			if (accessoryInventory.wearingArmor(ItemsAether.phoenix_helmet)) {
+				this.damagePhoenixArmor(playerEntity, ItemsAether.obsidian_helmet, 3);
 			}
 					
-			if (this.player.getAccessoryInventory().wearingArmor(new ItemStack(ItemsAether.amplified_phoenix_boots))) {
-				this.damagePhoenixArmor(this.player.getEntity(), ItemsAether.amplified_obsidian_boots, 0);
+			if (accessoryInventory.wearingArmor(ItemsAether.amplified_phoenix_boots)) {
+				this.damagePhoenixArmor(playerEntity, ItemsAether.amplified_obsidian_boots, 0);
 			}
 
-			if (this.player.getAccessoryInventory().wearingArmor(new ItemStack(ItemsAether.amplified_phoenix_leggings))) {
-				this.damagePhoenixArmor(this.player.getEntity(), ItemsAether.amplified_obsidian_leggings, 1);
+			if (accessoryInventory.wearingArmor(ItemsAether.amplified_phoenix_leggings)) {
+				this.damagePhoenixArmor(playerEntity, ItemsAether.amplified_obsidian_leggings, 1);
 			}
 
-			if (this.player.getAccessoryInventory().wearingArmor(new ItemStack(ItemsAether.amplified_phoenix_chestplate))) {
-				this.damagePhoenixArmor(this.player.getEntity(), ItemsAether.amplified_obsidian_chestplate, 2);
+			if (accessoryInventory.wearingArmor(ItemsAether.amplified_phoenix_chestplate)) {
+				this.damagePhoenixArmor(playerEntity, ItemsAether.amplified_obsidian_chestplate, 2);
 			}
 
-			if (this.player.getAccessoryInventory().wearingArmor(new ItemStack(ItemsAether.amplified_phoenix_helmet))) {
-				this.damagePhoenixArmor(this.player.getEntity(), ItemsAether.amplified_obsidian_helmet, 3);
+			if (accessoryInventory.wearingArmor(ItemsAether.amplified_phoenix_helmet)) {
+				this.damagePhoenixArmor(playerEntity, ItemsAether.amplified_obsidian_helmet, 3);
 			}
 		}
 
 		if (this.player.getAccessoryInventory().isWearingPhoenixSet()) {
-			this.player.getEntity().extinguish();
+			playerEntity.extinguish();
 			this.player_movement.onUpdate();
 
-			if (!this.player.getEntity().worldObj.isRemote) {
-				((WorldServer) this.player.getEntity().worldObj).func_147487_a("flame", this.player.getEntity().posX + (this.random.nextGaussian() / 5D), this.player.getEntity().posY + (this.random.nextGaussian() / 5D), this.player.getEntity().posZ + (this.random.nextGaussian() / 3D), 0, 0.0D, 0.0D, 0.0D, 0.0D);
+			if (!playerEntity.worldObj.isRemote) {
+				((WorldServer) playerEntity.worldObj).func_147487_a("flame", playerEntity.posX + (this.random.nextGaussian() / 5D), playerEntity.posY + (this.random.nextGaussian() / 5D), playerEntity.posZ + (this.random.nextGaussian() / 3D), 0, 0.0D, 0.0D, 0.0D, 0.0D);
 			}
 		}
 		
 		if (this.player.getAccessoryInventory().isWearingAmplifiedPhoenixSet()) {
-			this.player.getEntity().extinguish();
+			playerEntity.extinguish();
 			this.player_movement.onUpdate();
 
-			if (!this.player.getEntity().worldObj.isRemote) {
-				((WorldServer) this.player.getEntity().worldObj).func_147487_a("flame", this.player.getEntity().posX + (this.random.nextGaussian() / 5D), this.player.getEntity().posY + (this.random.nextGaussian() / 5D), this.player.getEntity().posZ + (this.random.nextGaussian() / 3D), 0, 0.0D, 0.0D, 0.0D, 0.0D);
-				((WorldServer) this.player.getEntity().worldObj).func_147487_a("flame", this.player.getEntity().posX + (this.random.nextGaussian() / 3D), this.player.getEntity().posY + (this.random.nextGaussian() / 3D), this.player.getEntity().posZ + (this.random.nextGaussian() / 3D), 0, 0.0D, 0.0D, 0.0D, 0.0D);
+			if (!playerEntity.worldObj.isRemote) {
+				((WorldServer) playerEntity.worldObj).func_147487_a("flame", playerEntity.posX + (this.random.nextGaussian() / 5D), playerEntity.posY + (this.random.nextGaussian() / 5D), playerEntity.posZ + (this.random.nextGaussian() / 3D), 0, 0.0D, 0.0D, 0.0D, 0.0D);
+				((WorldServer) playerEntity.worldObj).func_147487_a("flame", playerEntity.posX + (this.random.nextGaussian() / 3D), playerEntity.posY + (this.random.nextGaussian() / 3D), playerEntity.posZ + (this.random.nextGaussian() / 3D), 0, 0.0D, 0.0D, 0.0D, 0.0D);
 			}
 		}
 		
 		if (this.player.getAccessoryInventory().isWearingAmplifiedObsidianSet()) {
-			this.player.getEntity().extinguish();
+			playerEntity.extinguish();
 			this.player_movement.onUpdate();
 		}
 		
@@ -258,39 +244,35 @@ public class AbilityArmor implements IAetherAbility {
 		/*if (this.player.getAccessoryInventory().isWearingAgilityBoots() || this.player.getAccessoryInventory().isWearingAgilityBootsAndCape()
 			|| this.player.getAccessoryInventory().isWearingAmplifiedAgilityBoots() || this.player.getAccessoryInventory().isWearingAmplifiedAgilityBootsAndCape()) {						
 			int rand = (int)(1 + Math.random() * 150);
-			if (!this.player.getEntity().worldObj.isRemote && rand == 5) {
-				((WorldServer) this.player.getEntity().worldObj).func_147487_a("explode", this.player.getEntity().posX + (this.random.nextGaussian() / 5D), this.player.getEntity().posY + (this.random.nextGaussian() / 5D), this.player.getEntity().posZ + (this.random.nextGaussian() / 3D), 0, 0.0D, 0.0D, 0.0D, 0.0D);
+			if (!playerEntity.worldObj.isRemote && rand == 5) {
+				((WorldServer) playerEntity.worldObj).func_147487_a("explode", playerEntity.posX + (this.random.nextGaussian() / 5D), playerEntity.posY + (this.random.nextGaussian() / 5D), playerEntity.posZ + (this.random.nextGaussian() / 3D), 0, 0.0D, 0.0D, 0.0D, 0.0D);
 			}
 		}*/
 		
-		if (this.player.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.phoenix_cape))) {
-			this.player.getEntity().extinguish();
+		if (this.player.getAccessoryInventory().wearingAccessory(ItemsAether.phoenix_cape)) {
+			playerEntity.extinguish();
 			this.player_movement.onUpdate();
 
-			if (!this.player.getEntity().worldObj.isRemote) {
-				((WorldServer) this.player.getEntity().worldObj).func_147487_a("flame", this.player.getEntity().posX + (this.random.nextGaussian() / 5D), this.player.getEntity().posY + (this.random.nextGaussian() / 5D), this.player.getEntity().posZ + (this.random.nextGaussian() / 3D), 0, 0.0D, 0.0D, 0.0D, 0.0D);
+			if (!playerEntity.worldObj.isRemote) {
+				((WorldServer) playerEntity.worldObj).func_147487_a("flame", playerEntity.posX + (this.random.nextGaussian() / 5D), playerEntity.posY + (this.random.nextGaussian() / 5D), playerEntity.posZ + (this.random.nextGaussian() / 3D), 0, 0.0D, 0.0D, 0.0D, 0.0D);
 			}
 		}
 
-		if (!this.player.isJumping() && this.player.getEntity().onGround) {
+		if (!this.player.isJumping() && playerEntity.onGround) {
 			this.jumpBoosted = false;
 		}
-			
 
 	}
 
 	public void damagePhoenixArmor(Entity entity, Item outcome, int slot) {
-		if (entity instanceof EntityLivingBase)
-		{
-			if (this.player.getEntity().worldObj.getTotalWorldTime() % 5 == 0)
-			{
+		if (entity instanceof EntityLivingBase) {
+			if (this.player.getEntity().worldObj.getTotalWorldTime() % 5 == 0) {
 				EntityLivingBase entityLiving = (EntityLivingBase) entity;
 				ItemStack stack = entityLiving.getEquipmentInSlot(slot + 1);
 
 				stack.damageItem(1, entityLiving);
 
-				if (stack.stackSize <= 0)
-				{
+				if (stack.stackSize <= 0) {
 					ItemStack outcomeStack = new ItemStack(outcome);
 
 					EnchantmentHelper.setEnchantments(EnchantmentHelper.getEnchantments(stack), outcomeStack);

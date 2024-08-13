@@ -2,7 +2,7 @@ package com.gildedgames.the_aether.client.gui.dialogue;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
@@ -10,7 +10,7 @@ import net.minecraft.util.ChatComponentText;
 
 public class GuiDialogue extends GuiScreen {
 
-	private ArrayList<DialogueOption> dialogueOptions = new ArrayList<DialogueOption>();
+	private ArrayList<DialogueOption> dialogueOptions = new ArrayList<>();
 
 	private String dialogue;
 
@@ -50,9 +50,7 @@ public class GuiDialogue extends GuiScreen {
 	}
 
 	public void addDialogueOptions(DialogueOption... options) {
-		for (DialogueOption option : options) {
-			this.dialogueOptions.add(option);
-		}
+		this.dialogueOptions.addAll(Arrays.asList(options));
 	}
 
 	public void addDialogueMessage(String dialogueMessage) {
@@ -75,7 +73,7 @@ public class GuiDialogue extends GuiScreen {
 
 		int optionWidth = 0;
 
-		for (String theDialogue : ((List<String>) this.fontRendererObj.listFormattedStringToWidth(this.dialogue, 300))) {
+		for (String theDialogue : this.fontRendererObj.listFormattedStringToWidth(this.dialogue, 300)) {
 			int stringWidth = this.fontRendererObj.getStringWidth(theDialogue);
 
 			this.drawGradientRect(this.width / 2 - stringWidth / 2 - 2, this.height / 2 + optionWidth * 12 - 2, this.width / 2 + stringWidth / 2 + 2, this.height / 2 + optionWidth * 10 + 10, 0x66000000, 0x66000000);

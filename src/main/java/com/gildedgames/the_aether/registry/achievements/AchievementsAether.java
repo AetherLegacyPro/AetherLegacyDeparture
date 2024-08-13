@@ -36,7 +36,7 @@ public class AchievementsAether {
 	public static AchievementPage ACpage;
 
 	public static void initialization() {
-		enter_aether = new AetherAchievement("advancement.aether_legacy.enter_aether", "enter_aether", 0, 7, Blocks.glowstone, (Achievement) null).registerStat();
+		enter_aether = new AetherAchievement("advancement.aether_legacy.enter_aether", "enter_aether", 0, 7, Blocks.glowstone, null).registerStat();
 		getting_wood_again = new AetherAchievement("advancement.aether_legacy.getting_wood_again", "getting_wood_again", 0, 3, BlocksAether.skyroot_log, enter_aether).registerStat();
 		skyroot_crafting = new AetherAchievement("advancement.aether_legacy.skyroot_crafting", "skyroot_crafting", 0, 1, BlocksAether.skyroot_workbench, getting_wood_again).registerStat();
 		
@@ -167,7 +167,7 @@ public class AchievementsAether {
 		notch_restored, realm_conquer, lucky, newnew_ore, charging_the_gemstone, even_shinier, balanced_flight, not_balanced_flight, next_level_enchantments);
 
 		AchievementPage.registerAchievementPage(ACpage);
-		FMLCommonHandler.instance().bus().register((Object)new PickUpAchievement());
+		FMLCommonHandler.instance().bus().register(new PickUpAchievement());
 	}
 
 }

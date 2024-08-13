@@ -12,7 +12,6 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -49,8 +48,7 @@ public class BlockPinkAercloud extends Block implements IColoredBlock, INamedBlo
 		//pink aercloud
 	if (AetherConfig.shouldPinkAercloudRegen()) {	
 		if (world.getBlockMetadata(x, y, z) == 0) {
-			if (entity instanceof EntityPlayer) {
-				EntityPlayer player = (EntityPlayer) entity;
+			if (entity instanceof EntityPlayer player) {
 				((EntityLivingBase) entity).addPotionEffect(new PotionEffect(10, 20, 0));
 
 				}
@@ -59,8 +57,7 @@ public class BlockPinkAercloud extends Block implements IColoredBlock, INamedBlo
 		
 			//magenta aercloud		
 		else if (world.getBlockMetadata(x, y, z) == 1) {
-				if (entity instanceof EntityPlayer) {
-					EntityPlayer player = (EntityPlayer) entity;
+				if (entity instanceof EntityPlayer player) {
 					((EntityLivingBase) entity).addPotionEffect(new PotionEffect(10, 20, 0));
 					}
 				}
@@ -69,19 +66,13 @@ public class BlockPinkAercloud extends Block implements IColoredBlock, INamedBlo
 		
 		//orange aercloud
 		else if (world.getBlockMetadata(x, y, z) == 2) {
-				if (entity instanceof EntityPlayer) {
-					EntityPlayer player = (EntityPlayer) entity;
+				if (entity instanceof EntityPlayer player) {
 
-				
+
 				}
 
 			}
 		}
-
-	@Override
-	public boolean renderAsNormalBlock() {
-		return true;
-	}
 
 	@Override
 	@SideOnly(Side.CLIENT)

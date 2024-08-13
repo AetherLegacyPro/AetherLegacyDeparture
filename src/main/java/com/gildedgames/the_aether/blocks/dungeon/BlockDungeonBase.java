@@ -1,17 +1,9 @@
 package com.gildedgames.the_aether.blocks.dungeon;
 
-import java.util.Random;
-
-import com.gildedgames.the_aether.blocks.BlocksAether;
-import com.gildedgames.the_aether.entities.hostile.EntityBattleSentry;
-import com.gildedgames.the_aether.entities.hostile.EntitySentry;
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockNetherrack;
 import net.minecraft.block.material.Material;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.Explosion;

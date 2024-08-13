@@ -1,9 +1,6 @@
 package com.gildedgames.the_aether.items.othermods;
 
-import net.minecraft.block.*;
 import net.minecraft.item.*;
-
-import com.gildedgames.the_aether.registry.OtherModBlocks;
 
 import cpw.mods.fml.common.registry.*;
 

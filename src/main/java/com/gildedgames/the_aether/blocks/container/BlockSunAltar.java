@@ -9,9 +9,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.command.ICommand;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IIcon;
@@ -21,7 +19,6 @@ import net.minecraft.world.World;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.world.WorldProvider;
 
 public class BlockSunAltar extends Block {
 
@@ -65,9 +62,8 @@ public class BlockSunAltar extends Block {
 
 		if (player.dimension == AetherConfig.getAetherDimensionID())
 		{
-			if (world.provider instanceof AetherWorldProvider)
+			if (world.provider instanceof AetherWorldProvider provider)
 			{
-				AetherWorldProvider provider = (AetherWorldProvider) world.provider;
 
 				MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
 

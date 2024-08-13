@@ -5,7 +5,6 @@ import java.util.Random;
 import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import net.minecraft.block.IGrowable;
-import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -33,11 +32,6 @@ public class BlockStrawberryBushStem extends BlockAetherFlower implements IGrowa
 		if (world.getBlockLightValue(x, y + 1, z) >= 9 && random.nextInt(60) == 0) {
 			world.setBlock(x, y, z, BlocksAether.strawberry_bush);
 		}
-	}
-
-	@Override
-	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
-		return null;
 	}
 
 	@SideOnly(Side.CLIENT)

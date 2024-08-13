@@ -85,9 +85,9 @@ public class AetherLoadingScreen extends LoadingScreenRenderer {
 				float f = 32.0F;
 				tessellator.startDrawingQuads();
 				tessellator.setColorOpaque_I(4210752);
-				tessellator.addVertexWithUV(0.0D, (double) i1, 0.0D, 0.0D, (double) ((float) i1 / f));
-				tessellator.addVertexWithUV((double) l, (double) i1, 0.0D, (double) ((float) l / f), (double) ((float) i1 / f));
-				tessellator.addVertexWithUV((double) l, 0.0D, 0.0D, (double) ((float) l / f), 0.0D);
+				tessellator.addVertexWithUV(0.0D, i1, 0.0D, 0.0D, (float) i1 / f);
+				tessellator.addVertexWithUV(l, i1, 0.0D, (float) l / f, (float) i1 / f);
+				tessellator.addVertexWithUV(l, 0.0D, 0.0D, (float) l / f, 0.0D);
 				tessellator.addVertexWithUV(0.0D, 0.0D, 0.0D, 0.0D, 0.0D);
 				tessellator.draw();
 
@@ -99,15 +99,15 @@ public class AetherLoadingScreen extends LoadingScreenRenderer {
 					GL11.glDisable(GL11.GL_TEXTURE_2D);
 					tessellator.startDrawingQuads();
 					tessellator.setColorOpaque_I(8421504);
-					tessellator.addVertex((double) j1, (double) k1, 0.0D);
-					tessellator.addVertex((double) j1, (double) (k1 + b1), 0.0D);
-					tessellator.addVertex((double) (j1 + b0), (double) (k1 + b1), 0.0D);
-					tessellator.addVertex((double) (j1 + b0), (double) k1, 0.0D);
+					tessellator.addVertex(j1, k1, 0.0D);
+					tessellator.addVertex(j1, k1 + b1, 0.0D);
+					tessellator.addVertex(j1 + b0, k1 + b1, 0.0D);
+					tessellator.addVertex(j1 + b0, k1, 0.0D);
 					tessellator.setColorOpaque_I(8454016);
-					tessellator.addVertex((double) j1, (double) k1, 0.0D);
-					tessellator.addVertex((double) j1, (double) (k1 + b1), 0.0D);
-					tessellator.addVertex((double) (j1 + progress), (double) (k1 + b1), 0.0D);
-					tessellator.addVertex((double) (j1 + progress), (double) k1, 0.0D);
+					tessellator.addVertex(j1, k1, 0.0D);
+					tessellator.addVertex(j1, k1 + b1, 0.0D);
+					tessellator.addVertex(j1 + progress, k1 + b1, 0.0D);
+					tessellator.addVertex(j1 + progress, k1, 0.0D);
 					tessellator.draw();
 					GL11.glEnable(GL11.GL_TEXTURE_2D);
 				}

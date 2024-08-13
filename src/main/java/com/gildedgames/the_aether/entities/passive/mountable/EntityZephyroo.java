@@ -2,32 +2,20 @@ package com.gildedgames.the_aether.entities.passive.mountable;
 
 import net.minecraft.world.*;
 import net.minecraft.entity.player.*;
-import net.minecraft.init.Items;
 
 import java.util.*;
 
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.blocks.BlocksAether;
-import com.gildedgames.the_aether.entities.hostile.EntityAetherMob;
 import com.gildedgames.the_aether.entities.passive.EntityAetherAnimal;
-import com.gildedgames.the_aether.entities.passive.EntityThunderlo;
-import com.gildedgames.the_aether.entities.util.EntitySaddleMount;
 import com.gildedgames.the_aether.items.ItemsAether;
-import com.gildedgames.the_aether.player.PlayerAether;
 import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 
 import net.minecraft.entity.*;
-import net.minecraft.block.Block;
 import net.minecraft.entity.ai.*;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.passive.EntityAnimal;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
-import net.minecraft.world.World;
 
 public class EntityZephyroo extends EntityAetherAnimal
 {
@@ -53,7 +41,7 @@ public class EntityZephyroo extends EntityAetherAnimal
    	      final int i = MathHelper.floor_double(this.posX);
    	      final int j = MathHelper.floor_double(this.boundingBox.minY);
    	      final int k = MathHelper.floor_double(this.posZ);
-   	      final boolean canSpawn = this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes((Entity)this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);          
+   	      final boolean canSpawn = this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
    	      return (this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_dirt || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.arctic_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.verdant_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.enchanted_aether_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.divine_grass) && this.worldObj.getBlockLightValue(i, j, k) > 7 && canSpawn && this.rand.nextInt(AetherConfig.getZephyrooSpawnrate()) == 0 && super.getCanSpawnHere();
    	                       
    	}
@@ -65,16 +53,15 @@ public class EntityZephyroo extends EntityAetherAnimal
     @Override
     public void onUpdate() {
         super.onUpdate();
-       final List<Entity> entitiesAround = (List<Entity>)this.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)this, this.boundingBox.expand(5.5, 1.75, 5.5));
+       final List<Entity> entitiesAround = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(5.5, 1.75, 5.5));
        boolean foundPlayer = false;
        if (this.riddenByEntity != null && this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).getAttributeValue() != 25.0) {
             this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(25.0);
         }
         for (final Entity entity : entitiesAround) {
-            if (entity instanceof EntityPlayer) {
-                final EntityPlayer player = (EntityPlayer)entity;
-                
-            }
+            if (entity instanceof EntityPlayer player) {
+
+			}
         }
         if (!foundPlayer) {
             this.entityToAttack = null;
@@ -90,14 +77,14 @@ public class EntityZephyroo extends EntityAetherAnimal
     	if (this.riddenByEntity == null || entityplayer == this.riddenByEntity) {
             if (this.riddenByEntity == null) {
                if (!entityplayer.worldObj.isRemote) {
-                   entityplayer.mountEntity((Entity)this);
+                   entityplayer.mountEntity(this);
                    final float rotationYaw = this.rotationYaw;
                    entityplayer.rotationYaw = rotationYaw;
                     entityplayer.prevRotationYaw = rotationYaw;
                  }
             }
              else if (!entityplayer.worldObj.isRemote && (this.onGround || entityplayer.capabilities.isCreativeMode)) {
-                 entityplayer.mountEntity((Entity)null);
+                 entityplayer.mountEntity(null);
              }
             return true;
          }
@@ -122,8 +109,8 @@ public class EntityZephyroo extends EntityAetherAnimal
     @Override
 	public void entityInit() {
         super.entityInit();
-        this.dataWatcher.addObject(18, (Object)0);
-        this.dataWatcher.addObject(19, (Object)0);
+        this.dataWatcher.addObject(18, 0);
+        this.dataWatcher.addObject(19, 0);
     }
     
     protected void updateEntityActionState() {
@@ -140,7 +127,7 @@ public class EntityZephyroo extends EntityAetherAnimal
                 this.timeTilJump = 10;
         		}
         	}
-        	this.dataWatcher.updateObject(18, (Object)this.timeTilJump);
+        	this.dataWatcher.updateObject(18, this.timeTilJump);
         }
     
     public float getTimeTilJump() {
@@ -174,11 +161,10 @@ public class EntityZephyroo extends EntityAetherAnimal
     {
         super.onDeath(p_70645_1_);
 
-        if (p_70645_1_.getEntity() instanceof EntityPlayer)
+        if (p_70645_1_.getEntity() instanceof EntityPlayer entityplayer)
         {
-            EntityPlayer entityplayer = (EntityPlayer)p_70645_1_.getEntity();
-            
-            entityplayer.triggerAchievement(AchievementsAether.kill_zephyroo);
+
+			entityplayer.triggerAchievement(AchievementsAether.kill_zephyroo);
             
         }
             

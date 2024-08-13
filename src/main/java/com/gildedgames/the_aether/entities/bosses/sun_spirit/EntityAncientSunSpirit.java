@@ -35,7 +35,6 @@ import net.minecraft.world.World;
 
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.blocks.dungeon.BlockDungeonBase;
-import net.minecraft.world.WorldProvider;
 
 public class EntityAncientSunSpirit extends EntityFlying implements IMob, IAetherBoss, IEntityMultiPart {
 
@@ -73,16 +72,16 @@ public class EntityAncientSunSpirit extends EntityFlying implements IMob, IAethe
         ;
         this.rotationYaw = this.rotationYawHead = var6 == 3 ? 0 : var6 == 0 ? 90 : var6 == 2 ? 180 : 270;
 
-        this.setPosition((double) posX + 0.5D, (double) posY, (double) posZ + 0.5D);
-        this.setOriginPosition((int) posX, (int) posY, (int) posZ);
+        this.setPosition((double) posX + 0.5D, posY, (double) posZ + 0.5D);
+        this.setOriginPosition(posX, posY, posZ);
     }
 
     @Override
     public void entityInit() {
         super.entityInit();
 
-        this.dataWatcher.addObject(18, new Byte((byte) 0));
-        this.dataWatcher.addObject(19, new Byte((byte) 0));
+        this.dataWatcher.addObject(18, (byte) 0);
+        this.dataWatcher.addObject(19, (byte) 0);
         this.dataWatcher.addObject(20, AetherNameGen.gen());
     }
 
@@ -164,9 +163,9 @@ public class EntityAncientSunSpirit extends EntityFlying implements IMob, IAethe
         this.SpiritPartHead.onUpdate();
         this.SpiritPartHead.setLocationAndAngles(this.posX, this.posY + 1.5f, this.posZ, 0F, 0F);
         this.SpiritPartShoulder1.onUpdate();
-        this.SpiritPartShoulder1.setLocationAndAngles(this.posX - f2 * 1.0F, this.posY - 0.25F, this.posZ - f1 * 1.0F, 0F, 0F);
+        this.SpiritPartShoulder1.setLocationAndAngles(this.posX - f2, this.posY - 0.25F, this.posZ - f1, 0F, 0F);
         this.SpiritPartShoulder2.onUpdate();
-        this.SpiritPartShoulder2.setLocationAndAngles(this.posX + f2 * 1.0F, this.posY - 0.25F, this.posZ + f1 * 1.0F, 0F, 0F);
+        this.SpiritPartShoulder2.setLocationAndAngles(this.posX + f2, this.posY - 0.25F, this.posZ + f1, 0F, 0F);
     }
 
     public Entity[] getParts()
@@ -180,10 +179,9 @@ public class EntityAncientSunSpirit extends EntityFlying implements IMob, IAethe
         this.velocity = 0.5D - (double) this.getHealth() / 70.0D * 0.2D;
         this.width = this.height = 2.0F;
 
-        if (this.getAttackTarget() instanceof EntityPlayer) {
+        if (this.getAttackTarget() instanceof EntityPlayer dungeonTarget) {
             List<?> dungeonPlayers = this.getPlayersInDungeon();
-            EntityPlayer dungeonTarget = (EntityPlayer) this.getAttackTarget();
-            PlayerAether playerAether = PlayerAether.get(dungeonTarget);
+			PlayerAether playerAether = PlayerAether.get(dungeonTarget);
 
             for (int i = 0; i < dungeonPlayers.size(); ++i) {
                 Entity entity = (Entity) dungeonPlayers.get(i);
@@ -208,7 +206,7 @@ public class EntityAncientSunSpirit extends EntityFlying implements IMob, IAethe
                     }
                 }
 
-                this.setPosition((double) this.originPointX + 0.5D, (double) this.originPointY, (double) this.originPointZ + 0.5D);
+                this.setPosition((double) this.originPointX + 0.5D, this.originPointY, (double) this.originPointZ + 0.5D);
 
                 this.chatLog = 10;
 
@@ -217,7 +215,7 @@ public class EntityAncientSunSpirit extends EntityFlying implements IMob, IAethe
                 this.chatLine(dungeonTarget, "\u00a7c" + StatCollector.translateToLocal("gui.spirit.playerdied"));
                 this.chatCount = 100;
 
-                this.setPosition((double) this.originPointX + 0.5D, (double) this.originPointY, (double) this.originPointZ + 0.5D);
+                this.setPosition((double) this.originPointX + 0.5D, this.originPointY, (double) this.originPointZ + 0.5D);
                 this.setDoor(Blocks.air);
 
                 this.setFreezing(false);
@@ -286,7 +284,7 @@ public class EntityAncientSunSpirit extends EntityFlying implements IMob, IAethe
             this.motionY = 0.0D;
             this.renderYawOffset = this.rotationYaw;
 
-            this.setPosition(this.posX, (double) this.originPointY, this.posZ);
+            this.setPosition(this.posX, this.originPointY, this.posZ);
 
             boolean changedCourse = false;
 
@@ -727,12 +725,12 @@ public class EntityAncientSunSpirit extends EntityFlying implements IMob, IAethe
     }
 
     public int getChatLine() {
-        return (int) this.dataWatcher.getWatchableObjectByte(18);
+        return this.dataWatcher.getWatchableObjectByte(18);
     }
 
     public void setChatLine(int lineNumber) {
         this.chatCount = 100;
-        this.dataWatcher.updateObject(18, new Byte((byte) lineNumber));
+        this.dataWatcher.updateObject(18, (byte) lineNumber);
     }
 
     public boolean isFreezing() {
@@ -740,7 +738,7 @@ public class EntityAncientSunSpirit extends EntityFlying implements IMob, IAethe
     }
 
     public void setFreezing(boolean isFreezing) {
-        this.dataWatcher.updateObject(19, new Byte(isFreezing ? (byte) 1 : (byte) 0));
+        this.dataWatcher.updateObject(19, isFreezing ? (byte) 1 : (byte) 0);
     }
 
     public void setBossName(String name) {

@@ -1,6 +1,5 @@
 package com.gildedgames.the_aether.entities.bosses.genesis_dragon;
 
-import com.gildedgames.the_aether.entities.hostile.EntityAetherMob;
 import com.gildedgames.the_aether.entities.bosses.genesis_dragon.GIEntityMultiPart;
 
 import net.minecraft.entity.Entity;

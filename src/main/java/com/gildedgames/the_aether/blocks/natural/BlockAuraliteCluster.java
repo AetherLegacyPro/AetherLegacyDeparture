@@ -7,7 +7,6 @@ import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.blocks.BlocksAether.ISubBlocksBlock;
 import com.gildedgames.the_aether.client.renders.RenderIDs;
-import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.items.block.ItemAuraliteCluster;
 
 import cpw.mods.fml.relauncher.Side;
@@ -28,7 +27,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
 
 
 public class BlockAuraliteCluster extends BlockAuralite implements ISubBlocksBlock {
@@ -50,8 +48,7 @@ public class BlockAuraliteCluster extends BlockAuralite implements ISubBlocksBlo
 	
 	@Override
 	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
-		if (entity instanceof EntityPlayer) {
-			EntityPlayer player = (EntityPlayer) entity;
+		if (entity instanceof EntityPlayer player) {
 			((EntityLivingBase) entity).addPotionEffect(new PotionEffect(1, 500, 0));
 
 		}	
@@ -63,12 +60,7 @@ public class BlockAuraliteCluster extends BlockAuralite implements ISubBlocksBlo
         return getLightValue() + (type * 3) + (meta / 6);
     }
 
-   public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
-   {
-        return ItemsAether.auralite_crystal;
-    }
-    
-    protected ItemStack createStackedBlock(int p_149644_1_)
+	protected ItemStack createStackedBlock(int p_149644_1_)
     {
         int j = 0;
         Item item = Item.getItemFromBlock(this);

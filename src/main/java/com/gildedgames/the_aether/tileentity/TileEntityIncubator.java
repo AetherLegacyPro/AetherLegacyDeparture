@@ -27,7 +27,7 @@ public class TileEntityIncubator extends AetherTileEntity {
 
 	public int ticksRequired = 5700;
 
-	private final FilledList<ItemStack> incubatorItemStacks = new FilledList<ItemStack>(3, null);
+	private final FilledList<ItemStack> incubatorItemStacks = new FilledList<>(3, null);
 
 	public TileEntityIncubator() {
 		super("Incubator");
@@ -86,8 +86,7 @@ public class TileEntityIncubator extends AetherTileEntity {
 		}
 
 		if (this.progress >= this.ticksRequired) {
-			if (this.getStackInSlot(1).getItem() instanceof ItemMoaEgg) {
-				ItemMoaEgg moaEgg = (ItemMoaEgg) this.getStackInSlot(1).getItem();
+			if (this.getStackInSlot(1).getItem() instanceof ItemMoaEgg moaEgg) {
 
 				if (this.owner != null) {
 					this.owner.triggerAchievement(AchievementsAether.incubator);

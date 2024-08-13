@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.blocks.container;
 
 import net.minecraft.block.*;
-import net.minecraft.block.material.Material;
 import net.minecraft.util.*;
 
 import com.gildedgames.the_aether.Aether;
@@ -45,7 +44,7 @@ public class BlockSkyrootWorkbench extends BlockWorkbench
             return true;
         }
         final int guiID = 8;
-        player.openGui((Object)Aether.instance, guiID, world, x, y, z);
+        player.openGui(Aether.instance, guiID, world, x, y, z);
         return true;
     }
 }

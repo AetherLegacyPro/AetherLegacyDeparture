@@ -6,7 +6,6 @@ import com.gildedgames.the_aether.player.PlayerAether;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.ItemStack;
 import net.minecraft.network.play.server.S12PacketEntityVelocity;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
@@ -39,7 +38,7 @@ public class EntityZephyrSnowball extends EntityProjectileBase {
 	@Override
 	protected void onImpact(MovingObjectPosition object) {
 		if (object.entityHit instanceof EntityLivingBase) {
-			if (object.entityHit instanceof EntityPlayer && (PlayerAether.get((EntityPlayer) object.entityHit).getAccessoryInventory().wearingArmor(new ItemStack(ItemsAether.sentry_boots)) || PlayerAether.get((EntityPlayer) object.entityHit).getAccessoryInventory().wearingArmor(new ItemStack(ItemsAether.amplified_sentry_boots)) || PlayerAether.get((EntityPlayer) object.entityHit).getAccessoryInventory().wearingArmor(new ItemStack(ItemsAether.scaled_sentry_boots)))) {
+			if (object.entityHit instanceof EntityPlayer && (PlayerAether.get((EntityPlayer) object.entityHit).getAccessoryInventory().wearingArmor(ItemsAether.sentry_boots) || PlayerAether.get((EntityPlayer) object.entityHit).getAccessoryInventory().wearingArmor(ItemsAether.amplified_sentry_boots) || PlayerAether.get((EntityPlayer) object.entityHit).getAccessoryInventory().wearingArmor(ItemsAether.scaled_sentry_boots))) {
 				this.setDead();
 
 				return;

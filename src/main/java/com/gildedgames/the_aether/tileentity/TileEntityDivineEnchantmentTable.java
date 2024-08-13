@@ -46,7 +46,7 @@ public class TileEntityDivineEnchantmentTable extends TileEntity
         super.updateEntity();
         this.field_145927_n = this.field_145930_m;
         this.field_145925_p = this.field_145928_o;
-        EntityPlayer entityplayer = this.worldObj.getClosestPlayer((double)((float)this.xCoord + 0.5F), (double)((float)this.yCoord + 0.5F), (double)((float)this.zCoord + 0.5F), 3.0D);
+        EntityPlayer entityplayer = this.worldObj.getClosestPlayer((float)this.xCoord + 0.5F, (float)this.yCoord + 0.5F, (float)this.zCoord + 0.5F, 3.0D);
 
         if (entityplayer != null)
         {
@@ -142,7 +142,7 @@ public class TileEntityDivineEnchantmentTable extends TileEntity
 
     public boolean func_145921_b()
     {
-        return this.field_145922_s != null && this.field_145922_s.length() > 0;
+        return this.field_145922_s != null && !this.field_145922_s.isEmpty();
     }
 
     public void func_145920_a(String p_145920_1_)

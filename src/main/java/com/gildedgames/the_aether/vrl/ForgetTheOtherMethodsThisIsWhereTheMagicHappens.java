@@ -3,28 +3,13 @@ package com.gildedgames.the_aether.vrl;
 import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
-
-import java.io.*;
-import java.net.URL;
-import java.net.URLConnection;
-import java.util.jar.JarEntry;
-import java.util.jar.JarInputStream;
 import java.util.jar.*;
 import java.util.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import java.net.URISyntaxException;
 import static java.nio.file.StandardCopyOption.*;
-import java.nio.file.Path;
-import java.nio.file.Files;
-import java.util.stream.Stream;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.util.stream.Stream;
+
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.zip.ZipEntry;
@@ -438,21 +423,21 @@ public class ForgetTheOtherMethodsThisIsWhereTheMagicHappens {
         String zipFileName = (System.getProperty("user.dir") + "/mods/temptemptemp.zip");
         try {
             final ZipOutputStream outputStream = new ZipOutputStream(new FileOutputStream(zipFileName));
-            Files.walkFileTree(sourceDir, new SimpleFileVisitor<Path>() {
-                @Override
-                public FileVisitResult visitFile(Path file, BasicFileAttributes attributes) {
-                    try {
-                        Path targetFile = sourceDir.relativize(file);
-                        outputStream.putNextEntry(new ZipEntry(targetFile.toString()));
-                        byte[] bytes = Files.readAllBytes(file);
-                        outputStream.write(bytes, 0, bytes.length);
-                        outputStream.closeEntry();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    return FileVisitResult.CONTINUE;
-                }
-            });
+            Files.walkFileTree(sourceDir, new SimpleFileVisitor<>() {
+				@Override
+				public FileVisitResult visitFile(Path file, BasicFileAttributes attributes) {
+					try {
+						Path targetFile = sourceDir.relativize(file);
+						outputStream.putNextEntry(new ZipEntry(targetFile.toString()));
+						byte[] bytes = Files.readAllBytes(file);
+						outputStream.write(bytes, 0, bytes.length);
+						outputStream.closeEntry();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					return FileVisitResult.CONTINUE;
+				}
+			});
             outputStream.close();
         } catch (IOException e) {
             e.printStackTrace();

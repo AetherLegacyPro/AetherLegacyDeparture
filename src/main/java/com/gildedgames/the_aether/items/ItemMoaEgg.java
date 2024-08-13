@@ -91,11 +91,6 @@ public class ItemMoaEgg extends Item {
 	}
 
 	@Override
-	public boolean getShareTag() {
-		return true;
-	}
-
-	@Override
 	public int getColorFromItemStack(ItemStack stack, int renderPass) {
 		NBTTagCompound tag = stack.getTagCompound();
 

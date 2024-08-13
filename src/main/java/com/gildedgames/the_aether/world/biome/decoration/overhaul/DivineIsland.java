@@ -4,17 +4,10 @@ import java.util.Random;
 
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.world.biome.decoration.AetherGenDivineTree;
-import com.gildedgames.the_aether.world.biome.decoration.AetherGenGoldenFruitTree;
-import com.gildedgames.the_aether.world.biome.decoration.AetherGenMassiveTree;
-import com.gildedgames.the_aether.world.biome.decoration.AetherGenOakTree;
 
 import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import net.minecraft.world.gen.feature.WorldGenBigTree;
 import net.minecraft.world.gen.feature.WorldGenTallGrass;
-import net.minecraft.world.gen.feature.WorldGenTrees;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
 public class DivineIsland extends WorldGenerator {
@@ -205,7 +198,7 @@ public class DivineIsland extends WorldGenerator {
          for(int i1 = 0; i1 < k; ++i1) {
             int j1 = l - this.centerX;
             int k1 = i1 - this.centerZ;
-            double d = Math.sqrt((double)(j1 * j1 + k1 * k1));
+            double d = Math.sqrt(j1 * j1 + k1 * k1);
             if (d == 0.0D) {
                d = 0.001D;
             }
@@ -342,7 +335,7 @@ public class DivineIsland extends WorldGenerator {
         	  return rand.nextInt(10) == 0 ? BlocksAether.amethyst_glowstone : BlocksAether.enchanted_holystone;  
         }
       else {
-         return (Block)(flag ? BlocksAether.divine_grass : BlocksAether.aether_dirt);
+         return flag ? BlocksAether.divine_grass : BlocksAether.aether_dirt;
       }
    }
 

@@ -4,14 +4,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-import com.gildedgames.the_aether.entities.bosses.slider.EntitySlider;
 import com.gildedgames.the_aether.entities.hostile.EntityCyroGuardian;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.tileentity.TileEntitySkyrootChest;
 import com.gildedgames.the_aether.world.util.RandomTracker;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityMobSpawner;
 import net.minecraft.world.World;

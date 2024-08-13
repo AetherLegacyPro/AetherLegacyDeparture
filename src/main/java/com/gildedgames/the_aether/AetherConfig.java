@@ -1,13 +1,14 @@
 package com.gildedgames.the_aether;
 
 import java.io.File;
-import java.io.IOException;
 
+import cpw.mods.fml.common.Loader;
 import net.minecraftforge.common.config.Configuration;
 
 public class AetherConfig {
 
-	public static Configuration config;
+	//This should really not be persisted, but it has to be until menu_enabled is stored in an options.txt type file.
+	private static Configuration config;
 
 	private static int max_life_shards, max_power_shards, max_dex_shards;
 
@@ -53,35 +54,32 @@ public class AetherConfig {
 	
 	private static boolean divineral_recipe_hardmore, netherite_required_divineral_ingot;
 
+	private static boolean use_baubles_expanded_menu;
+
 	private static int phyg_spawnrate, flyingcow_spawnrate, sheepuff_spawnrate, aerbunny_spawnrate, moa_spawnrate, aerwhale_spawnrate, raptor_spawnrate, carrion_sprout_spawnrate, zephyroo_spawnrate, thunderlo_spawnrate, flynx_spawnrate;
 
 	private static int zephyr_spawnrate, vulturnus_spawnrate, tempest_spawnrate, cockatrice_spawnrate, swet_spawnrate, aechorplant_spawnrate, whirlwind_spawnrate, cyro_spawnrate, uro_spawnrate, aerca_spawnrate;
 
 	public static boolean arctic_island_enable, golden_island_enable, divine_island_enable, palladium_dungeon_enable;	
 	public static int arctic_island_rarity, golden_island_rarity, divine_island_rarity, palladium_dungeon_rarity;
-	
+
 	public static boolean enable_log_reporting_biomes, enable_assets_message, disable_1stperson_glove_renderer;
 	public static boolean enable_ascensite;
-	
+
 	public static boolean cloud_icon, enable_battlegear2_compatibility;
-	
+
 	public static boolean enable_copper_recipes, enable_netherite_recipes;
-	
+
 	public static final String catMisc = "New Misc Options";
 	public static final String catWorld = "New World Gen Options";
+	public static final String catSpawnrates = "Spawnrates";
 	public static final String catEtFuturum = "Et Futurum Requiem Options";
+	public static final String catBaublesExpanded = "Baubles Expanded Options";
 
 	private static boolean redownloadFiles;
-	public static String greeting = "Hello World";
 	
 	public static void init(File location) {
 		File newFile = new File(location + "/aether" + "/AetherI.cfg");
-
-		try {
-			newFile.createNewFile();
-		} catch (IOException e) {
-
-		}
 
 		config = new Configuration(newFile);
 
@@ -186,31 +184,37 @@ public class AetherConfig {
 		enable_copper_recipes = config.getBoolean("enable_copper_recipes", catEtFuturum, false, "Enables Recipes with copper ingots from Et Futurum Requiem.");
 		enable_netherite_recipes = config.getBoolean("enable_netherite_recipes", catEtFuturum, false, "Enables Recipes with netherite ingots from Et Futurum Requiem.");
 		netherite_required_divineral_ingot = config.getBoolean("netheriteRequiredInDivineralIngot", catEtFuturum, false, "If Et Futurum Requiem is installed should netherite ingots be required in the divineral ingot recipe?");
-		
+
+		use_baubles_expanded_menu = config.getBoolean("useBaublesExpandedMenu", catBaublesExpanded, false, "If Baubles Expanded is installed should its menu be used for accessories?");
+
 		//Spawnrates
-		phyg_spawnrate = config.get("Spawnrates", "Phyg Spawnrate. 1 is always, higher numbers decrease chances.", 1).getInt(1);
-		flyingcow_spawnrate = config.get("Spawnrates", "Flying Cow Spawnrate. 1 is always, higher numbers decrease chances.", 1).getInt(1);
-		sheepuff_spawnrate = config.get("Spawnrates", "Sheepuff Spawnrate. 1 is always, higher numbers decrease chances.", 1).getInt(1);
-		aerbunny_spawnrate = config.get("Spawnrates", "Aerbunny Spawnrate. 1 is always, higher numbers decrease chances.", 1).getInt(1);
-		moa_spawnrate = config.get("Spawnrates", "Moa Spawnrate. 1 is always, higher numbers decrease chances.", 1).getInt(1);
-		carrion_sprout_spawnrate = config.get("Spawnrates", "Carrion Sprout Spawnrate. 1 is always, higher numbers decrease chances.", 1).getInt(1);
-		aerwhale_spawnrate = config.get("Spawnrates", "Aerwhale Spawnrate. 1 is always, higher numbers decrease chances.", 1).getInt(1);
-		zephyroo_spawnrate = config.get("Spawnrates", "Zephyroo Spawnrate. 1 is always, higher numbers decrease chances.", 1).getInt(1);
-		thunderlo_spawnrate = config.get("Spawnrates", "Thunderlo Spawnrate. 1 is always, higher numbers decrease chances.", 1).getInt(1);
-		flynx_spawnrate = config.get("Spawnrates", "Flynx Spawnrate. 1 is always, higher numbers decrease chances.", 1).getInt(1);
-		zephyr_spawnrate = config.get("Spawnrates", "Zephyr Spawnrate. 1 is always, higher numbers decrease chances.", 85).getInt(65);
-		tempest_spawnrate = config.get("Spawnrates", "Tempest Spawnrate. 1 is always, higher numbers decrease chances.", 85).getInt(65);
-		vulturnus_spawnrate = config.get("Spawnrates", "Vulturnus Spawnrate. 1 is always, higher numbers decrease chances.", 85).getInt(65);
-		cockatrice_spawnrate = config.get("Spawnrates", "Cockatrice Spawnrate. 1 is always, higher numbers decrease chances.", 45).getInt(45);
-		raptor_spawnrate = config.get("Spawnrates", "Anzu Spawnrate. 1 is always, higher numbers decrease chances.", 45).getInt(45);
-		cyro_spawnrate = config.get("Spawnrates", "Cyro Spawnrate. 1 is always, higher numbers decrease chances.", 45).getInt(45);
-		uro_spawnrate = config.get("Spawnrates", "Uro Spawnrate. 1 is always, higher numbers decrease chances.", 45).getInt(45);
-		aerca_spawnrate = config.get("Spawnrates", "Aerca Spawnrate. 1 is always, higher numbers decrease chances.", 75).getInt(75);
+		phyg_spawnrate = config.get(catSpawnrates, "Phyg Spawnrate. 1 is always, higher numbers decrease chances.", 1).getInt(1);
+		flyingcow_spawnrate = config.get(catSpawnrates, "Flying Cow Spawnrate. 1 is always, higher numbers decrease chances.", 1).getInt(1);
+		sheepuff_spawnrate = config.get(catSpawnrates, "Sheepuff Spawnrate. 1 is always, higher numbers decrease chances.", 1).getInt(1);
+		aerbunny_spawnrate = config.get(catSpawnrates, "Aerbunny Spawnrate. 1 is always, higher numbers decrease chances.", 1).getInt(1);
+		moa_spawnrate = config.get(catSpawnrates, "Moa Spawnrate. 1 is always, higher numbers decrease chances.", 1).getInt(1);
+		carrion_sprout_spawnrate = config.get(catSpawnrates, "Carrion Sprout Spawnrate. 1 is always, higher numbers decrease chances.", 1).getInt(1);
+		aerwhale_spawnrate = config.get(catSpawnrates, "Aerwhale Spawnrate. 1 is always, higher numbers decrease chances.", 1).getInt(1);
+		zephyroo_spawnrate = config.get(catSpawnrates, "Zephyroo Spawnrate. 1 is always, higher numbers decrease chances.", 1).getInt(1);
+		thunderlo_spawnrate = config.get(catSpawnrates, "Thunderlo Spawnrate. 1 is always, higher numbers decrease chances.", 1).getInt(1);
+		flynx_spawnrate = config.get(catSpawnrates, "Flynx Spawnrate. 1 is always, higher numbers decrease chances.", 1).getInt(1);
+		zephyr_spawnrate = config.get(catSpawnrates, "Zephyr Spawnrate. 1 is always, higher numbers decrease chances.", 85).getInt(65);
+		tempest_spawnrate = config.get(catSpawnrates, "Tempest Spawnrate. 1 is always, higher numbers decrease chances.", 85).getInt(65);
+		vulturnus_spawnrate = config.get(catSpawnrates, "Vulturnus Spawnrate. 1 is always, higher numbers decrease chances.", 85).getInt(65);
+		cockatrice_spawnrate = config.get(catSpawnrates, "Cockatrice Spawnrate. 1 is always, higher numbers decrease chances.", 45).getInt(45);
+		raptor_spawnrate = config.get(catSpawnrates, "Anzu Spawnrate. 1 is always, higher numbers decrease chances.", 45).getInt(45);
+		cyro_spawnrate = config.get(catSpawnrates, "Cyro Spawnrate. 1 is always, higher numbers decrease chances.", 45).getInt(45);
+		uro_spawnrate = config.get(catSpawnrates, "Uro Spawnrate. 1 is always, higher numbers decrease chances.", 45).getInt(45);
+		aerca_spawnrate = config.get(catSpawnrates, "Aerca Spawnrate. 1 is always, higher numbers decrease chances.", 75).getInt(75);
 		
-		swet_spawnrate = config.get("Spawnrates", "Swet Spawnrate. 1 is always, higher numbers decrease chances.", 20).getInt(20);
-		aechorplant_spawnrate = config.get("Spawnrates", "Aechor Plant Spawnrate. 1 is always, higher numbers decrease chances.", 10).getInt(10);
-		whirlwind_spawnrate = config.get("Spawnrates", "Whirlwind Spawnrate. 1 is always, higher numbers decrease chances.", 55).getInt(55);
-		
+		swet_spawnrate = config.get(catSpawnrates, "Swet Spawnrate. 1 is always, higher numbers decrease chances.", 20).getInt(20);
+		aechorplant_spawnrate = config.get(catSpawnrates, "Aechor Plant Spawnrate. 1 is always, higher numbers decrease chances.", 10).getInt(10);
+		whirlwind_spawnrate = config.get(catSpawnrates, "Whirlwind Spawnrate. 1 is always, higher numbers decrease chances.", 55).getInt(55);
+
+		if(!Loader.isModLoaded("Baubles|Expanded")) {
+			use_baubles_expanded_menu = false;
+		}
+
 		config.save();
 	}
 	
@@ -369,6 +373,10 @@ public class AetherConfig {
 	public static boolean NetheriteRequiredInDivineralIngot() {
 		return AetherConfig.netherite_required_divineral_ingot;
 	}
+
+	public static boolean UseBaublesExpandedMenu() {
+		return use_baubles_expanded_menu;
+	}
 	
 	public static boolean MiscItemDamageable() {
 		return AetherConfig.misc_items_damageable;
@@ -416,9 +424,17 @@ public class AetherConfig {
 		return AetherConfig.golden_feather;
 	}
 
-	public static boolean menuEnabled()
+	public static boolean getMenuEnabled()
 	{
 		return AetherConfig.menu_enabled;
+	}
+
+	public static void setMenuEnabled(boolean enabled)
+	{
+		menu_enabled = enabled;
+		//This should *really* use an options.txt like file, but this is still an improvement to before.
+		config.get("Misc", "Enables the Aether Menu", false).set(menu_enabled);
+		config.save();
 	}
 
 	public static boolean menuButtonEnabled()

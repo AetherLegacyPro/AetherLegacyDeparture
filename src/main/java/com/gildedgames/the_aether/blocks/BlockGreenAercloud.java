@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.gildedgames.the_aether.items.block.IColoredBlock;
 import com.gildedgames.the_aether.items.block.INamedBlock;
-import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
@@ -45,8 +44,7 @@ public class BlockGreenAercloud extends Block implements IColoredBlock, INamedBl
 		
 		//green
 		if (world.getBlockMetadata(x, y, z) == 0) {
-			if (entity instanceof EntityPlayer) {
-				EntityPlayer player = (EntityPlayer) entity;
+			if (entity instanceof EntityPlayer player) {
 
 				if (player.isSneaking()) {
 					if (entity.motionX < 0) {
@@ -72,8 +70,7 @@ public class BlockGreenAercloud extends Block implements IColoredBlock, INamedBl
 		}
 			//gold aercloud
 		else if (world.getBlockMetadata(x, y, z) == 1) {
-				if (entity instanceof EntityPlayer) {
-					EntityPlayer player = (EntityPlayer) entity;
+				if (entity instanceof EntityPlayer player) {
 
 					if (player.isSneaking()) {
 						if (entity.motionX < 0) {
@@ -97,8 +94,7 @@ public class BlockGreenAercloud extends Block implements IColoredBlock, INamedBl
 		}
 		
 		else if (world.getBlockMetadata(x, y, z) == 2) {
-			if (entity instanceof EntityPlayer) {
-				EntityPlayer player = (EntityPlayer) entity;
+			if (entity instanceof EntityPlayer player) {
 
 				if (player.isSneaking()) {
 					if (entity.motionX < 0) {
@@ -135,11 +131,6 @@ public class BlockGreenAercloud extends Block implements IColoredBlock, INamedBl
 			entity.motionX *= 0.005D;
 			}	
 		}
-
-	@Override
-	public boolean renderAsNormalBlock() {
-		return true;
-	}
 
 	@Override
 	@SideOnly(Side.CLIENT)

@@ -5,8 +5,6 @@ import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.entity.EntityLivingBase;
 import org.lwjgl.opengl.GL11;
 
-import com.gildedgames.the_aether.entities.passive.EntityThunderlo;
-
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.client.renderer.entity.RenderLiving;
@@ -32,7 +30,7 @@ public class ThunderloRenderer extends RenderLiving
         final char var5 = '\uf0f0';
         final int var6 = var5 % 65536;
         final int var7 = var5 / 65536;
-        OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, var6 / 1.0f, var7 / 1.0f);
+        OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, var6, var7);
         GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
         return 1;
     }
@@ -44,7 +42,7 @@ public class ThunderloRenderer extends RenderLiving
     }
     
     protected int shouldRenderPass(final EntityLivingBase entityliving, final int i, final float f) {
-        return this.a((EntityThunderlo)entityliving, i, f);
+        return this.a(entityliving, i, f);
     }
     
     protected ResourceLocation getEntityTexture(final Entity entity) {

@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.gildedgames.the_aether.items.block.IColoredBlock;
 import com.gildedgames.the_aether.items.block.INamedBlock;
-import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
@@ -45,8 +44,7 @@ public class BlockDiamondAercloud extends Block implements IColoredBlock, INamed
 		
 		//diamond aercloud
 			if (world.getBlockMetadata(x, y, z) == 0) {
-				if (entity instanceof EntityPlayer) {
-					EntityPlayer player = (EntityPlayer) entity;									
+				if (entity instanceof EntityPlayer player) {
 
 					entity.motionY = 2.5D;
 				} else {
@@ -66,9 +64,8 @@ public class BlockDiamondAercloud extends Block implements IColoredBlock, INamed
 		
 		//sapphire aercloud
 		if (world.getBlockMetadata(x, y, z) == 1) {
-			if (entity instanceof EntityPlayer) {
-				EntityPlayer player = (EntityPlayer) entity;
-				
+			if (entity instanceof EntityPlayer player) {
+
 				entity.motionX = 2.5D;
 				entity.motionZ = 2.5D;
 			} else {
@@ -87,9 +84,8 @@ public class BlockDiamondAercloud extends Block implements IColoredBlock, INamed
 		}
 		//amethyst aercloud
 		else if (world.getBlockMetadata(x, y, z) == 2) {
-				if (entity instanceof EntityPlayer) {
-					EntityPlayer player = (EntityPlayer) entity;
-									
+				if (entity instanceof EntityPlayer player) {
+
 					entity.motionX = -2.5D;
 					entity.motionZ = -2.5D;
 				} else {
@@ -120,11 +116,6 @@ public class BlockDiamondAercloud extends Block implements IColoredBlock, INamed
 			entity.motionY *= 0.005D;
 			}	
 		}
-
-	@Override
-	public boolean renderAsNormalBlock() {
-		return true;
-	}
 
 	@Override
 	@SideOnly(Side.CLIENT)

@@ -2,12 +2,9 @@ package com.gildedgames.the_aether.blocks.natural;
 
 import java.util.Random;
 
-import com.gildedgames.the_aether.Aether;
-import com.gildedgames.the_aether.CommonProxy;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import net.minecraft.block.IGrowable;
 import net.minecraft.item.Item;
-import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -44,11 +41,6 @@ public class BlockGrapeTreeStage1 extends BlockAetherFlower implements IGrowable
 		if (world.getBlockLightValue(x, y + 1, z) >= 8 && random.nextInt(80) == 0) {
 			world.setBlock(x, y, z, BlocksAether.grape_tree_stage_two);
 		}
-	}
-
-	@Override
-	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
-		return null;
 	}
 
 	@SideOnly(Side.CLIENT)

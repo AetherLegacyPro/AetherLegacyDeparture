@@ -50,9 +50,8 @@ public class AIEntityFlyingMob extends EntityAIBase
     }
     
     public void updateTask() {
-        if (this.targetedEntity instanceof EntityPlayer) {
-            final EntityPlayer player = (EntityPlayer)this.targetedEntity;
-            if (player.capabilities.isCreativeMode) {
+        if (this.targetedEntity instanceof EntityPlayer player) {
+			if (player.capabilities.isCreativeMode) {
                 this.targetedEntity = null;
             }
         }
@@ -78,7 +77,7 @@ public class AIEntityFlyingMob extends EntityAIBase
             final AxisAlignedBB bounds = AxisAlignedBB.getBoundingBox(this.flyingMob.posX, this.flyingMob.posY, this.flyingMob.posZ, this.flyingMob.posX, this.flyingMob.posY, this.flyingMob.posZ).expand(this.distReqForTarget, 200.0, this.distReqForTarget);
             final List list = this.flyingMob.worldObj.getEntitiesWithinAABB((Class)EntityPlayer.class, bounds);
             for (int i = 0; i < list.size(); ++i) {
-                if (list.size() > 0) { //&& !list.get(i).capabilities.isCreativeMode
+                if (!list.isEmpty()) { //&& !list.get(i).capabilities.isCreativeMode
                     this.targetedEntity = (Entity)list.get(i);
                 }
             }
@@ -106,7 +105,7 @@ public class AIEntityFlyingMob extends EntityAIBase
         final AxisAlignedBB axisalignedbb = this.flyingMob.boundingBox.copy();
         for (int i = 1; i < d3; ++i) {
             axisalignedbb.offset(d4, d5, d6);
-            if (this.flyingMob.worldObj.getCollidingBoundingBoxes((Entity)this.flyingMob, axisalignedbb).size() > 0) {
+            if (!this.flyingMob.worldObj.getCollidingBoundingBoxes(this.flyingMob, axisalignedbb).isEmpty()) {
                 return false;
             }
         }

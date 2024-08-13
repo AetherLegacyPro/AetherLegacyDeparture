@@ -2,7 +2,6 @@ package com.gildedgames.the_aether.client.renders.entity;
 
 import net.minecraft.client.renderer.entity.*;
 import net.minecraft.util.*;
-import net.minecraft.client.model.*;
 import org.lwjgl.opengl.*;
 
 import com.gildedgames.the_aether.client.models.entities.YoungZephyrModel;
@@ -16,7 +15,7 @@ public class YoungZephyrRenderer extends RenderLiving
     public YoungZephyrModel newZephyrModel;
     
     public YoungZephyrRenderer(final YoungZephyrModel model) {
-        super((ModelBase)model, 0.5f);
+        super(model, 0.5f);
         this.newZephyrModel = model;
     }
     

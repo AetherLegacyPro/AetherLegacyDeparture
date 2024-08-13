@@ -25,9 +25,7 @@ public class PacketDisplayDialogue extends AetherPacket<PacketDisplayDialogue> {
 	public PacketDisplayDialogue(String dialogueName, String dialogue, String... dialogueText) {
 		this(dialogueName, dialogue, (ArrayList<String>) null);
 
-		ArrayList<String> array = new ArrayList<String>();
-
-		array.addAll(Arrays.asList(dialogueText));
+		ArrayList<String> array = new ArrayList<>(Arrays.asList(dialogueText));
 
 		this.dialogueText = array;
 	}
@@ -42,7 +40,7 @@ public class PacketDisplayDialogue extends AetherPacket<PacketDisplayDialogue> {
 	public void fromBytes(ByteBuf buf) {
 		this.dialogueName = ByteBufUtils.readUTF8String(buf);
 		this.dialogue = ByteBufUtils.readUTF8String(buf);
-		this.dialogueText = new ArrayList<String>();
+		this.dialogueText = new ArrayList<>();
 
 		int size = buf.readInt();
 

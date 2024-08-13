@@ -24,7 +24,7 @@ public class GuiMenuToggleButton extends GuiButton
 
             if (this.field_146123_n)
             {
-                if (AetherConfig.config.get("Misc", "Enables the Aether Menu", false).getBoolean())
+                if (AetherConfig.getMenuEnabled())
                 {
                     this.drawCenteredString(fontrenderer, I18n.format("gui.aether_menu.normal_theme"), (this.xPosition + this.width) - 34, (this.height / 2) + 18, j);
                 }
@@ -44,14 +44,12 @@ public class GuiMenuToggleButton extends GuiButton
         return this;
     }
 
-    public void mouseReleased(int mouseX, int mouseY)
-    {
-        AetherConfig.config.get("Misc", "Enables the Aether Menu", false).set(!AetherConfig.config.get("Misc", "Enables the Aether Menu", false).getBoolean());
-        AetherConfig.config.save();
-
-        if (AetherConfig.config.get("Misc", "Enables the Aether Menu", false).getBoolean())
-        {
+    public void mouseReleased(int mouseX, int mouseY) {
+        boolean enabled = !AetherConfig.getMenuEnabled();
+        AetherConfig.setMenuEnabled(enabled);
+        if (enabled) {
             Minecraft.getMinecraft().displayGuiScreen(new AetherMainMenu());
         }
     }
+
 }

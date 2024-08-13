@@ -8,9 +8,7 @@ import cpw.mods.fml.client.*;
 import net.minecraft.util.*;
 import net.minecraft.init.*;
 import net.minecraft.entity.item.*;
-import net.minecraft.entity.*;
 import cpw.mods.fml.relauncher.*;
-import net.minecraft.stats.*;
 import net.minecraft.network.play.server.*;
 import net.minecraft.network.*;
 import cpw.mods.fml.common.*;
@@ -22,7 +20,6 @@ import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.blocks.ancient.enchanter.AetherEnchantmentAncientEnchanter;
 import com.gildedgames.the_aether.entities.fake.item.EntityFakeItem;
 import com.gildedgames.the_aether.items.ItemsAether;
-import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 
 public class TileEntityAncientEnchanter extends TileEntity implements IInventory
 {
@@ -137,10 +134,10 @@ public class TileEntityAncientEnchanter extends TileEntity implements IInventory
                 final NBTTagCompound nbttagcompound2 = new NBTTagCompound();
                 nbttagcompound2.setByte("Slot", (byte)i);
                 this.enchanterItemStacks[i].writeToNBT(nbttagcompound2);
-                nbttaglist.appendTag((NBTBase)nbttagcompound2);
+                nbttaglist.appendTag(nbttagcompound2);
             }
         }
-        nbttagcompound.setTag("Items", (NBTBase)nbttaglist);
+        nbttagcompound.setTag("Items", nbttaglist);
     }
     
     public int getInventoryStackLimit() {
@@ -161,14 +158,14 @@ public class TileEntityAncientEnchanter extends TileEntity implements IInventory
                 enchantableStack = stack;
                 enchantableStack.stackSize = stackSizeLimit;
                 if (!player.capabilities.isCreativeMode) {
-                    player.inventory.setInventorySlotContents(player.inventory.currentItem, (ItemStack)null);
+                    player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
                 }
                 this.setInventorySlotContents(0, enchantableStack);
             }
             else {
                 enchantableStack = stack;
                 if (!player.capabilities.isCreativeMode) {
-                    player.inventory.setInventorySlotContents(player.inventory.currentItem, (ItemStack)null);
+                    player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
                 }
                 this.setInventorySlotContents(0, enchantableStack);
             }
@@ -179,13 +176,13 @@ public class TileEntityAncientEnchanter extends TileEntity implements IInventory
             }
             else if (this.stackIsFull(enchantableStack, stackSizeLimit)) {
                 if (this.worldObj.isRemote) {
-                    FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage((IChatComponent)new ChatComponentText("Altar is at full capacity."));
+                    FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(new ChatComponentText("Altar is at full capacity."));
                 }
             }
             else {
                 final ItemStack itemStack = enchantableStack;
                 itemStack.stackSize += stack.stackSize;
-                player.inventory.setInventorySlotContents(player.inventory.currentItem, (ItemStack)null);
+                player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
             }
         }
         this.markDirty();
@@ -252,17 +249,17 @@ public class TileEntityAncientEnchanter extends TileEntity implements IInventory
     public void dropNextStack() {
         if (this.enchanterItemStacks[1] != null) {
             if (!this.worldObj.isRemote) {
-                final EntityItem entityitem = new EntityItem(this.worldObj, (double)(this.xCoord + 0.5f), (double)(this.yCoord + 1.0f), (double)(this.zCoord + 0.5f), this.enchanterItemStacks[1]);
+                final EntityItem entityitem = new EntityItem(this.worldObj, this.xCoord + 0.5f, this.yCoord + 1.0f, this.zCoord + 0.5f, this.enchanterItemStacks[1]);
                 entityitem.delayBeforeCanPickup = 10;
-                this.worldObj.spawnEntityInWorld((Entity)entityitem);
+                this.worldObj.spawnEntityInWorld(entityitem);
             }
             this.decrStackSize(1, this.enchanterItemStacks[1].stackSize);
         }
         else if (this.enchanterItemStacks[0] != null) {
             if (!this.worldObj.isRemote) {
-                final EntityItem entityitem = new EntityItem(this.worldObj, (double)(this.xCoord + 0.5f), (double)(this.yCoord + 1.0f), (double)(this.zCoord + 0.5f), this.enchanterItemStacks[0]);
+                final EntityItem entityitem = new EntityItem(this.worldObj, this.xCoord + 0.5f, this.yCoord + 1.0f, this.zCoord + 0.5f, this.enchanterItemStacks[0]);
                 entityitem.delayBeforeCanPickup = 10;
-                this.worldObj.spawnEntityInWorld((Entity)entityitem);
+                this.worldObj.spawnEntityInWorld(entityitem);
             }
             this.decrStackSize(0, this.enchanterItemStacks[0].stackSize);
         }
@@ -290,7 +287,7 @@ public class TileEntityAncientEnchanter extends TileEntity implements IInventory
             if (this.renderedItem == null) {
                 if (this.getEnchanterStacks(0) != null) {
                     this.renderedItem = new EntityFakeItem(this.worldObj, this.xCoord + 0.5, this.yCoord + 1.15, this.zCoord + 0.5, this.getEnchanterStacks(0));
-                    this.worldObj.spawnEntityInWorld((Entity)this.renderedItem);
+                    this.worldObj.spawnEntityInWorld(this.renderedItem);
                 }
             }
             
@@ -332,9 +329,9 @@ public class TileEntityAncientEnchanter extends TileEntity implements IInventory
                     final ItemStack outputStack = this.currentEnchantment.getResult(this.rand);
                     outputStack.stackSize = 1;
                     outputStack.stackTagCompound = inputStack.stackTagCompound;
-                    final EntityItem entityitem = new EntityItem(this.worldObj, (double)(this.xCoord + 0.5f), (double)(this.yCoord + 1.0f), (double)(this.zCoord + 0.5f), outputStack);
+                    final EntityItem entityitem = new EntityItem(this.worldObj, this.xCoord + 0.5f, this.yCoord + 1.0f, this.zCoord + 0.5f, outputStack);
                     entityitem.delayBeforeCanPickup = 10;
-                    this.worldObj.spawnEntityInWorld((Entity)entityitem);
+                    this.worldObj.spawnEntityInWorld(entityitem);
                 }
                 this.decrStackSize(0, 1);
                 this.decrStackSize(1, this.currentEnchantment.enchantAmbrosiumNeeded);
@@ -409,13 +406,12 @@ public class TileEntityAncientEnchanter extends TileEntity implements IInventory
     public Packet getDescriptionPacket() {
         final NBTTagCompound var1 = new NBTTagCompound();
         this.writeToNBT(var1);
-        return (Packet)new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, var1);
+        return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, var1);
     }
     
     private void sendToAllInOurWorld(final Packet pkt) {
         final ServerConfigurationManager scm = FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager();
-        for (final Object obj : scm.playerEntityList) {
-            final EntityPlayerMP player = (EntityPlayerMP)obj;
+        for (final EntityPlayerMP player : scm.playerEntityList) {
             if (player.worldObj == this.worldObj) {
                 player.playerNetServerHandler.sendPacket(pkt);
             }
@@ -453,7 +449,7 @@ public class TileEntityAncientEnchanter extends TileEntity implements IInventory
     }
     
     static {
-    	TileEntityAncientEnchanter.enchantments = new ArrayList<AetherEnchantmentAncientEnchanter>();
+    	TileEntityAncientEnchanter.enchantments = new ArrayList<>();
     }
 }
 

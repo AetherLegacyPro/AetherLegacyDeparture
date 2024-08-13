@@ -4,7 +4,6 @@ import com.gildedgames.the_aether.entities.block.EntityFireProofItemAether;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
 import net.minecraft.block.Block;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -35,10 +34,10 @@ public class ItemAmplifiedLightningSword extends ItemSword {
 
 	@Override
 	public Multimap<String, AttributeModifier> getAttributeModifiers(ItemStack stack) {
-		Multimap<String, AttributeModifier> multimap = HashMultimap.<String, AttributeModifier>create();
+		Multimap<String, AttributeModifier> multimap = HashMultimap.create();
 
 		if (stack.getItem() instanceof ItemAmplifiedLightningSword) {
-			multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(field_111210_e, "Weapon modifier", (double) this.calculateIncrease(stack), 0));
+			multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(field_111210_e, "Weapon modifier", this.calculateIncrease(stack), 0));
 		}
 
 		return multimap;
@@ -107,7 +106,7 @@ public class ItemAmplifiedLightningSword extends ItemSword {
     }
     
     public Entity createEntity(final World world, final Entity location, final ItemStack itemstack) {
-        return (Entity)new EntityFireProofItemAether(world, location, itemstack);
+        return new EntityFireProofItemAether(world, location, itemstack);
     }
 
 }

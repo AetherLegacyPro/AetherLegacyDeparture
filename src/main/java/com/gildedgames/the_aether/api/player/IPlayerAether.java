@@ -3,7 +3,7 @@ package com.gildedgames.the_aether.api.player;
 import java.util.ArrayList;
 
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.stats.Achievement;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.common.IExtendedEntityProperties;
 
 import com.gildedgames.the_aether.api.player.util.IAccessoryInventory;
@@ -26,7 +26,7 @@ public interface IPlayerAether extends IExtendedEntityProperties {
 
 	public ArrayList<IAetherAbility> getAbilities();
 
-	public EntityLivingBase getEntity();
+	public EntityPlayer getEntity();
 
 	public boolean setHammerCooldown(int cooldown, String hammerName);
 

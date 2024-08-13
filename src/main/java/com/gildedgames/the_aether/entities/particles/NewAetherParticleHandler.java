@@ -12,7 +12,7 @@ import net.minecraft.util.*;
 @SideOnly(Side.CLIENT)
 public enum NewAetherParticleHandler
 {
-	CYRO((Class)EntityCyroParticle.class, ParticleData.VX_VY_VZ, new Class[] { Integer.TYPE, Float.TYPE, Integer.TYPE, ResourceLocation.class, Integer.TYPE }) {
+	CYRO(EntityCyroParticle.class, ParticleData.VX_VY_VZ, new Class[] { Integer.TYPE, Float.TYPE, Integer.TYPE, ResourceLocation.class, Integer.TYPE }) {
         private final ResourceLocation texture;
         
         {
@@ -25,7 +25,7 @@ public enum NewAetherParticleHandler
         }
 	},
 	
-	URKER_FLAME((Class)EntityEtherealTorchFlame.class, ParticleData.VX_VY_VZ, new Class[] { Integer.TYPE, Float.TYPE, Integer.TYPE, ResourceLocation.class, Integer.TYPE }) {
+	URKER_FLAME(EntityEtherealTorchFlame.class, ParticleData.VX_VY_VZ, new Class[] { Integer.TYPE, Float.TYPE, Integer.TYPE, ResourceLocation.class, Integer.TYPE }) {
         private final ResourceLocation texture;
         
         {
@@ -38,7 +38,7 @@ public enum NewAetherParticleHandler
         }
 	},
 	
-	AMPLIFIER_FLAME((Class)EntityAmplifierFlame.class, ParticleData.VX_VY_VZ, new Class[] { Integer.TYPE, Float.TYPE, Integer.TYPE, ResourceLocation.class, Integer.TYPE }) {
+	AMPLIFIER_FLAME(EntityAmplifierFlame.class, ParticleData.VX_VY_VZ, new Class[] { Integer.TYPE, Float.TYPE, Integer.TYPE, ResourceLocation.class, Integer.TYPE }) {
         private final ResourceLocation texture;
         
         {
@@ -51,7 +51,7 @@ public enum NewAetherParticleHandler
         }
 	},
 	
-	DRAGON_FLAME((Class)EntityAmplifierFlame.class, ParticleData.VX_VY_VZ, new Class[] { Integer.TYPE, Float.TYPE, Integer.TYPE, ResourceLocation.class, Integer.TYPE }) {
+	DRAGON_FLAME(EntityAmplifierFlame.class, ParticleData.VX_VY_VZ, new Class[] { Integer.TYPE, Float.TYPE, Integer.TYPE, ResourceLocation.class, Integer.TYPE }) {
         private final ResourceLocation texture;
         
         {
@@ -64,7 +64,7 @@ public enum NewAetherParticleHandler
         }
 	},
 	
-	AMBROSIUM_FLAME((Class)EntityEtherealTorchFlame.class, ParticleData.VX_VY_VZ, new Class[] { Integer.TYPE, Float.TYPE, Integer.TYPE, ResourceLocation.class, Integer.TYPE }) {
+	AMBROSIUM_FLAME(EntityEtherealTorchFlame.class, ParticleData.VX_VY_VZ, new Class[] { Integer.TYPE, Float.TYPE, Integer.TYPE, ResourceLocation.class, Integer.TYPE }) {
         private final ResourceLocation texture;
         
         {
@@ -77,7 +77,7 @@ public enum NewAetherParticleHandler
         }
 	},
 	
-	HELLFIRE_FLAME((Class)EntityEtherealTorchFlame.class, ParticleData.VX_VY_VZ, new Class[] { Integer.TYPE, Float.TYPE, Integer.TYPE, ResourceLocation.class, Integer.TYPE }) {
+	HELLFIRE_FLAME(EntityEtherealTorchFlame.class, ParticleData.VX_VY_VZ, new Class[] { Integer.TYPE, Float.TYPE, Integer.TYPE, ResourceLocation.class, Integer.TYPE }) {
         private final ResourceLocation texture;
         
         {
@@ -90,7 +90,7 @@ public enum NewAetherParticleHandler
         }
 	},
 	
-	ELYSIAN_TELEPORT((Class)EntityEtherealTorchFlame.class, ParticleData.VX_VY_VZ, new Class[] { Integer.TYPE, Float.TYPE, Integer.TYPE, ResourceLocation.class, Integer.TYPE }) {
+	ELYSIAN_TELEPORT(EntityEtherealTorchFlame.class, ParticleData.VX_VY_VZ, new Class[] { Integer.TYPE, Float.TYPE, Integer.TYPE, ResourceLocation.class, Integer.TYPE }) {
         private final ResourceLocation texture;
         
         {
@@ -103,7 +103,7 @@ public enum NewAetherParticleHandler
         }
 	},
 	
-	ETHEREAL_FLAME((Class)EntityEtherealTorchFlame.class, ParticleData.VX_VY_VZ, new Class[] { Integer.TYPE, Float.TYPE, Integer.TYPE, ResourceLocation.class, Integer.TYPE }) {
+	ETHEREAL_FLAME(EntityEtherealTorchFlame.class, ParticleData.VX_VY_VZ, new Class[] { Integer.TYPE, Float.TYPE, Integer.TYPE, ResourceLocation.class, Integer.TYPE }) {
         private final ResourceLocation texture;
         
         {
@@ -132,7 +132,7 @@ public enum NewAetherParticleHandler
 	    }
 	    
 	    private NewAetherParticleHandler(final Class<? extends EntityFX> fxClass, final float r, final float g, final float b) {
-	        this(fxClass, r, g, b, ParticleData.VX_VY_VZ, (Class<?>[])new Class[0]);
+	        this(fxClass, r, g, b, ParticleData.VX_VY_VZ, new Class[0]);
 	    }
 	    
 	    private NewAetherParticleHandler(final Class<? extends EntityFX> fxClass, final ParticleData args, final Class<?>[] additionalArgTypes) {
@@ -151,11 +151,11 @@ public enum NewAetherParticleHandler
 	            this.constructor = fxClass.getConstructor(getArgumentTypes(args, additionalArgTypes));
 	        }
 	        catch (Exception e) {
-	            final CrashReport crash = CrashReport.makeCrashReport((Throwable)e, "NovaCraft Particle");
+	            final CrashReport crash = CrashReport.makeCrashReport(e, "NovaCraft Particle");
 	            final CrashReportCategory categoryArguments = crash.makeCategory("Arguments");
-	            categoryArguments.addCrashSection("Class", (Object)fxClass);
-	            categoryArguments.addCrashSection("Particle Arg Types", (Object)args);
-	            categoryArguments.addCrashSection("Additional Arg Types", (Object)Arrays.toString(additionalArgTypes));
+	            categoryArguments.addCrashSection("Class", fxClass);
+	            categoryArguments.addCrashSection("Particle Arg Types", args);
+	            categoryArguments.addCrashSection("Additional Arg Types", Arrays.toString(additionalArgTypes));
 	            throw new ReportedException(crash);
 	        }
 	        this.args = args;
@@ -181,13 +181,13 @@ public enum NewAetherParticleHandler
 	    }
 	    
 	    public final void spawn(final World world, final double x, final double y, final double z) {
-	        this.spawn(world, x, y, z, 0.0, 0.0, 0.0, 1.0f, new Object[0]);
+	        this.spawn(world, x, y, z, 0.0, 0.0, 0.0, 1.0f);
 	    }
 	    
 	    public final void spawn(final World world, final double x, final double y, final double z, final double motionX, final double motionY, final double motionZ, final float scale, final Object... data) {
 	        final Object[] arguments = this.getArguments(world, x, y, z, motionX, motionY, motionZ, scale, data);
 	        try {
-	            final EntityFX entityFX = (EntityFX)this.constructor.newInstance(arguments);
+	            final EntityFX entityFX = this.constructor.newInstance(arguments);
 	            if (this.shouldAssignColor) {
 	                entityFX.setRBGColorF(this.r, this.g, this.b);
 	            }
@@ -195,23 +195,23 @@ public enum NewAetherParticleHandler
 	            Minecraft.getMinecraft().effectRenderer.addEffect(entityFX);
 	        }
 	        catch (Exception e) {
-	            final CrashReport crash = CrashReport.makeCrashReport((Throwable)e, "Constructing EntityFX");
+	            final CrashReport crash = CrashReport.makeCrashReport(e, "Constructing EntityFX");
 	            final CrashReportCategory categorySpawnArguments = crash.makeCategory("Spawn Arguments");
-	            categorySpawnArguments.addCrashSection("World", (Object)world);
-	            categorySpawnArguments.addCrashSection("X", (Object)x);
-	            categorySpawnArguments.addCrashSection("Y", (Object)y);
-	            categorySpawnArguments.addCrashSection("Z", (Object)z);
-	            categorySpawnArguments.addCrashSection("Motion X", (Object)motionX);
-	            categorySpawnArguments.addCrashSection("Motion Y", (Object)motionY);
-	            categorySpawnArguments.addCrashSection("Motion Z", (Object)motionZ);
-	            categorySpawnArguments.addCrashSection("Scale", (Object)scale);
-	            categorySpawnArguments.addCrashSection("Data", (Object)Arrays.deepToString(data));
+	            categorySpawnArguments.addCrashSection("World", world);
+	            categorySpawnArguments.addCrashSection("X", x);
+	            categorySpawnArguments.addCrashSection("Y", y);
+	            categorySpawnArguments.addCrashSection("Z", z);
+	            categorySpawnArguments.addCrashSection("Motion X", motionX);
+	            categorySpawnArguments.addCrashSection("Motion Y", motionY);
+	            categorySpawnArguments.addCrashSection("Motion Z", motionZ);
+	            categorySpawnArguments.addCrashSection("Scale", scale);
+	            categorySpawnArguments.addCrashSection("Data", Arrays.deepToString(data));
 	            final CrashReportCategory categoryNetherliciousParticle = crash.makeCategory("NovaCraftParticle");
-	            categoryNetherliciousParticle.addCrashSection("Constructor", (Object)this.constructor);
-	            categoryNetherliciousParticle.addCrashSection("Particle Arg Types", (Object)this.args);
-	            categoryNetherliciousParticle.addCrashSection("Additional Arg Types", (Object)Arrays.toString(this.additionalArgTypes));
+	            categoryNetherliciousParticle.addCrashSection("Constructor", this.constructor);
+	            categoryNetherliciousParticle.addCrashSection("Particle Arg Types", this.args);
+	            categoryNetherliciousParticle.addCrashSection("Additional Arg Types", Arrays.toString(this.additionalArgTypes));
 	            final CrashReportCategory categoryArguments = crash.makeCategory("Arguments");
-	            categoryArguments.addCrashSection("Arguments", (Object)Arrays.deepToString(arguments));
+	            categoryArguments.addCrashSection("Arguments", Arrays.deepToString(arguments));
 	            throw new ReportedException(crash);
 	        }
 	    }

@@ -9,15 +9,11 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
-import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.FakePlayerFactory;
 import net.minecraftforge.event.entity.player.BonemealEvent;
 
-import java.util.Random;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
-import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
 
 import cpw.mods.fml.common.eventhandler.Event.Result;
 
@@ -117,11 +113,10 @@ public class ItemSwettyBall extends Item {
             return true;
         }
 
-        if (block instanceof IGrowable)
+        if (block instanceof IGrowable igrowable)
         {
-            IGrowable igrowable = (IGrowable)block;
 
-            if (igrowable.func_149851_a(p_150919_1_, p_150919_2_, p_150919_3_, p_150919_4_, p_150919_1_.isRemote))
+			if (igrowable.func_149851_a(p_150919_1_, p_150919_2_, p_150919_3_, p_150919_4_, p_150919_1_.isRemote))
             {
                 if (!p_150919_1_.isRemote)
                 {

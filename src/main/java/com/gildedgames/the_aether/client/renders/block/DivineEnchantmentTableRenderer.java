@@ -4,7 +4,6 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.model.ModelBook;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
@@ -42,8 +41,8 @@ public class DivineEnchantmentTableRenderer extends TileEntitySpecialRenderer
         this.bindTexture(field_147540_b);
         float f4 = p_147500_1_.field_145931_j + (p_147500_1_.field_145933_i - p_147500_1_.field_145931_j) * p_147500_8_ + 0.25F;
         float f5 = p_147500_1_.field_145931_j + (p_147500_1_.field_145933_i - p_147500_1_.field_145931_j) * p_147500_8_ + 0.75F;
-        f4 = (f4 - (float)MathHelper.truncateDoubleToInt((double)f4)) * 1.6F - 0.3F;
-        f5 = (f5 - (float)MathHelper.truncateDoubleToInt((double)f5)) * 1.6F - 0.3F;
+        f4 = (f4 - (float)MathHelper.truncateDoubleToInt(f4)) * 1.6F - 0.3F;
+        f5 = (f5 - (float)MathHelper.truncateDoubleToInt(f5)) * 1.6F - 0.3F;
 
         if (f4 < 0.0F)
         {
@@ -67,7 +66,7 @@ public class DivineEnchantmentTableRenderer extends TileEntitySpecialRenderer
 
         float f6 = p_147500_1_.field_145927_n + (p_147500_1_.field_145930_m - p_147500_1_.field_145927_n) * p_147500_8_;
         GL11.glEnable(GL11.GL_CULL_FACE);
-        this.field_147541_c.render((Entity)null, f1, f4, f5, f6, 0.0F, 0.0625F);
+        this.field_147541_c.render(null, f1, f4, f5, f6, 0.0F, 0.0625F);
         GL11.glPopMatrix();
     }
 

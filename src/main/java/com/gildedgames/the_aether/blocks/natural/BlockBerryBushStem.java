@@ -6,7 +6,6 @@ import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import net.minecraft.block.IGrowable;
 import net.minecraft.item.Item;
-import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -44,11 +43,6 @@ public class BlockBerryBushStem extends BlockAetherFlower implements IGrowable {
 		if (world.getBlockLightValue(x, y + 1, z) >= 9 && random.nextInt(60) == 0) {
 			world.setBlock(x, y, z, BlocksAether.berry_bush);
 		}
-	}
-
-	@Override
-	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
-		return null;
 	}
 
 	@SideOnly(Side.CLIENT)

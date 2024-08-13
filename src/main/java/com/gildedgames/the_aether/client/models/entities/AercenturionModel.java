@@ -17,68 +17,68 @@ public class AercenturionModel extends ModelBiped
     float[] armsAngles;
     
     public AercenturionModel() {
-        this.LowerBody = new ModelRenderer((ModelBase)this);
+        this.LowerBody = new ModelRenderer(this);
         this.isDefault = false;
         this.armState = 2;
         this.armsAngles = new float[] { 1.0f, 1.0f, 0.5f, 0.5f };
         this.textureWidth = 128;
         this.textureHeight = 64;
-        (this.bipedHead = new ModelRenderer((ModelBase)this, 0, 0)).addBox(-5.5f, -10.0f, -4.5f, 11, 8, 9);
+        (this.bipedHead = new ModelRenderer(this, 0, 0)).addBox(-5.5f, -10.0f, -4.5f, 11, 8, 9);
         this.bipedHead.setRotationPoint(0.0f, -2.0f, 0.0f);
         this.bipedHead.setTextureSize(128, 64);
         this.bipedHead.mirror = true;
         this.setRotation(this.bipedHead, 0.0f, 0.0f, 0.0f);
-        (this.bipedLeftLeg = new ModelRenderer((ModelBase)this, 42, 47)).addBox(-3.3f, 0.0f, -3.0f, 5, 11, 6);
+        (this.bipedLeftLeg = new ModelRenderer(this, 42, 47)).addBox(-3.3f, 0.0f, -3.0f, 5, 11, 6);
         this.bipedLeftLeg.setRotationPoint(4.0f, 13.0f, 0.0f);
         this.bipedLeftLeg.setTextureSize(128, 64);
         this.bipedLeftLeg.mirror = true;
         this.setRotation(this.bipedLeftLeg, 0.0f, 0.0f, 0.0f);
-        (this.bipedLeftArm = new ModelRenderer((ModelBase)this, 40, 3)).addBox(3.0f, -1.0f, -3.0f, 4, 8, 6);
+        (this.bipedLeftArm = new ModelRenderer(this, 40, 3)).addBox(3.0f, -1.0f, -3.0f, 4, 8, 6);
         this.bipedLeftArm.setRotationPoint(8.0f, 0.0f, 0.0f);
         this.bipedLeftArm.setTextureSize(128, 64);
         this.bipedLeftArm.mirror = true;
         this.setRotation(this.bipedLeftArm, 0.0f, 0.0f, 0.0f);
-        (this.LowerBody = new ModelRenderer((ModelBase)this, 0, 50)).addBox(-6.0f, 6.0f, -4.5f, 12, 5, 9);
+        (this.LowerBody = new ModelRenderer(this, 0, 50)).addBox(-6.0f, 6.0f, -4.5f, 12, 5, 9);
         this.LowerBody.setRotationPoint(0.0f, 2.0f, 0.0f);
         this.LowerBody.setTextureSize(128, 64);
         this.LowerBody.mirror = true;
         this.setRotation(this.LowerBody, 0.0f, 0.0f, 0.0f);
         this.bipedRightLeg.mirror = true;
-        (this.bipedRightLeg = new ModelRenderer((ModelBase)this, 42, 47)).addBox(-1.633333f, 0.0f, -3.0f, 5, 11, 6);
+        (this.bipedRightLeg = new ModelRenderer(this, 42, 47)).addBox(-1.633333f, 0.0f, -3.0f, 5, 11, 6);
         this.bipedRightLeg.setRotationPoint(-4.0f, 13.0f, 0.0f);
         this.bipedRightLeg.setTextureSize(128, 64);
         this.bipedRightLeg.mirror = true;
         this.setRotation(this.bipedRightLeg, 0.0f, 0.0f, 0.0f);
         this.bipedRightLeg.mirror = false;
-        (this.bipedBody = new ModelRenderer((ModelBase)this, 0, 17)).addBox(-8.0f, -4.0f, -5.5f, 16, 10, 11);
+        (this.bipedBody = new ModelRenderer(this, 0, 17)).addBox(-8.0f, -4.0f, -5.5f, 16, 10, 11);
         this.bipedBody.setRotationPoint(0.0f, 2.0f, 0.0f);
         this.bipedBody.setTextureSize(128, 64);
         this.bipedBody.mirror = true;
         this.setRotation(this.bipedBody, 0.0f, 0.0f, 0.0f);
-        (this.RightArmHand = new ModelRenderer((ModelBase)this, 54, 17)).addBox(-5.0f, 6.0f, -3.5f, 5, 6, 7);
+        (this.RightArmHand = new ModelRenderer(this, 54, 17)).addBox(-5.0f, 6.0f, -3.5f, 5, 6, 7);
         this.RightArmHand.setRotationPoint(-8.0f, 0.0f, 0.0f);
         this.RightArmHand.setTextureSize(128, 64);
         this.RightArmHand.mirror = true;
         this.setRotation(this.RightArmHand, 0.0f, 0.0f, 0.0f);
         this.RightArmHand.mirror = false;
         this.bipedRightArm.mirror = true;
-        (this.bipedRightArm = new ModelRenderer((ModelBase)this, 40, 3)).addBox(-7.0f, -1.0f, -3.0f, 4, 8, 6);
+        (this.bipedRightArm = new ModelRenderer(this, 40, 3)).addBox(-7.0f, -1.0f, -3.0f, 4, 8, 6);
         this.bipedRightArm.setRotationPoint(-8.0f, 0.0f, 0.0f);
         this.bipedRightArm.setTextureSize(128, 64);
         this.bipedRightArm.mirror = true;
         this.setRotation(this.bipedRightArm, 0.0f, 0.0f, 0.0f);
         this.bipedRightArm.mirror = false;
-        (this.LeftArmHand = new ModelRenderer((ModelBase)this, 54, 17)).addBox(0.0f, 6.0f, -3.5f, 5, 6, 7);
+        (this.LeftArmHand = new ModelRenderer(this, 54, 17)).addBox(0.0f, 6.0f, -3.5f, 5, 6, 7);
         this.LeftArmHand.setRotationPoint(8.0f, 0.0f, 0.0f);
         this.LeftArmHand.setTextureSize(128, 64);
         this.LeftArmHand.mirror = true;
         this.setRotation(this.LeftArmHand, 0.0f, 0.0f, 0.0f);
-        (this.SentryBody = new ModelRenderer((ModelBase)this, 64, 48)).addBox(-5.5f, -8.0f, -4.5f, 8, 8, 8);
+        (this.SentryBody = new ModelRenderer(this, 64, 48)).addBox(-5.5f, -8.0f, -4.5f, 8, 8, 8);
         this.SentryBody.setRotationPoint(1.5f, 4.0f, -12.0f);
         this.SentryBody.setTextureSize(128, 64);
         this.SentryBody.mirror = true;
         this.setRotation(this.SentryBody, 0.0f, 0.0f, 0.0f);
-        (this.SentryHead = new ModelRenderer((ModelBase)this, 64, 48)).addBox(-5.5f, -8.0f, -4.5f, 8, 8, 8);
+        (this.SentryHead = new ModelRenderer(this, 64, 48)).addBox(-5.5f, -8.0f, -4.5f, 8, 8, 8);
         this.SentryHead.setRotationPoint(1.5f, -11.0f, 0.0f);
         this.SentryHead.setTextureSize(128, 64);
         this.SentryHead.mirror = true;
@@ -111,9 +111,8 @@ public class AercenturionModel extends ModelBiped
     
     public void setRotationAngles(final float f, final float f1, final float f2, final float f3, final float f4, final float f5, final Entity entity) {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-        if (entity instanceof EntityAercenturion) {
-            final EntityAercenturion entityS = (EntityAercenturion)entity;
-            //this.armState = entityS.getHandState();
+        if (entity instanceof EntityAercenturion entityS) {
+			//this.armState = entityS.getHandState();
             //if (entityS.progress < this.armsAngles[this.armState]) {
                // final EntityAercenturion entitySentryGolem = entityS;
                 //entitySentryGolem.progress += 0.02f;

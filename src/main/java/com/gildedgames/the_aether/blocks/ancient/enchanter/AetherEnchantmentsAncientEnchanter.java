@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.blocks.ancient.enchanter;
 import net.minecraft.init.*;
 import net.minecraft.item.*;
-import com.gildedgames.the_aether.api.enchantments.AetherEnchantment;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.tileentity.TileEntityAncientEnchanter;

@@ -2,7 +2,6 @@ package com.gildedgames.the_aether.items.food;
 
 import java.util.List;
 
-import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -11,27 +10,13 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 
-
-
-
-
-import net.minecraft.client.renderer.entity.*;
 import net.minecraft.util.*;
-import net.minecraft.client.model.*;
-import org.lwjgl.opengl.*;
-
-import com.gildedgames.the_aether.client.models.entities.TempestModel;
-import com.gildedgames.the_aether.entities.hostile.EntityTempest;
-
-import net.minecraft.client.renderer.*;
-import net.minecraft.entity.*;
 
 public class ItemWynberry extends ItemAetherFood {
 

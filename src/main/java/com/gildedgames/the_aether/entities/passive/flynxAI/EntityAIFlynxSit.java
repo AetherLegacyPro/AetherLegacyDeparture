@@ -48,7 +48,7 @@ public class EntityAIFlynxSit extends EntityAIBase
      */
     public void startExecuting()
     {
-        this.field_151493_a.getNavigator().tryMoveToXYZ((double)((float)this.field_151487_f) + 0.5D, (double)(this.field_151488_g + 1), (double)((float)this.field_151494_h) + 0.5D, this.field_151491_b);
+        this.field_151493_a.getNavigator().tryMoveToXYZ((double)((float)this.field_151487_f) + 0.5D, this.field_151488_g + 1, (double)((float)this.field_151494_h) + 0.5D, this.field_151491_b);
         this.field_151492_c = 0;
         this.field_151489_d = 0;
         this.field_151490_e = this.field_151493_a.getRNG().nextInt(this.field_151493_a.getRNG().nextInt(1200) + 1200) + 1200;
@@ -71,10 +71,10 @@ public class EntityAIFlynxSit extends EntityAIBase
         ++this.field_151492_c;
         this.field_151493_a.func_70907_r().setSitting(false);
 
-        if (this.field_151493_a.getDistanceSq((double)this.field_151487_f, (double)(this.field_151488_g + 1), (double)this.field_151494_h) > 1.0D)
+        if (this.field_151493_a.getDistanceSq(this.field_151487_f, this.field_151488_g + 1, this.field_151494_h) > 1.0D)
         {
             this.field_151493_a.setSitting(false);
-            this.field_151493_a.getNavigator().tryMoveToXYZ((double)((float)this.field_151487_f) + 0.5D, (double)(this.field_151488_g + 1), (double)((float)this.field_151494_h) + 0.5D, this.field_151491_b);
+            this.field_151493_a.getNavigator().tryMoveToXYZ((double)((float)this.field_151487_f) + 0.5D, this.field_151488_g + 1, (double)((float)this.field_151494_h) + 0.5D, this.field_151491_b);
             ++this.field_151489_d;
         }
         else if (!this.field_151493_a.isSitting())
@@ -98,7 +98,7 @@ public class EntityAIFlynxSit extends EntityAIBase
             {
                 if (this.func_151486_a(this.field_151493_a.worldObj, j, i, k) && this.field_151493_a.worldObj.isAirBlock(j, i + 1, k))
                 {
-                    double d1 = this.field_151493_a.getDistanceSq((double)j, (double)i, (double)k);
+                    double d1 = this.field_151493_a.getDistanceSq(j, i, k);
 
                     if (d1 < d0)
                     {

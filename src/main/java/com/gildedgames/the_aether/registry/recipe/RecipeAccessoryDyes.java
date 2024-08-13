@@ -6,7 +6,6 @@ import net.minecraft.block.BlockColored;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.InventoryCrafting;
-import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.world.World;
@@ -18,7 +17,7 @@ public class RecipeAccessoryDyes implements IRecipe {
 	@Override
 	public boolean matches(InventoryCrafting p_77569_1_, World p_77569_2_) {
 		ItemStack itemstack = null;
-		ArrayList<ItemStack> arraylist = new ArrayList<ItemStack>();
+		ArrayList<ItemStack> arraylist = new ArrayList<>();
 
 		for (int i = 0; i < p_77569_1_.getSizeInventory(); ++i) {
 			ItemStack itemstack1 = p_77569_1_.getStackInSlot(i);

@@ -35,22 +35,22 @@ public class PhygWingModel extends ModelBase {
 		float y2;
 
 		if (pig.isChild()) {
-			wingBend = -((float) Math.acos((double) pig.wingFold));
+			wingBend = -((float) Math.acos(pig.wingFold));
 			GL11.glScalef(1.0F / 2.0F, 1.0F / 2.0F, 1.0F / 2.0F);
 			GL11.glTranslatef(0.0F, 24.0F * scale, 0.0F);
-			x = -((float) Math.acos((double) pig.wingFold));
+			x = -((float) Math.acos(pig.wingFold));
 			y = 32.0F * pig.wingFold / 4.0F;
-			z = -32.0F * (float) Math.sqrt((double) (1.0F - pig.wingFold * pig.wingFold)) / 4.0F;
+			z = -32.0F * (float) Math.sqrt(1.0F - pig.wingFold * pig.wingFold) / 4.0F;
 			x2 = 0.0F;
-			y2 = y * (float) Math.cos((double) pig.wingAngle) - z * (float) Math.sin((double) pig.wingAngle);
-			float y21 = y * (float) Math.sin((double) pig.wingAngle) + z * (float) Math.cos((double) pig.wingAngle);
+			y2 = y * (float) Math.cos(pig.wingAngle) - z * (float) Math.sin(pig.wingAngle);
+			float y21 = y * (float) Math.sin(pig.wingAngle) + z * (float) Math.cos(pig.wingAngle);
 
 			this.leftWingInner.setRotationPoint(4.0F + y2, y21 + 12.0F, x2);
 			this.rightWingInner.setRotationPoint(-4.0F - y2, y21 + 12.0F, x2);
 
 			y *= 3.0F;
-			y2 = y * (float) Math.cos((double) pig.wingAngle) - z * (float) Math.sin((double) pig.wingAngle);
-			y21 = y * (float) Math.sin((double) pig.wingAngle) + z * (float) Math.cos((double) pig.wingAngle);
+			y2 = y * (float) Math.cos(pig.wingAngle) - z * (float) Math.sin(pig.wingAngle);
+			y21 = y * (float) Math.sin(pig.wingAngle) + z * (float) Math.cos(pig.wingAngle);
 
 			this.leftWingOuter.setRotationPoint(4.0F + y2, y21 + 12.0F, x2);
 			this.rightWingOuter.setRotationPoint(-4.0F - y2, y21 + 12.0F, x2);
@@ -65,19 +65,19 @@ public class PhygWingModel extends ModelBase {
 			this.rightWingOuter.render(scale);
 			this.rightWingInner.render(scale);
 		} else {
-			wingBend = -((float) Math.acos((double) pig.wingFold));
+			wingBend = -((float) Math.acos(pig.wingFold));
 			x = 32.0F * pig.wingFold / 4.0F;
-			y = -32.0F * (float) Math.sqrt((double) (1.0F - pig.wingFold * pig.wingFold)) / 4.0F;
+			y = -32.0F * (float) Math.sqrt(1.0F - pig.wingFold * pig.wingFold) / 4.0F;
 			z = 0.0F;
-			x2 = x * (float) Math.cos((double) pig.wingAngle) - y * (float) Math.sin((double) pig.wingAngle);
-			y2 = x * (float) Math.sin((double) pig.wingAngle) + y * (float) Math.cos((double) pig.wingAngle);
+			x2 = x * (float) Math.cos(pig.wingAngle) - y * (float) Math.sin(pig.wingAngle);
+			y2 = x * (float) Math.sin(pig.wingAngle) + y * (float) Math.cos(pig.wingAngle);
 
 			this.leftWingInner.setRotationPoint(4.0F + x2, y2 + 12.0F, z);
 			this.rightWingInner.setRotationPoint(-4.0F - x2, y2 + 12.0F, z);
 
 			x *= 3.0F;
-			x2 = x * (float) Math.cos((double) pig.wingAngle) - y * (float) Math.sin((double) pig.wingAngle);
-			y2 = x * (float) Math.sin((double) pig.wingAngle) + y * (float) Math.cos((double) pig.wingAngle);
+			x2 = x * (float) Math.cos(pig.wingAngle) - y * (float) Math.sin(pig.wingAngle);
+			y2 = x * (float) Math.sin(pig.wingAngle) + y * (float) Math.cos(pig.wingAngle);
 
 			this.leftWingOuter.setRotationPoint(4.0F + x2, y2 + 12.0F, z);
 			this.rightWingOuter.setRotationPoint(-4.0F - x2, y2 + 12.0F, z);
@@ -92,10 +92,6 @@ public class PhygWingModel extends ModelBase {
 			this.rightWingOuter.render(scale);
 			this.rightWingInner.render(scale);
 		}
-	}
-
-	@Override
-	public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn) {
 	}
 
 }

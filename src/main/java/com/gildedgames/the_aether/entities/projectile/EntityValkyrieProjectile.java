@@ -3,9 +3,7 @@ package com.gildedgames.the_aether.entities.projectile;
 import java.util.ArrayList;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockBush;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.MovingObjectPosition.MovingObjectType;
@@ -16,7 +14,7 @@ import com.gildedgames.the_aether.entities.util.EntitySaddleMount;
 
 public class EntityValkyrieProjectile extends EntityProjectileBase {
 
-	public ArrayList<Block> harvestBlockBans = new ArrayList<Block>();
+	public ArrayList<Block> harvestBlockBans = new ArrayList<>();
 
 	public EntityValkyrieProjectile(World worldIn) {
 		super(worldIn);

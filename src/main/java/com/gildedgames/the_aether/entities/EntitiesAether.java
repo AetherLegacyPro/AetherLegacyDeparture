@@ -105,13 +105,13 @@ import cpw.mods.fml.common.registry.EntityRegistry;
 
 public class EntitiesAether {
 
-	public static Map<Class<?>, String> classToStringMapping = new HashMap<Class<?>, String>();
+	public static Map<Class<?>, String> classToStringMapping = new HashMap<>();
 
-	public static Map<Integer, Class<?>> IDtoClassMapping = new HashMap<Integer, Class<?>>();
+	public static Map<Integer, Class<?>> IDtoClassMapping = new HashMap<>();
 
-	private static Map<Class<?>, Integer> classToIDMapping = new HashMap<Class<?>, Integer>();
+	private static Map<Class<?>, Integer> classToIDMapping = new HashMap<>();
 
-	private static Map<String, Integer> stringToIDMapping = new HashMap<String, Integer>();
+	private static Map<String, Integer> stringToIDMapping = new HashMap<>();
 
 	private static final Logger logger = LogManager.getLogger();
 
@@ -223,14 +223,14 @@ public class EntitiesAether {
 	}
 
 	private static void addMapping(Class<?> entityClass, String entityName, int entityID, int primaryEggColor, int secondaryEggColor) {
-		if (IDtoClassMapping.containsKey(Integer.valueOf(entityID))) {
+		if (IDtoClassMapping.containsKey(entityID)) {
 			throw new IllegalArgumentException("ID is already registered: " + entityID);
 		} else {
 			classToStringMapping.put(entityClass, entityName);
-			IDtoClassMapping.put(Integer.valueOf(entityID), entityClass);
-			classToIDMapping.put(entityClass, Integer.valueOf(entityID));
-			stringToIDMapping.put(entityName, Integer.valueOf(entityID));
-			ItemAetherSpawnEgg.entityEggs.put(Integer.valueOf(entityID), new AetherEggInfo(entityID, primaryEggColor, secondaryEggColor));
+			IDtoClassMapping.put(entityID, entityClass);
+			classToIDMapping.put(entityClass, entityID);
+			stringToIDMapping.put(entityName, entityID);
+			ItemAetherSpawnEgg.entityEggs.put(entityID, new AetherEggInfo(entityID, primaryEggColor, secondaryEggColor));
 		}
 	}
 
@@ -248,7 +248,7 @@ public class EntitiesAether {
 		}
 
 		if (entity == null) {
-			logger.warn("Skipping Aether Entity with id " + id);
+			logger.warn("Skipping Aether Entity with id {}", id);
 		}
 
 		return entity;
@@ -256,17 +256,17 @@ public class EntitiesAether {
 
 	public static int getEntityID(Entity p_75619_0_) {
 		Class<?> oclass = p_75619_0_.getClass();
-		return classToIDMapping.containsKey(oclass) ? ((Integer) classToIDMapping.get(oclass)).intValue() : -1;
+		return classToIDMapping.containsKey(oclass) ? classToIDMapping.get(oclass) : -1;
 	}
 
 	public static Class<?> getClassFromID(int p_90035_0_) {
-		return (Class<?>) IDtoClassMapping.get(Integer.valueOf(p_90035_0_));
+		return IDtoClassMapping.get(p_90035_0_);
 	}
 
 	public static String getStringFromID(int p_75617_0_) {
 		Class<?> oclass = getClassFromID(p_75617_0_);
 
-		return oclass != null ? (String) classToStringMapping.get(oclass) : null;
+		return oclass != null ? classToStringMapping.get(oclass) : null;
 	}
 
 	public static class AetherEggInfo

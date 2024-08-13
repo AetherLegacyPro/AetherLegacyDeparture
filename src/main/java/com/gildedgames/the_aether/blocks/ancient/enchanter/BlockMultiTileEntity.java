@@ -47,9 +47,8 @@ public abstract class BlockMultiTileEntity extends BlockContainer
             for (int y2 = minY; y2 < maxY; ++y2) {
                 for (int z2 = minZ; z2 < maxZ; ++z2) {
                     final TileEntity tile = world.getTileEntity(x2, y2, z2);
-                    if (tile instanceof TileEntityMultiBlock) {
-                        final TileEntityMultiBlock tileEntity = (TileEntityMultiBlock)tile;
-                        return tileEntity;
+                    if (tile instanceof TileEntityMultiBlock tileEntity) {
+						return tileEntity;
                     }
                 }
             }
@@ -70,7 +69,7 @@ public abstract class BlockMultiTileEntity extends BlockContainer
     }
     
     public void setBlockSize(final float minX, final float minY, final float minZ, final float maxX, final float maxY, final float maxZ) {
-        this.size = AxisAlignedBB.getBoundingBox((double)minX, (double)minY, (double)minZ, (double)maxX, (double)maxY, (double)maxZ);
+        this.size = AxisAlignedBB.getBoundingBox(minX, minY, minZ, maxX, maxY, maxZ);
     }
     
     public AxisAlignedBB getBlockSize() {
@@ -184,9 +183,8 @@ public abstract class BlockMultiTileEntity extends BlockContainer
             return super.getCollisionBoundingBoxFromPool(world, x, y, z);
         }
         final TileEntity tileEntity = world.getTileEntity(x, y, z);
-        if (tileEntity instanceof TileEntityMultiBlock) {
-            final TileEntityMultiBlock multiTileEntity = (TileEntityMultiBlock)tileEntity;
-            final AxisAlignedBB blockSize = multiTileEntity.getSize();
+        if (tileEntity instanceof TileEntityMultiBlock multiTileEntity) {
+			final AxisAlignedBB blockSize = multiTileEntity.getSize();
             return this.isDummyBlock(world, x, y, z) ? super.getCollisionBoundingBoxFromPool(world, x, y, z) : blockSize;
         }
         return super.getCollisionBoundingBoxFromPool(world, x, y, z);

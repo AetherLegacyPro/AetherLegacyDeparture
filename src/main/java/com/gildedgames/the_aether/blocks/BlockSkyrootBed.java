@@ -7,7 +7,6 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockBed;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -87,7 +86,7 @@ public class BlockSkyrootBed extends BlockBed
 
                     if (entityplayer1 != null)
                     {
-                        p_149727_5_.addChatComponentMessage(new ChatComponentTranslation("tile.bed.occupied", new Object[0]));
+                        p_149727_5_.addChatComponentMessage(new ChatComponentTranslation("tile.bed.occupied"));
                         return true;
                     }
 
@@ -105,7 +104,7 @@ public class BlockSkyrootBed extends BlockBed
                 {
                     if (enumstatus == EntityPlayer.EnumStatus.NOT_POSSIBLE_NOW)
                     {
-                        p_149727_5_.addChatComponentMessage(new ChatComponentTranslation("tile.bed.noSleep", new Object[0]));
+                        p_149727_5_.addChatComponentMessage(new ChatComponentTranslation("tile.bed.noSleep"));
 
                         if (p_149727_5_.dimension == AetherConfig.getAetherDimensionID())
                         {
@@ -116,7 +115,7 @@ public class BlockSkyrootBed extends BlockBed
                     }
                     else if (enumstatus == EntityPlayer.EnumStatus.NOT_SAFE)
                     {
-                        p_149727_5_.addChatComponentMessage(new ChatComponentTranslation("tile.bed.notSafe", new Object[0]));
+                        p_149727_5_.addChatComponentMessage(new ChatComponentTranslation("tile.bed.notSafe"));
                     }
 
                     return true;
@@ -140,7 +139,7 @@ public class BlockSkyrootBed extends BlockBed
                     d1 = (d1 + (double)p_149727_4_ + 0.5D) / 2.0D;
                 }
 
-                p_149727_1_.newExplosion((Entity)null, (double)((float)p_149727_2_ + 0.5F), (double)((float)p_149727_3_ + 0.5F), (double)((float)p_149727_4_ + 0.5F), 5.0F, true, true);
+                p_149727_1_.newExplosion(null, (float)p_149727_2_ + 0.5F, (float)p_149727_3_ + 0.5F, (float)p_149727_4_ + 0.5F, 5.0F, true, true);
                 return true;
             }
         }
@@ -177,26 +176,18 @@ public class BlockSkyrootBed extends BlockBed
         this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.5625F, 1.0F);
     }
 
-    public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
-    {
+    public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_) {
         return isBlockHeadOfBed(p_149650_1_) ? Item.getItemById(0) : ItemsAether.skyroot_bed_item;
     }
 
     @SideOnly(Side.CLIENT)
-    public Item getItem(World p_149694_1_, int p_149694_2_, int p_149694_3_, int p_149694_4_)
-    {
+    public Item getItem(World p_149694_1_, int p_149694_2_, int p_149694_3_, int p_149694_4_) {
         return ItemsAether.skyroot_bed_item;
     }
 
     @Override
-    public boolean isBed(IBlockAccess world, int x, int y, int z, EntityLivingBase player)
-    {
+    public boolean isBed(IBlockAccess world, int x, int y, int z, EntityLivingBase player) {
         return true;
     }
 
-    @Override
-    public boolean isBedFoot(IBlockAccess world, int x, int y, int z)
-    {
-        return BlockSkyrootBed.isBlockHeadOfBed(world.getBlockMetadata(x,  y, z));
-    }
 }

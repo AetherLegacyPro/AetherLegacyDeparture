@@ -1,15 +1,11 @@
 package com.gildedgames.the_aether.entities.projectile;
 
 import com.gildedgames.the_aether.blocks.BlocksAether;
-import com.gildedgames.the_aether.entities.particles.NewAetherParticleHandler;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.projectile.EntityFireball;
-import net.minecraft.init.Blocks;
 import net.minecraft.network.play.server.S12PacketEntityVelocity;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;

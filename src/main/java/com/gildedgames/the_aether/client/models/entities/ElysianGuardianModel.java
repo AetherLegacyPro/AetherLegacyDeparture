@@ -2,7 +2,6 @@ package com.gildedgames.the_aether.client.models.entities;
 
 
 import net.minecraft.client.model.ModelBase;
-import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
@@ -41,137 +40,137 @@ public class ElysianGuardianModel extends ModelBase
         this.textureWidth = 128;
         this.textureHeight = 64;
         
-        (this.head = new ModelRenderer((ModelBase)this, 0, 0)).addBox(-3.0f, -9.0f, -5.0f, 6, 8, 8, 0.0f);
+        (this.head = new ModelRenderer(this, 0, 0)).addBox(-3.0f, -9.0f, -5.0f, 6, 8, 8, 0.0f);
         this.head.setRotationPoint(0.0f, -15.0f, 4.0f);
         this.head.mirror = true;
         this.setRotateAngle(this.head, 0.1745329f, 0.0f, 0.0f);
         
-        (this.neck = new ModelRenderer((ModelBase)this, 0, 11)).addBox(-2.0f, 0.0f, -2.5f, 4, 6, 5, 0.0f);
+        (this.neck = new ModelRenderer(this, 0, 11)).addBox(-2.0f, 0.0f, -2.5f, 4, 6, 5, 0.0f);
         this.neck.setRotationPoint(0.0f, -17.0f, 4.0f);
         this.neck.mirror = true;
         this.setRotateAngle(this.neck, 0.5235988f, 0.0f, 0.0f);
         
-        (this.upper_body = new ModelRenderer((ModelBase)this, 0, 22)).addBox(-6.0f, 1.0f, -3.5f, 12, 7, 7, 0.0f);
+        (this.upper_body = new ModelRenderer(this, 0, 22)).addBox(-6.0f, 1.0f, -3.5f, 12, 7, 7, 0.0f);
         this.upper_body.setRotationPoint(0.0f, -13.0f, 6.0f);
         this.upper_body.mirror = true;
         this.setRotateAngle(this.upper_body, -0.5235988f, 0.0f, 0.0f);
         
-        (this.upper_back = new ModelRenderer((ModelBase)this, 0, 47)).addBox(-5.5f, 0.0f, -3.5f, 11, 10, 7, 0.0f);
+        (this.upper_back = new ModelRenderer(this, 0, 47)).addBox(-5.5f, 0.0f, -3.5f, 11, 10, 7, 0.0f);
         this.upper_back.setRotationPoint(0.0f, -14.0f, 6.0f);
         this.upper_back.mirror = true;
         this.setRotateAngle(this.upper_back, 0.0f, 0.0f, 0.0f);
         
-        (this.right_shoulder = new ModelRenderer((ModelBase)this, 38, 0)).addBox(-6.0f, -3.0f, -3.0f, 7, 6, 6, 0.0f);
+        (this.right_shoulder = new ModelRenderer(this, 38, 0)).addBox(-6.0f, -3.0f, -3.0f, 7, 6, 6, 0.0f);
         this.right_shoulder.setRotationPoint(-6.0f, -12.0f, 6.0f);
         this.right_shoulder.mirror = true;
         this.setRotateAngle(this.right_shoulder, 0.0f, 0.0f, 0.1745329f);
         
-        (this.right_upperarm = new ModelRenderer((ModelBase)this, 54, 12)).addBox(-3.5f, 0.0f, -2.0f, 3, 11, 3, 0.0f);
+        (this.right_upperarm = new ModelRenderer(this, 54, 12)).addBox(-3.5f, 0.0f, -2.0f, 3, 11, 3, 0.0f);
         this.right_upperarm.setRotationPoint(-6.0f, -12.0f, 6.0f);
         this.right_upperarm.mirror = true;
         this.setRotateAngle(this.right_upperarm, 0.1745329f, -0.1745329f, 0.0872665f);
         
-        (this.right_lowerarm = new ModelRenderer((ModelBase)this, 38, 12)).addBox(-4.0f, 7.0f, 4.0f, 4, 11, 4, 0.0f); //-4.0f, 7.0f, 4.0f
+        (this.right_lowerarm = new ModelRenderer(this, 38, 12)).addBox(-4.0f, 7.0f, 4.0f, 4, 11, 4, 0.0f); //-4.0f, 7.0f, 4.0f
         this.right_lowerarm.setRotationPoint(1.0f, 2.0f, -1.0f); //-6.0f, -12.0f, 6.0f
         this.right_lowerarm.mirror = true;
         this.setRotateAngle(this.right_lowerarm, -0.3490659f, -0.1745329f, 0.0872665f); //0.0872665f
         
-        (this.right_hand = new ModelRenderer((ModelBase)this, 38, 27)).addBox(-4.5f, 15.0f, 3.5f, 4, 6, 5, 0.0f);
+        (this.right_hand = new ModelRenderer(this, 38, 27)).addBox(-4.5f, 15.0f, 3.5f, 4, 6, 5, 0.0f);
         this.right_hand.setRotationPoint(1.0f, 2.0f, -1.0f); //1.0f, -4.0f, 6.0f
         this.right_hand.mirror = true;
         this.setRotateAngle(this.right_hand, -0.3490659f, -0.1745329f, 0.0872665f);
         
-        (this.left_shoulder = new ModelRenderer((ModelBase)this, 64, 0)).addBox(-1.0f, -3.0f, -3.0f, 7, 6, 6, 0.0f);
+        (this.left_shoulder = new ModelRenderer(this, 64, 0)).addBox(-1.0f, -3.0f, -3.0f, 7, 6, 6, 0.0f);
         this.left_shoulder.setRotationPoint(6.0f, -12.0f, 6.0f);
         this.left_shoulder.mirror = true;
         this.setRotateAngle(this.left_shoulder, 0.0f, 0.0f, -0.1745329f);
         
-        (this.left_upperarm = new ModelRenderer((ModelBase)this, 54, 12)).addBox(1.5f, 0.0f, -2.0f, 3, 11, 3, 0.0f);
+        (this.left_upperarm = new ModelRenderer(this, 54, 12)).addBox(1.5f, 0.0f, -2.0f, 3, 11, 3, 0.0f);
         this.left_upperarm.setRotationPoint(5.0f, -12.0f, 6.0f);
         this.left_upperarm.mirror = true;
         this.setRotateAngle(this.left_upperarm, 0.1745329f, 0.1745329f, -0.0872665f);
         
-        (this.left_lowerarm = new ModelRenderer((ModelBase)this, 38, 12)).addBox(1.0f, 7.0f, 4.0f, 4, 11, 4, 0.0f);
+        (this.left_lowerarm = new ModelRenderer(this, 38, 12)).addBox(1.0f, 7.0f, 4.0f, 4, 11, 4, 0.0f);
         this.left_lowerarm.setRotationPoint(-1.0f, 2.0f, 0.0f); //5.0f, -12.0f, 6.0f
         this.left_lowerarm.mirror = true;
         this.setRotateAngle(this.left_lowerarm, -0.3490659f, 0.1745329f, -0.0872665f);
         
-        (this.left_hand = new ModelRenderer((ModelBase)this, 56, 27)).addBox(1.5f, 15.0f, 4.5f, 4, 6, 5, 0.0f);
+        (this.left_hand = new ModelRenderer(this, 56, 27)).addBox(1.5f, 15.0f, 4.5f, 4, 6, 5, 0.0f);
         this.left_hand.setRotationPoint(-1.0f, 2.0f, -1.0f);
         this.left_hand.mirror = true;
         this.setRotateAngle(this.left_hand, -0.3490659f, 0.1745329f, -0.0872665f);
         
-        (this.mid_body = new ModelRenderer((ModelBase)this, 0, 36)).addBox(-4.5f, 8.0f, -4.5f, 9, 5, 6, 0.0f);
+        (this.mid_body = new ModelRenderer(this, 0, 36)).addBox(-4.5f, 8.0f, -4.5f, 9, 5, 6, 0.0f);
         this.mid_body.setRotationPoint(0.0f, -16.0f, 1.0f);
         this.mid_body.mirror = true;
         this.setRotateAngle(this.mid_body, 0.4363323f, 0.0f, 0.0f);
         
-        (this.core = new ModelRenderer((ModelBase)this, 90, 0)).addBox(-3.0f, 10.0f, -2.5f, 6, 4, 5, 0.0f);
+        (this.core = new ModelRenderer(this, 90, 0)).addBox(-3.0f, 10.0f, -2.5f, 6, 4, 5, 0.0f);
         this.core.setRotationPoint(0.0f, -14.0f, 6.0f);
         this.core.mirror = true;
         this.setRotateAngle(this.core, 0.0f, 0.0f, 0.0f);
         
-        (this.lower_body = new ModelRenderer((ModelBase)this, 90, 9)).addBox(-4.0f, 0.0f, -4.5f, 8, 5, 7, 0.0f);
+        (this.lower_body = new ModelRenderer(this, 90, 9)).addBox(-4.0f, 0.0f, -4.5f, 8, 5, 7, 0.0f);
         this.lower_body.setRotationPoint(0.0f, 0.0f, 7.0f);
         this.lower_body.mirror = true;
         this.setRotateAngle(this.lower_body, 0.0f, 0.0f, 0.0f);
         
-        (this.right_shirt = new ModelRenderer((ModelBase)this, 102, 21)).addBox(-2.5f, -4.0f, -4.0f, 5, 8, 8, 0.0f);
+        (this.right_shirt = new ModelRenderer(this, 102, 21)).addBox(-2.5f, -4.0f, -4.0f, 5, 8, 8, 0.0f);
         this.right_shirt.setRotationPoint(-3.0f, 5.0f, 6.0f);
         this.right_shirt.mirror = true;
         this.setRotateAngle(this.right_shirt, 0.0f, 0.0f, 0.1745329f);
         
-        (this.left_shirt = new ModelRenderer((ModelBase)this, 76, 21)).addBox(-2.5f, -4.0f, -4.0f, 5, 8, 8, 0.0f);
+        (this.left_shirt = new ModelRenderer(this, 76, 21)).addBox(-2.5f, -4.0f, -4.0f, 5, 8, 8, 0.0f);
         this.left_shirt.setRotationPoint(3.0f, 5.0f, 6.0f);
         this.left_shirt.mirror = true;
         this.setRotateAngle(this.left_shirt, 0.0f, 0.0f, -0.1745329f);
         
-        (this.front_shirt = new ModelRenderer((ModelBase)this, 90, 37)).addBox(-2.5f, 1.0f, -5.5f, 5, 9, 9, 0.0f);
+        (this.front_shirt = new ModelRenderer(this, 90, 37)).addBox(-2.5f, 1.0f, -5.5f, 5, 9, 9, 0.0f);
         this.front_shirt.setRotationPoint(0.0f, 0.0f, 7.0f);
         this.front_shirt.mirror = true;
         this.setRotateAngle(this.front_shirt, 0.0f, 0.0f, 0.0f);
         		
-        (this.top_right_leg = new ModelRenderer((ModelBase)this, 54, 12)).addBox(-1.5f, 0.0f, -1.5f, 3, 10, 3, 0.0f);
+        (this.top_right_leg = new ModelRenderer(this, 54, 12)).addBox(-1.5f, 0.0f, -1.5f, 3, 10, 3, 0.0f);
         this.top_right_leg.setRotationPoint(-3.0f, 5.0f, 6.0f); //-3.0f, 5.0f, 6.0f
         this.top_right_leg.mirror = true;
         this.setRotateAngle(this.top_right_leg, -0.0872665f, 0.0f, 0.0349066f);
         //
-        (this.right_lower_leg = new ModelRenderer((ModelBase)this, 38, 38)).addBox(-2.0f, 6.0f, -4.0f, 4, 10, 4, 0.0f);
+        (this.right_lower_leg = new ModelRenderer(this, 38, 38)).addBox(-2.0f, 6.0f, -4.0f, 4, 10, 4, 0.0f);
         this.right_lower_leg.setRotationPoint(0.5f, 0.0f, 0.0f); //-3.0f, 5.0f, 6.0f
         this.right_lower_leg.mirror = true;
         this.setRotateAngle(this.right_lower_leg, 0.0872665f, 0.0f, 0.0349066f);
         //
-        (this.right_foot = new ModelRenderer((ModelBase)this, 38, 52)).addBox(-1.5f, 14.0f, -11.0f, 3, 4, 7, 0.0f);
+        (this.right_foot = new ModelRenderer(this, 38, 52)).addBox(-1.5f, 14.0f, -11.0f, 3, 4, 7, 0.0f);
         this.right_foot.setRotationPoint(0.5f, 0.0f, 0.0f);
         this.right_foot.mirror = true;
         this.setRotateAngle(this.right_foot, 0.3490659f, 0.0f, 0.0349066f);
         
-        (this.top_left_leg = new ModelRenderer((ModelBase)this, 54, 12)).addBox(-1.5f, 0.0f, -1.5f, 3, 10, 3, 0.0f);
+        (this.top_left_leg = new ModelRenderer(this, 54, 12)).addBox(-1.5f, 0.0f, -1.5f, 3, 10, 3, 0.0f);
         this.top_left_leg.setRotationPoint(3.0f, 5.0f, 6.0f);
         this.top_left_leg.mirror = true;
         this.setRotateAngle(this.top_left_leg, -0.0872665f, 0.0f, -0.0349066f);
         
-        (this.left_lower_leg = new ModelRenderer((ModelBase)this, 38, 38)).addBox(-2.0f, 6.0f, -4.0f, 4, 10, 4, 0.0f);
+        (this.left_lower_leg = new ModelRenderer(this, 38, 38)).addBox(-2.0f, 6.0f, -4.0f, 4, 10, 4, 0.0f);
         this.left_lower_leg.setRotationPoint(-0.5f, 0.0f, 0.0f); //3.0f, 5.0f, 6.0f
         this.left_lower_leg.mirror = true;
         this.setRotateAngle(this.left_lower_leg, 0.0872665f, 0.0f, -0.0349066f);
         
-        (this.left_foot = new ModelRenderer((ModelBase)this, 38, 52)).addBox(-1.5f, 14.0f, -11.0f, 3, 4, 7, 0.0f);
+        (this.left_foot = new ModelRenderer(this, 38, 52)).addBox(-1.5f, 14.0f, -11.0f, 3, 4, 7, 0.0f);
         this.left_foot.setRotationPoint(-0.5f, 0.0f, 0.0f);
         this.left_foot.mirror = true;
         this.setRotateAngle(this.left_foot, 0.3490659f, 0.0f, -0.0349066f);
         
-        (this.blade = new ModelRenderer((ModelBase)this, 74, 37)).addBox(3.0f, 1.0f, 14.5f, 1, 20, 7, 0.0f);
+        (this.blade = new ModelRenderer(this, 74, 37)).addBox(3.0f, 1.0f, 14.5f, 1, 20, 7, 0.0f);
         this.blade.setRotationPoint(-1.0f, 2.0f, 0.0f); //5.0f, -12.0f, 6.0f
         this.blade.mirror = true;
         this.setRotateAngle(this.blade, -1.919862f, 0.1745329f, -0.0872665f);
         
-        (this.hilt = new ModelRenderer((ModelBase)this, 66, 38)).addBox(2.5f, 12.5f, -2.5f, 2, 11, 2, 0.0f);
+        (this.hilt = new ModelRenderer(this, 66, 38)).addBox(2.5f, 12.5f, -2.5f, 2, 11, 2, 0.0f);
         this.hilt.setRotationPoint(-1.0f, 2.0f, -1.0f); //5.0f, -12.0f, 6.0f
         this.hilt.mirror = true;
         this.setRotateAngle(this.hilt, -0.3490659f, 0.0f, 0.0f);
         		
-        (this.handle = new ModelRenderer((ModelBase)this, 66, 38)).addBox(2.0f, -12.0f, 19.0f, 2, 11, 2, 0.0f);
+        (this.handle = new ModelRenderer(this, 66, 38)).addBox(2.0f, -12.0f, 19.0f, 2, 11, 2, 0.0f);
         this.handle.setRotationPoint(-1.0f, 0.0f, -1.0f); //5.0f, -14.0f, 6.0f
         this.handle.mirror = true;
         this.setRotateAngle(this.handle, -1.919862f, 0.1745329f, -0.0872665f);
@@ -240,8 +239,8 @@ public class ElysianGuardianModel extends ModelBase
 
 
 		if (this.isRiding) {
-			this.right_upperarm.rotateAngleX += -0.6283185F;
-			this.left_upperarm.rotateAngleX += -0.6283185F;
+			this.right_upperarm.rotateAngleX -= 0.6283185F;
+			this.left_upperarm.rotateAngleX -= 0.6283185F;
 			this.top_right_leg.rotateAngleX = -1.256637F;
 			this.top_left_leg.rotateAngleX = -1.256637F;
 			this.top_right_leg.rotateAngleY = 0.3141593F;

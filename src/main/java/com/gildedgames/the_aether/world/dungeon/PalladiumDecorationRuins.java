@@ -8,7 +8,6 @@ import java.util.*;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.tileentity.TileEntityElysianChest;
-import com.gildedgames.the_aether.tileentity.TileEntitySkyrootChest;
 
 import net.minecraft.init.*;
 import net.minecraft.item.ItemStack;

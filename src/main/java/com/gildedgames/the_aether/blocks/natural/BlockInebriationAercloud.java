@@ -3,27 +3,20 @@ package com.gildedgames.the_aether.blocks.natural;
 import java.util.List;
 import java.util.Random;
 
-import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.entities.effects.EffectInebriation;
 import com.gildedgames.the_aether.entities.effects.PotionInebriation;
-import com.gildedgames.the_aether.entities.hostile.EntityCyro;
 import com.gildedgames.the_aether.items.block.IColoredBlock;
 import com.gildedgames.the_aether.items.block.INamedBlock;
-import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.Facing;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -55,8 +48,7 @@ public class BlockInebriationAercloud extends Block implements IColoredBlock, IN
 		
 			//freezing aercloud
 		if (world.getBlockMetadata(x, y, z) == 1) {
-			if (entity instanceof EntityPlayer) {
-				EntityPlayer player = (EntityPlayer) entity;
+			if (entity instanceof EntityPlayer player) {
 				((EntityLivingBase) entity).addPotionEffect(new PotionEffect(2, 60, 3));
 
 				
@@ -66,9 +58,8 @@ public class BlockInebriationAercloud extends Block implements IColoredBlock, IN
 			//creeping aercloud
 		else if (world.getBlockMetadata(x, y, z) == 2) {
 									
-			if (entity instanceof EntityPlayer) {
-				EntityPlayer player = (EntityPlayer) entity;
-				((EntityLivingBase) player).addPotionEffect(new PotionEffect(7, 20, 1));
+			if (entity instanceof EntityPlayer player) {
+				player.addPotionEffect(new PotionEffect(7, 20, 1));
 
 				
 				}
@@ -78,19 +69,13 @@ public class BlockInebriationAercloud extends Block implements IColoredBlock, IN
 		} 
 		    //inebriation aercloud
 		else if (world.getBlockMetadata(x, y, z) == 0) {
-			if (entity instanceof EntityPlayer) {
-				EntityPlayer player = (EntityPlayer) entity;
-				((EntityLivingBase) player).addPotionEffect(new EffectInebriation(PotionInebriation.inebriation.id, 150, 0));
+			if (entity instanceof EntityPlayer player) {
+				player.addPotionEffect(new EffectInebriation(PotionInebriation.inebriation.id, 150, 0));
 
 				
 				}
 			}	
 		}
-
-	@Override
-	public boolean renderAsNormalBlock() {
-		return true;
-	}
 
 	@Override
 	@SideOnly(Side.CLIENT)

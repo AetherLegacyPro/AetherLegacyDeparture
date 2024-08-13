@@ -9,12 +9,10 @@ import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.items.util.EnumSkyrootBucketType;
 import com.gildedgames.the_aether.player.PlayerAether;
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockCauldron;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -22,8 +20,6 @@ import net.minecraft.item.EnumAction;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.PotionEffect;
-import net.minecraft.stats.StatList;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
@@ -286,7 +282,7 @@ public class ItemSkyrootBucket extends Item {
 				return false;
 			} else {
 				if (world.provider.isHellWorld) {
-					world.playSoundEffect((double) x, (double) y, (double) z, "random.fizz", 0.5F, 2.6F + (world.rand.nextFloat() - world.rand.nextFloat()) * 0.8F);
+					world.playSoundEffect(x, y, z, "random.fizz", 0.5F, 2.6F + (world.rand.nextFloat() - world.rand.nextFloat()) * 0.8F);
 
 					for (int l = 0; l < 8; ++l) {
 						world.spawnParticle("largesmoke", (double) x + Math.random(), (double) y + Math.random(), (double) z + Math.random(), 0.0D, 0.0D, 0.0D);
@@ -306,7 +302,7 @@ public class ItemSkyrootBucket extends Item {
 
 	@Override
 	public ItemStack onEaten(ItemStack stack, World worldIn, EntityPlayer entityLiving) {
-		return this.onBucketUsed(stack, worldIn, (EntityPlayer) entityLiving);
+		return this.onBucketUsed(stack, worldIn, entityLiving);
 	}
 
 	public ItemStack onBucketUsed(ItemStack itemstack, World world, EntityPlayer entityplayer) {

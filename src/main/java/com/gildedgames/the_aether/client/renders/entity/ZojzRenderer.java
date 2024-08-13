@@ -2,7 +2,6 @@ package com.gildedgames.the_aether.client.renders.entity;
 
 import net.minecraft.client.renderer.entity.*;
 import net.minecraft.util.*;
-import net.minecraft.client.model.*;
 import org.lwjgl.opengl.*;
 
 import com.gildedgames.the_aether.client.models.entities.ZojzModel;
@@ -18,8 +17,8 @@ public class ZojzRenderer extends RenderLiving
     public ZojzModel zojzModel;
     
     public ZojzRenderer(final ZojzModel model) {
-        super((ModelBase)model, 0.5f);
-        this.setRenderPassModel((ModelBase)model);
+        super(model, 0.5f);
+        this.setRenderPassModel(model);
         this.zojzModel = model;
     }
     
@@ -54,7 +53,7 @@ public class ZojzRenderer extends RenderLiving
         final char var5 = '\uf0f0';
         final int var6 = var5 % 65536;
         final int var7 = var5 / 65536;
-        OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, var6 / 1.0f, var7 / 1.0f);
+        OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, var6, var7);
         GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
         GL11.glColor4f(1.0f, 1.0f, 1.0f, var4);
         return 1;

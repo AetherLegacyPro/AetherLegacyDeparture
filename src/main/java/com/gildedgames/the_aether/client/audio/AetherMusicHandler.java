@@ -6,7 +6,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.ISound;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.audio.SoundCategory;
-import net.minecraft.client.audio.SoundEventAccessor;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiScreenWorking;
 import net.minecraft.util.ResourceLocation;
@@ -46,7 +45,7 @@ public class AetherMusicHandler {
 			musicTicker.trackRecord(null);
 		}
 
-		if (AetherConfig.config.get("Misc", "Enables the Aether Menu", false).getBoolean() && Minecraft.getMinecraft().theWorld == null && !(screen instanceof GuiScreenWorking))
+		if (AetherConfig.getMenuEnabled() && Minecraft.getMinecraft().theWorld == null && !(screen instanceof GuiScreenWorking))
 		{
 			if (!musicTicker.playingMenuMusic())
 			{
@@ -87,7 +86,7 @@ public class AetherMusicHandler {
 			{
 				musicTicker.trackMinecraftMusic(sound);
 
-				if (AetherConfig.config.get("Misc", "Enables the Aether Menu", false).getBoolean() && Minecraft.getMinecraft().theWorld == null && !(screen instanceof GuiScreenWorking))
+				if (AetherConfig.getMenuEnabled() && Minecraft.getMinecraft().theWorld == null && !(screen instanceof GuiScreenWorking))
 				{
 					event.result = null;
 				}
@@ -95,8 +94,6 @@ public class AetherMusicHandler {
 		} else if (category == SoundCategory.RECORDS && !(event.name.contains("note"))) {
 			this.musicTicker.trackRecord(event.sound);
 			this.mc.getSoundHandler().stopSounds();
-
-			return;
 		}
 	}
 

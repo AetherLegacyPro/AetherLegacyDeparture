@@ -5,19 +5,11 @@ import java.util.Random;
 
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.world.biome.decoration.*;
-import com.gildedgames.the_aether.world.gen.MapGenAetherCaves;
-import com.gildedgames.the_aether.world.biome.decoration.*;
-import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import net.minecraft.world.gen.feature.WorldGenDoublePlant;
 import net.minecraft.world.gen.feature.WorldGenLakes;
-import net.minecraft.world.gen.feature.WorldGenerator;
-
-import com.gildedgames.the_aether.blocks.BlocksAether;
 
 public class AetherBiomeDecorator extends BiomeDecorator {
 

@@ -87,7 +87,7 @@ public class TileEntityElysianChest extends TileEntity implements IInventory
   }
   
   public boolean hasCustomInventoryName() {
-      return this.customName != null && this.customName.length() > 0;
+      return this.customName != null && !this.customName.isEmpty();
   }
   
   public void setChestGuiName(final String par1Str) {
@@ -118,10 +118,10 @@ public class TileEntityElysianChest extends TileEntity implements IInventory
               final NBTTagCompound nbttagcompound1 = new NBTTagCompound();
               nbttagcompound1.setByte("Slot", (byte)i);
               this.chestContents[i].writeToNBT(nbttagcompound1);
-              nbttaglist.appendTag((NBTBase)nbttagcompound1);
+              nbttaglist.appendTag(nbttagcompound1);
           }
       }
-      par1NBTTagCompound.setTag("Items", (NBTBase)nbttaglist);
+      par1NBTTagCompound.setTag("Items", nbttaglist);
       if (this.hasCustomInventoryName()) {
           par1NBTTagCompound.setString("CustomName", this.customName);
       }
@@ -214,7 +214,7 @@ public class TileEntityElysianChest extends TileEntity implements IInventory
   
   private boolean func_94044_a(final int par1, final int par2, final int par3) {
       final Block block = this.worldObj.getBlock(par1, par2, par3);
-      return block != null && block instanceof BlockElysianChest && ((BlockElysianChest)block).chestType == this.getChestType();
+      return block instanceof BlockElysianChest && ((BlockElysianChest)block).chestType == this.getChestType();
   }
   
   public void updateEntity() {
@@ -224,12 +224,12 @@ public class TileEntityElysianChest extends TileEntity implements IInventory
       if (!this.worldObj.isRemote && this.numUsingPlayers != 0 && (this.ticksSinceSync + this.xCoord + this.yCoord + this.zCoord) % 200 == 0) {
           this.numUsingPlayers = 0;
           final float f = 5.0f;
-          final List list = this.worldObj.getEntitiesWithinAABB((Class)EntityPlayer.class, AxisAlignedBB.getBoundingBox((double)(this.xCoord - f), (double)(this.yCoord - f), (double)(this.zCoord - f), (double)(this.xCoord + 1 + f), (double)(this.yCoord + 1 + f), (double)(this.zCoord + 1 + f)));
+          final List list = this.worldObj.getEntitiesWithinAABB((Class)EntityPlayer.class, AxisAlignedBB.getBoundingBox(this.xCoord - f, this.yCoord - f, this.zCoord - f, this.xCoord + 1 + f, this.yCoord + 1 + f, this.zCoord + 1 + f));
           for (final Object aList : list) {
               final EntityPlayer entityplayer = (EntityPlayer)aList;
               if (entityplayer.openContainer instanceof ContainerChest) {
                   final IInventory iinventory = ((ContainerChest)entityplayer.openContainer).getLowerChestInventory();
-                  if (iinventory != this && (!(iinventory instanceof InventoryLargeElysianChest) || !((InventoryLargeElysianChest)iinventory).isPartOfLargeChest((IInventory)this))) {
+                  if (iinventory != this && (!(iinventory instanceof InventoryLargeElysianChest) || !((InventoryLargeElysianChest)iinventory).isPartOfLargeChest(this))) {
                       continue;
                   }
                   ++this.numUsingPlayers;
@@ -327,7 +327,7 @@ public class TileEntityElysianChest extends TileEntity implements IInventory
   
   @SideOnly(Side.CLIENT)
   public AxisAlignedBB getRenderBoundingBox() {
-      return AxisAlignedBB.getBoundingBox((double)(this.xCoord - 1), (double)this.yCoord, (double)(this.zCoord - 1), (double)(this.xCoord + 2), (double)(this.yCoord + 2), (double)(this.zCoord + 2));
+      return AxisAlignedBB.getBoundingBox(this.xCoord - 1, this.yCoord, this.zCoord - 1, this.xCoord + 2, this.yCoord + 2, this.zCoord + 2);
   }
 }
 

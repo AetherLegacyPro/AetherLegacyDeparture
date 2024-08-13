@@ -22,7 +22,7 @@ public class TileEntityElysianChestRenderer extends TileEntitySpecialRenderer
   
   public TileEntityElysianChestRenderer() {
       this.chestModel = new ModelChest();
-      this.largeChestModel = (ModelChest)new ModelLargeChest();
+      this.largeChestModel = new ModelLargeChest();
   }
   
   public void renderTileEntityChestAt(final TileEntityElysianChest par1TileEntityChest, final double par2, final double par4, final double par6, final float par8) {
@@ -33,7 +33,7 @@ public class TileEntityElysianChestRenderer extends TileEntitySpecialRenderer
       else {
           final Block var10 = par1TileEntityChest.getBlockType();
           var9 = par1TileEntityChest.getBlockMetadata();
-          if (var10 != null && var9 == 0 && var10 instanceof BlockElysianChest) {
+          if (var9 == 0 && var10 instanceof BlockElysianChest) {
               ((BlockElysianChest)var10).unifyAdjacentChests(par1TileEntityChest.getWorldObj(), par1TileEntityChest.xCoord, par1TileEntityChest.yCoord, par1TileEntityChest.zCoord);
               var9 = par1TileEntityChest.getBlockMetadata();
           }
@@ -73,7 +73,7 @@ public class TileEntityElysianChestRenderer extends TileEntitySpecialRenderer
           if (var9 == 5 && par1TileEntityChest.adjacentChestZPosition != null) {
               GL11.glTranslatef(0.0f, 0.0f, -1.0f);
           }
-          GL11.glRotatef((float)var12, 0.0f, 1.0f, 0.0f);
+          GL11.glRotatef(var12, 0.0f, 1.0f, 0.0f);
           GL11.glTranslatef(-0.5f, -0.5f, -0.5f);
           float var13 = par1TileEntityChest.prevLidAngle + (par1TileEntityChest.lidAngle - par1TileEntityChest.prevLidAngle) * par8;
           if (par1TileEntityChest.adjacentChestZNeg != null) {

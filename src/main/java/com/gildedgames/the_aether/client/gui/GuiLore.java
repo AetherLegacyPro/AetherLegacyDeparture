@@ -1,7 +1,5 @@
 package com.gildedgames.the_aether.client.gui;
 
-import java.util.List;
-
 import com.gildedgames.the_aether.Aether;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiButton;
@@ -80,7 +78,7 @@ public class GuiLore extends GuiContainer {
 
 			int nameSize = 0;
 
-			for (String name : ((List<String>) this.fontRendererObj.listFormattedStringToWidth(searchedStack.getItem().getItemStackDisplayName(searchedStack), 109))) {
+			for (String name : this.fontRendererObj.listFormattedStringToWidth(searchedStack.getItem().getItemStackDisplayName(searchedStack), 109)) {
 				this.drawCenteredString(this.fontRendererObj, searchedStack.getRarity().rarityColor.toString() + name, 71, 18 + (10 * nameSize), 4210752);
 
 				++nameSize;
@@ -88,7 +86,7 @@ public class GuiLore extends GuiContainer {
 
 			int size = 0;
 
-			for (String lore : ((List<String>) this.fontRendererObj.listFormattedStringToWidth(this.stringToLoad, 109))) {
+			for (String lore : this.fontRendererObj.listFormattedStringToWidth(this.stringToLoad, 109)) {
 				if (size >= 15 * this.pageNumber && size + (nameSize - 1) <= 15 * (this.pageNumber + 1)) {
 					int actualSize = this.pageNumber >= 1 ? size - ((15 - (nameSize - 1)) * this.pageNumber) : size + (nameSize - 1);
 

@@ -1,53 +1,23 @@
 package com.gildedgames.the_aether.entities.hostile;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import java.util.Calendar;
-import java.util.List;
-import java.util.UUID;
-
-import com.gildedgames.the_aether.AetherConfig;
-import com.gildedgames.the_aether.items.ItemsAether;
-
-import net.minecraft.block.Block;
-import net.minecraft.command.IEntitySelector;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
-import net.minecraft.entity.ai.EntityAIBreakDoor;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAIMoveThroughVillage;
 import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.IAttribute;
-import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.ai.attributes.RangedAttribute;
-import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeModContainer;
-import cpw.mods.fml.common.eventhandler.Event.Result;
-import net.minecraftforge.event.ForgeEventFactory;
-import net.minecraftforge.event.entity.living.ZombieEvent.SummonAidEvent;
 
 public class EntityHellfireCinder extends EntityAetherMob
 {
@@ -84,9 +54,9 @@ public class EntityHellfireCinder extends EntityAetherMob
     protected void entityInit()
     {
         super.entityInit();
-        this.getDataWatcher().addObject(12, Byte.valueOf((byte)0));
-        this.getDataWatcher().addObject(13, Byte.valueOf((byte)0));
-        this.getDataWatcher().addObject(14, Byte.valueOf((byte)0));
+        this.getDataWatcher().addObject(12, (byte) 0);
+        this.getDataWatcher().addObject(13, (byte) 0);
+        this.getDataWatcher().addObject(14, (byte) 0);
     }
 
     /**
@@ -175,15 +145,7 @@ public class EntityHellfireCinder extends EntityAetherMob
         return "mob.blaze.death";
     }
 
-    /**
-     * Get this Entity's EnumCreatureAttribute
-     */
-    public EnumCreatureAttribute getCreatureAttribute()
-    {
-        return EnumCreatureAttribute.UNDEFINED;
-    }
-
-    /**
+	/**
      * (abstract) Protected helper method to write subclass entity data to NBT.
      */
     public void writeEntityToNBT(NBTTagCompound p_70014_1_)
@@ -215,7 +177,7 @@ public class EntityHellfireCinder extends EntityAetherMob
             EntityCyro entityzombie = new EntityCyro(this.worldObj);
             entityzombie.copyLocationAndAnglesFrom(p_70074_1_);
             this.worldObj.removeEntity(p_70074_1_);
-            entityzombie.onSpawnWithEgg((IEntityLivingData)null);
+            entityzombie.onSpawnWithEgg(null);
 
             //if (p_70074_1_.isChild())
             //{
@@ -223,7 +185,7 @@ public class EntityHellfireCinder extends EntityAetherMob
             //}
 
             this.worldObj.spawnEntityInWorld(entityzombie);
-            this.worldObj.playAuxSFXAtEntity((EntityPlayer)null, 1016, (int)this.posX, (int)this.posY, (int)this.posZ, 0);
+            this.worldObj.playAuxSFXAtEntity(null, 1016, (int)this.posX, (int)this.posY, (int)this.posZ, 0);
         }
     }
 
@@ -252,15 +214,11 @@ public class EntityHellfireCinder extends EntityAetherMob
         super.setSize(this.field_146074_bv * p_146069_1_, this.field_146073_bw * p_146069_1_);
     }
 
-    class GroupData implements IEntityLivingData
-    {
+    static class GroupData implements IEntityLivingData {
         public boolean field_142048_a;
         public boolean field_142046_b;
 
-        private GroupData(boolean p_i2348_2_, boolean p_i2348_3_)
-        {
-            this.field_142048_a = false;
-            this.field_142046_b = false;
+        private GroupData(boolean p_i2348_2_, boolean p_i2348_3_) {
             this.field_142048_a = p_i2348_2_;
             this.field_142046_b = p_i2348_3_;
         }

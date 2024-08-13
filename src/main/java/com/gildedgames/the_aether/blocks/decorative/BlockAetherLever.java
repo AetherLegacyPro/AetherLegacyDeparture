@@ -1,6 +1,5 @@
 package com.gildedgames.the_aether.blocks.decorative;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockLever;
 import net.minecraft.block.material.Material;
 

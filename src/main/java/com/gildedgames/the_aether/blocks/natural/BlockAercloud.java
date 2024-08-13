@@ -45,8 +45,7 @@ public class BlockAercloud extends Block implements IColoredBlock, INamedBlock {
 		
 		//blue aercloud
 		if (world.getBlockMetadata(x, y, z) == 1) {
-			if (entity instanceof EntityPlayer) {
-				EntityPlayer player = (EntityPlayer) entity;
+			if (entity instanceof EntityPlayer player) {
 
 				player.triggerAchievement(AchievementsAether.blue_cloud);
 
@@ -74,9 +73,8 @@ public class BlockAercloud extends Block implements IColoredBlock, INamedBlock {
 		}
 			//gold aercloud
 		else if (world.getBlockMetadata(x, y, z) == 2) {
-				if (entity instanceof EntityPlayer) {
-					EntityPlayer player = (EntityPlayer) entity;
-					
+				if (entity instanceof EntityPlayer player) {
+
 					player.triggerAchievement(AchievementsAether.golden_cloud);
 					
 					if (player.isSneaking()) {
@@ -114,11 +112,6 @@ public class BlockAercloud extends Block implements IColoredBlock, INamedBlock {
 			entity.motionY *= 0.005D;
 			}	
 		}
-
-	@Override
-	public boolean renderAsNormalBlock() {
-		return true;
-	}
 
 	@Override
 	@SideOnly(Side.CLIENT)

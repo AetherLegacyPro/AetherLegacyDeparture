@@ -2,11 +2,8 @@ package com.gildedgames.the_aether.world.gen.components;
 
 import java.util.Random;
 
-import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.entities.bosses.EntityElderZarnillys;
 import com.gildedgames.the_aether.entities.bosses.lurker.EntityLurker;
-import com.gildedgames.the_aether.entities.util.AetherMoaTypes;
-import com.gildedgames.the_aether.items.ItemMoaEgg;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.tileentity.TileEntitySkyrootChest;
 import com.gildedgames.the_aether.world.gen.AetherGenUtils;
@@ -16,8 +13,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityMobSpawner;
-import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 
 import com.gildedgames.the_aether.blocks.BlocksAether;
@@ -445,7 +440,7 @@ public class ComponentOsmiumDungeon extends AetherStructure {
 		this.generateVoidSapling(90, 1, 12);
 		this.generateVoidSapling(90, 1, 42); 
 
-		EntityLurker lurker = new EntityLurker(this.worldObj, (double) this.getActualX(40, 15), (double) this.getActualY(1) + 0.5D, (double) this.getActualZ(40, 15));
+		EntityLurker lurker = new EntityLurker(this.worldObj, this.getActualX(40, 15), (double) this.getActualY(1) + 0.5D, this.getActualZ(40, 15));
 
 		lurker.setPosition(this.getActualX(40, 15), this.getActualY(2), this.getActualZ(40, 15));
 		lurker.setDungeon(this.getActualX(26, 24), this.getActualY(0), this.getActualZ(26, 24));

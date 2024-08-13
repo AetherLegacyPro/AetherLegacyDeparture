@@ -3,7 +3,6 @@ package com.gildedgames.the_aether.entities.util;
 import com.gildedgames.the_aether.items.ItemsAether;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
@@ -18,7 +17,7 @@ public abstract class EntityZephyrooSaddleMount extends EntityMountable {
 	public void entityInit() {
 		super.entityInit();
 
-		this.dataWatcher.addObject(19, new Byte((byte) 0));
+		this.dataWatcher.addObject(19, (byte) 0);
 	}
 
 	@Override

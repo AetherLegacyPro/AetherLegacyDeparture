@@ -6,7 +6,6 @@ import com.gildedgames.the_aether.api.moa.AetherMoaType;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 
 import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAILookIdle;
@@ -76,14 +75,14 @@ public class EntityMoa extends EntitySaddleMount {
 
         AetherMoaType moaType = AetherAPI.instance().getRandomMoaType();
 
-        this.dataWatcher.addObject(20, new Short((short) AetherAPI.instance().getMoaTypeId(moaType)));
-        this.dataWatcher.addObject(21, new Byte((byte) moaType.getMoaProperties().getMaxJumps()));
-        this.dataWatcher.addObject(22, new Byte((byte) 0));
-        this.dataWatcher.addObject(23, new Byte((byte) 0));
-        this.dataWatcher.addObject(24, new Byte((byte) 0));
-        this.dataWatcher.addObject(25, new Byte((byte) 0));
-        this.dataWatcher.addObject(26, new Byte((byte) 0));
-        this.dataWatcher.addObject(27, new Byte((byte) 0));
+        this.dataWatcher.addObject(20, (short) AetherAPI.instance().getMoaTypeId(moaType));
+        this.dataWatcher.addObject(21, (byte) moaType.getMoaProperties().getMaxJumps());
+        this.dataWatcher.addObject(22, (byte) 0);
+        this.dataWatcher.addObject(23, (byte) 0);
+        this.dataWatcher.addObject(24, (byte) 0);
+        this.dataWatcher.addObject(25, (byte) 0);
+        this.dataWatcher.addObject(26, (byte) 0);
+        this.dataWatcher.addObject(27, (byte) 0);
 
     }
 
@@ -105,7 +104,7 @@ public class EntityMoa extends EntitySaddleMount {
    	      final int i = MathHelper.floor_double(this.posX);
    	      final int j = MathHelper.floor_double(this.boundingBox.minY);
    	      final int k = MathHelper.floor_double(this.posZ);
-   	      final boolean canSpawn = this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes((Entity)this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);          
+   	      final boolean canSpawn = this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
    	      return (this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_dirt || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.arctic_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.verdant_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.enchanted_aether_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.divine_grass) && this.worldObj.getBlockLightValue(i, j, k) > 7 && canSpawn && this.rand.nextInt(AetherConfig.getMoaSpawnrate()) == 0 && super.getCanSpawnHere();
    	                       
    	}
@@ -135,7 +134,7 @@ public class EntityMoa extends EntitySaddleMount {
     }
 
     public void increaseAmountFed(int amountFed) {
-        int amount = (int) this.getAmountFed();
+        int amount = this.getAmountFed();
 
         this.setAmountFed(amount + amountFed);
     }
@@ -153,7 +152,7 @@ public class EntityMoa extends EntitySaddleMount {
     }
 
     public int getRemainingJumps() {
-        return (int) this.dataWatcher.getWatchableObjectByte(21);
+        return this.dataWatcher.getWatchableObjectByte(21);
     }
 
 
@@ -162,18 +161,18 @@ public class EntityMoa extends EntitySaddleMount {
     }
 
     public int getMoaTypeId() {
-        return (int) this.dataWatcher.getWatchableObjectShort(20);
+        return this.dataWatcher.getWatchableObjectShort(20);
     }
 
     public AetherMoaType getMoaType() {
-        int id = (int) this.dataWatcher.getWatchableObjectShort(20);
+        int id = this.dataWatcher.getWatchableObjectShort(20);
 
         return AetherAPI.instance().getMoaType(id);
     }
 
     public void setMoaType(AetherMoaType type) {
-        this.dataWatcher.updateObject(20, new Short((short) AetherAPI.instance().getMoaTypeId(type)));
-        this.dataWatcher.updateObject(21, new Byte((byte) type.getMoaProperties().getMaxJumps()));
+        this.dataWatcher.updateObject(20, (short) AetherAPI.instance().getMoaTypeId(type));
+        this.dataWatcher.updateObject(21, (byte) type.getMoaProperties().getMaxJumps());
     }
 
     @Override

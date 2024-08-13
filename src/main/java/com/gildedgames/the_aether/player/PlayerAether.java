@@ -9,6 +9,7 @@ import com.gildedgames.the_aether.api.player.IPlayerAether;
 import com.gildedgames.the_aether.api.player.util.IAccessoryInventory;
 import com.gildedgames.the_aether.api.player.util.IAetherAbility;
 import com.gildedgames.the_aether.api.player.util.IAetherBoss;
+import com.gildedgames.the_aether.compatibility.inventory.InventoryBaubles;
 import com.gildedgames.the_aether.entities.passive.mountable.EntityParachute;
 import com.gildedgames.the_aether.inventory.InventoryAccessories;
 import com.gildedgames.the_aether.network.packets.*;
@@ -19,7 +20,6 @@ import com.gildedgames.the_aether.player.perks.AetherRankings;
 import com.gildedgames.the_aether.player.perks.util.EnumAetherPerkType;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -31,7 +31,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.stats.Achievement;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
 
@@ -42,7 +41,6 @@ import com.gildedgames.the_aether.items.tools.ItemAscensiteTool;
 import com.gildedgames.the_aether.items.tools.ItemValkyrieTool;
 import com.gildedgames.the_aether.items.tools.tipped.ItemTippedArkeniumTool;
 import com.gildedgames.the_aether.items.tools.tipped.ItemTippedValkyrieTool;
-import com.gildedgames.the_aether.items.weapons.ItemArkeniumSword;
 import com.gildedgames.the_aether.player.abilities.AbilityAccessories;
 import com.gildedgames.the_aether.player.abilities.AbilityAgilityBootsAndCape;
 import com.gildedgames.the_aether.player.abilities.AbilityAmplifiedAgilityBoots;
@@ -61,7 +59,6 @@ import com.gildedgames.the_aether.player.abilities.AbilityHealingMatrix;
 import com.gildedgames.the_aether.player.abilities.AbilityZaniteShield;
 import com.gildedgames.the_aether.player.abilities.AbiltyAgilityBoots;
 import com.gildedgames.the_aether.player.abilities.AbilityJebShield;
-import com.gildedgames.the_aether.player.abilities.AbilityValkyrieRing;
 import com.gildedgames.the_aether.player.perks.util.DonatorMoaSkin;
 import com.gildedgames.the_aether.world.TeleporterAether;
 
@@ -76,11 +73,11 @@ public class PlayerAether implements IPlayerAether {
 
 	private IAetherBoss focusedBoss;
 
-	private IAccessoryInventory accessories = new InventoryAccessories(this);
+	private IAccessoryInventory accessories;
 
-	private final ArrayList<IAetherAbility> abilities = new ArrayList<IAetherAbility>();
+	private final ArrayList<IAetherAbility> abilities = new ArrayList<>();
 
-	public final ArrayList<Entity> clouds = new ArrayList<Entity>(2);
+	public final ArrayList<Entity> clouds = new ArrayList<>(2);
 
 	public int shardCount;
 	public int powerCount;
@@ -121,23 +118,41 @@ public class PlayerAether implements IPlayerAether {
 	public boolean isPoisoned = false, isCured = false;
 
 	public boolean shouldGetPortal;
-	
-	public boolean teleported;
 
 	public int poisonTime = 0, cureTime = 0;
 
-	private UUID uuid = UUID.fromString("df6eabe7-6947-4a56-9099-002f90370706");
+	private final UUID uuid = UUID.fromString("df6eabe7-6947-4a56-9099-002f90370706");
 
 	private AttributeModifier healthModifier;	
 	private AttributeModifier powerModifier;
 	private AttributeModifier dexModifier;
 
 	public PlayerAether() {
-		this.shouldRenderHalo = true;
-		this.shouldRenderGlow = false;
-		this.shouldRenderCape = true;
-		this.shouldGetPortal = true;
-		this.abilities.addAll(Arrays.<IAetherAbility>asList(new AbilityAccessories(this), new AbilityArmor(this), new AbilityFlight(this), new AbilityRepulsion(this), new AbilityGravititeShield(this), new AbilityZaniteShield(this), new AbiltyAgilityBoots(this),new AbilityHasteRing(this), new AbilityAmplifiedAgilityBootsAndCape(this), 	new AbilityAgilityBootsAndCape(this), new AbilityJebShield(this), new AbilityHealingMatrix(this), new AbilityFlamingStone(this),new AbilityAmplifiedAgilityBoots(this),new AbilityArkeniumArmor(this),new AbilityAuraliteRing(this), new AbilityBoneRing(this), new AbilityElysianRing(this)));
+		shouldRenderHalo = true;
+		shouldRenderGlow = false;
+		shouldRenderCape = true;
+		shouldGetPortal = true;
+		abilities.addAll(Arrays.asList(
+				new AbilityAccessories(this),
+				new AbilityArmor(this),
+				new AbilityFlight(this),
+				new AbilityRepulsion(this),
+				new AbilityGravititeShield(this),
+				new AbilityZaniteShield(this),
+				new AbiltyAgilityBoots(this),
+				new AbilityHasteRing(this),
+				new AbilityAmplifiedAgilityBootsAndCape(this),
+				new AbilityAgilityBootsAndCape(this),
+				new AbilityJebShield(this),
+				new AbilityHealingMatrix(this),
+				new AbilityFlamingStone(this),
+				new AbilityAmplifiedAgilityBoots(this),
+				new AbilityArkeniumArmor(this),
+				new AbilityAuraliteRing(this),
+				new AbilityBoneRing(this),
+				new AbilityElysianRing(this)
+		));
+		accessories = AetherConfig.UseBaublesExpandedMenu() ? new InventoryBaubles(this) : new InventoryAccessories(this);
 	}
 
 	public static PlayerAether get(EntityPlayer player) {
@@ -407,7 +422,7 @@ public class PlayerAether implements IPlayerAether {
 	{
 		if (!this.player.capabilities.isCreativeMode)
 		{
-			EntityParachute parachute = null;			
+			EntityParachute parachute;
 
 			ItemStack itemstack = null;
 
@@ -605,12 +620,12 @@ public class PlayerAether implements IPlayerAether {
 
 	@Override
 	public void setAccessoryInventory(IAccessoryInventory inventory) {
-		this.accessories = inventory;
+		accessories = inventory;
 	}
 
 	@Override
 	public IAccessoryInventory getAccessoryInventory() {
-		return this.accessories;
+		return accessories;
 	}
 
 	@Override

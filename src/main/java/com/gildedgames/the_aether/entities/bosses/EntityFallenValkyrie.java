@@ -2,12 +2,10 @@ package com.gildedgames.the_aether.entities.bosses;
 
 import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.blocks.BlocksAether;
-import com.gildedgames.the_aether.entities.hostile.EntityAetherMob;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
@@ -95,9 +93,9 @@ public class EntityFallenValkyrie extends EntityMob {
 		b *= ((this.rand.nextInt(2) * 2) - 1);
 		c *= ((this.rand.nextInt(2) * 2) - 1);
 
-		x += (double) a;
-		y += (double) b;
-		z += (double) c;
+		x += a;
+		y += b;
+		z += c;
 
 		int newX = (int) Math.floor(x - 0.5D);
 		int newY = (int) Math.floor(y - 0.5D);
@@ -203,8 +201,7 @@ public class EntityFallenValkyrie extends EntityMob {
 			this.sinage -= (3.141593F * 2F);
 		}
 
-		if (this.getAttackTarget() instanceof EntityPlayer) {
-			EntityPlayer player = (EntityPlayer) this.getAttackTarget();
+		if (this.getAttackTarget() instanceof EntityPlayer player) {
 
 			if (this.getHealth() <= 0) {
 				int pokey = rand.nextInt(3);
@@ -343,7 +340,7 @@ public class EntityFallenValkyrie extends EntityMob {
         final int i = MathHelper.floor_double(this.posX);
         final int j = MathHelper.floor_double(this.boundingBox.minY);
         final int k = MathHelper.floor_double(this.posZ);
-        final boolean canSpawn = this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes((Entity)this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);          
+        final boolean canSpawn = this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
         return (this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_creeping_stone || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_fuse_stone) && this.worldObj.getBlockLightValue(i, j, k) < 14 && canSpawn;
                        
     }

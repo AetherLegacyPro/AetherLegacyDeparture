@@ -39,12 +39,12 @@ public class DartBaseRenderer extends Render {
         byte i = 1;
         float f2 = 0.0F;
         float f3 = 0.5F;
-        float f4 = (float) (0 + i * 10) / 32.0F;
-        float f5 = (float) (5 + i * 10) / 32.0F;
+        float f4 = (i * 10F) / 32.0F;
+        float f5 = (5F + i * 10F) / 32.0F;
         float f6 = 0.0F;
         float f7 = 0.15625F;
-        float f8 = (float) (5 + i * 10) / 32.0F;
-        float f9 = (float) (10 + i * 10) / 32.0F;
+        float f8 = (5F + i * 10F) / 32.0F;
+        float f9 = (10F + i * 10F) / 32.0F;
         float f10 = 0.05625F;
         GL11.glEnable(GL12.GL_RESCALE_NORMAL);
         float f11 = (float) dart.dartShake - f1;
@@ -60,19 +60,19 @@ public class DartBaseRenderer extends Render {
         GL11.glNormal3f(f10, 0.0F, 0.0F);
 
         tessellator.startDrawingQuads();
-        tessellator.addVertexWithUV(-7.0D, -2.0D, -2.0D, (double) f6, (double) f8);
-        tessellator.addVertexWithUV(-7.0D, -2.0D, 2.0D, (double) f7, (double) f8);
-        tessellator.addVertexWithUV(-7.0D, 2.0D, 2.0D, (double) f7, (double) f9);
-        tessellator.addVertexWithUV(-7.0D, 2.0D, -2.0D, (double) f6, (double) f9);
+        tessellator.addVertexWithUV(-7.0D, -2.0D, -2.0D, f6, f8);
+        tessellator.addVertexWithUV(-7.0D, -2.0D, 2.0D, f7, f8);
+        tessellator.addVertexWithUV(-7.0D, 2.0D, 2.0D, f7, f9);
+        tessellator.addVertexWithUV(-7.0D, 2.0D, -2.0D, f6, f9);
         tessellator.draw();
 
         GL11.glNormal3f(-f10, 0.0F, 0.0F);
 
         tessellator.startDrawingQuads();
-        tessellator.addVertexWithUV(-7.0D, 2.0D, -2.0D, (double) f6, (double) f8);
-        tessellator.addVertexWithUV(-7.0D, 2.0D, 2.0D, (double) f7, (double) f8);
-        tessellator.addVertexWithUV(-7.0D, -2.0D, 2.0D, (double) f7, (double) f9);
-        tessellator.addVertexWithUV(-7.0D, -2.0D, -2.0D, (double) f6, (double) f9);
+        tessellator.addVertexWithUV(-7.0D, 2.0D, -2.0D, f6, f8);
+        tessellator.addVertexWithUV(-7.0D, 2.0D, 2.0D, f7, f8);
+        tessellator.addVertexWithUV(-7.0D, -2.0D, 2.0D, f7, f9);
+        tessellator.addVertexWithUV(-7.0D, -2.0D, -2.0D, f6, f9);
         tessellator.draw();
 
         for (int var23 = 0; var23 < 5; ++var23) {
@@ -80,10 +80,10 @@ public class DartBaseRenderer extends Render {
             GL11.glNormal3f(0.0F, 0.0F, f10);
 
             tessellator.startDrawingQuads();
-            tessellator.addVertexWithUV(-8.0D, -2.0D, 0.0D, (double) f2, (double) f4);
-            tessellator.addVertexWithUV(8.0D, -2.0D, 0.0D, (double) f3, (double) f4);
-            tessellator.addVertexWithUV(8.0D, 2.0D, 0.0D, (double) f3, (double) f5);
-            tessellator.addVertexWithUV(-8.0D, 2.0D, 0.0D, (double) f2, (double) f5);
+            tessellator.addVertexWithUV(-8.0D, -2.0D, 0.0D, f2, f4);
+            tessellator.addVertexWithUV(8.0D, -2.0D, 0.0D, f3, f4);
+            tessellator.addVertexWithUV(8.0D, 2.0D, 0.0D, f3, f5);
+            tessellator.addVertexWithUV(-8.0D, 2.0D, 0.0D, f2, f5);
             tessellator.draw();
         }
 

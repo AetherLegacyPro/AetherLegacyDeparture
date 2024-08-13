@@ -1,13 +1,10 @@
 package com.gildedgames.the_aether.entities.projectile;
 
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
@@ -73,7 +70,7 @@ public class EntityPhoenixArrow extends EntityArrow implements IThrowableEntity 
 			if (entity1.canBeCollidedWith() && (entity1 != this.shootingEntity))
 			{
 				f1 = 0.3F;
-				AxisAlignedBB axisalignedbb1 = entity1.boundingBox.expand((double)f1, (double)f1, (double)f1);
+				AxisAlignedBB axisalignedbb1 = entity1.boundingBox.expand(f1, f1, f1);
 				MovingObjectPosition movingobjectposition1 = axisalignedbb1.calculateIntercept(vec31, vec3);
 
 				if (movingobjectposition1 != null)
@@ -94,9 +91,8 @@ public class EntityPhoenixArrow extends EntityArrow implements IThrowableEntity 
 			movingobjectposition = new MovingObjectPosition(entity);
 		}
 
-		if (movingobjectposition != null && movingobjectposition.entityHit != null && movingobjectposition.entityHit instanceof EntityPlayer)
+		if (movingobjectposition != null && movingobjectposition.entityHit instanceof EntityPlayer entityplayer)
 		{
-			EntityPlayer entityplayer = (EntityPlayer)movingobjectposition.entityHit;
 
 			if (entityplayer.capabilities.disableDamage || this.shootingEntity instanceof EntityPlayer && !((EntityPlayer)this.shootingEntity).canAttackPlayer(entityplayer))
 			{

@@ -14,7 +14,7 @@ Most of the changes are listed in this google doc link below.
 Link to the new additions/changes(Probably missed many)
 https://docs.google.com/document/d/1fkVXPPqPQACXHQv0xvcLovIPfzGFf37ymhcmiVsBZSM/edit?usp=sharing
 
-Source is on Github
+Source is on GitHub
 
 ------------------------------------------------------------------------
 Those who wish to contribute to the mod, here are some things to look at.
@@ -51,7 +51,7 @@ https://github.com/The-Aether-Team/The-Aether-II
 
 While we don't use any code or redistribute assets from the Aether II for
 version 1.7.10, we still want to thank Gilded Games for the inspiration and
-assets used at runtime. All rights reserved.
+assets used at runtime. All Rights Reserved.
 
 To our best knowledge, this project does not redistribute any code or assets
 we do not have the rights to, and is fully compliant with upstream licenses.

@@ -3,16 +3,12 @@ package com.gildedgames.the_aether.items.tools.tipped;
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.items.ItemsAether;
-import com.gildedgames.the_aether.items.tools.ItemAetherTool;
 import com.gildedgames.the_aether.items.tools.ItemSkyrootTool;
 import com.gildedgames.the_aether.items.util.EnumAetherToolType;
 import net.minecraft.block.Block;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
 
 public class ItemTippedSkyrootTool extends ItemSkyrootTool {
 

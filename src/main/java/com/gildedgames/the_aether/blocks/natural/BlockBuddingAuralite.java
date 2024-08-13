@@ -6,7 +6,6 @@ import com.gildedgames.the_aether.blocks.BlocksAether;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;

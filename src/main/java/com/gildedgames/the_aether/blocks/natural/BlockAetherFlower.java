@@ -21,7 +21,7 @@ public class BlockAetherFlower extends BlockBush {
 	@Override
 	public boolean canPlaceBlockAt(World world, int x, int y, int z) {
 		Block soil = world.getBlock(x, y - 1, z);
-		return soil == BlocksAether.aether_grass || soil == BlocksAether.aether_dirt || soil == BlocksAether.arctic_grass || soil == BlocksAether.enchanted_aether_grass || soil == BlocksAether.aether_farmland || soil == BlocksAether.enchanted_aether_farmland || soil == BlocksAether.arctic_grass || soil == BlocksAether.divine_grass;
+		return soil == BlocksAether.aether_grass || soil == BlocksAether.aether_dirt || soil == BlocksAether.arctic_grass || soil == BlocksAether.enchanted_aether_grass || soil == BlocksAether.aether_farmland || soil == BlocksAether.enchanted_aether_farmland || soil == BlocksAether.divine_grass;
 	}
 
 	@Override

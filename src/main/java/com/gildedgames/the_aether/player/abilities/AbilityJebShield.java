@@ -10,12 +10,12 @@ import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.player.PlayerAether;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IProjectile;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.entity.projectile.EntityFireball;
 import net.minecraft.entity.projectile.EntityThrowable;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
@@ -34,33 +34,33 @@ public class AbilityJebShield implements IAetherAbility {
 
 	@Override
 	public boolean shouldExecute() {
-		return this.player.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.jeb_shield));
+		return this.player.getAccessoryInventory().wearingAccessory(ItemsAether.jeb_shield);
 	}
 
 	@Override
 	public void onUpdate() {
-		if (this.player.getEntity().worldObj.isRemote) {
+		EntityLivingBase playerEntity = player.getEntity();
+		if (playerEntity.worldObj.isRemote) {
 			return;
 		}
 
-		List<?> entities = this.player.getEntity().worldObj.getEntitiesWithinAABBExcludingEntity(this.player.getEntity(), this.player.getEntity().boundingBox.expand(3.0D, 3.0D, 3.0D));
+		List<?> entities = playerEntity.worldObj.getEntitiesWithinAABBExcludingEntity(playerEntity, playerEntity.boundingBox.expand(3.0D, 3.0D, 3.0D));
 
 		for (int size = 0; size < entities.size(); ++size) {
 			Entity projectile = (Entity) entities.get(size);
 
-			if (isProjectile(projectile) && this.getShooter(projectile) != this.player.getEntity()) {
+			if (isProjectile(projectile) && this.getShooter(projectile) != playerEntity) {
 				double x, y, z;
 
 				Entity shooter = this.getShooter(projectile);
 
-				if (shooter == null)
-				{
+				if (shooter == null) {
 					return;
 				}
 
-				x = this.player.getEntity().posX - shooter.posX;
-				y = this.player.getEntity().boundingBox.minY - shooter.boundingBox.minY;
-				z = this.player.getEntity().posZ - shooter.posZ;
+				x = playerEntity.posX - shooter.posX;
+				y = playerEntity.boundingBox.minY - shooter.boundingBox.minY;
+				z = playerEntity.posZ - shooter.posZ;
 
 				double difference = -Math.sqrt((x * x) + (y * y) + (z * z));
 
@@ -75,10 +75,10 @@ public class AbilityJebShield implements IAetherAbility {
 				packY = (-projectile.motionY * 0.15F) + ((this.rand.nextFloat() - 0.5F) * 0.05F);
 				packZ = (-projectile.motionZ * 0.15F) + ((this.rand.nextFloat() - 0.5F) * 0.05F);
 
-				((WorldServer) this.player.getEntity().worldObj).func_147487_a("flame", projectile.posX, projectile.posY, projectile.posZ, 12, packX, packY, packZ, 0.625F);
+				((WorldServer) playerEntity.worldObj).func_147487_a("flame", projectile.posX, projectile.posY, projectile.posZ, 12, packX, packY, packZ, 0.625F);
 
-				this.player.getEntity().worldObj.playSoundAtEntity(this.player.getEntity(), "note.snare", 1.0F, 1.0F);
-				this.player.getAccessoryInventory().damageWornStack(1, new ItemStack(ItemsAether.jeb_shield));
+				playerEntity.worldObj.playSoundAtEntity(playerEntity, "note.snare", 1.0F, 1.0F);
+				this.player.getAccessoryInventory().damageWornItem(1, ItemsAether.jeb_shield);
 			}
 		}
 	}
@@ -88,7 +88,7 @@ public class AbilityJebShield implements IAetherAbility {
 		if (event.entityLiving instanceof EntityPlayer) {
 			PlayerAether playerAether = PlayerAether.get((EntityPlayer) event.entityLiving);
 
-			if (playerAether.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.jeb_shield))) {
+			if (playerAether.getAccessoryInventory().wearingAccessory(ItemsAether.jeb_shield)) {
 				float original = event.ammount;
 
 				event.ammount = original / 2;
@@ -97,11 +97,7 @@ public class AbilityJebShield implements IAetherAbility {
 	}
 
 	public boolean onPlayerAttacked(DamageSource source) {
-		if (isProjectile(source.getEntity())) {
-			return true;
-		}
-
-		return false;
+		return isProjectile(source.getEntity());
 	}
 
 	private Entity getShooter(Entity ent) {

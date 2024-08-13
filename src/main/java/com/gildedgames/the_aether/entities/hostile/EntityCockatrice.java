@@ -7,9 +7,6 @@ import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
@@ -189,11 +186,10 @@ public class EntityCockatrice extends EntityMob {
     {
         super.onDeath(p_70645_1_);
 
-        if (p_70645_1_.getEntity() instanceof EntityPlayer)
+        if (p_70645_1_.getEntity() instanceof EntityPlayer entityplayer)
         {
-            EntityPlayer entityplayer = (EntityPlayer)p_70645_1_.getEntity();
-            
-            entityplayer.triggerAchievement(AchievementsAether.aether_hunter);
+
+			entityplayer.triggerAchievement(AchievementsAether.aether_hunter);
             
         }
             

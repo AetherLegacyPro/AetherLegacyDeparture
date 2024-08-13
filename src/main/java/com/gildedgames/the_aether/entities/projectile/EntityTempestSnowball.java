@@ -1,16 +1,13 @@
 package com.gildedgames.the_aether.entities.projectile;
 
 import com.gildedgames.the_aether.blocks.BlocksAether;
-import com.gildedgames.the_aether.entities.hostile.EntitySentry;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.player.PlayerAether;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.ItemStack;
 import net.minecraft.network.play.server.S12PacketEntityVelocity;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
@@ -46,7 +43,7 @@ public class EntityTempestSnowball extends EntityProjectileBase {
 	@Override
 	protected void onImpact(MovingObjectPosition object) {
 		if (object.entityHit instanceof EntityLivingBase) {			
-			if (object.entityHit instanceof EntityPlayer && PlayerAether.get((EntityPlayer) object.entityHit).getAccessoryInventory().wearingArmor(new ItemStack(ItemsAether.amplified_sentry_boots))) {
+			if (object.entityHit instanceof EntityPlayer && PlayerAether.get((EntityPlayer) object.entityHit).getAccessoryInventory().wearingArmor(ItemsAether.amplified_sentry_boots)) {
 				this.setDead();
 
 				return;
@@ -67,7 +64,7 @@ public class EntityTempestSnowball extends EntityProjectileBase {
 			if (object.typeOfHit == MovingObjectPosition.MovingObjectType.ENTITY)
 			{
 				
-				((EntityLivingBase)object.entityHit).attackEntityFrom(DamageSource.generic, 3.0F);
+				object.entityHit.attackEntityFrom(DamageSource.generic, 3.0F);
 				((EntityLivingBase)object.entityHit).addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 120, 1));
 				((EntityLivingBase)object.entityHit).addPotionEffect(new PotionEffect(Potion.digSlowdown.id, 120, 1));
 				

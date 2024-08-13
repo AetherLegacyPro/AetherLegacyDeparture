@@ -71,7 +71,7 @@ public abstract class EntityDartBase extends EntityArrow implements IProjectile,
         double d0 = target.posX - shooter.posX;
         double d1 = target.boundingBox.minY + (double) (target.height / 3.0F) - this.posY;
         double d2 = target.posZ - shooter.posZ;
-        double d3 = (double) MathHelper.sqrt_double(d0 * d0 + d2 * d2);
+        double d3 = MathHelper.sqrt_double(d0 * d0 + d2 * d2);
 
         if (d3 >= 1.0E-7D) {
             float f2 = (float) (Math.atan2(d2, d0) * 180.0D / Math.PI) - 90.0F;
@@ -96,14 +96,14 @@ public abstract class EntityDartBase extends EntityArrow implements IProjectile,
 
         this.setSize(0.5F, 0.5F);
         this.setLocationAndAngles(shooter.posX, shooter.posY + (double) shooter.getEyeHeight(), shooter.posZ, shooter.rotationYaw, shooter.rotationPitch);
-        this.posX -= (double) (MathHelper.cos(this.rotationYaw / 180.0F * (float) Math.PI) * 0.16F);
+        this.posX -= MathHelper.cos(this.rotationYaw / 180.0F * (float) Math.PI) * 0.16F;
         this.posY -= 0.10000000149011612D;
-        this.posZ -= (double) (MathHelper.sin(this.rotationYaw / 180.0F * (float) Math.PI) * 0.16F);
+        this.posZ -= MathHelper.sin(this.rotationYaw / 180.0F * (float) Math.PI) * 0.16F;
         this.setPosition(this.posX, this.posY, this.posZ);
         this.yOffset = 0.0F;
-        this.motionX = (double) (-MathHelper.sin(this.rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float) Math.PI));
-        this.motionZ = (double) (MathHelper.cos(this.rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float) Math.PI));
-        this.motionY = (double) (-MathHelper.sin(this.rotationPitch / 180.0F * (float) Math.PI));
+        this.motionX = -MathHelper.sin(this.rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float) Math.PI);
+        this.motionZ = MathHelper.cos(this.rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float) Math.PI);
+        this.motionY = -MathHelper.sin(this.rotationPitch / 180.0F * (float) Math.PI);
         this.setThrowableHeading(this.motionX, this.motionY, this.motionZ, velocity * 1.5F, 1.0F);
     }
 
@@ -115,21 +115,21 @@ public abstract class EntityDartBase extends EntityArrow implements IProjectile,
     @Override
     public void setThrowableHeading(double x, double y, double z, float velocity, float inaccuracy) {
         float f2 = MathHelper.sqrt_double(x * x + y * y + z * z);
-        x /= (double) f2;
-        y /= (double) f2;
-        z /= (double) f2;
+        x /= f2;
+        y /= f2;
+        z /= f2;
         x += this.rand.nextGaussian() * (double) (this.rand.nextBoolean() ? -1 : 1) * 0.007499999832361937D * (double) inaccuracy;
         y += this.rand.nextGaussian() * (double) (this.rand.nextBoolean() ? -1 : 1) * 0.007499999832361937D * (double) inaccuracy;
         z += this.rand.nextGaussian() * (double) (this.rand.nextBoolean() ? -1 : 1) * 0.007499999832361937D * (double) inaccuracy;
-        x *= (double) velocity;
-        y *= (double) velocity;
-        z *= (double) velocity;
+        x *= velocity;
+        y *= velocity;
+        z *= velocity;
         this.motionX = x;
         this.motionY = y;
         this.motionZ = z;
         float f3 = MathHelper.sqrt_double(x * x + z * z);
         this.prevRotationYaw = this.rotationYaw = (float) (Math.atan2(x, z) * 180.0D / Math.PI);
-        this.prevRotationPitch = this.rotationPitch = (float) (Math.atan2(y, (double) f3) * 180.0D / Math.PI);
+        this.prevRotationPitch = this.rotationPitch = (float) (Math.atan2(y, f3) * 180.0D / Math.PI);
         this.ticksInGround = 0;
     }
 
@@ -150,7 +150,7 @@ public abstract class EntityDartBase extends EntityArrow implements IProjectile,
         if (this.prevRotationPitch == 0.0F && this.prevRotationYaw == 0.0F) {
             float f = MathHelper.sqrt_double(x * x + z * z);
             this.prevRotationYaw = this.rotationYaw = (float) (Math.atan2(x, z) * 180.0D / Math.PI);
-            this.prevRotationPitch = this.rotationPitch = (float) (Math.atan2(y, (double) f) * 180.0D / Math.PI);
+            this.prevRotationPitch = this.rotationPitch = (float) (Math.atan2(y, f) * 180.0D / Math.PI);
             this.prevRotationPitch = this.rotationPitch;
             this.prevRotationYaw = this.rotationYaw;
             this.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, this.rotationPitch);
@@ -165,7 +165,7 @@ public abstract class EntityDartBase extends EntityArrow implements IProjectile,
         if (this.prevRotationPitch == 0.0F && this.prevRotationYaw == 0.0F) {
             float f = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
             this.prevRotationYaw = this.rotationYaw = (float) (Math.atan2(this.motionX, this.motionZ) * 180.0D / Math.PI);
-            this.prevRotationPitch = this.rotationPitch = (float) (Math.atan2(this.motionY, (double) f) * 180.0D / Math.PI);
+            this.prevRotationPitch = this.rotationPitch = (float) (Math.atan2(this.motionY, f) * 180.0D / Math.PI);
         }
 
         Block block = this.worldObj.getBlock(this.tileX, this.tileY, this.tileZ);
@@ -195,9 +195,9 @@ public abstract class EntityDartBase extends EntityArrow implements IProjectile,
                 }
             } else {
                 this.inGround = false;
-                this.motionX *= (double) (this.rand.nextFloat() * 0.2F);
-                this.motionY *= (double) (this.rand.nextFloat() * 0.2F);
-                this.motionZ *= (double) (this.rand.nextFloat() * 0.2F);
+                this.motionX *= this.rand.nextFloat() * 0.2F;
+                this.motionY *= this.rand.nextFloat() * 0.2F;
+                this.motionZ *= this.rand.nextFloat() * 0.2F;
                 this.ticksInGround = 0;
                 this.ticksInAir = 0;
             }
@@ -224,7 +224,7 @@ public abstract class EntityDartBase extends EntityArrow implements IProjectile,
 
                 if (entity1.canBeCollidedWith() && (entity1 != this.shootingEntity || this.ticksInAir >= 5)) {
                     f1 = 0.3F;
-                    AxisAlignedBB axisalignedbb1 = entity1.boundingBox.expand((double) f1, (double) f1, (double) f1);
+                    AxisAlignedBB axisalignedbb1 = entity1.boundingBox.expand(f1, f1, f1);
                     MovingObjectPosition movingobjectposition1 = axisalignedbb1.calculateIntercept(vec31, vec3);
 
                     if (movingobjectposition1 != null) {
@@ -242,10 +242,9 @@ public abstract class EntityDartBase extends EntityArrow implements IProjectile,
                 movingobjectposition = new MovingObjectPosition(entity);
             }
 
-            if (movingobjectposition != null && movingobjectposition.entityHit != null && movingobjectposition.entityHit instanceof EntityPlayer) {
-                EntityPlayer entityplayer = (EntityPlayer) movingobjectposition.entityHit;
+            if (movingobjectposition != null && movingobjectposition.entityHit instanceof EntityPlayer entityplayer) {
 
-                if (entityplayer.capabilities.disableDamage || this.shootingEntity instanceof EntityPlayer && !((EntityPlayer) this.shootingEntity).canAttackPlayer(entityplayer)) {
+				if (entityplayer.capabilities.disableDamage || this.shootingEntity instanceof EntityPlayer && !((EntityPlayer) this.shootingEntity).canAttackPlayer(entityplayer)) {
                     movingobjectposition = null;
                 }
             }
@@ -264,7 +263,7 @@ public abstract class EntityDartBase extends EntityArrow implements IProjectile,
             f2 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
             this.rotationYaw = (float) (Math.atan2(this.motionX, this.motionZ) * 180.0D / Math.PI);
 
-            for (this.rotationPitch = (float) (Math.atan2(this.motionY, (double) f2) * 180.0D / Math.PI); this.rotationPitch - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F) {
+            for (this.rotationPitch = (float) (Math.atan2(this.motionY, f2) * 180.0D / Math.PI); this.rotationPitch - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F) {
                 ;
             }
 
@@ -298,9 +297,9 @@ public abstract class EntityDartBase extends EntityArrow implements IProjectile,
                 this.extinguish();
             }
 
-            this.motionX *= (double) f3;
-            this.motionY *= (double) f3;
-            this.motionZ *= (double) f3;
+            this.motionX *= f3;
+            this.motionY *= f3;
+            this.motionZ *= f3;
 
             if (this.wasInGround) {
                 this.motionY -= this.wasInGround ? ((double) f1) : this.getGravityVelocity();
@@ -334,10 +333,9 @@ public abstract class EntityDartBase extends EntityArrow implements IProjectile,
             }
 
             if (movingobjectposition.entityHit.attackEntityFrom(damagesource, (float) k)) {
-                if (movingobjectposition.entityHit instanceof EntityLivingBase) {
-                    EntityLivingBase entitylivingbase = (EntityLivingBase) movingobjectposition.entityHit;
+                if (movingobjectposition.entityHit instanceof EntityLivingBase entitylivingbase) {
 
-                    if (!this.worldObj.isRemote) {
+					if (!this.worldObj.isRemote) {
                         entitylivingbase.setArrowCountInEntity(entitylivingbase.getArrowCountInEntity() + 1);
                     }
 
@@ -376,9 +374,9 @@ public abstract class EntityDartBase extends EntityArrow implements IProjectile,
             this.tileZ = movingobjectposition.blockZ;
             this.inTile = this.worldObj.getBlock(this.tileX, this.tileY, this.tileZ);
             this.inData = this.worldObj.getBlockMetadata(this.tileX, this.tileY, this.tileZ);
-            this.motionX = (double) ((float) (movingobjectposition.hitVec.xCoord - this.posX));
-            this.motionY = (double) ((float) (movingobjectposition.hitVec.yCoord - this.posY));
-            this.motionZ = (double) ((float) (movingobjectposition.hitVec.zCoord - this.posZ));
+            this.motionX = (float) (movingobjectposition.hitVec.xCoord - this.posX);
+            this.motionY = (float) (movingobjectposition.hitVec.yCoord - this.posY);
+            this.motionZ = (float) (movingobjectposition.hitVec.zCoord - this.posZ);
             float f2 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
             this.posX -= this.motionX / (double) f2 * 0.05D;
             this.posY -= this.motionY / (double) f2 * 0.05D;
@@ -491,23 +489,13 @@ public abstract class EntityDartBase extends EntityArrow implements IProjectile,
         return this.shootingEntity;
     }
 
-    @Override
-    protected boolean canTriggerWalking() {
-        return false;
-    }
-
-    @Override
+	@Override
     @SideOnly(Side.CLIENT)
     public float getShadowSize() {
         return 0.0F;
     }
 
-    @Override
-    public boolean canAttackWithItem() {
-        return false;
-    }
-
-    public static DamageSource causeDartDamage(EntityDartBase dart, Entity thrower) {
+	public static DamageSource causeDartDamage(EntityDartBase dart, Entity thrower) {
         return (new EntityDamageSourceIndirect("aether_legacy.dart", dart, thrower)).setProjectile();
     }
 

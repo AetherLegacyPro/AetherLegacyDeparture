@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Random;
 
 import com.gildedgames.the_aether.player.PlayerAether;
-import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -30,7 +29,7 @@ public class TeleporterAether extends Teleporter {
 
 	private final LongHashMap destinationCoordinateCache = new LongHashMap();
 
-	private final List<Long> destinationCoordinateKeys = new ArrayList<Long>();
+	private final List<Long> destinationCoordinateKeys = new ArrayList<>();
 
 	public TeleporterAether(boolean portalSpawn, WorldServer worldIn) {
 		super(worldIn);
@@ -106,7 +105,7 @@ public class TeleporterAether extends Teleporter {
 		if (d3 >= 0.0D) {
 			if (flag) {
 				this.destinationCoordinateCache.add(j1, new AetherPortalPosition(i, j, k, this.worldServerInstance.getTotalWorldTime()));
-				this.destinationCoordinateKeys.add(Long.valueOf(j1));
+				this.destinationCoordinateKeys.add(j1);
 			}
 
 			double d11 = (double) i + 0.5D;
@@ -153,9 +152,9 @@ public class TeleporterAether extends Teleporter {
 					j3 = Direction.offsetX[k2];
 					k3 = Direction.offsetZ[k2];
 					l3 = i - j3;
-					d11 -= (double) j3;
+					d11 -= j3;
 					int k1 = k - k3;
-					d7 -= (double) k3;
+					d7 -= k3;
 					flag1 = !this.worldServerInstance.isAirBlock(l3 + l2 + j3, j, k1 + i3 + k3) || !this.worldServerInstance.isAirBlock(l3 + l2 + j3, j + 1, k1 + i3 + k3);
 					flag2 = !this.worldServerInstance.isAirBlock(l3 + l2, j, k1 + i3) || !this.worldServerInstance.isAirBlock(l3 + l2, j + 1, k1 + i3);
 				}
@@ -171,8 +170,8 @@ public class TeleporterAether extends Teleporter {
 					f2 = 0.0F;
 				}
 
-				d11 += (double) ((float) j3 * f1 + f2 * (float) l2);
-				d7 += (double) ((float) k3 * f1 + f2 * (float) i3);
+				d11 += (float) j3 * f1 + f2 * (float) l2;
+				d7 += (float) k3 * f1 + f2 * (float) i3;
 				float f3 = 0.0F;
 				float f4 = 0.0F;
 				float f5 = 0.0F;
@@ -379,7 +378,7 @@ public class TeleporterAether extends Teleporter {
 					i4 = j2 + k3;
 					j4 = k2 + (j3 - 1) * l2;
 					flag = j3 == 0 || j3 == 3 || k3 == -1 || k3 == 3;
-					this.worldServerInstance.setBlock(l3, i4, j4, (Block) (flag ? Blocks.glowstone : BlocksAether.aether_portal), 0, 2);
+					this.worldServerInstance.setBlock(l3, i4, j4, flag ? Blocks.glowstone : BlocksAether.aether_portal, 0, 2);
 				}
 			}
 
@@ -403,12 +402,12 @@ public class TeleporterAether extends Teleporter {
 			long j = worldTime - 600L;
 
 			while (iterator.hasNext()) {
-				Long olong = (Long) iterator.next();
-				Teleporter.PortalPosition portalposition = (Teleporter.PortalPosition) this.destinationCoordinateCache.getValueByKey(olong.longValue());
+				Long olong = iterator.next();
+				Teleporter.PortalPosition portalposition = (Teleporter.PortalPosition) this.destinationCoordinateCache.getValueByKey(olong);
 
 				if (portalposition == null || portalposition.lastUpdateTime < j) {
 					iterator.remove();
-					this.destinationCoordinateCache.remove(olong.longValue());
+					this.destinationCoordinateCache.remove(olong);
 				}
 			}
 		}

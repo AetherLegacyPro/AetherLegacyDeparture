@@ -3,7 +3,6 @@ package com.gildedgames.the_aether.items.weapons;
 import com.gildedgames.the_aether.entities.block.EntityFireProofItemAether;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
-import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
@@ -11,11 +10,9 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
-import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
 import com.google.common.collect.HashMultimap;
@@ -38,10 +35,10 @@ public class ItemAmplifiedHolySword extends ItemSword {
 
 	@Override
 	public Multimap<String, AttributeModifier> getAttributeModifiers(ItemStack stack) {
-		Multimap<String, AttributeModifier> multimap = HashMultimap.<String, AttributeModifier>create();
+		Multimap<String, AttributeModifier> multimap = HashMultimap.create();
 
 		if (stack.getItem() instanceof ItemAmplifiedHolySword) {
-			multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(field_111210_e, "Weapon modifier", (double) this.calculateIncrease(stack), 0));
+			multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(field_111210_e, "Weapon modifier", this.calculateIncrease(stack), 0));
 		}
 
 		return multimap;
@@ -121,7 +118,7 @@ public class ItemAmplifiedHolySword extends ItemSword {
     }
     
     public Entity createEntity(final World world, final Entity location, final ItemStack itemstack) {
-        return (Entity)new EntityFireProofItemAether(world, location, itemstack);
+        return new EntityFireProofItemAether(world, location, itemstack);
     }
 
 }

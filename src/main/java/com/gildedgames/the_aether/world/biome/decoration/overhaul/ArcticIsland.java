@@ -3,20 +3,13 @@ package com.gildedgames.the_aether.world.biome.decoration.overhaul;
 import java.util.Random;
 
 import com.gildedgames.the_aether.blocks.BlocksAether;
-import com.gildedgames.the_aether.world.biome.decoration.AetherGenLargeTree;
 import com.gildedgames.the_aether.world.biome.decoration.AetherGenLargeWisprootTree;
-import com.gildedgames.the_aether.world.biome.decoration.AetherGenMassiveTree;
-import com.gildedgames.the_aether.world.biome.decoration.AetherGenOakTree;
 import com.gildedgames.the_aether.world.biome.decoration.AetherGenWisprootTree;
-import com.gildedgames.the_aether.world.gen.AetherGenUtils;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import net.minecraft.world.gen.feature.WorldGenBigTree;
 import net.minecraft.world.gen.feature.WorldGenTallGrass;
-import net.minecraft.world.gen.feature.WorldGenTrees;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
 public class ArcticIsland extends WorldGenerator {
@@ -207,7 +200,7 @@ public class ArcticIsland extends WorldGenerator {
          for(int i1 = 0; i1 < k; ++i1) {
             int j1 = l - this.centerX;
             int k1 = i1 - this.centerZ;
-            double d = Math.sqrt((double)(j1 * j1 + k1 * k1));
+            double d = Math.sqrt(j1 * j1 + k1 * k1);
             if (d == 0.0D) {
                d = 0.001D;
             }
@@ -354,7 +347,7 @@ public class ArcticIsland extends WorldGenerator {
         	 return rand.nextInt(10) == 0 ? BlocksAether.aether_dirt : BlocksAether.holystone;  
         }
       else {
-          return (Block)(flag ? BlocksAether.arctic_grass : BlocksAether.holystone);
+          return flag ? BlocksAether.arctic_grass : BlocksAether.holystone;
        }
    }
 
@@ -431,15 +424,11 @@ public class ArcticIsland extends WorldGenerator {
         {
         case 1: (new WorldGenTallGrass(BlocksAether.arctic_tallgrass, 1)).generate(world, rand, j1, l1, k1);
         break;
-        case 2: (new WorldGenTallGrass(BlocksAether.white_rose, 1)).generate(world, rand, j1, l1, k1);
+        case 2, 5: (new WorldGenTallGrass(BlocksAether.white_rose, 1)).generate(world, rand, j1, l1, k1);
         break;
-        case 3: (new WorldGenTallGrass(BlocksAether.white_flower, 1)).generate(world, rand, j1, l1, k1);
+        case 3, 4: (new WorldGenTallGrass(BlocksAether.white_flower, 1)).generate(world, rand, j1, l1, k1);
         break;
-        case 4: (new WorldGenTallGrass(BlocksAether.white_flower, 1)).generate(world, rand, j1, l1, k1);
-        break;
-        case 5: (new WorldGenTallGrass(BlocksAether.white_rose, 1)).generate(world, rand, j1, l1, k1);
-        break;
-        }
+		}
      	(new WorldGenTallGrass(BlocksAether.arctic_tallgrass, 1)).generate(world, rand, j1, l1, k1);
      	
          }

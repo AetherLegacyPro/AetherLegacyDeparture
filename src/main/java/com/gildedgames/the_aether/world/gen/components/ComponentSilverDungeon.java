@@ -341,7 +341,7 @@ public class ComponentSilverDungeon extends AetherStructure {
 		this.generateGoldenOakSapling(45, 1, 6);
 		this.generateGoldenOakSapling(45, 1, 21);
 
-		EntityValkyrieQueen valkyrieQueen = new EntityValkyrieQueen(this.worldObj, (double) this.getActualX(40, 15), (double) this.getActualY(1) + 0.5D, (double) this.getActualZ(40, 15));
+		EntityValkyrieQueen valkyrieQueen = new EntityValkyrieQueen(this.worldObj, this.getActualX(40, 15), (double) this.getActualY(1) + 0.5D, this.getActualZ(40, 15));
 
 		valkyrieQueen.setPosition(this.getActualX(40, 15), this.getActualY(2), this.getActualZ(40, 15));
 		valkyrieQueen.setDungeon(this.getActualX(26, 24), this.getActualY(0), this.getActualZ(26, 24));

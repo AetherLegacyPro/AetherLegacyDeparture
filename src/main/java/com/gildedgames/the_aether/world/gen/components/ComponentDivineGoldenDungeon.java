@@ -7,7 +7,6 @@ import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.world.gen.AetherStructure;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntityMobSpawner;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 
 import com.gildedgames.the_aether.blocks.BlocksAether;

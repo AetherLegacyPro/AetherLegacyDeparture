@@ -13,7 +13,6 @@ import com.gildedgames.the_aether.world.biome.decoration.AetherGenCrystalTree;
 import com.gildedgames.the_aether.world.biome.decoration.AetherGenDarkBlueSkyrootTree;
 import com.gildedgames.the_aether.world.biome.decoration.AetherGenDivineTree;
 import com.gildedgames.the_aether.world.biome.decoration.AetherGenGreatrootTree;
-import com.gildedgames.the_aether.world.biome.decoration.AetherGenGreatwoodTree;
 import com.gildedgames.the_aether.world.biome.decoration.AetherGenOakTree;
 import com.gildedgames.the_aether.world.biome.decoration.AetherGenPurpleSkyrootTree;
 import com.gildedgames.the_aether.world.biome.decoration.AetherGenSkyrootTree;
@@ -21,7 +20,6 @@ import com.gildedgames.the_aether.world.biome.decoration.AetherGenVoidTree;
 import com.gildedgames.the_aether.world.biome.decoration.AetherGenWisprootTree;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockSlab;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 
@@ -33,7 +31,6 @@ import com.gildedgames.the_aether.blocks.container.BlockElysianChest;
 import com.gildedgames.the_aether.blocks.container.BlockEnchanter;
 import com.gildedgames.the_aether.blocks.container.BlockFreezer;
 import com.gildedgames.the_aether.blocks.container.BlockIncubator;
-import com.gildedgames.the_aether.blocks.container.BlockProtector;
 import com.gildedgames.the_aether.blocks.container.BlockSkyrootChest;
 import com.gildedgames.the_aether.blocks.container.BlockSkyrootWorkbench;
 import com.gildedgames.the_aether.blocks.container.BlockSunAltar;
@@ -164,9 +161,6 @@ import com.gildedgames.the_aether.blocks.ancient.enchanter.BlockAncientEnchanter
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemBlock;
-import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
 
 public class BlocksAether {
 
@@ -477,8 +471,8 @@ public class BlocksAether {
 		greatroot_trapdoor = registerMeta("greatroot_trapdoor", new BlockAetherTrapdoor(Material.wood).setBlockTextureName(Aether.find("greatroot_trapdoor")));
 		void_trapdoor = registerMeta("void_trapdoor", new BlockAetherTrapdoor(Material.wood).setBlockTextureName(Aether.find("void_trapdoor")));
 		zanite_trapdoor = registerMeta("zanite_trapdoor", new BlockAetherTrapdoor(Material.iron).setBlockTextureName(Aether.find("zanite_trapdoor")));		
-		skyroot_ladder = registerMeta("skyroot_ladder", new BlockAetherLadder(Material.wood).setBlockTextureName(Aether.findII("skyrootLadder")));
-		
+		skyroot_ladder = registerMeta("skyroot_ladder", new BlockAetherLadder().setBlockTextureName(Aether.findII("skyrootLadder")));
+
 		small_blueberry_bush = registerHidden("small_blueberry_bush", new BlockSmallBerryBushStem().setBlockTextureName(Aether.find("small_blueberry_bush")));
 		medium_blueberry_bush = registerHidden("medium_blueberry_bush", new BlockMediumBerryBushStem().setBlockTextureName(Aether.find("medium_blueberry_bush")));
 		berry_bush_stem = registerHidden("berry_bush_stem", new BlockBerryBushStem());
@@ -1099,7 +1093,7 @@ public class BlocksAether {
 		slab1.setBlockName(name);
 		slab1.setCreativeTab(AetherCreativeTabs.blocks);
 
-		GameRegistry.registerBlock(slab1, ItemAetherSlab.class, name, (BlockAetherSlab) slab1, (BlockAetherSlab) slab2, false);
+		GameRegistry.registerBlock(slab1, ItemAetherSlab.class, name, slab1, slab2, false);
 
 		return slab1;
 	}
@@ -1125,7 +1119,7 @@ public class BlocksAether {
 	 	block.setBlockName(name);
 		block.setCreativeTab(AetherCreativeTabs.blocks);
 		
-        GameRegistry.registerBlock(block, (Class)itemBlockClass, block.getUnlocalizedName().replace("tile.", ""));
+        GameRegistry.registerBlock(block, itemBlockClass, block.getUnlocalizedName().replace("tile.", ""));
         return block;
     }
 

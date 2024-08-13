@@ -40,7 +40,7 @@ public class TreasureChestRenderer extends TileEntitySpecialRenderer {
 			Block var10 = par1TileEntityChest.getBlockType();
 			var9 = par1TileEntityChest.getBlockMetadata();
 
-			if (var10 != null && var10 instanceof BlockTreasureChest) {
+			if (var10 instanceof BlockTreasureChest) {
 				((BlockTreasureChest) var10).func_149954_e(par1TileEntityChest.getWorldObj(), par1TileEntityChest.xCoord, par1TileEntityChest.yCoord, par1TileEntityChest.zCoord);
 				var9 = par1TileEntityChest.getBlockMetadata();
 			}

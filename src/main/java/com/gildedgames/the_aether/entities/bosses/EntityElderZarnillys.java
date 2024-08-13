@@ -1,54 +1,35 @@
 package com.gildedgames.the_aether.entities.bosses;
 
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
-import javax.annotation.Nullable;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Vec3;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.entity.ai.EntityAIFleeSun;
-import net.minecraft.entity.ai.EntityAILeapAtTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAIMoveTowardsTarget;
 import net.minecraft.entity.ai.EntityAIAvoidEntity;
-import net.minecraft.entity.ai.EntityAIBase;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
-import net.minecraft.entity.EntityCreature;
 
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.entities.effects.EffectInebriation;
 import com.gildedgames.the_aether.entities.effects.PotionInebriation;
-import com.gildedgames.the_aether.entities.hostile.EntityAetherMob;
 import com.gildedgames.the_aether.entities.passive.EntityFlynx;
-import com.gildedgames.the_aether.entities.projectile.EntityAercenturionProjectile;
-import com.gildedgames.the_aether.entities.projectile.EntityPoisonNeedle;
 import com.gildedgames.the_aether.entities.projectile.EntityPoisonSnowball;
 import com.gildedgames.the_aether.items.ItemsAether;
-import com.google.common.collect.Maps;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
-import javax.vecmath.Point3d;
 
 import java.util.List;
-import java.util.Map;
-import net.minecraft.entity.IEntityMultiPart;
 
 public class EntityElderZarnillys extends EntityMob
 {
@@ -70,7 +51,7 @@ public class EntityElderZarnillys extends EntityMob
     
     protected void entityInit() {
         super.entityInit();
-        this.dataWatcher.addObject(16, (Object)new Byte((byte)0));
+        this.dataWatcher.addObject(16, (byte) 0);
     }
     
     protected void applyEntityAttributes() {
@@ -234,12 +215,8 @@ public class EntityElderZarnillys extends EntityMob
     	
     	return true;
     }
-    
-    public EnumCreatureAttribute getCreatureAttribute() {
-        return EnumCreatureAttribute.UNDEFINED;
-    }
-    
-    protected String getLivingSound() {
+
+	protected String getLivingSound() {
         return "aether_legacy:aemob.zarnillys.say";
     }
     

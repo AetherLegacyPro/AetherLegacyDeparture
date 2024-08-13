@@ -111,7 +111,7 @@ public class GuiAetherPerks extends GuiScreen {
 			this.perkHalo.visible = false;
 		}
 
-		this.enableHalo.displayString = this.enableHalo.displayString + Boolean.toString(this.player.shouldRenderHalo ? false : true);
+		this.enableHalo.displayString = this.enableHalo.displayString + (this.player.shouldRenderHalo ? false : true);
 
 		this.moaEye = new GuiTextField(this.fontRendererObj, (this.width / 2) + 105, 70, 45, 20);
 		this.moaEye.setMaxStringLength(6);
@@ -187,7 +187,7 @@ public class GuiAetherPerks extends GuiScreen {
 		} else if (button.id == 2) {
 			boolean enableDefualt = this.player.donatorMoaSkin.shouldUseDefualt() ? false : true;
 
-			this.defualtSkin.displayString = "Use Default: " + Boolean.toString(enableDefualt);
+			this.defualtSkin.displayString = "Use Default: " + enableDefualt;
 			this.player.donatorMoaSkin.shouldUseDefualt(enableDefualt);
 		} else if (button.id == 4) {
 			AetherNetwork.sendToServer(new PacketPerkChanged(this.player.getEntity().getEntityId(), EnumAetherPerkType.Moa, this.moaSkin));
@@ -202,7 +202,7 @@ public class GuiAetherPerks extends GuiScreen {
 
 			this.player.shouldRenderHalo = enableHalo;
 			AetherNetwork.sendToServer(new PacketPerkChanged(this.player.getEntity().getEntityId(), EnumAetherPerkType.Halo, enableHalo));
-			this.enableHalo.displayString = "Enable Halo: " + Boolean.toString(enableHalo);
+			this.enableHalo.displayString = "Enable Halo: " + enableHalo;
 		}
 	}
 

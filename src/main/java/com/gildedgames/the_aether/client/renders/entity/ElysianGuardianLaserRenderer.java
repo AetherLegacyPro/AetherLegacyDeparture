@@ -22,7 +22,7 @@ public class ElysianGuardianLaserRenderer extends Render
     }
     
     public void doRender(final EntityElysianGuardianLaser laser, final double par2, final double par3, final double par4, final float par5, final float par6) {
-        this.bindEntityTexture((Entity)laser);
+        this.bindEntityTexture(laser);
         GL11.glPushMatrix();
         GL11.glTranslatef((float)par2, (float)par3, (float)par4);
         GL11.glRotatef(laser.prevRotationYaw + (laser.rotationYaw - laser.prevRotationYaw) * par6 - 90.0f, 0.0f, 1.0f, 0.0f);

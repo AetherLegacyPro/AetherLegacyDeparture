@@ -1,26 +1,9 @@
 package com.gildedgames.the_aether.world;
 
-import java.util.List;
-import java.util.Random;
-
-import net.minecraft.block.Block;
-import net.minecraft.entity.EnumCreatureType;
-import net.minecraft.init.Blocks;
-import net.minecraft.util.IProgressUpdate;
-import net.minecraft.world.ChunkPosition;
-import net.minecraft.world.SpawnerAnimals;
-import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraft.world.chunk.Chunk;
-import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.MapGenBase;
-import net.minecraft.world.gen.MapGenCaves;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.*;
-import net.minecraftforge.event.terraingen.TerrainGen;
 
-import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.world.biome.AetherBiome;
@@ -53,15 +36,12 @@ import com.gildedgames.the_aether.world.gen.MapGenSilverDungeon;
 import java.util.List;
 import java.util.Random;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockFalling;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.IProgressUpdate;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.ChunkPosition;
 import net.minecraft.world.SpawnerAnimals;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.IChunkProvider;
@@ -78,9 +58,9 @@ public class ChunkProviderAether implements IChunkProvider {
 
 	private NoiseGeneratorOctaves noiseGen1, perlinNoise1;
 
-	private double buffer[];
+	private double[] buffer;
 
-	double pnr[], ar[], br[];
+	double[] pnr, ar, br;
 	
 	private MapGenBase aetherCaveGenerator;
 	
@@ -150,7 +130,7 @@ public class ChunkProviderAether implements IChunkProvider {
 						double d13 = (d4 - d2) * 0.125D;
 
 						for (int i2 = 0; i2 < 8; i2++) {
-							int j2 = i2 + i1 * 8 << 11 | 0 + j1 * 8 << 7 | k1 * 4 + l1;
+							int j2 = i2 + i1 * 8 << 11 | j1 * 8 << 7 | k1 * 4 + l1;
 							char c = '\200';
 							double d15 = d10;
 							double d16 = (d11 - d10) * 0.125D;
@@ -266,7 +246,7 @@ public class ChunkProviderAether implements IChunkProvider {
 		*/
 	}
 
-	private double[] setupNoiseGenerators(double buffer[], int x, int z) {
+	private double[] setupNoiseGenerators(double[] buffer, int x, int z) {
 		if (buffer == null) {
 			buffer = new double[3366];
 		}
@@ -369,7 +349,7 @@ public class ChunkProviderAether implements IChunkProvider {
 		
 		this.setBlocksInChunk(x, z, ablock);
 		this.buildSurfaces(x, z, ablock);
-		((MapGenAetherCaves) this.aetherCaveGenerator).generate((IChunkProvider)this, this.aetherWorld, x, z, ablock, metadata);
+		((MapGenAetherCaves) this.aetherCaveGenerator).generate(this, this.aetherWorld, x, z, ablock, metadata);
 		this.quicksoilGen.func_151539_a(this, this.worldObj, x, z, ablock);
 
 
@@ -398,15 +378,15 @@ public class ChunkProviderAether implements IChunkProvider {
 
 	@Override
 	public void recreateStructures(int x, int z) {
-		this.largeColdAercloudStructure.func_151539_a(this, this.worldObj, x, z, (Block[]) null);
-		this.aether_caves.func_151539_a(this, this.worldObj, x, z, (Block[]) null);
-		this.silverDungeonStructure.func_151539_a(this, this.worldObj, x, z, (Block[]) null);
-		this.ancientsilverDungeonStructure.func_151539_a(this, this.worldObj, x, z, (Block[]) null);
-		this.divinesilverDungeonStructure.func_151539_a(this, this.worldObj, x, z, (Block[]) null);
-		this.goldenDungeonStructure.func_151539_a(this, this.worldObj, x, z, (Block[]) null);
-		this.ancientGoldenDungeonStructure.func_151539_a(this, this.worldObj, x, z, (Block[]) null);
-		this.divineGoldenDungeonStructure.func_151539_a(this, this.worldObj, x, z, (Block[]) null);
-		this.osmiumDungeonStructure.func_151539_a(this, this.worldObj, x, z, (Block[]) null);
+		this.largeColdAercloudStructure.func_151539_a(this, this.worldObj, x, z, null);
+		this.aether_caves.func_151539_a(this, this.worldObj, x, z, null);
+		this.silverDungeonStructure.func_151539_a(this, this.worldObj, x, z, null);
+		this.ancientsilverDungeonStructure.func_151539_a(this, this.worldObj, x, z, null);
+		this.divinesilverDungeonStructure.func_151539_a(this, this.worldObj, x, z, null);
+		this.goldenDungeonStructure.func_151539_a(this, this.worldObj, x, z, null);
+		this.ancientGoldenDungeonStructure.func_151539_a(this, this.worldObj, x, z, null);
+		this.divineGoldenDungeonStructure.func_151539_a(this, this.worldObj, x, z, null);
+		this.osmiumDungeonStructure.func_151539_a(this, this.worldObj, x, z, null);
 	}
 
 	@Override
@@ -576,7 +556,7 @@ public class ChunkProviderAether implements IChunkProvider {
 		for (int numberoftreegen = 3, i2 = 0; i2 < numberoftreegen; ++i2) {
             final int k2 = x + this.rand.nextInt(16) + 8;
             final int j2 = z + this.rand.nextInt(16) + 8;
-            final WorldGenerator worldgenerator = (WorldGenerator)((AetherBiome) biomegenbase).getRandomTreeFeature(this.rand);
+            final WorldGenerator worldgenerator = ((AetherBiome) biomegenbase).getRandomTreeFeature(this.rand);
             worldgenerator.setScale(1.0, 1.0, 1.0);
             worldgenerator.generate(this.worldObj, this.rand, k2, this.worldObj.getHeightValue(k2, j2), j2);
         }
@@ -694,7 +674,7 @@ public class ChunkProviderAether implements IChunkProvider {
 		for (int i2 = 0; i2 < numberofgrassgen; ++i2) {
             final int k2 = x + this.rand.nextInt(16) + 8;
             final int j2 = z + this.rand.nextInt(16) + 8;
-            final WorldGenerator worldgenerator = (WorldGenerator)((AetherBiome) biomegenbase).getRandomWorldGenForGrass(this.rand);
+            final WorldGenerator worldgenerator = biomegenbase.getRandomWorldGenForGrass(this.rand);
             worldgenerator.setScale(1.0, 1.0, 1.0);
             worldgenerator.generate(this.worldObj, this.rand, k2, this.worldObj.getHeightValue(k2, j2), j2);
         }

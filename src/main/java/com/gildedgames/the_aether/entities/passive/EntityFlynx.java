@@ -6,8 +6,6 @@ import com.gildedgames.the_aether.entities.hostile.EntityCockatrice;
 import com.gildedgames.the_aether.entities.passive.flynxAI.EntityAIFlynxSit;
 import com.gildedgames.the_aether.items.ItemsAether;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.IEntityLivingData;
@@ -25,7 +23,6 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -69,7 +66,7 @@ public class EntityFlynx extends EntityTameable
     protected void entityInit()
     {
         super.entityInit();
-        this.dataWatcher.addObject(18, Byte.valueOf((byte)0));
+        this.dataWatcher.addObject(18, (byte) 0);
     }
 
     /**
@@ -104,15 +101,7 @@ public class EntityFlynx extends EntityTameable
         }
     }
 
-    /**
-     * Determines if an entity can be despawned, used on idle far away entities
-     */
-    protected boolean canDespawn()
-    {
-        return false;
-    }
-
-    /**
+	/**
      * Returns true if the newer Entity AI code should be run
      */
     public boolean isAIEnabled()
@@ -242,7 +231,7 @@ public class EntityFlynx extends EntityTameable
 
             if (itemstack.stackSize <= 0)
             {
-                p_70085_1_.inventory.setInventorySlotContents(p_70085_1_.inventory.currentItem, (ItemStack)null);
+                p_70085_1_.inventory.setInventorySlotContents(p_70085_1_.inventory.currentItem, null);
             }
 
             if (!this.worldObj.isRemote)
@@ -305,14 +294,13 @@ public class EntityFlynx extends EntityTameable
         {
             return false;
         }
-        else if (!(p_70878_1_ instanceof EntityFlynx))
+        else if (!(p_70878_1_ instanceof EntityFlynx entityflynx))
         {
             return false;
         }
         else
         {
-        	EntityFlynx entityflynx = (EntityFlynx)p_70878_1_;
-            return !entityflynx.isTamed() ? false : this.isInLove() && entityflynx.isInLove();
+			return !entityflynx.isTamed() ? false : this.isInLove() && entityflynx.isInLove();
         }
     }
 
@@ -323,7 +311,7 @@ public class EntityFlynx extends EntityTameable
 
     public void setTameSkin(int p_70912_1_)
     {
-        this.dataWatcher.updateObject(18, Byte.valueOf((byte)p_70912_1_));
+        this.dataWatcher.updateObject(18, (byte) p_70912_1_);
     }
     /**
      * Gets the name of this command sender (usually username, but possibly "Rcon")
@@ -356,7 +344,7 @@ public class EntityFlynx extends EntityTameable
            final int i = MathHelper.floor_double(this.posX);
            final int j = MathHelper.floor_double(this.boundingBox.minY);
            final int k = MathHelper.floor_double(this.posZ);
-           final boolean canSpawn = this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes((Entity)this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);          
+           final boolean canSpawn = this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
 			return ((this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_dirt
 					|| this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_grass
 					|| this.worldObj.getBlock(i, j - 1, k) == BlocksAether.arctic_grass

@@ -13,7 +13,6 @@ import net.minecraft.world.World;
 
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.entities.hostile.swet.EnumAechorPlantType;
-import com.gildedgames.the_aether.entities.hostile.swet.EnumSwetType;
 import com.gildedgames.the_aether.entities.passive.EntityAetherAnimal;
 import com.gildedgames.the_aether.entities.projectile.EntityPoisonNeedle;
 import com.gildedgames.the_aether.items.ItemsAether;
@@ -49,7 +48,7 @@ public class EntityAechorPlant extends EntityAetherAnimal {
 	public void entityInit() {
 		super.entityInit();
 
-		this.dataWatcher.addObject(20, new Byte((byte) 0));
+		this.dataWatcher.addObject(20, (byte) 0);
 		this.dataWatcher.addObject(21, (byte) this.rand.nextInt(EnumAechorPlantType.values().length));
 	}
 
@@ -267,16 +266,11 @@ public class EntityAechorPlant extends EntityAetherAnimal {
 	}
 
 	@Override
-	protected boolean canDespawn() {
-		return false;
-	}
-	
-	@Override
 	public boolean getCanSpawnHere() {
         final int i = MathHelper.floor_double(this.posX);
         final int j = MathHelper.floor_double(this.boundingBox.minY);
         final int k = MathHelper.floor_double(this.posZ);
-        final boolean canSpawn = this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes((Entity)this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);          
+        final boolean canSpawn = this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
         return (this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_dirt|| this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.arctic_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.verdant_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.enchanted_aether_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.divine_grass) && this.worldObj.getBlockLightValue(i, j, k) > 7 && canSpawn && this.rand.nextInt(AetherConfig.getAechorPlantSpawnrate()) == 0 && super.getCanSpawnHere();
                        
     }

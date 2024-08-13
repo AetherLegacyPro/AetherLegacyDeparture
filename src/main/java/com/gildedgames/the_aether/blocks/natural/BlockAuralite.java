@@ -2,16 +2,11 @@ package com.gildedgames.the_aether.blocks.natural;
 
 import java.util.Random;
 
-import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.items.ItemsAether;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.IProjectile;
 import net.minecraft.item.Item;
-import net.minecraft.util.MathHelper;
-import net.minecraft.world.World;
 
 public class BlockAuralite extends Block {
 	

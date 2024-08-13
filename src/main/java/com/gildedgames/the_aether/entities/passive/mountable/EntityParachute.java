@@ -97,7 +97,7 @@ public class EntityParachute extends Entity implements IEntityAdditionalSpawnDat
         List<?> list = this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox);
 
         for (int size = 0; size < list.size(); ) {
-            if (size == 0 && list.size() == 0) {
+            if (size == 0 && list.isEmpty()) {
                 return false;
             }
 
@@ -109,12 +109,7 @@ public class EntityParachute extends Entity implements IEntityAdditionalSpawnDat
         return this.worldObj.isAABBInMaterial(this.boundingBox, Material.water);
     }
 
-    @Override
-    public void onCollideWithPlayer(EntityPlayer entityplayer) {
-
-    }
-
-    public void die() {
+	public void die() {
         if (this.ridingPlayer != null) {
             this.spawnExplosionParticle();
         }
@@ -126,7 +121,7 @@ public class EntityParachute extends Entity implements IEntityAdditionalSpawnDat
     public static boolean entityHasRoomForCloud(World world, EntityPlayer player) {
         AxisAlignedBB boundingBox = player.boundingBox;
 
-        return world.getCollidingBoundingBoxes(player, boundingBox).size() == 0 && !world.isAABBInMaterial(boundingBox, Material.water);
+        return world.getCollidingBoundingBoxes(player, boundingBox).isEmpty() && !world.isAABBInMaterial(boundingBox, Material.water);
     }
 
     @Override

@@ -2,10 +2,7 @@ package com.gildedgames.the_aether.entities.bosses;
 
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.entities.hostile.EntityAetherMob;
-import com.gildedgames.the_aether.entities.hostile.EntityCinerarium;
-import com.gildedgames.the_aether.items.ItemsAether;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
@@ -16,7 +13,6 @@ import net.minecraft.item.Item;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase.SpawnListEntry;
 
 public class EntityAncientFireMinion extends EntityAetherMob {
 
@@ -86,7 +82,7 @@ public class EntityAncientFireMinion extends EntityAetherMob {
         final int i = MathHelper.floor_double(this.posX);
         final int j = MathHelper.floor_double(this.boundingBox.minY);
         final int k = MathHelper.floor_double(this.posZ);
-        final boolean canSpawn = this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes((Entity)this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);          
+        final boolean canSpawn = this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
         return (this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_hellfire_stone || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_light_hellfire_stone || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_divine_hellfire_stone || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_divine_hellfire_stone || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_divine_hellfire_stone || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_divine_hellfire_stone) && this.worldObj.getBlockLightValue(i, j, k) < 14 && canSpawn;
                        
     }

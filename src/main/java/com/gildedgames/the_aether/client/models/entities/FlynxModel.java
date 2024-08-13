@@ -232,11 +232,11 @@ public class FlynxModel extends ModelBase
             ++this.ocelotTail.rotationPointY;
             ++this.ocelotTail4.rotationPointY;
             ++this.ocelotTail6.rotationPointY;
-            this.ocelotTail2.rotationPointY += -4.0F;
+			this.ocelotTail2.rotationPointY -= 4.0F;
             this.ocelotTail2.rotationPointZ += 2.0F;
-            this.ocelotTail3.rotationPointY += -4.0F;
+			this.ocelotTail3.rotationPointY -= 4.0F;
             this.ocelotTail3.rotationPointZ += 2.0F;
-            this.ocelotTail5.rotationPointY += -4.0F;
+			this.ocelotTail5.rotationPointY -= 4.0F;
             this.ocelotTail5.rotationPointZ += 2.0F;
             this.ocelotTail.rotateAngleX = ((float)Math.PI / 2F);
             this.ocelotTail4.rotateAngleX = ((float)Math.PI / 2F);
@@ -264,22 +264,22 @@ public class FlynxModel extends ModelBase
         else if (entityflynx.isSitting())
         {
             this.ocelotBody.rotateAngleX = ((float)Math.PI / 4F);
-            this.ocelotBody.rotationPointY += -4.0F;
+			this.ocelotBody.rotationPointY -= 4.0F;
             this.ocelotBody.rotationPointZ += 5.0F;
-            this.ocelotHead.rotationPointY += -3.3F;
+			this.ocelotHead.rotationPointY -= 3.3F;
             ++this.ocelotHead.rotationPointZ;
             this.ocelotTail.rotationPointY += 8.0F;
-            this.ocelotTail.rotationPointZ += -2.0F;
+			this.ocelotTail.rotationPointZ -= 2.0F;
             this.ocelotTail4.rotationPointY += 8.0F;
-            this.ocelotTail4.rotationPointZ += -2.0F;
+			this.ocelotTail4.rotationPointZ -= 2.0F;
             this.ocelotTail6.rotationPointY += 8.0F;
-            this.ocelotTail6.rotationPointZ += -2.0F;
+			this.ocelotTail6.rotationPointZ -= 2.0F;
             this.ocelotTail2.rotationPointY += 2.0F;
-            this.ocelotTail2.rotationPointZ += -0.8F;
+			this.ocelotTail2.rotationPointZ -= 0.8F;
             this.ocelotTail3.rotationPointY += 2.0F;
-            this.ocelotTail3.rotationPointZ += -0.8F;
+			this.ocelotTail3.rotationPointZ -= 0.8F;
             this.ocelotTail5.rotationPointY += 2.0F;
-            this.ocelotTail5.rotationPointZ += -0.8F;
+			this.ocelotTail5.rotationPointZ -= 0.8F;
             this.ocelotTail.rotateAngleX = 1.7278761F;
             this.ocelotTail4.rotateAngleX = 1.7278761F;
             this.ocelotTail6.rotateAngleX = 1.7278761F;

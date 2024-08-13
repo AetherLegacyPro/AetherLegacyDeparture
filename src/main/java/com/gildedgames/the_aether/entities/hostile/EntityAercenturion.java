@@ -1,29 +1,18 @@
 package com.gildedgames.the_aether.entities.hostile;
 
-import net.minecraft.entity.EnumCreatureAttribute;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 
 import java.util.List;
 
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.entities.projectile.EntityAercenturionProjectile;
-import com.gildedgames.the_aether.entities.projectile.EntityHammerProjectile;
-import com.gildedgames.the_aether.entities.projectile.EntityPhoenixArrow;
-import com.gildedgames.the_aether.entities.projectile.EntityTempestSnowball;
 import com.gildedgames.the_aether.items.ItemsAether;
-import com.gildedgames.the_aether.player.PlayerAether;
 import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
@@ -33,7 +22,6 @@ import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 
 public class EntityAercenturion extends EntityMob
 {
@@ -48,7 +36,7 @@ public class EntityAercenturion extends EntityMob
     
     protected void entityInit() {
         super.entityInit();
-        this.dataWatcher.addObject(16, (Object)new Byte((byte)0));
+        this.dataWatcher.addObject(16, (byte) 0);
     }
     
     protected void applyEntityAttributes() {
@@ -218,8 +206,8 @@ public class EntityAercenturion extends EntityMob
             if (hasdivineralHelmet || hasdivineralChest || hasdivineralLegs || hasdivineralBoots) {
 
             	target.attackEntityFrom(DamageSource.magic, 6.0F);
-            	this.worldObj.setEntityState((Entity)this, (byte)4);
-                final boolean flag = target.attackEntityFrom(DamageSource.causeMobDamage((EntityLivingBase)this), (float)(6 + this.rand.nextInt(5)));
+            	this.worldObj.setEntityState(this, (byte)4);
+                final boolean flag = target.attackEntityFrom(DamageSource.causeMobDamage(this), (float)(6 + this.rand.nextInt(5)));
                 if (flag) {
                 	target.motionY += 0.4000000059604645;
                 }
@@ -229,8 +217,8 @@ public class EntityAercenturion extends EntityMob
             
             else {
             	target.attackEntityFrom(DamageSource.magic, 10.0F);
-            	this.worldObj.setEntityState((Entity)this, (byte)4);
-                final boolean flag = target.attackEntityFrom(DamageSource.causeMobDamage((EntityLivingBase)this), (float)(12 + this.rand.nextInt(5)));
+            	this.worldObj.setEntityState(this, (byte)4);
+                final boolean flag = target.attackEntityFrom(DamageSource.causeMobDamage(this), (float)(12 + this.rand.nextInt(5)));
                 if (flag) {
                 	target.motionY += 0.4000000059604645;
                 }
@@ -247,17 +235,13 @@ public class EntityAercenturion extends EntityMob
     {
         super.onDeath(p_70645_1_);
 
-        if (p_70645_1_.getEntity() instanceof EntityPlayer)
+        if (p_70645_1_.getEntity() instanceof EntityPlayer entityplayer)
         {
-            EntityPlayer entityplayer = (EntityPlayer)p_70645_1_.getEntity();
-            
-            entityplayer.triggerAchievement(AchievementsAether.kill_aercenturion);
+
+			entityplayer.triggerAchievement(AchievementsAether.kill_aercenturion);
             
         }
             
     }
-    
-    public EnumCreatureAttribute getCreatureAttribute() {
-        return EnumCreatureAttribute.UNDEFINED;
-    }
+
 }

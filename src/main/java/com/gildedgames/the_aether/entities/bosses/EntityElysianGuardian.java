@@ -1,15 +1,11 @@
 package com.gildedgames.the_aether.entities.bosses;
 
-import com.gildedgames.the_aether.Aether;
-import com.gildedgames.the_aether.blocks.BlocksAether;
-import com.gildedgames.the_aether.entities.hostile.EntityAetherMob;
 import com.gildedgames.the_aether.entities.particles.NewAetherParticleHandler;
 import com.gildedgames.the_aether.entities.projectile.EntityElysianGuardianLaser;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
@@ -18,15 +14,12 @@ import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.StatCollector;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 
-import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -97,9 +90,9 @@ public class EntityElysianGuardian extends EntityMob {
 		b *= ((this.rand.nextInt(2) * 2) - 1);
 		c *= ((this.rand.nextInt(2) * 2) - 1);
 
-		x += (double) a;
-		y += (double) b;
-		z += (double) c;
+		x += a;
+		y += b;
+		z += c;
 
 		int newX = (int) Math.floor(x - 0.5D);
 		int newY = (int) Math.floor(y - 0.5D);
@@ -219,8 +212,7 @@ public class EntityElysianGuardian extends EntityMob {
 			this.sinage -= (3.141593F * 2F);
 		}
 
-		if (this.getAttackTarget() instanceof EntityPlayer) {
-			EntityPlayer player = (EntityPlayer) this.getAttackTarget();
+		if (this.getAttackTarget() instanceof EntityPlayer player) {
 
 			if (this.getHealth() <= 0) {			
 
@@ -264,8 +256,7 @@ public class EntityElysianGuardian extends EntityMob {
 	}
 
 	public boolean attackEntityFrom(DamageSource ds, float i) {
-		if (ds.getEntity() instanceof EntityPlayer && worldObj.difficultySetting != EnumDifficulty.PEACEFUL) {
-			EntityPlayer player = (EntityPlayer) ds.getEntity();
+		if (ds.getEntity() instanceof EntityPlayer player && worldObj.difficultySetting != EnumDifficulty.PEACEFUL) {
 
 			if (this.getAttackTarget() == null) {				
 
@@ -300,9 +291,9 @@ public class EntityElysianGuardian extends EntityMob {
             final double d = entity1.posX - this.posX;
             final double d2 = entity1.posZ - this.posZ;
             final float f2 = MathHelper.sqrt_double(d * d + d2 * d2);
-            this.worldObj.createExplosion((Entity)this, this.posX, this.posY + 1.0, this.posZ, 2.0f, this.hasAttacked);
-            this.worldObj.createExplosion((Entity)this, this.posX, this.posY + 3.0, this.posZ, 2.0f, this.hasAttacked);
-            this.worldObj.createExplosion((Entity)this, this.posX, this.posY + 4.0, this.posZ, 2.0f, this.hasAttacked);
+            this.worldObj.createExplosion(this, this.posX, this.posY + 1.0, this.posZ, 2.0f, this.hasAttacked);
+            this.worldObj.createExplosion(this, this.posX, this.posY + 3.0, this.posZ, 2.0f, this.hasAttacked);
+            this.worldObj.createExplosion(this, this.posX, this.posY + 4.0, this.posZ, 2.0f, this.hasAttacked);
         }
         else {
             super.attackEntity(entity1, f);
@@ -341,7 +332,7 @@ public class EntityElysianGuardian extends EntityMob {
                     this.motionX = 0.0;
                     this.motionY = 0.0;
                     this.motionZ = 0.0;
-                    this.worldObj.playSoundAtEntity((Entity)this, "random.fizz", 1.3f, 0.3f / (this.rand.nextFloat() * 0.4f + 0.8f));
+                    this.worldObj.playSoundAtEntity(this, "random.fizz", 1.3f, 0.3f / (this.rand.nextFloat() * 0.4f + 0.8f));
                     //this.worldObj.playSoundAtEntity((Entity)this, "aether_legacy:projectile.laser.laser_fire", 1.0f, 0.5f);
                 }
                 ++this.timeSinceIgnited;            
@@ -351,13 +342,13 @@ public class EntityElysianGuardian extends EntityMob {
                     final double d7 = entity1.posX - this.posX;
                     final double d8 = entity1.posZ - this.posZ;
                     final EntityElysianGuardianLaser xcEntityMobDivineMissile;
-                    final EntityElysianGuardianLaser entityDivineMissile = xcEntityMobDivineMissile = new EntityElysianGuardianLaser(this.worldObj, (EntityLivingBase)this);
+                    final EntityElysianGuardianLaser entityDivineMissile = xcEntityMobDivineMissile = new EntityElysianGuardianLaser(this.worldObj, this);
                     xcEntityMobDivineMissile.posY += 2.099999976158142;
                     final double d9 = entity1.posY + entity1.getEyeHeight() - 0.40000000298023225 - entityDivineMissile.posY;
                     final float f5 = MathHelper.sqrt_double(d7 * d7 + d8 * d8) * 0.0f;
-                    this.worldObj.playSoundAtEntity((Entity)this, "aether_legacy:projectile.laser.laser_fire", 0.9f, 0.9f / (this.rand.nextFloat() * 0.4f + 0.8f));
+                    this.worldObj.playSoundAtEntity(this, "aether_legacy:projectile.laser.laser_fire", 0.9f, 0.9f / (this.rand.nextFloat() * 0.4f + 0.8f));
                     //this.worldObj.playSoundAtEntity((Entity)this, "random.fizz", 0.9f, 0.9f / (this.rand.nextFloat() * 0.4f + 0.8f));
-                    this.worldObj.spawnEntityInWorld((Entity)entityDivineMissile);
+                    this.worldObj.spawnEntityInWorld(entityDivineMissile);
                     entityDivineMissile.setThrowableHeading(d7, d9 + f5, d8, 0.62f, -10.0f);
                     this.timeSinceIgnited = 0;
                 }
@@ -376,7 +367,7 @@ public class EntityElysianGuardian extends EntityMob {
 
 		if (this.attackTime <= 0 && entity.boundingBox.maxY > this.boundingBox.minY && entity.boundingBox.minY < this.boundingBox.maxY) {
 			this.attackTime = 20;
-			this.worldObj.playSoundAtEntity((Entity)this, "aether_legacy:projectile.charged_hit", 0.9f, 0.9f / (this.rand.nextFloat() * 0.4f + 0.8f));
+			this.worldObj.playSoundAtEntity(this, "aether_legacy:projectile.charged_hit", 0.9f, 0.9f / (this.rand.nextFloat() * 0.4f + 0.8f));
 			swingArm();
 			flag = entity.attackEntityFrom(DamageSource.causeMobDamage(this), 35);			
 		}
@@ -388,11 +379,10 @@ public class EntityElysianGuardian extends EntityMob {
     {
         super.onDeath(p_70645_1_);
 
-        if (p_70645_1_.getEntity() instanceof EntityPlayer)
+        if (p_70645_1_.getEntity() instanceof EntityPlayer entityplayer)
         {
-            EntityPlayer entityplayer = (EntityPlayer)p_70645_1_.getEntity();
-            
-            entityplayer.triggerAchievement(AchievementsAether.kill_elysian_guardian);
+
+			entityplayer.triggerAchievement(AchievementsAether.kill_elysian_guardian);
             
         }
             

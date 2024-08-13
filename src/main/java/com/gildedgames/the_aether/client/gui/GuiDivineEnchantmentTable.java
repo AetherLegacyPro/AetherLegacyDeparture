@@ -10,7 +10,6 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.model.ModelBook;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnchantmentNameParts;
@@ -53,8 +52,8 @@ public class GuiDivineEnchantmentTable extends GuiContainer
      */
     protected void drawGuiContainerForegroundLayer(int p_146979_1_, int p_146979_2_)
     {
-        this.fontRendererObj.drawString(this.field_147079_H == null ? I18n.format("container.enchant", new Object[0]) : this.field_147079_H, 12, 5, 4210752);
-        this.fontRendererObj.drawString(I18n.format("container.inventory", new Object[0]), 8, this.ySize - 96 + 2, 4210752);
+        this.fontRendererObj.drawString(this.field_147079_H == null ? I18n.format("container.enchant") : this.field_147079_H, 12, 5, 4210752);
+        this.fontRendererObj.drawString(I18n.format("container.inventory"), 8, this.ySize - 96 + 2, 4210752);
     }
 
     /**
@@ -119,8 +118,8 @@ public class GuiDivineEnchantmentTable extends GuiContainer
         GL11.glRotatef(180.0F, 1.0F, 0.0F, 0.0F);
         float f4 = this.field_147069_w + (this.field_147071_v - this.field_147069_w) * p_146976_1_ + 0.25F;
         float f5 = this.field_147069_w + (this.field_147071_v - this.field_147069_w) * p_146976_1_ + 0.75F;
-        f4 = (f4 - (float)MathHelper.truncateDoubleToInt((double)f4)) * 1.6F - 0.3F;
-        f5 = (f5 - (float)MathHelper.truncateDoubleToInt((double)f5)) * 1.6F - 0.3F;
+        f4 = (f4 - (float)MathHelper.truncateDoubleToInt(f4)) * 1.6F - 0.3F;
+        f5 = (f5 - (float)MathHelper.truncateDoubleToInt(f5)) * 1.6F - 0.3F;
 
         if (f4 < 0.0F)
         {
@@ -143,7 +142,7 @@ public class GuiDivineEnchantmentTable extends GuiContainer
         }
 
         GL11.glEnable(GL12.GL_RESCALE_NORMAL);
-        field_147072_E.render((Entity)null, 0.0F, f4, f5, f3, 0.0F, 0.0625F);
+        field_147072_E.render(null, 0.0F, f4, f5, f3, 0.0F, 0.0625F);
         GL11.glDisable(GL12.GL_RESCALE_NORMAL);
         RenderHelper.disableStandardItemLighting();
         GL11.glMatrixMode(GL11.GL_PROJECTION);
@@ -209,12 +208,10 @@ public class GuiDivineEnchantmentTable extends GuiContainer
     {
         ItemStack itemstack = this.inventorySlots.getSlot(0).getStack();
 
-        if (!ItemStack.areItemStacksEqual(itemstack, this.field_147077_B))
-        {
+        if (!ItemStack.areItemStacksEqual(itemstack, this.field_147077_B)) {
             this.field_147077_B = itemstack;
 
-            do
-            {
+            do {
                 this.field_147082_x += (float)(this.field_147074_F.nextInt(4) - this.field_147074_F.nextInt(4));
             }
             while (this.field_147071_v <= this.field_147082_x + 1.0F && this.field_147071_v >= this.field_147082_x - 1.0F);
@@ -225,30 +222,23 @@ public class GuiDivineEnchantmentTable extends GuiContainer
         this.field_147076_A = this.field_147080_z;
         boolean flag = false;
 
-        for (int i = 0; i < 3; ++i)
-        {
-            if (this.field_147075_G.enchantLevels[i] != 0)
-            {
+        for (int i = 0; i < 3; ++i) {
+            if (this.field_147075_G.enchantLevels[i] != 0) {
                 flag = true;
             }
         }
 
-        if (flag)
-        {
+        if (flag) {
             this.field_147080_z += 0.2F;
-        }
-        else
-        {
+        } else {
             this.field_147080_z -= 0.2F;
         }
 
-        if (this.field_147080_z < 0.0F)
-        {
+        if (this.field_147080_z < 0.0F) {
             this.field_147080_z = 0.0F;
         }
 
-        if (this.field_147080_z > 1.0F)
-        {
+        if (this.field_147080_z > 1.0F) {
             this.field_147080_z = 1.0F;
         }
 

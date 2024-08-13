@@ -29,8 +29,8 @@ public abstract class EntityMountable extends EntityAetherAnimal {
 	public void entityInit() {
 		super.entityInit();
 
-		this.dataWatcher.addObject(17, new Byte((byte) 0)); //onGroundClient
-		this.dataWatcher.addObject(18, new Byte((byte) 0));
+		this.dataWatcher.addObject(17, (byte) 0); //onGroundClient
+		this.dataWatcher.addObject(18, (byte) 0);
 	}
 
 	@Override
@@ -107,8 +107,7 @@ public abstract class EntityMountable extends EntityAetherAnimal {
 	public void moveEntityWithHeading(float par1, float par2) {
 		Entity entity = this.riddenByEntity;
 
-		if (entity instanceof EntityPlayer) {
-			EntityPlayer player = (EntityPlayer) entity;
+		if (entity instanceof EntityPlayer player) {
 
 			this.prevRotationYaw = this.rotationYaw = player.rotationYaw;
 			this.prevRotationPitch = this.rotationPitch = player.rotationPitch;
@@ -140,7 +139,7 @@ public abstract class EntityMountable extends EntityAetherAnimal {
 				this.motionY = this.getMountJumpStrength() * (double) this.jumpPower;
 
 				if (this.isPotionActive(Potion.jump)) {
-					this.motionY += (double) ((float) (this.getActivePotionEffect(Potion.jump).getAmplifier() + 1) * 0.1F);
+					this.motionY += (float) (this.getActivePotionEffect(Potion.jump).getAmplifier() + 1) * 0.1F;
 				}
 
 				this.setMountJumping(true);

@@ -91,9 +91,9 @@ public class BlockAetherPortal extends BlockPortal {
 		}
 
 		for (int i = 0; i < 4; ++i) {
-			double d0 = (double) ((float) x + rand.nextFloat());
-			double d1 = (double) ((float) y + rand.nextFloat());
-			double d2 = (double) ((float) z + rand.nextFloat());
+			double d0 = (float) x + rand.nextFloat();
+			double d1 = (float) y + rand.nextFloat();
+			double d2 = (float) z + rand.nextFloat();
 			double d3 = ((double) rand.nextFloat() - 0.5D) * 0.5D;
 			double d4 = ((double) rand.nextFloat() - 0.5D) * 0.5D;
 			double d5 = ((double) rand.nextFloat() - 0.5D) * 0.5D;
@@ -101,10 +101,10 @@ public class BlockAetherPortal extends BlockPortal {
 
 			if (world.getBlock(x - 1, y, z) != this && world.getBlock(x + 1, y, z) != this) {
 				d0 = (double) x + 0.5D + 0.25D * (double) j;
-				d3 = (double) (rand.nextFloat() * 2.0F * (float) j);
+				d3 = rand.nextFloat() * 2.0F * (float) j;
 			} else {
 				d2 = (double) z + 0.5D + 0.25D * (double) j;
-				d5 = (double) (rand.nextFloat() * 2.0F * (float) j);
+				d5 = rand.nextFloat() * 2.0F * (float) j;
 			}
 
 			ParticleAetherPortal particle = new ParticleAetherPortal(world, d0, d1, d2, d3, d4, d5);

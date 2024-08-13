@@ -3,12 +3,9 @@ package com.gildedgames.the_aether.items;
 import com.gildedgames.the_aether.entities.block.EntityFireProofItemAether;
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
 
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
-import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
 public class ItemTempestCore extends Item {
@@ -22,7 +19,7 @@ public class ItemTempestCore extends Item {
     }
     
     public Entity createEntity(final World world, final Entity location, final ItemStack itemstack) {
-        return (Entity)new EntityFireProofItemAether(world, location, itemstack);
+        return new EntityFireProofItemAether(world, location, itemstack);
     }
 	
 }

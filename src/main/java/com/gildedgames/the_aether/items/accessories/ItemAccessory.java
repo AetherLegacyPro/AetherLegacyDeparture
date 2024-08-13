@@ -2,12 +2,17 @@ package com.gildedgames.the_aether.items.accessories;
 
 import java.util.List;
 
+import baubles.api.expanded.IBaubleExpanded;
 import com.gildedgames.the_aether.Aether;
+import com.gildedgames.the_aether.AetherConfig;
+import com.gildedgames.the_aether.api.accessories.DegradationRate;
 import com.gildedgames.the_aether.api.accessories.AccessoryType;
 import com.gildedgames.the_aether.client.ClientProxy;
+import com.gildedgames.the_aether.compatibility.BaublesExpandedCompatibility;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.player.PlayerAether;
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
+import cpw.mods.fml.common.Optional;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.dispenser.BehaviorDefaultDispenseItem;
@@ -28,24 +33,18 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemAccessory extends Item {
+@Optional.Interface(iface = "baubles.api.expanded.IBaubleExpanded", modid = "Baubles|Expanded")
+public class ItemAccessory extends Item implements IBaubleExpanded {
 
-	public static final String ROOT = Aether.modAddress() + "textures/slots/slot_";
-
-	protected final AccessoryType accessoryType;
-
-	protected final AccessoryType extraType;
+	public final AccessoryType accessoryType, extraType;
 
 	public ResourceLocation texture, texture_inactive;
 
 	private int colorHex = 0xdddddd;
+	private EnumRarity rarity;
+	private DegradationRate degradationRate = DegradationRate.NEVER;
 
-	private boolean isDungeonLoot = false;
-	private boolean isReinforcedDungeonLoot = false;
-	private boolean isAmplifiedDungeonLoot = false;
-	private boolean isPoweredDungeonLoot = false;
-
-	private boolean hasInactiveTexture = false;
+	private String[] baubleTypes;
 
 	public static final IBehaviorDispenseItem DISPENSER_BEHAVIOR = new BehaviorDefaultDispenseItem() {
 		protected ItemStack dispenseStack(IBlockSource source, ItemStack stack) {
@@ -55,12 +54,18 @@ public class ItemAccessory extends Item {
 	};
 
 	public ItemAccessory(AccessoryType type) {
-		this.accessoryType = type;
-		this.extraType = type == AccessoryType.RING ? AccessoryType.EXTRA_RING : type == AccessoryType.MISC ? AccessoryType.EXTRA_MISC : null;
-		this.texture = Aether.locate("textures/armor/accessory_base.png");
+		accessoryType = type;
+		extraType = type == AccessoryType.RING ? AccessoryType.EXTRA_RING : type == AccessoryType.MISC ? AccessoryType.EXTRA_MISC : null;
+		texture = Aether.locate("textures/armor/accessory_base.png");
 
-		this.setMaxStackSize(1);
-		this.setCreativeTab(AetherCreativeTabs.accessories);
+		if(AetherConfig.UseBaublesExpandedMenu()) {
+			baubleTypes = new String[] { BaublesExpandedCompatibility.accessoryTypeToBaubleType(accessoryType) };
+		} else {
+			baubleTypes = new String[0];
+		}
+
+		setMaxStackSize(1);
+		setCreativeTab(AetherCreativeTabs.accessories);
 		BlockDispenser.dispenseBehaviorRegistry.putObject(this, DISPENSER_BEHAVIOR);
 	}
 
@@ -76,55 +81,44 @@ public class ItemAccessory extends Item {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	public static ItemStack dispenseAccessory(IBlockSource blockSource, ItemStack stack) {
-		EnumFacing enumfacing = BlockDispenser.func_149937_b(blockSource.getBlockMetadata());
-		int i = blockSource.getXInt() + enumfacing.getFrontOffsetX();
-		int j = blockSource.getYInt() + enumfacing.getFrontOffsetY();
-		int k = blockSource.getZInt() + enumfacing.getFrontOffsetZ();
-		AxisAlignedBB axisalignedbb = AxisAlignedBB.getBoundingBox((double) i, (double) j, (double) k, (double) (i + 1), (double) (j + 1), (double) (k + 1));
-		//List<EntityLivingBase> list = blockSource.getWorld().getEntitiesWithinAABB(EntityPlayer.class, axisalignedbb);
-		// Change to fix build error
-		List<EntityPlayer> list = blockSource.getWorld().getEntitiesWithinAABB(EntityPlayer.class, axisalignedbb);
-
+		final EnumFacing enumfacing = BlockDispenser.func_149937_b(blockSource.getBlockMetadata());
+		final int x = blockSource.getXInt() + enumfacing.getFrontOffsetX();
+		final int y = blockSource.getYInt() + enumfacing.getFrontOffsetY();
+		final int z = blockSource.getZInt() + enumfacing.getFrontOffsetZ();
+		final AxisAlignedBB axisalignedbb = AxisAlignedBB.getBoundingBox(x, y, z, x + 1, y + 1, z + 1);
+		final List<EntityPlayer> list = blockSource.getWorld().getEntitiesWithinAABB(EntityPlayer.class, axisalignedbb);
 		if (list.isEmpty()) {
 			return null;
 		}
 
-		EntityPlayer player = (EntityPlayer) list.get(0);
-
 		ItemStack itemstack = stack.copy();
 		itemstack.stackSize = 1;
-
-		PlayerAether playerAether = PlayerAether.get((EntityPlayer) player);
+		PlayerAether playerAether = PlayerAether.get(list.get(0));
 
 		if (!playerAether.getAccessoryInventory().setAccessorySlot(itemstack)) {
 			return null;
 		}
-
 		--stack.stackSize;
-
 		return stack;
 	}
 
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World worldIn, EntityPlayer player) {
-		ItemStack heldItem = player.getHeldItem();
-
-		if (heldItem != null) {
-			if (PlayerAether.get(player).getAccessoryInventory().setAccessorySlot(heldItem.copy())) {
+		if(AetherConfig.UseBaublesExpandedMenu()) {
+			return baubles.api.expanded.BaubleItemHelper.onBaubleRightClick(stack, worldIn, player);
+		} else {
+			ItemStack heldItem = player.getHeldItem();
+			if (heldItem != null && PlayerAether.get(player).getAccessoryInventory().setAccessorySlot(heldItem.copy())) {
 				--heldItem.stackSize;
-
 				return heldItem;
 			}
 		}
-
 		return super.onItemRightClick(stack, worldIn, player);
 	}
-	
+
 	@Override
-	public boolean getIsRepairable(ItemStack toRepair, ItemStack repair)
-	{
+	public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
 		return (repair.getItem() == ItemsAether.zanite_gemstone && toRepair.getItem() == ItemsAether.zanite_ring)
 				|| (repair.getItem() == ItemsAether.zanite_gemstone && toRepair.getItem() == ItemsAether.zanite_pendant)
 				|| (repair.getItem() == ItemsAether.valkyrie_ingot && toRepair.getItem() == ItemsAether.valkyrie_ring)
@@ -133,88 +127,131 @@ public class ItemAccessory extends Item {
 	}
 
 	public AccessoryType getExtraType() {
-		return this.extraType;
+		return extraType;
 	}
 
 	public AccessoryType getType() {
-		return this.accessoryType;
+		return accessoryType;
 	}
 
-	public Item setColor(int color) {
-		this.colorHex = color;
+	public ItemAccessory setColor(int color) {
+		colorHex = color;
 		return this;
 	}
 
 	public int getColor() {
-		return this.colorHex;
+		return colorHex;
 	}
 
 	@Override
 	public EnumRarity getRarity(ItemStack stack) {
-		if (isDungeonLoot == true) {
-			return ItemsAether.aether_loot;
-		}
-		else if (isReinforcedDungeonLoot == true) {
-			return ItemsAether.scaled_aether_loot;	
-		}
-		else if (isAmplifiedDungeonLoot == true) {
-			return ItemsAether.divine_aether_loot;	
-		}
-		else if (isPoweredDungeonLoot == true) {
-			return ItemsAether.powered;	
-		}
-		else {
-			return this.isDungeonLoot ? ItemsAether.aether_loot : super.getRarity(stack);
-		}
+		return rarity != null ? rarity : super.getRarity(stack);
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public int getColorFromItemStack(ItemStack stack, int meta) {
-		return this.colorHex;
+		return colorHex;
 	}
 
 	public ItemAccessory setDungeonLoot() {
-		this.isDungeonLoot = true;
-
+		rarity = ItemsAether.aether_loot;
 		return this;
 	}
 	
 	public ItemAccessory setReinforcedDungeonLoot() {
-		this.isReinforcedDungeonLoot = true;
-
+		rarity = ItemsAether.scaled_aether_loot;
 		return this;
 	}
 	
 	public ItemAccessory setAmplifiedDungeonLoot() {
-		this.isAmplifiedDungeonLoot = true;
-
+		rarity = ItemsAether.divine_aether_loot;
 		return this;
 	}
 	
 	public ItemAccessory setPoweredDungeonLoot() {
-		this.isPoweredDungeonLoot = true;
-
+		rarity = ItemsAether.powered;
 		return this;
 	}
 
 	public ItemAccessory setTexture(String location) {
-		this.texture = Aether.locate("textures/armor/accessory_" + location + ".png");
-
+		texture = Aether.locate("textures/armor/accessory_" + location + ".png");
 		return this;
 	}
 
-	public ItemAccessory setInactiveTexture(String location)
-	{
-		this.texture_inactive = new ResourceLocation("aether_legacy", "textures/armor/accessory_" + location + ".png");
-		this.hasInactiveTexture = true;
-
+	public ItemAccessory setInactiveTexture(String location) {
+		texture_inactive = new ResourceLocation("aether_legacy", "textures/armor/accessory_" + location + ".png");
 		return this;
 	}
 
-	public boolean hasInactiveTexture()
-	{
-		return this.hasInactiveTexture;
+	public boolean hasInactiveTexture() {
+		return texture_inactive != null;
+	}
+
+	public ItemAccessory setDegradationRate(DegradationRate degradationRate) {
+		this.degradationRate = degradationRate;
+		return this;
+	}
+
+	public DegradationRate getDegradationRate() {
+		return degradationRate;
+	}
+
+
+	//Baubles support
+
+	@SuppressWarnings({"unchecked", "rawtypes"})
+	@SideOnly(Side.CLIENT)
+	@Override
+	public void addInformation(ItemStack stack, EntityPlayer player, List tooltip, boolean debug) {
+		if(AetherConfig.UseBaublesExpandedMenu()) {
+			baubles.api.expanded.BaubleItemHelper.addSlotInformation(tooltip, getBaubleTypes(stack));
+		}
+	}
+
+	public ItemAccessory setBaubleTypes(String[] types) {
+		baubleTypes = types;
+		return this;
+	}
+
+	public String[] getBaubleTypes() {
+		return baubleTypes;
+	}
+
+	@Override
+	public String[] getBaubleTypes(ItemStack itemstack) {
+		return baubleTypes;
+	}
+
+	@Override
+	@Optional.Method(modid = "Baubles|Expanded")
+	public baubles.api.BaubleType getBaubleType(ItemStack itemstack) {
+		return BaublesExpandedCompatibility.accessoryTypeToLegacyBaubleType(accessoryType);
+	}
+
+	@Override
+	public void onWornTick(ItemStack itemstack, EntityLivingBase player) {
+
+	}
+
+	@Override
+	public void onEquipped(ItemStack itemstack, EntityLivingBase player) {
+
+	}
+
+	@Override
+	public void onUnequipped(ItemStack itemstack, EntityLivingBase player) {
+
+	}
+
+	@Override
+	public boolean canEquip(ItemStack itemstack, EntityLivingBase player) {
+		return true;
+	}
+
+	@Override
+	public boolean canUnequip(ItemStack itemstack, EntityLivingBase player) {
+		return true;
 	}
 
 }

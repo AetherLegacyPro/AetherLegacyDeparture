@@ -7,7 +7,6 @@ import java.util.*;
 import com.gildedgames.the_aether.entities.particles.NewAetherParticleHandler;
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
 
-import net.minecraft.init.*;
 import cpw.mods.fml.relauncher.*;
 
 public class BlockInfernoTorch extends BlockTorch
@@ -29,23 +28,23 @@ public class BlockInfernoTorch extends BlockTorch
         final double d5 = 0.27000001072883606;
         if (l == 1) {
             p_149734_1_.spawnParticle("smoke", d0 - d5, d2 + d4, d3, 0.0, 0.0, 0.0);
-            NewAetherParticleHandler.HELLFIRE_FLAME.spawn(p_149734_1_, d0 - d5, d2 + d4, d3, 0.0, 0.0, 0.0, 0.0f, new Object[0]);
+            NewAetherParticleHandler.HELLFIRE_FLAME.spawn(p_149734_1_, d0 - d5, d2 + d4, d3, 0.0, 0.0, 0.0, 0.0f);
         }
         else if (l == 2) {
             p_149734_1_.spawnParticle("smoke", d0 + d5, d2 + d4, d3, 0.0, 0.0, 0.0);
-            NewAetherParticleHandler.HELLFIRE_FLAME.spawn(p_149734_1_, d0 + d5, d2 + d4, d3, 0.0, 0.0, 0.0, 0.0f, new Object[0]);
+            NewAetherParticleHandler.HELLFIRE_FLAME.spawn(p_149734_1_, d0 + d5, d2 + d4, d3, 0.0, 0.0, 0.0, 0.0f);
         }
         else if (l == 3) {
             p_149734_1_.spawnParticle("smoke", d0, d2 + d4, d3 - d5, 0.0, 0.0, 0.0);
-            NewAetherParticleHandler.HELLFIRE_FLAME.spawn(p_149734_1_, d0, d2 + d4, d3 - d5, 0.0, 0.0, 0.0, 0.0f, new Object[0]);
+            NewAetherParticleHandler.HELLFIRE_FLAME.spawn(p_149734_1_, d0, d2 + d4, d3 - d5, 0.0, 0.0, 0.0, 0.0f);
         }
         else if (l == 4) {
             p_149734_1_.spawnParticle("smoke", d0, d2 + d4, d3 + d5, 0.0, 0.0, 0.0);
-            NewAetherParticleHandler.HELLFIRE_FLAME.spawn(p_149734_1_, d0, d2 + d4, d3 + d5, 0.0, 0.0, 0.0, 0.0f, new Object[0]);
+            NewAetherParticleHandler.HELLFIRE_FLAME.spawn(p_149734_1_, d0, d2 + d4, d3 + d5, 0.0, 0.0, 0.0, 0.0f);
         }
         else {
             p_149734_1_.spawnParticle("smoke", d0, d2, d3, 0.0, 0.0, 0.0);
-            NewAetherParticleHandler.HELLFIRE_FLAME.spawn(p_149734_1_, d0, d2, d3, 0.0, 0.0, 0.0, 0.0f, new Object[0]);
+            NewAetherParticleHandler.HELLFIRE_FLAME.spawn(p_149734_1_, d0, d2, d3, 0.0, 0.0, 0.0, 0.0f);
         }
     }
 }

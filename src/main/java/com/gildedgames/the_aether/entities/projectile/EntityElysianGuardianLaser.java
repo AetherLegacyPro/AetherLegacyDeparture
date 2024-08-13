@@ -8,7 +8,6 @@ import com.gildedgames.the_aether.blocks.BlocksAether;
 
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.entity.monster.EntityEnderman;
-import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S12PacketEntityVelocity;
 import net.minecraft.network.play.server.S2BPacketChangeGameState;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -16,7 +15,6 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.block.material.Material;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -70,7 +68,7 @@ public class EntityElysianGuardianLaser extends Entity implements IProjectile
         this.field_145789_f = -1;
         this.damage = 15.0;
         this.renderDistanceWeight = 5.0;
-        this.shootingEntity = (Entity)par2EntityLivingBase;
+        this.shootingEntity = par2EntityLivingBase;
         this.setSize(0.5f, 0.5f);
         this.setLocationAndAngles(par2EntityLivingBase.posX, par2EntityLivingBase.posY + par2EntityLivingBase.getEyeHeight(), par2EntityLivingBase.posZ, par2EntityLivingBase.rotationYaw, par2EntityLivingBase.rotationPitch);
         this.posX -= MathHelper.cos(this.rotationYaw / 180.0f * 3.1415927f) * 0.16f;
@@ -91,7 +89,7 @@ public class EntityElysianGuardianLaser extends Entity implements IProjectile
         this.field_145789_f = -1;
         this.damage = 15.0;
         this.renderDistanceWeight = 5.0;
-        this.shootingEntity = (Entity)par2EntityLivingBase;
+        this.shootingEntity = par2EntityLivingBase;
         this.posY = par2EntityLivingBase.posY + par2EntityLivingBase.getEyeHeight() - 0.10000000149011612;
         final double d0 = par3EntityLivingBase.posX - par2EntityLivingBase.posX;
         final double d2 = par3EntityLivingBase.boundingBox.minY + par3EntityLivingBase.height / 3.0f - this.posY;
@@ -116,7 +114,7 @@ public class EntityElysianGuardianLaser extends Entity implements IProjectile
         this.field_145789_f = -1;
         this.damage = 15.0;
         this.renderDistanceWeight = 5.0;
-        this.shootingEntity = (Entity)par2EntityLivingBase;
+        this.shootingEntity = par2EntityLivingBase;
         this.setSize(0.5f, 0.5f);
         this.setLocationAndAngles(par2EntityLivingBase.posX, par2EntityLivingBase.posY + par2EntityLivingBase.getEyeHeight(), par2EntityLivingBase.posZ, par2EntityLivingBase.rotationYaw, par2EntityLivingBase.rotationPitch);
         this.posX -= MathHelper.cos(this.rotationYaw / 180.0f * 3.1415927f) * 0.16f;
@@ -139,7 +137,7 @@ public class EntityElysianGuardianLaser extends Entity implements IProjectile
     }
     
     protected void entityInit() {
-        this.dataWatcher.addObject(16, (Object)0);
+        this.dataWatcher.addObject(16, 0);
     }
     
     public double getDamage() {
@@ -217,7 +215,7 @@ public class EntityElysianGuardianLaser extends Entity implements IProjectile
         }
         final Block block = this.worldObj.getBlock(this.field_145791_d, this.field_145792_e, this.field_145789_f);
         if (block.getMaterial() != Material.air) {
-            block.setBlockBoundsBasedOnState((IBlockAccess)this.worldObj, this.field_145791_d, this.field_145792_e, this.field_145789_f);
+            block.setBlockBoundsBasedOnState(this.worldObj, this.field_145791_d, this.field_145792_e, this.field_145789_f);
             final AxisAlignedBB axisalignedbb = block.getCollisionBoundingBoxFromPool(this.worldObj, this.field_145791_d, this.field_145792_e, this.field_145789_f);
             if (axisalignedbb != null && axisalignedbb.isVecInside(Vec3.createVectorHelper(this.posX, this.posY, this.posZ))) {
                 this.inGround = true;
@@ -255,13 +253,13 @@ public class EntityElysianGuardianLaser extends Entity implements IProjectile
                 vec32 = Vec3.createVectorHelper(movingobjectposition.hitVec.xCoord, movingobjectposition.hitVec.yCoord, movingobjectposition.hitVec.zCoord);
             }
             Entity entity = null;
-            final List list = this.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)this, this.boundingBox.addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0, 1.0, 1.0));
+            final List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0, 1.0, 1.0));
             double d0 = 0.0;
             for (int i = 0; i < list.size(); ++i) {
                 final Entity entity2 = (Entity) list.get(i);
                 if (entity2.canBeCollidedWith() && (entity2 != this.shootingEntity || this.ticksInAir >= 5)) {
                     final float f2 = 0.3f;
-                    final AxisAlignedBB axisalignedbb2 = entity2.boundingBox.expand((double)f2, (double)f2, (double)f2);
+                    final AxisAlignedBB axisalignedbb2 = entity2.boundingBox.expand(f2, f2, f2);
                     final MovingObjectPosition movingobjectposition2 = axisalignedbb2.calculateIntercept(vec31, vec32);
                     if (movingobjectposition2 != null) {
                         final double d2 = vec31.distanceTo(movingobjectposition2.hitVec);
@@ -275,9 +273,8 @@ public class EntityElysianGuardianLaser extends Entity implements IProjectile
             if (entity != null) {
                 movingobjectposition = new MovingObjectPosition(entity);
             }
-            if (movingobjectposition != null && movingobjectposition.entityHit != null && movingobjectposition.entityHit instanceof EntityPlayer) {
-                final EntityPlayer entityplayer = (EntityPlayer)movingobjectposition.entityHit;
-                if (entityplayer.capabilities.disableDamage || (this.shootingEntity instanceof EntityPlayer && !((EntityPlayer)this.shootingEntity).canAttackPlayer(entityplayer))) {
+            if (movingobjectposition != null && movingobjectposition.entityHit instanceof EntityPlayer entityplayer) {
+				if (entityplayer.capabilities.disableDamage || (this.shootingEntity instanceof EntityPlayer && !((EntityPlayer)this.shootingEntity).canAttackPlayer(entityplayer))) {
                     movingobjectposition = null;
                 }
             }
@@ -291,18 +288,17 @@ public class EntityElysianGuardianLaser extends Entity implements IProjectile
                     }
                     else {
                     	damagesource = DamageSource.magic;
-                        this.worldObj.playSoundAtEntity((Entity)this, "random.fizz", 1.0f, 1.2f / (this.rand.nextFloat() * 0.2f + 0.9f));
+                        this.worldObj.playSoundAtEntity(this, "random.fizz", 1.0f, 1.2f / (this.rand.nextFloat() * 0.2f + 0.9f));
                         this.setDead();
                     }
                     if (movingobjectposition.entityHit.attackEntityFrom(damagesource, (float)k)) {
-                        if (movingobjectposition.entityHit instanceof EntityLivingBase) {
-                            final EntityLivingBase entitylivingbase = (EntityLivingBase)movingobjectposition.entityHit;
-                            if (this.shootingEntity != null && this.shootingEntity instanceof EntityLivingBase) {
+                        if (movingobjectposition.entityHit instanceof EntityLivingBase entitylivingbase) {
+							if (this.shootingEntity != null && this.shootingEntity instanceof EntityLivingBase) {
                                 EnchantmentHelper.func_151384_a(entitylivingbase, this.shootingEntity);
-                                EnchantmentHelper.func_151385_b((EntityLivingBase)this.shootingEntity, (Entity)entitylivingbase);
+                                EnchantmentHelper.func_151385_b((EntityLivingBase)this.shootingEntity, entitylivingbase);
                             }
                             if (this.shootingEntity != null && movingobjectposition.entityHit != this.shootingEntity && movingobjectposition.entityHit instanceof EntityPlayer && this.shootingEntity instanceof EntityPlayerMP) {
-                                ((EntityPlayerMP)this.shootingEntity).playerNetServerHandler.sendPacket((Packet)new S2BPacketChangeGameState(6, 0.0f));
+                                ((EntityPlayerMP)this.shootingEntity).playerNetServerHandler.sendPacket(new S2BPacketChangeGameState(6, 0.0f));
                             }
                         }
                         if (!(movingobjectposition.entityHit instanceof EntityEnderman)) {
@@ -331,11 +327,11 @@ public class EntityElysianGuardianLaser extends Entity implements IProjectile
                     this.posX -= this.motionX / f3 * 0.05000000074505806;
                     this.posY -= this.motionY / f3 * 9.050000000745058;
                     this.posZ -= this.motionZ / f3 * 0.05000000074505806;
-                    this.worldObj.playSoundAtEntity((Entity)this, "random.fizz", 1.0f, 1.2f / (this.rand.nextFloat() * 0.2f + 0.9f));
+                    this.worldObj.playSoundAtEntity(this, "random.fizz", 1.0f, 1.2f / (this.rand.nextFloat() * 0.2f + 0.9f));
                     this.inGround = true;
                     this.arrowShake = 7;
                     if (this.field_145790_g.getMaterial() != Material.air) {
-                        this.field_145790_g.onEntityCollidedWithBlock(this.worldObj, this.field_145791_d, this.field_145792_e, this.field_145789_f, (Entity)this);
+                        this.field_145790_g.onEntityCollidedWithBlock(this.worldObj, this.field_145791_d, this.field_145792_e, this.field_145789_f, this);
                         this.setDead();
                     }
                 }
@@ -461,7 +457,7 @@ public class EntityElysianGuardianLaser extends Entity implements IProjectile
         par1NBTTagCompound.setByte("inTile", (byte)Block.getIdFromBlock(this.field_145790_g));
         par1NBTTagCompound.setByte("inData", (byte)this.inData);
         par1NBTTagCompound.setByte("shake", (byte)this.arrowShake);
-        par1NBTTagCompound.setByte("inGround", (byte)(byte)(this.inGround ? 1 : 0));
+        par1NBTTagCompound.setByte("inGround", (byte)(this.inGround ? 1 : 0));
         par1NBTTagCompound.setDouble("damage", this.damage);
     }
 }

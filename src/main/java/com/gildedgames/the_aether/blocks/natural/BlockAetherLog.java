@@ -5,7 +5,6 @@ import java.util.Random;
 
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.items.ItemsAether;
-import com.gildedgames.the_aether.items.tools.*;
 import com.gildedgames.the_aether.items.tools.tipped.ItemTippedArkeniumTool;
 import com.gildedgames.the_aether.items.tools.tipped.ItemTippedBattleSentryHammer;
 import com.gildedgames.the_aether.items.tools.tipped.ItemTippedContinuumTool;
@@ -54,7 +53,7 @@ public class BlockAetherLog extends BlockLog {
 
 		if (this.canSilkHarvest(worldIn, player, x, y, z, meta) && EnchantmentHelper.getSilkTouchModifier(player))
 		{
-			ArrayList<ItemStack> items = new ArrayList<ItemStack>();
+			ArrayList<ItemStack> items = new ArrayList<>();
 			ItemStack itemstack = this.createStackedBlock(meta);
 
 			if (itemstack != null)

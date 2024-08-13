@@ -23,7 +23,7 @@ public class TileEntityEnchanter extends AetherTileEntity {
 
 	public int progress, ticksRequired, powerRemaining;
 
-	private final FilledList<ItemStack> enchantedItemStacks = new FilledList<ItemStack>(3, null);
+	private final FilledList<ItemStack> enchantedItemStacks = new FilledList<>(3, null);
 
 	private AetherEnchantment currentEnchantment;
 

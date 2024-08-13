@@ -4,13 +4,11 @@ import com.gildedgames.the_aether.entities.block.EntityFireProofItemAether;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
 import net.minecraft.block.Block;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
@@ -37,10 +35,10 @@ public class ItemTippedDragonSlayer extends ItemSword {
 
 	@Override
 	public Multimap<String, AttributeModifier> getAttributeModifiers(ItemStack stack) {
-		Multimap<String, AttributeModifier> multimap = HashMultimap.<String, AttributeModifier>create();
+		Multimap<String, AttributeModifier> multimap = HashMultimap.create();
 
 		if (stack.getItem() instanceof ItemTippedDragonSlayer) {
-			multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(field_111210_e, "Weapon modifier", (double) this.calculateIncrease(stack), 0));
+			multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(field_111210_e, "Weapon modifier", this.calculateIncrease(stack), 0));
 		}
 
 		return multimap;
@@ -63,7 +61,7 @@ public class ItemTippedDragonSlayer extends ItemSword {
 	}
 
 	private boolean isBetween(int max, int origin, int min) {
-		return origin <= max && origin >= min ? true : false;
+		return origin <= max && origin >= min;
 	}
 
 	@Override
@@ -77,9 +75,9 @@ public class ItemTippedDragonSlayer extends ItemSword {
 			return false;
 		}
 
-		String s = EntityList.getEntityString((Entity) entityliving);
+		String s = EntityList.getEntityString(entityliving);
 
-		if (s != null && (s.toLowerCase().contains("dragon") || s.toLowerCase().contains("EnderDragon") || s.toLowerCase().contains("crystal_dragon") || s.toLowerCase().contains("genesis_dragon") || s.toLowerCase().contains("reddragonrediscovered") || s.toLowerCase().contains("deepoid_dragon") )) {
+		if (s.toLowerCase().contains("dragon")) {
 			if (entityliving.getHealth() > 0) {
 				entityliving.attackEntityFrom(DamageSource.causeMobDamage(entityliving1), 30);
 			}
@@ -103,7 +101,7 @@ public class ItemTippedDragonSlayer extends ItemSword {
     }
     
     public Entity createEntity(final World world, final Entity location, final ItemStack itemstack) {
-        return (Entity)new EntityFireProofItemAether(world, location, itemstack);
+        return new EntityFireProofItemAether(world, location, itemstack);
     }
 
 }

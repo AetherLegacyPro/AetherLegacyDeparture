@@ -23,7 +23,7 @@ public class AetherFreezableFuel extends RegistryEntry {
 		this.timeGiven = timeGiven;
 		this.fuelStack = fuelStack;
 
-		this.setRegistryName(fuelStack.getItem().getUnlocalizedName().toString() + "_meta_" + (fuelStack.isItemStackDamageable() ? 0 : fuelStack.getItemDamage()));
+		this.setRegistryName(fuelStack.getItem().getUnlocalizedName() + "_meta_" + (fuelStack.isItemStackDamageable() ? 0 : fuelStack.getItemDamage()));
 	}
 
 	public int getTimeGiven() {
@@ -36,8 +36,7 @@ public class AetherFreezableFuel extends RegistryEntry {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof AetherFreezableFuel) {
-			AetherFreezableFuel fuel = (AetherFreezableFuel) obj;
+		if (obj instanceof AetherFreezableFuel fuel) {
 
 			return this.getFuelStack().getItem() == fuel.getFuelStack().getItem() && this.getFuelStack().getItemDamage() == fuel.getFuelStack().getItemDamage();
 		}

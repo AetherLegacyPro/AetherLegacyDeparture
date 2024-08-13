@@ -45,7 +45,7 @@ public class EntityZephyr extends EntityFlying implements IMob {
 		int j = MathHelper.floor_double(this.boundingBox.minY);
 		int k = MathHelper.floor_double(this.posZ);
 
-		return this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_grass && this.rand.nextInt(AetherConfig.getZephyrSpawnrate()) == 0 && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).size() == 0 && !this.worldObj.isAnyLiquid(this.boundingBox) && this.worldObj.getBlockLightValue(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.boundingBox.minY), MathHelper.floor_double(this.posZ)) > 8 && super.getCanSpawnHere();
+		return this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_grass && this.rand.nextInt(AetherConfig.getZephyrSpawnrate()) == 0 && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox) && this.worldObj.getBlockLightValue(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.boundingBox.minY), MathHelper.floor_double(this.posZ)) > 8 && super.getCanSpawnHere();
 	}
 
 	@Override
@@ -78,7 +78,7 @@ public class EntityZephyr extends EntityFlying implements IMob {
 		if (this.courseChangeCooldown-- <= 0)
 		{
 			this.courseChangeCooldown += this.rand.nextInt(5) + 2;
-			d3 = (double)MathHelper.sqrt_double(d3);
+			d3 = MathHelper.sqrt_double(d3);
 
 			if (this.isCourseTraversable(this.waypointX, this.waypointY, this.waypointZ, d3))
 			{
@@ -166,11 +166,10 @@ public class EntityZephyr extends EntityFlying implements IMob {
     {
         super.onDeath(p_70645_1_);
 
-        if (p_70645_1_.getEntity() instanceof EntityPlayer)
+        if (p_70645_1_.getEntity() instanceof EntityPlayer entityplayer)
         {
-            EntityPlayer entityplayer = (EntityPlayer)p_70645_1_.getEntity();
-            
-            entityplayer.triggerAchievement(AchievementsAether.aether_hunter);
+
+			entityplayer.triggerAchievement(AchievementsAether.aether_hunter);
             
         }
             
@@ -199,11 +198,6 @@ public class EntityZephyr extends EntityFlying implements IMob {
 	@Override
 	public boolean canDespawn() {
 		return true;
-	}
-
-	@Override
-	protected float getSoundVolume() {
-		return 1F;
 	}
 
 }

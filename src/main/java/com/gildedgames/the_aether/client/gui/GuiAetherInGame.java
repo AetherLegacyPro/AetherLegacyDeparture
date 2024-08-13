@@ -3,7 +3,6 @@ package com.gildedgames.the_aether.client.gui;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.RenderBlockOverlayEvent;
 import net.minecraftforge.client.event.RenderBlockOverlayEvent.OverlayType;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -26,24 +25,19 @@ public class GuiAetherInGame extends Gui {
 
 	@SubscribeEvent
 	public void onRenderBlockOverlay(RenderBlockOverlayEvent event) {
-		if (this.mc.thePlayer != null) {
+		if (mc.thePlayer != null) {
 			PlayerAether player = PlayerAether.get(this.mc.thePlayer);
 
-			if (player.getAccessoryInventory().isWearingPhoenixSet() && event.overlayType == OverlayType.FIRE) {
-				event.setCanceled(true);
-			}
-			
-			if (player.getAccessoryInventory().isWearingAmplifiedPhoenixSet() && event.overlayType == OverlayType.FIRE) {
-				event.setCanceled(true);
-			}
-			
-			if (player.getAccessoryInventory().isWearingPhoenixComboSet() && event.overlayType == OverlayType.FIRE) {
-				event.setCanceled(true);
-			}
-			
-			else if (player.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.repulsion_shield)) && event.overlayType == OverlayType.FIRE) {
-				event.setCanceled(true);
-			
+			if(event.overlayType == OverlayType.FIRE) {
+				if (player.getAccessoryInventory().isWearingPhoenixSet()) {
+					event.setCanceled(true);
+				} else if (player.getAccessoryInventory().isWearingAmplifiedPhoenixSet()) {
+					event.setCanceled(true);
+				} else if (player.getAccessoryInventory().isWearingPhoenixComboSet()) {
+					event.setCanceled(true);
+				} else if (player.getAccessoryInventory().wearingAccessory(ItemsAether.repulsion_shield)) {
+					event.setCanceled(true);
+				}
 			}
 		}
 	}

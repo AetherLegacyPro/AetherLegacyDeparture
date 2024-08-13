@@ -32,7 +32,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityWhirlwind extends EntityMob {
 
-	public ArrayList<Object> particles = new ArrayList<Object>();
+	public ArrayList<Object> particles = new ArrayList<>();
 
 	public int lifeLeft;
 
@@ -83,8 +83,8 @@ public class EntityWhirlwind extends EntityMob {
 	protected void entityInit() {
 		super.entityInit();
 
-		this.dataWatcher.addObject(20, new Byte((byte) 0));
-		this.dataWatcher.addObject(21, new Byte((byte) 15));
+		this.dataWatcher.addObject(20, (byte) 0);
+		this.dataWatcher.addObject(21, (byte) 15);
 	}
 
 	public void setColorData(int data) {
@@ -92,7 +92,7 @@ public class EntityWhirlwind extends EntityMob {
 	}
 
 	public int getColorData() {
-		return (int) this.dataWatcher.getWatchableObjectByte(21);
+		return this.dataWatcher.getWatchableObjectByte(21);
 	}
 
 	public void setEvil(boolean isEvil) {
@@ -271,7 +271,7 @@ public class EntityWhirlwind extends EntityMob {
 			}
 		}
 
-		if (this.particles.size() > 0) {
+		if (!this.particles.isEmpty()) {
 			for (int i1 = 0; i1 < this.particles.size(); i1++) {
 				AetherParticle particle = (AetherParticle) this.particles.get(i1);
 

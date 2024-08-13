@@ -5,25 +5,17 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.item.ItemStack;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIFollowParent;
-import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.ai.EntityAITempt;
-import net.minecraft.item.Item;
-import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.ai.EntityAIMate;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.ai.EntityAIBase;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -40,14 +32,14 @@ public class EntityThunderlo extends EntityAetherAnimal
         this.setSize(2.0f, 2.0f);
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(30.0);
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.23000000417232513D);
-        this.tasks.addTask(0, (EntityAIBase)new EntityAISwimming((EntityLiving)this));
+        this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(3, new EntityAIMate(this, 1.0D));
 		this.tasks.addTask(3, new EntityAITempt(this, 1.25D, ItemsAether.strawberry, false));
-        this.tasks.addTask(4, (EntityAIBase)new EntityAIFollowParent((EntityAnimal)this, 0.25));
-        this.tasks.addTask(6, (EntityAIBase)new EntityAIWander((EntityCreature)this, 0.25));
-        this.tasks.addTask(7, (EntityAIBase)new EntityAIWatchClosest((EntityLiving)this, (Class)EntityPlayer.class, 6.0f));
-        this.tasks.addTask(8, (EntityAIBase)new EntityAILookIdle((EntityLiving)this));
-        this.tasks.addTask(9, (EntityAIBase)new EntityAIAttackOnCollide((EntityCreature)this, 1.0, true));
+        this.tasks.addTask(4, new EntityAIFollowParent(this, 0.25));
+        this.tasks.addTask(6, new EntityAIWander(this, 0.25));
+        this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0f));
+        this.tasks.addTask(8, new EntityAILookIdle(this));
+        this.tasks.addTask(9, new EntityAIAttackOnCollide(this, 1.0, true));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
         this.setHealth(30);
     }  
@@ -57,7 +49,7 @@ public class EntityThunderlo extends EntityAetherAnimal
 	      final int i = MathHelper.floor_double(this.posX);
 	      final int j = MathHelper.floor_double(this.boundingBox.minY);
 	      final int k = MathHelper.floor_double(this.posZ);
-	      final boolean canSpawn = this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes((Entity)this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);          
+	      final boolean canSpawn = this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
 	      return (this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_dirt || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.arctic_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.verdant_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.enchanted_aether_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.divine_grass) && this.worldObj.getBlockLightValue(i, j, k) > 7 && canSpawn && (AetherConfig.getThunderloSpawnrate()) == 0 && super.getCanSpawnHere();
 	                       
 	}
@@ -107,16 +99,15 @@ public class EntityThunderlo extends EntityAetherAnimal
     @Override
     public void onUpdate() {
     	super.onUpdate();
-        final List<Entity> entitiesAround = (List<Entity>)this.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)this, this.boundingBox.expand(5.5, 1.75, 5.5));
+        final List<Entity> entitiesAround = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(5.5, 1.75, 5.5));
         boolean foundPlayer = false;
         if (this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).getAttributeValue() != 25.0) {
             this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(25.0);
         }
         for (final Entity entity : entitiesAround) {
-            if (entity instanceof EntityPlayer) {
-                final EntityPlayer player = (EntityPlayer)entity;
-                
-            }
+            if (entity instanceof EntityPlayer player) {
+
+			}
         }
         if (!foundPlayer) {
             this.entityToAttack = null;
@@ -161,11 +152,10 @@ public class EntityThunderlo extends EntityAetherAnimal
     {
         super.onDeath(p_70645_1_);
 
-        if (p_70645_1_.getEntity() instanceof EntityPlayer)
+        if (p_70645_1_.getEntity() instanceof EntityPlayer entityplayer)
         {
-            EntityPlayer entityplayer = (EntityPlayer)p_70645_1_.getEntity();
-            
-            entityplayer.triggerAchievement(AchievementsAether.kill_thunderlo);
+
+			entityplayer.triggerAchievement(AchievementsAether.kill_thunderlo);
             
         }
             

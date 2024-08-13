@@ -10,7 +10,6 @@ import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemStack;
@@ -77,11 +76,10 @@ public class EntityMimic extends EntityMob {
     {
         super.collideWithEntity(entityIn);
 
-            if (entityIn instanceof EntityPlayer)
+            if (entityIn instanceof EntityPlayer player)
             {
-                EntityPlayer player = (EntityPlayer) entityIn;
 
-                if (this.getAttackTarget() != null)
+				if (this.getAttackTarget() != null)
                 {
                     if (this.getAttackTarget() == player)
                     {
@@ -168,8 +166,7 @@ public class EntityMimic extends EntityMob {
 			this.setAttackTarget((EntityLivingBase) ds.getEntity());
 		}
 
-		if (ds.getEntity() instanceof EntityPlayer) {
-			EntityPlayer player = (EntityPlayer) ds.getEntity();
+		if (ds.getEntity() instanceof EntityPlayer player) {
 			ItemStack stack = player.inventory.getCurrentItem();
 
 			if (stack == null || stack.getItem() == null) {

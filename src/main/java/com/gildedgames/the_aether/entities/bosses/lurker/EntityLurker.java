@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.entities.bosses.lurker;
 
 import java.util.List;
-import java.util.Random;
 
 import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.entities.util.EntityBossMob;
@@ -20,7 +19,6 @@ import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -37,7 +35,6 @@ import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.blocks.dungeon.BlockDungeonBaseOsmium;
 import com.gildedgames.the_aether.client.gui.dialogue.entity.GuiLurkerDialogue;
 import com.gildedgames.the_aether.entities.ai.EntityAIAttackContinuously;
-import com.gildedgames.the_aether.entities.ai.valkyrie_queen.ValkyrieQueenAIWander;
 import com.gildedgames.the_aether.entities.hostile.EntityUligo;
 import com.gildedgames.the_aether.entities.hostile.EntityUro;
 import com.gildedgames.the_aether.entities.effects.EffectInebriation;
@@ -108,11 +105,11 @@ public class EntityLurker extends EntityBossMob implements IAetherBoss {
     public void entityInit() {
         super.entityInit();
 
-        this.dataWatcher.addObject(20, new Byte((byte) 0));
+        this.dataWatcher.addObject(20, (byte) 0);
         this.dataWatcher.addObject(19, AetherNameGen.valkGen());
-        this.dataWatcher.addObject(16, Byte.valueOf((byte) - 1));
-        this.dataWatcher.addObject(17, Byte.valueOf((byte)0));
-        this.dataWatcher.addObject(18, Byte.valueOf((byte)0));
+        this.dataWatcher.addObject(16, (byte) -1);
+        this.dataWatcher.addObject(17, (byte) 0);
+        this.dataWatcher.addObject(18, (byte) 0);
     }
 
     public void registerEntityAI() {
@@ -262,10 +259,9 @@ public class EntityLurker extends EntityBossMob implements IAetherBoss {
             this.moveStrafing = this.moveForward = 0;
         } else {
             if (this.getEntityToAttack() != null) {
-                if (this.getEntityToAttack() instanceof EntityPlayer) {
-                    EntityPlayer target = (EntityPlayer) this.getEntityToAttack();
+                if (this.getEntityToAttack() instanceof EntityPlayer target) {
 
-                    if (target != null) {
+					if (target != null) {
                         if (target.posY > this.posY) {
                             timeUntilTeleportToPlayer++;
 
@@ -446,7 +442,7 @@ public class EntityLurker extends EntityBossMob implements IAetherBoss {
         nbttagcompound.setInteger("DungeonY", this.dungeonY);
         nbttagcompound.setInteger("DungeonZ", this.dungeonZ);
         nbttagcompound.setInteger("DungeonEntranceZ", this.dungeonEntranceZ);
-        nbttagcompound.setTag("SafePos", newDoubleNBTList(new double[]{this.safeX, this.safeY, this.safeZ}));
+        nbttagcompound.setTag("SafePos", newDoubleNBTList(this.safeX, this.safeY, this.safeZ));
         nbttagcompound.setString("BossName", this.getName());
         
     }
@@ -455,7 +451,7 @@ public class EntityLurker extends EntityBossMob implements IAetherBoss {
     public void readEntityFromNBT(NBTTagCompound nbttagcompound) {
         super.readEntityFromNBT(nbttagcompound);
         
-        this.dataWatcher.updateObject(17, Byte.valueOf((byte)(nbttagcompound.getBoolean("powered") ? 1 : 0)));
+        this.dataWatcher.updateObject(17, (byte) (nbttagcompound.getBoolean("powered") ? 1 : 0));
 
         if (nbttagcompound.hasKey("Fuse", 99))
         {
@@ -490,16 +486,14 @@ public class EntityLurker extends EntityBossMob implements IAetherBoss {
 
     @Override
     public boolean attackEntityFrom(DamageSource ds, float i) {
-        if (ds.getEntity() instanceof EntityPlayer) {
+        if (ds.getEntity() instanceof EntityPlayer player) {
         	
         	if (ds.isExplosion())
             {
                 return false;
             }
-        	
-            EntityPlayer player = (EntityPlayer) ds.getEntity();
 
-            if (this.worldObj.difficultySetting == EnumDifficulty.PEACEFUL) {
+			if (this.worldObj.difficultySetting == EnumDifficulty.PEACEFUL) {
                 this.spawnExplosionParticle();
                 chatItUp(player, StatCollector.translateToLocal("gui.urker.dialog.peaceful"));
                 return false;
@@ -629,7 +623,7 @@ public class EntityLurker extends EntityBossMob implements IAetherBoss {
      */
     public void setCreeperState(int p_70829_1_)
     {
-        this.dataWatcher.updateObject(16, Byte.valueOf((byte)p_70829_1_));
+        this.dataWatcher.updateObject(16, (byte) p_70829_1_);
     }
 
     /**
@@ -638,7 +632,7 @@ public class EntityLurker extends EntityBossMob implements IAetherBoss {
     public void onStruckByLightning(EntityLightningBolt p_70077_1_)
     {
         super.onStruckByLightning(p_70077_1_);
-        this.dataWatcher.updateObject(17, Byte.valueOf((byte)1));
+        this.dataWatcher.updateObject(17, (byte) 1);
     }
     
     private void func_146077_cc()
@@ -667,7 +661,7 @@ public class EntityLurker extends EntityBossMob implements IAetherBoss {
 
     public void func_146079_cb()
     {
-        this.dataWatcher.updateObject(18, Byte.valueOf((byte)1));
+        this.dataWatcher.updateObject(18, (byte) 1);
     }
 
 
@@ -686,10 +680,9 @@ public class EntityLurker extends EntityBossMob implements IAetherBoss {
         flag = entity.attackEntityFrom(DamageSource.magic, 14);	
          }
         }
-        if (entity != null && this.getEntityToAttack() != null && entity == this.getEntityToAttack() && entity instanceof EntityPlayer) {
-            EntityPlayer player = (EntityPlayer) entity;
+        if (entity != null && this.getEntityToAttack() != null && entity == this.getEntityToAttack() && entity instanceof EntityPlayer player) {
 
-            if (player.getHealth() <= 0 || player.isDead) {
+			if (player.getHealth() <= 0 || player.isDead) {
                 this.setTarget(null);
                 this.angerLevel = this.chatTime = 0;
                 this.chatItUp(player, StatCollector.translateToLocal("gui.urker.dialog.lost"));
@@ -750,9 +743,9 @@ public class EntityLurker extends EntityBossMob implements IAetherBoss {
         b *= ((rand.nextInt(2) * 2) - 1); // Negate or Not
         c *= ((rand.nextInt(2) * 2) - 1); // Negate or Not
 
-        x += (double) a;
-        y += (double) b;
-        z += (double) c;
+        x += a;
+        y += b;
+        z += c;
 
         int newX = (int) Math.floor(x - 0.5D);
         int newY = (int) Math.floor(y - 0.5D);
@@ -825,7 +818,7 @@ public class EntityLurker extends EntityBossMob implements IAetherBoss {
         int i = MathHelper.floor_double(this.posX);
         int j = MathHelper.floor_double(this.boundingBox.minY);
         int k = MathHelper.floor_double(this.posZ);
-        return this.worldObj.checkBlockCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).size() == 0;
+        return this.worldObj.checkBlockCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty();
     }
 
     public int getMedals(EntityPlayer entityplayer) {
@@ -884,7 +877,7 @@ public class EntityLurker extends EntityBossMob implements IAetherBoss {
     }
 
     public void setBossReady(boolean isReady) {
-        this.dataWatcher.updateObject(20, new Byte(isReady ? (byte) 1 : (byte) 0));
+        this.dataWatcher.updateObject(20, isReady ? (byte) 1 : (byte) 0);
     }
 
     public boolean isBossReady() {

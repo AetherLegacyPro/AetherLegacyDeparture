@@ -49,7 +49,7 @@ public class AetherFreezable extends RegistryEntry {
 		this.output = output;
 		this.timeRequired = timeRequired;
 
-		this.setRegistryName(input.getItem().getUnlocalizedName().toString() + "_meta_" + (input.isItemStackDamageable() ? 0 : input.getItemDamage()));
+		this.setRegistryName(input.getItem().getUnlocalizedName() + "_meta_" + (input.isItemStackDamageable() ? 0 : input.getItemDamage()));
 	}
 
 	public int getTimeRequired() {
@@ -66,8 +66,7 @@ public class AetherFreezable extends RegistryEntry {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof AetherFreezable) {
-			AetherFreezable freezable = (AetherFreezable) obj;
+		if (obj instanceof AetherFreezable freezable) {
 
 			boolean inputCheck = this.getInput().getItem() == freezable.getInput().getItem() && this.getInput().getItemDamage() == freezable.getInput().getItemDamage();
 			boolean outputCheck = this.getOutput().getItem() == freezable.getOutput().getItem() && this.getOutput().getItemDamage() == freezable.getOutput().getItemDamage();
