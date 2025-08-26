@@ -1,5 +1,7 @@
 package com.gildedgames.the_aether.items.weapons;
 
+import java.util.List;
+
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.entities.passive.mountable.EntitySwet;
@@ -9,12 +11,15 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.network.play.server.S12PacketEntityVelocity;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.StatCollector;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
@@ -97,5 +102,10 @@ public class ItemTippedGravititeSword extends ItemSword {
 	public EnumRarity getRarity(ItemStack stack) {
 		return ItemsAether.scaled_aether_loot;
 	}
+	
+	public void addInformation(final ItemStack stack, final EntityPlayer player, final List tooltip, final boolean who) {
+		if(AetherConfig.enableTooltips())
+        tooltip.add(EnumChatFormatting.AQUA + "" + StatCollector.translateToLocal("tooltip.gravitite_sword.desc"));
+    }
 	
 }

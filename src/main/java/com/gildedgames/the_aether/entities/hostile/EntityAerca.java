@@ -203,24 +203,12 @@ public class EntityAerca extends EntityFlying implements IMob
         if (!player.capabilities.isCreativeMode && !this.worldObj.isRemote && this.getEntitySenses().canSee(player) && this.getDistanceToEntity(player) <= 1.8f && player.boundingBox.maxY >= this.boundingBox.minY && player.boundingBox.minY <= this.boundingBox.maxY && this.attackTime <= 0 && this.attackEntityAsMob((player))) {
             this.attackTime = 20;
             player.attackEntityFrom(DamageSource.causeMobDamage(this), 2.0f);
-            //this.playSound("nova_craft:phantom.hurt", 1.0f, 1.0f);
         }
     }
     
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(80.0);
-    }
-
-	public void onEntityUpdate() {
-        super.onEntityUpdate();
-        if (this.worldObj.isRemote) {
-            final float f = MathHelper.cos((48 + this.ticksExisted) * 0.13f + 3.1415927f);
-            final float f2 = MathHelper.cos((48 + this.ticksExisted + 1) * 0.13f + 3.1415927f);
-            //if (f > 0.0f && f2 <= 0.0f) {
-               // this.worldObj.playSound(this.posX, this.posY, this.posZ, "nova_craft:phantom.flap", 0.95f + this.rand.nextFloat() * 0.05f, 0.95f + this.rand.nextFloat() * 0.05f, false);
-            //}         
-        }
     }
     
     @Override

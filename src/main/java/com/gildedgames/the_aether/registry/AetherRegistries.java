@@ -428,6 +428,7 @@ public class AetherRegistries {
 		AetherAPI.instance().register(new AetherFreezable(ItemsAether.golden_ring, ItemsAether.ice_ring, 2500));
 		AetherAPI.instance().register(new AetherFreezable(ItemsAether.iron_pendant, ItemsAether.ice_pendant, 2500));
 		AetherAPI.instance().register(new AetherFreezable(ItemsAether.golden_pendant, ItemsAether.ice_pendant, 2500));
+		AetherAPI.instance().register(new AetherFreezable(BlocksAether.aether_grass, BlocksAether.arctic_grass, 150));
 		
 		if (AetherConfig.DiamondFreezableRecipe()) {
 		AetherAPI.instance().register(new AetherFreezable(BlocksAether.diamond_aercloud, new ItemStack(Items.diamond), 3000));
@@ -756,7 +757,13 @@ public class AetherRegistries {
 		registerShapeless(new ItemStack(BlocksAether.void_planks, 4), new ItemStack(BlocksAether.void_log, 1, 0));
 		registerShapeless(new ItemStack(BlocksAether.void_planks, 4), new ItemStack(BlocksAether.void_log, 1, 1));
 		registerShapeless(new ItemStack(BlocksAether.divine_oak_planks, 4), new ItemStack(BlocksAether.divine_oak_log, 1, 0));
-		registerShapeless(new ItemStack(BlocksAether.divine_oak_planks, 4), new ItemStack(BlocksAether.divine_oak_log, 1, 1));
+		registerShapeless(new ItemStack(BlocksAether.divine_oak_planks, 4), new ItemStack(BlocksAether.divine_oak_log, 1, 1));		
+		registerShapeless(new ItemStack(BlocksAether.skyroot_planks, 4), new ItemStack(BlocksAether.skyroot_log_wall));
+		registerShapeless(new ItemStack(BlocksAether.golden_oak_planks, 4), new ItemStack(BlocksAether.golden_oak_log_wall));
+		registerShapeless(new ItemStack(BlocksAether.wisproot_planks, 4), new ItemStack(BlocksAether.wisproot_log_wall));
+		registerShapeless(new ItemStack(BlocksAether.greatroot_planks, 4), new ItemStack(BlocksAether.greatroot_log_wall));
+		registerShapeless(new ItemStack(BlocksAether.void_planks, 4), new ItemStack(BlocksAether.void_log_wall));
+		registerShapeless(new ItemStack(BlocksAether.divine_oak_planks, 4), new ItemStack(BlocksAether.divine_oak_log_wall));		
 		registerShapeless(new ItemStack(ItemsAether.lore_book), new ItemStack(Items.book), new ItemStack(ItemsAether.ambrosium_shard));
 		registerShapeless(new ItemStack(ItemsAether.lore_book), new ItemStack(Items.book), new ItemStack(Items.flint));
 		registerShapeless(new ItemStack(ItemsAether.lore_book), new ItemStack(Items.book), new ItemStack(Items.glowstone_dust));
@@ -1346,7 +1353,6 @@ public class AetherRegistries {
 		
 		register(new ItemStack(Items.paper, 6), "ZZZ", 'Z', new ItemStack(BlocksAether.wisproot_log, 1, 0));
 		register(new ItemStack(Items.paper, 6), "ZZZ", 'Z', new ItemStack(BlocksAether.wisproot_log, 1, 1));
-		
 		
 		register(new ItemStack(BlocksAether.skyroot_log_wall, 6), "ZZZ", "ZZZ", 'Z', new ItemStack(BlocksAether.skyroot_log));
 		register(new ItemStack(BlocksAether.golden_oak_log_wall, 6), "ZZZ", "ZZZ", 'Z', new ItemStack(BlocksAether.golden_oak_new_log, 0, 0));

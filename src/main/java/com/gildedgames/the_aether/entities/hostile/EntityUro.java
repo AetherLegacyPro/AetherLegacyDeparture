@@ -31,15 +31,9 @@ import net.minecraft.world.World;
 
 public class EntityUro extends EntityMob
 {
-    /**
-     * Time when this creeper was last in an active state (Messed up code here, probably causes creeper animation to go
-     * weird)
-     */
     private int lastActiveTime;
-    /** The amount of time since the creeper was close enough to the player to ignite */
     private int timeSinceIgnited;
-    private int fuseTime = 50;
-    /** Explosion radius for this creeper. */
+    private int fuseTime = 30;
     private int explosionRadius = 4;
 
     public EntityUro(World p_i1733_1_)
@@ -70,17 +64,11 @@ public class EntityUro extends EntityMob
 		return this.rand.nextInt(AetherConfig.getUroSpawnrate()) == 0 && super.getCanSpawnHere();
 	}
 
-    /**
-     * Returns true if the newer Entity AI code should be run
-     */
     public boolean isAIEnabled()
     {
         return true;
     }
 
-    /**
-     * The number of iterations PathFinder.getSafePoint will execute before giving up.
-     */
     public int getMaxSafePointTries()
     {
         return this.getAttackTarget() == null ? 3 : 3 + (int)(this.getHealth() - 1.0F);
@@ -98,9 +86,6 @@ public class EntityUro extends EntityMob
         this.dataWatcher.addObject(18, (byte) 0);
     }
 
-    /**
-     * (abstract) Protected helper method to write subclass entity data to NBT.
-     */
     public void writeEntityToNBT(NBTTagCompound p_70014_1_)
     {
         super.writeEntityToNBT(p_70014_1_);
@@ -115,9 +100,6 @@ public class EntityUro extends EntityMob
         p_70014_1_.setBoolean("ignited", this.func_146078_ca());
     }
 
-    /**
-     * (abstract) Protected helper method to read subclass entity data from NBT.
-     */
     public void readEntityFromNBT(NBTTagCompound p_70037_1_)
     {
         super.readEntityFromNBT(p_70037_1_);
@@ -139,9 +121,6 @@ public class EntityUro extends EntityMob
         }
     }
 
-    /**
-     * Called to update the entity's position/logic.
-     */
     public void onUpdate()
     {
         if (this.isEntityAlive())
@@ -177,25 +156,16 @@ public class EntityUro extends EntityMob
         super.onUpdate();
     }
 
-    /**
-     * Returns the sound this mob makes when it is hurt.
-     */
     protected String getHurtSound()
     {
         return "mob.creeper.say";
     }
 
-    /**
-     * Returns the sound this mob makes on death.
-     */
     protected String getDeathSound()
     {
         return "mob.creeper.death";
     }
 
-    /**
-     * Called when the mob's health reaches 0.
-     */
     public void onDeath(DamageSource p_70645_1_)
     {
         super.onDeath(p_70645_1_);
@@ -223,17 +193,11 @@ public class EntityUro extends EntityMob
         return true;
     }
 
-    /**
-     * Returns true if the creeper is powered by a lightning bolt.
-     */
     public boolean getPowered()
     {
         return this.dataWatcher.getWatchableObjectByte(17) == 1;
     }
 
-    /**
-     * Params: (Float)Render tick. Returns the intensity of the creeper's flash when it is ignited.
-     */
     @SideOnly(Side.CLIENT)
     public float getCreeperFlashIntensity(float p_70831_1_)
     {
@@ -258,34 +222,22 @@ public class EntityUro extends EntityMob
         }
     }
 
-    /**
-     * Returns the current state of creeper, -1 is idle, 1 is 'in fuse'
-     */
     public int getCreeperState()
     {
         return this.dataWatcher.getWatchableObjectByte(16);
     }
 
-    /**
-     * Sets the state of creeper, -1 to idle and 1 to be 'in fuse'
-     */
     public void setCreeperState(int p_70829_1_)
     {
         this.dataWatcher.updateObject(16, (byte) p_70829_1_);
     }
 
-    /**
-     * Called when a lightning bolt hits the entity.
-     */
     public void onStruckByLightning(EntityLightningBolt p_70077_1_)
     {
         super.onStruckByLightning(p_70077_1_);
         this.dataWatcher.updateObject(17, (byte) 1);
     }
 
-    /**
-     * Called when a player interacts with a mob. e.g. gets milk from a cow, gets into the saddle on a pig.
-     */
     protected boolean interact(EntityPlayer p_70085_1_)
     {
         ItemStack itemstack = p_70085_1_.inventory.getCurrentItem();

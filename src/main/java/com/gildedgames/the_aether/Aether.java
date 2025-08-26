@@ -23,7 +23,9 @@ import com.gildedgames.the_aether.world.biome.decoration.overhaul.ArcticIslandWo
 import com.gildedgames.the_aether.world.biome.decoration.overhaul.DivineIslandWorldGen;
 import com.gildedgames.the_aether.world.biome.decoration.overhaul.GoldenIslandWorldGen;
 import com.gildedgames.the_aether.world.biome.decoration.overhaul.PalladiumDungeonWorldGen;
+import com.gildedgames.the_aether.world.dungeon.osmium.OsmiumDungeon;
 
+import cpw.mods.fml.common.IWorldGenerator;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -36,7 +38,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-@Mod(modid = Aether.MOD_ID, version = "v1.05")
+@Mod(modid = Aether.MOD_ID, version = "v1.1")
 public class Aether {
 
 	public static final String MOD_ID = "aether_legacy";
@@ -53,28 +55,29 @@ public class Aether {
 		proxy.preInit(event);
 		AetherRankings.initialization();
 		AetherNetwork.preInitialization();
+		BlocksAether.initialization();
+		BlocksAether.initializeHarvestLevels();
+		
+		ItemsAether.initialization();
 		AetherConfig.init(event.getModConfigurationDirectory());
 		if(AetherConfig.UseBaublesExpandedMenu()) {
 			com.gildedgames.the_aether.compatibility.BaublesExpandedCompatibility.tryAssignSlots();
 		}
+		GameRegistry.registerWorldGenerator(new AetherGenStoneOverhaul(), Integer.MAX_VALUE);
+		GameRegistry.registerWorldGenerator((IWorldGenerator)new ArcticIslandWorldGen(), Integer.MAX_VALUE);
+		GameRegistry.registerWorldGenerator((IWorldGenerator)new GoldenIslandWorldGen(), Integer.MAX_VALUE);
+		GameRegistry.registerWorldGenerator((IWorldGenerator)new DivineIslandWorldGen(), Integer.MAX_VALUE);
+		GameRegistry.registerWorldGenerator((IWorldGenerator)new OsmiumDungeon(), Integer.MAX_VALUE);
+		GameRegistry.registerWorldGenerator((IWorldGenerator)new PalladiumDungeonWorldGen(), Integer.MAX_VALUE);
 	}
 
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
-		BlocksAether.initialization();
-		BlocksAether.initializeHarvestLevels();
-		ItemsAether.initialization();
 		AetherRegistries.register();
 		EntitiesAether.initialization();
 		AetherCreativeTabs.initialization();
 		AetherTileEntities.initialization();
-		AetherEnchantmentsAncientEnchanter.init();
-		
-		GameRegistry.registerWorldGenerator(new ArcticIslandWorldGen(), Integer.MAX_VALUE);
-		GameRegistry.registerWorldGenerator(new GoldenIslandWorldGen(), Integer.MAX_VALUE);
-		GameRegistry.registerWorldGenerator(new DivineIslandWorldGen(), Integer.MAX_VALUE);
-		GameRegistry.registerWorldGenerator(new PalladiumDungeonWorldGen(), Integer.MAX_VALUE);
-		
+		AetherEnchantmentsAncientEnchanter.init();		
 		AetherWorld.initialization();
 		AchievementsAether.initialization();
 
@@ -91,8 +94,7 @@ public class Aether {
 	
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
-		GameRegistry.registerWorldGenerator(new AetherGenStoneOverhaul(), 0);
-		GameRegistry.registerWorldGenerator(new AetherGenOverhaulLate(), 1);
+		GameRegistry.registerWorldGenerator(new AetherGenOverhaulLate(), Integer.MAX_VALUE);
 	}
 
 	public static ResourceLocation locate(String location) {

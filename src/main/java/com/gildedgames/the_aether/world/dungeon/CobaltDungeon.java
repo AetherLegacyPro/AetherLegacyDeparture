@@ -74,9 +74,6 @@ public class CobaltDungeon extends AetherDungeon {
 		world.setBlock(i + 14, j + 1, k + 7, BlocksAether.zanite_block);
 		world.setBlock(i + 7, j + 1, k + 14, BlocksAether.zanite_block);
 		world.setBlock(i + 14, j + 1, k + 14, BlocksAether.zanite_block);
-
-		//world.setBlock(i + 7, j + 1, k + 7, BlocksAether.treasure_chest);
-		//world.setBlock(i + 8, j + 1, k + 8, BlocksAether.treasure_chest);
 		
 		world.setBlock(i + 1, j + 8, k + 1, Blocks.mob_spawner);
         TileEntityMobSpawner tileentitymobspawner3 = (TileEntityMobSpawner)world.getTileEntity(i + 1, j + 8, k + 1);

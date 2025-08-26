@@ -1,6 +1,9 @@
 package com.gildedgames.the_aether.items.armor;
 
+import java.util.List;
+
 import com.gildedgames.the_aether.Aether;
+import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.entities.block.EntityFireProofItemAether;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
@@ -11,6 +14,8 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
 public class ItemDivineralArmor extends ItemArmor {
@@ -193,4 +198,24 @@ public class ItemDivineralArmor extends ItemArmor {
 	public EnumRarity getRarity(ItemStack stack) {
 		return ItemsAether.divine_aether_loot;
 	}
+	
+	public void addInformation(final ItemStack stack, final EntityPlayer player, final List tooltip, final boolean who) {
+		if(AetherConfig.enableTooltips()) {
+			if (stack.getItem() == ItemsAether.divineral_helmet || stack.getItem() == ItemsAether.divineral_chestplate || stack.getItem() == ItemsAether.divineral_leggings || stack.getItem() == ItemsAether.divineral_boots) {
+				tooltip.add(EnumChatFormatting.LIGHT_PURPLE + "" + StatCollector.translateToLocal("tooltip.divineral_armor.desc"));
+			}
+			else if (stack.getItem() == ItemsAether.amplified_agility_boots) {
+				tooltip.add(EnumChatFormatting.LIGHT_PURPLE + "" + StatCollector.translateToLocal("tooltip.agility_boots.desc"));
+			}
+			else if (stack.getItem() == ItemsAether.amplified_neptune_helmet || stack.getItem() == ItemsAether.amplified_neptune_chestplate || stack.getItem() == ItemsAether.amplified_neptune_leggings || stack.getItem() == ItemsAether.amplified_neptune_boots) {
+				tooltip.add(EnumChatFormatting.LIGHT_PURPLE + "" + StatCollector.translateToLocal("tooltip.neptune_armor.desc"));
+			}
+			else if (stack.getItem() == ItemsAether.amplified_obsidian_helmet || stack.getItem() == ItemsAether.amplified_obsidian_chestplate || stack.getItem() == ItemsAether.amplified_obsidian_leggings || stack.getItem() == ItemsAether.amplified_obsidian_boots) {
+				tooltip.add(EnumChatFormatting.LIGHT_PURPLE + "" + StatCollector.translateToLocal("tooltip.obsidian_armor.desc"));
+			}
+			else if (stack.getItem() == ItemsAether.amplified_valkyrie_helmet || stack.getItem() == ItemsAether.amplified_valkyrie_chestplate || stack.getItem() == ItemsAether.amplified_valkyrie_leggings || stack.getItem() == ItemsAether.amplified_valkyrie_boots) {
+				tooltip.add(EnumChatFormatting.LIGHT_PURPLE + "" + StatCollector.translateToLocal("tooltip.valkyrie_armor.desc"));
+			}
+		}
+    }
 }

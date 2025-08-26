@@ -1,7 +1,9 @@
 package com.gildedgames.the_aether.items.weapons;
 
+import java.util.List;
 import java.util.Random;
 
+import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.items.util.EnumAetherToolType;
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
@@ -14,6 +16,8 @@ import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemSword;
 import net.minecraft.item.Item.ToolMaterial;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.StatCollector;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 
@@ -84,5 +88,10 @@ public class ItemContinuumSword extends ItemSword {
 	public float getDigSpeed(ItemStack itemstack, Block block, int meta) {
 		return super.getDigSpeed(itemstack, block, meta) * (2.0F * (float) itemstack.getItemDamage() / (float) itemstack.getMaxDamage() + 0.5F);
 	}
+	
+	public void addInformation(final ItemStack stack, final EntityPlayer player, final List tooltip, final boolean who) {
+		if(AetherConfig.enableTooltips())
+        tooltip.add(EnumChatFormatting.GRAY + "" + StatCollector.translateToLocal("tooltip.continuum_tools.desc"));
+    }
 
 }

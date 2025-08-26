@@ -62,7 +62,7 @@ public class EntityAILurkerSwell extends EntityAIBase
         {
             this.swellingLurker.setCreeperState(-1); //-1
         }
-        else if (this.swellingLurker.getDistanceSqToEntity(this.uroAttackTarget) > 64.0D)
+        else if (this.swellingLurker.getDistanceSqToEntity(this.uroAttackTarget) > 36.0D)
         {
             this.swellingLurker.setCreeperState(-1); //-1
         }

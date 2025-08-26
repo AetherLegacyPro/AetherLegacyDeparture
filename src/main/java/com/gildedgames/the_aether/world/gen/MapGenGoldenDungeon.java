@@ -27,9 +27,9 @@ public class MapGenGoldenDungeon extends MapGenStructure {
 	protected boolean canSpawnStructureAtCoords(int chunkX, int chunkZ) {
 		RandomTracker randomTracker = new RandomTracker();
 
-		if (randomTracker.testRandom(this.rand, 160) != 0)
+		if (randomTracker.testRandom(this.rand, 210) != 0)
 		{
-			if (randomTracker.testRandom(this.rand, 190) != 0)
+			if (randomTracker.testRandom(this.rand, 240) != 0)
 			{
 				return false;
 			}

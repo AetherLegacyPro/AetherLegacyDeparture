@@ -9,74 +9,61 @@ public class AetherConfig {
 
 	//This should really not be persisted, but it has to be until menu_enabled is stored in an options.txt type file.
 	private static Configuration config;
+	
+	//Important Options
+	private static int aether_biome_id, aether_dimension_id, inebriation_id;
+	private static boolean use_baubles_expanded_menu, disable_parachutes;
+	public static boolean enable_log_reporting_biomes, enable_assets_message, disable_1stperson_glove_renderer;
+	public static boolean cloud_icon, enable_battlegear2_compatibility;
+	private static boolean sun_altar_multiplayer, repeat_sun_spirit_dialog, aether_start;
+	private static boolean redownloadFiles, enable_tooltips;
 
-	private static int max_life_shards, max_power_shards, max_dex_shards;
-
+	//World Generation
 	private static boolean christmas_content, tallgrass, seasonal_christmas;
-
-	private static int aether_biome_id, aether_dimension_id;
-
-	private static boolean disable_trivia, old_mobs;
-
-	private static boolean skyrootBucketOnly, valkyrie_cape, golden_feather;
-
-	private static boolean floating_block_collision;
-
-	private static int travel_dimension;
-
-	private static boolean menu_enabled, menu_button, install_resourcepack;
-
-	private static boolean legacy_altar_name;
-
-	private static int inebriation_id;
-
-	private static boolean sun_altar_multiplayer, repeat_sun_spirit_dialog;
-
-	private static boolean aether_start;
-
-	private static boolean disable_eternal_day;
-	
-	private static boolean disable_pink_aercloud_regen, enable_coldfire_notInAether, enable_hellfire_notInAether;
-	
-	private static boolean blaze_rod_recipe, budding_auralite_recipe, diamond_recipe;
-	
 	private static boolean disable_purple_aercloud, disable_violet_aercloud, disable_dark_purple_aercloud;
 	private static boolean disable_green_aercloud, disable_lime_aercloud, disable_light_green_aercloud;
-	private static boolean disable_pink_aercloud, disable_magenta_aercloud, disable_orange_aercloud;	
+	private static boolean disable_pink_aercloud, disable_magenta_aercloud, disable_orange_aercloud;
+	
 	private static boolean disable_aetheral_stone, disable_deific, disable_agiosite;
-	private static boolean disable_void_tree, disable_auarlite_geos;
+	private static boolean disable_void_tree, disable_auarlite_geos, aether_II_dungeons;
 	
-	private static boolean disable_parachutes;
+	public static boolean arctic_island_enable, golden_island_enable, divine_island_enable;	
+	public static int arctic_island_rarity, golden_island_rarity, divine_island_rarity;
 	
-	private static boolean aether_II_dungeons;
+	public static boolean zarnyllis_den_gen;
+	public static boolean bronze_dungeon_enable, tier2_bronze_dungeon_enable, tier3_bronze_dungeon_enable, tier4_bronze_dungeon_enable;
+	public static boolean silver_dungeon_enable, tier2_silver_dungeon_enable, tier3_silver_dungeon_enable;
+	public static boolean gold_dungeon_enable, tier2_gold_dungeon_enable, tier3_gold_dungeon_enable;
 	
+	public static boolean cobalt_dungeon_enable;
+	public static boolean osmium_dungeon_enable, palladium_dungeon_enable;
+	public static int osmium_dungeon_rarity, palladium_dungeon_rarity;
+	
+	//Passive/Neutral Mob Spawning
+	private static int phyg_spawnrate, flyingcow_spawnrate, sheepuff_spawnrate, aerbunny_spawnrate, aerwhale_spawnrate, flynx_spawnrate;
+	private static int moa_spawnrate, raptor_spawnrate, carrion_sprout_spawnrate, zephyroo_spawnrate, thunderlo_spawnrate;
+
+	//Hostile Mob Spawning
+	private static int cockatrice_spawnrate, swet_spawnrate, zephyr_spawnrate, aechorplant_spawnrate, whirlwind_spawnrate;
+	private static int cyro_spawnrate, tempest_spawnrate, vulturnus_spawnrate, uro_spawnrate, aerca_spawnrate;
+	
+	//Compact
+	public static boolean enable_copper_recipes, enable_netherite_recipes, netherite_required_divineral_ingot, enable_ascensite;
+	
+	//Misc	
+	private static int max_life_shards, max_power_shards, max_dex_shards, travel_dimension;
+	private static boolean disable_trivia, floating_block_collision, legacy_altar_name;
+	private static boolean skyrootBucketOnly, valkyrie_cape, golden_feather, menu_enabled, menu_button;
+	private static boolean disable_pink_aercloud_regen, enable_coldfire_notInAether, enable_hellfire_notInAether;
+	private static boolean disable_eternal_day, divineral_recipe_hardmore, enable_boss_spawneggs;	
+	private static boolean blaze_rod_recipe, budding_auralite_recipe, diamond_recipe;	
 	private static boolean repair_material_tippedtool, misc_items_damageable, gloves_damageable, redstone_recipes, brewing_recipes;
-	
-	private static boolean divineral_recipe_hardmore, netherite_required_divineral_ingot;
-
-	private static boolean use_baubles_expanded_menu;
-
-	private static int phyg_spawnrate, flyingcow_spawnrate, sheepuff_spawnrate, aerbunny_spawnrate, moa_spawnrate, aerwhale_spawnrate, raptor_spawnrate, carrion_sprout_spawnrate, zephyroo_spawnrate, thunderlo_spawnrate, flynx_spawnrate;
-
-	private static int zephyr_spawnrate, vulturnus_spawnrate, tempest_spawnrate, cockatrice_spawnrate, swet_spawnrate, aechorplant_spawnrate, whirlwind_spawnrate, cyro_spawnrate, uro_spawnrate, aerca_spawnrate;
-
-	public static boolean arctic_island_enable, golden_island_enable, divine_island_enable, palladium_dungeon_enable;	
-	public static int arctic_island_rarity, golden_island_rarity, divine_island_rarity, palladium_dungeon_rarity;
-
-	public static boolean enable_log_reporting_biomes, enable_assets_message, disable_1stperson_glove_renderer;
-	public static boolean enable_ascensite;
-
-	public static boolean cloud_icon, enable_battlegear2_compatibility;
-
-	public static boolean enable_copper_recipes, enable_netherite_recipes;
 
 	public static final String catMisc = "New Misc Options";
 	public static final String catWorld = "New World Gen Options";
 	public static final String catSpawnrates = "Spawnrates";
 	public static final String catEtFuturum = "Et Futurum Requiem Options";
 	public static final String catBaublesExpanded = "Baubles Expanded Options";
-
-	private static boolean redownloadFiles;
 	
 	public static void init(File location) {
 		File newFile = new File(location + "/aether" + "/AetherI.cfg");
@@ -145,15 +132,34 @@ public class AetherConfig {
 		arctic_island_enable = config.getBoolean("arctic_island_enable", catWorld, true, "Should Arctic Islands Generate?");
 		golden_island_enable = config.getBoolean("golden_island_enable", catWorld, true, "Should Golden Islands Generate?");
 		divine_island_enable = config.getBoolean("divine_island_enable", catWorld, true, "Should Divine Islands Generate?");
-		palladium_dungeon_enable = config.getBoolean("palladium_dungeon_enable", catWorld, true, "Should the Palladium Dungeon Generate?");
 		
-		arctic_island_rarity = config.get("Aether World Generation", "How rare should the Arctic Islands be in World Generation? Larger the Number the rarer it will be", 230).getInt();
-		golden_island_rarity = config.get("Aether World Generation", "How rare should the Enchanted Islands be in World Generation? Larger the Number the rarer it will be", 350).getInt();
-		divine_island_rarity = config.get("Aether World Generation", "How rare should the Divine Islands be in World Generation? Larger the Number the rarer it will be", 523).getInt();
-		palladium_dungeon_rarity = config.get("Aether World Generation", "How rare should the Palladium Dungeons be in World Generation? Larger the Number the rarer it will be", 823).getInt();
+		zarnyllis_den_gen = config.getBoolean("zarnyllis_den_gen", catWorld, true, "Should Zarnyllis Dens Generate within the Aether Islands?");
+		
+		bronze_dungeon_enable = config.getBoolean("bronze_dungeon_enable", catWorld, true, "Should Bronze Dungeons Generate?");
+		tier2_bronze_dungeon_enable = config.getBoolean("tier2_bronze_dungeon_enable", catWorld, true, "Should Ancient Bronze Dungeons start generating 750 blocks out?");
+		tier3_bronze_dungeon_enable = config.getBoolean("tier3_bronze_dungeon_enable", catWorld, true, "Should Divine Bronze Dungeons start generating 2000 blocks out?");
+		tier4_bronze_dungeon_enable = config.getBoolean("tier4_bronze_dungeon_enable", catWorld, true, "Should Unseen Bronze Dungeons start generating 5000 blocks out?");
+		
+		silver_dungeon_enable = config.getBoolean("silver_dungeon_enable", catWorld, true, "Should Silver Dungeons Generate?");
+		tier2_silver_dungeon_enable = config.getBoolean("tier2_silver_dungeon_enable", catWorld, true, "Should Ancient Silver Dungeons start generating 1200 blocks out?");
+		tier3_silver_dungeon_enable = config.getBoolean("tier3_silver_dungeon_enable", catWorld, true, "Should Divine Silver Dungeons start generating 3000 blocks out?");
+		
+		gold_dungeon_enable = config.getBoolean("gold_dungeon_enable", catWorld, true, "Should Gold Dungeons Generate?");
+		tier2_gold_dungeon_enable = config.getBoolean("tier2_gold_dungeon_enable", catWorld, true, "Should Ancient Gold Dungeons start generating 2000 blocks out?");
+		tier3_gold_dungeon_enable = config.getBoolean("tier3_gold_dungeon_enable", catWorld, true, "Should Divine Gold Dungeons start generating 5000 blocks out?");
+		
+		cobalt_dungeon_enable = config.getBoolean("cobalt_dungeon_enable", catWorld, true, "Should Cobalt Dungeons Generate?");
+		osmium_dungeon_enable = config.getBoolean("osmium_dungeon_enable", catWorld, true, "Should Osmium Dungeons start generating 2000 blocks out?");
+		palladium_dungeon_enable = config.getBoolean("palladium_dungeon_enable", catWorld, true, "Should Palladium Dungeons start generating 5000 blocks out?");
+		
+		arctic_island_rarity = config.get("Aether World Generation", "How rare should the Arctic Islands be in World Generation? Larger the Number the rarer it will be", 851).getInt();
+		golden_island_rarity = config.get("Aether World Generation", "How rare should the Enchanted Islands be in World Generation? Larger the Number the rarer it will be", 1053).getInt();
+		divine_island_rarity = config.get("Aether World Generation", "How rare should the Divine Islands be in World Generation? Larger the Number the rarer it will be", 1537).getInt();
+		osmium_dungeon_rarity = config.get("Aether World Generation", "How rare should the Osmium Dungeons be in World Generation? Larger the Number the rarer it will be", 12000).getInt();
+		palladium_dungeon_rarity = config.get("Aether World Generation", "How rare should the Palladium Dungeons be in World Generation? Larger the Number the rarer it will be", 2135).getInt();
 
-		
-		old_mobs = config.get("Misc", "Enable Legacy Visuals", false).getBoolean(false);
+		enable_boss_spawneggs = config.get("Misc", "Enable Boss Spawn Eggs", false).getBoolean(false);
+		enable_tooltips = config.get("Misc", "Enables Tooltips", true).getBoolean(true);
 		cloud_icon = config.get("Misc", "Changes Position of Cloud Icon Slightly", false).getBoolean(false);
 		enable_battlegear2_compatibility = config.get("Misc", "Fixes Rendering Issues with Battlegears 2", true).getBoolean(true);
 		disable_1stperson_glove_renderer = config.get("Misc", "Temp fix to a rendering issue with the backhand mod, It does not generally work as I think various performance mods are breaking it; a proper fix is neeeded.", false).getBoolean(false);
@@ -168,8 +174,6 @@ public class AetherConfig {
 		
 		menu_enabled = config.get("Misc", "Enables the Aether Menu", false).getBoolean(false);
 		menu_button = config.get("Misc", "Enables the Aether Menu toggle button", true).getBoolean(true);
-
-		install_resourcepack = config.get("Misc", "Determines whether the Aether b1.7.3 resource pack should be generated.", true).getBoolean(true);
 
 		legacy_altar_name = config.get("Misc", "Changes whether the Altar should be named Enchanter or not.", false).getBoolean(false);
 
@@ -216,6 +220,14 @@ public class AetherConfig {
 		}
 
 		config.save();
+	}
+	
+	public static boolean enableBossSpawnEggs() {
+		return AetherConfig.enable_boss_spawneggs;
+	}
+	
+	public static boolean enableTooltips() {
+		return AetherConfig.enable_tooltips;
 	}
 	
 	public static boolean enableNetheriteRecipes() {
@@ -398,10 +410,6 @@ public class AetherConfig {
 		return AetherConfig.disable_trivia;
 	}
 
-	public static boolean oldMobsEnabled() {
-		return AetherConfig.old_mobs;
-	}
-
 	public static boolean shouldLoadHolidayContent() {
 		return AetherConfig.christmas_content;
 	}
@@ -440,11 +448,6 @@ public class AetherConfig {
 	public static boolean menuButtonEnabled()
 	{
 		return AetherConfig.menu_button;
-	}
-
-	public static boolean installResourcepack()
-	{
-		return AetherConfig.install_resourcepack;
 	}
 
 	public static boolean legacyAltarName() {

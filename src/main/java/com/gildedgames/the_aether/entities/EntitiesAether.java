@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.gildedgames.the_aether.Aether;
+import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.entities.bosses.valkyrie_queen.EntityAncientValkyrieQueen;
 import com.gildedgames.the_aether.entities.bosses.valkyrie_queen.EntityDivineValkyrieQueen;
 import com.gildedgames.the_aether.entities.bosses.valkyrie_queen.EntityValkyrieQueen;
@@ -132,7 +133,7 @@ public class EntitiesAether {
 		register(EntityTempest.class, "tempest", 53, 0x2a2838, 0x494089);
 		register(EntityAechorPlant.class, "aechor_plant", 10, 0x076178, 0x4bc69e);
 		register(EntityFlynx.class, "flynx", 49, 0xbff1f3, 0x7c68e2);
-		register(EntityMimic.class, "mimic", 11, 0xb18132, 0x605a4e);
+		register(EntityMimic.class, "mimic", 11, 0x303027, 0x737556);
 		register(EntityRaptor.class, "raptor", 41, 0x0000FF, 0x0047AB);
 		register(EntityCyro.class, "cyro", 45, 0x1fdfdf, 0x19cfe8);
 		register(EntityUro.class, "uro", 58, 0xc1c1c1, 0xffd311);
@@ -140,7 +141,7 @@ public class EntitiesAether {
 		register(EntityCarrionSprout.class, "carrion_sprout", 60, 0xc7d7e7, 0x57769b);
 		register(EntityZephyroo.class, "zephyroo", 61, 0x86a4c8, 0x6184b0);
 		register(EntityThunderlo.class, "thunderlo", 65, 0x9199ac, 0x99ca8f);
-		register(EntityUligo.class, "uligo", 66, 0xd8e2d6, 0xa9e0cc);
+		register(EntityUligo.class, "uligo", 66, 0x456a68, 0x9cf2ef);
 		register(EntityAercenturion.class, "aercenturion", 69, 0x54545f, 0x75638b);
 		register(EntityZarnillys.class, "zarnillys", 72, 0x474965, 0x5ca0ff);
 		register(EntityElderZarnillys.class, "elder_zarnillys", 78, 0x474965, 0x54597f);
@@ -150,19 +151,35 @@ public class EntitiesAether {
 		register(EntityCrystalDragon.class, "crystal_dragon", 85, 0xd8e4f8, 0x1bb7df);
 		register(EntityZojz.class, "zojz", 87, 0x2a4552, 0x72c8c9);
 		
-		register(EntityCyroGuardian.class, "cyro_guardian", 48, 80, 3, true);
-		register(EntitySlider.class, "slider", 12, 80, 3, true);
-		register(EntityEnhancedSlider.class, "ancient_slider", 43, 80, 3, true);
-		register(EntityDivineSlider.class, "divine_slider", 44, 80, 3, true);
-		register(EntityMythicSlider.class, "mythic_slider", 55, 80, 3, true);
-		register(EntityValkyrieQueen.class, "valkyrie_queen", 13, 80, 3, true);
-		register(EntityAncientValkyrieQueen.class, "ancient_valkyrie_queen", 50, 80, 3, true);
-		register(EntityDivineValkyrieQueen.class, "divine_valkyrie_queen", 51, 80, 3, true);
-		register(EntitySunSpirit.class, "sun_spirit", 14, 80, 3, true);
-		register(EntityAncientSunSpirit.class, "ancient_sun_spirit", 56, 80, 3, true);
-		register(EntityDivineSunSpirit.class, "divine_sun_spirit", 63, 80, 3, true);
-		register(EntityGenesisDragon.class, "genesis_dragon", 42, 80, 3, true);
-		register(EntityLurker.class, "aer_lurker", 64, 80, 3, true);
+		if (AetherConfig.enableBossSpawnEggs() == false) {
+			register(EntityCyroGuardian.class, "cyro_guardian", 48, 80, 3, true);
+			register(EntitySlider.class, "slider", 12, 80, 3, true);
+			register(EntityEnhancedSlider.class, "ancient_slider", 43, 80, 3, true);
+			register(EntityDivineSlider.class, "divine_slider", 44, 80, 3, true);
+			register(EntityMythicSlider.class, "mythic_slider", 55, 80, 3, true);
+			register(EntityValkyrieQueen.class, "valkyrie_queen", 13, 80, 3, true);
+			register(EntityAncientValkyrieQueen.class, "ancient_valkyrie_queen", 50, 80, 3, true);
+			register(EntityDivineValkyrieQueen.class, "divine_valkyrie_queen", 51, 80, 3, true);
+			register(EntitySunSpirit.class, "sun_spirit", 14, 80, 3, true);
+			register(EntityAncientSunSpirit.class, "ancient_sun_spirit", 56, 80, 3, true);
+			register(EntityDivineSunSpirit.class, "divine_sun_spirit", 63, 80, 3, true);
+			register(EntityGenesisDragon.class, "genesis_dragon", 42, 80, 3, true);
+			register(EntityLurker.class, "aer_lurker", 64, 80, 3, true);
+		} else {
+			register(EntityCyroGuardian.class, "cyro_guardian", 48, 0x000000, 0x111111);
+			register(EntitySlider.class, "slider", 12, 0x000000, 0x111111);
+			register(EntityEnhancedSlider.class, "ancient_slider", 43, 0x000000, 0x111111);
+			register(EntityDivineSlider.class, "divine_slider", 44, 0x000000, 0x111111);
+			register(EntityMythicSlider.class, "mythic_slider", 55, 0x000000, 0x111111);
+			register(EntityValkyrieQueen.class, "valkyrie_queen", 13, 0x000000, 0x111111);
+			register(EntityAncientValkyrieQueen.class, "ancient_valkyrie_queen", 50, 0x000000, 0x111111);
+			register(EntityDivineValkyrieQueen.class, "divine_valkyrie_queen", 51, 0x000000, 0x111111);
+			register(EntitySunSpirit.class, "sun_spirit", 14, 0x000000, 0x111111);
+			register(EntityAncientSunSpirit.class, "ancient_sun_spirit", 56, 0x000000, 0x111111);
+			register(EntityDivineSunSpirit.class, "divine_sun_spirit", 63, 0x000000, 0x111111);
+			register(EntityGenesisDragon.class, "genesis_dragon", 42, 0x000000, 0x111111);
+			register(EntityLurker.class, "aer_lurker", 64, 0x000000, 0x111111);
+		}
 
 		register(EntityDartGolden.class, "golden_dart", 15, 64, 20, false);
 		register(EntityDartPoison.class, "poison_dart", 16, 64, 20, false);

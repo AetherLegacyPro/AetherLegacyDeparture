@@ -1414,6 +1414,43 @@ death.attack.incineration_firo=%1$s was incinerated by %2$s's Fire Ball
 death.attack.icey_ball=%1$s was chilled by %2$s's Icey Ball
 death.attack.lightning_ball=%1$s was zapped by %2$s's Thunder Ball
 
+# Tooltips
+tooltip.skyroot_tools.desc=Double drops for blocks that can be broken
+tooltip.skyroot_sword.desc=Double Drops
+tooltip.amplified_skyroot_tools.desc=Finds Additional Blocks/Items when used
+tooltip.amplified_skyroot_sword.desc=Doubles-Triples Mob Drops
+tooltip.holystone_tools.desc=Random Ambrosium Drops
+tooltip.amplified_holystone_tools.desc=Random Large Ambrosium Drops
+tooltip.zanite_tools.desc=Increased efficiency the more damaged
+tooltip.zanite_sword.desc=Increased damage the more damaged
+tooltip.zanite_armor.desc=Increased protection the more damaged
+tooltip.amplified_zanite_tools.desc=Exponential efficiency the more damaged
+tooltip.amplified_zanite_sword.desc=Exponential damage the more damaged
+tooltip.amplified_zanite_armor.desc=Exponential protection the more damaged
+tooltip.arkenium_tools.desc=Extended Reach
+tooltip.arkenium_armor.desc=Full Set Grants Night Vision
+tooltip.amplified_arkenium_armor.desc=Full Set Grants Night Vision and Haste
+tooltip.continuum_tools.desc=Poor Mimicry
+tooltip.amplified_continuum_tools.desc=Great Mimicry
+tooltip.gravitite_tools.desc=Levitates Blocks
+tooltip.gravitite_armor.desc=Full Set Negates Fall Damage
+tooltip.gravitite_sword.desc=Levitates Mobs
+tooltip.notched_pickaxe.desc=Built in Fortune
+tooltip.amplified_notched_pickaxe.desc=Built in Fortune III
+tooltip.divineral_tools.desc=Amplified Gravitite Abilities
+tooltip.divineral_sword.desc=Amplified Gravitite Abilities
+tooltip.divineral_armor.desc=Amplified Gravitite Abilities
+tooltip.amplified_valkyrie_lance.desc=Far Reach
+tooltip.agnes_shears.desc=Doubles Drops when Shearing
+tooltip.battle_sentry_hammer.desc=MultiTool
+tooltip.agility_boots.desc=Increases Movement Speed
+tooltip.elysian_armor.desc=Full set grants aura that damages hostiles
+tooltip.neptune_armor.desc=Increased Movement Speed in Water
+tooltip.obsidian_armor.desc=Full Set Grants High Protection
+tooltip.valkyrie_armor.desc=Full Set Grants Flight
+tooltip.phoenix_armor.desc=Full Set Negates Fire Damage
+tooltip.amplified_phoenix_armor.desc=Full Set Grants Buffs in Nether
+
 # Gui messages
 gui.item.life_shard.maxshards=You can only use a total of %s life shards.
 gui.item.power_shard.maxshards=You can only use a total of %s power shards.

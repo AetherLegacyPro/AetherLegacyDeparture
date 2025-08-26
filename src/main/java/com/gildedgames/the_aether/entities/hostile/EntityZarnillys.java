@@ -46,7 +46,6 @@ public class EntityZarnillys extends EntityMob
 		this.tasks.addTask(2, new EntityAIAvoidEntity(this, EntityFlynx.class, 6.0F, 1.0D, 1.2D));
 		this.tasks.addTask(7, new EntityAIWander(this, 1.0D));
 		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
-		this.tasks.addTask(8, new EntityAILookIdle(this));
         this.targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
     }
     

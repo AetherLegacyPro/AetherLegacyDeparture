@@ -2,7 +2,6 @@ package com.gildedgames.the_aether.client.renders.entity;
 
 import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.AetherConfig;
-import com.gildedgames.the_aether.client.models.entities.OldZephyrModel;
 import com.gildedgames.the_aether.client.models.entities.ZephyrModel;
 import com.gildedgames.the_aether.entities.hostile.EntityZephyr;
 import net.minecraft.client.renderer.entity.RenderLiving;
@@ -18,10 +17,8 @@ public class ZephyrRenderer extends RenderLiving {
 
     private static final ResourceLocation TEXTURE_ADDON = Aether.locate("textures/entities/zephyr/zephyr_layer.png");
 
-    private static final ResourceLocation TEXTURE_OLD = Aether.locate("textures/entities/zephyr/zephyr_old.png");
-
     public ZephyrRenderer() {
-        super(AetherConfig.oldMobsEnabled() ? new OldZephyrModel() : new ZephyrModel(), 0.5F);
+        super(new ZephyrModel(), 0.5F);
     }
 
     protected void renderZephyrMovement(EntityZephyr zephyr, float partialTickTime) {
@@ -39,10 +36,6 @@ public class ZephyrRenderer extends RenderLiving {
         GL11.glTranslated(0.0D, 0.5D, 0.0D);
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 
-        if (AetherConfig.oldMobsEnabled()) {
-            GL11.glScalef(0.8F, 0.8F, 0.8F);
-            GL11.glTranslated(0.0D, -0.1D, 0.0D);
-        }
     }
 
     protected int renderLayers(EntityZephyr entity, int pass, float particleTicks) {
@@ -77,7 +70,7 @@ public class ZephyrRenderer extends RenderLiving {
 
     @Override
     protected ResourceLocation getEntityTexture(Entity zephyr) {
-        return AetherConfig.oldMobsEnabled() ? TEXTURE_OLD : TEXTURE;
+        return TEXTURE;
     }
 
 }

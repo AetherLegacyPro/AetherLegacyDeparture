@@ -20,7 +20,6 @@ public class AechorPlantRenderer extends RenderLiving {
     public static final ResourceLocation TEXTURE_BLUE = Aether.locate("textures/entities/aechor_plant/aechor_plant_blue.png");
     public static final ResourceLocation TEXTURE_DARKBLUE = Aether.locate("textures/entities/aechor_plant/aechor_plant_darkblue.png");
     public static final ResourceLocation TEXTURE_LIME = Aether.locate("textures/entities/aechor_plant/aechor_plant_lime.png");
-    public static final ResourceLocation TEXTURE_GREEN = Aether.locate("textures/entities/aechor_plant/aechor_plant_green.png");
     public static final ResourceLocation TEXTURE_PURPLE = Aether.locate("textures/entities/aechor_plant/aechor_plant_purple.png");
     public static final ResourceLocation TEXTURE_MAGENTA = Aether.locate("textures/entities/aechor_plant/aechor_plant_magenta.png");
     public static final ResourceLocation TEXTURE_GOLD = Aether.locate("textures/entities/aechor_plant/aechor_plant_gold.png");

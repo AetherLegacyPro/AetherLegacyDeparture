@@ -32,7 +32,7 @@ import net.minecraft.world.World;
 
 import com.gildedgames.the_aether.api.player.util.IAetherBoss;
 import com.gildedgames.the_aether.blocks.BlocksAether;
-import com.gildedgames.the_aether.blocks.dungeon.BlockDungeonBaseOsmium;
+import com.gildedgames.the_aether.blocks.dungeon.BlockDungeonBase;
 import com.gildedgames.the_aether.client.gui.dialogue.entity.GuiLurkerDialogue;
 import com.gildedgames.the_aether.entities.ai.EntityAIAttackContinuously;
 import com.gildedgames.the_aether.entities.hostile.EntityUligo;
@@ -70,15 +70,9 @@ public class EntityLurker extends EntityBossMob implements IAetherBoss {
 
     public double lastMotionY;
     
-    /**
-     * Time when this creeper was last in an active state (Messed up code here, probably causes creeper animation to go
-     * weird)
-     */
     private int lastActiveTime;
-    /** The amount of time since the creeper was close enough to the player to ignite */
     private int timeSinceIgnited;
     private int fuseTime = 25;
-    /** Explosion radius for this creeper. */
     private int explosionRadius = 3;
 
     public EntityLurker(World world) {
@@ -113,7 +107,6 @@ public class EntityLurker extends EntityBossMob implements IAetherBoss {
     }
 
     public void registerEntityAI() {
-        //this.targetTasks.addTask(0, this.enhancedCombat); 
         this.tasks.addTask(1, new EntityAISwimming(this));
         this.tasks.addTask(2, new EntityAILurkerSwell(this));
         this.tasks.addTask(4, new EntityAIAttackOnCollide(this, 1.0D, false));
@@ -128,7 +121,7 @@ public class EntityLurker extends EntityBossMob implements IAetherBoss {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(30.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(40.0D);
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.45D);
         this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(22.0D);
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(800.0D);
@@ -145,16 +138,11 @@ public class EntityLurker extends EntityBossMob implements IAetherBoss {
         return true;
     }
 
-    /**
-     * The number of iterations PathFinder.getSafePoint will execute before giving up.
-     */
     public int getMaxSafePointTries()
     {
         return this.getAttackTarget() == null ? 3 : 3 + (int)(this.getHealth() - 1.0F);
     }
     
-    
-
     @Override
     protected boolean isMovementBlocked() {
         return !this.isBossReady();
@@ -179,10 +167,10 @@ public class EntityLurker extends EntityBossMob implements IAetherBoss {
         this.angerLevel = 200 + this.rand.nextInt(200);
     }
 
-    public void setDungeon(int i, int j, int k) {
-        this.dungeonX = i;
-        this.dungeonY = j;
-        this.dungeonZ = k - 38;
+    public void setDungeon(double posX, double posY, double posZ) {
+        this.dungeonX = (int) posX;
+        this.dungeonY = (int) posY;
+        this.dungeonZ = (int) posZ;
     }
 
     private void unlockDoor() {
@@ -193,13 +181,13 @@ public class EntityLurker extends EntityBossMob implements IAetherBoss {
     }
 
     private void unlockTreasure() {
-        for (int x = this.dungeonX - 54; x < this.dungeonX + 60; x++) {
-            for (int y = this.dungeonY - 1; y < this.dungeonY + 44; y++) {
-                for (int z = this.dungeonZ - 12; z < this.dungeonZ + 52; z++) {
+        for (int x = this.dungeonX - 140; x < this.dungeonX + 140; x++) {
+            for (int y = this.dungeonY - 1; y < this.dungeonY + 90; y++) {
+                for (int z = this.dungeonZ - 140; z < this.dungeonZ + 140; z++) {
                     Block block = this.worldObj.getBlock(x, y, z);
 
                     if (block == BlocksAether.locked_fuse_stone || block == BlocksAether.locked_creeping_stone) {
-                        this.worldObj.setBlock(x, y, z, ((BlockDungeonBaseOsmium) block).getUnlockedBlock());
+                        this.worldObj.setBlock(x, y, z, ((BlockDungeonBase) block).getUnlockedBlock());
                     }
                 }
             }
@@ -295,10 +283,10 @@ public class EntityLurker extends EntityBossMob implements IAetherBoss {
 
                     if (state != BlocksAether.locked_fuse_stone || state != BlocksAether.locked_creeping_stone)
                     {
-                        this.worldObj.setBlock(this.dungeonX - 1, this.dungeonY, this.dungeonZ + k, BlocksAether.locked_fuse_stone);
-                        this.worldObj.setBlock(this.dungeonX - 1, this.dungeonY, this.dungeonZ + k + 1, BlocksAether.locked_fuse_stone);
-                        this.worldObj.setBlock(this.dungeonX - 1, this.dungeonY + 1, this.dungeonZ + k + 1, BlocksAether.locked_fuse_stone);
-                        this.worldObj.setBlock(this.dungeonX - 1, this.dungeonY + 1, this.dungeonZ + k, BlocksAether.locked_fuse_stone);
+                        this.worldObj.setBlock(this.dungeonX - 1, this.dungeonY, this.dungeonZ + k, BlocksAether.fuse_stone);
+                        this.worldObj.setBlock(this.dungeonX - 1, this.dungeonY, this.dungeonZ + k + 1, BlocksAether.fuse_stone);
+                        this.worldObj.setBlock(this.dungeonX - 1, this.dungeonY + 1, this.dungeonZ + k + 1, BlocksAether.fuse_stone);
+                        this.worldObj.setBlock(this.dungeonX - 1, this.dungeonY + 1, this.dungeonZ + k, BlocksAether.fuse_stone);
                         this.dungeonEntranceZ = this.dungeonZ + k;
                     }
                 }
@@ -592,43 +580,28 @@ public class EntityLurker extends EntityBossMob implements IAetherBoss {
 
         return super.attackEntityFrom(ds, i);
     }
-    
-    /**
-     * Returns true if the creeper is powered by a lightning bolt.
-     */
+
     public boolean getPowered()
     {
         return this.dataWatcher.getWatchableObjectByte(17) == 1;
     }
 
-    /**
-     * Params: (Float)Render tick. Returns the intensity of the creeper's flash when it is ignited.
-     */
     @SideOnly(Side.CLIENT)
     public float getCreeperFlashIntensity(float p_70831_1_)
     {
         return ((float)this.lastActiveTime + (float)(this.timeSinceIgnited - this.lastActiveTime) * p_70831_1_) / (float)(this.fuseTime - 2);
     }
-    
-    /**
-     * Returns the current state of creeper, -1 is idle, 1 is 'in fuse'
-     */
+
     public int getCreeperState()
     {
         return this.dataWatcher.getWatchableObjectByte(16);
     }
 
-    /**
-     * Sets the state of creeper, -1 to idle and 1 to be 'in fuse'
-     */
     public void setCreeperState(int p_70829_1_)
     {
         this.dataWatcher.updateObject(16, (byte) p_70829_1_);
     }
 
-    /**
-     * Called when a lightning bolt hits the entity.
-     */
     public void onStruckByLightning(EntityLightningBolt p_70077_1_)
     {
         super.onStruckByLightning(p_70077_1_);
@@ -650,7 +623,6 @@ public class EntityLurker extends EntityBossMob implements IAetherBoss {
                 this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, (float)this.explosionRadius, flag);
             }
 
-            //normally entity is despawned here
         }
     }
 
@@ -672,11 +644,11 @@ public class EntityLurker extends EntityBossMob implements IAetherBoss {
         this.swingArm();
         {
         if (!this.getPowered()) {
-        flag = entity.attackEntityFrom(DamageSource.causeMobDamage(this), 8);
+        flag = entity.attackEntityFrom(DamageSource.causeMobDamage(this), 15);
         flag = entity.attackEntityFrom(DamageSource.magic, 8);
         }
         else {
-        flag = entity.attackEntityFrom(DamageSource.causeMobDamage(this), 12);
+        flag = entity.attackEntityFrom(DamageSource.causeMobDamage(this), 10);
         flag = entity.attackEntityFrom(DamageSource.magic, 14);	
          }
         }
@@ -739,9 +711,9 @@ public class EntityLurker extends EntityBossMob implements IAetherBoss {
         int b = this.rand.nextInt(rad / 2);
         int c = rad - a;
 
-        a *= ((rand.nextInt(2) * 2) - 1); // Negate or Not
-        b *= ((rand.nextInt(2) * 2) - 1); // Negate or Not
-        c *= ((rand.nextInt(2) * 2) - 1); // Negate or Not
+        a *= ((rand.nextInt(2) * 2) - 1);
+        b *= ((rand.nextInt(2) * 2) - 1);
+        c *= ((rand.nextInt(2) * 2) - 1);
 
         x += a;
         y += b;

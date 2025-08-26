@@ -181,7 +181,7 @@ public class PlayerAetherEvents {
 		}
 
 		//Et Futurum
-		if(Loader.isModLoaded("etfuturum")) {
+		if(Loader.isModLoaded("etfuturum") && AetherConfig.enableNetheriteRecipes()) {
 			if(accessoryInventory.wearingAccessory(ItemsAether.netherite_ring) || accessoryInventory.wearingAccessory(ItemsAether.netherite_pendant)) {
 				reducedDamage = reducedDamage / 1.05f;
 			}

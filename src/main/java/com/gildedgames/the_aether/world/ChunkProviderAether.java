@@ -2,12 +2,21 @@ package com.gildedgames.the_aether.world;
 
 import net.minecraft.world.gen.MapGenBase;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
+import net.minecraft.world.gen.feature.WorldGenLakes;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.terraingen.PopulateChunkEvent;
 
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.world.biome.AetherBiome;
+import com.gildedgames.the_aether.world.biome.decoration.AetherGenDungeonOakTree;
+import com.gildedgames.the_aether.world.biome.decoration.AetherGenFloatingIsland;
 import com.gildedgames.the_aether.world.biome.decoration.AetherGenFlowers;
+import com.gildedgames.the_aether.world.biome.decoration.AetherGenHolidayTree;
+import com.gildedgames.the_aether.world.biome.decoration.AetherGenLakes;
+import com.gildedgames.the_aether.world.biome.decoration.AetherGenLiquids;
+import com.gildedgames.the_aether.world.biome.decoration.AetherGenVoidFloatingIsland;
 import com.gildedgames.the_aether.world.biome.decoration.overhaul.AetherCloudsGenNew;
 import com.gildedgames.the_aether.world.biome.decoration.plants.WorldGenBerryBush;
 import com.gildedgames.the_aether.world.biome.decoration.plants.WorldGenBlackberryBush;
@@ -29,10 +38,12 @@ import com.gildedgames.the_aether.world.gen.MapGenDivineGoldenDungeon;
 import com.gildedgames.the_aether.world.gen.MapGenDivineSilverDungeon;
 import com.gildedgames.the_aether.world.gen.MapGenGoldenDungeon;
 import com.gildedgames.the_aether.world.gen.MapGenLargeColdAercloud;
-import com.gildedgames.the_aether.world.gen.MapGenOsmiumDungeon;
 import com.gildedgames.the_aether.world.gen.MapGenQuicksoil;
 import com.gildedgames.the_aether.world.gen.MapGenSilverDungeon;
 
+import cpw.mods.fml.common.eventhandler.Event;
+
+import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
 import net.minecraft.block.Block;
@@ -48,53 +59,44 @@ import net.minecraft.world.chunk.IChunkProvider;
 
 public class ChunkProviderAether implements IChunkProvider {
 
-	private Random rand;
-	
+	private Random rand;	
 	public static int placementFlagType;
-
-	private World worldObj;
-	
+	private World worldObj;	
 	private World aetherWorld;
-
 	private NoiseGeneratorOctaves noiseGen1, perlinNoise1;
-
 	private double[] buffer;
-
 	double[] pnr, ar, br;
+	
+	int ancient_silver_chance = (int)(1 + Math.random() * 12);
+	int divine_silver_chance = (int)(1 + Math.random() * 10);
+	int ancient_gold_chance = (int)(1 + Math.random() * 12);
+	int divine_gold_chance = (int)(1 + Math.random() * 10);
 	
 	private MapGenBase aetherCaveGenerator;
 	
-	protected AetherDungeon dungeon_bronze = new BronzeDungeon();
-	
-	protected AetherDungeon large_dungeon_bronze = new LargeBronzeDungeon();
-	
-	protected AetherDungeon divine_dungeon_bronze = new DivineBronzeDungeon();
-	
+	protected AetherDungeon dungeon_bronze = new BronzeDungeon();	
+	protected AetherDungeon large_dungeon_bronze = new LargeBronzeDungeon();	
+	protected AetherDungeon divine_dungeon_bronze = new DivineBronzeDungeon();	
 	protected AetherDungeon mythic_dungeon_bronze = new MythicBronzeDungeon();
 	
-	protected AetherDungeon cyro_dungeon = new CobaltDungeon();
-	
-	protected AetherDungeon zarnillys_den = new ZarnillysDen();
-	
-	private MapGenQuicksoil quicksoilGen = new MapGenQuicksoil();
-	
+	protected AetherDungeon cyro_dungeon = new CobaltDungeon();	
+	protected AetherDungeon zarnillys_den = new ZarnillysDen();	
+	private MapGenQuicksoil quicksoilGen = new MapGenQuicksoil();	
 	private MapGenAetherCaves aether_caves = new MapGenAetherCaves();
-
-	private MapGenSilverDungeon silverDungeonStructure = new MapGenSilverDungeon();
 	
-	private MapGenAncientSilverDungeon ancientsilverDungeonStructure = new MapGenAncientSilverDungeon();
-	
+	private MapGenSilverDungeon silverDungeonStructure = new MapGenSilverDungeon();	
+	private MapGenAncientSilverDungeon ancientsilverDungeonStructure = new MapGenAncientSilverDungeon();	
 	private MapGenDivineSilverDungeon divinesilverDungeonStructure = new MapGenDivineSilverDungeon();
 
-	private MapGenGoldenDungeon goldenDungeonStructure = new MapGenGoldenDungeon();
-	
-	private MapGenAncientGoldenDungeon ancientGoldenDungeonStructure = new MapGenAncientGoldenDungeon();
-	
+	private MapGenGoldenDungeon goldenDungeonStructure = new MapGenGoldenDungeon();	
+	private MapGenAncientGoldenDungeon ancientGoldenDungeonStructure = new MapGenAncientGoldenDungeon();	
 	private MapGenDivineGoldenDungeon divineGoldenDungeonStructure = new MapGenDivineGoldenDungeon();
 	
-	private MapGenOsmiumDungeon osmiumDungeonStructure = new MapGenOsmiumDungeon();
-
 	private MapGenLargeColdAercloud largeColdAercloudStructure = new MapGenLargeColdAercloud();	
+	public AetherGenDungeonOakTree golden_oak_tree_dungeon = new AetherGenDungeonOakTree();
+	public AetherGenFloatingIsland crystal_island = new AetherGenFloatingIsland();
+	public AetherGenVoidFloatingIsland void_island = new AetherGenVoidFloatingIsland();
+	public AetherGenHolidayTree holiday_tree = new AetherGenHolidayTree();
 
 	public ChunkProviderAether(World world, long seed) {
 		this.worldObj = world;
@@ -205,45 +207,6 @@ public class ChunkProviderAether implements IChunkProvider {
 				}
 			}
 		}       
-		/*		
-		for (int s = 0; s < 16; s++) {
-			for (int t = 0; t < 16; t++) {
-				int x1 = -1;
-				int w1 = (int) (2.0D + this.rand.nextDouble() * 0.8D);
-
-				Block top = BlocksAether.arctic_grass;
-				Block filler = BlocksAether.aether_dirt;
-				
-				for (int s1 = 127; s1 >= 0; s1--) {
-					int t1 = (t * 16 + s) * 128 + s1;
-
-					Block block = blocks[t1];
-
-					if (block == Blocks.air) {
-						x1 = -1;
-					} else if (block == BlocksAether.holystone) {
-						if (x1 == -1) {
-							if (w1 <= 0) {
-								top = Blocks.air;
-								filler = BlocksAether.holystone;
-							}
-
-							x1 = w1;
-
-							if (s1 >= 0) {
-								blocks[t1] = top;
-							} else {
-								blocks[t1] = filler;
-							}
-						} else if (x1 > 0) {
-							--x1;
-							blocks[t1] = filler;
-						}
-					}
-				}
-			}
-		}
-		*/
 	}
 
 	private double[] setupNoiseGenerators(double[] buffer, int x, int z) {
@@ -355,15 +318,25 @@ public class ChunkProviderAether implements IChunkProvider {
 
 		this.largeColdAercloudStructure.func_151539_a(this, this.worldObj, x, z, ablock);
 
-
-		this.silverDungeonStructure.func_151539_a(this, this.worldObj, x, z, ablock);
-		this.ancientsilverDungeonStructure.func_151539_a(this, this.worldObj, x, z, ablock);
-		this.divinesilverDungeonStructure.func_151539_a(this, this.worldObj, x, z, ablock);
-		this.goldenDungeonStructure.func_151539_a(this, this.worldObj, x, z, ablock);
-		this.ancientGoldenDungeonStructure.func_151539_a(this, this.worldObj, x, z, ablock);
-		this.divineGoldenDungeonStructure.func_151539_a(this, this.worldObj, x, z, ablock);
-		this.osmiumDungeonStructure.func_151539_a(this, this.worldObj, x, z, ablock);
-
+		if (AetherConfig.silver_dungeon_enable) {
+			this.silverDungeonStructure.func_151539_a(this, this.worldObj, x, z, ablock);
+		}
+		if (AetherConfig.tier2_silver_dungeon_enable && ancient_silver_chance > 2 && Math.abs(x) > 1200 && Math.abs(z) > 1200) {
+			this.ancientsilverDungeonStructure.func_151539_a(this, this.worldObj, x, z, ablock);
+		}
+		if (AetherConfig.tier3_silver_dungeon_enable && divine_silver_chance >= 4 && Math.abs(x) > 3000 && Math.abs(z) > 3000) {
+			this.divinesilverDungeonStructure.func_151539_a(this, this.worldObj, x, z, ablock);
+		}
+		if (AetherConfig.gold_dungeon_enable) {
+			this.goldenDungeonStructure.func_151539_a(this, this.worldObj, x, z, ablock);
+		}
+		if (AetherConfig.tier2_gold_dungeon_enable && ancient_gold_chance >= 3 && Math.abs(x) > 2000 && Math.abs(z) > 2000) {
+			this.ancientGoldenDungeonStructure.func_151539_a(this, this.worldObj, x, z, ablock);
+		}
+		if (AetherConfig.tier3_gold_dungeon_enable && divine_gold_chance >= 4 && Math.abs(x) > 5000 && Math.abs(z) > 5000) {
+			this.divineGoldenDungeonStructure.func_151539_a(this, this.worldObj, x, z, ablock);
+		}
+		
 		Chunk chunk = new Chunk(this.worldObj, ablock, x, z);
 		chunk.generateSkylightMap();
 
@@ -380,13 +353,25 @@ public class ChunkProviderAether implements IChunkProvider {
 	public void recreateStructures(int x, int z) {
 		this.largeColdAercloudStructure.func_151539_a(this, this.worldObj, x, z, null);
 		this.aether_caves.func_151539_a(this, this.worldObj, x, z, null);
-		this.silverDungeonStructure.func_151539_a(this, this.worldObj, x, z, null);
-		this.ancientsilverDungeonStructure.func_151539_a(this, this.worldObj, x, z, null);
-		this.divinesilverDungeonStructure.func_151539_a(this, this.worldObj, x, z, null);
-		this.goldenDungeonStructure.func_151539_a(this, this.worldObj, x, z, null);
-		this.ancientGoldenDungeonStructure.func_151539_a(this, this.worldObj, x, z, null);
-		this.divineGoldenDungeonStructure.func_151539_a(this, this.worldObj, x, z, null);
-		this.osmiumDungeonStructure.func_151539_a(this, this.worldObj, x, z, null);
+		
+		if (AetherConfig.silver_dungeon_enable) {
+			this.silverDungeonStructure.func_151539_a(this, this.worldObj, x, z, null);
+		}
+		if (AetherConfig.tier2_silver_dungeon_enable && ancient_silver_chance > 2 && Math.abs(x) > 1200 && Math.abs(z) > 1200) {
+			this.ancientsilverDungeonStructure.func_151539_a(this, this.worldObj, x, z, null);
+		}
+		if (AetherConfig.tier3_silver_dungeon_enable && divine_silver_chance >= 4 && Math.abs(x) > 3000 && Math.abs(z) > 3000) {
+			this.divinesilverDungeonStructure.func_151539_a(this, this.worldObj, x, z, null);
+		}
+		if (AetherConfig.gold_dungeon_enable) {
+			this.goldenDungeonStructure.func_151539_a(this, this.worldObj, x, z, null);
+		}
+		if (AetherConfig.tier2_gold_dungeon_enable && ancient_gold_chance >= 3 && Math.abs(x) > 2000 && Math.abs(z) > 2000) {
+			this.ancientGoldenDungeonStructure.func_151539_a(this, this.worldObj, x, z, null);
+		}
+		if (AetherConfig.tier3_gold_dungeon_enable && divine_gold_chance >= 4 && Math.abs(x) > 5000 && Math.abs(z) > 5000) {
+			this.divineGoldenDungeonStructure.func_151539_a(this, this.worldObj, x, z, null);
+		}
 	}
 
 	@Override
@@ -399,7 +384,6 @@ public class ChunkProviderAether implements IChunkProvider {
 	public void populate(IChunkProvider provider, int chunkX, int chunkZ) {
 		int x = chunkX * 16;
 		int z = chunkZ * 16;
-
 		BiomeGenBase biome = this.worldObj.getBiomeGenForCoords(x + 16, z + 16);
 
 		this.rand.setSeed(this.worldObj.getSeed());
@@ -408,39 +392,63 @@ public class ChunkProviderAether implements IChunkProvider {
 		this.rand.setSeed((long) x * k + (long) z * l ^ this.worldObj.getSeed());
 
 		this.largeColdAercloudStructure.generateStructuresInChunk(this.worldObj, this.rand, chunkX, chunkZ);
-		this.silverDungeonStructure.generateStructuresInChunk(this.worldObj, this.rand, chunkX, chunkZ);
-		this.ancientsilverDungeonStructure.generateStructuresInChunk(this.worldObj, this.rand, chunkX, chunkZ);
-		this.divinesilverDungeonStructure.generateStructuresInChunk(this.worldObj, this.rand, chunkX, chunkZ);
-		this.goldenDungeonStructure.generateStructuresInChunk(this.worldObj, this.rand, chunkX, chunkZ);
-		this.ancientGoldenDungeonStructure.generateStructuresInChunk(this.worldObj, this.rand, chunkX, chunkZ);
-		this.divineGoldenDungeonStructure.generateStructuresInChunk(this.worldObj, this.rand, chunkX, chunkZ);
-		this.osmiumDungeonStructure.generateStructuresInChunk(this.worldObj, this.rand, chunkX, chunkZ);
+		
+		if (AetherConfig.silver_dungeon_enable) {
+			this.silverDungeonStructure.generateStructuresInChunk(this.worldObj, this.rand, chunkX, chunkZ);
+		}
+		
+		if (AetherConfig.gold_dungeon_enable) {
+			this.goldenDungeonStructure.generateStructuresInChunk(this.worldObj, this.rand, chunkX, chunkZ);
+		}
+		
+		if(AetherConfig.tier2_silver_dungeon_enable && ancient_silver_chance > 2 && Math.abs(x) > 1200 && Math.abs(z) > 1200) {
+			this.ancientsilverDungeonStructure.generateStructuresInChunk(this.worldObj, this.rand, chunkX, chunkZ);
+		}
+		
+		if(AetherConfig.tier3_silver_dungeon_enable && divine_silver_chance >= 4 && Math.abs(x) > 3000 && Math.abs(z) > 3000) {
+			this.divinesilverDungeonStructure.generateStructuresInChunk(this.worldObj, this.rand, chunkX, chunkZ);
+		}
+		
+		if(AetherConfig.tier2_gold_dungeon_enable && ancient_gold_chance >= 3 && Math.abs(x) > 2000 && Math.abs(z) > 2000) {
+			this.ancientGoldenDungeonStructure.generateStructuresInChunk(this.worldObj, this.rand, chunkX, chunkZ);
+		}
+		
+		if(AetherConfig.tier3_gold_dungeon_enable && divine_gold_chance >= 4 && Math.abs(x) > 5000 && Math.abs(z) > 5000) {
+			this.divineGoldenDungeonStructure.generateStructuresInChunk(this.worldObj, this.rand, chunkX, chunkZ);
+		}
 
 		biome.decorate(this.worldObj, this.rand, x, z);
 		
-		int rand = (int)(1 + Math.random() * 5);
-		if(rand == 1 ) {
-		this.zarnillys_den.generate(this.worldObj, this.rand, x, this.rand.nextInt(6) + 50, z);
+		int den_chance = (int)(1 + Math.random() * 5);
+		if(AetherConfig.zarnyllis_den_gen && den_chance == 1) {
+			this.zarnillys_den.generate(this.worldObj, this.rand, x, this.rand.nextInt(6) + 50, z);
 		}
 		
-		this.dungeon_bronze.generate(this.worldObj, this.rand, x, this.rand.nextInt(28) + 24, z);
-		
-		this.large_dungeon_bronze.generate(this.worldObj, this.rand, x, this.rand.nextInt(18) + 26, z);
-		
-		this.divine_dungeon_bronze.generate(this.worldObj, this.rand, x, this.rand.nextInt(12) + 24, z);
-		
-		int rand4 = (int)(1 + Math.random() * 3);
-		if(rand4 == 1 ) {
-		this.mythic_dungeon_bronze.generate(this.worldObj, this.rand, x, this.rand.nextInt(4) + 24, z);
+		if (AetherConfig.bronze_dungeon_enable) {
+			this.dungeon_bronze.generate(this.worldObj, this.rand, x, this.rand.nextInt(28) + 24, z);
 		}
 		
-		if(rand4 == 2 ) {
-		this.cyro_dungeon.generate(this.worldObj, this.rand, x, this.rand.nextInt(14) + 22, z);
+		if (AetherConfig.tier2_bronze_dungeon_enable && Math.abs(x) > 750 && Math.abs(z) > 750) {
+			this.large_dungeon_bronze.generate(this.worldObj, this.rand, x, this.rand.nextInt(18) + 26, z);
+		}
+		
+		if (AetherConfig.tier3_bronze_dungeon_enable && Math.abs(x) > 2000 && Math.abs(z) > 2000) {
+			this.divine_dungeon_bronze.generate(this.worldObj, this.rand, x, this.rand.nextInt(12) + 24, z);
+		}
+		
+		int mythic_bronze_chance = (int)(1 + Math.random() * 3);
+		if(AetherConfig.tier4_bronze_dungeon_enable && mythic_bronze_chance == 1 && Math.abs(x) > 5000 && Math.abs(z) > 5000) {
+			this.mythic_dungeon_bronze.generate(this.worldObj, this.rand, x, this.rand.nextInt(4) + 24, z);
+		} else {
+			if (AetherConfig.cobalt_dungeon_enable) {
+				this.cyro_dungeon.generate(this.worldObj, this.rand, x, this.rand.nextInt(14) + 22, z);
+			}
 		}
 		
 		SpawnerAnimals.performWorldGenSpawning(this.worldObj, biome, x + 8, z + 8, 16, 16, this.rand);
 		
 		final BiomeGenBase biomegenbase = AetherWorld.aether_biome;
+		
 		//Standard 3 Aerclouds
 		 if (this.rand.nextInt(50) == 0) {
 	            final int x1 = x + this.rand.nextInt(16);
@@ -715,6 +723,49 @@ public class ChunkProviderAether implements IChunkProvider {
             final int z6 = z + this.rand.nextInt(12) + 5;
             new WorldGenGrapeVines(BlocksAether.grape_tree_mature, 3).generate(this.worldObj, this.rand, x6, y6, z6);
         }
+		if (this.rand.nextInt(48) == 0) {
+		 for (int k3 = 0; k3 < 6; ++k3) {
+             final int j3 = x + this.rand.nextInt(8) + 8;
+             final int l4 = this.rand.nextInt(this.rand.nextInt(64) + 48);
+             final int l5 = z + this.rand.nextInt(8) + 8;
+             new AetherGenLakes().generate(this.worldObj, this.rand, j3, l4, l5);
+          }
+		}
+		if (this.rand.nextInt(4) == 0) {
+		 for (int k3 = 0; k3 < 10; ++k3) {
+             final int j3 = x + this.rand.nextInt(8) + 8;
+             final int l4 = this.rand.nextInt(this.rand.nextInt(120) + 8);
+             final int l5 = z + this.rand.nextInt(8) + 8;
+             new AetherGenLiquids(Blocks.water).generate(this.worldObj, this.rand, j3, l4, l5);
+          }
+		}		
+		for (int k3 = 0; k3 < 25; k3++) {
+			final int j3 = x + this.rand.nextInt(8) + 8;
+			final int l5 = z + this.rand.nextInt(8) + 8;
+			final int l4 = this.worldObj.getHeightValue(j3, l5);
+			this.golden_oak_tree_dungeon.generate(this.worldObj, this.rand, j3, l4, l5);
+		}
+		if (this.rand.nextInt(50) == 0) {
+	        final int j3 = x + this.rand.nextInt(8) + 8;
+	        final int l4 = this.rand.nextInt(this.rand.nextInt(64) + 32);
+	        final int l5 = z + this.rand.nextInt(8) + 8;
+	        this.crystal_island.generate(this.worldObj, this.rand, j3, l4, l5);
+		}
+		if (this.rand.nextInt(70) == 0) {
+	        final int j3 = x + this.rand.nextInt(8) + 8;
+	        final int l4 = this.rand.nextInt(this.rand.nextInt(8) + 16);
+	        final int l5 = z + this.rand.nextInt(8) + 8;
+	        this.void_island.generate(this.worldObj, this.rand, j3, l4, l5);
+		}
+		if (this.rand.nextInt(30) == 0 ) {
+			if ((AetherConfig.shouldLoadHolidayContent()) || (AetherConfig.allowSeasonalChristmas() &&
+					(Calendar.getInstance().get(Calendar.MONTH) + 1 == 12 || Calendar.getInstance().get(Calendar.MONTH) + 1 == 1))) {
+				final int j3 = x + this.rand.nextInt(8) + 8;
+				final int l5 = z + this.rand.nextInt(8) + 8;
+				final int l4 = this.worldObj.getHeightValue(j3, l5);
+				this.holiday_tree.generate(this.worldObj, this.rand, j3, l4, l5);
+			}
+		}
 	}	
 	
 	@Override

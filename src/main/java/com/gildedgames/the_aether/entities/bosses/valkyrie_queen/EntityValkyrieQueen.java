@@ -485,9 +485,9 @@ public class EntityValkyrieQueen extends EntityBossMob implements IAetherBoss {
         int b = this.rand.nextInt(rad / 2);
         int c = rad - a;
 
-        a *= ((rand.nextInt(2) * 2) - 1); // Negate or Not
-        b *= ((rand.nextInt(2) * 2) - 1); // Negate or Not
-        c *= ((rand.nextInt(2) * 2) - 1); // Negate or Not
+        a *= ((rand.nextInt(2) * 2) - 1);
+        b *= ((rand.nextInt(2) * 2) - 1);
+        c *= ((rand.nextInt(2) * 2) - 1);
 
         x += a;
         y += b;

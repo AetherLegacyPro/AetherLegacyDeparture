@@ -40,7 +40,7 @@ public class TileEntityElysianChest extends TileEntity implements IInventory
   }
   
   public int getSizeInventory() {
-      return 27; //27
+      return 27;
   }
   
   public ItemStack getStackInSlot(final int par1) {

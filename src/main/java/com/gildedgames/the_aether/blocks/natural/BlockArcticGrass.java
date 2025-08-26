@@ -33,31 +33,8 @@ public class BlockArcticGrass extends Block implements IGrowable {
 
 		this.setHardness(0.45F);
 		this.setResistance(0.45F);
-		this.setTickRandomly(true);
 		this.setStepSound(soundTypeGrass);
 		this.setHarvestLevel("shovel", 0);
-	}
-
-	@Override
-	public void updateTick(World worldIn, int x, int y, int z, Random rand) {
-		if (!worldIn.isRemote) {
-			if (worldIn.getBlockLightValue(x, y + 1, z) < 4 && worldIn.getBlockLightOpacity(x, y + 1, z) > 2) {
-				worldIn.setBlock(x, y, z, BlocksAether.holystone);
-			} else if (worldIn.getBlockLightValue(x, y + 1, z) >= 9) {
-				for (int l = 0; l < 4; ++l) {
-					int i1 = x + rand.nextInt(3) - 1;
-					int j1 = y + rand.nextInt(5) - 3;
-					int k1 = z + rand.nextInt(3) - 1;
-
-					if (worldIn.getBlock(i1, j1, k1) == BlocksAether.aether_dirt && (worldIn.getBlockMetadata(i1, j1, k1) == 0 || worldIn.getBlockMetadata(i1, j1, k1) == 1) && worldIn.getBlockLightValue(i1, j1 + 1, k1) >= 4 && worldIn.getBlockLightOpacity(i1, j1 + 1, k1) <= 2) {
-						worldIn.setBlock(i1, j1, k1, BlocksAether.holystone);
-					}
-				}
-			}
-			else if (worldIn.getBlock(x, y + 1, z) != Blocks.air) {
-				worldIn.setBlock(x, y, z, BlocksAether.aether_dirt);
-			}
-		}
 	}
 
 	@Override

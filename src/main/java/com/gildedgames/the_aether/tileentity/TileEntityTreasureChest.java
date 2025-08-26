@@ -16,12 +16,12 @@ import com.gildedgames.the_aether.world.dungeon.DivineBronzeDungeon;
 import com.gildedgames.the_aether.world.dungeon.LargeBronzeDungeon;
 import com.gildedgames.the_aether.world.dungeon.MythicBronzeDungeon;
 import com.gildedgames.the_aether.world.dungeon.PalladiumDungeonTotem;
+import com.gildedgames.the_aether.world.dungeon.osmium.OsmiumDungeon;
 import com.gildedgames.the_aether.world.gen.components.ComponentAncientGoldenDungeon;
 import com.gildedgames.the_aether.world.gen.components.ComponentAncientSilverDungeon;
 import com.gildedgames.the_aether.world.gen.components.ComponentDivineGoldenDungeon;
 import com.gildedgames.the_aether.world.gen.components.ComponentDivineSilverDungeon;
 import com.gildedgames.the_aether.world.gen.components.ComponentGoldenDungeon;
-import com.gildedgames.the_aether.world.gen.components.ComponentOsmiumDungeon;
 import com.gildedgames.the_aether.world.gen.components.ComponentSilverDungeon;
 
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -122,7 +122,7 @@ public class TileEntityTreasureChest extends TileEntityChest {
 		
 		if (kind == 11) {
 			for (p = 0; p < 7 + random.nextInt(2); ++p) {
-				this.setInventorySlotContents(random.nextInt(this.getSizeInventory()), ComponentOsmiumDungeon.getOsmiumLoot(random));
+				this.setInventorySlotContents(random.nextInt(this.getSizeInventory()), OsmiumDungeon.getOsmiumLoot(random));
 			}
 		}
 		

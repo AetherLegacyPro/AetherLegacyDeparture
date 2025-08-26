@@ -3,6 +3,7 @@ package com.gildedgames.the_aether.items.armor.scaled;
 import java.util.List;
 
 import com.gildedgames.the_aether.Aether;
+import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
 import net.minecraft.entity.Entity;
@@ -15,6 +16,8 @@ import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
 public class ItemScaledElysianArmor extends ItemArmor {
@@ -109,5 +112,10 @@ public class ItemScaledElysianArmor extends ItemArmor {
 	public EnumRarity getRarity(ItemStack stack) {
 		return ItemsAether.scaled_aether_loot;
 	}
+	
+	public void addInformation(final ItemStack stack, final EntityPlayer player, final List tooltip, final boolean who) {
+		if(AetherConfig.enableTooltips())
+        tooltip.add(EnumChatFormatting.AQUA + "" + StatCollector.translateToLocal("tooltip.elysian_armor.desc"));
+    }
 
 }

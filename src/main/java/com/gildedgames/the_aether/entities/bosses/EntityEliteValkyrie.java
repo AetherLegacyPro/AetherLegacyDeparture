@@ -198,7 +198,6 @@ public class EntityEliteValkyrie extends EntityAetherMob {
 		}
 
 		if (this.getAttackTarget() != null && this.getAttackTarget().isDead) {
-			//this.setAttackTarget(null);
 			this.angerLevel = 200;
 		}
 

@@ -12,7 +12,6 @@ import com.gildedgames.the_aether.world.gen.MapGenDivineGoldenDungeon;
 import com.gildedgames.the_aether.world.gen.MapGenDivineSilverDungeon;
 import com.gildedgames.the_aether.world.gen.MapGenGoldenDungeon;
 import com.gildedgames.the_aether.world.gen.MapGenLargeColdAercloud;
-import com.gildedgames.the_aether.world.gen.MapGenOsmiumDungeon;
 import com.gildedgames.the_aether.world.gen.MapGenSilverDungeon;
 import com.gildedgames.the_aether.world.gen.components.ComponentAncientGoldenDungeon;
 import com.gildedgames.the_aether.world.gen.components.ComponentAncientGoldenIsland;
@@ -26,7 +25,6 @@ import com.gildedgames.the_aether.world.gen.components.ComponentGoldenDungeon;
 import com.gildedgames.the_aether.world.gen.components.ComponentGoldenIsland;
 import com.gildedgames.the_aether.world.gen.components.ComponentGoldenIslandStub;
 import com.gildedgames.the_aether.world.gen.components.ComponentLargeColdAercloud;
-import com.gildedgames.the_aether.world.gen.components.ComponentOsmiumDungeon;
 import com.gildedgames.the_aether.world.gen.components.ComponentSilverDungeon;
 
 public class AetherWorld {
@@ -37,8 +35,6 @@ public class AetherWorld {
 		MapGenStructureIO.registerStructure(MapGenSilverDungeon.Start.class, "aether_legacy:silver_dungeon_start");
 		MapGenStructureIO.registerStructure(MapGenAncientSilverDungeon.Start.class, "aether_legacy:ancient_silver_dungeon_start");
 		MapGenStructureIO.registerStructure(MapGenDivineSilverDungeon.Start.class, "aether_legacy:divine_silver_dungeon_start");
-		
-		MapGenStructureIO.registerStructure(MapGenOsmiumDungeon.Start.class, "aether_legacy:osmium_dungeon_start");
 		
 		MapGenStructureIO.registerStructure(MapGenGoldenDungeon.Start.class, "aether_legacy:golden_dungeon_start");
 		MapGenStructureIO.registerStructure(MapGenAncientGoldenDungeon.Start.class, "aether_legacy:ancient_golden_dungeon_start");
@@ -51,8 +47,6 @@ public class AetherWorld {
 		MapGenStructureIO.func_143031_a(ComponentSilverDungeon.class, "aether_legacy:silver_dungeon_component");
 		MapGenStructureIO.func_143031_a(ComponentAncientSilverDungeon.class, "aether_legacy:ancient_silver_dungeon_component");
 		MapGenStructureIO.func_143031_a(ComponentDivineSilverDungeon.class, "aether_legacy:divine_silver_dungeon_component");
-		
-		MapGenStructureIO.func_143031_a(ComponentOsmiumDungeon.class, "aether_legacy:osmium_dungeon_component");
 		
 		MapGenStructureIO.func_143031_a(ComponentGoldenDungeon.class, "aether_legacy:golden_dungeon_component");
 		MapGenStructureIO.func_143031_a(ComponentGoldenIsland.class, "aether_legacy:golden_island_component");

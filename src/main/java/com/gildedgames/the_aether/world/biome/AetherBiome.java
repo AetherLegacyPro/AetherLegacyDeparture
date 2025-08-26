@@ -157,7 +157,7 @@ public class AetherBiome extends BiomeGenBase {
 		list.add(new SpawnListEntry(EntityZephyr.class, 95, 1, 4));
 		list.add(new SpawnListEntry(EntityTempest.class, 75, 1, 4));
 		list.add(new SpawnListEntry(EntityAerca.class, 100, 1, 2));
-		list.add(new SpawnListEntry(EntityYoungZephyr.class, 65, 1, 2));
+		list.add(new SpawnListEntry(EntityYoungZephyr.class, 85, 1, 4));
 		list.add(new SpawnListEntry(EntityCyro.class, 75, 1, 4));
 		list.add(new SpawnListEntry(EntityUro.class, 80, 1, 4));
 		
@@ -197,10 +197,8 @@ public class AetherBiome extends BiomeGenBase {
 		this.flowers.add(new FlowerEntry(BlocksAether.carrion_flower, 0, 8));
 		this.flowers.add(new FlowerEntry(BlocksAether.moonlit_bloom, 0, 9));
 		this.flowers.add(new FlowerEntry(BlocksAether.aether_tulips, 0, 7));
-		this.flowers.add(new FlowerEntry(BlocksAether.quickshoot, 0, 8));
-		
-		this.flowers.add(new FlowerEntry(BlocksAether.arctic_tallgrass, 0, 7));
-		
+		this.flowers.add(new FlowerEntry(BlocksAether.quickshoot, 0, 8));		
+		this.flowers.add(new FlowerEntry(BlocksAether.arctic_tallgrass, 0, 7));		
 		this.flowers.add(new FlowerEntry(BlocksAether.enchanted_aether_tulips, 0, 7));
 		this.flowers.add(new FlowerEntry(BlocksAether.enchanted_quickshoot, 0, 8));
 	}
@@ -223,11 +221,6 @@ public class AetherBiome extends BiomeGenBase {
 	@Override
 	public int getBiomeFoliageColor(int x, int y, int z) {
 		return 0xb1ffcb;
-	}
-
-	@Override
-	public BiomeDecorator createBiomeDecorator() {
-		return new AetherBiomeDecorator();
 	}
 	
 }

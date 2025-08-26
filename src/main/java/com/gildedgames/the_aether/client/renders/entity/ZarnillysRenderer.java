@@ -11,7 +11,7 @@ import net.minecraft.client.renderer.entity.RenderLiving;
 
 public class ZarnillysRenderer extends RenderLiving
 {
-	private static final ResourceLocation TEXTURE = Aether.locateHighlands("textures/entities/varanys/varanys.png");
+	private static final ResourceLocation TEXTURE = Aether.locate("textures/entities/zarnillys/zarnillys.png");
     
 	public ZarnillysRenderer() {
         super(new ZarnillysModel(), 0.5F);

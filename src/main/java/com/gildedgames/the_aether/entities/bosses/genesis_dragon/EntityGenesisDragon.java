@@ -39,15 +39,10 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
     public double targetX;
     public double targetY;
     public double targetZ;
-    /** Ring buffer array for the last 64 Y-positions and yaw rotations. Used to calculate offsets for the animations. */
     public double[][] ringBuffer = new double[64][3];
-    /** Index into the ring buffer. Incremented once per tick and restarts at 0 once it reaches the end of the buffer. */
     public int ringBufferIndex = -1;
-    /** An array containing all body parts of this dragon */
     public EntityGenesisDragonPart[] dragonPartArray;
-    /** The head bounding box of a dragon */
     public EntityGenesisDragonPart dragonPartHead;
-    /** The body bounding box of a dragon */
     public EntityGenesisDragonPart dragonPartBody;
     public EntityGenesisDragonPart dragonPartTail1;
     public EntityGenesisDragonPart dragonPartTail2;
@@ -59,17 +54,12 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
     public int attackCounter;
     public int courseChangeCooldown;
     private int field_70846_g;
-    /** Animation time at previous tick. */
     public float prevAnimTime;
-    /** Animation time, used to control the speed of the animation cycles (wings flapping, jaw opening, etc.) */
     public float animTime;
-    /** Force selecting a new flight target at next tick if set to true. */
     public boolean forceNewTarget;
-    /** Activated if the dragon is flying though obsidian, white stone or bedrock. Slows movement and animation speed. */
     public boolean slowed = false;
     private Entity target;
     public int deathTicks;
-    /** The current endercrystal that is healing this dragon */
     public EntityEnderCrystal healingEnderCrystal;
     public EntityLivingBase shootingEntity;
 
@@ -124,11 +114,7 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
         
         this.setBossName(nbttagcompound.getString("BossName"));
     }
-    
-    /**
-     * Returns a double[3] array with movement offsets, used to calculate trailing tail/neck positions. [0] = yaw
-     * offset, [1] = y offset, [2] = unused, always 0. Parameters: buffer index offset, partial ticks.
-     */
+
     public double[] getMovementOffsets(int p_70974_1_, float p_70974_2_)
     {
         if (this.getHealth() <= 0.0F)
@@ -159,9 +145,9 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
     		
     		Vec3 look = this.getLookVec();
 
-    		double dist = -12.9; //0.9 -3.9
+    		double dist = -4.9;
     		double px = this.posX + look.xCoord * dist;
-    		double py = this.posY + 2.25 + look.yCoord * dist; //0.25
+    		double py = this.posY + 3.25 + look.yCoord * dist;
     		double pz = this.posZ + look.zCoord * dist;
 
     			for (int i = 0; i < 6; i++)
@@ -170,8 +156,8 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
     			double dy = look.yCoord;
     			double dz = look.zCoord;
 
-    			double spread = 6 + this.getRNG().nextDouble() * 2.5; //5
-    			double velocity = 1.15 + this.getRNG().nextDouble() * 0.45; //0.15
+    			double spread = 6 + this.getRNG().nextDouble() * 2.5;
+    			double velocity = 1.15 + this.getRNG().nextDouble() * 0.45;
 
     			dx += this.getRNG().nextGaussian() * 0.007499999832361937D * spread;
     			dy += this.getRNG().nextGaussian() * 0.007499999832361937D * spread;
@@ -185,11 +171,6 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
     	}
     }
 
-    /**
-     * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
-     * use this to react to sunlight and start to burn.
-     */
-    //@Override
     public void onLivingUpdate()
     {
     	
@@ -474,9 +455,6 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
 		worldObj.playSoundEffect(this.posX + 0.5, this.posY + 0.5, this.posZ + 0.5, "nova_craft:deepoid.breath", rand.nextFloat() * 0.5F, rand.nextFloat() * 0.5F); //mob.enderdragon.growl
 	}
 
-    /**
-     * Pushes all entities inside the list away from the enderdragon.
-     */
     private void collideWithEntities(List p_70970_1_)
     {
         double d0 = (this.dragonPartBody.boundingBox.minX + this.dragonPartBody.boundingBox.maxX) / 2.0D;
@@ -500,9 +478,6 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
     	this.FireBreath();
     }
 
-    /**
-     * Attacks all entities inside this list, dealing 25 hearts of damage.
-     */
     private void attackEntitiesInList(List p_70971_1_)
     {
         for (int i = 0; i < p_70971_1_.size(); ++i)
@@ -527,58 +502,45 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
         			entity.setFire(20);
         			entity.attackEntityFrom(DamageSource.generic, 22.0F);
                 	entity.attackEntityFrom(DamageSource.magic, 15.0F);	
-        			//nice try
         		  }
                 }
              }
             
           }
        
-       		if (worldObj.isRemote) //good
+       		if (worldObj.isRemote)
        		this.FireBreath();
         }
         
 
     }
 
-    /**
-     * Sets a new target for the flight AI. It can be a random coordinate or a nearby player.
-     */
     private void setNewTarget()
     {
         this.forceNewTarget = false;
 
         if (this.rand.nextInt(3) == 0 && !this.worldObj.playerEntities.isEmpty())
         {
-            this.target = this.worldObj.playerEntities.get(this.rand.nextInt(this.worldObj.playerEntities.size()));
+            this.target = (Entity)this.worldObj.playerEntities.get(this.rand.nextInt(this.worldObj.playerEntities.size()));   
                       
+        }
+        else if (this.target != null)
+        {
+            float angle = this.rotationYaw * (float)Math.PI / 180.0F;
+            double distance = 300.0D;
+            this.targetX = this.posX + (double)(MathHelper.sin(angle) * distance);
+            this.targetZ = this.posZ - (double)(MathHelper.cos(angle) * distance);
+            this.targetY = this.posY;
+            this.target = null;
         }
         else
         {
-            boolean flag = false;
-
-            do
-            {
-                this.targetX = 0.0D;
-                this.targetY = 70.0F + this.rand.nextFloat() * 50.0F;
-                this.targetZ = 0.0D;
-                this.targetX += this.rand.nextFloat() * 120.0F - 60.0F;
-                this.targetZ += this.rand.nextFloat() * 120.0F - 60.0F;
-                double d0 = this.posX - this.targetX;
-                double d1 = this.posY - this.targetY;
-                double d2 = this.posZ - this.targetZ;
-                flag = d0 * d0 + d1 * d1 + d2 * d2 > 100.0D;
-                              
-            }
-            while (!flag);
-
-            this.target = null;
+            this.targetX = this.posX;
+            this.targetY = this.posY;
+            this.targetZ = this.posZ;
         }
     }
 
-    /**
-     * Simplifies the value of a number by adding/subtracting 180 to the point that the number is between -180 and 180.
-     */
     private float simplifyAngle(double p_70973_1_)
     {
         return (float)MathHelper.wrapAngleTo180_double(p_70973_1_);
@@ -687,7 +649,7 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
      	EntityPlayer player = (EntityPlayer) ds.getEntity();
         ItemStack stack = player.inventory.getCurrentItem();
         
-		if (stack.getItem() == ItemsAether.dragon_bane || stack.getItem() == ItemsAether.tipped_dragon_bane) {
+		if (stack != null && stack.getItem() != null && (stack.getItem() == ItemsAether.dragon_bane || stack.getItem() == ItemsAether.tipped_dragon_bane)) {
 			
 			 int rand = (int)(1 + Math.random() * 4);
 			 int rand2 = (int)(1 + Math.random() * 24);
@@ -777,7 +739,7 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
 		        }
 		}
 		
-		else if (stack.getItem() == ItemsAether.amplified_dragon_bane) {
+		else if (stack != null && stack.getItem() != null && stack.getItem() == ItemsAether.amplified_dragon_bane) {
 			
 			 int rand = (int)(1 + Math.random() * 4);
 			 int rand2 = (int)(1 + Math.random() * 24);
@@ -890,10 +852,6 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
         return super.attackEntityFrom(p_82195_1_, p_82195_2_);
     }
     
-    /**
-     * handles entity death timer, experience orb and particle creation
-     */
-    
     public int getTotalArmorValue()
     {
         return 17;
@@ -957,7 +915,7 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
     {
 		this.worldObj.setBlock(p_70975_1_, p_70975_2_ + 1, p_70975_3_, BlocksAether.treasure_chest_breakable);
 		TileEntityTreasureChestBreakable chest = (TileEntityTreasureChestBreakable) world.getTileEntity(p_70975_1_, p_70975_2_ + 1, p_70975_3_);
-		chest.setInventorySlotContents(random.nextInt(chest.getSizeInventory()), this.getKey(random));
+			chest.setInventorySlotContents(random.nextInt(chest.getSizeInventory()), this.getKey(random));
 		
 		this.worldObj.setBlock(p_70975_1_ + 2, p_70975_2_ + 1, p_70975_3_, BlocksAether.elysian_chest);
 		TileEntityElysianChest chest2 = (TileEntityElysianChest) worldObj.getTileEntity(p_70975_1_ + 2, p_70975_2_ + 1, p_70975_3_);
@@ -1028,17 +986,11 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
                
     }
 
-    /**
-     * Return the Entity parts making up this Entity (currently only for dragons)
-     */
     public Entity[] getParts()
     {
         return this.dragonPartArray;
     }
 
-    /**
-     * Returns true if other Entities should be prevented from moving through this Entity.
-     */
     public boolean canBeCollidedWith()
     {
         return false;
@@ -1049,25 +1001,16 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
         return this.worldObj;
     }
 
-    /**
-     * Returns the sound this mob makes while it's alive.
-     */
     protected String getLivingSound()
     {
         return "mob.enderdragon.growl";
     }
 
-    /**
-     * Returns the sound this mob makes when it is hurt.
-     */
     protected String getHurtSound()
     {
         return "mob.enderdragon.hit";
     }
 
-    /**
-     * Returns the volume for the sounds this mob makes.
-     */
     protected float getSoundVolume()
     {
         return 3.0F;

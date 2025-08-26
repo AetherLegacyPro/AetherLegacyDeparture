@@ -368,15 +368,16 @@ public class AetherEventHandler {
 			ItemStack currentStack = player.inventory.getCurrentItem();
 			if (currentStack != null) {
 				Item currentItem = currentStack.getItem();
-				if (currentItem == ItemsAether.lightning_sword || currentItem == ItemsAether.tipped_lightning_sword || currentItem == ItemsAether.lightning_knife || currentItem == ItemsAether.amplified_lightning_sword) {
+				if (currentItem == ItemsAether.lightning_knife || currentItem == ItemsAether.lightning_sword || currentItem == ItemsAether.tipped_lightning_sword || currentItem == ItemsAether.amplified_lightning_sword) {
 					event.setCanceled(true);
 					return;
 				}
 			}
-			IPlayerAether playerAether = PlayerAether.get(player);
-			if (playerAether.getAccessoryInventory().wearingAccessory(ItemsAether.discharge_cape)) {
-				event.setCanceled(true);
+			IAccessoryInventory accessoryInventory = PlayerAether.get(player).getAccessoryInventory();
+		    if (accessoryInventory.isWearingDischargeCape()) {
 				player.triggerAchievement(AchievementsAether.discharged);
+				event.setCanceled(true);
+				return;
 			}
 		} else if (event.entity instanceof EntityZojz || event.entity instanceof EntityTempest || event.entity instanceof EntityEliteValkyrie
 			|| event.entity instanceof EntityDivineValkyrieQueen || event.entity instanceof EntityElysianGuardian 
@@ -402,7 +403,7 @@ public class AetherEventHandler {
 			return;
 		}
 		Item heldItem = heldStack.getItem();
-		if (heldItem == ItemsAether.flaming_sword) {
+		if (heldItem == ItemsAether.flaming_sword || heldItem == ItemsAether.tipped_flaming_sword || heldItem == ItemsAether.amplified_flaming_sword) {
 			if (event.target.canAttackWithItem()) {
 				if (!event.target.hitByEntity(event.entityPlayer)) {
 					if (event.target instanceof EntityLivingBase) {
@@ -417,7 +418,7 @@ public class AetherEventHandler {
 			}
 		} else if (heldItem == ItemsAether.pig_slayer) {
 			String s = EntityList.getEntityString(event.target).toLowerCase();
-			if ((s.contains("pig") || s.contains("phyg") || s.contains("taegore") || event.target.getUniqueID().toString().equals("1d680bb6-2a9a-4f25-bf2f-a1af74361d69"))) {
+			if (s != null && (s.contains("pig") || s.contains("phyg") || s.contains("taegore") || event.target.getUniqueID().toString().equals("1d680bb6-2a9a-4f25-bf2f-a1af74361d69"))) {
 				if (event.target.worldObj.isRemote) {
 					for (int j = 0; j < 20; j++) {
 						Random itemRand = new Random();
@@ -429,22 +430,7 @@ public class AetherEventHandler {
 					}
 				}
 			}
-		} else if (heldItem == ItemsAether.dragon_bane || heldItem == ItemsAether.tipped_dragon_bane || heldItem == ItemsAether.amplified_dragon_bane) {
-			String s = EntityList.getEntityString(event.target).toLowerCase();
-			if (s.contains("dragon")) {
-				if (event.target.worldObj.isRemote) {
-					for (int j = 0; j < 20; j++) {
-						Random itemRand = new Random();
-						double d = itemRand.nextGaussian() * 0.02D;
-						double d1 = itemRand.nextGaussian() * 0.02D;
-						double d2 = itemRand.nextGaussian() * 0.02D;
-						double d3 = 5D;
-						event.target.worldObj.spawnParticle("flame", (event.target.posX + (double) (itemRand.nextFloat() * event.target.width * 2.0F)) - (double) event.target.width - d * d3, (event.target.posY + (double) (itemRand.nextFloat() * event.target.height)) - d1 * d3, (event.target.posZ + (double) (itemRand.nextFloat() * event.target.width * 2.0F)) - (double) event.target.width - d2 * d3, d, d1, d2);
-					}
-				}
-			}
-		}
-
+		} 
 	}
 
 	public boolean isGravititeTool(Item item) {

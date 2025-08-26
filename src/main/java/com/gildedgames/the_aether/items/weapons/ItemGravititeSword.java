@@ -2,12 +2,18 @@ package com.gildedgames.the_aether.items.weapons;
 
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.network.play.server.S12PacketEntityVelocity;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.StatCollector;
 
+import java.util.List;
+
+import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.entities.passive.mountable.EntitySwet;
 
@@ -37,5 +43,10 @@ public class ItemGravititeSword extends ItemSword {
 
 		return super.hitEntity(itemstack, hitentity, player);
 	}
+	
+	public void addInformation(final ItemStack stack, final EntityPlayer player, final List tooltip, final boolean who) {
+		if(AetherConfig.enableTooltips())
+        tooltip.add(EnumChatFormatting.GRAY + "" + StatCollector.translateToLocal("tooltip.gravitite_sword.desc"));
+    }
 
 }

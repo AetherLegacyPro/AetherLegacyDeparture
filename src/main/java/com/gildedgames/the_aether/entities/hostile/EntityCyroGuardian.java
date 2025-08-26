@@ -23,9 +23,7 @@ import net.minecraft.world.World;
 
 public class EntityCyroGuardian extends EntityBossMob implements IAetherBoss
 {
-    /** Random offset used in floating behaviour */
     private float heightOffset = 0.5F;
-    /** ticks until heightOffset is randomized */
     private int heightOffsetUpdateTime;
     private int field_70846_g;
 
@@ -75,25 +73,16 @@ public class EntityCyroGuardian extends EntityBossMob implements IAetherBoss
         return 10;
     }
 
-    /**
-     * Returns the sound this mob makes while it's alive.
-     */
     protected String getLivingSound()
     {
         return "aether_legacy:aemob.cyro.living";
     }
 
-    /**
-     * Returns the sound this mob makes when it is hurt.
-     */
     protected String getHurtSound()
     {
         return "aether_legacy:aemob.cyro.hurt";
     }
 
-    /**
-     * Returns the sound this mob makes on death.
-     */
     protected String getDeathSound()
     {
         return "aether_legacy:aemob.cyro.death";
@@ -110,18 +99,11 @@ public class EntityCyroGuardian extends EntityBossMob implements IAetherBoss
         return 15728880;
     }
 
-    /**
-     * Gets how bright this entity is.
-     */
     public float getBrightness(float p_70013_1_)
     {
         return 0.5F;
     }
 
-    /**
-     * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
-     * use this to react to sunlight and start to burn.
-     */
     public void onLivingUpdate()
     {
     	 if (this.worldObj.isDaytime() && !this.worldObj.isRemote && this.worldObj.canBlockSeeTheSky(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY), MathHelper.floor_double(this.posZ))) {
@@ -198,9 +180,6 @@ public class EntityCyroGuardian extends EntityBossMob implements IAetherBoss
     	 return flag;
     }
 
-    /**
-     * Basic mob attack. Default to touch of death in EntityCreature. Overridden by each mob to define their attack.
-     */
     protected void attackEntity(Entity p_70785_1_, float p_70785_2_)
     {
         if (this.attackTime <= 0 && p_70785_2_ < 2.0F && p_70785_1_.boundingBox.maxY > this.boundingBox.minY && p_70785_1_.boundingBox.minY < this.boundingBox.maxY)
@@ -258,17 +237,8 @@ public class EntityCyroGuardian extends EntityBossMob implements IAetherBoss
         }
     }
 
-    /**
-     * Called when the mob is falling. Calculates and applies fall damage.
-     */
     protected void fall(float p_70069_1_) {}
 
-    
-
-    /**
-     * Drop 0-2 items of this living's type. @param par1 - Whether this entity has recently been hit by a player. @param
-     * par2 - Level of Looting used to kill this mob.
-     */
     protected void dropFewItems(boolean p_70628_1_, int p_70628_2_)
     {
     	this.entityDropItem(new ItemStack(ItemsAether.dungeon_key, 1, 10), 0.5F);

@@ -1,5 +1,6 @@
 package com.gildedgames.the_aether.items.weapons.tipped;
 
+import java.util.List;
 import java.util.Random;
 
 import com.gildedgames.the_aether.AetherConfig;
@@ -16,6 +17,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemSword;
 import net.minecraft.item.Item.ToolMaterial;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.StatCollector;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 
@@ -96,5 +99,10 @@ public class ItemTippedContinuumSword extends ItemSword {
 	public EnumRarity getRarity(ItemStack stack) {
 		return ItemsAether.scaled_aether_loot;
 	}
+	
+	public void addInformation(final ItemStack stack, final EntityPlayer player, final List tooltip, final boolean who) {
+		if(AetherConfig.enableTooltips())
+        tooltip.add(EnumChatFormatting.AQUA + "" + StatCollector.translateToLocal("tooltip.continuum_tools.desc"));
+    }
 
 }

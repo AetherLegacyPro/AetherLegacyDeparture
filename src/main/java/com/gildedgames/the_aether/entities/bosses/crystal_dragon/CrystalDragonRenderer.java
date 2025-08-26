@@ -29,7 +29,7 @@ public class CrystalDragonRenderer extends RenderLiving
 
     public CrystalDragonRenderer()
     {
-        super(new CrystalDragonModel(0.0F), 0.5F);
+        super(new CrystalDragonModel(), 0.5F);
         this.modelDragon = (CrystalDragonModel)this.mainModel;
         this.setRenderPassModel(this.mainModel);
     }
@@ -60,7 +60,7 @@ public class CrystalDragonRenderer extends RenderLiving
     protected void preRenderCallback(EntityLivingBase dragon, float partialTickTime)
     {
     	GL11.glTranslated(0, 1.2D, 0);
-        GL11.glScalef(0.45F, 0.45F, 0.45F);
+        GL11.glScalef(0.85F, 0.85F, 0.85F);
     }
 
     /**

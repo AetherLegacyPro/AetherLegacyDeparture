@@ -28,15 +28,10 @@ public class EntityCrystalDragon extends EntityFlying implements GIEntityMultiPa
     public double targetX;
     public double targetY;
     public double targetZ;
-    /** Ring buffer array for the last 64 Y-positions and yaw rotations. Used to calculate offsets for the animations. */
     public double[][] ringBuffer = new double[64][3];
-    /** Index into the ring buffer. Incremented once per tick and restarts at 0 once it reaches the end of the buffer. */
     public int ringBufferIndex = -1;
-    /** An array containing all body parts of this dragon */
     public EntityCrystalDragonPart[] dragonPartArray;
-    /** The head bounding box of a dragon */
     public EntityCrystalDragonPart dragonPartHead;
-    /** The body bounding box of a dragon */
     public EntityCrystalDragonPart dragonPartBody;
     public EntityCrystalDragonPart dragonPartTail1;
     public EntityCrystalDragonPart dragonPartTail2;
@@ -48,17 +43,12 @@ public class EntityCrystalDragon extends EntityFlying implements GIEntityMultiPa
     public int attackCounter;
     public int courseChangeCooldown;
     private int field_70846_g;
-    /** Animation time at previous tick. */
     public float prevAnimTime;
-    /** Animation time, used to control the speed of the animation cycles (wings flapping, jaw opening, etc.) */
     public float animTime;
-    /** Force selecting a new flight target at next tick if set to true. */
     public boolean forceNewTarget;
-    /** Activated if the dragon is flying though obsidian, white stone or bedrock. Slows movement and animation speed. */
     public boolean slowed = false;
     private Entity target;
     public int deathTicks;
-    /** The current endercrystal that is healing this dragon */
     public EntityEnderCrystal healingEnderCrystal;
     public EntityLivingBase shootingEntity;
 
@@ -112,11 +102,6 @@ public class EntityCrystalDragon extends EntityFlying implements GIEntityMultiPa
     public int getMaxSpawnedInChunk() {
         return 1;
     }
-    
-    /**
-     * Returns a double[3] array with movement offsets, used to calculate trailing tail/neck positions. [0] = yaw
-     * offset, [1] = y offset, [2] = unused, always 0. Parameters: buffer index offset, partial ticks.
-     */
     public double[] getMovementOffsets(int p_70974_1_, float p_70974_2_)
     {
         if (this.getHealth() <= 0.0F)
@@ -137,10 +122,7 @@ public class EntityCrystalDragon extends EntityFlying implements GIEntityMultiPa
         adouble[2] = this.ringBuffer[j][2] + (this.ringBuffer[k][2] - this.ringBuffer[j][2]) * (double)p_70974_2_;
         return adouble;
     }
-    /**
-     * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
-     * use this to react to sunlight and start to burn.
-     */
+
     public void onLivingUpdate()
     {
     	if (!this.worldObj.isRemote && this.worldObj.difficultySetting == EnumDifficulty.PEACEFUL)
@@ -400,9 +382,6 @@ public class EntityCrystalDragon extends EntityFlying implements GIEntityMultiPa
                 
     }
 
-    /**
-     * Attacks all entities inside this list, dealing 25 hearts of damage.
-     */
     private void attackEntitiesInList(List p_70971_1_)
     {
         for (int i = 0; i < p_70971_1_.size(); ++i)
@@ -424,44 +403,32 @@ public class EntityCrystalDragon extends EntityFlying implements GIEntityMultiPa
 
     }
 
-    /**
-     * Sets a new target for the flight AI. It can be a random coordinate or a nearby player.
-     */
     private void setNewTarget()
     {
         this.forceNewTarget = false;
 
         if (this.rand.nextInt(3) == 0 && !this.worldObj.playerEntities.isEmpty())
         {
-            this.target = this.worldObj.playerEntities.get(this.rand.nextInt(this.worldObj.playerEntities.size()));
+            this.target = (Entity)this.worldObj.playerEntities.get(this.rand.nextInt(this.worldObj.playerEntities.size()));   
                       
+        }
+        else if (this.target != null)
+        {
+            float angle = this.rotationYaw * (float)Math.PI / 180.0F;
+            double distance = 20.0D;
+            this.targetX = this.posX + (double)(MathHelper.sin(angle) * distance);
+            this.targetZ = this.posZ - (double)(MathHelper.cos(angle) * distance);
+            this.targetY = this.posY;
+            this.target = null;
         }
         else
         {
-            boolean flag = false;
-
-            do
-            {
-                this.targetX = 0.0D;
-                this.targetY = 70.0F + this.rand.nextFloat() * 50.0F;
-                this.targetZ = 0.0D;
-                this.targetX += this.rand.nextFloat() * 120.0F - 60.0F;
-                this.targetZ += this.rand.nextFloat() * 120.0F - 60.0F;
-                double d0 = this.posX - this.targetX;
-                double d1 = this.posY - this.targetY;
-                double d2 = this.posZ - this.targetZ;
-                flag = d0 * d0 + d1 * d1 + d2 * d2 > 100.0D;
-                              
-            }
-            while (!flag);
-
-            this.target = null;
+            this.targetX = this.posX;
+            this.targetY = this.posY;
+            this.targetZ = this.posZ;
         }
     }
 
-    /**
-     * Simplifies the value of a number by adding/subtracting 180 to the point that the number is between -180 and 180.
-     */
     private float simplifyAngle(double p_70973_1_)
     {
         return (float)MathHelper.wrapAngleTo180_double(p_70973_1_);
@@ -507,7 +474,7 @@ public class EntityCrystalDragon extends EntityFlying implements GIEntityMultiPa
         		EntityPlayer player = (EntityPlayer) ds.getEntity();
                 ItemStack stack = player.inventory.getCurrentItem();
                 
-        		if (stack.getItem() == ItemsAether.dragon_bane || stack.getItem() == ItemsAether.tipped_dragon_bane) {
+        		if (stack != null && stack.getItem() != null && (stack.getItem() == ItemsAether.dragon_bane || stack.getItem() == ItemsAether.tipped_dragon_bane)) {
         			
         			 int rand = (int)(1 + Math.random() * 4);
         				switch (rand) {
@@ -535,7 +502,7 @@ public class EntityCrystalDragon extends EntityFlying implements GIEntityMultiPa
         		        }
         		}
         		
-        		else if (stack.getItem() == ItemsAether.amplified_dragon_bane) {
+        		else if (stack != null && stack.getItem() != null && stack.getItem() == ItemsAether.amplified_dragon_bane) {
         			
         			 int rand = (int)(1 + Math.random() * 4);
         			 switch (rand) {
@@ -588,17 +555,11 @@ public class EntityCrystalDragon extends EntityFlying implements GIEntityMultiPa
         
     }
 
-    /**
-     * Return the Entity parts making up this Entity (currently only for dragons)
-     */
     public Entity[] getParts()
     {
         return this.dragonPartArray;
     }
 
-    /**
-     * Returns true if other Entities should be prevented from moving through this Entity.
-     */
     public boolean canBeCollidedWith()
     {
         return false;
@@ -609,25 +570,16 @@ public class EntityCrystalDragon extends EntityFlying implements GIEntityMultiPa
         return this.worldObj;
     }
 
-    /**
-     * Returns the sound this mob makes while it's alive.
-     */
     protected String getLivingSound()
     {
         return "mob.enderdragon.growl";
     }
 
-    /**
-     * Returns the sound this mob makes when it is hurt.
-     */
     protected String getHurtSound()
     {
         return "mob.enderdragon.hit";
     }
 
-    /**
-     * Returns the volume for the sounds this mob makes.
-     */
     protected float getSoundVolume()
     {
         return 0.5F;

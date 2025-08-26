@@ -143,7 +143,6 @@ public class EntityAerbunny extends EntityAetherAnimal implements IEntityAdditio
 
         if (this.isJumping && !this.isInWater() && !this.handleLavaMovement() && !this.onGround && this.jumpTicks == 0 && this.jumps > 0) {
             if (this.moveForward != 0.0F) {
-                //this.jump();
             }
 
             this.jumpTicks = 10;

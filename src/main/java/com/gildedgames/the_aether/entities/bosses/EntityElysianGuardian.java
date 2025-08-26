@@ -225,17 +225,10 @@ public class EntityElysianGuardian extends EntityMob {
 		}
 	}
 
-	
-	//protected Entity findPlayerToAttack() {
-		//return entityToAttack;
-		
-	//}
-
 	@Override
 	public void writeEntityToNBT(NBTTagCompound compound) {
 		super.writeEntityToNBT(compound);
 
-		//compound.setInteger("angerLevel", this.angerLevel);
 		compound.setInteger("teleTimer", this.teleTimer);
 		compound.setInteger("timeLeft", this.timeLeft);
 		compound.setDouble("safePosX", this.safeX);
@@ -247,7 +240,6 @@ public class EntityElysianGuardian extends EntityMob {
 	public void readEntityFromNBT(NBTTagCompound compound) {
 		super.readEntityFromNBT(compound);
 
-		//this.angerLevel = compound.getInteger("angerLevel");
 		this.teleTimer = compound.getInteger("teleTimer");
 		this.timeLeft = compound.getInteger("timeLeft");
 		this.safeX = compound.getInteger("safePosX");
@@ -333,7 +325,6 @@ public class EntityElysianGuardian extends EntityMob {
                     this.motionY = 0.0;
                     this.motionZ = 0.0;
                     this.worldObj.playSoundAtEntity(this, "random.fizz", 1.3f, 0.3f / (this.rand.nextFloat() * 0.4f + 0.8f));
-                    //this.worldObj.playSoundAtEntity((Entity)this, "aether_legacy:projectile.laser.laser_fire", 1.0f, 0.5f);
                 }
                 ++this.timeSinceIgnited;            
             if (this.timeSinceIgnited >= 75) {
@@ -347,7 +338,6 @@ public class EntityElysianGuardian extends EntityMob {
                     final double d9 = entity1.posY + entity1.getEyeHeight() - 0.40000000298023225 - entityDivineMissile.posY;
                     final float f5 = MathHelper.sqrt_double(d7 * d7 + d8 * d8) * 0.0f;
                     this.worldObj.playSoundAtEntity(this, "aether_legacy:projectile.laser.laser_fire", 0.9f, 0.9f / (this.rand.nextFloat() * 0.4f + 0.8f));
-                    //this.worldObj.playSoundAtEntity((Entity)this, "random.fizz", 0.9f, 0.9f / (this.rand.nextFloat() * 0.4f + 0.8f));
                     this.worldObj.spawnEntityInWorld(entityDivineMissile);
                     entityDivineMissile.setThrowableHeading(d7, d9 + f5, d8, 0.62f, -10.0f);
                     this.timeSinceIgnited = 0;

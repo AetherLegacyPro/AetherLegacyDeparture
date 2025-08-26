@@ -27,6 +27,9 @@ public class PalladiumDungeonWorldGen implements IWorldGenerator {
 	int aether_random = AetherConfig.palladium_dungeon_rarity;
 		
 	public void generateAether(World world, Random rand, int x, int z) {
+		if(Math.abs(x) < 5000 && Math.abs(z) < 5000) return;		
+		if(Math.abs(x) < 5000 || Math.abs(z) < 5000) return;
+		
 		BiomeGenBase biome = world.getWorldChunkManager().getBiomeGenAt(x + 16, z + 16);
 	      if ((biome == AetherWorld.aether_biome) && AetherConfig.palladium_dungeon_rarity != 0 && rand.nextInt(aether_random) == 0 && AetherConfig.palladium_dungeon_enable == true) {
 	         byte byte0 = 20;
@@ -118,7 +121,7 @@ public class PalladiumDungeonWorldGen implements IWorldGenerator {
 	               blocksPerBumpBottomY1 = rand.nextInt(byte14 - byte13) + byte13;
 	            }
 	            	           	    
-	            if (AetherConfig.enableLogReporting() == true) {
+	            if (AetherConfig.enableLogReporting()) {
 		            System.out.println("Palladium Dungeon generated at (X:" + x1 + ", Z:" + z1 + ")");
 		            System.out.println("Large Structure is generating, be patient!");
 	            }

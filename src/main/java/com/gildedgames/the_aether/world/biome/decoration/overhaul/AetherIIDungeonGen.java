@@ -41,26 +41,8 @@ public class AetherIIDungeonGen extends WorldGenerator {
 			holeX = Math.round(radius * MathHelper.cos(holePhi) * MathHelper.cos(holeTheta));
 			holeY = Math.round(radius * MathHelper.sin(holeTheta));
 			holeZ = Math.round(radius * MathHelper.sin(holePhi) * MathHelper.cos(holeTheta));
-			//System.out.println("Hole xyz: " + holeX + " " + holeY + " " + holeZ);
-			//System.out.println("Hole distance sq: " + (Math.sqrt(holeX * holeX + holeY * holeY + holeZ * holeZ)));
-			//System.out.println("Radius & Size: " + radius + " " + size);
-			//System.out.println(attempts + " attempts.");
 			attempts++;
 		}
-		
-//		if(holeSize > -1) {
-//			holeX = random.nextInt(sizeInt * 2) - sizeInt;
-//			holeY = random.nextInt(sizeInt * 2) - sizeInt;
-//			holeZ = random.nextInt(sizeInt * 2) - sizeInt;
-//			int holeDistSq = holeX * holeX + holeY * holeY + holeZ * holeZ;
-//			//Keep guessing with random numbers until the hole is at the proper spot since I don't know how to do this right, lmao
-//			while(holeDistSq > DISTANCE_GRIMSTONE_SQ || holeDistSq < DISTANCE_AMETHYST_SQ) {
-//				holeX = random.nextInt(sizeInt * 2) - sizeInt;
-//				holeY = random.nextInt(sizeInt * 2) - sizeInt;
-//				holeZ = random.nextInt(sizeInt * 2) - sizeInt;
-//				holeDistSq = holeX * holeX + holeY * holeY + holeZ * holeZ;
-//			}
-//		}
 		
         for (int i = -sizeInt; i <= sizeInt; i++) {
             for (int j = -sizeInt; j <= sizeInt; j++) {

@@ -29,7 +29,7 @@ public class GenesisDragonRenderer extends RenderLiving
 
     public GenesisDragonRenderer()
     {
-        super(new GenesisDragonModel(0.0F), 0.5F);
+        super(new GenesisDragonModel(), 0.5F);
         this.modelDragon = (GenesisDragonModel)this.mainModel;
         this.setRenderPassModel(this.mainModel);
     }

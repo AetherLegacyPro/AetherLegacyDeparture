@@ -287,34 +287,22 @@ public class PalladiumDungeon extends WorldGenerator {
    }
 
    private void addToWorld(World world, Random rand, int x, int y, int z, boolean flag, int[][] ai, int l, int i1) {
-      for(int j1 = 0; j1 < l; ++j1) {
-         for(int k1 = 0; k1 < i1; ++k1) {
-            int l1 = ai[j1][k1];
-            int i2 = x + j1;
-            int j2 = z + k1;
+	    for (int j1 = 0; j1 < l; ++j1) {
+	        for (int k1 = 0; k1 < i1; ++k1) {
+	            int l1 = ai[j1][k1];
+	            int i2 = x + j1;
+	            int j2 = z + k1;
 
-            for(int k2 = 0; k2 < l1; ++k2) {
-               int l2;
-               if (flag) {
-                  l2 = y + k2;
-               } else {
-                  l2 = y - k2 - 1;
-               }
+	            for (int k2 = 0; k2 < l1; ++k2) {
+	                int l2 = flag ? y + k2 : y - k2 - 1;
+	                boolean surface = flag && k2 == l1 - 1 || !flag && k2 == 0;
 
-               boolean flag1;
-               if (flag && k2 == l1 - 1) {
-                  flag1 = true;
-               } else {
-                  flag1 = k2 == 0;
-               }
-
-               Block i3 = this.materialAtLevel(rand, l2 - y, flag1);
-               world.setBlock(i2, l2, j2, i3);
-            }
-         }
-      }
-
-   }
+	                Block block = this.materialAtLevel(rand, l2 - y, surface);
+	                world.setBlock(i2, l2, j2, block, 0, 2);
+	            }
+	        }
+	    }
+	}
 
    private Block materialAtLevel(Random rand, int i, boolean flag) {
       byte byte0 = -1;

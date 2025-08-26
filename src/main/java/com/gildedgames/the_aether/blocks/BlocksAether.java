@@ -3,6 +3,7 @@ package com.gildedgames.the_aether.blocks;
 import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.items.block.ItemAetherSlab;
+import com.gildedgames.the_aether.items.block.ItemAuraliteCluster;
 import com.gildedgames.the_aether.items.block.ItemBlockEnchanter;
 import com.gildedgames.the_aether.items.block.ItemBlockFireProof;
 import com.gildedgames.the_aether.items.block.ItemBlockMetadata;
@@ -411,8 +412,8 @@ public class BlocksAether {
 		block_of_auralite = registerRarity("block_of_auralite", new BlockAuralite().setBlockTextureName(Aether.find("block_of_auralite")), ItemsAether.scaled_aether_loot);
 		budding_auralite = registerRarity("budding_auralite", new BlockBuddingAuralite().setBlockTextureName(Aether.find("budding_auralite")), ItemsAether.scaled_aether_loot);
 		auralite_pillar = registerRarity("auralite_pillar", new BlockAuralitePillar().setBlockTextureName(Aether.find("block_of_auralite")), ItemsAether.scaled_aether_loot);
-		auralite_cluster_1 = registerRarity("auralite_cluster_1", new BlockAuraliteCluster(0), ItemsAether.scaled_aether_loot);
-		auralite_cluster_2 = registerRarity("auralite_cluster_2", new BlockAuraliteCluster(1), ItemsAether.scaled_aether_loot);
+		auralite_cluster_1 = registerItemBlock("auralite_cluster_1", new BlockAuraliteCluster(0), ItemAuraliteCluster.class);
+		auralite_cluster_2 = registerItemBlock("auralite_cluster_2", new BlockAuraliteCluster(1), ItemAuraliteCluster.class);
 		
 		block_of_aceninum = registerRarity("block_of_aceninum", new BlockAceninum().setBlockTextureName(Aether.find("block_of_aceninum")), ItemsAether.divine_aether_loot);
 		aceninum_cluster = registerRarity("aceninum_cluster", new BlockAceninumCluster(0), ItemsAether.divine_aether_loot);
@@ -595,8 +596,8 @@ public class BlocksAether {
 		divine_hellfire_stone = register("divine_hellfire_stone", new BlockDungeonBase(false).setBlockTextureName(Aether.find("divine_hellfire_stone")));
 		divine_light_hellfire_stone = register("divine_light_hellfire_stone", new BlockDungeonBase(true).setBlockTextureName(Aether.find("divine_light_hellfire_stone")));
 		
-		fuse_stone = register("fuse_stone", new BlockDungeonBaseOsmium(false).setResistance(15.0F).setBlockTextureName(Aether.find("fuse_stone")));
-		creeping_stone = register("creeping_stone", new BlockDungeonBaseOsmium(true).setResistance(15.0F).setBlockTextureName(Aether.find("creeping_stone")));
+		fuse_stone = register("fuse_stone", new BlockDungeonBase(false).setResistance(15.0F).setBlockTextureName(Aether.find("fuse_stone")));
+		creeping_stone = register("creeping_stone", new BlockDungeonBase(true).setResistance(15.0F).setBlockTextureName(Aether.find("creeping_stone")));
 		
 		
 		genesis_stone = registerHidden("genesis_stone", new BlockGenesisStone());
@@ -636,9 +637,9 @@ public class BlocksAether {
 		locked_divine_hellfire_stone = register("locked_divine_hellfire_stone", new BlockDungeonBase(divine_hellfire_stone, false).setBlockTextureName(Aether.find("divine_hellfire_stone"))).setCreativeTab(null);
 		locked_divine_light_hellfire_stone = register("locked_divine_light_hellfire_stone", new BlockDungeonBase(divine_light_hellfire_stone, true).setBlockTextureName(Aether.find("divine_light_hellfire_stone"))).setCreativeTab(null);
 		
-		
-		locked_fuse_stone = register("locked_fuse_stone", new BlockDungeonBaseOsmium(fuse_stone, false).setResistance(15.0F).setBlockTextureName(Aether.find("fuse_stone"))).setResistance(15.0F).setCreativeTab(null);
-		locked_creeping_stone = register("locked_creeping_stone", new BlockDungeonBaseOsmium(creeping_stone, true).setResistance(15.0F).setBlockTextureName(Aether.find("creeping_stone"))).setResistance(15.0F).setCreativeTab(null);
+		//.setResistance(15.0F)
+		locked_fuse_stone = register("locked_fuse_stone", new BlockDungeonBase(fuse_stone, false).setBlockTextureName(Aether.find("fuse_stone"))).setResistance(15.0F).setCreativeTab(null);
+		locked_creeping_stone = register("locked_creeping_stone", new BlockDungeonBase(creeping_stone, true).setBlockTextureName(Aether.find("creeping_stone"))).setResistance(15.0F).setCreativeTab(null);
 			
 		carved_trap = register("carved_trap", new BlockDungeonTrap(carved_stone).setBlockTextureName(Aether.find("carved_stone"))).setCreativeTab(null);
 		divine_carved_trap = register("divine_carved_trap", new BlockDungeonTrap(divine_carved_stone).setBlockTextureName(Aether.findII("divineCarvedStone"))).setCreativeTab(null);

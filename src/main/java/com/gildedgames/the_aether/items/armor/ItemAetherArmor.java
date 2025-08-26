@@ -1,13 +1,19 @@
 package com.gildedgames.the_aether.items.armor;
 
+import java.util.List;
+
 import com.gildedgames.the_aether.Aether;
+import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.StatCollector;
 
 public class ItemAetherArmor extends ItemArmor {
 
@@ -65,4 +71,9 @@ public class ItemAetherArmor extends ItemArmor {
 	public EnumRarity getRarity(ItemStack stack) {
 		return !this.armorName.contains("zanite") && !this.armorName.contains("gravitite") && !this.armorName.contains("continuum") && !this.armorName.contains("arkenium") ? ItemsAether.aether_loot : super.getRarity(stack);
 	}
+	
+	public void addInformation(final ItemStack stack, final EntityPlayer player, final List tooltip, final boolean who) {
+		if(AetherConfig.enableTooltips())
+        tooltip.add(EnumChatFormatting.GRAY + "" + StatCollector.translateToLocal("tooltip.gravitite_armor.desc"));
+    }
 }

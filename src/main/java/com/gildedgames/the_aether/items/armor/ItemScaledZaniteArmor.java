@@ -1,5 +1,8 @@
 package com.gildedgames.the_aether.items.armor;
 
+import java.util.List;
+
+import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.items.armor.base.ItemZaniteArmorBase;
 
@@ -9,6 +12,8 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.ISpecialArmor;
 
 public class ItemScaledZaniteArmor extends ItemZaniteArmorBase implements ISpecialArmor {
@@ -103,5 +108,10 @@ public class ItemScaledZaniteArmor extends ItemZaniteArmorBase implements ISpeci
 	public EnumRarity getRarity(ItemStack stack) {
 		return ItemsAether.scaled_aether_loot;
 	}
+	
+	public void addInformation(final ItemStack stack, final EntityPlayer player, final List tooltip, final boolean who) {
+		if(AetherConfig.enableTooltips())
+        tooltip.add(EnumChatFormatting.AQUA + "" + StatCollector.translateToLocal("tooltip.zanite_armor.desc"));
+    }
 
 }

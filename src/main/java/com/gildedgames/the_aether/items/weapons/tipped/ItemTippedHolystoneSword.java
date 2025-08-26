@@ -1,5 +1,6 @@
 package com.gildedgames.the_aether.items.weapons.tipped;
 
+import java.util.List;
 import java.util.Random;
 
 import com.gildedgames.the_aether.items.ItemsAether;
@@ -10,6 +11,8 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.StatCollector;
 
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.blocks.BlocksAether;
@@ -47,5 +50,10 @@ public class ItemTippedHolystoneSword extends ItemSword {
 	public EnumRarity getRarity(ItemStack stack) {
 		return ItemsAether.scaled_aether_loot;
 	}
+	
+	public void addInformation(final ItemStack stack, final EntityPlayer player, final List tooltip, final boolean who) {
+		if(AetherConfig.enableTooltips())
+        tooltip.add(EnumChatFormatting.AQUA + "" + StatCollector.translateToLocal("tooltip.holystone_tools.desc"));
+    }
 
 }

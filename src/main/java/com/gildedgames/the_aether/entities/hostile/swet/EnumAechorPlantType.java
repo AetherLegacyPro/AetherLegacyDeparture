@@ -2,7 +2,7 @@ package com.gildedgames.the_aether.entities.hostile.swet;
 
 public enum EnumAechorPlantType {
 
-    CYAN(), CYAN2(), CYAN3(), CYAN4(), CYAN5(), CYAN6(), BLUE(), DARKBLUE(), LIME(), GREEN(), PURPLE(), MAGENTA(), GOLD();
+    CYAN(), CYAN2(), CYAN3(), CYAN4(), CYAN5(), CYAN6(), BLUE(), DARKBLUE(), LIME(), PURPLE(), MAGENTA(), GOLD();
 
 	EnumAechorPlantType() {
 

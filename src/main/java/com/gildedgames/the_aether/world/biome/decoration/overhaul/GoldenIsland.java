@@ -289,34 +289,22 @@ public class GoldenIsland extends WorldGenerator {
    }
 
    private void addToWorld(World world, Random rand, int x, int y, int z, boolean flag, int[][] ai, int l, int i1) {
-      for(int j1 = 0; j1 < l; ++j1) {
-         for(int k1 = 0; k1 < i1; ++k1) {
-            int l1 = ai[j1][k1];
-            int i2 = x + j1;
-            int j2 = z + k1;
+	    for (int j1 = 0; j1 < l; ++j1) {
+	        for (int k1 = 0; k1 < i1; ++k1) {
+	            int l1 = ai[j1][k1];
+	            int i2 = x + j1;
+	            int j2 = z + k1;
 
-            for(int k2 = 0; k2 < l1; ++k2) {
-               int l2;
-               if (flag) {
-                  l2 = y + k2;
-               } else {
-                  l2 = y - k2 - 1;
-               }
+	            for (int k2 = 0; k2 < l1; ++k2) {
+	                int l2 = flag ? y + k2 : y - k2 - 1;
+	                boolean surface = flag && k2 == l1 - 1 || !flag && k2 == 0;
 
-               boolean flag1;
-               if (flag && k2 == l1 - 1) {
-                  flag1 = true;
-               } else {
-                  flag1 = k2 == 0;
-               }
-
-               Block i3 = this.materialAtLevel(rand, l2 - y, flag1);
-               world.setBlock(i2, l2, j2, i3);
-            }
-         }
-      }
-
-   }
+	                Block block = this.materialAtLevel(rand, l2 - y, surface);
+	                world.setBlock(i2, l2, j2, block, 0, 2);
+	            }
+	        }
+	    }
+	}
 
    private Block materialAtLevel(Random rand, int i, boolean flag) {
       byte byte0 = -1;
@@ -345,9 +333,9 @@ public class GoldenIsland extends WorldGenerator {
          int y1 = y - rand.nextInt(10);
          int z1 = z + this.centerZ + rand.nextInt(this.length) - this.centerZ;
          if (world.getBlock(x1, y1, z1).isReplaceableOreGen(world, x, y, z, BlocksAether.holystone)) {
-            world.setBlock(x1, y1, z1, BlocksAether.gravitite_ore);
+            world.setBlock(x1, y1, z1, BlocksAether.arkenium_ore);
 
-            for(int yTest = y1; yTest < 128; ++yTest) { //128
+            for(int yTest = y1; yTest < 128; ++yTest) {
                if (world.getBlock(x1, yTest, z1).isReplaceable(world, x1, yTest, z1) && (world.getBlock(x1, yTest - 1, z1) == BlocksAether.enchanted_aether_grass || world.getBlock(x1, yTest - 1, z1) == BlocksAether.aether_dirt)) {
                   world.setBlock(x1, yTest, z1, BlocksAether.enchanted_aether_tulips);
                   break;
@@ -400,19 +388,21 @@ public class GoldenIsland extends WorldGenerator {
          int l1 = world.getHeightValue(j1, k1);
          if (l1 > 100) {
         	 
-        int rand2 = (int)(1 + Math.random() * 5);
-     	switch (rand2)
+        int chance = (int)(1 + Math.random() * 10);
+     	switch (chance)
         {
         case 1: (new WorldGenTallGrass(BlocksAether.enchanted_aether_tallgrass, 1)).generate(world, rand, j1, l1, k1);
-        break;
+        	break;
         case 2: (new WorldGenTallGrass(BlocksAether.enchanted_aether_tulips, 1)).generate(world, rand, j1, l1, k1);
-        break;
+        	break;
         case 3: (new WorldGenTallGrass(BlocksAether.enchanted_bloom, 1)).generate(world, rand, j1, l1, k1);
-        break;
+        	break;
         case 4: (new WorldGenTallGrass(BlocksAether.enchanted_quickshoot, 1)).generate(world, rand, j1, l1, k1);
-        break;
+        	break;
         case 5: (new WorldGenTallGrass(BlocksAether.enchanted_aether_tallgrass, 1)).generate(world, rand, j1, l1, k1);
-        break;
+        	break;
+        default: (new WorldGenTallGrass(BlocksAether.enchanted_aether_tallgrass, 1)).generate(world, rand, j1, l1, k1);
+        	break;
         }
      	
          }

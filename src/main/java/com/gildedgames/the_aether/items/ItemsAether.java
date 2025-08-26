@@ -360,7 +360,7 @@ public class ItemsAether {
 		arkenium_chunk = register("arkenium_chunk", new ItemAether(AetherCreativeTabs.material).setTextureName(Aether.find("misc/arkenium_chunk")));
 		arkenium_ingot = register("arkenium_ingot", new ItemAether(AetherCreativeTabs.material).setTextureName(Aether.find("misc/arkenium_ingot")));
 		arkenium_nugget = register("arkenium_nugget", new ItemAether(AetherCreativeTabs.material).setTextureName(Aether.find("misc/arkenium_nugget")));
-		continuum_orb = register("continuum_orb", new ItemContinuumOrb().setTextureName(Aether.findII("Continuum Orb")));
+		continuum_orb = register("continuum_orb", new ItemContinuumOrb().setTextureName(Aether.find("misc/continuum_orb")));
 		continuum_gemstone = register("continuum_gemstone", new ItemAether(AetherCreativeTabs.material).setTextureName(Aether.find("misc/continuum_gemstone")));
 		continuum_nugget = register("continuum_nugget", new ItemAether(AetherCreativeTabs.material).setTextureName(Aether.find("misc/continuum_nugget")));
 		valkyrie_ingot = register("valkyrie_ingot", new ItemAether(AetherCreativeTabs.material).setTextureName(Aether.find("misc/valkyrie_ingot")));

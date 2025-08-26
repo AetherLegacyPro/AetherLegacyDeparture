@@ -1,5 +1,6 @@
 package com.gildedgames.the_aether.items.weapons;
 
+import java.util.List;
 import java.util.Random;
 
 import com.gildedgames.the_aether.items.ItemsAether;
@@ -9,7 +10,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.StatCollector;
 
+import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 
 public class ItemHolystoneSword extends ItemSword {
@@ -35,5 +39,10 @@ public class ItemHolystoneSword extends ItemSword {
 		itemstack.damageItem(1, entityliving1);
 		return true;
 	}
+	
+	public void addInformation(final ItemStack stack, final EntityPlayer player, final List tooltip, final boolean who) {
+		if(AetherConfig.enableTooltips())
+        tooltip.add(EnumChatFormatting.GRAY + "" + StatCollector.translateToLocal("tooltip.holystone_tools.desc"));
+    }
 
 }

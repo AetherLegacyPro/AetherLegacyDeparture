@@ -1,14 +1,19 @@
 package com.gildedgames.the_aether.items.tools.tipped;
 
+import java.util.List;
+
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.items.tools.ItemSkyrootTool;
 import com.gildedgames.the_aether.items.util.EnumAetherToolType;
 import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.StatCollector;
 
 public class ItemTippedSkyrootTool extends ItemSkyrootTool {
 
@@ -63,5 +68,10 @@ public class ItemTippedSkyrootTool extends ItemSkyrootTool {
 	private boolean isBetween(int max, int origin, int min) {
 		return origin <= max && origin >= min ? true : false;
 	}
+	
+	public void addInformation(final ItemStack stack, final EntityPlayer player, final List tooltip, final boolean who) {
+		if(AetherConfig.enableTooltips())
+        tooltip.add(EnumChatFormatting.AQUA + "" + StatCollector.translateToLocal("tooltip.skyroot_tools.desc"));
+    }
 
 }

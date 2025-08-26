@@ -24,9 +24,9 @@ public class AbilityBoneRing implements IAetherAbility {
 	@Override
 	public void onUpdate() {
 		EntityLivingBase playerEntity = player.getEntity();
-		if(!playerEntity.isEating()) {
-			return;
-		}
+		//if(!playerEntity.isEating()) {
+			//return;
+		//}
 		IAccessoryInventory accessoryInventory = player.getAccessoryInventory();
 
 		if (accessoryInventory.wearingAccessory(ItemsAether.bone_ring)) {

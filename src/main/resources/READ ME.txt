@@ -55,10 +55,10 @@ assets used at runtime. All rights reserved.
 
 To our best knowledge, this project does not redistribute any code or assets
 we do not have the rights to, and is fully compliant with upstream licenses.
-If you find us to be accidentally redistributig content we do not have the
+If you find us to be accidentally redistributing content we do not have the
 right to, or somehow violating the licenses of used code, please inform us so
 we can address them right away. 
 
-If you are an upstream project, we strive to maintain license compatability
+If you are an upstream project, we strive to maintain license compatibility
 and are more than happy to contribute any fixes or improvements. We are happy
 to license any original code under any license to do so.

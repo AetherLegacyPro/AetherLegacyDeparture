@@ -105,7 +105,7 @@ public class EntityZojzSnowball extends EntityArrow implements IThrowableEntity 
 
 		if (movingobjectposition != null && movingobjectposition.entityHit instanceof EntityPlayer entityplayer)
 		{
-			movingobjectposition.entityHit.attackEntityFrom(DamageSource.generic, 6.0F);
+			movingobjectposition.entityHit.attackEntityFrom(DamageSource.generic, 4.0F);
 			movingobjectposition.entityHit.attackEntityFrom(DamageSource.magic, 2.0F);
 			((EntityLivingBase)movingobjectposition.entityHit).addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 120, 1));
 			((EntityLivingBase)movingobjectposition.entityHit).addPotionEffect(new PotionEffect(Potion.digSlowdown.id, 120, 1));

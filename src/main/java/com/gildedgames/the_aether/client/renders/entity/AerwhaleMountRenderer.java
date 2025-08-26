@@ -5,7 +5,6 @@ import org.lwjgl.opengl.GL11;
 import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.client.models.entities.AerwhaleMountModel;
-import com.gildedgames.the_aether.client.models.entities.OldAerwhaleModel;
 import com.gildedgames.the_aether.entities.passive.mountable.EntityAerwhaleMount;
 
 import net.minecraft.client.renderer.entity.RenderLiving;
@@ -19,13 +18,11 @@ public class AerwhaleMountRenderer extends RenderLiving {
 
     private static final ResourceLocation TEXTURE_SADDLE = Aether.locate("textures/entities/aerwhale_mount/aerwhale_saddle.png");
     
-    private static final ResourceLocation OLD_AERWHALE_TEXTURE = new ResourceLocation("aether_legacy", "textures/entities/aerwhale/old_aerwhale.png");
-
     private final AerwhaleMountModel saddleModel = new AerwhaleMountModel();
 
     public AerwhaleMountRenderer()
     {
-        super(AetherConfig.oldMobsEnabled() ? new OldAerwhaleModel() : new AerwhaleMountModel(), 0.5F);
+        super(new AerwhaleMountModel(), 0.5F);
     }
     
     @Override

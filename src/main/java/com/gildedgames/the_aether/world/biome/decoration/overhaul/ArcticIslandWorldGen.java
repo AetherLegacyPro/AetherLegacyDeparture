@@ -25,20 +25,22 @@ public class ArcticIslandWorldGen implements IWorldGenerator {
 	int aether_random = AetherConfig.arctic_island_rarity; 
 		
 	public void generateAether(World world, Random rand, int x, int z) {
+		if(Math.abs(x) < 500 && Math.abs(z) < 500) return;
+		
 		BiomeGenBase biome = world.getWorldChunkManager().getBiomeGenAt(x + 16, z + 16);
-	      if ((biome == AetherWorld.aether_biome) && AetherConfig.arctic_island_rarity != 0 && rand.nextInt(aether_random) == 0 && AetherConfig.arctic_island_enable == true) {
-	         byte byte0 = 20; //20
-	         byte byte1 = 20; //20
-	         byte byte2 = 35; //35
-	         byte byte3 = 35; //35
-	         byte byte4 = 2; //2
-	         byte byte5 = 5; //5
-	         byte byte6 = 3; //3
-	         byte byte7 = 7; //7
-	         byte bumpHeightMinTop1 = 24; //2 
-	         byte bumpHeightMinBottom1 = 4; //2
+	      if ((biome == AetherWorld.aether_biome) && AetherConfig.arctic_island_rarity != 0 && rand.nextInt(aether_random) == 0 && AetherConfig.arctic_island_enable) {
+	         byte byte0 = 20;
+	         byte byte1 = 20;
+	         byte byte2 = 35;
+	         byte byte3 = 35;
+	         byte byte4 = 2;
+	         byte byte5 = 5;
+	         byte byte6 = 3;
+	         byte byte7 = 7;
+	         byte bumpHeightMinTop1 = 24;
+	         byte bumpHeightMinBottom1 = 4;
 	         byte byte10 = 2;
-	         int l3 = rand.nextInt(3) + 3; //int 3
+	         int l3 = rand.nextInt(3) + 3;
 	         byte byte11 = 5;
 	         byte byte12 = 5;
 	         int i4 = 1;
@@ -46,14 +48,14 @@ public class ArcticIslandWorldGen implements IWorldGenerator {
 	         int j4 = 1;
 	         byte byte14 = 4;
 	         byte blurPassesTop1 = 10;
-	         byte blurPassesBottom1 = 5; //5
+	         byte blurPassesBottom1 = 5;
 	         int spikeHeightVarTop1 = 1;
-	         byte spikeHeightVarBottom1 = 3; //3
+	         byte spikeHeightVarBottom1 = 3;
 	         byte radialDistanceSamples1 = 18;
 	         double radialDistanceMin1 = 0.0D;
-	         double radialDistanceVar1 = 1.0D; //1.0
-	         byte radialDistanceScaling1 = 5; //5
-	         byte radialDistanceBlurPasses1 = 5; //5
+	         double radialDistanceVar1 = 1.0D;
+	         byte radialDistanceScaling1 = 5;
+	         byte radialDistanceBlurPasses1 = 5;
 	         byte byte21 = 35;
 	         if (rand.nextInt(byte21) == 0) {
 	            int x1 = x + rand.nextInt(16) + 8;
@@ -115,20 +117,34 @@ public class ArcticIslandWorldGen implements IWorldGenerator {
 	               blocksPerBumpBottomY1 = rand.nextInt(byte14 - byte13) + byte13;
 	            }
 
-	            if (AetherConfig.enableLogReporting() == true) {
+	            if (AetherConfig.enableLogReporting()) {
 	            System.out.println("Arctic island generated at (X:" + x1 + ", Z:" + z1 + ")");
 	            System.out.println("May take a moment be patient!");
 	            }
 	            
 	            Block genOre = BlocksAether.zanite_ore;
-	            if (world.canBlockSeeTheSky(MathHelper.floor_double(x1), MathHelper.floor_double(y1), MathHelper.floor_double(z1))) {
-	            (new ArcticIsland(bumpsWide1, bumpsLong1, bumpHeightVarTop1, bumpHeightVarBottom1, bumpHeightMinTop1, bumpHeightMinBottom1, blocksPerBumpX1, blocksPerBumpZ1, blocksPerBumpTopY1, blocksPerBumpBottomY1, blurPassesTop1, blurPassesBottom1, spikeHeightVarTop1, spikeHeightVarBottom1, radialDistanceSamples1, radialDistanceMin1, radialDistanceVar1, radialDistanceScaling1, radialDistanceBlurPasses1, genOre)).generate(world, rand, x1, y1, z1);
-	            }
-	            if (world.canBlockSeeTheSky(MathHelper.floor_double(x1 - 32), MathHelper.floor_double(y1), MathHelper.floor_double(z1 + 32))) {
-	            (new ArcticIsland(bumpsWide1, bumpsLong1, bumpHeightVarTop1, bumpHeightVarBottom1, bumpHeightMinTop1, bumpHeightMinBottom1, blocksPerBumpX1, blocksPerBumpZ1, blocksPerBumpTopY1, blocksPerBumpBottomY1, blurPassesTop1, blurPassesBottom1, spikeHeightVarTop1, spikeHeightVarBottom1, radialDistanceSamples1, radialDistanceMin1, radialDistanceVar1, radialDistanceScaling1, radialDistanceBlurPasses1, genOre)).generate(world, rand, x1 - 32, y1, z1 + 32);
-	            }
-	            if (world.canBlockSeeTheSky(MathHelper.floor_double(x1 + 32), MathHelper.floor_double(y1), MathHelper.floor_double(z1 - 32))) {
-	            (new ArcticIsland(bumpsWide1, bumpsLong1, bumpHeightVarTop1, bumpHeightVarBottom1, bumpHeightMinTop1, bumpHeightMinBottom1, blocksPerBumpX1, blocksPerBumpZ1, blocksPerBumpTopY1, blocksPerBumpBottomY1, blurPassesTop1, blurPassesBottom1, spikeHeightVarTop1, spikeHeightVarBottom1, radialDistanceSamples1, radialDistanceMin1, radialDistanceVar1, radialDistanceScaling1, radialDistanceBlurPasses1, genOre)).generate(world, rand, x1 + 32, y1, z1 - 32);
+	            int chance = (int)(1 + Math.random() * 3);
+	            if (chance == 1) {
+	            	if (world.canBlockSeeTheSky(MathHelper.floor_double(x1), MathHelper.floor_double(y1), MathHelper.floor_double(z1))) {
+	    	            (new ArcticIsland(bumpsWide1, bumpsLong1, bumpHeightVarTop1, bumpHeightVarBottom1, bumpHeightMinTop1, bumpHeightMinBottom1, blocksPerBumpX1, blocksPerBumpZ1, blocksPerBumpTopY1, blocksPerBumpBottomY1, blurPassesTop1, blurPassesBottom1, spikeHeightVarTop1, spikeHeightVarBottom1, radialDistanceSamples1, radialDistanceMin1, radialDistanceVar1, radialDistanceScaling1, radialDistanceBlurPasses1, genOre)).generate(world, rand, x1, y1, z1);
+	    	            }
+	            } else if (chance == 2) {
+	                if (world.canBlockSeeTheSky(MathHelper.floor_double(x1), MathHelper.floor_double(y1), MathHelper.floor_double(z1))) {
+	            	  (new ArcticIsland(bumpsWide1, bumpsLong1, bumpHeightVarTop1, bumpHeightVarBottom1, bumpHeightMinTop1, bumpHeightMinBottom1, blocksPerBumpX1, blocksPerBumpZ1, blocksPerBumpTopY1, blocksPerBumpBottomY1, blurPassesTop1, blurPassesBottom1, spikeHeightVarTop1, spikeHeightVarBottom1, radialDistanceSamples1, radialDistanceMin1, radialDistanceVar1, radialDistanceScaling1, radialDistanceBlurPasses1, genOre)).generate(world, rand, x1, y1, z1);
+	               }
+		    	   if (world.canBlockSeeTheSky(MathHelper.floor_double(x1 - 32), MathHelper.floor_double(y1), MathHelper.floor_double(z1 + 32))) {
+		    	      (new ArcticIsland(bumpsWide1, bumpsLong1, bumpHeightVarTop1, bumpHeightVarBottom1, bumpHeightMinTop1, bumpHeightMinBottom1, blocksPerBumpX1, blocksPerBumpZ1, blocksPerBumpTopY1, blocksPerBumpBottomY1, blurPassesTop1, blurPassesBottom1, spikeHeightVarTop1, spikeHeightVarBottom1, radialDistanceSamples1, radialDistanceMin1, radialDistanceVar1, radialDistanceScaling1, radialDistanceBlurPasses1, genOre)).generate(world, rand, x1 - 32, y1, z1 + 32);
+		    	   }
+	            } else {
+	               if (world.canBlockSeeTheSky(MathHelper.floor_double(x1), MathHelper.floor_double(y1), MathHelper.floor_double(z1))) {
+	    	           (new ArcticIsland(bumpsWide1, bumpsLong1, bumpHeightVarTop1, bumpHeightVarBottom1, bumpHeightMinTop1, bumpHeightMinBottom1, blocksPerBumpX1, blocksPerBumpZ1, blocksPerBumpTopY1, blocksPerBumpBottomY1, blurPassesTop1, blurPassesBottom1, spikeHeightVarTop1, spikeHeightVarBottom1, radialDistanceSamples1, radialDistanceMin1, radialDistanceVar1, radialDistanceScaling1, radialDistanceBlurPasses1, genOre)).generate(world, rand, x1, y1, z1);
+	    	       }
+	    	       if (world.canBlockSeeTheSky(MathHelper.floor_double(x1 - 32), MathHelper.floor_double(y1), MathHelper.floor_double(z1 + 32))) {
+	    	           (new ArcticIsland(bumpsWide1, bumpsLong1, bumpHeightVarTop1, bumpHeightVarBottom1, bumpHeightMinTop1, bumpHeightMinBottom1, blocksPerBumpX1, blocksPerBumpZ1, blocksPerBumpTopY1, blocksPerBumpBottomY1, blurPassesTop1, blurPassesBottom1, spikeHeightVarTop1, spikeHeightVarBottom1, radialDistanceSamples1, radialDistanceMin1, radialDistanceVar1, radialDistanceScaling1, radialDistanceBlurPasses1, genOre)).generate(world, rand, x1 - 32, y1, z1 + 32);
+	    	       }
+	    	       if (world.canBlockSeeTheSky(MathHelper.floor_double(x1 + 32), MathHelper.floor_double(y1), MathHelper.floor_double(z1 - 32))) {
+	    	         (new ArcticIsland(bumpsWide1, bumpsLong1, bumpHeightVarTop1, bumpHeightVarBottom1, bumpHeightMinTop1, bumpHeightMinBottom1, blocksPerBumpX1, blocksPerBumpZ1, blocksPerBumpTopY1, blocksPerBumpBottomY1, blurPassesTop1, blurPassesBottom1, spikeHeightVarTop1, spikeHeightVarBottom1, radialDistanceSamples1, radialDistanceMin1, radialDistanceVar1, radialDistanceScaling1, radialDistanceBlurPasses1, genOre)).generate(world, rand, x1 + 32, y1, z1 - 32);
+	    	      }
 	            }
 	         }
 	       }							

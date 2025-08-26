@@ -26,13 +26,10 @@ public class EntityUligo extends EntityLiving implements IMob
     public float squishAmount;
     public float squishFactor;
     public float prevSquishFactor;
-    /** ticks until this slime jumps again */
     private int slimeJumpDelay;
     private int lastActiveTime;
-    /** The amount of time since the creeper was close enough to the player to ignite */
     private int timeSinceIgnited;
     private int fuseTime = 20;
-    /** Explosion radius for this creeper. */
     private int explosionRadius = 2;  
 
     public EntityUligo(World p_i1742_1_)
@@ -73,18 +70,12 @@ public class EntityUligo extends EntityLiving implements IMob
         this.experienceValue = p_70799_1_;
     }
 
-    /**
-     * Returns the size of the slime.
-     */
     public int getSlimeSize()
     {
         return this.dataWatcher.getWatchableObjectByte(16);
         
     }
 
-    /**
-     * (abstract) Protected helper method to write subclass entity data to NBT.
-     */
     public void writeEntityToNBT(NBTTagCompound p_70014_1_)
     {
         super.writeEntityToNBT(p_70014_1_);
@@ -99,19 +90,13 @@ public class EntityUligo extends EntityLiving implements IMob
         p_70014_1_.setByte("ExplosionRadius", (byte)this.explosionRadius);
         p_70014_1_.setBoolean("ignited", this.func_146078_ca());
     }
-    
-    /**
-     * Called when a lightning bolt hits the entity.
-     */
+
     public void onStruckByLightning(EntityLightningBolt p_70077_1_)
     {
         super.onStruckByLightning(p_70077_1_);
         this.dataWatcher.updateObject(17, (byte) 1);
     }
 
-    /**
-     * (abstract) Protected helper method to read subclass entity data from NBT.
-     */
     public void readEntityFromNBT(NBTTagCompound p_70037_1_)
     {
         super.readEntityFromNBT(p_70037_1_);
@@ -142,17 +127,11 @@ public class EntityUligo extends EntityLiving implements IMob
         }
     }
 
-    /**
-     * Returns the name of the sound played when the slime jumps.
-     */
     protected String getJumpSound()
     {
         return "mob.slime." + (this.getSlimeSize() > 1 ? "big" : "small");
     }
 
-    /**
-     * Called to update the entity's position/logic.
-     */
     public void onUpdate()
     {
         if (!this.worldObj.isRemote && this.worldObj.difficultySetting == EnumDifficulty.PEACEFUL && this.getSlimeSize() > 0)
@@ -268,9 +247,6 @@ public class EntityUligo extends EntityLiving implements IMob
         this.squishAmount *= 0.75F;
     }
 
-    /**
-     * Gets the amount of time the slime needs to wait between jumps.
-     */
     protected int getJumpDelay()
     {
         return this.rand.nextInt(10) + 5;
@@ -281,9 +257,6 @@ public class EntityUligo extends EntityLiving implements IMob
         return new EntityUligo(this.worldObj);
     }
 
-    /**
-     * Will get destroyed next tick.
-     */
     public void setDead()
     {
         int i = this.getSlimeSize();
@@ -306,9 +279,6 @@ public class EntityUligo extends EntityLiving implements IMob
         super.setDead();
     }
 
-    /**
-     * Called by a player entity when they collide with an entity
-     */
     public void onCollideWithPlayer(EntityPlayer p_70100_1_)
     {
         if (this.canDamagePlayer())
@@ -350,33 +320,21 @@ public class EntityUligo extends EntityLiving implements IMob
 		return super.attackEntityFrom(source, amount);
 	}
 
-    /**
-     * Indicates weather the slime is able to damage the player (based upon the slime's size)
-     */
     protected boolean canDamagePlayer()
     {
         return this.getSlimeSize() >= 1;
     }
 
-    /**
-     * Gets the amount of damage dealt to the player when "attacked" by the slime.
-     */
     protected int getAttackStrength()
     {
         return this.getSlimeSize();
     }
 
-    /**
-     * Returns the sound this mob makes when it is hurt.
-     */
     protected String getHurtSound()
     {
         return "aether_legacy:aemob.uligo.hurt";
     }
 
-    /**
-     * Returns the sound this mob makes on death.
-     */
     protected String getDeathSound()
     {
         return "aether_legacy:aemob.uligo.death";
@@ -407,34 +365,21 @@ public class EntityUligo extends EntityLiving implements IMob
         return super.interact(p_70085_1_);
     }
 
-    /**
-     * Returns the volume for the sounds this mob makes.
-     */
     protected float getSoundVolume()
     {
         return 0.2F * (float)this.getSlimeSize();
     }
 
-    /**
-     * The speed it takes to move the entityliving's rotationPitch through the faceEntity method. This is only currently
-     * use in wolves.
-     */
     public int getVerticalFaceSpeed()
     {
         return 0;
     }
 
-    /**
-     * Returns true if the slime makes a sound when it jumps (based upon the slime's size)
-     */
     protected boolean makesSoundOnJump()
     {
         return this.getSlimeSize() > 0;
     }
 
-    /**
-     * Returns true if the slime makes a sound when it lands after a jump (based upon the slime's size)
-     */
     protected boolean makesSoundOnLand()
     {
         return this.getSlimeSize() > 2;
@@ -492,18 +437,12 @@ public class EntityUligo extends EntityLiving implements IMob
             this.setDead();
         }
     }
-    
-    /**
-     * Returns true if the creeper is powered by a lightning bolt.
-     */
+
     public boolean getPowered()
     {
         return this.dataWatcher.getWatchableObjectByte(17) == 1;
     }
 
-    /**
-     * Params: (Float)Render tick. Returns the intensity of the creeper's flash when it is ignited.
-     */
     @SideOnly(Side.CLIENT)
     public float getCreeperFlashIntensity(float p_70831_1_)
     {
@@ -519,18 +458,12 @@ public class EntityUligo extends EntityLiving implements IMob
     {
         this.dataWatcher.updateObject(18, (byte) 1);
     }
-    
-    /**
-     * Returns the current state of creeper, -1 is idle, 1 is 'in fuse'
-     */
+
     public int getCreeperState()
     {
         return this.dataWatcher.getWatchableObjectByte(15);
     }
 
-    /**
-     * Sets the state of creeper, -1 to idle and 1 to be 'in fuse'
-     */
     public void setCreeperState(int p_70829_1_)
     {
         this.dataWatcher.updateObject(15, (byte) p_70829_1_);

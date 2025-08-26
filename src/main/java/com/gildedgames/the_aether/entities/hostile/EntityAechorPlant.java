@@ -210,20 +210,6 @@ public class EntityAechorPlant extends EntityAetherAnimal {
         {
 			this.dropItem(ItemsAether.golden_aechor_petal, 1 + count);
         }
-		/*
-		else if (this.getType() == EnumAechorPlantType.MAGENTA)
-        {
-			this.dropItem(ItemsAether.aechor_petal, 1 + count);
-        }
-		else if (this.getType() == EnumAechorPlantType.PURPLE)
-        {
-			this.dropItem(ItemsAether.aechor_petal, 1 + count);
-        }
-        else if (this.getType() == EnumAechorPlantType.LIME)
-        {
-			this.dropItem(ItemsAether.aechor_petal, 1 + count);
-        }
-		*/
 		else {
 			this.dropItem(ItemsAether.aechor_petal, 1 + count);
 		 }

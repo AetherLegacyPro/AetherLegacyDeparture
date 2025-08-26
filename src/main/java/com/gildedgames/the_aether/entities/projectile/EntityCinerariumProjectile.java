@@ -17,7 +17,6 @@ public class EntityCinerariumProjectile extends EntityFireball
     {
         super(p_i1770_1_);
         this.setSize(0.0125F, 0.0125F);
-        //this.setSize(0.3125F, 0.3125F);
     }
 
     public EntityCinerariumProjectile(World p_i1771_1_, EntityLivingBase p_i1771_2_, double p_i1771_3_, double p_i1771_5_, double p_i1771_7_)
@@ -41,9 +40,6 @@ public class EntityCinerariumProjectile extends EntityFireball
     	 this.setFire(1);
     }
 
-    /**
-     * Called when this EntityFireball hits a block or entity.
-     */
     protected void onImpact(MovingObjectPosition p_70227_1_)
     {
         if (!this.worldObj.isRemote)
@@ -97,17 +93,11 @@ public class EntityCinerariumProjectile extends EntityFireball
         }
     }
 
-    /**
-     * Returns true if other Entities should be prevented from moving through this Entity.
-     */
     public boolean canBeCollidedWith()
     {
         return false;
     }
 
-    /**
-     * Called when the entity is attacked.
-     */
     public boolean attackEntityFrom(DamageSource p_70097_1_, float p_70097_2_)
     {
         return false;

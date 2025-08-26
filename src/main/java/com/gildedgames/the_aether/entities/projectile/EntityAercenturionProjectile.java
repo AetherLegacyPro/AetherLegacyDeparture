@@ -36,14 +36,6 @@ public class EntityAercenturionProjectile extends EntityArrow implements IThrowa
 
 		if (this.hitGround) {
 			++this.timeInGround;
-
-			//if (this.timeInGround % 5 == 0) {
-			//	 ParticleHandler.VIBRATION.spawn(worldObj, this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width, this.posY + this.rand.nextDouble() * (double)this.height - 0.25D, this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width);      
-			//}
-		} else {
-			//for (int j = 0; j < 2; ++j) {
-			//	 ParticleHandler.VIBRATION.spawn(worldObj, this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width, this.posY + this.rand.nextDouble() * (double)this.height - 0.25D, this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width);      
-			//}
 		}
 		
 		if (this.ticksInAir > 200) {
@@ -76,7 +68,7 @@ public class EntityAercenturionProjectile extends EntityArrow implements IThrowa
 			if (entity1.canBeCollidedWith() && (entity1 != this.shootingEntity))
 			{
 				f1 = 0.3F;
-				AxisAlignedBB axisalignedbb1 = entity1.boundingBox.expand(f1, f1, f1);
+				AxisAlignedBB axisalignedbb1 = entity1.boundingBox.expand((double)f1, (double)f1, (double)f1);
 				MovingObjectPosition movingobjectposition1 = axisalignedbb1.calculateIntercept(vec31, vec3);
 
 				if (movingobjectposition1 != null)
@@ -97,8 +89,9 @@ public class EntityAercenturionProjectile extends EntityArrow implements IThrowa
 			movingobjectposition = new MovingObjectPosition(entity);
 		}
 
-		if (movingobjectposition != null && movingobjectposition.entityHit instanceof EntityPlayer entityplayer)
+		if (movingobjectposition != null && movingobjectposition.entityHit != null && movingobjectposition.entityHit instanceof EntityPlayer)
 		{
+			EntityPlayer entityplayer = (EntityPlayer)movingobjectposition.entityHit;
 
 			if (entityplayer.capabilities.disableDamage || this.shootingEntity instanceof EntityPlayer && !((EntityPlayer)this.shootingEntity).canAttackPlayer(entityplayer))
 			{

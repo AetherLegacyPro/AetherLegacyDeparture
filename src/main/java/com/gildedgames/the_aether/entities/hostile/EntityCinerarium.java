@@ -16,9 +16,7 @@ import net.minecraft.world.World;
 
 public class EntityCinerarium extends EntityMob
 {
-    /** Random offset used in floating behaviour */
     private float heightOffset = 0.5F;
-    /** ticks until heightOffset is randomized */
     private int heightOffsetUpdateTime;
     private int field_70846_g;
 
@@ -42,25 +40,16 @@ public class EntityCinerarium extends EntityMob
         this.dataWatcher.addObject(16, (byte) 0);
     }
 
-    /**
-     * Returns the sound this mob makes while it's alive.
-     */
     protected String getLivingSound()
     {
         return "mob.blaze.breathe";
     }
 
-    /**
-     * Returns the sound this mob makes when it is hurt.
-     */
     protected String getHurtSound()
     {
         return "mob.blaze.hit";
     }
 
-    /**
-     * Returns the sound this mob makes on death.
-     */
     protected String getDeathSound()
     {
         return "mob.blaze.death";
@@ -80,10 +69,6 @@ public class EntityCinerarium extends EntityMob
         return 1.0F;
     }
 
-    /**
-     * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
-     * use this to react to sunlight and start to burn.
-     */
     public void onLivingUpdate()
     {
         if (!this.worldObj.isRemote)
@@ -126,9 +111,6 @@ public class EntityCinerarium extends EntityMob
         super.onLivingUpdate();
     }
 
-    /**
-     * Basic mob attack. Default to touch of death in EntityCreature. Overridden by each mob to define their attack.
-     */
     protected void attackEntity(Entity p_70785_1_, float p_70785_2_)
     {
         if (this.attackTime <= 0 && p_70785_2_ < 2.0F && p_70785_1_.boundingBox.maxY > this.boundingBox.minY && p_70785_1_.boundingBox.minY < this.boundingBox.maxY)
@@ -186,9 +168,6 @@ public class EntityCinerarium extends EntityMob
         }
     }
 
-    /**
-     * Called when the mob is falling. Calculates and applies fall damage.
-     */
     protected void fall(float p_70069_1_) {}
 
     protected Item getDropItem()
@@ -196,18 +175,11 @@ public class EntityCinerarium extends EntityMob
         return ItemsAether.cinerarium_rod;
     }
 
-    /**
-     * Returns true if the entity is on fire. Used by render to add the fire effect on rendering.
-     */
     public boolean isBurning()
     {
         return this.func_70845_n();
     }
 
-    /**
-     * Drop 0-2 items of this living's type. @param par1 - Whether this entity has recently been hit by a player. @param
-     * par2 - Level of Looting used to kill this mob.
-     */
     protected void dropFewItems(boolean p_70628_1_, int p_70628_2_)
     {
         if (p_70628_1_)
@@ -242,9 +214,6 @@ public class EntityCinerarium extends EntityMob
         this.dataWatcher.updateObject(16, b0);
     }
 
-    /**
-     * Checks to make sure the light is not too bright where the mob is spawning
-     */
     protected boolean isValidLightLevel()
     {
         return true;
