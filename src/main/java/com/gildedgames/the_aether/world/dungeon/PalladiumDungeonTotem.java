@@ -121,7 +121,7 @@ public class PalladiumDungeonTotem extends WorldGenerator {
 				return new ItemStack(ItemsAether.overworld_slayer);
 			case 2: {
 				if (random.nextBoolean())
-					return new ItemStack(ItemsAether.divineral_ingot, random.nextInt(1) + 1);
+					return new ItemStack(ItemsAether.divineral_ingot, random.nextInt(2) + 1);
 				if (random.nextBoolean())
 					return new ItemStack(ItemsAether.arkenium_ingot, random.nextInt(5) + 2);
 				if (random.nextBoolean())
@@ -136,36 +136,29 @@ public class PalladiumDungeonTotem extends WorldGenerator {
 				return new ItemStack(ItemsAether.elysian_helmet);
 			case 5:
 				return new ItemStack(ItemsAether.power_shard);
-			case 6: {
-				if (random.nextBoolean())
+			case 6:
+			case 8:switch (random.nextInt(5)) {
+				case 0 :
 					return new ItemStack(ItemsAether.elysian_helmet);
-				if (random.nextBoolean())
+				case 1:
 					return new ItemStack(ItemsAether.elysian_leggings);
-				if (random.nextBoolean())
+				case 2:
 					return new ItemStack(ItemsAether.elysian_chestplate);
-				break;
-			}
-			case 7: {
-				if (random.nextBoolean())
+				case 3:
 					return new ItemStack(ItemsAether.elysian_boots);
-				return new ItemStack(ItemsAether.elysian_gloves);
+				case 4:
+					return new ItemStack(ItemsAether.elysian_gloves);
 			}
-			case 8: {
-				if (random.nextBoolean())
-					return new ItemStack(ItemsAether.elysian_leggings);
+			case 7:
 				return new ItemStack(ItemsAether.elysian_gloves);
-			}
 			case 9:
 				return new ItemStack(ItemsAether.elysian_leggings);
 			case 10:
 				return new ItemStack(ItemsAether.enchanted_divineral, random.nextInt(5) + 2);
 			case 11:
-				if (random.nextBoolean())
-					return new ItemStack(ItemsAether.elysian_chestplate);
+				return new ItemStack(ItemsAether.elysian_chestplate);
 			case 12:
-				if (random.nextBoolean())
-					return new ItemStack(ItemsAether.elysian_boots);
-				return new ItemStack(ItemsAether.elysian_gloves);
+				return new ItemStack(ItemsAether.elysian_boots);
 			case 13:
 				if (random.nextBoolean())
 					return new ItemStack(ItemsAether.elysian_ring);
@@ -175,10 +168,9 @@ public class PalladiumDungeonTotem extends WorldGenerator {
 			case 15:
 				return new ItemStack(ItemsAether.notched_pickaxe);
 			case 16:
-				return new ItemStack(ItemsAether.notched_core);
-			case 17:
-				return new ItemStack(ItemsAether.notched_core);
-			case 18:
+            case 17:
+                return new ItemStack(ItemsAether.notched_core);
+            case 18:
 				return new ItemStack(ItemsAether.ender_slayer);
 			case 19:
 				return new ItemStack(ItemsAether.dragon_bane);

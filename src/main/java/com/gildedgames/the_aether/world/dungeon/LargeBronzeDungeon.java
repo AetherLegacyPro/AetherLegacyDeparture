@@ -828,7 +828,7 @@ public class LargeBronzeDungeon extends AetherDungeon {
 	}
 
 	private ItemStack getNormalLoot(Random random) {
-		int item = random.nextInt(15);
+		int item = random.nextInt(17);
 		switch (item) {
 			case 0:
 				return new ItemStack(ItemsAether.zanite_pickaxe);
@@ -892,31 +892,21 @@ public class LargeBronzeDungeon extends AetherDungeon {
 
 	public static ItemStack getAncientBronzeLoot(Random random) {
 		int item = random.nextInt(10);
-		switch (item) {
-			case 0:
-				return new ItemStack(ItemsAether.gummy_swet);
-			case 1:
-				return new ItemStack(ItemsAether.phoenix_bow);
-			case 2:
-				return new ItemStack(ItemsAether.flaming_sword);
-			case 3:
-				return new ItemStack(ItemsAether.jeb_hammer);
-			case 4:
-				return new ItemStack(ItemsAether.lightning_knife, random.nextInt(5) + 6);
-			case 5:
-				return new ItemStack(ItemsAether.valkyrie_lance);
-			case 6:
-				return new ItemStack(ItemsAether.agility_cape);
-			case 7:
-				return new ItemStack(ItemsAether.sentry_boots);
-			case 8:
-				return new ItemStack(ItemsAether.repulsion_shield);
-			case 9:
-				return new ItemStack(ItemsAether.cloud_staff);
-		}
+        switch (item) {
+            case 0 : return new ItemStack(ItemsAether.gummy_swet);
+            case 1 : return new ItemStack(ItemsAether.phoenix_bow);
+            case 2 : return new ItemStack(ItemsAether.flaming_sword);
+            case 3 : return new ItemStack(ItemsAether.jeb_hammer);
+            case 4 : return new ItemStack(ItemsAether.lightning_knife, random.nextInt(5) + 6);
+            case 5 : return new ItemStack(ItemsAether.valkyrie_lance);
+            case 6 : return new ItemStack(ItemsAether.agility_cape);
+            case 7 : return new ItemStack(ItemsAether.sentry_boots);
+            case 8 : return new ItemStack(ItemsAether.repulsion_shield);
+            case 9 : return new ItemStack(ItemsAether.cloud_staff);
+            default : return new ItemStack(ItemsAether.arkenium_fragement, random.nextInt(1) + 2);
+        }
 
-		return new ItemStack(ItemsAether.arkenium_fragement, random.nextInt(1) + 2);
-	}
+    }
 	
 	protected Block setRandomBlock(World world, Random random) {
 		int nextInt = random.nextInt(15);

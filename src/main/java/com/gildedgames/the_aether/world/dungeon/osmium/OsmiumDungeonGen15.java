@@ -2606,7 +2606,7 @@ public class OsmiumDungeonGen15 extends WorldGenerator {
 					return new ItemStack(BlocksAether.enchanted_agiosite, random.nextInt(10) + 20);			
 			case 12: 
 				if (random.nextInt(10) == 0)
-					return new ItemStack(BlocksAether.aerogel, random.nextInt(1) + 1);
+					return new ItemStack(BlocksAether.aerogel, random.nextInt(2) + 1);
 			
 			default: 
 				return new ItemStack(ItemsAether.arkenium_fragement, random.nextInt(3) + 2);

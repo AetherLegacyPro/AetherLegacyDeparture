@@ -28,35 +28,30 @@ public class PalladiumDecorationGemstonePiles extends WorldGenAbstractTree
     		int random2 = (int)(1 + Math.random() * 30);
     		int random3 = (int)(0 + Math.random() * 8);
     		switch (random2) {
-    		case 1: world.setBlock(x, y, z, BlocksAether.zanite_pile, random3, random3);
+                case 5:
+                case 9:
+                case 10:
+                    world.setBlock(x, y, z, BlocksAether.arkenium_pile, random3, random3);
     			break;
-    		case 2: world.setBlock(x, y, z, BlocksAether.zanite_pile, random3, random3);
+    		case 6:
+                case 11:
+                    world.setBlock(x, y, z, BlocksAether.continuum_pile, random3, random3);
     			break;
-    		case 3: world.setBlock(x, y, z, BlocksAether.zanite_pile, random3, random3);
-    			break;
-    		case 4: world.setBlock(x, y, z, BlocksAether.zanite_pile, random3, random3);
-    			break;
-    		case 5: world.setBlock(x, y, z, BlocksAether.arkenium_pile, random3, random3);
-    			break;
-    		case 6: world.setBlock(x, y, z, BlocksAether.continuum_pile, random3, random3);
-    			break;
-    		case 7: world.setBlock(x, y, z, BlocksAether.gravitite_pile, random3, random3);
+    		case 7:
+                case 12:
+                    world.setBlock(x, y, z, BlocksAether.gravitite_pile, random3, random3);
     			break;
     		case 8: world.setBlock(x, y, z, BlocksAether.divineral_pile, random3, random3);
     			break;
-    		case 9: world.setBlock(x, y, z, BlocksAether.arkenium_pile, random3, random3);
-				break;
-    		case 10: world.setBlock(x, y, z, BlocksAether.arkenium_pile, random3, random3);
-				break;
-    		case 11: world.setBlock(x, y, z, BlocksAether.continuum_pile, random3, random3);
-				break;
-    		case 12: world.setBlock(x, y, z, BlocksAether.gravitite_pile, random3, random3);
-				break;
-    		case 13: world.setBlock(x, y, z, BlocksAether.diamond_aercloud, 1, 1);
+                case 13: world.setBlock(x, y, z, BlocksAether.diamond_aercloud, 1, 1);
 				break;
     		case 14: world.setBlock(x, y, z, BlocksAether.diamond_aercloud, 2, 2);
 				break;
-    		default: world.setBlock(x, y, z, BlocksAether.zanite_pile, random3, random3);
+                case 4:
+                case 3:
+                case 2:
+                case 1:
+                default: world.setBlock(x, y, z, BlocksAether.zanite_pile, random3, random3);
     			break;
     		}
     	

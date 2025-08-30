@@ -355,7 +355,7 @@ public class CobaltDungeon extends AetherDungeon {
 		int q = z + 5 + random.nextInt(2);
 
 		switch (type) {
-			case 0: {
+			case 0:case 1: {
 				if (world.getBlock(p, y + 2, q) == Blocks.air) {
 					world.setBlock(p, y + 2, q, BlocksAether.skyroot_chest);
 					TileEntitySkyrootChest chest = (TileEntitySkyrootChest) world.getTileEntity(p, y + 2, q);
@@ -459,111 +459,7 @@ public class CobaltDungeon extends AetherDungeon {
 				}
 				break;
 			}
-			case 1: {
-				if (world.getBlock(p, y + 2, q) == Blocks.air) {
-					world.setBlock(p, y + 2, q, BlocksAether.skyroot_chest);
-					TileEntitySkyrootChest chest = (TileEntitySkyrootChest) world.getTileEntity(p, y + 2, q);
-
-					for (p = 0; p < 3 + random.nextInt(3); p++) {
-						chest.setInventorySlotContents(random.nextInt(chest.getSizeInventory()), this.getNormalLoot(random));
-					}
-					
-					// - -	
-					world.setBlock(x + 4, y + 6, z + 4, BlocksAether.carved_caelestia_stone_wall);
-										
-					world.setBlock(x + 3, y + 1, z + 3, BlocksAether.carved_caelestia_stone);
-					world.setBlock(x + 4, y + 1, z + 3, BlocksAether.carved_caelestia_stone);
-					world.setBlock(x + 3, y + 1, z + 4, BlocksAether.carved_caelestia_stone);
-					world.setBlock(x + 3, y + 2, z + 3, BlocksAether.carved_caelestia_stone_wall);
-					world.setBlock(x + 4, y + 2, z + 3, BlocksAether.carved_caelestia_stone_wall);
-					world.setBlock(x + 3, y + 2, z + 4, BlocksAether.carved_caelestia_stone_wall);
-					
-					// + -
-					world.setBlock(x + 7, y + 6, z + 4, BlocksAether.carved_caelestia_stone_wall);
-					
-					world.setBlock(x + 8, y + 1, z + 3, BlocksAether.carved_caelestia_stone);
-					world.setBlock(x + 7, y + 1, z + 3, BlocksAether.carved_caelestia_stone);
-					world.setBlock(x + 8, y + 1, z + 4, BlocksAether.carved_caelestia_stone);				
-					world.setBlock(x + 8, y + 2, z + 3, BlocksAether.carved_caelestia_stone_wall);
-					world.setBlock(x + 7, y + 2, z + 3, BlocksAether.carved_caelestia_stone_wall);
-					world.setBlock(x + 8, y + 2, z + 4, BlocksAether.carved_caelestia_stone_wall);
-					
-					// - +
-					world.setBlock(x + 4, y + 6, z + 7, BlocksAether.carved_caelestia_stone_wall);
-					
-					world.setBlock(x + 3, y + 1, z + 8, BlocksAether.carved_caelestia_stone);
-					world.setBlock(x + 3, y + 1, z + 7, BlocksAether.carved_caelestia_stone);
-					world.setBlock(x + 4, y + 1, z + 8, BlocksAether.carved_caelestia_stone);					
-					world.setBlock(x + 3, y + 2, z + 8, BlocksAether.carved_caelestia_stone_wall);
-					world.setBlock(x + 3, y + 2, z + 7, BlocksAether.carved_caelestia_stone_wall);
-					world.setBlock(x + 4, y + 2, z + 8, BlocksAether.carved_caelestia_stone_wall);
-					
-					// + +
-					world.setBlock(x + 7, y + 6, z + 7, BlocksAether.carved_caelestia_stone_wall);
-					
-					world.setBlock(x + 8, y + 1, z + 8, BlocksAether.carved_caelestia_stone);
-					world.setBlock(x + 7, y + 1, z + 8, BlocksAether.carved_caelestia_stone);
-					world.setBlock(x + 8, y + 1, z + 7, BlocksAether.carved_caelestia_stone);					
-					world.setBlock(x + 8, y + 2, z + 8, BlocksAether.carved_caelestia_stone_wall);
-					world.setBlock(x + 7, y + 2, z + 8, BlocksAether.carved_caelestia_stone_wall);
-					world.setBlock(x + 8, y + 2, z + 7, BlocksAether.carved_caelestia_stone_wall);
-					
-					world.setBlock(x + 1, y + 1, z + 1, BlocksAether.carved_caelestia_stone_wall);
-					world.setBlock(x + 1, y + 2, z + 1, BlocksAether.carved_caelestia_stone_wall);
-					world.setBlock(x + 1, y + 3, z + 1, BlocksAether.carved_caelestia_stone_wall);
-					world.setBlock(x + 1, y + 4, z + 1, BlocksAether.carved_caelestia_stone_wall);
-					world.setBlock(x + 1, y + 5, z + 1, BlocksAether.carved_caelestia_stone_wall);
-					world.setBlock(x + 1, y + 6, z + 1, BlocksAether.carved_caelestia_stone_wall);
-					
-					world.setBlock(x + 9, y + 1, z + 1, BlocksAether.carved_caelestia_stone_wall);					
-					world.setBlock(x + 9, y + 2, z + 1, BlocksAether.carved_caelestia_stone_wall);
-					world.setBlock(x + 9, y + 3, z + 1, BlocksAether.carved_caelestia_stone_wall);
-					world.setBlock(x + 9, y + 4, z + 1, BlocksAether.carved_caelestia_stone_wall);
-					world.setBlock(x + 9, y + 5, z + 1, BlocksAether.carved_caelestia_stone_wall);
-					world.setBlock(x + 9, y + 6, z + 1, BlocksAether.carved_caelestia_stone_wall);	
-					
-					world.setBlock(x + 9, y + 1, z + 9, BlocksAether.carved_caelestia_stone_wall);
-					world.setBlock(x + 9, y + 2, z + 9, BlocksAether.carved_caelestia_stone_wall);
-					world.setBlock(x + 9, y + 3, z + 9, BlocksAether.carved_caelestia_stone_wall);
-					world.setBlock(x + 9, y + 4, z + 9, BlocksAether.carved_caelestia_stone_wall);
-					world.setBlock(x + 9, y + 5, z + 9, BlocksAether.carved_caelestia_stone_wall);
-					world.setBlock(x + 9, y + 6, z + 9, BlocksAether.carved_caelestia_stone_wall);	
-					
-					world.setBlock(x + 1, y + 1, z + 9, BlocksAether.carved_caelestia_stone_wall);
-					world.setBlock(x + 1, y + 2, z + 9, BlocksAether.carved_caelestia_stone_wall);
-					world.setBlock(x + 1, y + 3, z + 9, BlocksAether.carved_caelestia_stone_wall);
-					world.setBlock(x + 1, y + 4, z + 9, BlocksAether.carved_caelestia_stone_wall);
-					world.setBlock(x + 1, y + 5, z + 9, BlocksAether.carved_caelestia_stone_wall);
-
-					int rand = (int)(1 + Math.random() * 4);
-					switch (rand)
-			        {
-			        case 1:
-			        	world.setBlock(x + 7, y + 5, z + 7, BlocksAether.primeval_artifact);
-			        	break;
-			        case 2:
-			        	world.setBlock(x + 7, y + 5, z + 7, BlocksAether.gravitite_ore);
-			        	break;
-			        case 3:
-			        	world.setBlock(x + 7, y + 5, z + 7, BlocksAether.aerogel);
-			        	break;
-			        case 4:	
-			        	world.setBlock(x + 7, y + 5, z + 7, BlocksAether.aerogel);
-						break;
-					
-			        }
-					
-					world.setBlock(x + 7, y + 4, z + 7, Blocks.mob_spawner);
-			          TileEntityMobSpawner tileentitymobspawner = (TileEntityMobSpawner)world.getTileEntity(x + 7, y + 4, z + 7);
-			            
-			           if (tileentitymobspawner != null)
-			           {
-			            tileentitymobspawner.func_145881_a().setEntityName("aether_legacy.cyro");
-			           }
-				}
-				break;
-			}
-		}
+        }
 
 		setBlocks(this.fillerBlock(), this.fillerBlock1(), 5);
 
@@ -921,17 +817,16 @@ public class CobaltDungeon extends AetherDungeon {
 			case 0:
 				return new ItemStack(ItemsAether.arkenium_pickaxe);
 			case 1:
-				return new ItemStack(ItemsAether.raw_gravitite, random.nextInt(2) + 1);
+				return new ItemStack(ItemsAether.raw_gravitite, random.nextInt(3) + 2);
 			case 2:
 				return new ItemStack(ItemsAether.arkenium_sword);
 			case 3:
-				return new ItemStack(ItemsAether.confractus_staff);
 			case 4:
 				return new ItemStack(ItemsAether.confractus_staff);
-			case 5:
-				return new ItemStack(ItemsAether.ambrosium_shard, random.nextInt(8) + 1);
+            case 5:
+				return new ItemStack(ItemsAether.ambrosium_shard, random.nextInt(9) + 2);
 			case 6: {
-				return new ItemStack(ItemsAether.arkenium_fragement, random.nextInt(3) + 2);
+				return new ItemStack(ItemsAether.arkenium_fragement, random.nextInt(4) + 3);
 			}
 			case 7:
 				return new ItemStack(ItemsAether.ambrosium_shard, random.nextInt(3));

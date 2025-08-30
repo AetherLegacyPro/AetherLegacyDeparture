@@ -972,7 +972,7 @@ public class DivineBronzeDungeon extends AetherDungeon {
 			}
 			case 8: {
 				if (random.nextInt(5) == 0) {
-					return new ItemStack(ItemsAether.raw_gravitite, random.nextInt(1) + 1);
+					return new ItemStack(ItemsAether.raw_gravitite, random.nextInt(2) + 1);
 				}
 
 				break;
@@ -1017,37 +1017,23 @@ public class DivineBronzeDungeon extends AetherDungeon {
 
 	public static ItemStack getDivineBronzeLoot(Random random) {
 		int item = random.nextInt(16);
-		switch (item) {
-			case 0:
-				return new ItemStack(ItemsAether.gummy_swet, random.nextInt(4) + 1, 1);
-			case 1:
-				return new ItemStack(ItemsAether.zanite_shield);
-			case 2:
-				return new ItemStack(ItemsAether.flaming_sword);
-			case 3:
-				return new ItemStack(ItemsAether.jeb_hammer);
-			case 4:
-				return new ItemStack(ItemsAether.lightning_knife, random.nextInt(5) + 6);
-			case 5:
-				return new ItemStack(ItemsAether.valkyrie_lance);
-			case 6:
-				return new ItemStack(ItemsAether.agility_cape);
-			case 7:
-				return new ItemStack(ItemsAether.sentry_boots);
-			case 8:
-				return new ItemStack(ItemsAether.repulsion_shield);
-			case 9:
-				return new ItemStack(ItemsAether.enchanted_divineral, random.nextInt(2) + 1);
-			case 10:
-				return new ItemStack(ItemsAether.phoenix_bow);
-			case 11:
-				return new ItemStack(ItemsAether.cloud_staff);
-			case 12:
-				return new ItemStack(BlocksAether.ancient_enchanter);
-		}
-
-		return new ItemStack(BlocksAether.enchanted_gravitite, random.nextInt(1) + 1);
-	}
+        switch (item) {
+            case 0 : return new ItemStack(ItemsAether.gummy_swet, random.nextInt(4) + 1, 1);
+            case 1 : return new ItemStack(ItemsAether.zanite_shield);
+            case 2 : return new ItemStack(ItemsAether.flaming_sword);
+            case 3 : return new ItemStack(ItemsAether.jeb_hammer);
+            case 4 : return new ItemStack(ItemsAether.lightning_knife, random.nextInt(5) + 6);
+            case 5 : return new ItemStack(ItemsAether.valkyrie_lance);
+            case 6 : return new ItemStack(ItemsAether.agility_cape);
+            case 7 : return new ItemStack(ItemsAether.sentry_boots);
+            case 8 : return new ItemStack(ItemsAether.repulsion_shield);
+            case 9 : return new ItemStack(ItemsAether.enchanted_divineral, random.nextInt(2) + 1);
+            case 10 : return new ItemStack(ItemsAether.phoenix_bow);
+            case 11 : return new ItemStack(ItemsAether.cloud_staff);
+            case 12 : return new ItemStack(BlocksAether.ancient_enchanter);
+            default : return new ItemStack(BlocksAether.enchanted_gravitite, random.nextInt(1) + 1);
+        }
+    }
 	
 	protected Block setRandomBlock(World world, Random random) {
 		int nextInt = random.nextInt(15);

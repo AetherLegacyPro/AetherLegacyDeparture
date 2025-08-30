@@ -26,6 +26,7 @@ import net.minecraft.entity.item.EntityEnderCrystal;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
@@ -573,17 +574,17 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
     @Override
     public boolean attackEntityFrom(DamageSource ds, float i) {
         if (ds.getEntity() instanceof EntityPlayer) {
-        	
+
         	if (ds.isExplosion())
             {
                 return false;
             }
-        	
+
         	Entity entity = ds.getEntity();
-        	
+
         	if (entity instanceof EntityPlayer)
             {
-        	
+
             int random1 = (int)(1 + Math.random() * 50);
        	 	if(random1 == 1 ) {
        	 	EntityCrystalDragon dragon = new EntityCrystalDragon(this.worldObj);
@@ -593,16 +594,16 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
                if (!this.worldObj.isRemote) {
                    this.worldObj.spawnEntityInWorld(dragon);
                	}
-               
+
        		}
-       	 
+
             }
-        	
-        	if(worldObj.isRemote) 
+
+        	if(worldObj.isRemote)
             this.FireBreath();
-        	
+
         }
-        
+
         Entity entity = ds.getEntity();
      	if (entity instanceof EntityPlayer)
           {
@@ -645,21 +646,21 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
         	break;
      	default:
      		break;
-     	 }        
+     	 }
      	EntityPlayer player = (EntityPlayer) ds.getEntity();
         ItemStack stack = player.inventory.getCurrentItem();
-        
+
 		if (stack != null && stack.getItem() != null && (stack.getItem() == ItemsAether.dragon_bane || stack.getItem() == ItemsAether.tipped_dragon_bane)) {
-			
+
 			 int rand = (int)(1 + Math.random() * 4);
 			 int rand2 = (int)(1 + Math.random() * 24);
 				switch (rand) {
-		        	case 1: 
+		        	case 1:
 		        		this.damageEntity(DamageSource.generic, 10F);
 		        		if (!(this.worldObj.isRemote)) {
 		        		this.dropItem(ItemsAether.crystal_dragon_scales, 1);
 		        		this.dropItem(ItemsAether.aceninum_shard, 1);
-		        		
+
 		        		if (this.getHealth() <= 0 || this.isDead) {
 		        			this.entityDropItem(new ItemStack(ItemsAether.dungeon_key, 1, 14), 0.5F);
 
@@ -676,11 +677,11 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
 		        		}
 		        	}
 			          break;
-		        	case 2: 
+		        	case 2:
 		        		this.damageEntity(DamageSource.generic, 5F);
 		        		if (!(this.worldObj.isRemote)) {
 		        		this.dropItem(ItemsAether.aceninum_shard, 1);
-		        		
+
 		        		if (this.getHealth() <= 0 || this.isDead) {
 		        			this.entityDropItem(new ItemStack(ItemsAether.dungeon_key, 1, 14), 0.5F);
 
@@ -697,11 +698,11 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
 		        		}
 		        	}
 		        		break;
-		        	case 3: 
+		        	case 3:
 		        		this.damageEntity(DamageSource.generic, 5F);
 		        		if (!(this.worldObj.isRemote)) {
 		        		this.dropItem(ItemsAether.crystal_dragon_scales, 1);
-		        		
+
 		        		if (this.getHealth() <= 0 || this.isDead) {
 		        			this.entityDropItem(new ItemStack(ItemsAether.dungeon_key, 1, 14), 0.5F);
 
@@ -738,18 +739,18 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
 		        		break;
 		        }
 		}
-		
+
 		else if (stack != null && stack.getItem() != null && stack.getItem() == ItemsAether.amplified_dragon_bane) {
-			
+
 			 int rand = (int)(1 + Math.random() * 4);
 			 int rand2 = (int)(1 + Math.random() * 24);
 			 switch (rand) {
-	        		case 1: 
+	        		case 1:
 	        			this.damageEntity(DamageSource.generic, 20F);
 	        			if (!(this.worldObj.isRemote)) {
 	        				this.dropItem(ItemsAether.crystal_dragon_scales, 1);
 	        				this.dropItem(ItemsAether.aceninum_shard, 1);
-	        			
+
 	        			if (this.getHealth() <= 0 || this.isDead) {
 		        			this.entityDropItem(new ItemStack(ItemsAether.dungeon_key, 1, 14), 0.5F);
 
@@ -766,11 +767,11 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
 		        		 }
 	        			}
 	        			break;
-	        		case 2: 
+	        		case 2:
 	        			this.damageEntity(DamageSource.generic, 15F);
 	        			if (!(this.worldObj.isRemote)) {
 	        				this.dropItem(ItemsAether.aceninum_shard, 1);
-	        				
+
 	        				if (this.getHealth() <= 0 || this.isDead) {
 			        			this.entityDropItem(new ItemStack(ItemsAether.dungeon_key, 1, 14), 0.5F);
 
@@ -787,11 +788,11 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
 			        		 }
 	        			}
 	        			break;
-	        		case 3: 
+	        		case 3:
 	        			this.damageEntity(DamageSource.generic, 15F);
 	        			if (!(this.worldObj.isRemote)) {
 	        				this.dropItem(ItemsAether.crystal_dragon_scales, 1);
-	        				
+
 	        				if (this.getHealth() <= 0 || this.isDead) {
 			        			this.entityDropItem(new ItemStack(ItemsAether.dungeon_key, 1, 14), 0.5F);
 
@@ -828,22 +829,26 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
 	        			break;
 			 	}
 			}
-          }       	 
-     	
-     	
-        
-        if (ds.getEntity() == null || !(ds.getEntity() instanceof EntityPlayer player)) {
+          }
+
+
+
+        if (ds.getEntity() == null || !(ds.getEntity() instanceof EntityPlayer)) {
    		 return false;
         }
 		boolean flag = super.attackEntityFrom(ds, Math.max(0, i));
-   	
+
    		if (flag) {
    		if (this.getHealth() <= 0 || this.isDead) {
-   		PlayerAether.get(player).setFocusedBoss(null);
+            EntityPlayer player = (EntityPlayer) ds.getEntity();
+            if (player!=null) {
+                PlayerAether.get(player).setFocusedBoss(null);
+            }
    			}
    		}
+        EntityPlayer player = (EntityPlayer) ds.getEntity();
    		PlayerAether.get(player).setFocusedBoss(this);
-        
+
    		return flag;
     }
 
@@ -962,10 +967,10 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
     {
         super.onDeath(p_70645_1_);
 
-        if (p_70645_1_.getEntity() instanceof EntityPlayer entityplayer)
+        if (p_70645_1_.getEntity() instanceof EntityPlayer)
         {
 
-			entityplayer.triggerAchievement(AchievementsAether.defeat_palladium);
+            ((EntityPlayer) p_70645_1_.getEntity()).triggerAchievement(AchievementsAether.defeat_palladium);
             
         }
             

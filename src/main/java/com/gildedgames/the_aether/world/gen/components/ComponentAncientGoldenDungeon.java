@@ -239,29 +239,20 @@ public class ComponentAncientGoldenDungeon extends AetherStructure {
 				return new ItemStack(ItemsAether.vampire_blade);
 			case 2:
 				return new ItemStack(ItemsAether.gravitite_shield);
-			case 3: {
-				if (random.nextBoolean()) {
-					return new ItemStack(ItemsAether.phoenix_helmet);
+			case 3:
+			case 4:
+				switch (random.nextInt(5)) {
+					case 0:
+						return new ItemStack(ItemsAether.phoenix_helmet);
+					case 1:
+						return new ItemStack(ItemsAether.phoenix_leggings);
+					case 2:
+						return new ItemStack(ItemsAether.phoenix_chestplate);
+					case 3:
+						return new ItemStack(ItemsAether.phoenix_boots);
+					case 4:
+						return new ItemStack(ItemsAether.phoenix_gloves);
 				}
-				if (random.nextBoolean()) {
-					return new ItemStack(ItemsAether.phoenix_leggings);
-				}
-				if (random.nextBoolean()) {
-					return new ItemStack(ItemsAether.phoenix_boots);
-				}
-				if (random.nextBoolean()) {
-					return new ItemStack(ItemsAether.phoenix_chestplate);
-				}
-
-				break;
-			}
-			case 4: {
-				if (random.nextBoolean()) {
-					return new ItemStack(ItemsAether.phoenix_boots);
-				}
-
-				return new ItemStack(ItemsAether.phoenix_gloves);
-			}
 			case 5: {
 				return new ItemStack(ItemsAether.life_shard);
 			}

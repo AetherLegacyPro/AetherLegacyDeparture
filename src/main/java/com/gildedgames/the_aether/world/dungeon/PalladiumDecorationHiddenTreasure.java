@@ -73,17 +73,7 @@ public class PalladiumDecorationHiddenTreasure extends WorldGenAbstractTree
         	int random2 = (int)(1 + Math.random() * 10);
     		int random3 = (int)(0 + Math.random() * 8);
     		switch (random2) {
-    		case 1: world.setBlock(x + 1, y, z, BlocksAether.zanite_pile, random3, random3);
-        	world.setBlock(x - 1, y, z, BlocksAether.zanite_pile, random3, random3);
-        	world.setBlock(x, y, z - 1, BlocksAether.zanite_pile, random3, random3);
-        	world.setBlock(x, y, z + 1, BlocksAether.zanite_pile, random3, random3);        	
-        	world.setBlock(x + 1, y, z - 1, BlocksAether.zanite_pile, random3, random3);
-        	world.setBlock(x + 1, y, z + 1, BlocksAether.zanite_pile, random3, random3);
-        	world.setBlock(x - 1, y, z + 1, BlocksAether.zanite_pile, random3, random3);
-        	world.setBlock(x - 1, y, z - 1, BlocksAether.zanite_pile, random3, random3);
-        	world.setBlock(x, y, z, BlocksAether.zanite_pile, random3, random3);
-    			break;
-    		case 2: world.setBlock(x + 1, y, z, BlocksAether.continuum_pile, random3, random3);
+                case 2: world.setBlock(x + 1, y, z, BlocksAether.continuum_pile, random3, random3);
 			world.setBlock(x - 1, y, z, BlocksAether.continuum_pile, random3, random3);
 			world.setBlock(x, y, z - 1, BlocksAether.continuum_pile, random3, random3);
 			world.setBlock(x, y, z + 1, BlocksAether.continuum_pile, random3, random3);        	
@@ -123,7 +113,8 @@ public class PalladiumDecorationHiddenTreasure extends WorldGenAbstractTree
 			world.setBlock(x - 1, y, z - 1, BlocksAether.divineral_pile, random3, random3);
 			world.setBlock(x, y, z, BlocksAether.divineral_pile, random3, random3);
     			break;
-    		default: world.setBlock(x + 1, y, z, BlocksAether.zanite_pile, random3, random3);
+                case 1:
+                default: world.setBlock(x + 1, y, z, BlocksAether.zanite_pile, random3, random3);
 			world.setBlock(x - 1, y, z, BlocksAether.zanite_pile, random3, random3);
 			world.setBlock(x, y, z - 1, BlocksAether.zanite_pile, random3, random3);
 			world.setBlock(x, y, z + 1, BlocksAether.zanite_pile, random3, random3);        	

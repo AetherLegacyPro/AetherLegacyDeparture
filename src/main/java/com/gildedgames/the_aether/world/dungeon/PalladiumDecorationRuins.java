@@ -33,18 +33,12 @@ public class PalladiumDecorationRuins extends WorldGenAbstractTree
     		switch (rand)
             {
             case 1:
-            	world.setBlock(x, y + 1, z, BlocksAether.elysian_mimic);
+                case 2:
+                case 3:
+                case 4:
+                    world.setBlock(x, y + 1, z, BlocksAether.elysian_mimic);
             	break;
-            case 2:
-            	world.setBlock(x, y + 1, z, BlocksAether.elysian_mimic);
-            	break;
-            case 3:
-            	world.setBlock(x, y + 1, z, BlocksAether.elysian_mimic);
-            	break;
-            case 4:
-            	world.setBlock(x, y + 1, z, BlocksAether.elysian_mimic);
-            	break;
-            case 5:
+                case 5:
             	world.setBlock(x, y + 1, z, BlocksAether.elysian_chest);
             	TileEntityElysianChest chest = (TileEntityElysianChest) world.getTileEntity(x, y + 1, z);
             	
@@ -160,7 +154,7 @@ public class PalladiumDecorationRuins extends WorldGenAbstractTree
 		int item = random.nextInt(22);
 		switch (item) {
 			case 0:
-				return new ItemStack(ItemsAether.zarnillys_scales, random.nextInt(2) + 1);
+				return new ItemStack(ItemsAether.zarnillys_scales, random.nextInt(3) + 1);
 			case 1:
 				if (random.nextInt(12) == 1) {
 					return new ItemStack(ItemsAether.gravitite_pendant, 1);
@@ -176,7 +170,7 @@ public class PalladiumDecorationRuins extends WorldGenAbstractTree
 				return new ItemStack(ItemsAether.ambrosium_shard, random.nextInt(20) + 25);
 			case 6: {
 				if (random.nextInt(10) == 0) {
-					return new ItemStack(BlocksAether.block_of_aceninum, random.nextInt(2) + 1);
+					return new ItemStack(BlocksAether.block_of_aceninum, random.nextInt(3) + 1);
 				}
 
 				break;
@@ -200,7 +194,7 @@ public class PalladiumDecorationRuins extends WorldGenAbstractTree
 				return new ItemStack(ItemsAether.auralite_crystal, random.nextInt(5) + 4);
 			}
 			case 12: {
-				return new ItemStack(ItemsAether.crystal_dragon_scales, random.nextInt(1) + 1);
+				return new ItemStack(ItemsAether.crystal_dragon_scales, random.nextInt(2) + 1);
 			}
 			case 13: {
 				return new ItemStack(ItemsAether.aceninum_shard, 1);

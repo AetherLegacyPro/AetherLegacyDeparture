@@ -1077,12 +1077,11 @@ public class MythicBronzeDungeon extends AetherDungeon {
 			case 10:
 				return new ItemStack(ItemsAether.sentry_shield);
 			case 11:
-				return new ItemStack(ItemsAether.zanite_gemstone, random.nextInt(25) + 20);
+            case 13:
+                return new ItemStack(ItemsAether.zanite_gemstone, random.nextInt(25) + 20);
 			case 12:
 				return new ItemStack(ItemsAether.arkenium_fragement, random.nextInt(15) + 20);
-			case 13:
-				return new ItemStack(ItemsAether.zanite_gemstone, random.nextInt(25) + 20);
-			case 14:
+            case 14:
 				return new ItemStack(ItemsAether.continuum_gemstone, random.nextInt(10) + 5);
 			case 15:
 				return new ItemStack(BlocksAether.primeval_artifact, random.nextInt(8) + 2);

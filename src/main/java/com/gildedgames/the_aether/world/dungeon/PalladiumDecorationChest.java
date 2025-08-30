@@ -62,7 +62,7 @@ public class PalladiumDecorationChest extends WorldGenAbstractTree
 		int item = random.nextInt(25);
 		switch (item) {
 			case 0:
-				return new ItemStack(ItemsAether.zarnillys_scales, random.nextInt(2) + 1);
+				return new ItemStack(ItemsAether.zarnillys_scales, random.nextInt(3) + 1);
 			case 1:
 				if (random.nextInt(12) == 1) {
 					return new ItemStack(ItemsAether.gravitite_pendant, 1);
@@ -78,7 +78,7 @@ public class PalladiumDecorationChest extends WorldGenAbstractTree
 				return new ItemStack(ItemsAether.ambrosium_shard, random.nextInt(20) + 20);
 			case 6: {
 				if (random.nextInt(10) == 0) {
-					return new ItemStack(BlocksAether.block_of_aceninum, random.nextInt(1) + 1);
+					return new ItemStack(BlocksAether.block_of_aceninum, random.nextInt(2) + 1);
 				}
 
 				break;
@@ -102,7 +102,7 @@ public class PalladiumDecorationChest extends WorldGenAbstractTree
 				return new ItemStack(ItemsAether.auralite_crystal, random.nextInt(5) + 4);
 			}
 			case 12: {
-				return new ItemStack(ItemsAether.crystal_dragon_scales, random.nextInt(1) + 1);
+				return new ItemStack(ItemsAether.crystal_dragon_scales, random.nextInt(2) + 1);
 			}
 			case 13: {
 				return new ItemStack(ItemsAether.aceninum_shard, 1);
