@@ -903,7 +903,7 @@ public class LargeBronzeDungeon extends AetherDungeon {
             case 7 : return new ItemStack(ItemsAether.sentry_boots);
             case 8 : return new ItemStack(ItemsAether.repulsion_shield);
             case 9 : return new ItemStack(ItemsAether.cloud_staff);
-            default : return new ItemStack(ItemsAether.arkenium_fragement, random.nextInt(1) + 2);
+            default : return new ItemStack(ItemsAether.arkenium_fragement, random.nextInt(2) + 2);
         }
 
     }

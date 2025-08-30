@@ -1031,7 +1031,7 @@ public class DivineBronzeDungeon extends AetherDungeon {
             case 10 : return new ItemStack(ItemsAether.phoenix_bow);
             case 11 : return new ItemStack(ItemsAether.cloud_staff);
             case 12 : return new ItemStack(BlocksAether.ancient_enchanter);
-            default : return new ItemStack(BlocksAether.enchanted_gravitite, random.nextInt(1) + 1);
+            default : return new ItemStack(BlocksAether.enchanted_gravitite, random.nextInt(2) + 1);
         }
     }
 	
