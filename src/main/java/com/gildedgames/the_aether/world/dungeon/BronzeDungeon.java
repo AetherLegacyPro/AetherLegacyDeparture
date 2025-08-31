@@ -869,7 +869,7 @@ public class BronzeDungeon extends AetherDungeon {
             case 6 : return new ItemStack(ItemsAether.agility_cape);
             case 7 : return new ItemStack(ItemsAether.sentry_boots);
             case 8 : return new ItemStack(ItemsAether.repulsion_shield);
-            default : return new ItemStack(ItemsAether.zanite_gemstone, random.nextInt(1) + 4);
+            default : return new ItemStack(ItemsAether.zanite_gemstone, random.nextInt(2) + 4);
         }
     }
 	
