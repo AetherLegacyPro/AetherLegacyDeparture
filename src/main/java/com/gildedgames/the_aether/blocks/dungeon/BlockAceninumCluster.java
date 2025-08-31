@@ -45,7 +45,7 @@ public class BlockAceninumCluster extends Block implements ISubBlocksBlock {
    }
 	
 	public Item getItemDropped(final int metadata, final Random rand, final int fortune) {
-       return ItemsAether.auralite_crystal;
+       return ItemsAether.aceninum_shard;
    }
 	
 	@Override

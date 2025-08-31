@@ -122,14 +122,13 @@ public class ZarnillysDen extends AetherDungeon {
 		int item = random.nextInt(15);
 		switch (item) {
 			case 0:
-				return new ItemStack(ItemsAether.zarnillys_scales, random.nextInt(2) + 1);
+            case 3:
+                return new ItemStack(ItemsAether.zarnillys_scales, random.nextInt(2) + 1);
 			case 1:
 				return new ItemStack(BlocksAether.enchanted_holystone, random.nextInt(4) + 1);
 			case 2:
 				return new ItemStack(ItemsAether.continuum_orb);
-			case 3:
-				return new ItemStack(ItemsAether.zarnillys_scales, random.nextInt(2) + 1);
-			case 4:
+            case 4:
 				return new ItemStack(ItemsAether.zanite_ring);
 			case 5:
 				return new ItemStack(ItemsAether.ambrosium_shard, random.nextInt(8) + 1);
@@ -156,11 +155,8 @@ public class ZarnillysDen extends AetherDungeon {
 				break;
 			}
 			case 10: {
-				if (random.nextInt(1) == 0) {
-					return new ItemStack(BlocksAether.glowing_icestone, 4);
-				}
-				break;
-			}
+                return new ItemStack(BlocksAether.glowing_icestone, 4);
+            }
 		}
 		return new ItemStack(BlocksAether.icestone, random.nextInt(9) + 2);
 	}	

@@ -456,7 +456,7 @@ public class ComponentAncientSilverDungeon extends AetherStructure {
 
 	//Get loot for normal chests scattered around
 	private ItemStack getNormalLoot(Random random) {
-		int item = random.nextInt(16);
+		int item = random.nextInt(18);
 		switch (item) {
 			case 0:
 				return new ItemStack(ItemsAether.arkenium_pickaxe);
@@ -465,7 +465,7 @@ public class ComponentAncientSilverDungeon extends AetherStructure {
 			case 2:
 				return new ItemStack(ItemsAether.arkenium_fragement, random.nextInt(3));
 			case 3:
-				return new ItemStack(ItemsAether.aechor_petal, random.nextInt(1));
+				return new ItemStack(ItemsAether.aechor_petal, random.nextInt(2));
 			case 4:
 				return new ItemStack(ItemsAether.healing_stone, random.nextInt(2));
 			case 5:
@@ -489,15 +489,16 @@ public class ComponentAncientSilverDungeon extends AetherStructure {
 				break;
 			}
 			case 12: {
-				if (random.nextInt(1) == 0)
-					return new ItemStack(ItemsAether.arkenium_boots);
-				if (random.nextInt(1) == 0)
-					return new ItemStack(ItemsAether.arkenium_helmet);
-				if (random.nextInt(1) == 0)
-					return new ItemStack(ItemsAether.arkenium_leggings);
-				if (random.nextInt(1) == 0)
-					return new ItemStack(ItemsAether.arkenium_chestplate);
-				break;
+				switch (random.nextInt(4)) {
+					case 0:
+						return new ItemStack(ItemsAether.arkenium_boots);
+					case 1:
+						return new ItemStack(ItemsAether.arkenium_helmet);
+					case 2:
+						return new ItemStack(ItemsAether.arkenium_leggings);
+					case 3:
+						return new ItemStack(ItemsAether.arkenium_chestplate);
+				}
 			}
 			case 13: {
 				if (random.nextInt(4) == 0)
@@ -527,15 +528,16 @@ public class ComponentAncientSilverDungeon extends AetherStructure {
 			case 1:
 				return new ItemStack(ItemsAether.lightning_sword);
 			case 2: {
-				if (random.nextBoolean())
-					return new ItemStack(ItemsAether.valkyrie_axe);
-				if (random.nextBoolean())
-					return new ItemStack(ItemsAether.valkyrie_shovel);
-				if (random.nextBoolean())
-					return new ItemStack(ItemsAether.valkyrie_pickaxe);
-				if (random.nextBoolean())
-					return new ItemStack(ItemsAether.valkyrie_hoe);
-				break;
+				switch(random.nextInt(4)) {
+					case 0 :
+						return new ItemStack(ItemsAether.valkyrie_axe);
+					case 1 :
+						return new ItemStack(ItemsAether.valkyrie_shovel);
+					case 2 :
+						return new ItemStack(ItemsAether.valkyrie_pickaxe);
+					case 3 :
+						return new ItemStack(ItemsAether.valkyrie_hoe);
+				}
 			}
 			case 3:
 				return new ItemStack(ItemsAether.holy_sword);
@@ -543,34 +545,28 @@ public class ComponentAncientSilverDungeon extends AetherStructure {
 				return new ItemStack(ItemsAether.valkyrie_helmet);
 			case 5:
 				return new ItemStack(ItemsAether.regeneration_stone);
-			case 6: {
-				if (random.nextBoolean())
-					return new ItemStack(ItemsAether.neptune_helmet);
-				if (random.nextBoolean())
-					return new ItemStack(ItemsAether.neptune_leggings);
-				if (random.nextBoolean())
-					return new ItemStack(ItemsAether.neptune_chestplate);
-				break;
-			}
-			case 7: {
-				if (random.nextBoolean())
-					return new ItemStack(ItemsAether.neptune_boots);
-				return new ItemStack(ItemsAether.neptune_gloves);
-			}
-			case 8: {
-				if (random.nextBoolean())
-					return new ItemStack(ItemsAether.valkyrie_boots);
+			case 6:
+			case 7:
+				switch (random.nextInt(5)) {
+					case 0 :
+						return new ItemStack(ItemsAether.neptune_helmet);
+					case 1:
+						return new ItemStack(ItemsAether.neptune_leggings);
+					case 2:
+						return new ItemStack(ItemsAether.neptune_chestplate);
+					case 3:
+						return new ItemStack(ItemsAether.neptune_boots);
+					case 4:
+						return new ItemStack(ItemsAether.neptune_gloves);
+				}
+			case 8:
 				return new ItemStack(ItemsAether.valkyrie_gloves);
-			}
 			case 9:
 				return new ItemStack(ItemsAether.valkyrie_leggings);
 			case 10:
-				if (random.nextBoolean())
-					return new ItemStack(ItemsAether.valkyrie_chestplate);
+				return new ItemStack(ItemsAether.valkyrie_chestplate);
 			case 11:
-				if (random.nextBoolean())
-					return new ItemStack(ItemsAether.valkyrie_boots);
-				return new ItemStack(ItemsAether.valkyrie_gloves);
+				return new ItemStack(ItemsAether.valkyrie_boots);
 			case 12:
 				if (AetherConfig.valkyrieCapeEnabled())
 					return new ItemStack(ItemsAether.valkyrie_cape);

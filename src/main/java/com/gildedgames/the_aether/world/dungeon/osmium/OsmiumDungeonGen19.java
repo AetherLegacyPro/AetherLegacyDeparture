@@ -2529,7 +2529,7 @@ public class OsmiumDungeonGen19 extends WorldGenerator {
 			case 5:
 				return new ItemStack(ItemsAether.arkenium_sword);
 			case 6:
-				return new ItemStack(ItemsAether.arkenium_fragement, random.nextInt(3) + 2);
+				return new ItemStack(ItemsAether.arkenium_fragement, random.nextInt(4) + 2);
 			case 7: 
 				if (random.nextInt(20) == 0)
 					return new ItemStack(ItemsAether.gravitite_pickaxe);
@@ -2546,7 +2546,7 @@ public class OsmiumDungeonGen19 extends WorldGenerator {
 					return new ItemStack(BlocksAether.enchanted_agiosite, random.nextInt(10) + 20);			
 			case 12: 
 				if (random.nextInt(10) == 0)
-					return new ItemStack(BlocksAether.aerogel, random.nextInt(1) + 1);
+					return new ItemStack(BlocksAether.aerogel, random.nextInt(2) + 1);
 			
 			default: 
 				return new ItemStack(ItemsAether.arkenium_fragement, random.nextInt(3) + 2);

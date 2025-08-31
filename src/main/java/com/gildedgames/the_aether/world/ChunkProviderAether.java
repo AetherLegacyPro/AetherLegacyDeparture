@@ -321,19 +321,19 @@ public class ChunkProviderAether implements IChunkProvider {
 		if (AetherConfig.silver_dungeon_enable) {
 			this.silverDungeonStructure.func_151539_a(this, this.worldObj, x, z, ablock);
 		}
-		if (AetherConfig.tier2_silver_dungeon_enable && ancient_silver_chance > 2 && Math.abs(x) > 1200 && Math.abs(z) > 1200) {
+		if (AetherConfig.tier2_silver_dungeon_enable && ancient_silver_chance > 3 && (Math.abs(x) > 1200 || Math.abs(z) > 1200)) {
 			this.ancientsilverDungeonStructure.func_151539_a(this, this.worldObj, x, z, ablock);
 		}
-		if (AetherConfig.tier3_silver_dungeon_enable && divine_silver_chance >= 4 && Math.abs(x) > 3000 && Math.abs(z) > 3000) {
+		if (AetherConfig.tier3_silver_dungeon_enable && divine_silver_chance >= 5 && (Math.abs(x) > 3000 || Math.abs(z) > 3000)) {
 			this.divinesilverDungeonStructure.func_151539_a(this, this.worldObj, x, z, ablock);
 		}
 		if (AetherConfig.gold_dungeon_enable) {
 			this.goldenDungeonStructure.func_151539_a(this, this.worldObj, x, z, ablock);
 		}
-		if (AetherConfig.tier2_gold_dungeon_enable && ancient_gold_chance >= 3 && Math.abs(x) > 2000 && Math.abs(z) > 2000) {
+		if (AetherConfig.tier2_gold_dungeon_enable && ancient_gold_chance > 3 && (Math.abs(x) > 2000 || Math.abs(z) > 2000)) {
 			this.ancientGoldenDungeonStructure.func_151539_a(this, this.worldObj, x, z, ablock);
 		}
-		if (AetherConfig.tier3_gold_dungeon_enable && divine_gold_chance >= 4 && Math.abs(x) > 5000 && Math.abs(z) > 5000) {
+		if (AetherConfig.tier3_gold_dungeon_enable && divine_gold_chance >= 5 && (Math.abs(x) > 5000 || Math.abs(z) > 5000)) {
 			this.divineGoldenDungeonStructure.func_151539_a(this, this.worldObj, x, z, ablock);
 		}
 		
@@ -357,19 +357,19 @@ public class ChunkProviderAether implements IChunkProvider {
 		if (AetherConfig.silver_dungeon_enable) {
 			this.silverDungeonStructure.func_151539_a(this, this.worldObj, x, z, null);
 		}
-		if (AetherConfig.tier2_silver_dungeon_enable && ancient_silver_chance > 2 && Math.abs(x) > 1200 && Math.abs(z) > 1200) {
+		if (AetherConfig.tier2_silver_dungeon_enable && (Math.abs(x) > 1200 || Math.abs(z) > 1200)) {
 			this.ancientsilverDungeonStructure.func_151539_a(this, this.worldObj, x, z, null);
 		}
-		if (AetherConfig.tier3_silver_dungeon_enable && divine_silver_chance >= 4 && Math.abs(x) > 3000 && Math.abs(z) > 3000) {
+		if (AetherConfig.tier3_silver_dungeon_enable && (Math.abs(x) > 3000 || Math.abs(z) > 3000)) {
 			this.divinesilverDungeonStructure.func_151539_a(this, this.worldObj, x, z, null);
 		}
 		if (AetherConfig.gold_dungeon_enable) {
 			this.goldenDungeonStructure.func_151539_a(this, this.worldObj, x, z, null);
 		}
-		if (AetherConfig.tier2_gold_dungeon_enable && ancient_gold_chance >= 3 && Math.abs(x) > 2000 && Math.abs(z) > 2000) {
+		if (AetherConfig.tier2_gold_dungeon_enable && (Math.abs(x) > 2000 || Math.abs(z) > 2000)) {
 			this.ancientGoldenDungeonStructure.func_151539_a(this, this.worldObj, x, z, null);
 		}
-		if (AetherConfig.tier3_gold_dungeon_enable && divine_gold_chance >= 4 && Math.abs(x) > 5000 && Math.abs(z) > 5000) {
+		if (AetherConfig.tier3_gold_dungeon_enable && (Math.abs(x) > 5000 || Math.abs(z) > 5000)) {
 			this.divineGoldenDungeonStructure.func_151539_a(this, this.worldObj, x, z, null);
 		}
 	}
@@ -401,19 +401,19 @@ public class ChunkProviderAether implements IChunkProvider {
 			this.goldenDungeonStructure.generateStructuresInChunk(this.worldObj, this.rand, chunkX, chunkZ);
 		}
 		
-		if(AetherConfig.tier2_silver_dungeon_enable && ancient_silver_chance > 2 && Math.abs(x) > 1200 && Math.abs(z) > 1200) {
+		if(AetherConfig.tier2_silver_dungeon_enable && (Math.abs(x) > 1200 || Math.abs(z) > 1200)) {
 			this.ancientsilverDungeonStructure.generateStructuresInChunk(this.worldObj, this.rand, chunkX, chunkZ);
 		}
 		
-		if(AetherConfig.tier3_silver_dungeon_enable && divine_silver_chance >= 4 && Math.abs(x) > 3000 && Math.abs(z) > 3000) {
+		if(AetherConfig.tier3_silver_dungeon_enable && (Math.abs(x) > 3000 || Math.abs(z) > 3000)) {
 			this.divinesilverDungeonStructure.generateStructuresInChunk(this.worldObj, this.rand, chunkX, chunkZ);
 		}
 		
-		if(AetherConfig.tier2_gold_dungeon_enable && ancient_gold_chance >= 3 && Math.abs(x) > 2000 && Math.abs(z) > 2000) {
+		if(AetherConfig.tier2_gold_dungeon_enable && (Math.abs(x) > 2000 || Math.abs(z) > 2000)) {
 			this.ancientGoldenDungeonStructure.generateStructuresInChunk(this.worldObj, this.rand, chunkX, chunkZ);
 		}
 		
-		if(AetherConfig.tier3_gold_dungeon_enable && divine_gold_chance >= 4 && Math.abs(x) > 5000 && Math.abs(z) > 5000) {
+		if(AetherConfig.tier3_gold_dungeon_enable && (Math.abs(x) > 5000 || Math.abs(z) > 5000)) {
 			this.divineGoldenDungeonStructure.generateStructuresInChunk(this.worldObj, this.rand, chunkX, chunkZ);
 		}
 
@@ -428,16 +428,16 @@ public class ChunkProviderAether implements IChunkProvider {
 			this.dungeon_bronze.generate(this.worldObj, this.rand, x, this.rand.nextInt(28) + 24, z);
 		}
 		
-		if (AetherConfig.tier2_bronze_dungeon_enable && Math.abs(x) > 750 && Math.abs(z) > 750) {
+		if (AetherConfig.tier2_bronze_dungeon_enable && (Math.abs(x) > 750 || Math.abs(z) > 750)) {
 			this.large_dungeon_bronze.generate(this.worldObj, this.rand, x, this.rand.nextInt(18) + 26, z);
 		}
 		
-		if (AetherConfig.tier3_bronze_dungeon_enable && Math.abs(x) > 2000 && Math.abs(z) > 2000) {
+		if (AetherConfig.tier3_bronze_dungeon_enable && (Math.abs(x) > 2000 || Math.abs(z) > 2000)) {
 			this.divine_dungeon_bronze.generate(this.worldObj, this.rand, x, this.rand.nextInt(12) + 24, z);
 		}
 		
 		int mythic_bronze_chance = (int)(1 + Math.random() * 3);
-		if(AetherConfig.tier4_bronze_dungeon_enable && mythic_bronze_chance == 1 && Math.abs(x) > 5000 && Math.abs(z) > 5000) {
+		if(AetherConfig.tier4_bronze_dungeon_enable && mythic_bronze_chance == 1 && (Math.abs(x) > 5000 || Math.abs(z) > 5000)) {
 			this.mythic_dungeon_bronze.generate(this.worldObj, this.rand, x, this.rand.nextInt(4) + 24, z);
 		} else {
 			if (AetherConfig.cobalt_dungeon_enable) {

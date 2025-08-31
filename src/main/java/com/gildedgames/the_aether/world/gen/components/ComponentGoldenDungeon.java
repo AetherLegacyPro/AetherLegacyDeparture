@@ -216,7 +216,7 @@ public class ComponentGoldenDungeon extends AetherStructure {
 	}
 
 	public static ItemStack getGoldLoot(Random random) {
-		int item = random.nextInt(12);
+		int item = random.nextInt(13);
 
 		switch (item) {
 			case 0:
@@ -227,53 +227,37 @@ public class ComponentGoldenDungeon extends AetherStructure {
 				return new ItemStack(ItemsAether.pig_slayer);
 			case 3:
 				return new ItemStack(ItemsAether.gravitite_shield);
-			case 4: {
-				if (random.nextBoolean()) {
+			case 4:
+			case 5:
+			switch (random.nextInt(5)) {
+				case 0:
 					return new ItemStack(ItemsAether.phoenix_helmet);
-				}
-
-				if (random.nextBoolean()) {
+				case 1:
 					return new ItemStack(ItemsAether.phoenix_leggings);
-				}
-
-				if (random.nextBoolean()) {
+				case 2:
 					return new ItemStack(ItemsAether.phoenix_chestplate);
-				}
-
-				break;
-			}
-			case 5: {
-				if (random.nextBoolean()) {
+				case 3:
 					return new ItemStack(ItemsAether.phoenix_boots);
-				}
-
-				return new ItemStack(ItemsAether.phoenix_gloves);
+				case 4:
+					return new ItemStack(ItemsAether.phoenix_gloves);
 			}
 			case 6: {
 				return new ItemStack(ItemsAether.life_shard);
 			}
-			case 7: {
-				if (random.nextBoolean()) {
-					return new ItemStack(ItemsAether.gravitite_helmet);
+			case 7:
+			case 8:
+				switch (random.nextInt(5)) {
+					case 0:
+						return new ItemStack(ItemsAether.gravitite_helmet);
+					case 1:
+						return new ItemStack(ItemsAether.gravitite_leggings);
+					case 2:
+						return new ItemStack(ItemsAether.gravitite_chestplate);
+					case 3:
+						return new ItemStack(ItemsAether.gravitite_boots);
+					case 4:
+						return new ItemStack(ItemsAether.gravitite_gloves);
 				}
-
-				if (random.nextBoolean()) {
-					return new ItemStack(ItemsAether.gravitite_leggings);
-				}
-
-				if (random.nextBoolean()) {
-					return new ItemStack(ItemsAether.gravitite_chestplate);
-				}
-
-				break;
-			}
-			case 8: {
-				if (random.nextBoolean()) {
-					return new ItemStack(ItemsAether.gravitite_boots);
-				}
-
-				return new ItemStack(ItemsAether.gravitite_gloves);
-			}
 			case 9: {
 				if (random.nextBoolean()) {
 					return new ItemStack(ItemsAether.notch_hammer);

@@ -821,7 +821,7 @@ public class BronzeDungeon extends AetherDungeon {
 				return new ItemStack(ItemsAether.healing_stone, random.nextInt(3) + 1);
 			case 8:		
 				if (random.nextInt(5) == 0) {
-				return new ItemStack(ItemsAether.arkenium_fragement, random.nextInt(1) + 1);
+				return new ItemStack(ItemsAether.arkenium_fragement, random.nextInt(2) + 1);
 				}
 				
 				break;
@@ -859,29 +859,19 @@ public class BronzeDungeon extends AetherDungeon {
 
 	public static ItemStack getBronzeLoot(Random random) {
 		int item = random.nextInt(9);
-		switch (item) {
-			case 0:
-				return new ItemStack(ItemsAether.gummy_swet);
-			case 1:
-				return new ItemStack(ItemsAether.phoenix_bow);
-			case 2:
-				return new ItemStack(ItemsAether.flaming_sword);
-			case 3:
-				return new ItemStack(ItemsAether.jeb_hammer);
-			case 4:
-				return new ItemStack(ItemsAether.lightning_knife, random.nextInt(20) + 1);
-			case 5:
-				return new ItemStack(ItemsAether.valkyrie_lance);
-			case 6:
-				return new ItemStack(ItemsAether.agility_cape);
-			case 7:
-				return new ItemStack(ItemsAether.sentry_boots);
-			case 8:
-				return new ItemStack(ItemsAether.repulsion_shield);
-		}
-
-		return new ItemStack(ItemsAether.zanite_gemstone, random.nextInt(1) + 4);
-	}
+        switch (item) {
+			case 0 : return new ItemStack(ItemsAether.gummy_swet);
+            case 1 : return new ItemStack(ItemsAether.phoenix_bow);
+            case 2 : return new ItemStack(ItemsAether.flaming_sword);
+            case 3 : return new ItemStack(ItemsAether.jeb_hammer);
+            case 4 : return new ItemStack(ItemsAether.lightning_knife, random.nextInt(20) + 1);
+            case 5 : return new ItemStack(ItemsAether.valkyrie_lance);
+            case 6 : return new ItemStack(ItemsAether.agility_cape);
+            case 7 : return new ItemStack(ItemsAether.sentry_boots);
+            case 8 : return new ItemStack(ItemsAether.repulsion_shield);
+            default : return new ItemStack(ItemsAether.zanite_gemstone, random.nextInt(2) + 4);
+        }
+    }
 	
 	protected Block setRandomBlock(World world, Random random) {
 		int nextInt = random.nextInt(15);

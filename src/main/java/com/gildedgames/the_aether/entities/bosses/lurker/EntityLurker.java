@@ -261,7 +261,7 @@ public class EntityLurker extends EntityBossMob implements IAetherBoss {
                         }
 
                         if (this.timeUntilTeleport++ >= 150) {
-                            if (this.onGround && this.rand.nextInt(1) == 0) {
+                            if (this.onGround) {
                                 this.makeHomeShot(1, target);
                             } else {
                                 this.teleport(target.posX, target.posY, target.posZ, 4);

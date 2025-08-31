@@ -83,16 +83,18 @@ public class OsmiumDungeon implements IWorldGenerator  {
 
 		switch (item) {
 			case 0:
-				return new ItemStack(BlocksAether.enchanted_gravitite, random.nextInt(4) + 1, random.nextInt(2));
+				return new ItemStack(BlocksAether.enchanted_gravitite, random.nextInt(4) + 1);
 			case 1:
 				return new ItemStack(ItemsAether.valkyrie_ring);
 			case 2: {
-				if (random.nextBoolean())
-					return new ItemStack(ItemsAether.tipped_valkyrie_axe);
-				if (random.nextBoolean())
-					return new ItemStack(ItemsAether.tipped_valkyrie_shovel);
-				if (random.nextBoolean())
-					return new ItemStack(ItemsAether.tipped_valkyrie_pickaxe);
+				switch(random.nextInt(3)) {
+					case 0 :
+						return new ItemStack(ItemsAether.tipped_valkyrie_axe);
+					case 1 :
+						return new ItemStack(ItemsAether.tipped_valkyrie_shovel);
+					case 2 :
+						return new ItemStack(ItemsAether.tipped_valkyrie_pickaxe);
+				}
 			}
 			case 3:
 				return new ItemStack(ItemsAether.dart_shooter, 0, 3);
