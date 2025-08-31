@@ -324,7 +324,7 @@ public class ChunkProviderAether implements IChunkProvider {
 		if (AetherConfig.tier2_silver_dungeon_enable && ancient_silver_chance > 3 && (Math.abs(x) > 1200 || Math.abs(z) > 1200)) {
 			this.ancientsilverDungeonStructure.func_151539_a(this, this.worldObj, x, z, ablock);
 		}
-		if (AetherConfig.tier3_silver_dungeon_enable && divine_silver_chance >= 4 && (Math.abs(x) > 3000 || Math.abs(z) > 3000)) {
+		if (AetherConfig.tier3_silver_dungeon_enable && divine_silver_chance >= 5 && (Math.abs(x) > 3000 || Math.abs(z) > 3000)) {
 			this.divinesilverDungeonStructure.func_151539_a(this, this.worldObj, x, z, ablock);
 		}
 		if (AetherConfig.gold_dungeon_enable) {
@@ -333,7 +333,7 @@ public class ChunkProviderAether implements IChunkProvider {
 		if (AetherConfig.tier2_gold_dungeon_enable && ancient_gold_chance > 3 && (Math.abs(x) > 2000 || Math.abs(z) > 2000)) {
 			this.ancientGoldenDungeonStructure.func_151539_a(this, this.worldObj, x, z, ablock);
 		}
-		if (AetherConfig.tier3_gold_dungeon_enable && divine_gold_chance >= 4 && (Math.abs(x) > 5000 || Math.abs(z) > 5000)) {
+		if (AetherConfig.tier3_gold_dungeon_enable && divine_gold_chance >= 5 && (Math.abs(x) > 5000 || Math.abs(z) > 5000)) {
 			this.divineGoldenDungeonStructure.func_151539_a(this, this.worldObj, x, z, ablock);
 		}
 		
