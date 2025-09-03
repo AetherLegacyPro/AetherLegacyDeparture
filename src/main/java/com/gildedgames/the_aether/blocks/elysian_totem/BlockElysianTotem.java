@@ -224,11 +224,11 @@ public class BlockElysianTotem extends BlockMultiTileEntity
     			
     			world.setBlock(x, y, z, BlocksAether.treasure_chest, 0, 2);    		
             }
-            else {
+            else if (!world.isRemote){
 			player.addChatComponentMessage(new ChatComponentText(I18n.format("gui.elysian_totem_rightclick")));
             }
 		}
-		else {
+		else if (!world.isRemote){
 			player.addChatComponentMessage(new ChatComponentText(I18n.format("gui.elysian_totem")));
 		}
 		

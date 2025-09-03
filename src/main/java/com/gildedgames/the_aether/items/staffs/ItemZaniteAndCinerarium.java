@@ -69,7 +69,7 @@ public class ItemZaniteAndCinerarium extends Item
                 p_77648_3_.playSoundEffect((double)p_77648_4_ + 0.5D, (double)p_77648_5_ + 0.5D, (double)p_77648_6_ + 0.5D, "random.explode", 2.0F, itemRand.nextFloat() * 0.4F + 0.8F);
                 p_77648_3_.setBlock(p_77648_4_, p_77648_5_, p_77648_6_, BlocksAether.hellfire);
             }
-            else if (p_77648_3_.provider.dimensionId != AetherConfig.getAetherDimensionID()) {
+            else if (p_77648_3_.provider.dimensionId != AetherConfig.getAetherDimensionID() && (!p_77648_3_.isRemote)) {
             	p_77648_2_.addChatComponentMessage(new ChatComponentText(I18n.format("gui.zanite.cinerarium_invaild")));
             	}
         	}

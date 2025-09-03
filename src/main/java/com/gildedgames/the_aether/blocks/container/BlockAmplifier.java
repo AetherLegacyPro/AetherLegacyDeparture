@@ -179,7 +179,7 @@ public class BlockAmplifier extends BlockAetherContainer {
 		player.openGui(Aether.instance, AetherGuiHandler.amplifier, world, x, y, z);
 		player.triggerAchievement(AchievementsAether.amplifier_structure);
 	}
-	else
+	else if (!world.isRemote)
 	{
 		player.addChatComponentMessage(new ChatComponentText(I18n.format("gui.amplifier.invalid_structure")));
 	}
