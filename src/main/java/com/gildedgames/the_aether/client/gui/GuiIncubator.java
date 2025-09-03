@@ -26,7 +26,7 @@ public class GuiIncubator extends GuiContainer {
 
 	@Override
 	protected void drawGuiContainerForegroundLayer(int par1, int par2) {
-		String incubatorName = this.incubatorInventory.getInventoryName();
+		String incubatorName = I18n.format("container.aether_legacy.incubator");
 
 		this.fontRendererObj.drawString(incubatorName, this.xSize / 2 - this.fontRendererObj.getStringWidth(incubatorName) / 2, 6, 4210752);
 		this.fontRendererObj.drawString(I18n.format("container.inventory"), 8, this.ySize - 96 + 2, 0x404040);

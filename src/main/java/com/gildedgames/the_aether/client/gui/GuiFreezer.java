@@ -28,7 +28,7 @@ public class GuiFreezer extends GuiContainer {
 
 	@Override
 	protected void drawGuiContainerForegroundLayer(int par1, int par2) {
-		String freezerName = this.freezer.getInventoryName();
+		String freezerName = I18n.format("container.aether_legacy.freezer");
 
 		this.fontRendererObj.drawString(freezerName, this.xSize / 2 - this.fontRendererObj.getStringWidth(freezerName) / 2, 6, 4210752);
 		this.fontRendererObj.drawString(I18n.format("container.inventory"), 8, this.ySize - 96 + 2, 4210752);

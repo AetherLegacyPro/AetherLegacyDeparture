@@ -29,9 +29,7 @@ public class GuiAmplifier extends GuiContainer {
 
 	@Override
 	protected void drawGuiContainerForegroundLayer(int par1, int par2) {
-		String amplifierName = AetherConfig.legacyAltarName() ?
-				I18n.format("container.aether_legacy.amplifier")
-				: I18n.format("container.aether_legacy.amplifier");
+		String amplifierName = I18n.format("container.aether_legacy.amplifier");
 
 		this.fontRendererObj.drawString(amplifierName, this.xSize / 2 - this.fontRendererObj.getStringWidth(amplifierName) / 2, 6, 4210752);
 		this.fontRendererObj.drawString(I18n.format("container.inventory"), 8, this.ySize - 96 + 2, 4210752);
