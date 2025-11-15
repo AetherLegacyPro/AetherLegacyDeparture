@@ -23,10 +23,22 @@ public class AbilityElysianRing implements IAetherAbility {
 	public void onUpdate() {
 		
 		if (this.player.getAccessoryInventory().wearingAccessory(ItemsAether.elysian_ring) || this.player.getAccessoryInventory().wearingAccessory(ItemsAether.reinforced_elysian_ring)) {
+			if (this.player.getAccessoryInventory().wearingAccessory(ItemsAether.bone_ring) || this.player.getAccessoryInventory().wearingAccessory(ItemsAether.reinforced_bone_ring)) {
+				this.player.getEntity().addPotionEffect(new PotionEffect(Potion.resistance.id, 100, 1));
+			}else if(this.player.getAccessoryInventory().wearingAccessory(ItemsAether.amplified_bone_ring)){
+				this.player.getEntity().addPotionEffect(new PotionEffect(Potion.resistance.id, 100, 2));
+			}else{
 				this.player.getEntity().addPotionEffect(new PotionEffect(Potion.resistance.id, 100, 0));
+			}
 		}
 		else if (this.player.getAccessoryInventory().wearingAccessory(ItemsAether.amplified_elysian_ring)) {
+			if (this.player.getAccessoryInventory().wearingAccessory(ItemsAether.bone_ring) || this.player.getAccessoryInventory().wearingAccessory(ItemsAether.reinforced_bone_ring)) {
+				this.player.getEntity().addPotionEffect(new PotionEffect(Potion.resistance.id, 100, 2));
+			}else if(this.player.getAccessoryInventory().wearingAccessory(ItemsAether.amplified_bone_ring)){
 				this.player.getEntity().addPotionEffect(new PotionEffect(Potion.resistance.id, 100, 1));
+			}else{
+				this.player.getEntity().addPotionEffect(new PotionEffect(Potion.resistance.id, 100, 3));
+			}
 		}
 		
 		

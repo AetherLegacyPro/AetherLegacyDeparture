@@ -141,15 +141,15 @@ public class BlockZanitePile extends Block
     {
     	int meta = world.getBlockMetadata(x, y, z);
     	switch (meta) {
-			case 1: return 1 + random.nextInt(1);
-		case 2: return 2 + random.nextInt(2);
-		case 3: return 2 + random.nextInt(3);
-		case 4: return 3 + random.nextInt(3);   		
-    	case 5: return 4 + random.nextInt(3);  		
-    	case 6: return 5 + random.nextInt(3);   		
-    	case 7: return 5 + random.nextInt(4);
+			case 1: return 2 + 2 * (1 + random.nextInt(2));//4~6
+		    case 2: return 3 + 2 * (2 + random.nextInt(2));//7~9
+		    case 3: return 4 + 2 * (3 + random.nextInt(3));//10~14
+		    case 4: return 6 + 3 * (4 + random.nextInt(3));//18~24
+    	    case 5: return 8 + 4 * (5 + random.nextInt(4));//28~40
+    	    case 6: return 12 + 5 * (6 +random.nextInt(5));//42~62
+    	    case 7: return 22 + 6 * (7 +random.nextInt(7));//64~100
     	
-    	default: return 1;
+    	default: return 4;
     	}
     }
 
