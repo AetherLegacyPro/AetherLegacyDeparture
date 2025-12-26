@@ -478,6 +478,8 @@ public class AetherClientEvents {
 	private static int previousSelectedTabIndex = -1;
 
 	private static boolean shouldRemoveButton = false;
+	
+	private boolean openedMenu = false;
 
 	@SubscribeEvent
 	@SuppressWarnings("unchecked")
@@ -519,9 +521,15 @@ public class AetherClientEvents {
 			event.buttonList.add(MAIN_MENU_BUTTON.setPosition(event.gui.width - 24, 4));
 		}
 
-		if (AetherConfig.getMenuEnabled() && event.gui instanceof GuiMainMenu) {
-			Minecraft.getMinecraft().displayGuiScreen(new AetherMainMenu());
-		}
+		//Causing the Log to freak out if enabled
+		//if (AetherConfig.getMenuEnabled() && event.gui instanceof GuiMainMenu) {
+			//Minecraft.getMinecraft().displayGuiScreen(new AetherMainMenu());
+		//}
+		
+		if (!openedMenu && AetherConfig.getMenuEnabled() && event.gui instanceof GuiMainMenu) {
+	        openedMenu = true;
+	        Minecraft.getMinecraft().displayGuiScreen(new AetherMainMenu());
+	    }
 
 		//if (event.gui.getClass() == GuiOptions.class)
 		if (event.gui instanceof GuiOptions)
