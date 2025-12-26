@@ -11,7 +11,7 @@ public class AetherConfig {
 	private static Configuration config;
 	
 	//Important Options
-	private static int aether_biome_id, aether_dimension_id, inebriation_id;
+	private static int aether_biome_id, arctic_peaks_biome_id, divine_forest_biome_id, genesis_island_biome_id, golden_hills_biome_id, aether_dimension_id, inebriation_id;
 	private static boolean use_baubles_expanded_menu, disable_parachutes;
 	public static boolean enable_log_reporting_biomes, enable_assets_message, disable_1stperson_glove_renderer;
 	public static boolean cloud_icon, enable_battlegear2_compatibility;
@@ -23,7 +23,8 @@ public class AetherConfig {
 	private static boolean disable_purple_aercloud, disable_violet_aercloud, disable_dark_purple_aercloud;
 	private static boolean disable_green_aercloud, disable_lime_aercloud, disable_light_green_aercloud;
 	private static boolean disable_pink_aercloud, disable_magenta_aercloud, disable_orange_aercloud;
-	
+	private static boolean disable_storm_aercloud;
+
 	private static boolean disable_aetheral_stone, disable_deific, disable_agiosite;
 	private static boolean disable_void_tree, disable_auarlite_geos, aether_II_dungeons;
 	
@@ -80,6 +81,10 @@ public class AetherConfig {
 
 		aether_dimension_id = config.get("World Identification", "Aether Dimension ID", 4).getInt(4);
 		aether_biome_id = config.get("World Identification", "Aether Biome ID", 127).getInt(127);
+		arctic_peaks_biome_id = config.get("World Identification", "Arctic Peaks Biome ID", 201).getInt(201);
+		divine_forest_biome_id = config.get("World Identification", "Divine Forest Biome ID", 202).getInt(202);
+		genesis_island_biome_id = config.get("World Identification", "Genesis Island Biome ID", 203).getInt(203);
+		golden_hills_biome_id = config.get("World Identification", "Golden Hills Biome ID", 204).getInt(204);
 
 		skyrootBucketOnly = config.get("Misc", "Activate portal with only Skyroot bucket", false).getBoolean(false);
 		valkyrie_cape = config.get("Misc", "Enables the Valkyrie Cape in dungeon loot", true).getBoolean(true);
@@ -102,7 +107,9 @@ public class AetherConfig {
 		disable_pink_aercloud = config.getBoolean("enablePinkAercloud", catWorld, true, "Should Pink Aerclouds Generate?");
 		disable_magenta_aercloud = config.getBoolean("enableMagentaAercloud", catWorld, true, "Should Magenta Aerclouds Generate?");
 		disable_orange_aercloud = config.getBoolean("enableOrangeAercloud", catWorld, true, "Should Orange Aerclouds Generate?");
-		
+
+		disable_storm_aercloud = config.getBoolean("enableStormAercloud", catWorld, true, "Should Storm Aerclouds Generate?");
+
 		disable_aetheral_stone = config.getBoolean("enableAetheralStone", catWorld, true, "Should Aetheral Stone Generate?");
 		disable_deific = config.getBoolean("enableDeific", catWorld, true, "Should Deific Generate?");
 		disable_agiosite = config.getBoolean("enableAgiosite", catWorld, true, "Should Agiosite Generate?");
@@ -313,7 +320,11 @@ public class AetherConfig {
 	public static boolean enableDarkPurpleAercloud() {
 		return AetherConfig.disable_dark_purple_aercloud;
 	}
-	
+
+	public static boolean enableStormAercloud() {
+		return AetherConfig.disable_storm_aercloud;
+	}
+
 	public static boolean enableVoidTree() {
 		return AetherConfig.disable_void_tree;
 	}
@@ -328,6 +339,22 @@ public class AetherConfig {
 
 	public static int getAetherBiomeID() {
 		return AetherConfig.aether_biome_id;
+	}
+
+	public static int getArcticPeaksBiomeID() {
+		return AetherConfig.arctic_peaks_biome_id;
+	}
+
+	public static int getDivineForestBiomeID() {
+		return AetherConfig.divine_forest_biome_id;
+	}
+
+	public static int getGenesisIslandBiomeID() {
+		return AetherConfig.genesis_island_biome_id;
+	}
+
+	public static int getGoldenHillsBiomeID() {
+		return AetherConfig.golden_hills_biome_id;
 	}
 
 	public static int getMaxLifeShards() {

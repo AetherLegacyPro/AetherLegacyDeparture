@@ -1,11 +1,11 @@
 package com.gildedgames.the_aether.world;
 
 import com.gildedgames.the_aether.AetherConfig;
+import com.gildedgames.the_aether.world.biome.*;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraftforge.common.DimensionManager;
 
-import com.gildedgames.the_aether.world.biome.AetherBiome;
 import com.gildedgames.the_aether.world.gen.MapGenAncientGoldenDungeon;
 import com.gildedgames.the_aether.world.gen.MapGenAncientSilverDungeon;
 import com.gildedgames.the_aether.world.gen.MapGenDivineGoldenDungeon;
@@ -30,6 +30,10 @@ import com.gildedgames.the_aether.world.gen.components.ComponentSilverDungeon;
 public class AetherWorld {
 
 	public static BiomeGenBase aether_biome = new AetherBiome();
+	public static BiomeGenBase golden_hills = new GoldenHills();
+	public static BiomeGenBase divine_forests = new DivineForests();
+	public static BiomeGenBase arctic_peaks = new ArcticPeaks();
+	public static BiomeGenBase genesis_islands = new GenesisIslands();
 
 	public static void initialization() {
 		MapGenStructureIO.registerStructure(MapGenSilverDungeon.Start.class, "aether_legacy:silver_dungeon_start");
@@ -62,7 +66,6 @@ public class AetherWorld {
 
 		DimensionManager.registerProviderType(AetherConfig.getAetherDimensionID(), AetherWorldProvider.class, false);
 		DimensionManager.registerDimension(AetherConfig.getAetherDimensionID(), AetherConfig.getAetherDimensionID());
-		//aether_dimension_type = DimensionType.register("AetherI", "_aetherI", AetherConfig.getAetherDimensionID(), AetherWorldProvider.class, false);
 	}
 
 }

@@ -27,7 +27,6 @@ public class OsmiumDungeon implements IWorldGenerator  {
 	int aether_random = AetherConfig.osmium_dungeon_rarity;
 		
 	public void generateAether(World world, Random rand, int x, int z) {
-		if(Math.abs(x) < 2000 && Math.abs(z) < 2000) return;
 		if(Math.abs(x) < 2000 || Math.abs(z) < 2000) return;
 		
 		int chunkX;
