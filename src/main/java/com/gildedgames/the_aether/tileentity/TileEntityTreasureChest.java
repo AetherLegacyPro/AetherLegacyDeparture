@@ -54,80 +54,80 @@ public class TileEntityTreasureChest extends TileEntityChest {
 		int p;
 
 		if (kind == 0) {
-			for (p = 0; p < 5 + random.nextInt(1); ++p) {
+			for (p = 0; p < 5 + random.nextInt(2); ++p) {
 				this.setInventorySlotContents(random.nextInt(this.getSizeInventory()), BronzeDungeon.getBronzeLoot(random));
 			}
 		}
 
 		if (kind == 1) {
-			for (p = 0; p < 5 + random.nextInt(1); ++p) {
+			for (p = 0; p < 5 + random.nextInt(2); ++p) {
 				this.setInventorySlotContents(random.nextInt(this.getSizeInventory()), ComponentSilverDungeon.getSilverLoot(random));
 			}
 		}
 
 		if (kind == 2) {
-			for (p = 0; p < 5 + random.nextInt(1); ++p) {
+			for (p = 0; p < 5 + random.nextInt(2); ++p) {
 				this.setInventorySlotContents(random.nextInt(this.getSizeInventory()), ComponentGoldenDungeon.getGoldLoot(random));
 			}
 		}
 			
 		if (kind == 3) {
-				for (p = 0; p < 5 + random.nextInt(1); ++p) {
+				for (p = 0; p < 5 + random.nextInt(2); ++p) {
 					this.setInventorySlotContents(random.nextInt(this.getSizeInventory()), LargeBronzeDungeon.getAncientBronzeLoot(random));
 			}
 				
 		}
 		
 		if (kind == 4) {
-			for (p = 0; p < 5 + random.nextInt(1); ++p) {
+			for (p = 0; p < 5 + random.nextInt(2); ++p) {
 				this.setInventorySlotContents(random.nextInt(this.getSizeInventory()), DivineBronzeDungeon.getDivineBronzeLoot(random));
 			}
 		}
 			
 		if (kind == 5) {
-			for (p = 0; p < 5 + random.nextInt(1); ++p) {
+			for (p = 0; p < 5 + random.nextInt(2); ++p) {
 				this.setInventorySlotContents(random.nextInt(this.getSizeInventory()), ComponentAncientSilverDungeon.getAncientSilverLoot(random));
 			}
 		}
 		
 		if (kind == 6) {
-			for (p = 0; p < 5 + random.nextInt(1); ++p) {
+			for (p = 0; p < 5 + random.nextInt(2); ++p) {
 				this.setInventorySlotContents(random.nextInt(this.getSizeInventory()), ComponentDivineSilverDungeon.getDivineSilverLoot(random));
 			}
 		}
 		
 		if (kind == 7) {
-			for (p = 0; p < 5 + random.nextInt(2); ++p) {
+			for (p = 0; p < 5 + random.nextInt(3); ++p) {
 				this.setInventorySlotContents(random.nextInt(this.getSizeInventory()), ComponentAncientGoldenDungeon.getAncientGoldLoot(random));
 			}
 		}
 		
 		if (kind == 8) {
-			for (p = 0; p < 5 + random.nextInt(6); ++p) {
+			for (p = 0; p < 5 + random.nextInt(7); ++p) {
 				this.setInventorySlotContents(random.nextInt(this.getSizeInventory()), ComponentDivineGoldenDungeon.getDivineGoldLoot(random));
 			}
 		}
 		
 		if (kind == 9) {
-			for (p = 0; p < 7 + random.nextInt(2); ++p) {
+			for (p = 0; p < 7 + random.nextInt(3); ++p) {
 				this.setInventorySlotContents(random.nextInt(this.getSizeInventory()), MythicBronzeDungeon.getMythicBronzeLoot(random));
 			}
 		}
 		
 		if (kind == 10) {
-			for (p = 0; p < 7 + random.nextInt(2); ++p) {
+			for (p = 0; p < 7 + random.nextInt(3); ++p) {
 				this.setInventorySlotContents(random.nextInt(this.getSizeInventory()), CobaltDungeon.getCobaltLoot(random));
 			}
 		}
 		
 		if (kind == 11) {
-			for (p = 0; p < 7 + random.nextInt(2); ++p) {
+			for (p = 0; p < 7 + random.nextInt(3); ++p) {
 				this.setInventorySlotContents(random.nextInt(this.getSizeInventory()), OsmiumDungeon.getOsmiumLoot(random));
 			}
 		}
 		
 		if (kind == 14) {
-			for (p = 0; p < 7 + random.nextInt(8); ++p) {
+			for (p = 0; p < 7 + random.nextInt(9); ++p) {
 				this.setInventorySlotContents(random.nextInt(this.getSizeInventory()), PalladiumDungeonTotem.getPalladiumLoot(random));
 			}
 		}

@@ -37,7 +37,7 @@ public class OsmiumDungeon implements IWorldGenerator  {
 		chunkZ = z * 16 + rand.nextInt(16) + 8;
 		biome = world.getBiomeGenForCoords(x, z);
 		biomeList = BiomeDictionary.getTypesForBiome(biome);		
-		if ((biome == AetherWorld.aether_biome) && AetherConfig.osmium_dungeon_rarity != 0 && rand.nextInt(aether_random) == 0 && AetherConfig.osmium_dungeon_enable == true) {
+		if ((biome == AetherWorld.aether_biome) && AetherConfig.osmium_dungeon_rarity != 0 && rand.nextInt(aether_random) == 0 && AetherConfig.osmium_dungeon_enable) {
 			
 		int x1 = x + rand.nextInt(16) + 8;
 	  	int y1 = 128;
