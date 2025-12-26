@@ -561,7 +561,7 @@ public class ChunkProviderAether implements IChunkProvider {
 		}
 		//Storm Aerclouds
 	if (AetherConfig.enableStormAercloud()) {
-		if (this.rand.nextInt(420) == 0) {
+		if (this.rand.nextInt(1700) == 0) {
 			final int x1 = x + this.rand.nextInt(128);
 			final int y = this.rand.nextInt(16) + 232;
 			final int z1 = z + this.rand.nextInt(128);

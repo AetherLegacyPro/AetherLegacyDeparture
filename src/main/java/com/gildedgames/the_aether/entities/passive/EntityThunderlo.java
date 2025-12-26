@@ -53,22 +53,30 @@ public class EntityThunderlo extends EntityAetherAnimal
 	      return (this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_dirt || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.arctic_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.verdant_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.enchanted_aether_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.divine_grass) && this.worldObj.getBlockLightValue(i, j, k) > 7 && canSpawn && (AetherConfig.getThunderloSpawnrate()) == 0 && super.getCanSpawnHere();
 	                       
 	}
-       
-    protected void dropFewItems(final boolean var1, final int var2) {
-    	this.dropItem(ItemsAether.thunderlo_leather, 1 + rand.nextInt(2));
-        this.dropItem(ItemsAether.raw_thunderlo, 1 +  rand.nextInt(2));
+
+    @Override
+    protected void dropFewItems(boolean recentlyHit, int lootLevel) {
+        int j = this.rand.nextInt(3) + this.rand.nextInt(1 + lootLevel);
+        int k;
+
         int rand = (int)(1 + Math.random() * 4);
-		switch (rand)
-        {
-        case 1: this.dropItem(ItemsAether.thunderlo_horn, 1);
-        break;
-        case 2: 
-        break;
-        case 3:
-        break;
-        case 4:
-        break;
+        if(rand == 1) {
+            dropItem(ItemsAether.thunderlo_horn, 1 + lootLevel);
         }
+
+        for (k = 0; k < j; ++k) {
+            if (this.isBurning()) {
+                this.dropItem(ItemsAether.enchanted_thunderlo, 1);
+            } else {
+                this.dropItem(ItemsAether.raw_thunderlo, 1);
+            }
+        }
+
+        j = this.rand.nextInt(3) + this.rand.nextInt(1 + lootLevel);
+        for (k = 0; k < j; ++k) {
+            this.dropItem(ItemsAether.thunderlo_leather, 1);
+        }
+        super.dropFewItems(recentlyHit, lootLevel);
     }
     
     protected void dropRareDrop(int p_70600_1_)

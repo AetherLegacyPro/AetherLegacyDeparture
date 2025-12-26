@@ -167,7 +167,11 @@ public class EntityAerwhale extends EntityFlying implements IMob
         int k;
 
         for (k = 0; k < j; ++k) {
-            this.dropItem(ItemsAether.raw_aerwhale, 3);
+            if (this.isBurning()) {
+                this.dropItem(ItemsAether.enchanted_aerwhale, 3);
+            } else {
+                this.dropItem(ItemsAether.raw_aerwhale, 3);
+            }
         }
 
         j = this.rand.nextInt(3) + 1 + this.rand.nextInt(1 + lootLevel);
