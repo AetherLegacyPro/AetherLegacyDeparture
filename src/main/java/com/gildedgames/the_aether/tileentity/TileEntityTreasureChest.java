@@ -97,7 +97,7 @@ public class TileEntityTreasureChest extends TileEntityChest {
 		}
 		
 		if (kind == 7) {
-			for (p = 0; p < 5 + random.nextInt(3); ++p) {
+			for (p = 0; p < 5 + random.nextInt(5); ++p) {
 				this.setInventorySlotContents(random.nextInt(this.getSizeInventory()), ComponentAncientGoldenDungeon.getAncientGoldLoot(random));
 			}
 		}
@@ -127,7 +127,7 @@ public class TileEntityTreasureChest extends TileEntityChest {
 		}
 		
 		if (kind == 14) {
-			for (p = 0; p < 7 + random.nextInt(9); ++p) {
+			for (p = 0; p < 9 + random.nextInt(9); ++p) {
 				this.setInventorySlotContents(random.nextInt(this.getSizeInventory()), PalladiumDungeonTotem.getPalladiumLoot(random));
 			}
 		}

@@ -1016,7 +1016,7 @@ public class DivineBronzeDungeon extends AetherDungeon {
 	}
 
 	public static ItemStack getDivineBronzeLoot(Random random) {
-		int item = random.nextInt(16);
+		int item = random.nextInt(13);
         switch (item) {
             case 0 : return new ItemStack(ItemsAether.gummy_swet, random.nextInt(4) + 1, 1);
             case 1 : return new ItemStack(ItemsAether.zanite_shield);
