@@ -448,10 +448,6 @@ public class ChunkProviderAether implements IChunkProvider {
 		SpawnerAnimals.performWorldGenSpawning(this.worldObj, biome, x + 8, z + 8, 16, 16, this.rand);
 		
 		final BiomeGenBase biomegenbase = AetherWorld.aether_biome;
-		final BiomeGenBase arctic = AetherWorld.arctic_peaks;
-		final BiomeGenBase divine = AetherWorld.divine_forests;
-		final BiomeGenBase genesis = AetherWorld.genesis_islands;
-		final BiomeGenBase golden = AetherWorld.golden_hills;
 		
 		//Standard 3 Aerclouds
 		 if (this.rand.nextInt(50) == 0) {

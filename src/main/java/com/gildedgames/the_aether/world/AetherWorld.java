@@ -30,10 +30,6 @@ import com.gildedgames.the_aether.world.gen.components.ComponentSilverDungeon;
 public class AetherWorld {
 
 	public static BiomeGenBase aether_biome = new AetherBiome();
-	public static BiomeGenBase golden_hills = new GoldenHills();
-	public static BiomeGenBase divine_forests = new DivineForests();
-	public static BiomeGenBase arctic_peaks = new ArcticPeaks();
-	public static BiomeGenBase genesis_islands = new GenesisIslands();
 
 	public static void initialization() {
 		MapGenStructureIO.registerStructure(MapGenSilverDungeon.Start.class, "aether_legacy:silver_dungeon_start");
