@@ -559,15 +559,6 @@ public class ChunkProviderAether implements IChunkProvider {
 	            new AetherCloudsGenNew(BlocksAether.pink_aercloud, 2, 4, false).generate(this.worldObj, this.rand, x, y, z);
 	        }
 		}
-		//Storm Aerclouds
-	if (AetherConfig.enableStormAercloud()) {
-		if (this.rand.nextInt(1700) == 0) {
-			final int x1 = x + this.rand.nextInt(128);
-			final int y = this.rand.nextInt(16) + 232;
-			final int z1 = z + this.rand.nextInt(128);
-			new AetherCloudsGenNew(BlocksAether.storm_aercloud, 0, 4, false).generate(this.worldObj, this.rand, x, y, z);
-		}
-	}
 
 
 		for (int numberoftreegen = 3, i2 = 0; i2 < numberoftreegen; ++i2) {

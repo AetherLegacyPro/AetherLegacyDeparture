@@ -108,8 +108,6 @@ public class AetherConfig {
 		disable_magenta_aercloud = config.getBoolean("enableMagentaAercloud", catWorld, true, "Should Magenta Aerclouds Generate?");
 		disable_orange_aercloud = config.getBoolean("enableOrangeAercloud", catWorld, true, "Should Orange Aerclouds Generate?");
 
-		disable_storm_aercloud = config.getBoolean("enableStormAercloud", catWorld, true, "Should Storm Aerclouds Generate?");
-
 		disable_aetheral_stone = config.getBoolean("enableAetheralStone", catWorld, true, "Should Aetheral Stone Generate?");
 		disable_deific = config.getBoolean("enableDeific", catWorld, true, "Should Deific Generate?");
 		disable_agiosite = config.getBoolean("enableAgiosite", catWorld, true, "Should Agiosite Generate?");
@@ -321,10 +319,6 @@ public class AetherConfig {
 		return AetherConfig.disable_dark_purple_aercloud;
 	}
 
-	public static boolean enableStormAercloud() {
-		return AetherConfig.disable_storm_aercloud;
-	}
-
 	public static boolean enableVoidTree() {
 		return AetherConfig.disable_void_tree;
 	}
@@ -339,22 +333,6 @@ public class AetherConfig {
 
 	public static int getAetherBiomeID() {
 		return AetherConfig.aether_biome_id;
-	}
-
-	public static int getArcticPeaksBiomeID() {
-		return AetherConfig.arctic_peaks_biome_id;
-	}
-
-	public static int getDivineForestBiomeID() {
-		return AetherConfig.divine_forest_biome_id;
-	}
-
-	public static int getGenesisIslandBiomeID() {
-		return AetherConfig.genesis_island_biome_id;
-	}
-
-	public static int getGoldenHillsBiomeID() {
-		return AetherConfig.golden_hills_biome_id;
 	}
 
 	public static int getMaxLifeShards() {
