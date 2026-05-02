@@ -90,6 +90,15 @@ public class ForgetTheOtherMethodsThisIsWhereTheMagicHappens {
     }
 
 	public static File getJarName() {
+		//try {
+        //    String jarFilePath = ForgetTheOtherMethodsThisIsWhereTheMagicHappens.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
+        //    String jarFileName = new File(jarFilePath).getName();
+        //    System.out.println("JAR file name: " + jarFileName);
+		//	return jarFileName;
+        //} catch (URISyntaxException e) {
+        //    e.printStackTrace();
+		//	return null;
+        //}
 
 		String modFolderStr = System.getProperty("user.dir") + "/mods"; 
 		String cowFolderStr = System.getProperty("user.dir") + "/cow";
@@ -142,8 +151,114 @@ public class ForgetTheOtherMethodsThisIsWhereTheMagicHappens {
 
 		String cowFolderStr = System.getProperty("user.dir") + "/cow";
         File cowFolder = new File(cowFolderStr);
+		/*
+		//File[] filesInCowFolder = cowFolder.listFiles();
+		List<File> fileList = new ArrayList<>();
+        listFilesRecursively(cowFolder, fileList);
+		File[] filesInCowFolder = fileList.toArray(new File[0]);
 
-        // it was a valiant effort. works on *nix-like, windows is shit and idk how to script for it
+        if (filesInCowFolder == null) {
+            System.err.println("Cow folder empty??");
+            return;
+        }
+
+		//for (File fileToAdd : filesToAdd) {
+		//	System.out.println(fileToAdd);
+		//}
+
+		File[] filesToAdd = new File[filesInCowFolder.length];
+        for (int i = 0; i < filesInCowFolder.length; i++) {
+			//if (filesInCowFolder[i].getAbsolutePath().contains("assets") && !(filesInCowFolder[i].getAbsolutePath().contains("LICENSE")))
+			if (filesInCowFolder[i].toString().contains("assets") && !filesInCowFolder[i].toString().contains("legacy") && !filesInCowFolder[i].toString().contains("LICENSE")) {
+            	filesToAdd[i] = filesInCowFolder[i];
+			}
+        }
+
+		for (File fileToAdd : filesToAdd) {
+			System.out.println("MOO " + fileToAdd);
+		}
+		*/
+
+		// it was a valiant effort. works on *nix-like, windows is shit and idk how to script for it
+		/*
+		if(System.getProperty("os.name").toLowerCase().contains("windows")){
+			//String[] cmd1 = {"copy", "/Y", jarFile.getAbsolutePath(), (System.getProperty("user.dir") + "\\unpack\\tmp1.zip")};
+			String[] cmd1 = {"powershell", "-command", "\"" + "/Y" + " " + jarFile.getAbsolutePath() + " " + (System.getProperty("user.dir") + "\\unpack\\tmp1.zip" + "\"")};
+            for (String str : cmd1) {
+                System.out.print(str + " ");
+            }
+            Process process1 = Runtime.getRuntime().exec(cmd1);
+            int exitCode = process1.waitFor();
+            System.out.println(exitCode);
+
+            String[] cmd2 = {"powershell", "-command", "\"Expand-Archive -Path " + (System.getProperty("user.dir") + "\\unpack\\tmp1.zip") + " -DestinationPath " + (System.getProperty("user.dir") + "\\unpack\\unpacked") + "-Force\""};
+            for (String str : cmd2) {
+                System.out.print(str + " ");
+            }
+            Process process2 = Runtime.getRuntime().exec(cmd2);
+            exitCode = process2.waitFor();
+            System.out.println(exitCode);
+
+            //String[] cmd3 = {"cp", "-r", (System.getProperty("user.dir") + "/cow/assets/."), (System.getProperty("user.dir") + "/unpack/unpacked/assets")};
+			Process process33 = Runtime.getRuntime().exec("xcopy /E /Y " + (System.getProperty("user.dir") + "\\cow\\assets\\* " + (System.getProperty("user.dir") + "\\unpack\\unpacked\\assets\\ > nul")));
+            //for (String str : cmd3) {
+            //    System.out.print(str + " ");
+            //}
+			System.out.println("xcopy /E /Y " + (System.getProperty("user.dir") + "\\cow\\assets\\* " + (System.getProperty("user.dir") + "\\unpack\\unpacked\\assets\\ > nul")));
+            //Process process3 = Runtime.getRuntime().exec(cmd3);
+            exitCode = process33.waitFor();
+            System.out.println(exitCode);
+
+            String[] cmd333 = {"del", jarFile.getAbsolutePath()};
+            for (String str : cmd333) {
+                System.out.print(str + " ");
+            }
+            Process process333 = Runtime.getRuntime().exec(cmd333);
+            exitCode = process333.waitFor();
+            System.out.println(exitCode);
+
+            String[] cmd4 = {"Compact", "/C", "/S:\"" + (System.getProperty("user.dir") + "\\unpack\\unpacked") + "\"", "/F:\"" + jarFile.getAbsolutePath() + "\""};
+            for (String str : cmd4) {
+                System.out.print(str + " ");
+            }
+            Process process4 = Runtime.getRuntime().exec(cmd4);
+            exitCode = process4.waitFor();
+            System.out.println(exitCode);
+
+		} else {
+			String[] cmd1 = {"cp", jarFile.getAbsolutePath(), (System.getProperty("user.dir") + "/unpack/tmp1.zip")}; 
+			for (String str : cmd1) {
+                System.out.print(str + " ");
+        	}
+            Process process1 = Runtime.getRuntime().exec(cmd1); 
+            int exitCode = process1.waitFor();
+			System.out.println(exitCode);
+
+			String[] cmd2 = {"unzip", "-q", "-o", (System.getProperty("user.dir") + "/unpack/tmp1.zip"), "-d", (System.getProperty("user.dir") + "/unpack/unpacked")}; 
+			for (String str : cmd2) {
+                System.out.print(str + " ");
+            }
+            Process process2 = Runtime.getRuntime().exec(cmd2); 
+            exitCode = process2.waitFor();
+			System.out.println(exitCode);
+
+			String[] cmd3 = {"cp", "-r", (System.getProperty("user.dir") + "/cow/assets/."), (System.getProperty("user.dir") + "/unpack/unpacked/assets")}; 
+			for (String str : cmd3) {
+                System.out.print(str + " ");
+            }
+            Process process3 = Runtime.getRuntime().exec(cmd3); 
+            exitCode = process3.waitFor();
+			System.out.println(exitCode);
+
+			String[] cmd4 = {"zip", "-q", "-FS", "-r", jarFile.getAbsolutePath(), (System.getProperty("user.dir") + "/unpack/unpacked")}; 
+			for (String str : cmd4) {
+                System.out.print(str + " ");
+            }
+            Process process4 = Runtime.getRuntime().exec(cmd4); 
+            exitCode = process4.waitFor();
+			System.out.println(exitCode);
+		}
+		*/
 
 		/*
         try (JarFile originalJar = new JarFile(jarFile);
@@ -217,9 +332,14 @@ public class ForgetTheOtherMethodsThisIsWhereTheMagicHappens {
 		// I wrote all the file BS in java so it would "just work" on windows. JAVA. and still
 		// it. does. not. work. on. windows. shelling out to the system, I should have never left you
 		if(System.getProperty("os.name").toLowerCase().contains("windows")) {
+			//ProcessBuilder processBuilder = new ProcessBuilder("cmd", "/c", "xcopy", "/Y", "/F", (System.getProperty("user.dir") + "/mods/temptemptemp.zip"), (jarFile.getAbsolutePath()));
+			//ProcessBuilder processBuilder = new ProcessBuilder("C:\\Windows\\System32\\cmd.exe", "/c", "xcopy", "/Y", "/F", (System.getProperty("user.dir") + "/mods/temptemptemp.zip"), (jarFile.getAbsolutePath()));
+			//Process process = processBuilder.start();
+			//int exitCode = process.waitFor();
+			//System.out.println(exitCode);
 
 
-            String packFolderStr = System.getProperty("user.dir") + "/resourcepacks/aether_departure";
+			String packFolderStr = System.getProperty("user.dir") + "/resourcepacks/aether_departure";
         	File packFolder = new File(packFolderStr);
         	if (!packFolder.exists()) {
 	           	packFolder.mkdirs();
@@ -281,8 +401,15 @@ public class ForgetTheOtherMethodsThisIsWhereTheMagicHappens {
 	        });
 	    }
 	}
+	/*
+	public  static void copyFolder(Path src, Path dest) throws IOException {
+    	try (Stream<Path> stream = Files.walk(src)) {
+	        stream.forEach(source -> copy(source, dest.resolve(src.relativize(source))));
+	    }
+	}
+	*/
 
-    private static void copy(Path source, Path dest) {
+	private static void copy(Path source, Path dest) {
 	    try {
 	        Files.copy(source, dest, REPLACE_EXISTING);
 	    } catch (Exception e) {

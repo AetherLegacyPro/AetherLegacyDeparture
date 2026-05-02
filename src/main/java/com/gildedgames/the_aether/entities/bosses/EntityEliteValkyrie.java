@@ -83,35 +83,6 @@ public class EntityEliteValkyrie extends EntityAetherMob {
 		}
 	}
 
-	@Override
-	public boolean interact(EntityPlayer entityplayer) {
-		this.faceEntity(entityplayer, 180F, 180F);
-
-		ItemStack stack = entityplayer.getCurrentEquippedItem();
-
-		if (stack != null && stack.getItem() == ItemsAether.victory_medal && stack.stackSize >= 0) {
-			if (stack.stackSize >= 10) {
-				this.chatItUp(entityplayer, StatCollector.translateToLocal("gui.valkyrie.dialog.medal.1"));
-			} else if (stack.stackSize >= 5) {
-				this.chatItUp(entityplayer, StatCollector.translateToLocal("gui.valkyrie.dialog.medal.2"));
-			} else {
-				this.chatItUp(entityplayer, StatCollector.translateToLocal("gui.valkyrie.dialog.medal.3"));
-			}
-		} else {
-			int line = rand.nextInt(3);
-
-			if (line == 2) {
-				this.chatItUp(entityplayer, StatCollector.translateToLocal("gui.valkyrie.dialog.1"));
-			} else if (line == 1) {
-				this.chatItUp(entityplayer, StatCollector.translateToLocal("gui.valkyrie.dialog.2"));
-			} else {
-				this.chatItUp(entityplayer, StatCollector.translateToLocal("gui.valkyrie.dialog.3"));
-			}
-		}
-
-		return true;
-	}
-
 	public void teleport(double x, double y, double z, int rad) {
 		int a = this.rand.nextInt(rad + 1);
 		int b = this.rand.nextInt(rad / 2);
@@ -164,7 +135,7 @@ public class EntityEliteValkyrie extends EntityAetherMob {
 			this.teleTimer = 446;
 		}
 	}
-	
+
 	 public void onLivingUpdate() {
 		if (!this.worldObj.isRemote && this.worldObj.difficultySetting == EnumDifficulty.PEACEFUL)
 		{
@@ -334,10 +305,10 @@ public class EntityEliteValkyrie extends EntityAetherMob {
 			spawnExplosionParticle();
 			this.setDead();
 		}
-		
+
 		EntityPlayer player = (EntityPlayer) ds.getEntity();
 		ItemStack stack = player.inventory.getCurrentItem();
-        
+
 		if (stack != null && stack.getItem() != null && stack.getItem() == ItemsAether.builder_slayer) {
 			player.triggerAchievement(AchievementsAether.builders_beware);
 		}
@@ -398,16 +369,16 @@ public class EntityEliteValkyrie extends EntityAetherMob {
 	protected String getDeathSound() {
 		return "game.player.hurt.fall.big";
 	}
-    
+
 	public boolean getCanSpawnHere() {
         final int i = MathHelper.floor_double(this.posX);
         final int j = MathHelper.floor_double(this.boundingBox.minY);
         final int k = MathHelper.floor_double(this.posZ);
         final boolean canSpawn = this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
         return (this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_divine_angelic_stone || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_divine_light_angelic_stone || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_mythic_light_angelic_stone || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_mythic_angelic_stone) && this.worldObj.getBlockLightValue(i, j, k) < 14 && canSpawn;
-                       
+
     }
-    
+
     public int getMaxSpawnedInChunk() {
         return 1;
     }

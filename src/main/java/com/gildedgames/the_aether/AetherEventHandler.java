@@ -325,7 +325,7 @@ public class AetherEventHandler {
 		} else if (craftedItem == ItemsAether.reinforced_valkyrie_ring) {
 			event.player.triggerAchievement(AchievementsAether.even_shinier);
 		}
-		
+
 	}
 
 	@SubscribeEvent
@@ -380,8 +380,8 @@ public class AetherEventHandler {
 				return;
 			}
 		} else if (event.entity instanceof EntityZojz || event.entity instanceof EntityTempest || event.entity instanceof EntityEliteValkyrie
-			|| event.entity instanceof EntityDivineValkyrieQueen || event.entity instanceof EntityElysianGuardian 
-			|| event.entity instanceof EntityIrk || event.entity instanceof EntityGenesisDragon 
+			|| event.entity instanceof EntityDivineValkyrieQueen || event.entity instanceof EntityElysianGuardian
+			|| event.entity instanceof EntityIrk || event.entity instanceof EntityGenesisDragon
 			|| event.entity instanceof EntityGenesisDragonPart) {
 			event.setCanceled(true);
 		}
@@ -418,7 +418,7 @@ public class AetherEventHandler {
 			}
 		} else if (heldItem == ItemsAether.pig_slayer) {
 			String s = EntityList.getEntityString(event.target).toLowerCase();
-			if (s != null && (s.contains("pig") || s.contains("phyg") || s.contains("taegore") || event.target.getUniqueID().toString().equals("1d680bb6-2a9a-4f25-bf2f-a1af74361d69"))) {
+			if (s != null && (s.contains("pig") || s.contains("phyg") || s.contains("taegore") || s.contains("oglin") || s.contains("piglin") || event.target.getUniqueID().toString().equals("1d680bb6-2a9a-4f25-bf2f-a1af74361d69"))) {
 				if (event.target.worldObj.isRemote) {
 					for (int j = 0; j < 20; j++) {
 						Random itemRand = new Random();
@@ -430,29 +430,29 @@ public class AetherEventHandler {
 					}
 				}
 			}
-		} 
+		}
 	}
 
 	public boolean isGravititeTool(Item item) {
 		return item instanceof ItemGravititeTool || item instanceof ItemGravititeHoe;
 	}
-	
+
 	public boolean isSkyrootTool(Item item) {
 		return item instanceof ItemSkyrootTool || item instanceof ItemSkyrootHoe;
 	}
-	
+
 	public boolean isHolystoneTool(Item item) {
 		return item instanceof ItemHolystoneTool || item instanceof ItemHolystoneHoe;
 	}
-	
+
 	public boolean isZaniteTool(Item item) {
 		return item instanceof ItemZaniteTool || item instanceof ItemZaniteHoe;
 	}
-	
+
 	public boolean isArkeniumTool(Item item) {
 		return item instanceof ItemArkeniumTool || item instanceof ItemArkeniumHoe;
 	}
-	
+
 	public boolean isContinuumTool(Item item) {
 		return item instanceof ItemContinuumTool || item instanceof ItemContinuumHoe;
 	}

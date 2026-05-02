@@ -97,7 +97,7 @@ public class EntityValkyrie extends EntityAetherMob {
 			} else {
 				this.chatItUp(entityplayer, StatCollector.translateToLocal("gui.valkyrie.dialog.medal.3"));
 			}
-		} else {
+		} else if(stack == null){
 			int line = rand.nextInt(3);
 
 			if (line == 2) {
@@ -332,10 +332,10 @@ public class EntityValkyrie extends EntityAetherMob {
 			spawnExplosionParticle();
 			this.setDead();
 		}
-		
+
 		EntityPlayer player = (EntityPlayer) ds.getEntity();
 		ItemStack stack = player.inventory.getCurrentItem();
-        
+
 		if (stack != null && stack.getItem() != null && stack.getItem() == ItemsAether.builder_slayer) {
 			player.triggerAchievement(AchievementsAether.builders_beware);
 		}
@@ -396,16 +396,16 @@ public class EntityValkyrie extends EntityAetherMob {
 	protected String getDeathSound() {
 		return "game.player.hurt.fall.big";
 	}
-    
+
 	public boolean getCanSpawnHere() {
         final int i = MathHelper.floor_double(this.posX);
         final int j = MathHelper.floor_double(this.boundingBox.minY);
         final int k = MathHelper.floor_double(this.posZ);
         final boolean canSpawn = this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
         return (this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_angelic_stone || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_light_angelic_stone || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_divine_angelic_stone || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_divine_light_angelic_stone || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_mythic_light_angelic_stone || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_mythic_angelic_stone || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_ancient_angelic_stone || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_ancient_light_angelic_stone) && this.worldObj.getBlockLightValue(i, j, k) < 14 && canSpawn;
-                       
+
     }
-    
+
     public int getMaxSpawnedInChunk() {
         return 1;
     }

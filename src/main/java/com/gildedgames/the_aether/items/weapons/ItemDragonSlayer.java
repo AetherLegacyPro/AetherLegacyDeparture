@@ -5,6 +5,7 @@ import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.item.EnumRarity;
@@ -18,7 +19,7 @@ import com.google.common.collect.Multimap;
 public class ItemDragonSlayer extends ItemSword {
 
 	public float[] level = new float[]{8.0F, 8.0F, 8.0F, 8.0F, 8.0F};
-	
+
 	public ItemDragonSlayer() {
 		super(ToolMaterial.EMERALD);
 		this.setCreativeTab(AetherCreativeTabs.weapons);
@@ -65,21 +66,38 @@ public class ItemDragonSlayer extends ItemSword {
 	public boolean getIsRepairable(ItemStack stack, ItemStack repairStack) {
 		return false;
 	}
-	
-	@Override
+
+    @Override
+    public boolean hitEntity(ItemStack itemstack, EntityLivingBase entityliving, EntityLivingBase entityliving1) {
+        if (entityliving == null || entityliving1 == null) {
+            return false;
+        }
+
+        String s = EntityList.getEntityString(entityliving).toLowerCase();
+
+        if (s.contains("dragon") || s.contains("wyrmling")) {
+            if (entityliving.getHealth() > 0) {
+                entityliving.attackEntityFrom(DamageSource.causeMobDamage(entityliving1), 30);
+            }
+        }
+
+        return super.hitEntity(itemstack, entityliving, entityliving1);
+    }
+
+    @Override
 	public float getDigSpeed(ItemStack itemstack, Block block, int meta) {
 		return super.getDigSpeed(itemstack, block, meta) * (2.0F * (float) itemstack.getItemDamage() / (float) itemstack.getMaxDamage() + 0.5F);
 	}
-	
+
 	@Override
 	public EnumRarity getRarity(ItemStack stack) {
 		return ItemsAether.aether_loot;
 	}
-	
+
 	public boolean hasCustomEntity(final ItemStack stack) {
         return true;
     }
-    
+
     public Entity createEntity(final World world, final Entity location, final ItemStack itemstack) {
         return new EntityFireProofItemAether(world, location, itemstack);
     }

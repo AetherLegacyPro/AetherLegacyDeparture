@@ -68,16 +68,16 @@ public class ItemTippedDragonSlayer extends ItemSword {
 	public boolean getIsRepairable(ItemStack stack, ItemStack repairStack) {
 		return false;
 	}
-	
+
 	@Override
 	public boolean hitEntity(ItemStack itemstack, EntityLivingBase entityliving, EntityLivingBase entityliving1) {
 		if (entityliving == null || entityliving1 == null) {
 			return false;
 		}
 
-		String s = EntityList.getEntityString(entityliving);
+		String s = EntityList.getEntityString(entityliving).toLowerCase();
 
-		if (s.toLowerCase().contains("dragon")) {
+		if (s.contains("dragon") || s.contains("wyrmling")) {
 			if (entityliving.getHealth() > 0) {
 				entityliving.attackEntityFrom(DamageSource.causeMobDamage(entityliving1), 30);
 			}
@@ -85,21 +85,21 @@ public class ItemTippedDragonSlayer extends ItemSword {
 
 		return super.hitEntity(itemstack, entityliving, entityliving1);
 	}
-	
+
 	@Override
 	public float getDigSpeed(ItemStack itemstack, Block block, int meta) {
 		return super.getDigSpeed(itemstack, block, meta) * (2.0F * (float) itemstack.getItemDamage() / (float) itemstack.getMaxDamage() + 0.5F);
 	}
-	
+
 	@Override
 	public EnumRarity getRarity(ItemStack stack) {
 		return ItemsAether.scaled_aether_loot;
 	}
-	
+
 	public boolean hasCustomEntity(final ItemStack stack) {
         return true;
     }
-    
+
     public Entity createEntity(final World world, final Entity location, final ItemStack itemstack) {
         return new EntityFireProofItemAether(world, location, itemstack);
     }

@@ -15,7 +15,7 @@ public class BlockFrozenQuicksoilGlass extends BlockBreakable {
 	public BlockFrozenQuicksoilGlass() {
 		super(Aether.find("frozen_quicksoil_glass"), Material.glass, false);
 
-		this.slipperiness = 1.1F;
+		this.slipperiness = 1.23F;
 
 		this.setHardness(0.2F);
 		this.setLightOpacity(0);
