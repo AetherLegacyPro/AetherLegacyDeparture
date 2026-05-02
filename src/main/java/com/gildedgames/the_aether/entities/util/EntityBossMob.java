@@ -23,7 +23,8 @@ public abstract class EntityBossMob extends EntityCreature implements IMob {
     @Override
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
-        this.getAttributeMap().registerAttribute(SharedMonsterAttributes.attackDamage);
+        this.getAttributeMap()
+            .registerAttribute(SharedMonsterAttributes.attackDamage);
     }
 
     @Override
@@ -72,7 +73,8 @@ public abstract class EntityBossMob extends EntityCreature implements IMob {
 
     @Override
     public boolean attackEntityAsMob(Entity p_70652_1_) {
-        float f = (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue();
+        float f = (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage)
+            .getAttributeValue();
         int i = 0;
 
         if (p_70652_1_ instanceof EntityLivingBase) {
@@ -84,7 +86,10 @@ public abstract class EntityBossMob extends EntityCreature implements IMob {
 
         if (flag) {
             if (i > 0) {
-                p_70652_1_.addVelocity(-MathHelper.sin(this.rotationYaw * (float) Math.PI / 180.0F) * (float) i * 0.5F, 0.1D, MathHelper.cos(this.rotationYaw * (float) Math.PI / 180.0F) * (float) i * 0.5F);
+                p_70652_1_.addVelocity(
+                    -MathHelper.sin(this.rotationYaw * (float) Math.PI / 180.0F) * (float) i * 0.5F,
+                    0.1D,
+                    MathHelper.cos(this.rotationYaw * (float) Math.PI / 180.0F) * (float) i * 0.5F);
                 this.motionX *= 0.6D;
                 this.motionZ *= 0.6D;
             }
@@ -107,7 +112,9 @@ public abstract class EntityBossMob extends EntityCreature implements IMob {
 
     @Override
     protected void attackEntity(Entity p_70785_1_, float p_70785_2_) {
-        if (this.attackTime <= 0 && p_70785_2_ < 2.0F && p_70785_1_.boundingBox.maxY > this.boundingBox.minY && p_70785_1_.boundingBox.minY < this.boundingBox.maxY) {
+        if (this.attackTime <= 0 && p_70785_2_ < 2.0F
+            && p_70785_1_.boundingBox.maxY > this.boundingBox.minY
+            && p_70785_1_.boundingBox.minY < this.boundingBox.maxY) {
             this.attackTime = 20;
             this.attackEntityAsMob(p_70785_1_);
         }

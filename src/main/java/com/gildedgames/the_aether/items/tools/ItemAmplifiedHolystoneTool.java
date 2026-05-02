@@ -1,7 +1,7 @@
 package com.gildedgames.the_aether.items.tools;
 
-import com.gildedgames.the_aether.items.ItemsAether;
-import com.gildedgames.the_aether.items.util.EnumAetherToolType;
+import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -13,56 +13,59 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
-import java.util.List;
-
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.entities.block.EntityFireProofItemAether;
+import com.gildedgames.the_aether.items.ItemsAether;
+import com.gildedgames.the_aether.items.util.EnumAetherToolType;
 
 public class ItemAmplifiedHolystoneTool extends ItemAetherTool {
 
-	public ItemAmplifiedHolystoneTool(float damage, EnumAetherToolType toolType) {
-		super(damage, ToolMaterial.IRON, toolType);
-		this.setMaxDamage(3671);
+    public ItemAmplifiedHolystoneTool(float damage, EnumAetherToolType toolType) {
+        super(damage, ToolMaterial.IRON, toolType);
+        this.setMaxDamage(3671);
 
-	}
+    }
 
-	@Override
-	public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
-		return false;
-	}
+    @Override
+    public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
+        return false;
+    }
 
-	@Override
-	public boolean onBlockDestroyed(ItemStack stack, World world, Block block, int x, int y, int z, EntityLivingBase entityLiving) {
-		if (!world.isRemote && world.rand.nextInt(100) <= 9) {
-			EntityItem entityItem = new EntityItem(world, x, y, z, new ItemStack(ItemsAether.ambrosium_shard, 3));
+    @Override
+    public boolean onBlockDestroyed(ItemStack stack, World world, Block block, int x, int y, int z,
+        EntityLivingBase entityLiving) {
+        if (!world.isRemote && world.rand.nextInt(100) <= 9) {
+            EntityItem entityItem = new EntityItem(world, x, y, z, new ItemStack(ItemsAether.ambrosium_shard, 3));
 
-			world.spawnEntityInWorld(entityItem);
-		}
-		if (!world.isRemote && world.rand.nextInt(100) <= 1) {
-			EntityItem entityItem = new EntityItem(world, x, y, z, new ItemStack(ItemsAether.zanite_gemstone, 1));
+            world.spawnEntityInWorld(entityItem);
+        }
+        if (!world.isRemote && world.rand.nextInt(100) <= 1) {
+            EntityItem entityItem = new EntityItem(world, x, y, z, new ItemStack(ItemsAether.zanite_gemstone, 1));
 
-			world.spawnEntityInWorld(entityItem);
-		}
+            world.spawnEntityInWorld(entityItem);
+        }
 
-		return super.onBlockDestroyed(stack, world, block, x, y, z, entityLiving);
-	}
-	
-	@Override
-	public EnumRarity getRarity(ItemStack stack) {
-		return ItemsAether.divine_aether_loot;
-	}
-	
-	public boolean hasCustomEntity(final ItemStack stack) {
+        return super.onBlockDestroyed(stack, world, block, x, y, z, entityLiving);
+    }
+
+    @Override
+    public EnumRarity getRarity(ItemStack stack) {
+        return ItemsAether.divine_aether_loot;
+    }
+
+    public boolean hasCustomEntity(final ItemStack stack) {
         return true;
     }
-    
+
     public Entity createEntity(final World world, final Entity location, final ItemStack itemstack) {
         return new EntityFireProofItemAether(world, location, itemstack);
     }
-    
-    public void addInformation(final ItemStack stack, final EntityPlayer player, final List tooltip, final boolean who) {
-		if(AetherConfig.enableTooltips())
-        tooltip.add(EnumChatFormatting.LIGHT_PURPLE + "" + StatCollector.translateToLocal("tooltip.amplified_holystone_tools.desc"));
+
+    public void addInformation(final ItemStack stack, final EntityPlayer player, final List tooltip,
+        final boolean who) {
+        if (AetherConfig.enableTooltips()) tooltip.add(
+            EnumChatFormatting.LIGHT_PURPLE + ""
+                + StatCollector.translateToLocal("tooltip.amplified_holystone_tools.desc"));
     }
 
 }

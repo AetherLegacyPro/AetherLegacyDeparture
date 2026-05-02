@@ -1,5 +1,7 @@
 package com.gildedgames.the_aether.entities.projectile;
 
+import java.util.List;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -9,126 +11,127 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-import cpw.mods.fml.common.registry.IThrowableEntity;
-
-import java.util.List;
 
 import com.gildedgames.the_aether.entities.effects.EffectInebriation;
 import com.gildedgames.the_aether.entities.effects.PotionInebriation;
 
+import cpw.mods.fml.common.registry.IThrowableEntity;
+
 public class EntityPoisonSnowball extends EntityArrow implements IThrowableEntity {
 
-	private int timeInGround;
+    private int timeInGround;
 
-	private boolean hitGround;
-	
-	public int ticksInAir;
+    private boolean hitGround;
 
-	public EntityPoisonSnowball(World worldIn) {
-		super(worldIn);
-		setSize(0.5F, 0.5F);
-	}
+    public int ticksInAir;
 
-	public EntityPoisonSnowball(World worldIn, EntityLivingBase shooter, float distance) {
-		super(worldIn, shooter, distance);
-	}
+    public EntityPoisonSnowball(World worldIn) {
+        super(worldIn);
+        setSize(0.5F, 0.5F);
+    }
 
-	@Override
-	public void onUpdate() {
+    public EntityPoisonSnowball(World worldIn, EntityLivingBase shooter, float distance) {
+        super(worldIn, shooter, distance);
+    }
 
-		if (this.arrowShake == 7) {
-			this.hitGround = false;
-		}
+    @Override
+    public void onUpdate() {
 
-		if (this.hitGround) {
-			++this.timeInGround;
+        if (this.arrowShake == 7) {
+            this.hitGround = false;
+        }
 
-			if (this.timeInGround % 5 == 0) {
-				this.worldObj.spawnParticle("snowshovel", this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
-			}
-		} else {
-			for (int j = 0; j < 2; ++j) {
-				this.worldObj.spawnParticle("snowshovel", this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
-			}
-		}
-		
-		if (this.ticksInAir > 100) {
-			this.setDead();
-		} else {
-			this.ticksInAir++;
-		}
+        if (this.hitGround) {
+            ++this.timeInGround;
 
-		Vec3 vec31 = Vec3.createVectorHelper(this.posX, this.posY, this.posZ);
-		Vec3 vec3 = Vec3.createVectorHelper(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
-		MovingObjectPosition movingobjectposition = this.worldObj.func_147447_a(vec31, vec3, false, true, false);
-		vec31 = Vec3.createVectorHelper(this.posX, this.posY, this.posZ);
-		vec3 = Vec3.createVectorHelper(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
+            if (this.timeInGround % 5 == 0) {
+                this.worldObj.spawnParticle("snowshovel", this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
+            }
+        } else {
+            for (int j = 0; j < 2; ++j) {
+                this.worldObj.spawnParticle("snowshovel", this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
+            }
+        }
 
-		if (movingobjectposition != null)
-		{
-			vec3 = Vec3.createVectorHelper(movingobjectposition.hitVec.xCoord, movingobjectposition.hitVec.yCoord, movingobjectposition.hitVec.zCoord);
-		}
+        if (this.ticksInAir > 100) {
+            this.setDead();
+        } else {
+            this.ticksInAir++;
+        }
 
-		Entity entity = null;
-		List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
-		double d0 = 0.0D;
-		int i;
-		float f1;
+        Vec3 vec31 = Vec3.createVectorHelper(this.posX, this.posY, this.posZ);
+        Vec3 vec3 = Vec3
+            .createVectorHelper(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
+        MovingObjectPosition movingobjectposition = this.worldObj.func_147447_a(vec31, vec3, false, true, false);
+        vec31 = Vec3.createVectorHelper(this.posX, this.posY, this.posZ);
+        vec3 = Vec3.createVectorHelper(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
 
-		for (i = 0; i < list.size(); ++i)
-		{
-			Entity entity1 = (Entity)list.get(i);
+        if (movingobjectposition != null) {
+            vec3 = Vec3.createVectorHelper(
+                movingobjectposition.hitVec.xCoord,
+                movingobjectposition.hitVec.yCoord,
+                movingobjectposition.hitVec.zCoord);
+        }
 
-			if (entity1.canBeCollidedWith() && (entity1 != this.shootingEntity))
-			{
-				f1 = 0.3F;
-				AxisAlignedBB axisalignedbb1 = entity1.boundingBox.expand(f1, f1, f1);
-				MovingObjectPosition movingobjectposition1 = axisalignedbb1.calculateIntercept(vec31, vec3);
+        Entity entity = null;
+        List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(
+            this,
+            this.boundingBox.addCoord(this.motionX, this.motionY, this.motionZ)
+                .expand(1.0D, 1.0D, 1.0D));
+        double d0 = 0.0D;
+        int i;
+        float f1;
 
-				if (movingobjectposition1 != null)
-				{
-					double d1 = vec31.distanceTo(movingobjectposition1.hitVec);
+        for (i = 0; i < list.size(); ++i) {
+            Entity entity1 = (Entity) list.get(i);
 
-					if (d1 < d0 || d0 == 0.0D)
-					{
-						entity = entity1;
-						d0 = d1;
-					}
-				}
-			}
-		}
+            if (entity1.canBeCollidedWith() && (entity1 != this.shootingEntity)) {
+                f1 = 0.3F;
+                AxisAlignedBB axisalignedbb1 = entity1.boundingBox.expand(f1, f1, f1);
+                MovingObjectPosition movingobjectposition1 = axisalignedbb1.calculateIntercept(vec31, vec3);
 
-		if (entity != null)
-		{
-			movingobjectposition = new MovingObjectPosition(entity);
-		}
+                if (movingobjectposition1 != null) {
+                    double d1 = vec31.distanceTo(movingobjectposition1.hitVec);
 
-		if (movingobjectposition != null && movingobjectposition.entityHit instanceof EntityPlayer entityplayer)
-		{
-			((EntityLivingBase) movingobjectposition.entityHit).addPotionEffect(new EffectInebriation(Potion.poison.id, 150, 1));
-	        ((EntityLivingBase) movingobjectposition.entityHit).addPotionEffect(new EffectInebriation(PotionInebriation.inebriation.id, 150, 0));
-	        
-			if (entityplayer.capabilities.disableDamage || this.shootingEntity instanceof EntityPlayer && !((EntityPlayer)this.shootingEntity).canAttackPlayer(entityplayer))
-			{
-				movingobjectposition = null;
-			}
-		}
+                    if (d1 < d0 || d0 == 0.0D) {
+                        entity = entity1;
+                        d0 = d1;
+                    }
+                }
+            }
+        }
 
-		super.onUpdate();
-	}
+        if (entity != null) {
+            movingobjectposition = new MovingObjectPosition(entity);
+        }
 
-	@Override
-	public void setThrower(Entity entity) {
-		this.shootingEntity = entity;
-	}
+        if (movingobjectposition != null && movingobjectposition.entityHit instanceof EntityPlayer entityplayer) {
+            ((EntityLivingBase) movingobjectposition.entityHit)
+                .addPotionEffect(new EffectInebriation(Potion.poison.id, 150, 1));
+            ((EntityLivingBase) movingobjectposition.entityHit)
+                .addPotionEffect(new EffectInebriation(PotionInebriation.inebriation.id, 150, 0));
 
-	@Override
-	public Entity getThrower() {
-		return this.shootingEntity;
-	}
-	
-	protected float getGravityVelocity() {
-		return 0.0F;
-	}
+            if (entityplayer.capabilities.disableDamage || this.shootingEntity instanceof EntityPlayer
+                && !((EntityPlayer) this.shootingEntity).canAttackPlayer(entityplayer)) {
+                movingobjectposition = null;
+            }
+        }
+
+        super.onUpdate();
+    }
+
+    @Override
+    public void setThrower(Entity entity) {
+        this.shootingEntity = entity;
+    }
+
+    @Override
+    public Entity getThrower() {
+        return this.shootingEntity;
+    }
+
+    protected float getGravityVelocity() {
+        return 0.0F;
+    }
 
 }

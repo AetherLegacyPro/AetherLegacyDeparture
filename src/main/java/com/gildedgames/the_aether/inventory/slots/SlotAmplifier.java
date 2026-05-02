@@ -6,13 +6,13 @@ import net.minecraft.item.ItemStack;
 
 public class SlotAmplifier extends Slot {
 
-	public SlotAmplifier(IInventory inventoryIn, int index, int xPosition, int yPosition) {
-		super(inventoryIn, index, xPosition, yPosition);
-	}
+    public SlotAmplifier(IInventory inventoryIn, int index, int xPosition, int yPosition) {
+        super(inventoryIn, index, xPosition, yPosition);
+    }
 
-	@Override
-	public boolean isItemValid(ItemStack par1ItemStack) {
-		return false;
-	}
+    @Override
+    public boolean isItemValid(ItemStack par1ItemStack) {
+        return false;
+    }
 
 }

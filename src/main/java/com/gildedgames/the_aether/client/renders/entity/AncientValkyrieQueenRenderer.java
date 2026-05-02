@@ -1,16 +1,18 @@
 package com.gildedgames.the_aether.client.renders.entity;
 
-import com.gildedgames.the_aether.Aether;
-import com.gildedgames.the_aether.client.models.entities.ValkyrieModel;
-import com.gildedgames.the_aether.entities.bosses.valkyrie_queen.EntityAncientValkyrieQueen;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
 
+import com.gildedgames.the_aether.Aether;
+import com.gildedgames.the_aether.client.models.entities.ValkyrieModel;
+import com.gildedgames.the_aether.entities.bosses.valkyrie_queen.EntityAncientValkyrieQueen;
+
 public class AncientValkyrieQueenRenderer extends RenderLiving {
 
-    private static final ResourceLocation TEXTURE = Aether.locate("textures/bosses/valkyrie_queen/ancient_valkyrie_queen.png");
+    private static final ResourceLocation TEXTURE = Aether
+        .locate("textures/bosses/valkyrie_queen/ancient_valkyrie_queen.png");
 
     public AncientValkyrieQueenRenderer() {
         super(new ValkyrieModel(), 0.3F);

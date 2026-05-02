@@ -1,42 +1,49 @@
 package com.gildedgames.the_aether.blocks.ancient.enchanter;
 
-import java.util.*;
+import java.util.Random;
+
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockContainer;
+import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.IIcon;
+import net.minecraft.util.MathHelper;
+import net.minecraft.world.World;
 
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.tileentity.TileEntityAncientEnchanter;
 
-import net.minecraft.block.material.*;
-import net.minecraft.world.*;
-import net.minecraft.entity.player.*;
-import cpw.mods.fml.client.*;
-import net.minecraft.item.*;
-import net.minecraft.tileentity.*;
-import net.minecraft.util.*;
-import net.minecraft.block.*;
-import net.minecraft.entity.item.*;
-import net.minecraft.nbt.*;
-import net.minecraft.entity.*;
-import net.minecraft.client.renderer.texture.*;
+import cpw.mods.fml.client.FMLClientHandler;
 
-public class BlockAncientEnchanter extends BlockContainer
-{
+public class BlockAncientEnchanter extends BlockContainer {
+
     private Random EnchanterRand;
     private IIcon sideIcon;
-    
+
     public BlockAncientEnchanter() {
         super(Material.rock);
         this.EnchanterRand = new Random();
         this.setHardness(2.0f);
     }
-    
-    public boolean onBlockActivated(final World world, final int x, final int y, final int z, final EntityPlayer player, final int par6, final float par7, final float par8, final float par9) {
-        final TileEntityAncientEnchanter enchanter = (TileEntityAncientEnchanter)world.getTileEntity(x, y, z);
+
+    public boolean onBlockActivated(final World world, final int x, final int y, final int z, final EntityPlayer player,
+        final int par6, final float par7, final float par8, final float par9) {
+        final TileEntityAncientEnchanter enchanter = (TileEntityAncientEnchanter) world.getTileEntity(x, y, z);
         if (enchanter != null) {
             final ItemStack itemStack = player.getCurrentEquippedItem();
             if (!enchanter.canEnchant()) {
                 if (world.isRemote) {
-                    FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().printChatMessage(new ChatComponentText("Altar is being blocked by something above!"));
+                    FMLClientHandler.instance()
+                        .getClient().ingameGUI.getChatGUI()
+                            .printChatMessage(new ChatComponentText("Altar is being blocked by something above!"));
                 }
                 return true;
             }
@@ -50,49 +57,47 @@ public class BlockAncientEnchanter extends BlockContainer
                 if (itemStack.getItem() == ItemsAether.ambrosium_shard) {
                     enchanter.addAmbrosium(player, itemStack);
                     enchanter.markDirty();
-                }
-                else if (enchanter.isEnchantable(itemStack)) {
-                    if (enchanter.getEnchanterStacks(0) != null && enchanter.getEnchanterStacks(0).getItem() != itemStack.getItem()) {
+                } else if (enchanter.isEnchantable(itemStack)) {
+                    if (enchanter.getEnchanterStacks(0) != null && enchanter.getEnchanterStacks(0)
+                        .getItem() != itemStack.getItem()) {
                         enchanter.dropNextStack();
-                    }
-                    else {
+                    } else {
                         enchanter.setAchievementPlayer(player);
                         enchanter.addEnchantable(player, itemStack);
                         enchanter.markDirty();
                     }
                 }
-            }
-            else {
+            } else {
                 enchanter.dropNextStack();
             }
-        }      
-        
+        }
+
         return true;
     }
-    
+
     public boolean hasTileEntity(final int metadata) {
         return true;
     }
-    
+
     public TileEntity createNewTileEntity(final World par1World, final int meta) {
         try {
             return new TileEntityAncientEnchanter();
-        }
-        catch (Exception var3) {
+        } catch (Exception var3) {
             throw new RuntimeException(var3);
         }
     }
-    
+
     public IIcon getIcon(final int i, final int meta) {
         return this.sideIcon;
     }
-    
+
     public void onBlockAdded(final World world, final int i, final int j, final int k) {
         super.onBlockAdded(world, i, j, k);
         this.setDefaultDirection(world, i, j, k);
     }
-    
-    public void onBlockPlacedBy(final World world, final int i, final int j, final int k, final EntityLivingBase entityliving, final ItemStack stack) {
+
+    public void onBlockPlacedBy(final World world, final int i, final int j, final int k,
+        final EntityLivingBase entityliving, final ItemStack stack) {
         final int l = MathHelper.floor_double(entityliving.rotationYaw * 4.0f / 360.0f + 0.5) & 0x3;
         if (l == 0) {
             world.setBlockMetadataWithNotify(i, j, k, 2, 4);
@@ -107,9 +112,10 @@ public class BlockAncientEnchanter extends BlockContainer
             world.setBlockMetadataWithNotify(i, j, k, 4, 4);
         }
     }
-    
-    public void breakBlock(final World par1World, final int par2, final int par3, final int par4, final Block par5, final int par6) {
-        final TileEntityAncientEnchanter var7 = (TileEntityAncientEnchanter)par1World.getTileEntity(par2, par3, par4);
+
+    public void breakBlock(final World par1World, final int par2, final int par3, final int par4, final Block par5,
+        final int par6) {
+        final TileEntityAncientEnchanter var7 = (TileEntityAncientEnchanter) par1World.getTileEntity(par2, par3, par4);
         if (var7 != null) {
             for (int var8 = 0; var8 < var7.getSizeInventory(); ++var8) {
                 final ItemStack var9 = var7.getStackInSlot(var8);
@@ -124,14 +130,22 @@ public class BlockAncientEnchanter extends BlockContainer
                         }
                         final ItemStack itemStack = var9;
                         itemStack.stackSize -= var13;
-                        final EntityItem var14 = new EntityItem(par1World, par2 + var10, par3 + var11, par4 + var12, new ItemStack(var9.getItem(), var13, var9.getItemDamage()));
+                        final EntityItem var14 = new EntityItem(
+                            par1World,
+                            par2 + var10,
+                            par3 + var11,
+                            par4 + var12,
+                            new ItemStack(var9.getItem(), var13, var9.getItemDamage()));
                         if (var9.hasTagCompound()) {
-                            var14.getEntityItem().setTagCompound((NBTTagCompound)var9.getTagCompound().copy());
+                            var14.getEntityItem()
+                                .setTagCompound(
+                                    (NBTTagCompound) var9.getTagCompound()
+                                        .copy());
                         }
                         final float var15 = 0.05f;
-                        var14.motionX = (float)this.EnchanterRand.nextGaussian() * var15;
-                        var14.motionY = (float)this.EnchanterRand.nextGaussian() * var15 + 0.2f;
-                        var14.motionZ = (float)this.EnchanterRand.nextGaussian() * var15;
+                        var14.motionX = (float) this.EnchanterRand.nextGaussian() * var15;
+                        var14.motionY = (float) this.EnchanterRand.nextGaussian() * var15 + 0.2f;
+                        var14.motionZ = (float) this.EnchanterRand.nextGaussian() * var15;
                         par1World.spawnEntityInWorld(var14);
                     }
                 }
@@ -139,7 +153,7 @@ public class BlockAncientEnchanter extends BlockContainer
         }
         super.breakBlock(par1World, par2, par3, par4, par5, par6);
     }
-    
+
     private void setDefaultDirection(final World world, final int i, final int j, final int k) {
         if (world.isRemote) {
             return;
@@ -163,21 +177,20 @@ public class BlockAncientEnchanter extends BlockContainer
         }
         world.setBlockMetadataWithNotify(i, j, k, byte0, 4);
     }
-    
+
     public boolean isOpaqueCube() {
         return false;
     }
-    
+
     public boolean renderAsNormalBlock() {
         return false;
     }
-    
+
     public int getRenderType() {
         return BlocksAether.AncientEnchanterRenderId;
     }
-    
+
     public void registerBlockIcons(final IIconRegister par1IIconRegister) {
         this.sideIcon = par1IIconRegister.registerIcon("aether_legacy:primeval_artifact");
     }
 }
-

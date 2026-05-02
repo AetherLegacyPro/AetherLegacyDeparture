@@ -1,28 +1,28 @@
 package com.gildedgames.the_aether.world.biome.decoration;
 
-import net.minecraft.world.gen.feature.*;
-import net.minecraft.block.*;
-import net.minecraft.world.*;
-import java.util.*;
+import java.util.Random;
+
+import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.world.ChunkProviderAether;
 
-import net.minecraft.init.*;
+public class AetherGenLargeTree extends WorldGenAbstractTree {
 
-public class AetherGenLargeTree extends WorldGenAbstractTree
-{
     private Block leafBlock;
     private Block logBlock;
     private int logMetadata;
-    
+
     public AetherGenLargeTree(final Block leafID, final Block logID, final int logMeta) {
         super(true);
         this.leafBlock = leafID;
         this.logBlock = logID;
         this.logMetadata = logMeta;
     }
-    
+
     public boolean branch(final World world, final Random random, int i, int j, int k, final int slant) {
         final int directionX = random.nextInt(3) - 1;
         final int directionY = slant;
@@ -42,7 +42,7 @@ public class AetherGenLargeTree extends WorldGenAbstractTree
         }
         return true;
     }
-    
+
     public boolean generate(final World world, final Random random, final int i, final int j, final int k) {
         final int height = 11;
         boolean flag = true;
@@ -64,8 +64,7 @@ public class AetherGenLargeTree extends WorldGenAbstractTree
                         if (j2 != Blocks.air && j2 != this.leafBlock) {
                             flag = false;
                         }
-                    }
-                    else {
+                    } else {
                         flag = false;
                     }
                 }
@@ -79,13 +78,15 @@ public class AetherGenLargeTree extends WorldGenAbstractTree
                 return false;
             }
         }
-        if (world.getBlock(i, j - 1, k) != BlocksAether.aether_grass && world.getBlock(i, j - 1, k) != BlocksAether.aether_dirt) {
+        if (world.getBlock(i, j - 1, k) != BlocksAether.aether_grass
+            && world.getBlock(i, j - 1, k) != BlocksAether.aether_dirt) {
             return false;
         }
         for (int x = i - 3; x < i + 5; ++x) {
             for (int y2 = j + 5; y2 < j + 13; ++y2) {
                 for (int z = k - 3; z < k + 5; ++z) {
-                    if ((x - i) * (x - i) + (y2 - j - 8) * (y2 - j - 8) + (z - k) * (z - k) < 12 + random.nextInt(5) && world.getBlock(x, y2, z) == Blocks.air) {
+                    if ((x - i) * (x - i) + (y2 - j - 8) * (y2 - j - 8) + (z - k) * (z - k) < 12 + random.nextInt(5)
+                        && world.getBlock(x, y2, z) == Blocks.air) {
                         world.setBlock(x, y2, z, this.leafBlock);
                     }
                 }
@@ -102,4 +103,3 @@ public class AetherGenLargeTree extends WorldGenAbstractTree
         return true;
     }
 }
-

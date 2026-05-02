@@ -1,7 +1,5 @@
 package com.gildedgames.the_aether.client.renders.entity;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.texture.TextureMap;
@@ -9,18 +7,21 @@ import net.minecraft.entity.Entity;
 import net.minecraft.init.Items;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
+
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 import com.gildedgames.the_aether.entities.projectile.EntityCinerariumProjectile;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 @SideOnly(Side.CLIENT)
-public class CinerariumProjectileRenderer extends Render
-{
+public class CinerariumProjectileRenderer extends Render {
+
     private float field_77002_a;
 
-    public CinerariumProjectileRenderer(float p_i1254_1_)
-    {
+    public CinerariumProjectileRenderer(float p_i1254_1_) {
         this.field_77002_a = p_i1254_1_;
     }
 
@@ -30,11 +31,11 @@ public class CinerariumProjectileRenderer extends Render
      * (Render<T extends Entity) and this method has signature public void func_76986_a(T entity, double d, double d1,
      * double d2, float f, float f1). But JAD is pre 1.5 so doesn't do that.
      */
-    public void doRender(EntityCinerariumProjectile p_76986_1_, double p_76986_2_, double p_76986_4_, double p_76986_6_, float p_76986_8_, float p_76986_9_)
-    {
+    public void doRender(EntityCinerariumProjectile p_76986_1_, double p_76986_2_, double p_76986_4_, double p_76986_6_,
+        float p_76986_8_, float p_76986_9_) {
         GL11.glPushMatrix();
         this.bindEntityTexture(p_76986_1_);
-        GL11.glTranslatef((float)p_76986_2_, (float)p_76986_4_, (float)p_76986_6_);
+        GL11.glTranslatef((float) p_76986_2_, (float) p_76986_4_, (float) p_76986_6_);
         GL11.glEnable(GL12.GL_RESCALE_NORMAL);
         float f2 = this.field_77002_a;
         GL11.glScalef(f2, f2, f2);
@@ -63,17 +64,15 @@ public class CinerariumProjectileRenderer extends Render
     /**
      * Returns the location of an entity's texture. Doesn't seem to be called unless you call Render.bindEntityTexture.
      */
-    protected ResourceLocation getEntityTexture(EntityCinerariumProjectile p_110775_1_)
-    {
+    protected ResourceLocation getEntityTexture(EntityCinerariumProjectile p_110775_1_) {
         return TextureMap.locationItemsTexture;
     }
 
     /**
      * Returns the location of an entity's texture. Doesn't seem to be called unless you call Render.bindEntityTexture.
      */
-    protected ResourceLocation getEntityTexture(Entity p_110775_1_)
-    {
-        return this.getEntityTexture((EntityCinerariumProjectile)p_110775_1_);
+    protected ResourceLocation getEntityTexture(Entity p_110775_1_) {
+        return this.getEntityTexture((EntityCinerariumProjectile) p_110775_1_);
     }
 
     /**
@@ -82,8 +81,14 @@ public class CinerariumProjectileRenderer extends Render
      * (Render<T extends Entity) and this method has signature public void func_76986_a(T entity, double d, double d1,
      * double d2, float f, float f1). But JAD is pre 1.5 so doesn't do that.
      */
-    public void doRender(Entity p_76986_1_, double p_76986_2_, double p_76986_4_, double p_76986_6_, float p_76986_8_, float p_76986_9_)
-    {
-        this.doRender((EntityCinerariumProjectile)p_76986_1_, p_76986_2_, p_76986_4_, p_76986_6_, p_76986_8_, p_76986_9_);
+    public void doRender(Entity p_76986_1_, double p_76986_2_, double p_76986_4_, double p_76986_6_, float p_76986_8_,
+        float p_76986_9_) {
+        this.doRender(
+            (EntityCinerariumProjectile) p_76986_1_,
+            p_76986_2_,
+            p_76986_4_,
+            p_76986_6_,
+            p_76986_8_,
+            p_76986_9_);
     }
 }

@@ -1,28 +1,28 @@
 package com.gildedgames.the_aether.world.biome.decoration;
 
-import net.minecraft.world.gen.feature.*;
-import net.minecraft.block.*;
-import net.minecraft.world.*;
-import java.util.*;
+import java.util.Random;
+
+import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.world.ChunkProviderAether;
 
-import net.minecraft.init.*;
+public class AetherGenSkyrootTreeNew extends WorldGenAbstractTree {
 
-public class AetherGenSkyrootTreeNew extends WorldGenAbstractTree
-{
     private Block leafBlock;
     private Block logBlock;
     private int logMetadata;
-    
+
     public AetherGenSkyrootTreeNew(final Block leafID, final Block logID, final int logMeta) {
         super(true);
         this.leafBlock = leafID;
         this.logBlock = logID;
         this.logMetadata = logMeta;
     }
-    
+
     public boolean generate(final World world, final Random random, final int i, final int j, final int k) {
         final int l = random.nextInt(3) + 4;
         boolean flag = true;
@@ -44,8 +44,7 @@ public class AetherGenSkyrootTreeNew extends WorldGenAbstractTree
                         if (j2 != Blocks.air && j2 != this.leafBlock) {
                             flag = false;
                         }
-                    }
-                    else {
+                    } else {
                         flag = false;
                     }
                 }
@@ -65,7 +64,9 @@ public class AetherGenSkyrootTreeNew extends WorldGenAbstractTree
                 final int l3 = k3 - i;
                 for (int i5 = k - i4; i5 <= k + i4; ++i5) {
                     final int j5 = i5 - k;
-                    if ((Math.abs(l3) != i4 || Math.abs(j5) != i4 || (random.nextInt(2) != 0 && j4 != 0)) && !world.getBlock(k3, k2, i5).isOpaqueCube()) {
+                    if ((Math.abs(l3) != i4 || Math.abs(j5) != i4 || (random.nextInt(2) != 0 && j4 != 0))
+                        && !world.getBlock(k3, k2, i5)
+                            .isOpaqueCube()) {
                         world.setBlock(k3, k2, i5, this.leafBlock);
                     }
                 }

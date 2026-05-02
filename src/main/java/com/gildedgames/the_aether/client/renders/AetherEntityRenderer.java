@@ -26,107 +26,121 @@ import cpw.mods.fml.common.ObfuscationReflectionHelper;
 
 public class AetherEntityRenderer extends EntityRenderer {
 
-	private Entity pointedEntity;
+    private Entity pointedEntity;
 
-	private final Minecraft mc;
+    private final Minecraft mc;
 
-	private final EntityRenderer previous;
+    private final EntityRenderer previous;
 
-	public AetherEntityRenderer(Minecraft mc, EntityRenderer previous, IResourceManager manager) {
-		super(mc, manager);
+    public AetherEntityRenderer(Minecraft mc, EntityRenderer previous, IResourceManager manager) {
+        super(mc, manager);
 
-		this.mc = mc;
-		this.previous = previous;
-		
-		if (AetherConfig.disable_1stperson_glove_renderer == true) {
-			ObfuscationReflectionHelper.setPrivateValue(EntityRenderer.class, this, new AetherItemRendererAlternate(mc), 7);
-		}
-		else {
-			ObfuscationReflectionHelper.setPrivateValue(EntityRenderer.class, this, new AetherItemRenderer(mc), 7);
-		}
-	}
+        this.mc = mc;
+        this.previous = previous;
 
-	@Override
-	public void getMouseOver(float p_78473_1_) {
-		if (this.mc.renderViewEntity != null) {
-			if (this.mc.theWorld != null) {
-				ItemStack stack = this.mc.thePlayer.getCurrentEquippedItem();
+        if (AetherConfig.disable_1stperson_glove_renderer == true) {
+            ObfuscationReflectionHelper
+                .setPrivateValue(EntityRenderer.class, this, new AetherItemRendererAlternate(mc), 7);
+        } else {
+            ObfuscationReflectionHelper.setPrivateValue(EntityRenderer.class, this, new AetherItemRenderer(mc), 7);
+        }
+    }
 
-				if (stack == null || !(stack.getItem() instanceof ItemAmplifiedValkyrieTool || (stack.getItem() instanceof ItemValkyrieTool) || (stack.getItem() instanceof ItemTippedValkyrieTool) || (stack.getItem() instanceof ItemArkeniumTool) || (stack.getItem() instanceof ItemTippedArkeniumTool) || (stack.getItem() instanceof ItemAmplifiedContinuumTool) || (stack.getItem() instanceof ItemTippedValkyrieTool) || (stack.getItem() instanceof ItemArkeniumTool) || (stack.getItem() instanceof ItemTippedArkeniumTool) || (stack.getItem() instanceof ItemAscensiteTool))) {
-					this.previous.getMouseOver(p_78473_1_);
-					return;
-				}
+    @Override
+    public void getMouseOver(float p_78473_1_) {
+        if (this.mc.renderViewEntity != null) {
+            if (this.mc.theWorld != null) {
+                ItemStack stack = this.mc.thePlayer.getCurrentEquippedItem();
 
-				this.mc.pointedEntity = null;
-				double d0 = 8.0D;
-				this.mc.objectMouseOver = this.mc.renderViewEntity.rayTrace(d0, p_78473_1_);
-				double d1 = d0;
-				Vec3 vec3 = this.mc.renderViewEntity.getPosition(p_78473_1_);
+                if (stack == null || !(stack.getItem() instanceof ItemAmplifiedValkyrieTool
+                    || (stack.getItem() instanceof ItemValkyrieTool)
+                    || (stack.getItem() instanceof ItemTippedValkyrieTool)
+                    || (stack.getItem() instanceof ItemArkeniumTool)
+                    || (stack.getItem() instanceof ItemTippedArkeniumTool)
+                    || (stack.getItem() instanceof ItemAmplifiedContinuumTool)
+                    || (stack.getItem() instanceof ItemTippedValkyrieTool)
+                    || (stack.getItem() instanceof ItemArkeniumTool)
+                    || (stack.getItem() instanceof ItemTippedArkeniumTool)
+                    || (stack.getItem() instanceof ItemAscensiteTool))) {
+                    this.previous.getMouseOver(p_78473_1_);
+                    return;
+                }
 
-				if (this.mc.playerController.extendedReach()) {
-					d0 = 6.0D;
-					d1 = 6.0D;
-				} else {
-					if (d0 > 3.0D) {
-						d1 = 3.0D;
-					}
+                this.mc.pointedEntity = null;
+                double d0 = 8.0D;
+                this.mc.objectMouseOver = this.mc.renderViewEntity.rayTrace(d0, p_78473_1_);
+                double d1 = d0;
+                Vec3 vec3 = this.mc.renderViewEntity.getPosition(p_78473_1_);
 
-					d0 = d1;
-				}
+                if (this.mc.playerController.extendedReach()) {
+                    d0 = 6.0D;
+                    d1 = 6.0D;
+                } else {
+                    if (d0 > 3.0D) {
+                        d1 = 3.0D;
+                    }
 
-				if (this.mc.objectMouseOver != null) {
-					d1 = this.mc.objectMouseOver.hitVec.distanceTo(vec3);
-				}
+                    d0 = d1;
+                }
 
-				Vec3 vec31 = this.mc.renderViewEntity.getLook(p_78473_1_);
-				Vec3 vec32 = vec3.addVector(vec31.xCoord * d0, vec31.yCoord * d0, vec31.zCoord * d0);
-				this.pointedEntity = null;
-				Vec3 vec33 = null;
-				float f1 = 1.0F;
-				List<?> list = this.mc.theWorld.getEntitiesWithinAABBExcludingEntity(this.mc.renderViewEntity, this.mc.renderViewEntity.boundingBox.addCoord(vec31.xCoord * d0, vec31.yCoord * d0, vec31.zCoord * d0).expand(f1, f1, f1));
-				double d2 = d1;
+                if (this.mc.objectMouseOver != null) {
+                    d1 = this.mc.objectMouseOver.hitVec.distanceTo(vec3);
+                }
 
-				for (int i = 0; i < list.size(); ++i) {
-					Entity entity = (Entity) list.get(i);
+                Vec3 vec31 = this.mc.renderViewEntity.getLook(p_78473_1_);
+                Vec3 vec32 = vec3.addVector(vec31.xCoord * d0, vec31.yCoord * d0, vec31.zCoord * d0);
+                this.pointedEntity = null;
+                Vec3 vec33 = null;
+                float f1 = 1.0F;
+                List<?> list = this.mc.theWorld.getEntitiesWithinAABBExcludingEntity(
+                    this.mc.renderViewEntity,
+                    this.mc.renderViewEntity.boundingBox
+                        .addCoord(vec31.xCoord * d0, vec31.yCoord * d0, vec31.zCoord * d0)
+                        .expand(f1, f1, f1));
+                double d2 = d1;
 
-					if (entity.canBeCollidedWith()) {
-						float f2 = entity.getCollisionBorderSize();
-						AxisAlignedBB axisalignedbb = entity.boundingBox.expand(f2, f2, f2);
-						MovingObjectPosition movingobjectposition = axisalignedbb.calculateIntercept(vec3, vec32);
+                for (int i = 0; i < list.size(); ++i) {
+                    Entity entity = (Entity) list.get(i);
 
-						if (axisalignedbb.isVecInside(vec3)) {
-							if (0.0D < d2 || d2 == 0.0D) {
-								this.pointedEntity = entity;
-								vec33 = movingobjectposition == null ? vec3 : movingobjectposition.hitVec;
-								d2 = 0.0D;
-							}
-						} else if (movingobjectposition != null) {
-							double d3 = vec3.distanceTo(movingobjectposition.hitVec);
+                    if (entity.canBeCollidedWith()) {
+                        float f2 = entity.getCollisionBorderSize();
+                        AxisAlignedBB axisalignedbb = entity.boundingBox.expand(f2, f2, f2);
+                        MovingObjectPosition movingobjectposition = axisalignedbb.calculateIntercept(vec3, vec32);
 
-							if (d3 < d2 || d2 == 0.0D) {
-								if (entity == this.mc.renderViewEntity.ridingEntity && !entity.canRiderInteract()) {
-									if (d2 == 0.0D) {
-										this.pointedEntity = entity;
-										vec33 = movingobjectposition.hitVec;
-									}
-								} else {
-									this.pointedEntity = entity;
-									vec33 = movingobjectposition.hitVec;
-									d2 = d3;
-								}
-							}
-						}
-					}
-				}
+                        if (axisalignedbb.isVecInside(vec3)) {
+                            if (0.0D < d2 || d2 == 0.0D) {
+                                this.pointedEntity = entity;
+                                vec33 = movingobjectposition == null ? vec3 : movingobjectposition.hitVec;
+                                d2 = 0.0D;
+                            }
+                        } else if (movingobjectposition != null) {
+                            double d3 = vec3.distanceTo(movingobjectposition.hitVec);
 
-				if (this.pointedEntity != null && (d2 < d1 || this.mc.objectMouseOver == null)) {
-					this.mc.objectMouseOver = new MovingObjectPosition(this.pointedEntity, vec33);
+                            if (d3 < d2 || d2 == 0.0D) {
+                                if (entity == this.mc.renderViewEntity.ridingEntity && !entity.canRiderInteract()) {
+                                    if (d2 == 0.0D) {
+                                        this.pointedEntity = entity;
+                                        vec33 = movingobjectposition.hitVec;
+                                    }
+                                } else {
+                                    this.pointedEntity = entity;
+                                    vec33 = movingobjectposition.hitVec;
+                                    d2 = d3;
+                                }
+                            }
+                        }
+                    }
+                }
 
-					if (this.pointedEntity instanceof EntityLivingBase || this.pointedEntity instanceof EntityItemFrame) {
-						this.mc.pointedEntity = this.pointedEntity;
-					}
-				}
-			}
-		}
-	}
+                if (this.pointedEntity != null && (d2 < d1 || this.mc.objectMouseOver == null)) {
+                    this.mc.objectMouseOver = new MovingObjectPosition(this.pointedEntity, vec33);
+
+                    if (this.pointedEntity instanceof EntityLivingBase
+                        || this.pointedEntity instanceof EntityItemFrame) {
+                        this.mc.pointedEntity = this.pointedEntity;
+                    }
+                }
+            }
+        }
+    }
 }

@@ -1,7 +1,8 @@
 package com.gildedgames.the_aether.entities.ai.valkyrie_queen;
 
-import com.gildedgames.the_aether.entities.bosses.valkyrie_queen.EntityAncientValkyrieQueen;
 import net.minecraft.entity.ai.EntityAIWander;
+
+import com.gildedgames.the_aether.entities.bosses.valkyrie_queen.EntityAncientValkyrieQueen;
 
 public class AncientValkyrieQueenAIWander extends EntityAIWander {
 
@@ -11,7 +12,7 @@ public class AncientValkyrieQueenAIWander extends EntityAIWander {
         super(creatureIn, speedIn);
 
         this.theQueen = creatureIn;
-       
+
     }
 
     @Override

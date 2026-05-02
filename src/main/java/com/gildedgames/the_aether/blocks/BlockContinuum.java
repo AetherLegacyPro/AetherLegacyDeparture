@@ -6,19 +6,19 @@ import net.minecraft.world.IBlockAccess;
 
 public class BlockContinuum extends Block {
 
-	public BlockContinuum() {
-		super(Material.iron);
+    public BlockContinuum() {
+        super(Material.iron);
 
-		this.setHardness(1.2F);
-		this.setStepSound(soundTypeMetal);
-		this.setHarvestLevel("pickaxe", 3);
-		this.setBlockTextureName("aether_legacy:continuum_block");
-		setBlockName("Continuum Block");
-	}
-	
-	@Override
-	public boolean isBeaconBase(IBlockAccess worldObj, int x, int y, int z, int beaconX, int beaconY, int beaconZ) {
-		return true;
-	}
+        this.setHardness(1.2F);
+        this.setStepSound(soundTypeMetal);
+        this.setHarvestLevel("pickaxe", 3);
+        this.setBlockTextureName("aether_legacy:continuum_block");
+        setBlockName("Continuum Block");
+    }
+
+    @Override
+    public boolean isBeaconBase(IBlockAccess worldObj, int x, int y, int z, int beaconX, int beaconY, int beaconZ) {
+        return true;
+    }
 
 }

@@ -1,24 +1,24 @@
 package com.gildedgames.the_aether.client.renders.entity;
 
-import net.minecraft.entity.Entity;
+import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.util.ResourceLocation;
+
 import org.lwjgl.opengl.GL11;
 
-import net.minecraft.client.model.ModelBase;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.client.renderer.entity.RenderLiving;
+public class ThunderloRenderer extends RenderLiving {
 
-public class ThunderloRenderer extends RenderLiving
-{
     private static final ResourceLocation TEXTURE;
     private static final ResourceLocation TEXTURE_TAIL;
-    
+
     public ThunderloRenderer(final ModelBase modelbase, final float f) {
         super(modelbase, f);
         this.setRenderPassModel(modelbase);
     }
-    
+
     protected int a(final EntityLivingBase entityliving, final int i, final float f) {
         if (i != 0) {
             return -1;
@@ -34,21 +34,20 @@ public class ThunderloRenderer extends RenderLiving
         GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
         return 1;
     }
-    
+
     @Override
-    protected void preRenderCallback(EntityLivingBase dragon, float partialTickTime)
-    {
+    protected void preRenderCallback(EntityLivingBase dragon, float partialTickTime) {
         GL11.glScalef(1.3F, 1.3F, 1.3F);
     }
-    
+
     protected int shouldRenderPass(final EntityLivingBase entityliving, final int i, final float f) {
         return this.a(entityliving, i, f);
     }
-    
+
     protected ResourceLocation getEntityTexture(final Entity entity) {
         return ThunderloRenderer.TEXTURE;
     }
-    
+
     static {
         TEXTURE = new ResourceLocation("aether_legacy", "textures/entities/thunderlo/thunderlo.png");
         TEXTURE_TAIL = new ResourceLocation("aether_legacy", "textures/entities/thunderlo/thunderlo_tail.png");

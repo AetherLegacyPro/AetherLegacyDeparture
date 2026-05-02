@@ -1,10 +1,5 @@
 package com.gildedgames.the_aether.entities.passive.mountable;
 
-import com.gildedgames.the_aether.AetherConfig;
-import com.gildedgames.the_aether.api.AetherAPI;
-import com.gildedgames.the_aether.api.moa.AetherMoaType;
-import com.gildedgames.the_aether.blocks.BlocksAether;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -21,6 +16,10 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
+import com.gildedgames.the_aether.AetherConfig;
+import com.gildedgames.the_aether.api.AetherAPI;
+import com.gildedgames.the_aether.api.moa.AetherMoaType;
+import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.entities.util.EntitySaddleMount;
 import com.gildedgames.the_aether.items.ItemMoaEgg;
 import com.gildedgames.the_aether.items.ItemsAether;
@@ -73,10 +72,17 @@ public class EntityMoa extends EntitySaddleMount {
     public void entityInit() {
         super.entityInit();
 
-        AetherMoaType moaType = AetherAPI.instance().getRandomMoaType();
+        AetherMoaType moaType = AetherAPI.instance()
+            .getRandomMoaType();
 
-        this.dataWatcher.addObject(20, (short) AetherAPI.instance().getMoaTypeId(moaType));
-        this.dataWatcher.addObject(21, (byte) moaType.getMoaProperties().getMaxJumps());
+        this.dataWatcher.addObject(
+            20,
+            (short) AetherAPI.instance()
+                .getMoaTypeId(moaType));
+        this.dataWatcher.addObject(
+            21,
+            (byte) moaType.getMoaProperties()
+                .getMaxJumps());
         this.dataWatcher.addObject(22, (byte) 0);
         this.dataWatcher.addObject(23, (byte) 0);
         this.dataWatcher.addObject(24, (byte) 0);
@@ -95,19 +101,33 @@ public class EntityMoa extends EntitySaddleMount {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(1.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(35.0D);
-    } 
-    
+        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed)
+            .setBaseValue(1.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth)
+            .setBaseValue(35.0D);
+    }
+
     @Override
-   	public boolean getCanSpawnHere() {
-   	      final int i = MathHelper.floor_double(this.posX);
-   	      final int j = MathHelper.floor_double(this.boundingBox.minY);
-   	      final int k = MathHelper.floor_double(this.posZ);
-   	      final boolean canSpawn = this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
-   	      return (this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_dirt || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.arctic_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.verdant_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.enchanted_aether_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.divine_grass) && this.worldObj.getBlockLightValue(i, j, k) > 7 && canSpawn && this.rand.nextInt(AetherConfig.getMoaSpawnrate()) == 0 && super.getCanSpawnHere();
-   	                       
-   	}
+    public boolean getCanSpawnHere() {
+        final int i = MathHelper.floor_double(this.posX);
+        final int j = MathHelper.floor_double(this.boundingBox.minY);
+        final int k = MathHelper.floor_double(this.posZ);
+        final boolean canSpawn = this.worldObj.checkNoEntityCollision(this.boundingBox)
+            && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox)
+                .isEmpty()
+            && !this.worldObj.isAnyLiquid(this.boundingBox);
+        return (this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_dirt
+            || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_grass
+            || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.arctic_grass
+            || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.verdant_grass
+            || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.enchanted_aether_grass
+            || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.divine_grass)
+            && this.worldObj.getBlockLightValue(i, j, k) > 7
+            && canSpawn
+            && this.rand.nextInt(AetherConfig.getMoaSpawnrate()) == 0
+            && super.getCanSpawnHere();
+
+    }
 
     public boolean isSitting() {
         return this.dataWatcher.getWatchableObjectByte(25) == (byte) 1;
@@ -148,13 +168,14 @@ public class EntityMoa extends EntitySaddleMount {
     }
 
     public int getMaxJumps() {
-        return this.getMoaType().getMoaProperties().getMaxJumps();
+        return this.getMoaType()
+            .getMoaProperties()
+            .getMaxJumps();
     }
 
     public int getRemainingJumps() {
         return this.dataWatcher.getWatchableObjectByte(21);
     }
-
 
     public void setRemainingJumps(int jumps) {
         this.dataWatcher.updateObject(21, (byte) jumps);
@@ -167,12 +188,19 @@ public class EntityMoa extends EntitySaddleMount {
     public AetherMoaType getMoaType() {
         int id = this.dataWatcher.getWatchableObjectShort(20);
 
-        return AetherAPI.instance().getMoaType(id);
+        return AetherAPI.instance()
+            .getMoaType(id);
     }
 
     public void setMoaType(AetherMoaType type) {
-        this.dataWatcher.updateObject(20, (short) AetherAPI.instance().getMoaTypeId(type));
-        this.dataWatcher.updateObject(21, (byte) type.getMoaProperties().getMaxJumps());
+        this.dataWatcher.updateObject(
+            20,
+            (short) AetherAPI.instance()
+                .getMoaTypeId(type));
+        this.dataWatcher.updateObject(
+            21,
+            (byte) type.getMoaProperties()
+                .getMaxJumps());
     }
 
     @Override
@@ -221,7 +249,12 @@ public class EntityMoa extends EntitySaddleMount {
     public void updateWingRotation() {
         if (!this.onGround) {
             if (this.ticksUntilFlap == 0) {
-                this.worldObj.playSoundAtEntity(this, "mob.bat.takeoff", 0.15F, MathHelper.clamp_float(this.rand.nextFloat(), 0.7f, 1.0f) + MathHelper.clamp_float(this.rand.nextFloat(), 0f, 0.3f));
+                this.worldObj.playSoundAtEntity(
+                    this,
+                    "mob.bat.takeoff",
+                    0.15F,
+                    MathHelper.clamp_float(this.rand.nextFloat(), 0.7f, 1.0f)
+                        + MathHelper.clamp_float(this.rand.nextFloat(), 0f, 0.3f));
 
                 this.ticksUntilFlap = 8;
             } else {
@@ -251,7 +284,12 @@ public class EntityMoa extends EntitySaddleMount {
         if (this.getRemainingJumps() > 0 && this.motionY < 0.0D) {
             if (!this.isOnGround()) {
                 this.motionY = 0.7D;
-                this.worldObj.playSoundAtEntity(this, "mob.bat.takeoff", 0.15F, MathHelper.clamp_float(this.rand.nextFloat(), 0.7f, 1.0f) + MathHelper.clamp_float(this.rand.nextFloat(), 0f, 0.3f));
+                this.worldObj.playSoundAtEntity(
+                    this,
+                    "mob.bat.takeoff",
+                    0.15F,
+                    MathHelper.clamp_float(this.rand.nextFloat(), 0.7f, 1.0f)
+                        + MathHelper.clamp_float(this.rand.nextFloat(), 0f, 0.3f));
 
                 if (!this.worldObj.isRemote) {
                     this.setRemainingJumps(this.getRemainingJumps() - 1);
@@ -266,7 +304,9 @@ public class EntityMoa extends EntitySaddleMount {
 
     @Override
     public float getMountedMoveSpeed() {
-        return this.getMoaType().getMoaProperties().getMoaSpeed();
+        return this.getMoaType()
+            .getMoaProperties()
+            .getMoaSpeed();
     }
 
     public void setToAdult() {
@@ -281,24 +321,25 @@ public class EntityMoa extends EntitySaddleMount {
             Item currentItem = stack.getItem();
 
             if (this.isChild() && this.isHungry()) {
-                if (this.getAmountFed() < 6 && (currentItem == ItemsAether.aechor_petal || currentItem == ItemsAether.blue_aechor_petal)) {
+                if (this.getAmountFed() < 6
+                    && (currentItem == ItemsAether.aechor_petal || currentItem == ItemsAether.blue_aechor_petal)) {
                     if (!player.capabilities.isCreativeMode) {
                         --stack.stackSize;
                     }
 
                     this.increaseAmountFed(1);
 
-                    if (this.getAmountFed() >= 6) { //3
+                    if (this.getAmountFed() >= 6) { // 3
                         this.setToAdult();
                     } else {
                         this.resetHunger();
                     }
                 }
-                if (currentItem == ItemsAether.golden_aechor_petal) { 
-                	if (!player.capabilities.isCreativeMode) {
+                if (currentItem == ItemsAether.golden_aechor_petal) {
+                    if (!player.capabilities.isCreativeMode) {
                         --stack.stackSize;
                     }
-                	this.setToAdult();
+                    this.setToAdult();
                 }
             }
 
@@ -337,7 +378,9 @@ public class EntityMoa extends EntitySaddleMount {
 
         this.setPlayerGrown(nbt.getBoolean("playerGrown"));
         this.setRemainingJumps(nbt.getInteger("remainingJumps"));
-        this.setMoaType(AetherAPI.instance().getMoaType(nbt.getInteger("moaTypeId")));
+        this.setMoaType(
+            AetherAPI.instance()
+                .getMoaType(nbt.getInteger("moaTypeId")));
         this.setAmountFed(nbt.getByte("amountFed"));
         this.setHungry(nbt.getBoolean("isHungry"));
         this.setSitting(nbt.getBoolean("isSitting"));

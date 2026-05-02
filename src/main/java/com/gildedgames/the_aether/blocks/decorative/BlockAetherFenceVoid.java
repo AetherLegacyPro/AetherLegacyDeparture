@@ -12,25 +12,26 @@ import com.gildedgames.the_aether.blocks.BlocksAether;
 
 public class BlockAetherFenceVoid extends BlockFence {
 
-	public BlockAetherFenceVoid() {
-		super(Aether.find("void_planks"), Material.wood);
+    public BlockAetherFenceVoid() {
+        super(Aether.find("void_planks"), Material.wood);
 
-		this.setHardness(2.0F);
-		this.setResistance(5.0F);
-		this.setStepSound(soundTypeWood);
-	}
+        this.setHardness(2.0F);
+        this.setResistance(5.0F);
+        this.setStepSound(soundTypeWood);
+    }
 
-	@Override
-	public boolean canPlaceTorchOnTop(World world, int x, int y, int z) {
-		return true;
-	}
+    @Override
+    public boolean canPlaceTorchOnTop(World world, int x, int y, int z) {
+        return true;
+    }
 
-	@Override
-	public boolean canConnectFenceTo(IBlockAccess p_149826_1_, int p_149826_2_, int p_149826_3_, int p_149826_4_) {
-		Block block = p_149826_1_.getBlock(p_149826_2_, p_149826_3_, p_149826_4_);
-		return block != this && block != Blocks.fence_gate && block != BlocksAether.void_fence_gate ? (block.getMaterial().isOpaque() && block.renderAsNormalBlock() ? block.getMaterial() != Material.gourd : false) : true;
-	}
-	
-	
+    @Override
+    public boolean canConnectFenceTo(IBlockAccess p_149826_1_, int p_149826_2_, int p_149826_3_, int p_149826_4_) {
+        Block block = p_149826_1_.getBlock(p_149826_2_, p_149826_3_, p_149826_4_);
+        return block != this && block != Blocks.fence_gate && block != BlocksAether.void_fence_gate
+            ? (block.getMaterial()
+                .isOpaque() && block.renderAsNormalBlock() ? block.getMaterial() != Material.gourd : false)
+            : true;
+    }
 
 }

@@ -12,30 +12,30 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockFrozenQuicksoilGlass extends BlockBreakable {
 
-	public BlockFrozenQuicksoilGlass() {
-		super(Aether.find("frozen_quicksoil_glass"), Material.glass, false);
+    public BlockFrozenQuicksoilGlass() {
+        super(Aether.find("frozen_quicksoil_glass"), Material.glass, false);
 
-		this.slipperiness = 1.23F;
+        this.slipperiness = 1.23F;
 
-		this.setHardness(0.2F);
-		this.setLightOpacity(0);
-		this.setStepSound(soundTypeGlass);
-	}
+        this.setHardness(0.2F);
+        this.setLightOpacity(0);
+        this.setStepSound(soundTypeGlass);
+    }
 
-	@Override
-	public int quantityDropped(Random random) {
-		return 0;
-	}
+    @Override
+    public int quantityDropped(Random random) {
+        return 0;
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public int getRenderBlockPass() {
-		return 1;
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public int getRenderBlockPass() {
+        return 1;
+    }
 
-	@Override
-	protected boolean canSilkHarvest() {
-		return true;
-	}
+    @Override
+    protected boolean canSilkHarvest() {
+        return true;
+    }
 
 }

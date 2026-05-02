@@ -1,17 +1,5 @@
 package com.gildedgames.the_aether.client.renders;
 
-import com.gildedgames.the_aether.entities.bosses.valkyrie_queen.EntityAncientValkyrieQueen;
-import com.gildedgames.the_aether.entities.bosses.valkyrie_queen.EntityDivineValkyrieQueen;
-import com.gildedgames.the_aether.entities.bosses.valkyrie_queen.EntityValkyrieQueen;
-import com.gildedgames.the_aether.entities.fake.item.EntityFakeItem;
-import com.gildedgames.the_aether.entities.fake.item.RenderFakeItem;
-import com.gildedgames.the_aether.entities.passive.EntityAerwhale;
-import com.gildedgames.the_aether.entities.passive.EntityCarrionSprout;
-import com.gildedgames.the_aether.entities.passive.EntityFlynx;
-import com.gildedgames.the_aether.entities.passive.EntityMiniCloud;
-import com.gildedgames.the_aether.entities.passive.EntitySheepuff;
-import com.gildedgames.the_aether.entities.passive.EntityThunderlo;
-
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
 import net.minecraftforge.client.MinecraftForgeClient;
@@ -132,6 +120,11 @@ import com.gildedgames.the_aether.entities.bosses.slider.EntitySlider;
 import com.gildedgames.the_aether.entities.bosses.sun_spirit.EntityAncientSunSpirit;
 import com.gildedgames.the_aether.entities.bosses.sun_spirit.EntityDivineSunSpirit;
 import com.gildedgames.the_aether.entities.bosses.sun_spirit.EntitySunSpirit;
+import com.gildedgames.the_aether.entities.bosses.valkyrie_queen.EntityAncientValkyrieQueen;
+import com.gildedgames.the_aether.entities.bosses.valkyrie_queen.EntityDivineValkyrieQueen;
+import com.gildedgames.the_aether.entities.bosses.valkyrie_queen.EntityValkyrieQueen;
+import com.gildedgames.the_aether.entities.fake.item.EntityFakeItem;
+import com.gildedgames.the_aether.entities.fake.item.RenderFakeItem;
 import com.gildedgames.the_aether.entities.hostile.EntityAechorPlant;
 import com.gildedgames.the_aether.entities.hostile.EntityAerca;
 import com.gildedgames.the_aether.entities.hostile.EntityAercenturion;
@@ -149,10 +142,16 @@ import com.gildedgames.the_aether.entities.hostile.EntityTempest;
 import com.gildedgames.the_aether.entities.hostile.EntityUligo;
 import com.gildedgames.the_aether.entities.hostile.EntityUro;
 import com.gildedgames.the_aether.entities.hostile.EntityWhirlwind;
-import com.gildedgames.the_aether.entities.hostile.EntityZephyr;
-import com.gildedgames.the_aether.entities.hostile.EntityZojz;
 import com.gildedgames.the_aether.entities.hostile.EntityYoungZephyr;
 import com.gildedgames.the_aether.entities.hostile.EntityZarnillys;
+import com.gildedgames.the_aether.entities.hostile.EntityZephyr;
+import com.gildedgames.the_aether.entities.hostile.EntityZojz;
+import com.gildedgames.the_aether.entities.passive.EntityAerwhale;
+import com.gildedgames.the_aether.entities.passive.EntityCarrionSprout;
+import com.gildedgames.the_aether.entities.passive.EntityFlynx;
+import com.gildedgames.the_aether.entities.passive.EntityMiniCloud;
+import com.gildedgames.the_aether.entities.passive.EntitySheepuff;
+import com.gildedgames.the_aether.entities.passive.EntityThunderlo;
 import com.gildedgames.the_aether.entities.passive.mountable.EntityAerbunny;
 import com.gildedgames.the_aether.entities.passive.mountable.EntityAerwhaleMount;
 import com.gildedgames.the_aether.entities.passive.mountable.EntityFlyingCow;
@@ -191,121 +190,127 @@ import cpw.mods.fml.client.registry.RenderingRegistry;
 
 public class RendersAether {
 
-	public static void initialization() {
-		/* Misc */
-		register(EntityHammerProjectile.class, new HammerProjectileRenderer());
-		register(EntityJebHammerProjectile.class, new JebHammerProjectileRenderer());
-		register(EntityValkyrieProjectile.class, new ValkyrieProjectileRenderer());
-		register(EntityAmplifiedHammerProjectile.class, new AmplifiedNotchHammerProjectileRenderer());
-		register(EntityAmplifiedJebHammerProjectile.class, new AmplifiedJebHammerProjectileRenderer());
-		register(EntityBattleSentryHammerProjectile.class, new BattleSentryHammerProjectileRenderer());
-		register(EntityAmplifiedBattleSentryHammerProjectile.class, new AmplifiedBattleSentryHammerProjectileRenderer());
-		register(EntityAercenturionProjectile.class, new AercenturionProjectileRenderer());
-		register(EntityFloatingBlock.class, new FloatingBlockRenderer());
-		register(EntityAetherTNT.class, new AetherTNTRenderer());
-		register(EntityParachute.class, new ParachuteRenderer());
-		register(EntityZephyrSnowball.class, new ZephyrSnowballRenderer());
-		register(EntityTempestSnowball.class, new TempestSnowballRenderer());
-		register(EntityZojzSnowball.class, new ZojzSnowballRenderer());
-		register(EntityPoisonSnowball.class, new PoisonSnowballRenderer());
-		register(EntityPhoenixArrow.class, new PhoenixArrowRenderer());
-		register(EntityCyroArrow.class, new CyroArrowRenderer());
-		register(EntityLightningKnife.class, new LightningKnifeRenderer());
-		register(EntityCyroGuardianProjectile.class, new CyroGuardianProjectileRenderer(0.5F));
-		register(EntityCinerariumProjectile.class, new CinerariumProjectileRenderer(0.5F));
-		register(EntityElysianGuardianLaser.class, new ElysianGuardianLaserRenderer());
+    public static void initialization() {
+        /* Misc */
+        register(EntityHammerProjectile.class, new HammerProjectileRenderer());
+        register(EntityJebHammerProjectile.class, new JebHammerProjectileRenderer());
+        register(EntityValkyrieProjectile.class, new ValkyrieProjectileRenderer());
+        register(EntityAmplifiedHammerProjectile.class, new AmplifiedNotchHammerProjectileRenderer());
+        register(EntityAmplifiedJebHammerProjectile.class, new AmplifiedJebHammerProjectileRenderer());
+        register(EntityBattleSentryHammerProjectile.class, new BattleSentryHammerProjectileRenderer());
+        register(
+            EntityAmplifiedBattleSentryHammerProjectile.class,
+            new AmplifiedBattleSentryHammerProjectileRenderer());
+        register(EntityAercenturionProjectile.class, new AercenturionProjectileRenderer());
+        register(EntityFloatingBlock.class, new FloatingBlockRenderer());
+        register(EntityAetherTNT.class, new AetherTNTRenderer());
+        register(EntityParachute.class, new ParachuteRenderer());
+        register(EntityZephyrSnowball.class, new ZephyrSnowballRenderer());
+        register(EntityTempestSnowball.class, new TempestSnowballRenderer());
+        register(EntityZojzSnowball.class, new ZojzSnowballRenderer());
+        register(EntityPoisonSnowball.class, new PoisonSnowballRenderer());
+        register(EntityPhoenixArrow.class, new PhoenixArrowRenderer());
+        register(EntityCyroArrow.class, new CyroArrowRenderer());
+        register(EntityLightningKnife.class, new LightningKnifeRenderer());
+        register(EntityCyroGuardianProjectile.class, new CyroGuardianProjectileRenderer(0.5F));
+        register(EntityCinerariumProjectile.class, new CinerariumProjectileRenderer(0.5F));
+        register(EntityElysianGuardianLaser.class, new ElysianGuardianLaserRenderer());
 
-		/* Darts */
-		register(EntityDartBase.class, new DartBaseRenderer());
-	
-		/* Crystals */
-		register(EntityCrystal.class, new CrystalRenderer());
+        /* Darts */
+        register(EntityDartBase.class, new DartBaseRenderer());
 
-		/* Bosses */
-		register(EntitySlider.class, new SliderRenderer());
-		register(EntityEnhancedSlider.class, new EnhancedSliderRenderer());
-		register(EntityDivineSlider.class, new DivineSliderRenderer());
-		register(EntityMythicSlider.class, new MythicSliderRenderer());
-		
-		register(EntityCyroGuardian.class, new CyroGuardianRenderer());
-		
-		register(EntityLurker.class, new LurkerRenderer());
-		
-		register(EntityValkyrieQueen.class, new ValkyrieQueenRenderer());
-		register(EntityAncientValkyrieQueen.class, new AncientValkyrieQueenRenderer());
-		register(EntityDivineValkyrieQueen.class, new DivineValkyrieQueenRenderer());
-		
-		register(EntitySunSpirit.class, new SunSpiritRenderer());
-		register(EntityAncientSunSpirit.class, new AncientSunSpiritRenderer());
-		register(EntityDivineSunSpirit.class, new DivineSunSpiritRenderer());
-		
-		register(EntityGenesisDragon.class, new GenesisDragonRenderer());
+        /* Crystals */
+        register(EntityCrystal.class, new CrystalRenderer());
 
-		/* Hostile */
-		register(EntityRaptor.class, new RaptorRenderer());
-		register(EntityCyro.class, new CryoRenderer());
-		register(EntityMimic.class, new MimicRenderer());
-		register(EntitySentry.class, new SentryRenderer());
-		register(EntityBattleSentry.class, new BattleSentryRenderer());
-		register(EntityAechorPlant.class, new AechorPlantRenderer());
-		register(EntityFireMinion.class, new FireMinionRenderer());
-		register(EntityAncientFireMinion.class, new AncientFireMinionRenderer());
-		register(EntityDivineFireMinion.class, new DivineFireMinionRenderer());
-		register(EntityMythicFireMinion.class, new MythicFireMinionRenderer());
-		register(EntityTempest.class, new TempestRenderer(new TempestModel()));
-		register(EntityZephyr.class, new ZephyrRenderer());
-		register(EntityYoungZephyr.class, new YoungZephyrRenderer(new YoungZephyrModel()));
-		register(EntityValkyrie.class, new ValkyrieRenderer());
-		register(EntityEliteValkyrie.class, new EliteValkyrieRenderer());
-		register(EntityCockatrice.class, new CockatriceRenderer());
-		register(EntityUro.class, new UroRenderer());
-		register(EntityCinerarium.class, new CinerariumRenderer());
-		register(EntityUligo.class, new UligoRenderer(new UligoModel(16), new UligoModel(0), 0.25F));
-		register(EntityFallenValkyrie.class, new FallenValkyrieRenderer());
-		register(EntityAercenturion.class, new AercenturionRenderer(new AercenturionModel(), 1.0f));
-		register(EntityZarnillys.class, new ZarnillysRenderer());
-		register(EntityElderZarnillys.class, new ElderZarnillysRenderer());
-		register(EntityHellfireCinder.class, new HellfireCinderRenderer());
-		register(EntityAerca.class, new AercaRenderer());
-		register(EntityElysianGuardian.class, new ElysianGuardianRenderer(new ElysianGuardianModel()));
-		register(EntityIrk.class, new IrkRenderer());
-		register(EntityCrystalDragon.class, new CrystalDragonRenderer());
-		register(EntityZojz.class, new ZojzRenderer(new ZojzModel()));
-		
-		/* Passive */
-		register(EntityMoa.class, new MoaRenderer());
-		register(EntityPhyg.class, new PhygRenderer());
-		register(EntityFlyingCow.class, new FlyingCowRenderer());
-		register(EntitySheepuff.class, new SheepuffRenderer());
-		register(EntityAerwhale.class, new AerwhaleRenderer());
-		register(EntityAerwhaleMount.class, new AerwhaleMountRenderer());
-		register(EntityAerbunny.class, new AerbunnyRenderer());
-		register(EntitySwet.class, new SwetRenderer());
-		register(EntityMiniCloud.class, new MiniCloudRenderer());
-		register(EntityTNTPresent.class, new TNTPresentRenderer());
-		register(EntityWhirlwind.class, new WhirlwindRenderer());
-		register(EntityFlynx.class, new FlynxRenderer());
-		register(EntityCarrionSprout.class, new CarrionSproutRenderer());
-		register(EntityZephyroo.class, new ZephyrooRenderer(new ZephyrooModel(), 0.5f));
-		register(EntityThunderlo.class, new ThunderloRenderer(new ThunderloModel(), 0.5f));
+        /* Bosses */
+        register(EntitySlider.class, new SliderRenderer());
+        register(EntityEnhancedSlider.class, new EnhancedSliderRenderer());
+        register(EntityDivineSlider.class, new DivineSliderRenderer());
+        register(EntityMythicSlider.class, new MythicSliderRenderer());
 
-		MinecraftForgeClient.registerItemRenderer(ItemsAether.phoenix_bow, new PhoenixBowRenderer());
-		MinecraftForgeClient.registerItemRenderer(ItemsAether.tipped_phoenix_bow, new PhoenixBowRenderer());
-		MinecraftForgeClient.registerItemRenderer(ItemsAether.amplified_phoenix_bow, new PhoenixBowRenderer());		
-		MinecraftForgeClient.registerItemRenderer(ItemsAether.cyro_bow, new PhoenixBowRenderer());
-		MinecraftForgeClient.registerItemRenderer(ItemsAether.tipped_cyro_bow, new PhoenixBowRenderer());
-		MinecraftForgeClient.registerItemRenderer(ItemsAether.amplified_cyro_bow, new PhoenixBowRenderer());
-		
-		RenderingRegistry.registerBlockHandler(new BerryBushRenderer());
-		RenderingRegistry.registerBlockHandler(new TreasureChestBlockRenderer());
-		RenderingRegistry.registerBlockHandler(new AetherFlowerRenderer());
-		RenderingRegistry.registerEntityRenderingHandler(EntityFakeItem.class, new RenderFakeItem());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTreasureChest.class, new TreasureChestRenderer());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAetherEnchantmentTable.class, new AetherEnchantmentTableRenderer());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityDivineEnchantmentTable.class, new DivineEnchantmentTableRenderer());
-	}
+        register(EntityCyroGuardian.class, new CyroGuardianRenderer());
 
-	public static void register(Class<? extends Entity> entityClass, Render render) {
-		RenderingRegistry.registerEntityRenderingHandler(entityClass, render);
-	}
+        register(EntityLurker.class, new LurkerRenderer());
+
+        register(EntityValkyrieQueen.class, new ValkyrieQueenRenderer());
+        register(EntityAncientValkyrieQueen.class, new AncientValkyrieQueenRenderer());
+        register(EntityDivineValkyrieQueen.class, new DivineValkyrieQueenRenderer());
+
+        register(EntitySunSpirit.class, new SunSpiritRenderer());
+        register(EntityAncientSunSpirit.class, new AncientSunSpiritRenderer());
+        register(EntityDivineSunSpirit.class, new DivineSunSpiritRenderer());
+
+        register(EntityGenesisDragon.class, new GenesisDragonRenderer());
+
+        /* Hostile */
+        register(EntityRaptor.class, new RaptorRenderer());
+        register(EntityCyro.class, new CryoRenderer());
+        register(EntityMimic.class, new MimicRenderer());
+        register(EntitySentry.class, new SentryRenderer());
+        register(EntityBattleSentry.class, new BattleSentryRenderer());
+        register(EntityAechorPlant.class, new AechorPlantRenderer());
+        register(EntityFireMinion.class, new FireMinionRenderer());
+        register(EntityAncientFireMinion.class, new AncientFireMinionRenderer());
+        register(EntityDivineFireMinion.class, new DivineFireMinionRenderer());
+        register(EntityMythicFireMinion.class, new MythicFireMinionRenderer());
+        register(EntityTempest.class, new TempestRenderer(new TempestModel()));
+        register(EntityZephyr.class, new ZephyrRenderer());
+        register(EntityYoungZephyr.class, new YoungZephyrRenderer(new YoungZephyrModel()));
+        register(EntityValkyrie.class, new ValkyrieRenderer());
+        register(EntityEliteValkyrie.class, new EliteValkyrieRenderer());
+        register(EntityCockatrice.class, new CockatriceRenderer());
+        register(EntityUro.class, new UroRenderer());
+        register(EntityCinerarium.class, new CinerariumRenderer());
+        register(EntityUligo.class, new UligoRenderer(new UligoModel(16), new UligoModel(0), 0.25F));
+        register(EntityFallenValkyrie.class, new FallenValkyrieRenderer());
+        register(EntityAercenturion.class, new AercenturionRenderer(new AercenturionModel(), 1.0f));
+        register(EntityZarnillys.class, new ZarnillysRenderer());
+        register(EntityElderZarnillys.class, new ElderZarnillysRenderer());
+        register(EntityHellfireCinder.class, new HellfireCinderRenderer());
+        register(EntityAerca.class, new AercaRenderer());
+        register(EntityElysianGuardian.class, new ElysianGuardianRenderer(new ElysianGuardianModel()));
+        register(EntityIrk.class, new IrkRenderer());
+        register(EntityCrystalDragon.class, new CrystalDragonRenderer());
+        register(EntityZojz.class, new ZojzRenderer(new ZojzModel()));
+
+        /* Passive */
+        register(EntityMoa.class, new MoaRenderer());
+        register(EntityPhyg.class, new PhygRenderer());
+        register(EntityFlyingCow.class, new FlyingCowRenderer());
+        register(EntitySheepuff.class, new SheepuffRenderer());
+        register(EntityAerwhale.class, new AerwhaleRenderer());
+        register(EntityAerwhaleMount.class, new AerwhaleMountRenderer());
+        register(EntityAerbunny.class, new AerbunnyRenderer());
+        register(EntitySwet.class, new SwetRenderer());
+        register(EntityMiniCloud.class, new MiniCloudRenderer());
+        register(EntityTNTPresent.class, new TNTPresentRenderer());
+        register(EntityWhirlwind.class, new WhirlwindRenderer());
+        register(EntityFlynx.class, new FlynxRenderer());
+        register(EntityCarrionSprout.class, new CarrionSproutRenderer());
+        register(EntityZephyroo.class, new ZephyrooRenderer(new ZephyrooModel(), 0.5f));
+        register(EntityThunderlo.class, new ThunderloRenderer(new ThunderloModel(), 0.5f));
+
+        MinecraftForgeClient.registerItemRenderer(ItemsAether.phoenix_bow, new PhoenixBowRenderer());
+        MinecraftForgeClient.registerItemRenderer(ItemsAether.tipped_phoenix_bow, new PhoenixBowRenderer());
+        MinecraftForgeClient.registerItemRenderer(ItemsAether.amplified_phoenix_bow, new PhoenixBowRenderer());
+        MinecraftForgeClient.registerItemRenderer(ItemsAether.cyro_bow, new PhoenixBowRenderer());
+        MinecraftForgeClient.registerItemRenderer(ItemsAether.tipped_cyro_bow, new PhoenixBowRenderer());
+        MinecraftForgeClient.registerItemRenderer(ItemsAether.amplified_cyro_bow, new PhoenixBowRenderer());
+
+        RenderingRegistry.registerBlockHandler(new BerryBushRenderer());
+        RenderingRegistry.registerBlockHandler(new TreasureChestBlockRenderer());
+        RenderingRegistry.registerBlockHandler(new AetherFlowerRenderer());
+        RenderingRegistry.registerEntityRenderingHandler(EntityFakeItem.class, new RenderFakeItem());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTreasureChest.class, new TreasureChestRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(
+            TileEntityAetherEnchantmentTable.class,
+            new AetherEnchantmentTableRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(
+            TileEntityDivineEnchantmentTable.class,
+            new DivineEnchantmentTableRenderer());
+    }
+
+    public static void register(Class<? extends Entity> entityClass, Render render) {
+        RenderingRegistry.registerEntityRenderingHandler(entityClass, render);
+    }
 }

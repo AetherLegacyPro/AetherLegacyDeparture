@@ -1,9 +1,5 @@
 package com.gildedgames.the_aether.client.renders.entity;
 
-import com.gildedgames.the_aether.Aether;
-import com.gildedgames.the_aether.client.models.entities.DivineSliderModel;
-import com.gildedgames.the_aether.entities.bosses.slider.EntityDivineSlider;
-
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
@@ -12,19 +8,29 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
+import com.gildedgames.the_aether.Aether;
+import com.gildedgames.the_aether.client.models.entities.DivineSliderModel;
+import com.gildedgames.the_aether.entities.bosses.slider.EntityDivineSlider;
+
 public class DivineSliderRenderer extends RenderLiving {
 
-    private static final ResourceLocation TEXTURE_AWAKE_RED = Aether.locate("textures/bosses/slider/divine_slider_awake_critical.png"); 
+    private static final ResourceLocation TEXTURE_AWAKE_RED = Aether
+        .locate("textures/bosses/slider/divine_slider_awake_critical.png");
 
-    private static final ResourceLocation TEXTURE_AWAKE = Aether.locate("textures/bosses/slider/divine_slider_awake.png"); 
+    private static final ResourceLocation TEXTURE_AWAKE = Aether
+        .locate("textures/bosses/slider/divine_slider_awake.png");
 
-    private static final ResourceLocation TEXTURE_SLEEP = Aether.locate("textures/bosses/slider/divine_slider_asleep.png"); 
+    private static final ResourceLocation TEXTURE_SLEEP = Aether
+        .locate("textures/bosses/slider/divine_slider_asleep.png");
 
-    private static final ResourceLocation TEXTURE_SLEEP_RED = Aether.locate("textures/bosses/slider/divine_slider_asleep_critical.png");
+    private static final ResourceLocation TEXTURE_SLEEP_RED = Aether
+        .locate("textures/bosses/slider/divine_slider_asleep_critical.png");
 
-    private static final ResourceLocation TEXTURE_GLOW = Aether.locate("textures/bosses/slider/divine_slider_awake_glow.png");
+    private static final ResourceLocation TEXTURE_GLOW = Aether
+        .locate("textures/bosses/slider/divine_slider_awake_glow.png");
 
-    private static final ResourceLocation TEXTURE_GLOW_RED = Aether.locate("textures/bosses/slider/divine_slider_awake_critical_glow.png");
+    private static final ResourceLocation TEXTURE_GLOW_RED = Aether
+        .locate("textures/bosses/slider/divine_slider_awake_critical_glow.png");
 
     public DivineSliderRenderer() {
         super(new DivineSliderModel(0.0F, 12.0F), 1.5F);
@@ -66,7 +72,7 @@ public class DivineSliderRenderer extends RenderLiving {
 
     @Override
     protected void preRenderCallback(EntityLivingBase entity, float f) {
-    	EntityDivineSlider slider = (EntityDivineSlider) entity;
+        EntityDivineSlider slider = (EntityDivineSlider) entity;
 
         ((DivineSliderModel) this.mainModel).hurtAngle = slider.hurtAngle;
         ((DivineSliderModel) this.mainModel).hurtAngleX = slider.hurtAngleX;
@@ -79,7 +85,7 @@ public class DivineSliderRenderer extends RenderLiving {
 
     @Override
     protected ResourceLocation getEntityTexture(Entity entity) {
-    	EntityDivineSlider slider = (EntityDivineSlider) entity;
+        EntityDivineSlider slider = (EntityDivineSlider) entity;
 
         if (slider.isAwake()) {
             return slider.criticalCondition() ? TEXTURE_AWAKE_RED : TEXTURE_AWAKE;
@@ -89,4 +95,3 @@ public class DivineSliderRenderer extends RenderLiving {
     }
 
 }
-

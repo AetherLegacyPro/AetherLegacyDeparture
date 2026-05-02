@@ -9,25 +9,25 @@ import net.minecraft.world.World;
 
 public class ItemStrengthStone extends ItemAetherFood {
 
-	public ItemStrengthStone() {
-		super(0);
+    public ItemStrengthStone() {
+        super(0);
 
-		this.setAlwaysEdible();
-	}
+        this.setAlwaysEdible();
+    }
 
-	@Override
-	public EnumRarity getRarity(ItemStack stack) {
-		return EnumRarity.rare;
-	}
+    @Override
+    public EnumRarity getRarity(ItemStack stack) {
+        return EnumRarity.rare;
+    }
 
-	@Override
-	public boolean hasEffect(ItemStack stack, int pass) {
-		return true;
-	}
+    @Override
+    public boolean hasEffect(ItemStack stack, int pass) {
+        return true;
+    }
 
-	@Override
-	protected void onFoodEaten(ItemStack stack, World worldIn, EntityPlayer player) {
-		player.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 2440, 0));
-	}
+    @Override
+    protected void onFoodEaten(ItemStack stack, World worldIn, EntityPlayer player) {
+        player.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 2440, 0));
+    }
 
 }

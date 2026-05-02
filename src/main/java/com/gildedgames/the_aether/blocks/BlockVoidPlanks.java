@@ -5,12 +5,12 @@ import net.minecraft.block.material.Material;
 
 public class BlockVoidPlanks extends Block {
 
-	public BlockVoidPlanks() {
-		super(Material.wood);
+    public BlockVoidPlanks() {
+        super(Material.wood);
 
-		this.setHardness(1F);
-		this.setStepSound(soundTypeWood);
-		this.setHarvestLevel("axe", 0);
-		this.setBlockTextureName("aether_legacy:void_planks");
-	}
+        this.setHardness(1F);
+        this.setStepSound(soundTypeWood);
+        this.setHarvestLevel("axe", 0);
+        this.setBlockTextureName("aether_legacy:void_planks");
+    }
 }

@@ -11,19 +11,19 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockAetherFenceGateGreatroot extends BlockFenceGate {
 
-	public BlockAetherFenceGateGreatroot() {
-		super();
+    public BlockAetherFenceGateGreatroot() {
+        super();
 
-		this.setHardness(2.0F);
-		this.setResistance(5.0F);
-		this.setStepSound(soundTypeWood);
-		this.setBlockTextureName(Aether.find("greatroot_planks"));
-	}
+        this.setHardness(2.0F);
+        this.setResistance(5.0F);
+        this.setStepSound(soundTypeWood);
+        this.setBlockTextureName(Aether.find("greatroot_planks"));
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public IIcon getIcon(int p_149691_1_, int p_149691_2_) {
-		return BlocksAether.greatroot_planks.getBlockTextureFromSide(p_149691_1_);
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public IIcon getIcon(int p_149691_1_, int p_149691_2_) {
+        return BlocksAether.greatroot_planks.getBlockTextureFromSide(p_149691_1_);
+    }
 
 }

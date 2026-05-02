@@ -8,65 +8,67 @@ import cpw.mods.fml.common.eventhandler.Event;
 
 public class AetherAmplifierEvent extends Event {
 
-	public AetherAmplifierEvent() {
+    public AetherAmplifierEvent() {
 
-	}
+    }
 
-	public static class SetTimeEvent extends AetherAmplifierEvent {
-		private TileEntity tileEntity;
+    public static class SetTimeEvent extends AetherAmplifierEvent {
 
-		private AetherAmplifier amplifier;
+        private TileEntity tileEntity;
 
-		private int original;
+        private AetherAmplifier amplifier;
 
-		private int newTime;
+        private int original;
 
-		public SetTimeEvent(TileEntity tileEntity, AetherAmplifier amplifier, int original) {
-			this.tileEntity = tileEntity;
-			this.amplifier = amplifier;
-			this.original = original;
+        private int newTime;
 
-			this.setNewTime(original);
-		}
+        public SetTimeEvent(TileEntity tileEntity, AetherAmplifier amplifier, int original) {
+            this.tileEntity = tileEntity;
+            this.amplifier = amplifier;
+            this.original = original;
 
-		public TileEntity getTileEntity() {
-			return this.tileEntity;
-		}
+            this.setNewTime(original);
+        }
 
-		public AetherAmplifier getAmplifier() {
-			return this.amplifier;
-		}
+        public TileEntity getTileEntity() {
+            return this.tileEntity;
+        }
 
-		public int getOriginal() {
-			return this.original;
-		}
+        public AetherAmplifier getAmplifier() {
+            return this.amplifier;
+        }
 
-		public int getNewTime() {
-			return this.newTime;
-		}
+        public int getOriginal() {
+            return this.original;
+        }
 
-		public void setNewTime(int newTime) {
-			this.newTime = newTime;
-		}
-	}
+        public int getNewTime() {
+            return this.newTime;
+        }
 
-	public static class AmplifyEvent extends AetherAmplifierEvent {
-		private TileEntity tileEntity;
+        public void setNewTime(int newTime) {
+            this.newTime = newTime;
+        }
+    }
 
-		private AetherAmplifier amplifier;
+    public static class AmplifyEvent extends AetherAmplifierEvent {
 
-		public AmplifyEvent(TileEntity tileEntity, AetherAmplifier amplify) {
-			this.tileEntity = tileEntity;
-			this.amplifier = amplify;
-		}
+        private TileEntity tileEntity;
 
-		public TileEntity getTileEntity() {
-			return this.tileEntity;
-		}
+        private AetherAmplifier amplifier;
 
-		public AetherAmplifier getAmplifier() {
-			return this.amplifier;
-		}
-	}
+        public AmplifyEvent(TileEntity tileEntity, AetherAmplifier amplify) {
+            this.tileEntity = tileEntity;
+            this.amplifier = amplify;
+        }
+
+        public TileEntity getTileEntity() {
+            return this.tileEntity;
+        }
+
+        public AetherAmplifier getAmplifier() {
+            return this.amplifier;
+        }
+    }
 
 }

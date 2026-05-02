@@ -1,9 +1,5 @@
 package com.gildedgames.the_aether.items.weapons;
 
-import com.gildedgames.the_aether.entities.block.EntityFireProofItemAether;
-import com.gildedgames.the_aether.entities.bosses.crystal_dragon.EntityCrystalDragon;
-import com.gildedgames.the_aether.items.ItemsAether;
-import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
@@ -17,50 +13,59 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.EnumHelper;
 
+import com.gildedgames.the_aether.entities.block.EntityFireProofItemAether;
+import com.gildedgames.the_aether.entities.bosses.crystal_dragon.EntityCrystalDragon;
+import com.gildedgames.the_aether.items.ItemsAether;
+import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
+
 public class ItemAmplifiedDragonSlayer extends ItemSword {
 
-	private float damageDealt;
-	private static ToolMaterial dragonMaterial = EnumHelper.addToolMaterial("DRAGON", 0, 4191, 2.0F, 6.0F, 10);
+    private float damageDealt;
+    private static ToolMaterial dragonMaterial = EnumHelper.addToolMaterial("DRAGON", 0, 4191, 2.0F, 6.0F, 10);
 
-	public ItemAmplifiedDragonSlayer() {
-		super(dragonMaterial);
-		this.setCreativeTab(AetherCreativeTabs.weapons);
-		this.setMaxDamage(4191);
-	}
+    public ItemAmplifiedDragonSlayer() {
+        super(dragonMaterial);
+        this.setCreativeTab(AetherCreativeTabs.weapons);
+        this.setMaxDamage(4191);
+    }
 
-	@Override
-	public boolean getIsRepairable(ItemStack stack, ItemStack repairStack) {
-		return false;
-	}
+    @Override
+    public boolean getIsRepairable(ItemStack stack, ItemStack repairStack) {
+        return false;
+    }
 
-	 public float damage() {
-	      return this.damageDealt;
-	   }
+    public float damage() {
+        return this.damageDealt;
+    }
 
-	public boolean hitEntity(ItemStack stack, EntityLivingBase entity, EntityLivingBase player) {
-	      this.damageDealt = dragonMaterial.getDamageVsEntity();
+    public boolean hitEntity(ItemStack stack, EntityLivingBase entity, EntityLivingBase player) {
+        this.damageDealt = dragonMaterial.getDamageVsEntity();
 
-	      String s = EntityList.getEntityString(entity);
+        String s = EntityList.getEntityString(entity);
 
-	      if (entity instanceof EntityCrystalDragon || entity instanceof EntityDragon || s.contains("Genesis_dragon") || s.contains("dragon") || s.contains("wyrmling")) {
-	         this.damageDealt += 38.0F;
-	      }
+        if (entity instanceof EntityCrystalDragon || entity instanceof EntityDragon
+            || s.contains("Genesis_dragon")
+            || s.contains("dragon")
+            || s.contains("wyrmling")) {
+            this.damageDealt += 38.0F;
+        }
 
-	      entity.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer)player), this.damageDealt);
-	      return super.hitEntity(stack, entity, player);
-	   }
+        entity.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) player), this.damageDealt);
+        return super.hitEntity(stack, entity, player);
+    }
 
-	@Override
-	public float getDigSpeed(ItemStack itemstack, Block block, int meta) {
-		return super.getDigSpeed(itemstack, block, meta) * (2.0F * (float) itemstack.getItemDamage() / (float) itemstack.getMaxDamage() + 0.5F);
-	}
+    @Override
+    public float getDigSpeed(ItemStack itemstack, Block block, int meta) {
+        return super.getDigSpeed(itemstack, block, meta)
+            * (2.0F * (float) itemstack.getItemDamage() / (float) itemstack.getMaxDamage() + 0.5F);
+    }
 
-	@Override
-	public EnumRarity getRarity(ItemStack stack) {
-		return ItemsAether.divine_aether_loot;
-	}
+    @Override
+    public EnumRarity getRarity(ItemStack stack) {
+        return ItemsAether.divine_aether_loot;
+    }
 
-	public boolean hasCustomEntity(final ItemStack stack) {
+    public boolean hasCustomEntity(final ItemStack stack) {
         return true;
     }
 

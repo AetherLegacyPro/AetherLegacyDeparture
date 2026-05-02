@@ -1,19 +1,21 @@
 package com.gildedgames.the_aether.client.models.entities;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.MathHelper;
+
 import org.lwjgl.opengl.GL11;
 
 import com.gildedgames.the_aether.entities.passive.EntityFlynx;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 @SideOnly(Side.CLIENT)
-public class FlynxModel extends ModelBase
-{
+public class FlynxModel extends ModelBase {
+
     /** The back left leg model for the Ocelot. */
     ModelRenderer ocelotBackLeftLeg;
     /** The back right leg model for the Ocelot. */
@@ -30,15 +32,14 @@ public class FlynxModel extends ModelBase
     ModelRenderer ocelotTail3;
     /** The second, second part of tail model for the Ocelot. */
     ModelRenderer ocelotTail4;
-    ModelRenderer ocelotTail5; 
+    ModelRenderer ocelotTail5;
     ModelRenderer ocelotTail6;
     ModelRenderer ocelotHead;
     /** The body model for the Ocelot. */
     ModelRenderer ocelotBody;
     int field_78163_i = 1;
 
-    public FlynxModel()
-    {
+    public FlynxModel() {
         this.setTextureOffset("head.main", 0, 0);
         this.setTextureOffset("head.nose", 0, 24);
         this.setTextureOffset("head.ear1", 0, 10);
@@ -52,34 +53,34 @@ public class FlynxModel extends ModelBase
         this.ocelotBody = new ModelRenderer(this, 20, 0);
         this.ocelotBody.addBox(-2.0F, 3.0F, -8.0F, 4, 16, 6, 0.0F);
         this.ocelotBody.setRotationPoint(0.0F, 12.0F, -10.0F);
-        
+
         this.ocelotTail = new ModelRenderer(this, 0, 15);
         this.ocelotTail.addBox(-0.5F, 0.0F, 0.0F, 1, 8, 1);
         this.ocelotTail.rotateAngleX = 0.9F;
         this.ocelotTail.setRotationPoint(0.0F, 15.0F, 8.0F);
-        
+
         this.ocelotTail4 = new ModelRenderer(this, 0, 15);
         this.ocelotTail4.addBox(0.6F, 0.0F, 0.0F, 1, 8, 1);
         this.ocelotTail4.rotateAngleX = 0.9F;
         this.ocelotTail4.setRotationPoint(0.0F, 15.0F, 8.0F);
-        
+
         this.ocelotTail6 = new ModelRenderer(this, 0, 15);
         this.ocelotTail6.addBox(-1.725F, 0.0F, 0.0F, 1, 8, 1);
         this.ocelotTail6.rotateAngleX = 0.9F;
         this.ocelotTail6.setRotationPoint(0.0F, 15.0F, 8.0F);
-               
+
         this.ocelotTail2 = new ModelRenderer(this, 4, 15);
         this.ocelotTail2.addBox(-0.5F, 0.0F, 0.0F, 1, 8, 1);
         this.ocelotTail2.setRotationPoint(0.0F, 20.0F, 14.0F);
-        
+
         this.ocelotTail3 = new ModelRenderer(this, 4, 15);
         this.ocelotTail3.addBox(0.6F, 0.0F, 0.0F, 1, 8, 1);
         this.ocelotTail3.setRotationPoint(0.0F, 20.0F, 14.0F);
-        
+
         this.ocelotTail5 = new ModelRenderer(this, 4, 15);
         this.ocelotTail5.addBox(-1.725F, 0.0F, 0.0F, 1, 8, 1);
         this.ocelotTail5.setRotationPoint(0.0F, 20.0F, 14.0F);
-        
+
         this.ocelotBackLeftLeg = new ModelRenderer(this, 8, 13);
         this.ocelotBackLeftLeg.addBox(-1.0F, 0.0F, 1.0F, 2, 6, 2);
         this.ocelotBackLeftLeg.setRotationPoint(1.1F, 18.0F, 5.0F);
@@ -97,12 +98,11 @@ public class FlynxModel extends ModelBase
     /**
      * Sets the models various rotation angles then renders the model.
      */
-    public void render(Entity p_78088_1_, float p_78088_2_, float p_78088_3_, float p_78088_4_, float p_78088_5_, float p_78088_6_, float p_78088_7_)
-    {
+    public void render(Entity p_78088_1_, float p_78088_2_, float p_78088_3_, float p_78088_4_, float p_78088_5_,
+        float p_78088_6_, float p_78088_7_) {
         this.setRotationAngles(p_78088_2_, p_78088_3_, p_78088_4_, p_78088_5_, p_78088_6_, p_78088_7_, p_78088_1_);
 
-        if (this.isChild)
-        {
+        if (this.isChild) {
             float f6 = 2.0F;
             GL11.glPushMatrix();
             GL11.glScalef(1.5F / f6, 1.5F / f6, 1.5F / f6);
@@ -124,9 +124,7 @@ public class FlynxModel extends ModelBase
             this.ocelotTail3.render(p_78088_7_);
             this.ocelotTail5.render(p_78088_7_);
             GL11.glPopMatrix();
-        }
-        else
-        {
+        } else {
             this.ocelotHead.render(p_78088_7_);
             this.ocelotBody.render(p_78088_7_);
             this.ocelotTail.render(p_78088_7_);
@@ -147,43 +145,46 @@ public class FlynxModel extends ModelBase
      * and legs, where par1 represents the time(so that arms and legs swing back and forth) and par2 represents how
      * "far" arms and legs can swing at most.
      */
-    public void setRotationAngles(float p_78087_1_, float p_78087_2_, float p_78087_3_, float p_78087_4_, float p_78087_5_, float p_78087_6_, Entity p_78087_7_)
-    {
-        this.ocelotHead.rotateAngleX = p_78087_5_ / (180F / (float)Math.PI);
-        this.ocelotHead.rotateAngleY = p_78087_4_ / (180F / (float)Math.PI);
+    public void setRotationAngles(float p_78087_1_, float p_78087_2_, float p_78087_3_, float p_78087_4_,
+        float p_78087_5_, float p_78087_6_, Entity p_78087_7_) {
+        this.ocelotHead.rotateAngleX = p_78087_5_ / (180F / (float) Math.PI);
+        this.ocelotHead.rotateAngleY = p_78087_4_ / (180F / (float) Math.PI);
 
-        if (this.field_78163_i != 3)
-        {
-            this.ocelotBody.rotateAngleX = ((float)Math.PI / 2F);
+        if (this.field_78163_i != 3) {
+            this.ocelotBody.rotateAngleX = ((float) Math.PI / 2F);
 
-            if (this.field_78163_i == 2)
-            {
+            if (this.field_78163_i == 2) {
                 this.ocelotBackLeftLeg.rotateAngleX = MathHelper.cos(p_78087_1_ * 0.6662F) * 1.0F * p_78087_2_;
                 this.ocelotBackRightLeg.rotateAngleX = MathHelper.cos(p_78087_1_ * 0.6662F + 0.3F) * 1.0F * p_78087_2_;
-                this.ocelotFrontLeftLeg.rotateAngleX = MathHelper.cos(p_78087_1_ * 0.6662F + (float)Math.PI + 0.3F) * 1.0F * p_78087_2_;
-                this.ocelotFrontRightLeg.rotateAngleX = MathHelper.cos(p_78087_1_ * 0.6662F + (float)Math.PI) * 1.0F * p_78087_2_;
-                this.ocelotTail2.rotateAngleX = 1.7278761F + ((float)Math.PI / 10F) * MathHelper.cos(p_78087_1_) * p_78087_2_;
-                this.ocelotTail3.rotateAngleX = 1.7278761F + ((float)Math.PI / 10F) * MathHelper.cos(p_78087_1_) * p_78087_2_;
-                this.ocelotTail5.rotateAngleX = 1.7278761F + ((float)Math.PI / 10F) * MathHelper.cos(p_78087_1_) * p_78087_2_;
+                this.ocelotFrontLeftLeg.rotateAngleX = MathHelper.cos(p_78087_1_ * 0.6662F + (float) Math.PI + 0.3F)
+                    * 1.0F
+                    * p_78087_2_;
+                this.ocelotFrontRightLeg.rotateAngleX = MathHelper.cos(p_78087_1_ * 0.6662F + (float) Math.PI) * 1.0F
+                    * p_78087_2_;
+                this.ocelotTail2.rotateAngleX = 1.7278761F
+                    + ((float) Math.PI / 10F) * MathHelper.cos(p_78087_1_) * p_78087_2_;
+                this.ocelotTail3.rotateAngleX = 1.7278761F
+                    + ((float) Math.PI / 10F) * MathHelper.cos(p_78087_1_) * p_78087_2_;
+                this.ocelotTail5.rotateAngleX = 1.7278761F
+                    + ((float) Math.PI / 10F) * MathHelper.cos(p_78087_1_) * p_78087_2_;
 
-            }
-            else
-            {
+            } else {
                 this.ocelotBackLeftLeg.rotateAngleX = MathHelper.cos(p_78087_1_ * 0.6662F) * 1.0F * p_78087_2_;
-                this.ocelotBackRightLeg.rotateAngleX = MathHelper.cos(p_78087_1_ * 0.6662F + (float)Math.PI) * 1.0F * p_78087_2_;
-                this.ocelotFrontLeftLeg.rotateAngleX = MathHelper.cos(p_78087_1_ * 0.6662F + (float)Math.PI) * 1.0F * p_78087_2_;
+                this.ocelotBackRightLeg.rotateAngleX = MathHelper.cos(p_78087_1_ * 0.6662F + (float) Math.PI) * 1.0F
+                    * p_78087_2_;
+                this.ocelotFrontLeftLeg.rotateAngleX = MathHelper.cos(p_78087_1_ * 0.6662F + (float) Math.PI) * 1.0F
+                    * p_78087_2_;
                 this.ocelotFrontRightLeg.rotateAngleX = MathHelper.cos(p_78087_1_ * 0.6662F) * 1.0F * p_78087_2_;
 
-                if (this.field_78163_i == 1)
-                {
-                    this.ocelotTail2.rotateAngleX = 1.7278761F + ((float)Math.PI / 4F) * MathHelper.cos(p_78087_1_) * p_78087_2_;
-                    this.ocelotTail3.rotateAngleX = 1.7278761F + ((float)Math.PI / 4F) * MathHelper.cos(p_78087_1_) * p_78087_2_;
-                    this.ocelotTail5.rotateAngleX = 1.7278761F + ((float)Math.PI / 4F) * MathHelper.cos(p_78087_1_) * p_78087_2_;
-                   
+                if (this.field_78163_i == 1) {
+                    this.ocelotTail2.rotateAngleX = 1.7278761F
+                        + ((float) Math.PI / 4F) * MathHelper.cos(p_78087_1_) * p_78087_2_;
+                    this.ocelotTail3.rotateAngleX = 1.7278761F
+                        + ((float) Math.PI / 4F) * MathHelper.cos(p_78087_1_) * p_78087_2_;
+                    this.ocelotTail5.rotateAngleX = 1.7278761F
+                        + ((float) Math.PI / 4F) * MathHelper.cos(p_78087_1_) * p_78087_2_;
 
-                }
-                else
-                {
+                } else {
                     this.ocelotTail2.rotateAngleX = 1.7278761F + 0.47123894F * MathHelper.cos(p_78087_1_) * p_78087_2_;
                     this.ocelotTail3.rotateAngleX = 1.7278761F + 0.47123894F * MathHelper.cos(p_78087_1_) * p_78087_2_;
                     this.ocelotTail5.rotateAngleX = 1.7278761F + 0.47123894F * MathHelper.cos(p_78087_1_) * p_78087_2_;
@@ -197,9 +198,8 @@ public class FlynxModel extends ModelBase
      * Used for easily adding entity-dependent animations. The second and third float params here are the same second
      * and third as in the setRotationAngles method.
      */
-    public void setLivingAnimations(EntityLivingBase p_78086_1_, float p_78086_2_, float p_78086_3_, float p_78086_4_)
-    {
-        EntityFlynx entityflynx = (EntityFlynx)p_78086_1_;
+    public void setLivingAnimations(EntityLivingBase p_78086_1_, float p_78086_2_, float p_78086_3_, float p_78086_4_) {
+        EntityFlynx entityflynx = (EntityFlynx) p_78086_1_;
         this.ocelotBody.rotationPointY = 12.0F;
         this.ocelotBody.rotationPointZ = -10.0F;
         this.ocelotHead.rotationPointY = 15.0F;
@@ -223,80 +223,72 @@ public class FlynxModel extends ModelBase
         this.ocelotTail.rotateAngleX = 0.9F;
         this.ocelotTail4.rotateAngleX = 0.9F;
         this.ocelotTail6.rotateAngleX = 0.9F;
-        
 
-        if (entityflynx.isSneaking())
-        {
+        if (entityflynx.isSneaking()) {
             ++this.ocelotBody.rotationPointY;
             this.ocelotHead.rotationPointY += 2.0F;
             ++this.ocelotTail.rotationPointY;
             ++this.ocelotTail4.rotationPointY;
             ++this.ocelotTail6.rotationPointY;
-			this.ocelotTail2.rotationPointY -= 4.0F;
+            this.ocelotTail2.rotationPointY -= 4.0F;
             this.ocelotTail2.rotationPointZ += 2.0F;
-			this.ocelotTail3.rotationPointY -= 4.0F;
+            this.ocelotTail3.rotationPointY -= 4.0F;
             this.ocelotTail3.rotationPointZ += 2.0F;
-			this.ocelotTail5.rotationPointY -= 4.0F;
+            this.ocelotTail5.rotationPointY -= 4.0F;
             this.ocelotTail5.rotationPointZ += 2.0F;
-            this.ocelotTail.rotateAngleX = ((float)Math.PI / 2F);
-            this.ocelotTail4.rotateAngleX = ((float)Math.PI / 2F);
-            this.ocelotTail6.rotateAngleX = ((float)Math.PI / 2F);
-            this.ocelotTail2.rotateAngleX = ((float)Math.PI / 2F);
-            this.ocelotTail3.rotateAngleX = ((float)Math.PI / 2F);
-            this.ocelotTail5.rotateAngleX = ((float)Math.PI / 2F);
+            this.ocelotTail.rotateAngleX = ((float) Math.PI / 2F);
+            this.ocelotTail4.rotateAngleX = ((float) Math.PI / 2F);
+            this.ocelotTail6.rotateAngleX = ((float) Math.PI / 2F);
+            this.ocelotTail2.rotateAngleX = ((float) Math.PI / 2F);
+            this.ocelotTail3.rotateAngleX = ((float) Math.PI / 2F);
+            this.ocelotTail5.rotateAngleX = ((float) Math.PI / 2F);
 
             this.field_78163_i = 0;
-        }
-        else if (entityflynx.isSprinting())
-        {
+        } else if (entityflynx.isSprinting()) {
             this.ocelotTail2.rotationPointY = this.ocelotTail.rotationPointY;
             this.ocelotTail2.rotationPointZ += 2.0F;
             this.ocelotTail3.rotationPointY = this.ocelotTail4.rotationPointY;
             this.ocelotTail3.rotationPointZ += 2.0F;
             this.ocelotTail5.rotationPointY = this.ocelotTail6.rotationPointY;
             this.ocelotTail5.rotationPointZ += 2.0F;
-            this.ocelotTail.rotateAngleX = ((float)Math.PI / 2F);
-            this.ocelotTail2.rotateAngleX = ((float)Math.PI / 2F);
-            this.ocelotTail3.rotateAngleX = ((float)Math.PI / 2F);
-            this.ocelotTail5.rotateAngleX = ((float)Math.PI / 2F);
+            this.ocelotTail.rotateAngleX = ((float) Math.PI / 2F);
+            this.ocelotTail2.rotateAngleX = ((float) Math.PI / 2F);
+            this.ocelotTail3.rotateAngleX = ((float) Math.PI / 2F);
+            this.ocelotTail5.rotateAngleX = ((float) Math.PI / 2F);
             this.field_78163_i = 2;
-        }
-        else if (entityflynx.isSitting())
-        {
-            this.ocelotBody.rotateAngleX = ((float)Math.PI / 4F);
-			this.ocelotBody.rotationPointY -= 4.0F;
+        } else if (entityflynx.isSitting()) {
+            this.ocelotBody.rotateAngleX = ((float) Math.PI / 4F);
+            this.ocelotBody.rotationPointY -= 4.0F;
             this.ocelotBody.rotationPointZ += 5.0F;
-			this.ocelotHead.rotationPointY -= 3.3F;
+            this.ocelotHead.rotationPointY -= 3.3F;
             ++this.ocelotHead.rotationPointZ;
             this.ocelotTail.rotationPointY += 8.0F;
-			this.ocelotTail.rotationPointZ -= 2.0F;
+            this.ocelotTail.rotationPointZ -= 2.0F;
             this.ocelotTail4.rotationPointY += 8.0F;
-			this.ocelotTail4.rotationPointZ -= 2.0F;
+            this.ocelotTail4.rotationPointZ -= 2.0F;
             this.ocelotTail6.rotationPointY += 8.0F;
-			this.ocelotTail6.rotationPointZ -= 2.0F;
+            this.ocelotTail6.rotationPointZ -= 2.0F;
             this.ocelotTail2.rotationPointY += 2.0F;
-			this.ocelotTail2.rotationPointZ -= 0.8F;
+            this.ocelotTail2.rotationPointZ -= 0.8F;
             this.ocelotTail3.rotationPointY += 2.0F;
-			this.ocelotTail3.rotationPointZ -= 0.8F;
+            this.ocelotTail3.rotationPointZ -= 0.8F;
             this.ocelotTail5.rotationPointY += 2.0F;
-			this.ocelotTail5.rotationPointZ -= 0.8F;
+            this.ocelotTail5.rotationPointZ -= 0.8F;
             this.ocelotTail.rotateAngleX = 1.7278761F;
             this.ocelotTail4.rotateAngleX = 1.7278761F;
             this.ocelotTail6.rotateAngleX = 1.7278761F;
             this.ocelotTail2.rotateAngleX = 2.670354F;
             this.ocelotTail3.rotateAngleX = 2.670354F;
             this.ocelotTail5.rotateAngleX = 2.670354F;
-    
+
             this.ocelotFrontLeftLeg.rotateAngleX = this.ocelotFrontRightLeg.rotateAngleX = -0.15707964F;
             this.ocelotFrontLeftLeg.rotationPointY = this.ocelotFrontRightLeg.rotationPointY = 15.8F;
             this.ocelotFrontLeftLeg.rotationPointZ = this.ocelotFrontRightLeg.rotationPointZ = -7.0F;
-            this.ocelotBackLeftLeg.rotateAngleX = this.ocelotBackRightLeg.rotateAngleX = -((float)Math.PI / 2F);
+            this.ocelotBackLeftLeg.rotateAngleX = this.ocelotBackRightLeg.rotateAngleX = -((float) Math.PI / 2F);
             this.ocelotBackLeftLeg.rotationPointY = this.ocelotBackRightLeg.rotationPointY = 21.0F;
             this.ocelotBackLeftLeg.rotationPointZ = this.ocelotBackRightLeg.rotationPointZ = 1.0F;
             this.field_78163_i = 3;
-        }
-        else
-        {
+        } else {
             this.field_78163_i = 1;
         }
     }

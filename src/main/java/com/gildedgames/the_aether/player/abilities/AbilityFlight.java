@@ -5,178 +5,189 @@ import com.gildedgames.the_aether.api.player.util.IAetherAbility;
 
 public class AbilityFlight implements IAetherAbility {
 
-	private int flightCount;
+    private int flightCount;
 
-	private int maxFlightCount = 70;
+    private int maxFlightCount = 70;
 
-	private double flightMod = 1.0D;
+    private double flightMod = 1.0D;
 
-	private double maxFlightMod = 15.0D;
-	
-	
-	private int flightCount2;
+    private double maxFlightMod = 15.0D;
 
-	private int maxFlightCount2 = 104;
+    private int flightCount2;
 
-	private double flightMod2 = 1.5D;
+    private int maxFlightCount2 = 104;
 
-	private double maxFlightMod2 = 25.0D;
-	
-	
-	private int flightCount3;
+    private double flightMod2 = 1.5D;
 
-	private int maxFlightCount3 = 144;
+    private double maxFlightMod2 = 25.0D;
 
-	private double flightMod3 = 1.8D;
+    private int flightCount3;
 
-	private double maxFlightMod3 = 35.0D;
+    private int maxFlightCount3 = 144;
 
-	private final IPlayerAether player;
+    private double flightMod3 = 1.8D;
 
-	public AbilityFlight(IPlayerAether player) {
-		this.player = player;
-	}
+    private double maxFlightMod3 = 35.0D;
 
-	@Override
-	public boolean shouldExecute() {
-		return (this.player.getAccessoryInventory().isWearingValkyrieSet() ||
-			   this.player.getAccessoryInventory().isWearingValkyrieComboSet() ||
-			   this.player.getAccessoryInventory().isWearingAmplifiedValkyrieSet() ||
-			   this.player.getAccessoryInventory().isWearingValkyrieRingAndAmplifiedArmor() ||
-			   this.player.getAccessoryInventory().isWearingAmplifiedValkyrieRingAndAmplifiedArmor() || 
-			   this.player.getAccessoryInventory().isWearingAscensiteSet());
-	}
+    private final IPlayerAether player;
 
-	@Override
-	public void onUpdate() {
-		 if (this.player.getAccessoryInventory().isWearingValkyrieSet() || this.player.getAccessoryInventory().isWearingValkyrieComboSet()) {
-			 if (this.player.isJumping()) {
-			if (this.flightMod >= this.maxFlightMod) {
-				this.flightMod = this.maxFlightMod;
-			}
+    public AbilityFlight(IPlayerAether player) {
+        this.player = player;
+    }
 
-			if (this.flightCount > 2) {
-				if (this.flightCount < this.maxFlightCount) {
-					this.flightMod += 0.25D;
-					this.player.getEntity().motionY = 0.025D * this.flightMod;
-					this.flightCount++;
-				}
-			} else {
-				this.flightCount++;
-			}
+    @Override
+    public boolean shouldExecute() {
+        return (this.player.getAccessoryInventory()
+            .isWearingValkyrieSet()
+            || this.player.getAccessoryInventory()
+                .isWearingValkyrieComboSet()
+            || this.player.getAccessoryInventory()
+                .isWearingAmplifiedValkyrieSet()
+            || this.player.getAccessoryInventory()
+                .isWearingValkyrieRingAndAmplifiedArmor()
+            || this.player.getAccessoryInventory()
+                .isWearingAmplifiedValkyrieRingAndAmplifiedArmor()
+            || this.player.getAccessoryInventory()
+                .isWearingAscensiteSet());
+    }
 
-		} else {
-			this.flightMod = 1.0D;
-		}
+    @Override
+    public void onUpdate() {
+        if (this.player.getAccessoryInventory()
+            .isWearingValkyrieSet()
+            || this.player.getAccessoryInventory()
+                .isWearingValkyrieComboSet()) {
+            if (this.player.isJumping()) {
+                if (this.flightMod >= this.maxFlightMod) {
+                    this.flightMod = this.maxFlightMod;
+                }
 
-		if (this.player.getEntity().onGround) {
-			this.flightCount = 0;
-			this.flightMod = 1.0D;
-			}
-		 }
-		 if (this.player.getAccessoryInventory().isWearingAmplifiedValkyrieSet()) {
-			 if (this.player.isJumping()) {
-			if (this.flightMod2 >= this.maxFlightMod2) {
-				this.flightMod2 = this.maxFlightMod2;
-			}
+                if (this.flightCount > 2) {
+                    if (this.flightCount < this.maxFlightCount) {
+                        this.flightMod += 0.25D;
+                        this.player.getEntity().motionY = 0.025D * this.flightMod;
+                        this.flightCount++;
+                    }
+                } else {
+                    this.flightCount++;
+                }
 
-			if (this.flightCount2 > 2) {
-				if (this.flightCount2 < this.maxFlightCount2) {
-					this.flightMod2 += 0.3D;
-					this.player.getEntity().motionY = 0.035D * this.flightMod2;
-					this.flightCount2++;
-				}
-			} else {
-				this.flightCount2++;
-			}
+            } else {
+                this.flightMod = 1.0D;
+            }
 
-		} else {
-			this.flightMod2 = 1.0D;
-		}
+            if (this.player.getEntity().onGround) {
+                this.flightCount = 0;
+                this.flightMod = 1.0D;
+            }
+        }
+        if (this.player.getAccessoryInventory()
+            .isWearingAmplifiedValkyrieSet()) {
+            if (this.player.isJumping()) {
+                if (this.flightMod2 >= this.maxFlightMod2) {
+                    this.flightMod2 = this.maxFlightMod2;
+                }
 
-		if (this.player.getEntity().onGround) {
-			this.flightCount2 = 0;
-			this.flightMod2 = 2.0D;
-			}
-		 }
-		 
-		 if (this.player.getAccessoryInventory().isWearingValkyrieRingAndAmplifiedArmor()) {
-			 if (this.player.isJumping()) {
-				if (this.flightMod3 >= this.maxFlightMod3) {
-					this.flightMod3 = this.maxFlightMod3;
-				}
+                if (this.flightCount2 > 2) {
+                    if (this.flightCount2 < this.maxFlightCount2) {
+                        this.flightMod2 += 0.3D;
+                        this.player.getEntity().motionY = 0.035D * this.flightMod2;
+                        this.flightCount2++;
+                    }
+                } else {
+                    this.flightCount2++;
+                }
 
-				if (this.flightCount3 > 2) {
-					if (this.flightCount3 < this.maxFlightCount3) {
-						this.flightMod3 += 0.45D;
-						this.player.getEntity().motionY = 0.045D * this.flightMod3;
-						this.flightCount3++;
-					}
-				} else {
-					this.flightCount3++;
-				}
+            } else {
+                this.flightMod2 = 1.0D;
+            }
 
-			} else {
-				this.flightMod3 = 1.0D;
-			}
+            if (this.player.getEntity().onGround) {
+                this.flightCount2 = 0;
+                this.flightMod2 = 2.0D;
+            }
+        }
 
-			if (this.player.getEntity().onGround) {
-				this.flightCount3 = 0;
-				this.flightMod3 = 2.0D;
-			}
-		}
-		 
-		if (this.player.getAccessoryInventory().isWearingAmplifiedValkyrieRingAndAmplifiedArmor()) {
-			 if (this.player.isJumping()) {
-				if (this.flightMod3 >= this.maxFlightMod3) {
-					this.flightMod3 = this.maxFlightMod3;
-				}
+        if (this.player.getAccessoryInventory()
+            .isWearingValkyrieRingAndAmplifiedArmor()) {
+            if (this.player.isJumping()) {
+                if (this.flightMod3 >= this.maxFlightMod3) {
+                    this.flightMod3 = this.maxFlightMod3;
+                }
 
-				if (this.flightCount3 > 2) {
-					if (this.flightCount3 < this.maxFlightCount3) {
-						this.flightMod3 += 0.65D;
-						this.player.getEntity().motionY = 0.065D * this.flightMod3;
-						this.flightCount3++;
-					}
-				} else {
-					this.flightCount3++;
-				}
+                if (this.flightCount3 > 2) {
+                    if (this.flightCount3 < this.maxFlightCount3) {
+                        this.flightMod3 += 0.45D;
+                        this.player.getEntity().motionY = 0.045D * this.flightMod3;
+                        this.flightCount3++;
+                    }
+                } else {
+                    this.flightCount3++;
+                }
 
-			} else {
-				this.flightMod3 = 1.0D;
-			}
+            } else {
+                this.flightMod3 = 1.0D;
+            }
 
-			if (this.player.getEntity().onGround) {
-				this.flightCount3 = 0;
-				this.flightMod3 = 2.0D;
-			}
-		}
-		
-		if (this.player.getAccessoryInventory().isWearingAscensiteSet()) {
-			 if (this.player.isJumping()) {
-				if (this.flightMod3 >= this.maxFlightMod3) {
-					this.flightMod3 = this.maxFlightMod3;
-				}
+            if (this.player.getEntity().onGround) {
+                this.flightCount3 = 0;
+                this.flightMod3 = 2.0D;
+            }
+        }
 
-				if (this.flightCount3 > 2) {
-					if (this.flightCount3 < this.maxFlightCount3) {
-						this.flightMod3 += 0.68D;
-						this.player.getEntity().motionY = 0.065D * this.flightMod3;
-						this.flightCount3++;
-					}
-				} else {
-					this.flightCount3++;
-				}
+        if (this.player.getAccessoryInventory()
+            .isWearingAmplifiedValkyrieRingAndAmplifiedArmor()) {
+            if (this.player.isJumping()) {
+                if (this.flightMod3 >= this.maxFlightMod3) {
+                    this.flightMod3 = this.maxFlightMod3;
+                }
 
-			} else {
-				this.flightMod3 = 1.0D;
-			}
+                if (this.flightCount3 > 2) {
+                    if (this.flightCount3 < this.maxFlightCount3) {
+                        this.flightMod3 += 0.65D;
+                        this.player.getEntity().motionY = 0.065D * this.flightMod3;
+                        this.flightCount3++;
+                    }
+                } else {
+                    this.flightCount3++;
+                }
 
-			if (this.player.getEntity().onGround) {
-				this.flightCount3 = 0;
-				this.flightMod3 = 2.0D;
-			}
-		}
-	}
+            } else {
+                this.flightMod3 = 1.0D;
+            }
+
+            if (this.player.getEntity().onGround) {
+                this.flightCount3 = 0;
+                this.flightMod3 = 2.0D;
+            }
+        }
+
+        if (this.player.getAccessoryInventory()
+            .isWearingAscensiteSet()) {
+            if (this.player.isJumping()) {
+                if (this.flightMod3 >= this.maxFlightMod3) {
+                    this.flightMod3 = this.maxFlightMod3;
+                }
+
+                if (this.flightCount3 > 2) {
+                    if (this.flightCount3 < this.maxFlightCount3) {
+                        this.flightMod3 += 0.68D;
+                        this.player.getEntity().motionY = 0.065D * this.flightMod3;
+                        this.flightCount3++;
+                    }
+                } else {
+                    this.flightCount3++;
+                }
+
+            } else {
+                this.flightMod3 = 1.0D;
+            }
+
+            if (this.player.getEntity().onGround) {
+                this.flightCount3 = 0;
+                this.flightMod3 = 2.0D;
+            }
+        }
+    }
 
 }

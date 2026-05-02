@@ -11,19 +11,19 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockAetherFenceGateGoldenOak extends BlockFenceGate {
 
-	public BlockAetherFenceGateGoldenOak() {
-		super();
+    public BlockAetherFenceGateGoldenOak() {
+        super();
 
-		this.setHardness(2.0F);
-		this.setResistance(5.0F);
-		this.setStepSound(soundTypeWood);
-		this.setBlockTextureName(Aether.find("golden_oak_planks"));
-	}
+        this.setHardness(2.0F);
+        this.setResistance(5.0F);
+        this.setStepSound(soundTypeWood);
+        this.setBlockTextureName(Aether.find("golden_oak_planks"));
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public IIcon getIcon(int p_149691_1_, int p_149691_2_) {
-		return BlocksAether.golden_oak_planks.getBlockTextureFromSide(p_149691_1_);
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public IIcon getIcon(int p_149691_1_, int p_149691_2_) {
+        return BlocksAether.golden_oak_planks.getBlockTextureFromSide(p_149691_1_);
+    }
 
 }

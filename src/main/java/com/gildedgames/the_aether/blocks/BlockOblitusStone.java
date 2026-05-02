@@ -5,16 +5,16 @@ import net.minecraft.block.material.Material;
 
 public class BlockOblitusStone extends Block {
 
-	public BlockOblitusStone() {
-		super(Material.rock);
-		
-		this.slipperiness = 1.008F;
+    public BlockOblitusStone() {
+        super(Material.rock);
 
-		this.setHardness(3F);
-		this.setStepSound(soundTypeStone);
-		this.setHarvestLevel("pickaxe", 2);
-		this.setBlockTextureName("aether_legacy:oblitus_stone");
-		setBlockName("Oblitus Stone");
-	}
+        this.slipperiness = 1.008F;
+
+        this.setHardness(3F);
+        this.setStepSound(soundTypeStone);
+        this.setHarvestLevel("pickaxe", 2);
+        this.setBlockTextureName("aether_legacy:oblitus_stone");
+        setBlockName("Oblitus Stone");
+    }
 
 }

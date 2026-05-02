@@ -1,8 +1,5 @@
 package com.gildedgames.the_aether.client.gui.inventory;
 
-import com.gildedgames.the_aether.Aether;
-import com.gildedgames.the_aether.client.AetherKeybinds;
-import com.gildedgames.the_aether.inventory.InventoryAccessories;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -13,94 +10,102 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
+import com.gildedgames.the_aether.Aether;
+import com.gildedgames.the_aether.client.AetherKeybinds;
 import com.gildedgames.the_aether.inventory.ContainerAccessories;
+import com.gildedgames.the_aether.inventory.InventoryAccessories;
 import com.gildedgames.the_aether.network.AetherNetwork;
 import com.gildedgames.the_aether.network.packets.PacketOpenContainer;
 import com.gildedgames.the_aether.player.PlayerAether;
 
 public class GuiAccessories extends GuiContainer {
 
-	private static final ResourceLocation ACCESSORIES = Aether.locate("textures/gui/inventory/accessories.png");
+    private static final ResourceLocation ACCESSORIES = Aether.locate("textures/gui/inventory/accessories.png");
 
-	//private PlayerAether playerAether;
+    // private PlayerAether playerAether;
 
-	public GuiAccessories(PlayerAether player, InventoryAccessories inventory) {
-		super(new ContainerAccessories(inventory, player.getEntity()));
-		//playerAether = player;
-		allowUserInput = true;
-	}
+    public GuiAccessories(PlayerAether player, InventoryAccessories inventory) {
+        super(new ContainerAccessories(inventory, player.getEntity()));
+        // playerAether = player;
+        allowUserInput = true;
+    }
 
-	@Override
-	@SuppressWarnings("unchecked")
-	public void initGui() {
-		super.initGui();
+    @Override
+    @SuppressWarnings("unchecked")
+    public void initGui() {
+        super.initGui();
 
-		/*
-		if (AetherRankings.isRankedPlayer(this.playerAether.getEntity().getUniqueID()) || this.playerAether.isDonator()) {
-			buttonList.add(new GuiButtonPerks(this.width / 2 - 108, this.height / 2 - 83));
-		}
-		 */
+        /*
+         * if (AetherRankings.isRankedPlayer(this.playerAether.getEntity().getUniqueID()) ||
+         * this.playerAether.isDonator()) {
+         * buttonList.add(new GuiButtonPerks(this.width / 2 - 108, this.height / 2 - 83));
+         * }
+         */
 
-		//buttonList.add(new GuiAccessoryButton(this.guiLeft + 8, this.guiTop + 65));
-	}
+        // buttonList.add(new GuiAccessoryButton(this.guiLeft + 8, this.guiTop + 65));
+    }
 
-	@Override
-	public void setWorldAndResolution(Minecraft mc, int width, int height) {
-		super.setWorldAndResolution(mc, width, height);
+    @Override
+    public void setWorldAndResolution(Minecraft mc, int width, int height) {
+        super.setWorldAndResolution(mc, width, height);
 
-		for (int size = 0; size < this.buttonList.size(); ++size) {
-			GuiButton button = buttonList.get(size);
-			int id = button.id;
+        for (int size = 0; size < this.buttonList.size(); ++size) {
+            GuiButton button = buttonList.get(size);
+            int id = button.id;
 
-			if (id == 13211) {
-				this.setButtonPosition(button, this.width / 2 + 65, this.height / 2 - 23);
-			}
-		}
-	}
+            if (id == 13211) {
+                this.setButtonPosition(button, this.width / 2 + 65, this.height / 2 - 23);
+            }
+        }
+    }
 
-	private void setButtonPosition(GuiButton button, int xPosition, int yPosition) {
-		button.xPosition = xPosition;
-		button.yPosition = yPosition;
-	}
+    private void setButtonPosition(GuiButton button, int xPosition, int yPosition) {
+        button.xPosition = xPosition;
+        button.yPosition = yPosition;
+    }
 
-	@Override
-	protected void actionPerformed(GuiButton button) {
-		if (button.id == 24) {
-			mc.displayGuiScreen(new GuiAetherPerks());
-		}
+    @Override
+    protected void actionPerformed(GuiButton button) {
+        if (button.id == 24) {
+            mc.displayGuiScreen(new GuiAetherPerks());
+        }
 
-		if (button.id == 18067) {
-			mc.displayGuiScreen(new GuiInventory(this.mc.thePlayer));
-			AetherNetwork.sendToServer(new PacketOpenContainer(-1));
-		}
-	}
+        if (button.id == 18067) {
+            mc.displayGuiScreen(new GuiInventory(this.mc.thePlayer));
+            AetherNetwork.sendToServer(new PacketOpenContainer(-1));
+        }
+    }
 
-	@Override
-	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-		this.fontRendererObj.drawString(I18n.format("container.crafting"), 115, 8, 4210752);
-	}
+    @Override
+    protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
+        this.fontRendererObj.drawString(I18n.format("container.crafting"), 115, 8, 4210752);
+    }
 
-	@Override
-	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
-		GL11.glColor3d(1.0D, 1.0D, 1.0D);
+    @Override
+    protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
+        GL11.glColor3d(1.0D, 1.0D, 1.0D);
 
-		this.mc.renderEngine.bindTexture(ACCESSORIES);
+        this.mc.renderEngine.bindTexture(ACCESSORIES);
 
-		this.drawTexturedModalRect(this.width / 2 - 88, this.height / 2 - 166 / 2, 0, 0, 176, 166);
+        this.drawTexturedModalRect(this.width / 2 - 88, this.height / 2 - 166 / 2, 0, 0, 176, 166);
 
-		GuiInventory.func_147046_a(this.guiLeft + 35, this.guiTop + 75, 30, (float) (this.guiLeft + 51) - (float) mouseX, (float) (this.guiTop + 75 - 50) - (float) mouseY, this.mc.thePlayer);
-	}
+        GuiInventory.func_147046_a(
+            this.guiLeft + 35,
+            this.guiTop + 75,
+            30,
+            (float) (this.guiLeft + 51) - (float) mouseX,
+            (float) (this.guiTop + 75 - 50) - (float) mouseY,
+            this.mc.thePlayer);
+    }
 
-	@Override
-	public void handleKeyboardInput()
-	{
-		super.handleKeyboardInput();
+    @Override
+    public void handleKeyboardInput() {
+        super.handleKeyboardInput();
 
-		int keyPressed = Keyboard.getEventKey();
+        int keyPressed = Keyboard.getEventKey();
 
-		if (keyPressed == AetherKeybinds.keyBindingAccessories.getKeyCode() && Keyboard.getEventKeyState())
-		{
-			Minecraft.getMinecraft().thePlayer.closeScreen();
-		}
-	}
+        if (keyPressed == AetherKeybinds.keyBindingAccessories.getKeyCode() && Keyboard.getEventKeyState()) {
+            Minecraft.getMinecraft().thePlayer.closeScreen();
+        }
+    }
 }

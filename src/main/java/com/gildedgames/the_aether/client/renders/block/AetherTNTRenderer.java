@@ -1,34 +1,38 @@
 package com.gildedgames.the_aether.client.renders.block;
 
-import net.minecraft.client.renderer.entity.*;
-import cpw.mods.fml.relauncher.*;
-import net.minecraft.client.renderer.*;
-import net.minecraft.entity.*;
-import org.lwjgl.opengl.*;
+import net.minecraft.client.renderer.RenderBlocks;
+import net.minecraft.client.renderer.entity.Render;
+import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.entity.Entity;
+import net.minecraft.util.ResourceLocation;
+
+import org.lwjgl.opengl.GL11;
 
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.entities.block.EntityAetherTNT;
 
-import net.minecraft.util.*;
-import net.minecraft.client.renderer.texture.*;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class AetherTNTRenderer extends Render
-{
+public class AetherTNTRenderer extends Render {
+
     private final RenderBlocks blockRenderer;
-    
+
     public AetherTNTRenderer() {
         this.blockRenderer = new RenderBlocks();
         this.shadowSize = 0.5f;
     }
-    
-    public void doRender(final Entity p_76986_1_, final double p_76986_2_, final double p_76986_4_, final double p_76986_6_, final float p_76986_8_, final float p_76986_9_) {
-        this.doRender((EntityAetherTNT)p_76986_1_, p_76986_2_, p_76986_4_, p_76986_6_, p_76986_8_, p_76986_9_);
+
+    public void doRender(final Entity p_76986_1_, final double p_76986_2_, final double p_76986_4_,
+        final double p_76986_6_, final float p_76986_8_, final float p_76986_9_) {
+        this.doRender((EntityAetherTNT) p_76986_1_, p_76986_2_, p_76986_4_, p_76986_6_, p_76986_8_, p_76986_9_);
     }
-    
-    public void doRender(final EntityAetherTNT p_76986_1_, final double p_76986_2_, final double p_76986_4_, final double p_76986_6_, final float p_76986_8_, final float p_76986_9_) {
+
+    public void doRender(final EntityAetherTNT p_76986_1_, final double p_76986_2_, final double p_76986_4_,
+        final double p_76986_6_, final float p_76986_8_, final float p_76986_9_) {
         GL11.glPushMatrix();
-        GL11.glTranslatef((float)p_76986_2_, (float)p_76986_4_, (float)p_76986_6_);
+        GL11.glTranslatef((float) p_76986_2_, (float) p_76986_4_, (float) p_76986_6_);
         if (p_76986_1_.fuse - p_76986_9_ + 1.0f < 10.0f) {
             float f2 = 1.0f - (p_76986_1_.fuse - p_76986_9_ + 1.0f) / 10.0f;
             if (f2 < 0.0f) {
@@ -59,11 +63,11 @@ public class AetherTNTRenderer extends Render
         }
         GL11.glPopMatrix();
     }
-    
+
     protected ResourceLocation getEntityTexture(final Entity p_110775_1_) {
-        return this.getEntityTexture((EntityAetherTNT)p_110775_1_);
+        return this.getEntityTexture((EntityAetherTNT) p_110775_1_);
     }
-    
+
     protected ResourceLocation getEntityTexture(final EntityAetherTNT p_110775_1_) {
         return TextureMap.locationBlocksTexture;
     }

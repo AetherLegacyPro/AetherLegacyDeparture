@@ -5,34 +5,33 @@ import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
 
-public class LurkerModel extends ModelBase
-{
-	
-	private final ModelRenderer skullupper;
-	private final ModelRenderer body;
-	private final ModelRenderer rightarm;
-	private final ModelRenderer leftarm;
-	private final ModelRenderer lowerskull;
-	private final ModelRenderer neck;
-	private final ModelRenderer hoodtop;
-	private final ModelRenderer leftrobe;
-	private final ModelRenderer collar;
-	private final ModelRenderer s1;
-	private final ModelRenderer s2;
-	private final ModelRenderer righthood;
-	private final ModelRenderer lefthood;
-	private final ModelRenderer fronthood;
-	//private final ModelRenderer staffcore;
-	//private final ModelRenderer staffgem;
-    
+public class LurkerModel extends ModelBase {
+
+    private final ModelRenderer skullupper;
+    private final ModelRenderer body;
+    private final ModelRenderer rightarm;
+    private final ModelRenderer leftarm;
+    private final ModelRenderer lowerskull;
+    private final ModelRenderer neck;
+    private final ModelRenderer hoodtop;
+    private final ModelRenderer leftrobe;
+    private final ModelRenderer collar;
+    private final ModelRenderer s1;
+    private final ModelRenderer s2;
+    private final ModelRenderer righthood;
+    private final ModelRenderer lefthood;
+    private final ModelRenderer fronthood;
+    // private final ModelRenderer staffcore;
+    // private final ModelRenderer staffgem;
+
     public LurkerModel() {
         this(0.0f);
     }
-    
+
     public LurkerModel(final float f) {
         this.textureWidth = 128;
         this.textureHeight = 64;
-        (this.skullupper = new ModelRenderer(this, 97, 0)).addBox(-4.5f, -8.0f, -4.5f, 7, 7, 7, f); //6 5 6  104
+        (this.skullupper = new ModelRenderer(this, 97, 0)).addBox(-4.5f, -8.0f, -4.5f, 7, 7, 7, f); // 6 5 6 104
         this.skullupper.setRotationPoint(1.0f, -7.0f, 1.0f);
         this.skullupper.setTextureSize(128, 64);
         this.skullupper.mirror = true;
@@ -57,7 +56,7 @@ public class LurkerModel extends ModelBase
         this.lowerskull.setTextureSize(128, 64);
         this.lowerskull.mirror = true;
         this.setRotation(this.lowerskull, 0.0f, 0.0f, 0.0f);
-        (this.neck = new ModelRenderer(this, 0, 0)).addBox(-4.5f, -8.0f, -4.5f, 3, 4, 3, f); // 2 4 2 
+        (this.neck = new ModelRenderer(this, 0, 0)).addBox(-4.5f, -8.0f, -4.5f, 3, 4, 3, f); // 2 4 2
         this.neck.setRotationPoint(3.0f, -1.0f, 3.0f);
         this.neck.setTextureSize(128, 64);
         this.neck.mirror = true;
@@ -102,26 +101,27 @@ public class LurkerModel extends ModelBase
         this.fronthood.setTextureSize(128, 64);
         this.fronthood.mirror = true;
         this.setRotation(this.fronthood, 0.0f, 0.0f, 0.0f);
-       // (this.staffcore = new ModelRenderer(this, 58, 29)).addBox(0.0f, 0.0f, 0.0f, 1, 1, 34, f);
-        //this.staffcore.setRotationPoint(8.0f, -2.0f, -16.0f);
-        //this.staffcore.setTextureSize(128, 64);
-        //this.staffcore.mirror = true;
-        //this.setRotation(this.staffcore, -0.3717861f, 0.0f, 0.0f);       
-        
-        //(this.staffgem = new ModelRenderer(this, 0, 58)).addBox(-1.0f, -1.0f, -3.0f, 3, 3, 3, f);
-        //this.staffgem.setRotationPoint(8.0f, -2.0f, -16.0f);
-        //this.staffgem.setTextureSize(128, 64);
-        //this.staffgem.mirror = true;
-       // this.setRotation(this.staffgem, -0.3717861f, 0.0f, 0.0f);
+        // (this.staffcore = new ModelRenderer(this, 58, 29)).addBox(0.0f, 0.0f, 0.0f, 1, 1, 34, f);
+        // this.staffcore.setRotationPoint(8.0f, -2.0f, -16.0f);
+        // this.staffcore.setTextureSize(128, 64);
+        // this.staffcore.mirror = true;
+        // this.setRotation(this.staffcore, -0.3717861f, 0.0f, 0.0f);
+
+        // (this.staffgem = new ModelRenderer(this, 0, 58)).addBox(-1.0f, -1.0f, -3.0f, 3, 3, 3, f);
+        // this.staffgem.setRotationPoint(8.0f, -2.0f, -16.0f);
+        // this.staffgem.setTextureSize(128, 64);
+        // this.staffgem.mirror = true;
+        // this.setRotation(this.staffgem, -0.3717861f, 0.0f, 0.0f);
     }
-    
+
     private void setRotation(final ModelRenderer model, final float x, final float y, final float z) {
         model.rotateAngleX = x;
         model.rotateAngleY = y;
         model.rotateAngleZ = z;
     }
-    
-    public void render(final Entity entity, final float f, final float f1, final float f2, final float f3, final float f4, final float f5) {
+
+    public void render(final Entity entity, final float f, final float f1, final float f2, final float f3,
+        final float f4, final float f5) {
         super.render(entity, f, f1, f2, f3, f4, f5);
         this.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
         this.skullupper.render(f5);
@@ -137,22 +137,21 @@ public class LurkerModel extends ModelBase
         this.s2.render(f5);
         this.righthood.render(f5);
         this.lefthood.render(f5);
-        this.fronthood.render(f5);       
-        //this.staffcore.render(f5);
-        //this.staffgem.render(f5);
-        
+        this.fronthood.render(f5);
+        // this.staffcore.render(f5);
+        // this.staffgem.render(f5);
+
     }
-    
-    public int func_82897_a()
-    {
+
+    public int func_82897_a() {
         return 10;
     }
-    
-    public void setRotationAngles(float p_78087_1_, float p_78087_2_, float p_78087_3_, float p_78087_4_, float p_78087_5_, float p_78087_6_, Entity p_78087_7_)
-    {
+
+    public void setRotationAngles(float p_78087_1_, float p_78087_2_, float p_78087_3_, float p_78087_4_,
+        float p_78087_5_, float p_78087_6_, Entity p_78087_7_) {
         super.setRotationAngles(p_78087_1_, p_78087_2_, p_78087_3_, p_78087_4_, p_78087_5_, p_78087_6_, p_78087_7_);
-        float f6 = MathHelper.sin(this.onGround * (float)Math.PI);
-        float f7 = MathHelper.sin((1.0F - (1.0F - this.onGround) * (1.0F - this.onGround)) * (float)Math.PI);
+        float f6 = MathHelper.sin(this.onGround * (float) Math.PI);
+        float f7 = MathHelper.sin((1.0F - (1.0F - this.onGround) * (1.0F - this.onGround)) * (float) Math.PI);
         this.rightarm.rotateAngleZ = 0.0F;
         this.leftarm.rotateAngleZ = 0.0F;
         this.rightarm.rotateAngleY = -(0.1F - f6 * 0.6F);

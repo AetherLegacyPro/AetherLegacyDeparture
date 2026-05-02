@@ -1,7 +1,5 @@
 package com.gildedgames.the_aether.entities.bosses.genesis_dragon;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
@@ -19,7 +17,7 @@ public class GenesisDragonModel extends ModelBase {
 
     private final ModelRenderer neck;
     private final ModelRenderer head_back;
-    private final ModelRenderer head_top; 
+    private final ModelRenderer head_top;
     private final ModelRenderer head_bottom;
     private final ModelRenderer crest;
     private final ModelRenderer right_horn_bottom;
@@ -40,12 +38,12 @@ public class GenesisDragonModel extends ModelBase {
     private final ModelRenderer back_bottom_left_leg;
 
     private final ModelRenderer top_teeth_1;
-    private final ModelRenderer top_teeth_2; 
+    private final ModelRenderer top_teeth_2;
     private final ModelRenderer bottom_teeth_1;
     private final ModelRenderer bottom_teeth_2;
 
     private final ModelRenderer right_wing_base_1;
-    private final ModelRenderer right_wing_base_2; 
+    private final ModelRenderer right_wing_base_2;
     private final ModelRenderer right_wing_1;
     private final ModelRenderer right_wing_2;
 
@@ -211,74 +209,72 @@ public class GenesisDragonModel extends ModelBase {
         this.left_wing_1.addBox(11.0F, -23.0F, -0.5F, 68, 0, 68, 0.0f);
         this.left_wing_base_1.addChild(this.left_wing_1);
 
-        (this.left_wing_2 = new ModelRenderer((ModelBase)this, 140, 246)).setRotationPoint(38.0F, 35.0F, 2.0F); 
-        this.left_wing_2.addBox(-38.5F, -37.5F, -0.5F, 68, 0, 68, 0.0f); 
-        this.setRotationAngle(this.left_wing_2, 0.0F, 0.0F, 0.0F); 
+        (this.left_wing_2 = new ModelRenderer((ModelBase) this, 140, 246)).setRotationPoint(38.0F, 35.0F, 2.0F);
+        this.left_wing_2.addBox(-38.5F, -37.5F, -0.5F, 68, 0, 68, 0.0f);
+        this.setRotationAngle(this.left_wing_2, 0.0F, 0.0F, 0.0F);
         left_wing_base_2.addChild(left_wing_2);
-        		
+
     }
-    
-	@Override
-	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-		super.render(entity, f, f1, f2, f3, f4, f5);
+
+    @Override
+    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
+        super.render(entity, f, f1, f2, f3, f4, f5);
         this.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-		body.render(f5);
-		tail1.render(f5);
-		neck.render(f5);
-		head_back.render(f5);
-	}
-	
-	@Override
-	public void setRotationAngles(final float limbSwing, final float limbSwingAmount, final float ageInTicks, final float netHeadYaw, final float headPitch, final float scaleFactor, final Entity entityIn) {
-	    super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entityIn);
+        body.render(f5);
+        tail1.render(f5);
+        neck.render(f5);
+        head_back.render(f5);
+    }
 
-	    float flapSpeed = 0.5F;
-	    float flapAmplitude = 0.4F;
-	    float flap = MathHelper.sin(ageInTicks * flapSpeed) * flapAmplitude;
+    @Override
+    public void setRotationAngles(final float limbSwing, final float limbSwingAmount, final float ageInTicks,
+        final float netHeadYaw, final float headPitch, final float scaleFactor, final Entity entityIn) {
+        super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entityIn);
 
-	    this.right_wing_base_1.rotateAngleZ = 0.6545F + flap;
-	    this.right_wing_base_2.rotateAngleZ = -0.48F + flap * 0.5F;
-	    this.left_wing_base_1.rotateAngleZ = -0.6545F - flap;
-	    this.left_wing_base_2.rotateAngleZ = 0.48F - flap * 0.5F;
-	    
-	    if (entityIn instanceof EntityGenesisDragon) {
-	    	EntityGenesisDragon dragon = (EntityGenesisDragon) entityIn;
-	    	
-	        double Speed = Math.sqrt(dragon.motionX * dragon.motionX + dragon.motionZ * dragon.motionZ);
-	        double pitchRadians = Math.atan2(dragon.motionY, Speed);
-	        float pitchDegrees = (float) Math.toDegrees(pitchRadians);
+        float flapSpeed = 0.5F;
+        float flapAmplitude = 0.4F;
+        float flap = MathHelper.sin(ageInTicks * flapSpeed) * flapAmplitude;
 
-	        float angleDead = 7.5F;
-	        float effectivePitch = 0.0F;
+        this.right_wing_base_1.rotateAngleZ = 0.6545F + flap;
+        this.right_wing_base_2.rotateAngleZ = -0.48F + flap * 0.5F;
+        this.left_wing_base_1.rotateAngleZ = -0.6545F - flap;
+        this.left_wing_base_2.rotateAngleZ = 0.48F - flap * 0.5F;
 
-	        if (pitchDegrees > angleDead) {
-	            effectivePitch = (pitchDegrees - angleDead);
-	        } else if (pitchDegrees < -angleDead) {
-	            effectivePitch = (pitchDegrees + angleDead);
-	        }
+        if (entityIn instanceof EntityGenesisDragon) {
+            EntityGenesisDragon dragon = (EntityGenesisDragon) entityIn;
 
-	        float tailPitch = MathHelper.clamp_float(-effectivePitch * 0.005F, -0.04F, 0.04F);
+            double Speed = Math.sqrt(dragon.motionX * dragon.motionX + dragon.motionZ * dragon.motionZ);
+            double pitchRadians = Math.atan2(dragon.motionY, Speed);
+            float pitchDegrees = (float) Math.toDegrees(pitchRadians);
 
-	        this.tail1.rotateAngleX = tailPitch * 1.0F;
-	        this.tail2.rotateAngleX = tailPitch * 0.75F;
-	        this.tail3.rotateAngleX = tailPitch * 0.5F;
-	        this.tail4.rotateAngleX = tailPitch * 0.3F;
-	        this.tail5.rotateAngleX = tailPitch * 0.2F;
-	        this.tail6.rotateAngleX = tailPitch * 0.1F;
-	    }
-	    	  
-	    float jawSpeed = 0.1F;      
-	    float jawAmplitude = 0.05F;
-	    float jawAngle = MathHelper.sin(ageInTicks * jawSpeed) * jawAmplitude;
-	    this.head_bottom.rotateAngleX = 0.1309F + jawAngle; 
-	}
+            float angleDead = 7.5F;
+            float effectivePitch = 0.0F;
 
-	public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
-		modelRenderer.rotateAngleX = x;
-		modelRenderer.rotateAngleY = y;
-		modelRenderer.rotateAngleZ = z;
-	}
+            if (pitchDegrees > angleDead) {
+                effectivePitch = (pitchDegrees - angleDead);
+            } else if (pitchDegrees < -angleDead) {
+                effectivePitch = (pitchDegrees + angleDead);
+            }
+
+            float tailPitch = MathHelper.clamp_float(-effectivePitch * 0.005F, -0.04F, 0.04F);
+
+            this.tail1.rotateAngleX = tailPitch * 1.0F;
+            this.tail2.rotateAngleX = tailPitch * 0.75F;
+            this.tail3.rotateAngleX = tailPitch * 0.5F;
+            this.tail4.rotateAngleX = tailPitch * 0.3F;
+            this.tail5.rotateAngleX = tailPitch * 0.2F;
+            this.tail6.rotateAngleX = tailPitch * 0.1F;
+        }
+
+        float jawSpeed = 0.1F;
+        float jawAmplitude = 0.05F;
+        float jawAngle = MathHelper.sin(ageInTicks * jawSpeed) * jawAmplitude;
+        this.head_bottom.rotateAngleX = 0.1309F + jawAngle;
+    }
+
+    public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
+        modelRenderer.rotateAngleX = x;
+        modelRenderer.rotateAngleY = y;
+        modelRenderer.rotateAngleZ = z;
+    }
 }
-    
-    
-

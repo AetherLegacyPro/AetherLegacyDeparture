@@ -2,11 +2,6 @@ package com.gildedgames.the_aether.blocks.natural;
 
 import java.util.Random;
 
-import com.gildedgames.the_aether.blocks.BlocksAether;
-import com.gildedgames.the_aether.items.ItemsAether;
-import com.gildedgames.the_aether.items.tools.ItemAetherTool;
-import com.gildedgames.the_aether.items.tools.ItemSkyrootTool;
-import com.gildedgames.the_aether.items.util.EnumAetherToolType;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.Enchantment;
@@ -19,77 +14,91 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import com.gildedgames.the_aether.blocks.BlocksAether;
+import com.gildedgames.the_aether.items.ItemsAether;
+import com.gildedgames.the_aether.items.tools.ItemAetherTool;
+import com.gildedgames.the_aether.items.tools.ItemSkyrootTool;
+import com.gildedgames.the_aether.items.util.EnumAetherToolType;
+
 public class BlockAetherOreNewDeific extends Block {
 
-	public BlockAetherOreNewDeific(int level) {
-		super(Material.rock);
+    public BlockAetherOreNewDeific(int level) {
+        super(Material.rock);
 
-		this.setHardness(5.5F);
-		this.setResistance(7.0F);
-		this.setStepSound(soundTypeStone);
-		this.setHarvestLevel("pickaxe", 2);
-	}
+        this.setHardness(5.5F);
+        this.setResistance(7.0F);
+        this.setStepSound(soundTypeStone);
+        this.setHarvestLevel("pickaxe", 2);
+    }
 
-	@Override
-	public void harvestBlock(World worldIn, EntityPlayer player, int x, int y, int z, int meta) {
-		player.addStat(StatList.mineBlockStatArray[getIdFromBlock(this)], 1);
-		player.addExhaustion(0.025F);
+    @Override
+    public void harvestBlock(World worldIn, EntityPlayer player, int x, int y, int z, int meta) {
+        player.addStat(StatList.mineBlockStatArray[getIdFromBlock(this)], 1);
+        player.addExhaustion(0.025F);
 
-		ItemStack stack = player.getCurrentEquippedItem();
+        ItemStack stack = player.getCurrentEquippedItem();
 
-		if (EnchantmentHelper.getEnchantmentLevel(Enchantment.silkTouch.effectId, stack) > 0) {
-			super.harvestBlock(worldIn, player, x, y, z, meta);
+        if (EnchantmentHelper.getEnchantmentLevel(Enchantment.silkTouch.effectId, stack) > 0) {
+            super.harvestBlock(worldIn, player, x, y, z, meta);
 
-			return;
-		}
+            return;
+        }
 
-		if ((stack != null && stack.getItem() instanceof ItemSkyrootTool && ((ItemAetherTool) stack.getItem()).toolType == EnumAetherToolType.PICKAXE)) {
-			for (int i = 0; i < 3; ++i) {
-				this.dropBlockAsItem(worldIn, x, y, z, meta, EnchantmentHelper.getEnchantmentLevel(Enchantment.fortune.effectId, stack));
-			}
-			
-		} else {
-			super.harvestBlock(worldIn, player, x, y, z, meta);
-			}	
-	}
+        if ((stack != null && stack.getItem() instanceof ItemSkyrootTool
+            && ((ItemAetherTool) stack.getItem()).toolType == EnumAetherToolType.PICKAXE)) {
+            for (int i = 0; i < 3; ++i) {
+                this.dropBlockAsItem(
+                    worldIn,
+                    x,
+                    y,
+                    z,
+                    meta,
+                    EnchantmentHelper.getEnchantmentLevel(Enchantment.fortune.effectId, stack));
+            }
 
-	@Override
-	public Item getItemDropped(int meta, Random random, int fortune) {
-		return this == BlocksAether.deific_arkenium_ore ? ItemsAether.arkenium_fragement : ItemsAether.continuum_gemstone;
-	}
+        } else {
+            super.harvestBlock(worldIn, player, x, y, z, meta);
+        }
+    }
 
-	@Override
-	public int quantityDroppedWithBonus(int fortune, Random random) {
-		if (fortune > 0 && Item.getItemFromBlock(this) != this.getItemDropped(0, random, fortune)) {
-			int j = random.nextInt(fortune + 3) - 1;
+    @Override
+    public Item getItemDropped(int meta, Random random, int fortune) {
+        return this == BlocksAether.deific_arkenium_ore ? ItemsAether.arkenium_fragement
+            : ItemsAether.continuum_gemstone;
+    }
 
-			if (j < 0) {
-				j = 0;
-			}
+    @Override
+    public int quantityDroppedWithBonus(int fortune, Random random) {
+        if (fortune > 0 && Item.getItemFromBlock(this) != this.getItemDropped(0, random, fortune)) {
+            int j = random.nextInt(fortune + 3) - 1;
 
-			return this.quantityDropped(random) * (j + 1);
-		} else {
-			return this.quantityDropped(random);
-		}
-	}
+            if (j < 0) {
+                j = 0;
+            }
 
-	@Override
-	public int getExpDrop(IBlockAccess p_149690_1_, int p_149690_5_, int p_149690_7_) {
-		Random random = new Random();
+            return this.quantityDropped(random) * (j + 1);
+        } else {
+            return this.quantityDropped(random);
+        }
+    }
 
-		if (this.getItemDropped(p_149690_5_, random, p_149690_7_) != Item.getItemFromBlock(this)) {
-			int amount = 0;
+    @Override
+    public int getExpDrop(IBlockAccess p_149690_1_, int p_149690_5_, int p_149690_7_) {
+        Random random = new Random();
 
-			if (this == BlocksAether.deific_continuum_ore) {
-				amount = MathHelper.getRandomIntegerInRange(random, 4, 7);
-			} else if (this == BlocksAether.deific_arkenium_ore) {
-				amount = MathHelper.getRandomIntegerInRange(random, 1, 4);
-			}
+        if (this.getItemDropped(p_149690_5_, random, p_149690_7_) != Item.getItemFromBlock(this)) {
+            int amount = 0;
 
-			return amount;
-		}
+            if (this == BlocksAether.deific_continuum_ore) {
+                amount = MathHelper.getRandomIntegerInRange(random, 4, 7);
+            } else if (this == BlocksAether.deific_arkenium_ore) {
+                amount = MathHelper.getRandomIntegerInRange(random, 1, 4);
+            }
 
-		return 0;
-	}
+            return amount;
+        }
+
+        return 0;
+    }
 
 }

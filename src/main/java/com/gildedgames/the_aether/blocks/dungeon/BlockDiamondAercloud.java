@@ -2,8 +2,6 @@ package com.gildedgames.the_aether.blocks.dungeon;
 
 import java.util.List;
 
-import com.gildedgames.the_aether.items.block.IColoredBlock;
-import com.gildedgames.the_aether.items.block.INamedBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
@@ -17,183 +15,187 @@ import net.minecraft.util.Facing;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import com.gildedgames.the_aether.items.block.IColoredBlock;
+import com.gildedgames.the_aether.items.block.INamedBlock;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockDiamondAercloud extends Block implements IColoredBlock, INamedBlock {
 
-	public BlockDiamondAercloud() {
-		super(Material.ice);
+    public BlockDiamondAercloud() {
+        super(Material.ice);
 
-		this.setHardness(2.2F);
-		this.setStepSound(soundTypeCloth);
-		this.setBlockTextureName("aether_legacy:aercloud");
-	}
+        this.setHardness(2.2F);
+        this.setStepSound(soundTypeCloth);
+        this.setBlockTextureName("aether_legacy:aercloud");
+    }
 
-	@SideOnly(Side.CLIENT)
-	@SuppressWarnings({"unchecked", "rawtypes"})
-	public void getSubBlocks(Item p_149666_1_, CreativeTabs p_149666_2_, List p_149666_3_) {
-		p_149666_3_.add(new ItemStack(this, 1, 0));
-		p_149666_3_.add(new ItemStack(this, 1, 1));
-		p_149666_3_.add(new ItemStack(this, 1, 2));
-	}
+    @SideOnly(Side.CLIENT)
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    public void getSubBlocks(Item p_149666_1_, CreativeTabs p_149666_2_, List p_149666_3_) {
+        p_149666_3_.add(new ItemStack(this, 1, 0));
+        p_149666_3_.add(new ItemStack(this, 1, 1));
+        p_149666_3_.add(new ItemStack(this, 1, 2));
+    }
 
-	@Override
-	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
-		entity.fallDistance = 0;
-		
-		//diamond aercloud
-			if (world.getBlockMetadata(x, y, z) == 0) {
-				if (entity instanceof EntityPlayer player) {
+    @Override
+    public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
+        entity.fallDistance = 0;
 
-					entity.motionY = 2.5D;
-				} else {
-					if (entity instanceof EntityArrow)
-					{
-						if (entity.ticksExisted >= 1200)
-						{
-							entity.setDead();
-						}
-					}
-						
-					entity.motionY = 2.5D;
-				}
-					
-			}		
-	
-		
-		//sapphire aercloud
-		if (world.getBlockMetadata(x, y, z) == 1) {
-			if (entity instanceof EntityPlayer player) {
+        // diamond aercloud
+        if (world.getBlockMetadata(x, y, z) == 0) {
+            if (entity instanceof EntityPlayer player) {
 
-				entity.motionX = 2.5D;
-				entity.motionZ = 2.5D;
-			} else {
-				if (entity instanceof EntityArrow)
-				{
-					if (entity.ticksExisted >= 1200)
-					{
-						entity.setDead();
-					}
-				}
-				
-				entity.motionX = 2.5D;
-				entity.motionZ = 2.5D;
-			}
-			
-		}
-		//amethyst aercloud
-		else if (world.getBlockMetadata(x, y, z) == 2) {
-				if (entity instanceof EntityPlayer player) {
+                entity.motionY = 2.5D;
+            } else {
+                if (entity instanceof EntityArrow) {
+                    if (entity.ticksExisted >= 1200) {
+                        entity.setDead();
+                    }
+                }
 
-					entity.motionX = -2.5D;
-					entity.motionZ = -2.5D;
-				} else {
-					if (entity instanceof EntityArrow)
-					{
-						if (entity.ticksExisted >= 1200)
-						{
-							entity.setDead();
-						}
-					}
-					
-					entity.motionX = -2.5D;
-					entity.motionZ = -2.5D;
-				}
+                entity.motionY = 2.5D;
+            }
 
-			if (world.isRemote) {
-				if (!(entity instanceof net.minecraft.client.particle.EntityFX)) {
-					for (int count = 0; count < 50; count++) {
-						double xOffset = x + world.rand.nextDouble();
-						double yOffset = y + world.rand.nextDouble();
-						double zOffset = z + world.rand.nextDouble();
+        }
 
-						world.spawnParticle("snowshovel", xOffset, yOffset, zOffset, 0, 0, 0);
-					}
-				}
-			}
-		} else if (entity.motionY < 0) {
-			entity.motionY *= 0.005D;
-			}	
-		}
+        // sapphire aercloud
+        if (world.getBlockMetadata(x, y, z) == 1) {
+            if (entity instanceof EntityPlayer player) {
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public int getRenderBlockPass() {
-		return 1;
-	}
+                entity.motionX = 2.5D;
+                entity.motionZ = 2.5D;
+            } else {
+                if (entity instanceof EntityArrow) {
+                    if (entity.ticksExisted >= 1200) {
+                        entity.setDead();
+                    }
+                }
 
-	@Override
-	public boolean isOpaqueCube() {
-		return false;
-	}
+                entity.motionX = 2.5D;
+                entity.motionZ = 2.5D;
+            }
 
-	@Override
-	public int damageDropped(int meta) {
-		return meta;
-	}
+        }
+        // amethyst aercloud
+        else if (world.getBlockMetadata(x, y, z) == 2) {
+            if (entity instanceof EntityPlayer player) {
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public int getRenderColor(int meta) {
-		if (meta == 0) {
-			return 0x2ccdb1;
-		}
-		if (meta == 1) {
-			return 0x204795;
-		} else if (meta == 2) {
-			return 0x8d6acc;
-		}
+                entity.motionX = -2.5D;
+                entity.motionZ = -2.5D;
+            } else {
+                if (entity instanceof EntityArrow) {
+                    if (entity.ticksExisted >= 1200) {
+                        entity.setDead();
+                    }
+                }
 
-		return this.getBlockColor();
-	}
+                entity.motionX = -2.5D;
+                entity.motionZ = -2.5D;
+            }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public int colorMultiplier(IBlockAccess world, int x, int y, int z) {
-		int meta = world.getBlockMetadata(x, y, z);
+            if (world.isRemote) {
+                if (!(entity instanceof net.minecraft.client.particle.EntityFX)) {
+                    for (int count = 0; count < 50; count++) {
+                        double xOffset = x + world.rand.nextDouble();
+                        double yOffset = y + world.rand.nextDouble();
+                        double zOffset = z + world.rand.nextDouble();
 
-		return this.getRenderColor(meta);
-	}
+                        world.spawnParticle("snowshovel", xOffset, yOffset, zOffset, 0, 0, 0);
+                    }
+                }
+            }
+        } else if (entity.motionY < 0) {
+            entity.motionY *= 0.005D;
+        }
+    }
 
-	@Override
-	public String getUnlocalizedName(ItemStack stack) {
-		return stack.getItemDamage() == 1 ? "sapphire_aercloud" : stack.getItemDamage() == 2 ? "amethyst_aercloud" : "diamond_aercloud";
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public int getRenderBlockPass() {
+        return 1;
+    }
 
-	@Override
-	public int getColorFromItemStack(ItemStack stack, int pass) {
-		if (stack.getItemDamage() == 0) {
-			return 0x2ccdb1;
-		}
-		if (stack.getItemDamage() == 1) {
-			return 0x204795;
-		} else if (stack.getItemDamage() == 2) {
-			return 0x8d6acc;
-		}
+    @Override
+    public boolean isOpaqueCube() {
+        return false;
+    }
 
-		return 0;
-	}
+    @Override
+    public int damageDropped(int meta) {
+        return meta;
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public boolean shouldSideBeRendered(IBlockAccess p_149646_1_, int p_149646_2_, int p_149646_3_, int p_149646_4_, int p_149646_5_) {
-		Block block = p_149646_1_.getBlock(p_149646_2_, p_149646_3_, p_149646_4_);
+    @Override
+    @SideOnly(Side.CLIENT)
+    public int getRenderColor(int meta) {
+        if (meta == 0) {
+            return 0x2ccdb1;
+        }
+        if (meta == 1) {
+            return 0x204795;
+        } else if (meta == 2) {
+            return 0x8d6acc;
+        }
 
-		if (p_149646_1_.getBlockMetadata(p_149646_2_, p_149646_3_, p_149646_4_) != p_149646_1_.getBlockMetadata(p_149646_2_ - Facing.offsetsXForSide[p_149646_5_], p_149646_3_ - Facing.offsetsYForSide[p_149646_5_], p_149646_4_ - Facing.offsetsZForSide[p_149646_5_])) {
-			return true;
-		}
+        return this.getBlockColor();
+    }
 
-		if (block == this) {
-			return false;
-		}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public int colorMultiplier(IBlockAccess world, int x, int y, int z) {
+        int meta = world.getBlockMetadata(x, y, z);
 
-		return super.shouldSideBeRendered(p_149646_1_, p_149646_2_, p_149646_3_, p_149646_4_, p_149646_5_);
-	}
+        return this.getRenderColor(meta);
+    }
 
-	@Override
-	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
-		return world.getBlockMetadata(x, y, z) != 0 ? AxisAlignedBB.getBoundingBox(x, y, z, x, y, z) : world.getBlockMetadata(x, y, z) != 2 ? AxisAlignedBB.getBoundingBox(x, y, z, x + 1.0D, y + 0.01D, z + 1.0D) : AxisAlignedBB.getBoundingBox(x, y, z, x, y, z);
-	}
+    @Override
+    public String getUnlocalizedName(ItemStack stack) {
+        return stack.getItemDamage() == 1 ? "sapphire_aercloud"
+            : stack.getItemDamage() == 2 ? "amethyst_aercloud" : "diamond_aercloud";
+    }
+
+    @Override
+    public int getColorFromItemStack(ItemStack stack, int pass) {
+        if (stack.getItemDamage() == 0) {
+            return 0x2ccdb1;
+        }
+        if (stack.getItemDamage() == 1) {
+            return 0x204795;
+        } else if (stack.getItemDamage() == 2) {
+            return 0x8d6acc;
+        }
+
+        return 0;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public boolean shouldSideBeRendered(IBlockAccess p_149646_1_, int p_149646_2_, int p_149646_3_, int p_149646_4_,
+        int p_149646_5_) {
+        Block block = p_149646_1_.getBlock(p_149646_2_, p_149646_3_, p_149646_4_);
+
+        if (p_149646_1_.getBlockMetadata(p_149646_2_, p_149646_3_, p_149646_4_) != p_149646_1_.getBlockMetadata(
+            p_149646_2_ - Facing.offsetsXForSide[p_149646_5_],
+            p_149646_3_ - Facing.offsetsYForSide[p_149646_5_],
+            p_149646_4_ - Facing.offsetsZForSide[p_149646_5_])) {
+            return true;
+        }
+
+        if (block == this) {
+            return false;
+        }
+
+        return super.shouldSideBeRendered(p_149646_1_, p_149646_2_, p_149646_3_, p_149646_4_, p_149646_5_);
+    }
+
+    @Override
+    public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
+        return world.getBlockMetadata(x, y, z) != 0 ? AxisAlignedBB.getBoundingBox(x, y, z, x, y, z)
+            : world.getBlockMetadata(x, y, z) != 2
+                ? AxisAlignedBB.getBoundingBox(x, y, z, x + 1.0D, y + 0.01D, z + 1.0D)
+                : AxisAlignedBB.getBoundingBox(x, y, z, x, y, z);
+    }
 
 }

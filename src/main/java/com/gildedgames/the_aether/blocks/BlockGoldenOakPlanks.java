@@ -7,13 +7,13 @@ import com.gildedgames.the_aether.Aether;
 
 public class BlockGoldenOakPlanks extends Block {
 
-	public BlockGoldenOakPlanks() {
-		super(Material.wood);
+    public BlockGoldenOakPlanks() {
+        super(Material.wood);
 
-		this.setHardness(3F);
-		this.setResistance(6F);
-		this.setStepSound(soundTypeWood);
-		this.setBlockTextureName(Aether.find("golden_oak_planks"));
-	}
+        this.setHardness(3F);
+        this.setResistance(6F);
+        this.setStepSound(soundTypeWood);
+        this.setBlockTextureName(Aether.find("golden_oak_planks"));
+    }
 
 }
