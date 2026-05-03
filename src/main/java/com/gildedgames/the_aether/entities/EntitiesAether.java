@@ -151,7 +151,7 @@ public class EntitiesAether {
         register(EntityCrystalDragon.class, "crystal_dragon", 85, 0xd8e4f8, 0x1bb7df);
         register(EntityZojz.class, "zojz", 87, 0x2a4552, 0x72c8c9);
 
-        if (AetherConfig.enableBossSpawnEggs() == false) {
+        if (!AetherConfig.enableBossSpawnEggs()) {
             register(EntityCyroGuardian.class, "cyro_guardian", 48, 80, 3, true);
             register(EntitySlider.class, "slider", 12, 80, 3, true);
             register(EntityEnhancedSlider.class, "ancient_slider", 43, 80, 3, true);

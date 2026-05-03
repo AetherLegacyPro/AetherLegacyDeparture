@@ -38,7 +38,6 @@ public class ItemPhoenixArmor extends ItemArmor {
         this.source = repair;
         this.armorName = name;
         this.setCreativeTab(AetherCreativeTabs.armor);
-        setMaxDamage(1591);
     }
 
     public ItemPhoenixArmor(int armorType, ArmorMaterial material, String name, Item repair, int hex) {

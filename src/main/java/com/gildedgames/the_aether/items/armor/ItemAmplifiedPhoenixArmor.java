@@ -40,7 +40,6 @@ public class ItemAmplifiedPhoenixArmor extends ItemArmor {
         this.source = repair;
         this.armorName = name;
         this.setCreativeTab(AetherCreativeTabs.armor);
-        setMaxDamage(3477);
     }
 
     public void onArmorTick(final World world, final EntityPlayer player, final ItemStack itemStack) {

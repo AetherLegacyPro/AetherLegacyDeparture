@@ -38,7 +38,6 @@ public class ItemDivineralArmor extends ItemArmor {
         this.source = repair;
         this.armorName = name;
         this.setCreativeTab(AetherCreativeTabs.armor);
-        setMaxDamage(4477);
     }
 
     public ItemDivineralArmor(int armorType, ArmorMaterial material, String name, Item repair, int hex) {
