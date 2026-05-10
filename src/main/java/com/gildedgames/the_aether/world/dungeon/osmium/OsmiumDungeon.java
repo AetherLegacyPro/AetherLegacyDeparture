@@ -100,7 +100,7 @@ public class OsmiumDungeon implements IWorldGenerator {
                 }
             }
             case 3:
-                return new ItemStack(ItemsAether.dart_shooter, 0, 3);
+                return new ItemStack(ItemsAether.dart_shooter, 1, 3);
             case 4:
                 return new ItemStack(ItemsAether.bone_ring);
             case 5:

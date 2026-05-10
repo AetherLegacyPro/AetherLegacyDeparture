@@ -116,11 +116,7 @@ public class MythicBronzeDungeon extends AetherDungeon {
                 world.setBlock(i + 9, j + 10, k + 9, BlocksAether.mythic_carved_stone_wall);
                 world.setBlock(i + 9, j + 9, k + 9, BlocksAether.aerogel);
                 break;
-            case 5:
-                world.setBlock(i + 9, j + 10, k + 9, BlocksAether.mythic_carved_stone_wall);
-                world.setBlock(i + 9, j + 9, k + 9, BlocksAether.zanite_block);
-                break;
-            case 6:
+            case 5, 6:
                 world.setBlock(i + 9, j + 10, k + 9, BlocksAether.mythic_carved_stone_wall);
                 world.setBlock(i + 9, j + 9, k + 9, BlocksAether.zanite_block);
                 break;
