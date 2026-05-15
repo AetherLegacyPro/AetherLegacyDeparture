@@ -107,7 +107,7 @@ public class PalladiumDungeonTotem extends WorldGenerator {
     }
 
     public static ItemStack getPalladiumLoot(Random random) {
-        int item = random.nextInt(25);
+        int item = random.nextInt(20);
 
         switch (item) {
             case 0:
