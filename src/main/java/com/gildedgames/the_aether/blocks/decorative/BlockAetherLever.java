@@ -5,10 +5,10 @@ import net.minecraft.block.material.Material;
 
 public class BlockAetherLever extends BlockLever {
 
-	public BlockAetherLever(Material p_i45434_1_) {
-		super();
+    public BlockAetherLever(Material p_i45434_1_) {
+        super();
 
-		this.setLightOpacity(0);
-	}
+        this.setLightOpacity(0);
+    }
 
 }

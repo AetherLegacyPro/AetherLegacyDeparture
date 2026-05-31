@@ -2,11 +2,6 @@ package com.gildedgames.the_aether.items.armor;
 
 import java.util.List;
 
-import com.gildedgames.the_aether.Aether;
-import com.gildedgames.the_aether.AetherConfig;
-import com.gildedgames.the_aether.items.ItemsAether;
-import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
-import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityAnimal;
@@ -21,28 +16,35 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
+import com.gildedgames.the_aether.Aether;
+import com.gildedgames.the_aether.AetherConfig;
+import com.gildedgames.the_aether.items.ItemsAether;
+import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
+import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
+
 public class ItemAmplifiedElysianArmor extends ItemArmor {
 
-	private String[] defualt_location = new String[]{"textures/models/armor/iron_layer_1.png", "textures/models/armor/iron_layer_2.png"};
+    private String[] defualt_location = new String[] { "textures/models/armor/iron_layer_1.png",
+        "textures/models/armor/iron_layer_2.png" };
 
-	public boolean shouldDefualt = false;
+    public boolean shouldDefualt = false;
 
-	private int colorization = -1;
+    private int colorization = -1;
 
-	private String armorName;
+    private String armorName;
 
-	private Item source = null;
+    private Item source = null;
 
-	public ItemAmplifiedElysianArmor(int armorType, ArmorMaterial material, String name, Item repair) {
-		super(material, 0, armorType);
+    public ItemAmplifiedElysianArmor(int armorType, ArmorMaterial material, String name, Item repair) {
+        super(material, 0, armorType);
 
-		this.source = repair;
-		this.armorName = name;
-		this.setCreativeTab(AetherCreativeTabs.armor);
-	}
-	
-	public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack) {
-		boolean hasElysianHelmet = false;
+        this.source = repair;
+        this.armorName = name;
+        this.setCreativeTab(AetherCreativeTabs.armor);
+    }
+
+    public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack) {
+        boolean hasElysianHelmet = false;
         boolean hasElysianChest = false;
         boolean hasElysianLegs = false;
         boolean hasElysianBoots = false;
@@ -51,75 +53,85 @@ public class ItemAmplifiedElysianArmor extends ItemArmor {
         final ItemStack legs = player.getCurrentArmor(1);
         final ItemStack boots = player.getCurrentArmor(0);
         if (helmet != null) {
-            hasElysianHelmet = (helmet.getItem() == ItemsAether.amplified_elysian_helmet || helmet.getItem() == ItemsAether.ascensite_helmet);
+            hasElysianHelmet = (helmet.getItem() == ItemsAether.amplified_elysian_helmet
+                || helmet.getItem() == ItemsAether.ascensite_helmet);
         }
         if (chest != null) {
-            hasElysianChest = (chest.getItem() == ItemsAether.amplified_elysian_chestplate || chest.getItem() == ItemsAether.ascensite_chestplate);
+            hasElysianChest = (chest.getItem() == ItemsAether.amplified_elysian_chestplate
+                || chest.getItem() == ItemsAether.ascensite_chestplate);
         }
         if (legs != null) {
-            hasElysianLegs = (legs.getItem() == ItemsAether.amplified_elysian_leggings || legs.getItem() == ItemsAether.ascensite_leggings);
+            hasElysianLegs = (legs.getItem() == ItemsAether.amplified_elysian_leggings
+                || legs.getItem() == ItemsAether.ascensite_leggings);
         }
         if (boots != null) {
-            hasElysianBoots = (boots.getItem() == ItemsAether.amplified_elysian_boots || boots.getItem() == ItemsAether.amplified_sentry_boots || boots.getItem() == ItemsAether.amplified_agility_boots || boots.getItem() == ItemsAether.ascensite_boots);
+            hasElysianBoots = (boots.getItem() == ItemsAether.amplified_elysian_boots
+                || boots.getItem() == ItemsAether.amplified_sentry_boots
+                || boots.getItem() == ItemsAether.amplified_agility_boots
+                || boots.getItem() == ItemsAether.ascensite_boots);
         }
         if (hasElysianHelmet && hasElysianChest && hasElysianLegs && hasElysianBoots) {
-        	player.triggerAchievement(AchievementsAether.true_thorns);  
-        	if(!world.isRemote) {
-        		AxisAlignedBB axisalignedbb = player.boundingBox;
-        		//List<Entity> volume = world.getEntitiesWithinAABB(EntityLivingBase.class, axisalignedbb.expand(2, 3, 2));
-				// to fix build error
-				List<EntityLivingBase> volume = world.getEntitiesWithinAABB(EntityLivingBase.class, axisalignedbb.expand(2, 3, 2));
-        		int rand = (int)(1 + Math.random() * 76);
-        		 for(Entity entity : volume) {
-        			 if(!(entity instanceof EntityPlayer) && !(entity instanceof EntityAnimal)
-        					 && rand == 1) {        				
-        				 entity.attackEntityFrom(DamageSource.causeIndirectMagicDamage(player, entity), 3F);
-        			 }
-        		  }
-        		 }
-			}
-		}
+            player.triggerAchievement(AchievementsAether.true_thorns);
+            if (!world.isRemote) {
+                AxisAlignedBB axisalignedbb = player.boundingBox;
+                // List<Entity> volume = world.getEntitiesWithinAABB(EntityLivingBase.class, axisalignedbb.expand(2, 3,
+                // 2));
+                // to fix build error
+                List<EntityLivingBase> volume = world
+                    .getEntitiesWithinAABB(EntityLivingBase.class, axisalignedbb.expand(2, 3, 2));
+                int rand = (int) (1 + Math.random() * 76);
+                for (Entity entity : volume) {
+                    if (!(entity instanceof EntityPlayer) && !(entity instanceof EntityAnimal) && rand == 1) {
+                        entity.attackEntityFrom(DamageSource.causeIndirectMagicDamage(player, entity), 3F);
+                    }
+                }
+            }
+        }
+    }
 
-	public ItemAmplifiedElysianArmor(int armorType, ArmorMaterial material, String name, Item repair, int hex) {
-		this(armorType, material, name, repair);
+    public ItemAmplifiedElysianArmor(int armorType, ArmorMaterial material, String name, Item repair, int hex) {
+        this(armorType, material, name, repair);
 
-		this.source = repair;
-		this.armorName = name;
-		this.colorization = hex;
-		this.shouldDefualt = true;
-	}
+        this.source = repair;
+        this.armorName = name;
+        this.colorization = hex;
+        this.shouldDefualt = true;
+    }
 
-	@Override
-	public int getColor(ItemStack stack) {
-		return this.colorization;
-	}
+    @Override
+    public int getColor(ItemStack stack) {
+        return this.colorization;
+    }
 
-	@Override
-	public int getColorFromItemStack(ItemStack stack, int renderPass) {
-		return this.colorization != -1 ? this.colorization : 16777215;
-	}
+    @Override
+    public int getColorFromItemStack(ItemStack stack, int renderPass) {
+        return this.colorization != -1 ? this.colorization : 16777215;
+    }
 
-	@Override
-	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type) {
-		boolean leggings = this.getUnlocalizedName().contains("leggings");
-		String type1 = leggings ? "layer_2" : "layer_1";
+    @Override
+    public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type) {
+        boolean leggings = this.getUnlocalizedName()
+            .contains("leggings");
+        String type1 = leggings ? "layer_2" : "layer_1";
 
-		return this.shouldDefualt ? (leggings ? defualt_location[1] : defualt_location[0]) : Aether.modAddress() + "textures/armor/" + this.armorName + "_" + type1 + ".png";
-	}
+        return this.shouldDefualt ? (leggings ? defualt_location[1] : defualt_location[0])
+            : Aether.modAddress() + "textures/armor/" + this.armorName + "_" + type1 + ".png";
+    }
 
-	@Override
-	public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
-		return this.source == null ? false : repair.getItem() == this.source;
-	}
-	
-	@Override
-	public EnumRarity getRarity(ItemStack stack) {
-		return ItemsAether.divine_aether_loot;
-	}
-	
-	public void addInformation(final ItemStack stack, final EntityPlayer player, final List tooltip, final boolean who) {
-		if(AetherConfig.enableTooltips())
-        tooltip.add(EnumChatFormatting.LIGHT_PURPLE + "" + StatCollector.translateToLocal("tooltip.elysian_armor.desc"));
+    @Override
+    public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
+        return this.source == null ? false : repair.getItem() == this.source;
+    }
+
+    @Override
+    public EnumRarity getRarity(ItemStack stack) {
+        return ItemsAether.divine_aether_loot;
+    }
+
+    public void addInformation(final ItemStack stack, final EntityPlayer player, final List tooltip,
+        final boolean who) {
+        if (AetherConfig.enableTooltips()) tooltip
+            .add(EnumChatFormatting.LIGHT_PURPLE + "" + StatCollector.translateToLocal("tooltip.elysian_armor.desc"));
     }
 
 }

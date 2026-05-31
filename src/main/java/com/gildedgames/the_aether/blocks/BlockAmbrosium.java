@@ -5,14 +5,14 @@ import net.minecraft.block.material.Material;
 
 public class BlockAmbrosium extends Block {
 
-	public BlockAmbrosium() {
-		super(Material.rock);
+    public BlockAmbrosium() {
+        super(Material.rock);
 
-		this.setHardness(0.5F);
-		this.setStepSound(soundTypeStone);
-		this.setHarvestLevel("pickaxe", 0);
-		this.setBlockTextureName("aether_legacy:ambrosium_block");
-		setBlockName("Ambrosium Block");
-	}
+        this.setHardness(0.5F);
+        this.setStepSound(soundTypeStone);
+        this.setHarvestLevel("pickaxe", 0);
+        this.setBlockTextureName("aether_legacy:ambrosium_block");
+        setBlockName("Ambrosium Block");
+    }
 
 }

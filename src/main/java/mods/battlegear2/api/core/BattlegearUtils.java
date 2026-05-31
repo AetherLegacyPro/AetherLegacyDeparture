@@ -2,6 +2,7 @@ package mods.battlegear2.api.core;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+
 import cpw.mods.fml.common.eventhandler.EventBus;
 
 /**

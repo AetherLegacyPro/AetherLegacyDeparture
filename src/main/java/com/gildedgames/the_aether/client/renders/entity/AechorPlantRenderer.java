@@ -1,28 +1,40 @@
 package com.gildedgames.the_aether.client.renders.entity;
 
-import com.gildedgames.the_aether.Aether;
-import com.gildedgames.the_aether.client.models.entities.AechorPlantModel;
-import com.gildedgames.the_aether.entities.hostile.EntityAechorPlant;
-
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
 
+import com.gildedgames.the_aether.Aether;
+import com.gildedgames.the_aether.client.models.entities.AechorPlantModel;
+import com.gildedgames.the_aether.entities.hostile.EntityAechorPlant;
+
 public class AechorPlantRenderer extends RenderLiving {
 
-    public static final ResourceLocation TEXTURE_CYAN = Aether.locate("textures/entities/aechor_plant/aechor_plant_cyan.png");
-    public static final ResourceLocation TEXTURE_CYAN2 = Aether.locate("textures/entities/aechor_plant/aechor_plant_cyan2.png");
-    public static final ResourceLocation TEXTURE_CYAN3 = Aether.locate("textures/entities/aechor_plant/aechor_plant_cyan3.png");
-    public static final ResourceLocation TEXTURE_CYAN4 = Aether.locate("textures/entities/aechor_plant/aechor_plant_cyan4.png");
-    public static final ResourceLocation TEXTURE_CYAN5 = Aether.locate("textures/entities/aechor_plant/aechor_plant_cyan5.png");
-    public static final ResourceLocation TEXTURE_CYAN6 = Aether.locate("textures/entities/aechor_plant/aechor_plant_cyan6.png");
-    public static final ResourceLocation TEXTURE_BLUE = Aether.locate("textures/entities/aechor_plant/aechor_plant_blue.png");
-    public static final ResourceLocation TEXTURE_DARKBLUE = Aether.locate("textures/entities/aechor_plant/aechor_plant_darkblue.png");
-    public static final ResourceLocation TEXTURE_LIME = Aether.locate("textures/entities/aechor_plant/aechor_plant_lime.png");
-    public static final ResourceLocation TEXTURE_PURPLE = Aether.locate("textures/entities/aechor_plant/aechor_plant_purple.png");
-    public static final ResourceLocation TEXTURE_MAGENTA = Aether.locate("textures/entities/aechor_plant/aechor_plant_magenta.png");
-    public static final ResourceLocation TEXTURE_GOLD = Aether.locate("textures/entities/aechor_plant/aechor_plant_gold.png");
+    public static final ResourceLocation TEXTURE_CYAN = Aether
+        .locate("textures/entities/aechor_plant/aechor_plant_cyan.png");
+    public static final ResourceLocation TEXTURE_CYAN2 = Aether
+        .locate("textures/entities/aechor_plant/aechor_plant_cyan2.png");
+    public static final ResourceLocation TEXTURE_CYAN3 = Aether
+        .locate("textures/entities/aechor_plant/aechor_plant_cyan3.png");
+    public static final ResourceLocation TEXTURE_CYAN4 = Aether
+        .locate("textures/entities/aechor_plant/aechor_plant_cyan4.png");
+    public static final ResourceLocation TEXTURE_CYAN5 = Aether
+        .locate("textures/entities/aechor_plant/aechor_plant_cyan5.png");
+    public static final ResourceLocation TEXTURE_CYAN6 = Aether
+        .locate("textures/entities/aechor_plant/aechor_plant_cyan6.png");
+    public static final ResourceLocation TEXTURE_BLUE = Aether
+        .locate("textures/entities/aechor_plant/aechor_plant_blue.png");
+    public static final ResourceLocation TEXTURE_DARKBLUE = Aether
+        .locate("textures/entities/aechor_plant/aechor_plant_darkblue.png");
+    public static final ResourceLocation TEXTURE_LIME = Aether
+        .locate("textures/entities/aechor_plant/aechor_plant_lime.png");
+    public static final ResourceLocation TEXTURE_PURPLE = Aether
+        .locate("textures/entities/aechor_plant/aechor_plant_purple.png");
+    public static final ResourceLocation TEXTURE_MAGENTA = Aether
+        .locate("textures/entities/aechor_plant/aechor_plant_magenta.png");
+    public static final ResourceLocation TEXTURE_GOLD = Aether
+        .locate("textures/entities/aechor_plant/aechor_plant_gold.png");
 
     public AechorPlantModel mode;
 
@@ -68,10 +80,12 @@ public class AechorPlantRenderer extends RenderLiving {
     protected int shouldRenderPass(EntityLivingBase entityliving, int i, float f) {
         return this.doAechorPlantRender((EntityAechorPlant) entityliving, i, f);
     }
-    
+
     @Override
-	protected ResourceLocation getEntityTexture(final Entity entity) {
-        return new ResourceLocation("aether_legacy", "textures/entities/aechor_plant/" + ((EntityAechorPlant)entity).getType() + ".png");
+    protected ResourceLocation getEntityTexture(final Entity entity) {
+        return new ResourceLocation(
+            "aether_legacy",
+            "textures/entities/aechor_plant/" + ((EntityAechorPlant) entity).getType() + ".png");
     }
 
 }

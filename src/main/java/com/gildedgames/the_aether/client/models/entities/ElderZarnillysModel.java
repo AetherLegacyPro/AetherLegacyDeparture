@@ -1,12 +1,12 @@
 package com.gildedgames.the_aether.client.models.entities;
 
+import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
-import net.minecraft.client.model.ModelRenderer;
-import net.minecraft.client.model.ModelBase;
 
-public class ElderZarnillysModel extends ModelBase
-{
+public class ElderZarnillysModel extends ModelBase {
+
     public final ModelRenderer body;
     public final ModelRenderer body_front;
     public final ModelRenderer body_back;
@@ -50,7 +50,7 @@ public class ElderZarnillysModel extends ModelBase
     public final ModelRenderer toe4;
     public final ModelRenderer toe5;
     public final ModelRenderer toe6;
-    
+
     public ElderZarnillysModel() {
         this.textureWidth = 128;
         this.textureHeight = 128;
@@ -244,27 +244,31 @@ public class ElderZarnillysModel extends ModelBase
         this.foot_front_left.addChild(this.toe3);
         this.head_bottom.addChild(this.teeth_bottom);
     }
-    
-    public void render(final Entity entity, final float f, final float f1, final float f2, final float f3, final float f4, final float f5) {
-    	super.render(entity, f, f1, f2, f3, f4, f5);
+
+    public void render(final Entity entity, final float f, final float f1, final float f2, final float f3,
+        final float f4, final float f5) {
+        super.render(entity, f, f1, f2, f3, f4, f5);
         this.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-    	this.body.render(f5);   
+        this.body.render(f5);
     }
-    
+
     public void setRotateAngle(final ModelRenderer modelRenderer, final float x, final float y, final float z) {
         modelRenderer.rotateAngleX = x;
         modelRenderer.rotateAngleY = y;
         modelRenderer.rotateAngleZ = z;
     }
-    
+
     @Override
-    public void setRotationAngles(final float limbSwing, final float limbSwingAmount, final float ageInTicks, final float netHeadYaw, final float headPitch, final float scaleFactor, final Entity entityIn) {
+    public void setRotationAngles(final float limbSwing, final float limbSwingAmount, final float ageInTicks,
+        final float netHeadYaw, final float headPitch, final float scaleFactor, final Entity entityIn) {
         super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entityIn);
         this.head_top.rotateAngleX = headPitch * 0.017453292f;
         this.head_top.rotateAngleY = netHeadYaw * 0.017453292f;
         this.leg_front_right_joint.rotateAngleX = MathHelper.cos(limbSwing * 0.6662f) * 0.6f * limbSwingAmount;
-        this.leg_front_left_joint.rotateAngleX = MathHelper.cos(limbSwing * 0.6662f + 3.1415927f) * 0.6f * limbSwingAmount;
-        this.leg_back_right_top.rotateAngleX = MathHelper.cos(limbSwing * 0.6662f + 3.1415927f) * 0.6f * limbSwingAmount;
+        this.leg_front_left_joint.rotateAngleX = MathHelper.cos(limbSwing * 0.6662f + 3.1415927f) * 0.6f
+            * limbSwingAmount;
+        this.leg_back_right_top.rotateAngleX = MathHelper.cos(limbSwing * 0.6662f + 3.1415927f) * 0.6f
+            * limbSwingAmount;
         this.leg_back_left_top.rotateAngleX = MathHelper.cos(limbSwing * 0.6662f) * 0.6f * limbSwingAmount;
         final float jawLower = MathHelper.cos(ageInTicks * 0.1f) / 5.0f;
         this.head_bottom.rotateAngleX = 0.34906584f - jawLower;

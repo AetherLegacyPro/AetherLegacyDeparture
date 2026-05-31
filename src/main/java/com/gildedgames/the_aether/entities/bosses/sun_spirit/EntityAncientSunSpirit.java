@@ -2,10 +2,34 @@ package com.gildedgames.the_aether.entities.bosses.sun_spirit;
 
 import java.util.List;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityFlying;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.IEntityMultiPart;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.boss.EntityDragonPart;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.monster.IMob;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.EntityDamageSource;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.StatCollector;
+import net.minecraft.world.World;
+
 import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.api.AetherAPI;
 import com.gildedgames.the_aether.api.player.util.IAetherBoss;
+import com.gildedgames.the_aether.blocks.BlocksAether;
+import com.gildedgames.the_aether.blocks.dungeon.BlockDungeonBase;
 import com.gildedgames.the_aether.entities.bosses.EntityAncientFireMinion;
 import com.gildedgames.the_aether.entities.hostile.EntityCinerarium;
 import com.gildedgames.the_aether.entities.hostile.EntityHellfireCinder;
@@ -17,24 +41,9 @@ import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.player.PlayerAether;
 import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 import com.gildedgames.the_aether.world.AetherData;
+
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
-import net.minecraft.entity.*;
-import net.minecraft.entity.boss.EntityDragonPart;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.monster.IMob;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.*;
-import net.minecraft.world.World;
-
-import com.gildedgames.the_aether.blocks.BlocksAether;
-import com.gildedgames.the_aether.blocks.dungeon.BlockDungeonBase;
 
 public class EntityAncientSunSpirit extends EntityFlying implements IMob, IAetherBoss, IEntityMultiPart {
 
@@ -57,7 +66,8 @@ public class EntityAncientSunSpirit extends EntityFlying implements IMob, IAethe
 
     public EntityAncientSunSpirit(World worldIn) {
         super(worldIn);
-        this.sunSpiritParts = new EntityDragonPart[] {this.SpiritPartHead, this.SpiritPartShoulder1, this.SpiritPartShoulder2};
+        this.sunSpiritParts = new EntityDragonPart[] { this.SpiritPartHead, this.SpiritPartShoulder1,
+            this.SpiritPartShoulder2 };
 
         this.setSize(2.5F, 2.8F);
         this.dataWatcher.updateObject(20, AetherNameGen.gen());
@@ -68,8 +78,7 @@ public class EntityAncientSunSpirit extends EntityFlying implements IMob, IAethe
 
         this.noClip = true;
         this.direction = var6;
-        this.rotary = (double) this.rand.nextFloat() * 360.0D;
-        ;
+        this.rotary = (double) this.rand.nextFloat() * 360.0D;;
         this.rotationYaw = this.rotationYawHead = var6 == 3 ? 0 : var6 == 0 ? 90 : var6 == 2 ? 180 : 270;
 
         this.setPosition((double) posX + 0.5D, posY, (double) posZ + 0.5D);
@@ -89,8 +98,10 @@ public class EntityAncientSunSpirit extends EntityFlying implements IMob, IAethe
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(1.2D);
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(50.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed)
+            .setBaseValue(1.2D);
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth)
+            .setBaseValue(50.0D);
     }
 
     public boolean isPotionApplicable(PotionEffect par1PotionEffect) {
@@ -142,18 +153,16 @@ public class EntityAncientSunSpirit extends EntityFlying implements IMob, IAethe
     }
 
     @Override
-    public void onLivingUpdate()
-    {
+    public void onLivingUpdate() {
         super.onLivingUpdate();
 
         this.setMultiPartLocations();
     }
 
-    private void setMultiPartLocations()
-    {
-        if (this.sunSpiritParts == null)
-        {
-            this.sunSpiritParts = new EntityDragonPart[] {this.SpiritPartHead, this.SpiritPartShoulder1, this.SpiritPartShoulder2};
+    private void setMultiPartLocations() {
+        if (this.sunSpiritParts == null) {
+            this.sunSpiritParts = new EntityDragonPart[] { this.SpiritPartHead, this.SpiritPartShoulder1,
+                this.SpiritPartShoulder2 };
         }
 
         float f = this.rotationYaw * 0.017453292F;
@@ -168,8 +177,7 @@ public class EntityAncientSunSpirit extends EntityFlying implements IMob, IAethe
         this.SpiritPartShoulder2.setLocationAndAngles(this.posX + f2, this.posY - 0.25F, this.posZ + f1, 0F, 0F);
     }
 
-    public Entity[] getParts()
-    {
+    public Entity[] getParts() {
         return this.sunSpiritParts;
     }
 
@@ -181,7 +189,7 @@ public class EntityAncientSunSpirit extends EntityFlying implements IMob, IAethe
 
         if (this.getAttackTarget() instanceof EntityPlayer dungeonTarget) {
             List<?> dungeonPlayers = this.getPlayersInDungeon();
-			PlayerAether playerAether = PlayerAether.get(dungeonTarget);
+            PlayerAether playerAether = PlayerAether.get(dungeonTarget);
 
             for (int i = 0; i < dungeonPlayers.size(); ++i) {
                 Entity entity = (Entity) dungeonPlayers.get(i);
@@ -206,7 +214,10 @@ public class EntityAncientSunSpirit extends EntityFlying implements IMob, IAethe
                     }
                 }
 
-                this.setPosition((double) this.originPointX + 0.5D, this.originPointY, (double) this.originPointZ + 0.5D);
+                this.setPosition(
+                    (double) this.originPointX + 0.5D,
+                    this.originPointY,
+                    (double) this.originPointZ + 0.5D);
 
                 this.chatLog = 10;
 
@@ -215,7 +226,10 @@ public class EntityAncientSunSpirit extends EntityFlying implements IMob, IAethe
                 this.chatLine(dungeonTarget, "\u00a7c" + StatCollector.translateToLocal("gui.spirit.playerdied"));
                 this.chatCount = 100;
 
-                this.setPosition((double) this.originPointX + 0.5D, this.originPointY, (double) this.originPointZ + 0.5D);
+                this.setPosition(
+                    (double) this.originPointX + 0.5D,
+                    this.originPointY,
+                    (double) this.originPointZ + 0.5D);
                 this.setDoor(Blocks.air);
 
                 this.setFreezing(false);
@@ -242,13 +256,12 @@ public class EntityAncientSunSpirit extends EntityFlying implements IMob, IAethe
                 dungeonTarget.triggerAchievement(AchievementsAether.defeat_gold);
                 dungeonTarget.triggerAchievement(AchievementsAether.ancient_defeat_gold);
 
-                if (!AetherConfig.eternalDayDisabled())
-                {
-                    if (!this.worldObj.isRemote)
-                    {
-                        if (!AetherData.getInstance(this.worldObj).isEternalDay())
-                        {
-                            AetherData.getInstance(this.worldObj).setEternalDay(true);
+                if (!AetherConfig.eternalDayDisabled()) {
+                    if (!this.worldObj.isRemote) {
+                        if (!AetherData.getInstance(this.worldObj)
+                            .isEternalDay()) {
+                            AetherData.getInstance(this.worldObj)
+                                .setEternalDay(true);
                         }
                     }
                 }
@@ -344,7 +357,8 @@ public class EntityAncientSunSpirit extends EntityFlying implements IMob, IAethe
     }
 
     public void burnEntities() {
-        List<?> entityList = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(0.0D, 4.0D, 0.0D));
+        List<?> entityList = this.worldObj
+            .getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(0.0D, 4.0D, 0.0D));
 
         for (int ammount = 0; ammount < entityList.size(); ++ammount) {
             Entity entity = (Entity) entityList.get(ammount);
@@ -352,16 +366,17 @@ public class EntityAncientSunSpirit extends EntityFlying implements IMob, IAethe
             if (entity instanceof EntityLivingBase && !entity.isImmuneToFire()) {
                 entity.attackEntityFrom(new EntityDamageSource("incineration", this), 18);
                 entity.setFire(18);
-            }
-            else if (entity instanceof EntityPlayer && entity.isImmuneToFire()) {
+            } else if (entity instanceof EntityPlayer && entity.isImmuneToFire()) {
                 entity.attackEntityFrom(new EntityDamageSource("incineration", this), 15);
             }
         }
     }
 
     public void evapWater() {
-        int var1 = MathHelper.floor_double(this.boundingBox.minX + (this.boundingBox.maxX - this.boundingBox.minX) / 2.0D);
-        int var2 = MathHelper.floor_double(this.boundingBox.minZ + (this.boundingBox.maxZ - this.boundingBox.minZ) / 2.0D);
+        int var1 = MathHelper
+            .floor_double(this.boundingBox.minX + (this.boundingBox.maxX - this.boundingBox.minX) / 2.0D);
+        int var2 = MathHelper
+            .floor_double(this.boundingBox.minZ + (this.boundingBox.maxZ - this.boundingBox.minZ) / 2.0D);
 
         byte radius = 15;
 
@@ -370,13 +385,27 @@ public class EntityAncientSunSpirit extends EntityFlying implements IMob, IAethe
                 for (int var6 = 0; var6 < 8; ++var6) {
                     int var7 = this.originPointY - 2 + var6;
 
-                    if (this.worldObj.getBlock(var4, var7, var5).getMaterial() == Material.water) {
+                    if (this.worldObj.getBlock(var4, var7, var5)
+                        .getMaterial() == Material.water) {
                         this.worldObj.setBlock(var4, var7, var5, Blocks.air);
 
-                        this.worldObj.playSoundEffect(this.posX, this.posY, this.posZ, "random.fizz", 2.0F, this.rand.nextFloat() - this.rand.nextFloat() * 0.2F + 1.2F);
+                        this.worldObj.playSoundEffect(
+                            this.posX,
+                            this.posY,
+                            this.posZ,
+                            "random.fizz",
+                            2.0F,
+                            this.rand.nextFloat() - this.rand.nextFloat() * 0.2F + 1.2F);
 
                         for (int var8 = 0; var8 < 8; ++var8) {
-                            this.worldObj.spawnParticle("largesmoke", (double) var4 + Math.random(), (double) var7 + 0.75D, (double) var5 + Math.random(), 0.0D, 0.0D, 0.0D);
+                            this.worldObj.spawnParticle(
+                                "largesmoke",
+                                (double) var4 + Math.random(),
+                                (double) var7 + 0.75D,
+                                (double) var5 + Math.random(),
+                                0.0D,
+                                0.0D,
+                                0.0D);
                         }
                     }
                 }
@@ -385,7 +414,11 @@ public class EntityAncientSunSpirit extends EntityFlying implements IMob, IAethe
     }
 
     public void makeFireBall(int var1) {
-        this.worldObj.playSoundAtEntity(this, "mob.ghast.fireball", this.rand.nextFloat() - this.rand.nextFloat() * 0.2F + 1.2F, 1.0F);
+        this.worldObj.playSoundAtEntity(
+            this,
+            "mob.ghast.fireball",
+            this.rand.nextFloat() - this.rand.nextFloat() * 0.2F + 1.2F,
+            1.0F);
 
         boolean shootIceyBall = false;
 
@@ -397,29 +430,44 @@ public class EntityAncientSunSpirit extends EntityFlying implements IMob, IAethe
         }
 
         for (int var3 = 0; var3 < var1; ++var3) {
-            EntityCrystal crystal = new EntityCrystal(this.worldObj, this.posX - this.motionX / 2.0D, this.posY, this.posZ - this.motionZ / 2.0D, shootIceyBall ? EnumCrystalType.ICE : EnumCrystalType.FIRE);
+            EntityCrystal crystal = new EntityCrystal(
+                this.worldObj,
+                this.posX - this.motionX / 2.0D,
+                this.posY,
+                this.posZ - this.motionZ / 2.0D,
+                shootIceyBall ? EnumCrystalType.ICE : EnumCrystalType.FIRE);
 
             if (!this.worldObj.isRemote) {
                 this.worldObj.spawnEntityInWorld(crystal);
             }
         }
-        
+
         for (int var3 = 0; var3 < var1; ++var3) {
-            EntityCrystal crystal = new EntityCrystal(this.worldObj, this.posX - this.motionX / 2.2D, this.posY, this.posZ - this.motionZ / 2.2D, shootIceyBall ? EnumCrystalType.ICE : EnumCrystalType.FIRE);
+            EntityCrystal crystal = new EntityCrystal(
+                this.worldObj,
+                this.posX - this.motionX / 2.2D,
+                this.posY,
+                this.posZ - this.motionZ / 2.2D,
+                shootIceyBall ? EnumCrystalType.ICE : EnumCrystalType.FIRE);
 
             if (!this.worldObj.isRemote) {
                 this.worldObj.spawnEntityInWorld(crystal);
             }
         }
-        
+
         for (int var3 = 0; var3 < var1; ++var3) {
-            EntityCrystal crystal = new EntityCrystal(this.worldObj, this.posX - this.motionX / 1.8D, this.posY, this.posZ - this.motionZ / 1.8D, shootIceyBall ? EnumCrystalType.ICE : EnumCrystalType.FIRE);
+            EntityCrystal crystal = new EntityCrystal(
+                this.worldObj,
+                this.posX - this.motionX / 1.8D,
+                this.posY,
+                this.posZ - this.motionZ / 1.8D,
+                shootIceyBall ? EnumCrystalType.ICE : EnumCrystalType.FIRE);
 
             if (!this.worldObj.isRemote) {
                 this.worldObj.spawnEntityInWorld(crystal);
             }
         }
-            
+
     }
 
     public void summonFire() {
@@ -433,11 +481,12 @@ public class EntityAncientSunSpirit extends EntityFlying implements IMob, IAethe
     }
 
     private void chatLine(EntityPlayer player, String s) {
-        Side side = FMLCommonHandler.instance().getEffectiveSide();
+        Side side = FMLCommonHandler.instance()
+            .getEffectiveSide();
 
-        if (this.chatCount <= 0 || (!AetherConfig.repeatSunSpiritDialogue() && ((PlayerAether) AetherAPI.get(player)).seenSpiritDialog)) {
-            if (side == Side.CLIENT)
-            {
+        if (this.chatCount <= 0
+            || (!AetherConfig.repeatSunSpiritDialogue() && ((PlayerAether) AetherAPI.get(player)).seenSpiritDialog)) {
+            if (side == Side.CLIENT) {
                 Aether.proxy.sendMessage(player, s);
             }
         }
@@ -445,8 +494,8 @@ public class EntityAncientSunSpirit extends EntityFlying implements IMob, IAethe
 
     public boolean chatWithMe(EntityPlayer entityPlayer) {
         if (this.chatCount <= 0) {
-            if (AetherConfig.repeatSunSpiritDialogue() || !((PlayerAether) AetherAPI.get(entityPlayer)).seenSpiritDialog)
-            {
+            if (AetherConfig.repeatSunSpiritDialogue()
+                || !((PlayerAether) AetherAPI.get(entityPlayer)).seenSpiritDialog) {
                 if (this.getChatLine() == 0) {
                     this.chatLine(entityPlayer, "\u00a7c" + StatCollector.translateToLocal("gui.spirit.line0"));
                     this.setChatLine(1);
@@ -489,9 +538,7 @@ public class EntityAncientSunSpirit extends EntityFlying implements IMob, IAethe
                         this.setChatLine(9);
                     }
                 }
-            }
-            else if (((PlayerAether) AetherAPI.get(entityPlayer)).seenSpiritDialog)
-            {
+            } else if (((PlayerAether) AetherAPI.get(entityPlayer)).seenSpiritDialog) {
                 this.setChatLine(9);
 
                 if (this.getChatLine() == 9) {
@@ -534,27 +581,23 @@ public class EntityAncientSunSpirit extends EntityFlying implements IMob, IAethe
     }
 
     @Override
-    public boolean attackEntityFrom(DamageSource source, float amount)
-    {
-        if (source.getSourceOfDamage() instanceof EntityCrystal)
-        {
-            if (((EntityCrystal) source.getSourceOfDamage()).getCrystalType() == EnumCrystalType.ICE)
-            {
+    public boolean attackEntityFrom(DamageSource source, float amount) {
+        if (source.getSourceOfDamage() instanceof EntityCrystal) {
+            if (((EntityCrystal) source.getSourceOfDamage()).getCrystalType() == EnumCrystalType.ICE) {
                 this.velocity = 0.5D - (double) this.getHealth() / 70.0D * 0.6D;
                 boolean flag = super.attackEntityFrom(source, amount);
 
-                if (flag)
-                {
-                	EntityAncientFireMinion minion = new EntityAncientFireMinion(this.worldObj);
+                if (flag) {
+                    EntityAncientFireMinion minion = new EntityAncientFireMinion(this.worldObj);
                     minion.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
                     minion.setAttackTarget(this.getAttackTarget());
 
                     if (!this.worldObj.isRemote) {
                         this.worldObj.spawnEntityInWorld(minion);
-                    }                 
-                    
+                    }
+
                 }
-                
+
                 {
                     EntityCinerarium cinerarium = new EntityCinerarium(this.worldObj);
                     cinerarium.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
@@ -563,7 +606,7 @@ public class EntityAncientSunSpirit extends EntityFlying implements IMob, IAethe
                     if (!this.worldObj.isRemote) {
                         this.worldObj.spawnEntityInWorld(cinerarium);
                     }
-                    
+
                     EntityCinerarium cinerarium2 = new EntityCinerarium(this.worldObj);
                     cinerarium2.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
                     cinerarium2.setAttackTarget(this.getAttackTarget());
@@ -571,9 +614,9 @@ public class EntityAncientSunSpirit extends EntityFlying implements IMob, IAethe
                     if (!this.worldObj.isRemote) {
                         this.worldObj.spawnEntityInWorld(cinerarium2);
                     }
-                                       
+
                 }
-                
+
                 {
                     EntityHellfireCinder hellfire_cinder = new EntityHellfireCinder(this.worldObj);
                     hellfire_cinder.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
@@ -582,7 +625,7 @@ public class EntityAncientSunSpirit extends EntityFlying implements IMob, IAethe
                     if (!this.worldObj.isRemote) {
                         this.worldObj.spawnEntityInWorld(hellfire_cinder);
                     }
-                    
+
                     EntityHellfireCinder hellfire_cinder2 = new EntityHellfireCinder(this.worldObj);
                     hellfire_cinder2.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
                     hellfire_cinder2.setAttackTarget(this.getAttackTarget());
@@ -590,9 +633,9 @@ public class EntityAncientSunSpirit extends EntityFlying implements IMob, IAethe
                     if (!this.worldObj.isRemote) {
                         this.worldObj.spawnEntityInWorld(hellfire_cinder2);
                     }
-                                       
+
                 }
-                
+
                 {
                     EntityHellfireCinder hellfire_cinder3 = new EntityHellfireCinder(this.worldObj);
                     hellfire_cinder3.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
@@ -601,7 +644,7 @@ public class EntityAncientSunSpirit extends EntityFlying implements IMob, IAethe
                     if (!this.worldObj.isRemote) {
                         this.worldObj.spawnEntityInWorld(hellfire_cinder3);
                     }
-                    
+
                     EntityHellfireCinder hellfire_cinder4 = new EntityHellfireCinder(this.worldObj);
                     hellfire_cinder4.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
                     hellfire_cinder4.setAttackTarget(this.getAttackTarget());
@@ -609,51 +652,49 @@ public class EntityAncientSunSpirit extends EntityFlying implements IMob, IAethe
                     if (!this.worldObj.isRemote) {
                         this.worldObj.spawnEntityInWorld(hellfire_cinder4);
                     }
-                                       
+
                 }
                 return flag;
-            }
-            else
-            {
+            } else {
                 return false;
             }
-        }
-        else
-        {
+        } else {
             return false;
         }
     }
 
     @Override
-    public boolean attackEntityFromPart(EntityDragonPart part, DamageSource magicDamage, float damage)
-    {
+    public boolean attackEntityFromPart(EntityDragonPart part, DamageSource magicDamage, float damage) {
         return this.attackEntityFrom(magicDamage, 12);
     }
 
     @Override
     protected void dropFewItems(boolean var1, int var2) {
-        //this.entityDropItem(new ItemStack(ItemsAether.dungeon_key, 1, 2), 0.5F);
+        // this.entityDropItem(new ItemStack(ItemsAether.dungeon_key, 1, 2), 0.5F);
         this.entityDropItem(new ItemStack(ItemsAether.dungeon_key, 1, 7), 0.5F);
-        
-        int rand2 = (int)(1 + Math.random() * 2);
-		switch (rand2)
-        {
-        case 1: this.dropItem(ItemsAether.divine_essence, 1 + rand.nextInt(2));
-        break;
-        case 2: 
-        break;
+
+        int rand2 = (int) (1 + Math.random() * 2);
+        switch (rand2) {
+            case 1:
+                this.dropItem(ItemsAether.divine_essence, 1 + rand.nextInt(2));
+                break;
+            case 2:
+                break;
         }
     }
 
     @Override
     public EntityItem entityDropItem(ItemStack stack, float offsetY) {
         if (stack.stackSize != 0 && stack.getItem() != null) {
-            EntityAetherItem entityitem = new EntityAetherItem(this.worldObj, this.posX, this.posY + (double) offsetY, this.posZ, stack);
+            EntityAetherItem entityitem = new EntityAetherItem(
+                this.worldObj,
+                this.posX,
+                this.posY + (double) offsetY,
+                this.posZ,
+                stack);
 
-            if (this.captureDrops)
-                this.capturedDrops.add(entityitem);
-            else
-                this.worldObj.spawnEntityInWorld(entityitem);
+            if (this.captureDrops) this.capturedDrops.add(entityitem);
+            else this.worldObj.spawnEntityInWorld(entityitem);
 
             return entityitem;
         } else {
@@ -662,7 +703,7 @@ public class EntityAncientSunSpirit extends EntityFlying implements IMob, IAethe
     }
 
     private void setDoor(Block block) {
-    	
+
         int x, y, z;
 
         if (this.direction / 2 == 0) {
@@ -706,7 +747,8 @@ public class EntityAncientSunSpirit extends EntityFlying implements IMob, IAethe
                 for (z = this.originPointZ - 20; z < this.originPointZ + 20; ++z) {
                     Block unlock_block = this.worldObj.getBlock(x, y, z);
 
-                    if (unlock_block == BlocksAether.locked_ancient_hellfire_stone || unlock_block == BlocksAether.locked_ancient_light_hellfire_stone) {
+                    if (unlock_block == BlocksAether.locked_ancient_hellfire_stone
+                        || unlock_block == BlocksAether.locked_ancient_light_hellfire_stone) {
                         this.worldObj.setBlock(x, y, z, ((BlockDungeonBase) unlock_block).getUnlockedBlock());
                     }
                 }
@@ -715,7 +757,17 @@ public class EntityAncientSunSpirit extends EntityFlying implements IMob, IAethe
     }
 
     public List<?> getPlayersInDungeon() {
-        return this.worldObj.getEntitiesWithinAABBExcludingEntity(this.getAttackTarget(), AxisAlignedBB.getBoundingBox(this.originPointX, this.originPointY, this.originPointZ, this.originPointX, this.originPointY, this.originPointZ).expand(20, 3, 20));
+        return this.worldObj.getEntitiesWithinAABBExcludingEntity(
+            this.getAttackTarget(),
+            AxisAlignedBB
+                .getBoundingBox(
+                    this.originPointX,
+                    this.originPointY,
+                    this.originPointZ,
+                    this.originPointX,
+                    this.originPointY,
+                    this.originPointZ)
+                .expand(20, 3, 20));
     }
 
     public void setOriginPosition(int x, int y, int z) {
@@ -751,7 +803,8 @@ public class EntityAncientSunSpirit extends EntityFlying implements IMob, IAethe
 
     @Override
     public String getBossName() {
-        return this.dataWatcher.getWatchableObjectString(20) + ", " + StatCollector.translateToLocal("title.aether_legacy.ancient_sun_spirit.name");
+        return this.dataWatcher.getWatchableObjectString(20) + ", "
+            + StatCollector.translateToLocal("title.aether_legacy.ancient_sun_spirit.name");
     }
 
     @Override
@@ -765,8 +818,7 @@ public class EntityAncientSunSpirit extends EntityFlying implements IMob, IAethe
     }
 
     @Override
-    public World func_82194_d()
-    {
+    public World func_82194_d() {
         return this.worldObj;
     }
 }

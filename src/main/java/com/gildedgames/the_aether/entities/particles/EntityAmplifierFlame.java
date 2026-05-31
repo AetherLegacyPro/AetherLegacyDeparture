@@ -1,14 +1,15 @@
 package com.gildedgames.the_aether.entities.particles;
 
-import net.minecraft.client.particle.*;
-import net.minecraft.util.*;
-import net.minecraft.world.*;
-import net.minecraft.client.renderer.*;
-import org.lwjgl.opengl.*;
-import net.minecraft.client.*;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.particle.EntityFX;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
 
-public class EntityAmplifierFlame extends EntityFX
-{
+import org.lwjgl.opengl.GL11;
+
+public class EntityAmplifierFlame extends EntityFX {
+
     private ResourceLocation particleTexture;
     private float scale;
     private int color;
@@ -16,8 +17,10 @@ public class EntityAmplifierFlame extends EntityFX
     private double relativeTextureHeight;
     private int currentTexture;
     private int textureCounter;
-    
-    public EntityAmplifierFlame(final World world, final double x, final double y, final double z, final double mx, final double my, final double mz, final int maxAge, final float scale, final int color, final ResourceLocation texture, final int textures) {
+
+    public EntityAmplifierFlame(final World world, final double x, final double y, final double z, final double mx,
+        final double my, final double mz, final int maxAge, final float scale, final int color,
+        final ResourceLocation texture, final int textures) {
         super(world, x, y, z, 0.0, 0.0, 0.0);
         this.currentTexture = 0;
         this.textureCounter = 0;
@@ -30,7 +33,7 @@ public class EntityAmplifierFlame extends EntityFX
         this.motionX = this.motionX * 0.009999999776482582 + mx;
         this.motionY = this.motionY * 0.009999999776482582 + my;
         this.motionZ = this.motionZ * 0.009999999776482582 + mz;
-        this.particleMaxAge = (int)(8.0 / (Math.random() * 0.8 + 0.2)) + 4;
+        this.particleMaxAge = (int) (8.0 / (Math.random() * 0.8 + 0.2)) + 4;
         this.noClip = true;
         this.color = color;
         this.scale = scale;
@@ -38,13 +41,19 @@ public class EntityAmplifierFlame extends EntityFX
         this.relativeTextureHeight = 1.0 / this.textures;
         this.particleTexture = texture;
     }
-    
-    public void renderParticle(final Tessellator par1Tessellator, final float partialTicks, final float rx, final float rxz, final float rz, final float ryz, final float rxy) {
-        final float ipx = (float)(this.prevPosX + (this.posX - this.prevPosX) * partialTicks - EntityAmplifierFlame.interpPosX);
-        final float ipy = (float)(this.prevPosY + (this.posY - this.prevPosY) * partialTicks - EntityAmplifierFlame.interpPosY);
-        final float ipz = (float)(this.prevPosZ + (this.posZ - this.prevPosZ) * partialTicks - EntityAmplifierFlame.interpPosZ);
+
+    public void renderParticle(final Tessellator par1Tessellator, final float partialTicks, final float rx,
+        final float rxz, final float rz, final float ryz, final float rxy) {
+        final float ipx = (float) (this.prevPosX + (this.posX - this.prevPosX) * partialTicks
+            - EntityAmplifierFlame.interpPosX);
+        final float ipy = (float) (this.prevPosY + (this.posY - this.prevPosY) * partialTicks
+            - EntityAmplifierFlame.interpPosY);
+        final float ipz = (float) (this.prevPosZ + (this.posZ - this.prevPosZ) * partialTicks
+            - EntityAmplifierFlame.interpPosZ);
         final int prevTex = GL11.glGetInteger(32873);
-        Minecraft.getMinecraft().getTextureManager().bindTexture(this.particleTexture);
+        Minecraft.getMinecraft()
+            .getTextureManager()
+            .bindTexture(this.particleTexture);
         final float a = (this.color >> 24 & 0xFF) / 255.0f;
         final float r = (this.color >> 16 & 0xFF) / 255.0f;
         final float g = (this.color >> 8 & 0xFF) / 255.0f;
@@ -52,18 +61,38 @@ public class EntityAmplifierFlame extends EntityFX
         par1Tessellator.startDrawingQuads();
         par1Tessellator.setBrightness(this.getBrightnessForRender(partialTicks));
         par1Tessellator.setColorRGBA_F(r, g, b, a);
-        par1Tessellator.addVertexWithUV(ipx - rx * this.scale - ryz * this.scale, ipy - rxz * this.scale, ipz - rz * this.scale - rxy * this.scale, 1.0, (this.currentTexture + 1) * this.relativeTextureHeight);
-        par1Tessellator.addVertexWithUV(ipx - rx * this.scale + ryz * this.scale, ipy + rxz * this.scale, ipz - rz * this.scale + rxy * this.scale, 1.0, this.currentTexture * this.relativeTextureHeight);
-        par1Tessellator.addVertexWithUV(ipx + rx * this.scale + ryz * this.scale, ipy + rxz * this.scale, ipz + rz * this.scale + rxy * this.scale, 0.0, this.currentTexture * this.relativeTextureHeight);
-        par1Tessellator.addVertexWithUV(ipx + rx * this.scale - ryz * this.scale, ipy - rxz * this.scale, ipz + rz * this.scale - rxy * this.scale, 0.0, (this.currentTexture + 1) * this.relativeTextureHeight);
+        par1Tessellator.addVertexWithUV(
+            ipx - rx * this.scale - ryz * this.scale,
+            ipy - rxz * this.scale,
+            ipz - rz * this.scale - rxy * this.scale,
+            1.0,
+            (this.currentTexture + 1) * this.relativeTextureHeight);
+        par1Tessellator.addVertexWithUV(
+            ipx - rx * this.scale + ryz * this.scale,
+            ipy + rxz * this.scale,
+            ipz - rz * this.scale + rxy * this.scale,
+            1.0,
+            this.currentTexture * this.relativeTextureHeight);
+        par1Tessellator.addVertexWithUV(
+            ipx + rx * this.scale + ryz * this.scale,
+            ipy + rxz * this.scale,
+            ipz + rz * this.scale + rxy * this.scale,
+            0.0,
+            this.currentTexture * this.relativeTextureHeight);
+        par1Tessellator.addVertexWithUV(
+            ipx + rx * this.scale - ryz * this.scale,
+            ipy - rxz * this.scale,
+            ipz + rz * this.scale - rxy * this.scale,
+            0.0,
+            (this.currentTexture + 1) * this.relativeTextureHeight);
         par1Tessellator.draw();
         GL11.glBindTexture(3553, prevTex);
     }
-    
+
     public int getFXLayer() {
         return 3;
     }
-    
+
     public void onUpdate() {
         this.prevPosX = this.posX;
         this.prevPosY = this.posY;

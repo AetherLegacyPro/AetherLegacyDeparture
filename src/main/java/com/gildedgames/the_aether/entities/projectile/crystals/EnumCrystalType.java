@@ -2,7 +2,11 @@ package com.gildedgames.the_aether.entities.projectile.crystals;
 
 public enum EnumCrystalType {
 
-    FIRE("random.fizz", "largesmoke", "random.explode", "flame"), ICE("dig.glass", "", "dig.glass", "snowshovel"), THUNDER(), CLOUD("dig.glass", "", "dig.glass", "snowshovel"), HELLFIRE("random.fizz", "largesmoke", "random.explode", "flame");
+    FIRE("random.fizz", "largesmoke", "random.explode", "flame"),
+    ICE("dig.glass", "", "dig.glass", "snowshovel"),
+    THUNDER(),
+    CLOUD("dig.glass", "", "dig.glass", "snowshovel"),
+    HELLFIRE("random.fizz", "largesmoke", "random.explode", "flame");
 
     private String deathSound = "";
 

@@ -1,11 +1,13 @@
 package com.gildedgames.the_aether.client.models.entities;
 
-import net.minecraft.client.model.*;
-import net.minecraft.entity.*;
-import org.lwjgl.opengl.*;
+import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.entity.Entity;
 
-public class CarrionSproutModel extends ModelBase
-{
+import org.lwjgl.opengl.GL11;
+
+public class CarrionSproutModel extends ModelBase {
+
     ModelRenderer TopStem;
     ModelRenderer BottomStem;
     ModelRenderer HeadRoof;
@@ -17,7 +19,7 @@ public class CarrionSproutModel extends ModelBase
     public float sinage;
     public float sinage2;
     private float pie;
-    
+
     public CarrionSproutModel() {
         this.pie = 6.283186f;
         this.textureWidth = 64;
@@ -28,8 +30,7 @@ public class CarrionSproutModel extends ModelBase
             if (i % 2 == 0) {
                 (this.petal[i] = new ModelRenderer(this, 43, 49)).addBox(-2.8f, -1.0f, -10.8f, 6, 0, 9);
                 this.petal[i].setRotationPoint(0.0f, 1.0f, 0.0f);
-            }
-            else {
+            } else {
                 this.petal[i].addBox(-2.8f, -1.0f, -11.8f, 6, 0, 9);
                 this.petal[i].setRotationPoint(0.0f, 1.0f, 0.0f);
             }
@@ -62,9 +63,10 @@ public class CarrionSproutModel extends ModelBase
         this.Jaw.mirror = true;
         this.setRotation(this.Jaw, 0.0f, 0.0f, 0.0f);
     }
-    
+
     @Override
-    public void render(final Entity entity, final float f, final float f1, final float f2, final float f3, final float f4, final float f5) {
+    public void render(final Entity entity, final float f, final float f1, final float f2, final float f3,
+        final float f4, final float f5) {
         super.render(entity, f, f1, f2, f3, f4, f5);
         this.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
         for (int i = 0; i < CarrionSproutModel.petals; ++i) {
@@ -81,15 +83,16 @@ public class CarrionSproutModel extends ModelBase
         this.BottomStem.render(f5);
         GL11.glPopMatrix();
     }
-    
+
     private void setRotation(final ModelRenderer model, final float x, final float y, final float z) {
         model.rotateAngleX = x;
         model.rotateAngleY = y;
         model.rotateAngleZ = z;
     }
-    
+
     @Override
-    public void setRotationAngles(final float f, final float f1, final float f2, final float f3, final float f4, final float f5, final Entity entity) {
+    public void setRotationAngles(final float f, final float f1, final float f2, final float f3, final float f4,
+        final float f5, final Entity entity) {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
         final float boff = this.sinage2;
         final float yOffset = 21.0f;
@@ -112,9 +115,8 @@ public class CarrionSproutModel extends ModelBase
         this.HeadRoof.rotationPointY = boff + this.sinage * 2.0f;
         this.Teeth.rotationPointY = boff + 4.5f + this.sinage * 2.0f;
     }
-    
+
     static {
-    	CarrionSproutModel.petals = 8;
+        CarrionSproutModel.petals = 8;
     }
 }
-

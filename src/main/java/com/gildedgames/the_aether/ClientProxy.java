@@ -1,5 +1,11 @@
 package com.gildedgames.the_aether;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Random;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityFX;
 import net.minecraft.client.renderer.EntityRenderer;
@@ -41,127 +47,156 @@ import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.Loader;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Random;
+public class ClientProxy extends CommonProxy {
 
-	public class ClientProxy extends CommonProxy {
+    public static final IIcon[] ACCESSORY_ICONS = new IIcon[8];
 
-		public static final IIcon[] ACCESSORY_ICONS = new IIcon[8];
+    @Override
+    public void init() {
 
-		@Override
-		public void init() {			
+        berryBushRenderID = RenderingRegistry.getNextAvailableRenderId();
+        treasureChestRenderID = RenderingRegistry.getNextAvailableRenderId();
+        aetherFlowerRenderID = RenderingRegistry.getNextAvailableRenderId();
+        ancientEnchanterID = RenderingRegistry.getNextAvailableRenderId();
 
-			berryBushRenderID = RenderingRegistry.getNextAvailableRenderId();
-			treasureChestRenderID = RenderingRegistry.getNextAvailableRenderId();
-			aetherFlowerRenderID = RenderingRegistry.getNextAvailableRenderId();
-			ancientEnchanterID = RenderingRegistry.getNextAvailableRenderId();
-			
-			ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySkyrootChest.class, new TileEntitySkyrootChestRenderer());
-			BlocksAether.SkyrootChestRenderId = RenderingRegistry.getNextAvailableRenderId();
-			RenderingRegistry.registerBlockHandler(new SkyrootChestRenderer(new TileEntitySkyrootChest()));
-			
-			ClientRegistry.bindTileEntitySpecialRenderer(TileEntityElysianChest.class, new TileEntityElysianChestRenderer());
-			BlocksAether.ElysianChestRenderId = RenderingRegistry.getNextAvailableRenderId();
-			RenderingRegistry.registerBlockHandler(new ElysianChestRenderer(new TileEntityElysianChest()));
+        ClientRegistry
+            .bindTileEntitySpecialRenderer(TileEntitySkyrootChest.class, new TileEntitySkyrootChestRenderer());
+        BlocksAether.SkyrootChestRenderId = RenderingRegistry.getNextAvailableRenderId();
+        RenderingRegistry.registerBlockHandler(new SkyrootChestRenderer(new TileEntitySkyrootChest()));
 
-			ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTreasureChestBreakable.class, new TileEntityTreasureChestBreakableRenderer());
-			BlocksAether.TreasureChestBreakbleRenderId = RenderingRegistry.getNextAvailableRenderId();
-			RenderingRegistry.registerBlockHandler(new TreasureChestBreakableRenderer(new TileEntityTreasureChestBreakable()));
-			
-			BlocksAether.AncientEnchanterRenderId = RenderingRegistry.getNextAvailableRenderId();
-			RenderingRegistry.registerBlockHandler(new RenderHandlerTileEntity(new TileEntityAncientEnchanter(), BlocksAether.AncientEnchanterRenderId));
-			
-			BlocksAether.ElysianTotemRenderId = RenderingRegistry.getNextAvailableRenderId();
-			ClientRegistry.bindTileEntitySpecialRenderer(TileEntityElysianTotem.class, new TileEntityElysianTotemRenderer());
-			RenderingRegistry.registerBlockHandler(new RenderHandlerTileEntity(new TileEntityElysianTotem(), BlocksAether.ElysianTotemRenderId, 0.6f).setYOffset(-0.5f));
-			
-			BlocksAether.AuraliteClusterRenderId = RenderingRegistry.getNextAvailableRenderId();
-			RenderingRegistry.registerBlockHandler(new BlockAuraliteClusterRenderer());
-			RenderingRegistry.registerBlockHandler(new BlockAceninumClusterRenderer());
-			
-			EntityRenderer previousRenderer = Minecraft.getMinecraft().entityRenderer;
-			
-			Minecraft.getMinecraft().entityRenderer = new AetherEntityRenderer(Minecraft.getMinecraft(), previousRenderer, Minecraft.getMinecraft().getResourceManager());
-			
-			ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAncientEnchanter.class, new TileEntityAncientEnchanterRenderer());
-			
-			RendersAether.initialization();
+        ClientRegistry
+            .bindTileEntitySpecialRenderer(TileEntityElysianChest.class, new TileEntityElysianChestRenderer());
+        BlocksAether.ElysianChestRenderId = RenderingRegistry.getNextAvailableRenderId();
+        RenderingRegistry.registerBlockHandler(new ElysianChestRenderer(new TileEntityElysianChest()));
 
-			if(!AetherConfig.UseBaublesExpandedMenu()) {
-				AetherKeybinds.initialization();
-			}
+        ClientRegistry.bindTileEntitySpecialRenderer(
+            TileEntityTreasureChestBreakable.class,
+            new TileEntityTreasureChestBreakableRenderer());
+        BlocksAether.TreasureChestBreakbleRenderId = RenderingRegistry.getNextAvailableRenderId();
+        RenderingRegistry
+            .registerBlockHandler(new TreasureChestBreakableRenderer(new TileEntityTreasureChestBreakable()));
 
-			registerEvent(new AetherMusicHandler());
-			registerEvent(new AetherClientEvents());
-			registerEvent(new GuiAetherInGame(Minecraft.getMinecraft()));
+        BlocksAether.AncientEnchanterRenderId = RenderingRegistry.getNextAvailableRenderId();
+        RenderingRegistry.registerBlockHandler(
+            new RenderHandlerTileEntity(new TileEntityAncientEnchanter(), BlocksAether.AncientEnchanterRenderId));
 
-			if (Loader.isModLoaded("battlegear2") && AetherConfig.enable_battlegear2_compatibility) {
-			AetherClientCompatibility.initialization();
-			}
-		}
+        BlocksAether.ElysianTotemRenderId = RenderingRegistry.getNextAvailableRenderId();
+        ClientRegistry
+            .bindTileEntitySpecialRenderer(TileEntityElysianTotem.class, new TileEntityElysianTotemRenderer());
+        RenderingRegistry.registerBlockHandler(
+            new RenderHandlerTileEntity(new TileEntityElysianTotem(), BlocksAether.ElysianTotemRenderId, 0.6f)
+                .setYOffset(-0.5f));
 
-		public void generateFile(String input, String name, String path)
-		{
-			try {
-				File file = new File(path + "/" + name);
+        BlocksAether.AuraliteClusterRenderId = RenderingRegistry.getNextAvailableRenderId();
+        RenderingRegistry.registerBlockHandler(new BlockAuraliteClusterRenderer());
+        RenderingRegistry.registerBlockHandler(new BlockAceninumClusterRenderer());
 
-				if (!file.exists())
-				{
-					InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream(input);
-					FileOutputStream outputStream = new FileOutputStream(file);
+        EntityRenderer previousRenderer = Minecraft.getMinecraft().entityRenderer;
 
-					if (inputStream != null)
-					{
-						int i;
-						while ((i = inputStream.read()) != -1)
-						{
-							outputStream.write(i);
-						}
+        Minecraft.getMinecraft().entityRenderer = new AetherEntityRenderer(
+            Minecraft.getMinecraft(),
+            previousRenderer,
+            Minecraft.getMinecraft()
+                .getResourceManager());
 
-						inputStream.close();
-						outputStream.close();
-					}
-				}
-			}
-			catch (IOException ignore) { }
-		}
+        ClientRegistry
+            .bindTileEntitySpecialRenderer(TileEntityAncientEnchanter.class, new TileEntityAncientEnchanterRenderer());
 
-		@Override
-		public void sendMessage(EntityPlayer player, String text) {
-			if (this.getPlayer() == player)
-			{
-				Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(text));
-			}
-		}
-		
-		@Override
-		public void spawnAltarParticles(final World world, final int x, final int y, final int z, final Random rand) {
-		    for (int particleAmount = 50, count = 0; count < particleAmount; ++count) {
-		       final EntityFX particles = new EntityGoldenFX(world, x + rand.nextFloat(), y + ((count > particleAmount / 2) ? 0.3f : 0.5f), z + rand.nextFloat(), 0.0, 1.0, 0.0);
-		       FMLClientHandler.instance().getClient().effectRenderer.addEffect(particles);
-		   }
-		}
-		 
-		 @Override
-		 public void spawnCloudSmoke(final World world, final double x, final double y, final double z, final Random rand, final double radius, final double forceX, final double forceY, final double forceZ, final double riseRate) {
-		     final double xOffset = x + rand.nextDouble() * radius * 2.0 - radius;
-		     final double yOffset = y + rand.nextDouble() * radius * 2.0 - radius;
-		     final double zOffset = z + rand.nextDouble() * radius * 2.0 - radius;
-		     final EntityFX entityFX = new EntityCloudSmokeFX(world, xOffset, yOffset, zOffset, forceX, forceY, forceZ, 2.5f, 1.0f, 1.0f, 1.0f, riseRate);
-		     FMLClientHandler.instance().getClient().effectRenderer.addEffect(entityFX);
-		}
+        RendersAether.initialization();
 
-		@Override
-		public void openSunAltar() {
-			FMLClientHandler.instance().getClient().displayGuiScreen(new GuiSunAltar());
-		}
+        if (!AetherConfig.UseBaublesExpandedMenu()) {
+            AetherKeybinds.initialization();
+        }
 
-		@Override
-		public EntityPlayer getPlayer() {
-			return Minecraft.getMinecraft().thePlayer;
-		}
+        registerEvent(new AetherMusicHandler());
+        registerEvent(new AetherClientEvents());
+        registerEvent(new GuiAetherInGame(Minecraft.getMinecraft()));
+
+        if (Loader.isModLoaded("battlegear2") && AetherConfig.enable_battlegear2_compatibility) {
+            AetherClientCompatibility.initialization();
+        }
+    }
+
+    public void generateFile(String input, String name, String path) {
+        try {
+            File file = new File(path + "/" + name);
+
+            if (!file.exists()) {
+                InputStream inputStream = this.getClass()
+                    .getClassLoader()
+                    .getResourceAsStream(input);
+                FileOutputStream outputStream = new FileOutputStream(file);
+
+                if (inputStream != null) {
+                    int i;
+                    while ((i = inputStream.read()) != -1) {
+                        outputStream.write(i);
+                    }
+
+                    inputStream.close();
+                    outputStream.close();
+                }
+            }
+        } catch (IOException ignore) {}
+    }
+
+    @Override
+    public void sendMessage(EntityPlayer player, String text) {
+        if (this.getPlayer() == player) {
+            Minecraft.getMinecraft().ingameGUI.getChatGUI()
+                .printChatMessage(new ChatComponentText(text));
+        }
+    }
+
+    @Override
+    public void spawnAltarParticles(final World world, final int x, final int y, final int z, final Random rand) {
+        for (int particleAmount = 50, count = 0; count < particleAmount; ++count) {
+            final EntityFX particles = new EntityGoldenFX(
+                world,
+                x + rand.nextFloat(),
+                y + ((count > particleAmount / 2) ? 0.3f : 0.5f),
+                z + rand.nextFloat(),
+                0.0,
+                1.0,
+                0.0);
+            FMLClientHandler.instance()
+                .getClient().effectRenderer.addEffect(particles);
+        }
+    }
+
+    @Override
+    public void spawnCloudSmoke(final World world, final double x, final double y, final double z, final Random rand,
+        final double radius, final double forceX, final double forceY, final double forceZ, final double riseRate) {
+        final double xOffset = x + rand.nextDouble() * radius * 2.0 - radius;
+        final double yOffset = y + rand.nextDouble() * radius * 2.0 - radius;
+        final double zOffset = z + rand.nextDouble() * radius * 2.0 - radius;
+        final EntityFX entityFX = new EntityCloudSmokeFX(
+            world,
+            xOffset,
+            yOffset,
+            zOffset,
+            forceX,
+            forceY,
+            forceZ,
+            2.5f,
+            1.0f,
+            1.0f,
+            1.0f,
+            riseRate);
+        FMLClientHandler.instance()
+            .getClient().effectRenderer.addEffect(entityFX);
+    }
+
+    @Override
+    public void openSunAltar() {
+        FMLClientHandler.instance()
+            .getClient()
+            .displayGuiScreen(new GuiSunAltar());
+    }
+
+    @Override
+    public EntityPlayer getPlayer() {
+        return Minecraft.getMinecraft().thePlayer;
+    }
 
 }

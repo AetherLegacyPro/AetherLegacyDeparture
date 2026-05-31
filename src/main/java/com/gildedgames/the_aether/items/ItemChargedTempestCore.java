@@ -1,8 +1,5 @@
 package com.gildedgames.the_aether.items;
 
-import com.gildedgames.the_aether.entities.block.EntityFireProofItemAether;
-import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
-
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.EnumRarity;
@@ -11,38 +8,41 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
-public class ItemChargedTempestCore extends Item {
-	
-	private IIcon[] icon;
+import com.gildedgames.the_aether.entities.block.EntityFireProofItemAether;
+import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
 
-	public ItemChargedTempestCore() {
-		this.icon = new IIcon[1];
-		maxStackSize = 8;
+public class ItemChargedTempestCore extends Item {
+
+    private IIcon[] icon;
+
+    public ItemChargedTempestCore() {
+        this.icon = new IIcon[1];
+        maxStackSize = 8;
         this.setCreativeTab(AetherCreativeTabs.material);
     }
-	
-	public void registerBlockIcons(final IIconRegister iconRegister) {
+
+    public void registerBlockIcons(final IIconRegister iconRegister) {
         this.icon[0] = iconRegister.registerIcon("aether_legacy:charged_tempest_core");
     }
-	
-	public IIcon getIcon(final int side, int meta) {
+
+    public IIcon getIcon(final int side, int meta) {
         if (meta < 0 || meta >= this.icon.length) {
             meta = 1;
         }
         return this.icon[meta];
     }
-	
-	@Override
-	public EnumRarity getRarity(ItemStack stack) {
-		return ItemsAether.aether_loot;
-	}
-	
-	public boolean hasCustomEntity(final ItemStack stack) {
+
+    @Override
+    public EnumRarity getRarity(ItemStack stack) {
+        return ItemsAether.aether_loot;
+    }
+
+    public boolean hasCustomEntity(final ItemStack stack) {
         return true;
     }
-    
+
     public Entity createEntity(final World world, final Entity location, final ItemStack itemstack) {
         return new EntityFireProofItemAether(world, location, itemstack);
     }
-	
+
 }

@@ -1,12 +1,15 @@
 package com.gildedgames.the_aether.entities.passive.mountable;
 
-import com.gildedgames.the_aether.blocks.BlocksAether;
-import com.gildedgames.the_aether.items.ItemsAether;
-import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
-
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.*;
+import net.minecraft.entity.ai.EntityAIFollowParent;
+import net.minecraft.entity.ai.EntityAILookIdle;
+import net.minecraft.entity.ai.EntityAIMate;
+import net.minecraft.entity.ai.EntityAIPanic;
+import net.minecraft.entity.ai.EntityAISwimming;
+import net.minecraft.entity.ai.EntityAITempt;
+import net.minecraft.entity.ai.EntityAIWander;
+import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -17,7 +20,10 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
+import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.entities.util.EntityZephyrooSaddleMount;
+import com.gildedgames.the_aether.items.ItemsAether;
+import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 
 public class EntityAerwhaleMount extends EntityZephyrooSaddleMount {
 
@@ -44,7 +50,8 @@ public class EntityAerwhaleMount extends EntityZephyrooSaddleMount {
         this.canJumpMidAir = true;
 
         this.setSize(2.0F, 2.0F);
-        this.getNavigator().setAvoidsWater(true);
+        this.getNavigator()
+            .setAvoidsWater(true);
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(1, new EntityAIPanic(this, 2.0D));
         this.tasks.addTask(3, new EntityAIMate(this, 1.0D));
@@ -58,8 +65,10 @@ public class EntityAerwhaleMount extends EntityZephyrooSaddleMount {
     @Override
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(140.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.10000000298023224D);
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth)
+            .setBaseValue(140.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed)
+            .setBaseValue(0.10000000298023224D);
     }
 
     @Override
@@ -73,7 +82,7 @@ public class EntityAerwhaleMount extends EntityZephyrooSaddleMount {
         } else {
             this.aimingForFold = 1.0F;
         }
-        
+
         if (this.riddenByEntity instanceof EntityPlayer) {
             ((EntityPlayer) this.riddenByEntity).triggerAchievement(AchievementsAether.flying_aerwhale);
         }
@@ -85,17 +94,16 @@ public class EntityAerwhaleMount extends EntityZephyrooSaddleMount {
         this.fallDistance = 0;
         this.fall();
     }
-    
+
     public boolean attackEntityFrom(DamageSource ds, float i) {
-		if (ds == DamageSource.inWall)
-        {
+        if (ds == DamageSource.inWall) {
             return false;
         }
-		
-		boolean flag = super.attackEntityFrom(ds, i);
 
-		return flag;
-	}
+        boolean flag = super.attackEntityFrom(ds, i);
+
+        return flag;
+    }
 
     @Override
     public void writeEntityToNBT(NBTTagCompound compound) {
@@ -156,7 +164,8 @@ public class EntityAerwhaleMount extends EntityZephyrooSaddleMount {
                     player.inventory.setInventorySlotContents(player.inventory.currentItem, new ItemStack(milk));
                 } else if (!player.inventory.addItemStackToInventory(new ItemStack(milk))) {
                     if (!this.worldObj.isRemote) {
-                        this.worldObj.spawnEntityInWorld(new EntityItem(worldObj, player.posX, player.posY, player.posZ, new ItemStack(milk)));
+                        this.worldObj.spawnEntityInWorld(
+                            new EntityItem(worldObj, player.posX, player.posY, player.posZ, new ItemStack(milk)));
 
                         if (!player.capabilities.isCreativeMode) {
                             --stack.stackSize;
@@ -172,19 +181,19 @@ public class EntityAerwhaleMount extends EntityZephyrooSaddleMount {
     }
 
     @Override
-	public String getLivingSound() {
-		return "aether_legacy:aemob.aerwhale.call";
-	}
+    public String getLivingSound() {
+        return "aether_legacy:aemob.aerwhale.call";
+    }
 
-	@Override
-	protected String getHurtSound() {
-		return "aether_legacy:aemob.aerwhale.death";
-	}
+    @Override
+    protected String getHurtSound() {
+        return "aether_legacy:aemob.aerwhale.death";
+    }
 
-	@Override
-	protected String getDeathSound() {
-		return "aether_legacy:aemob.aerwhale.death";
-	}
+    @Override
+    protected String getDeathSound() {
+        return "aether_legacy:aemob.aerwhale.death";
+    }
 
     @Override
     protected float getSoundVolume() {
@@ -197,7 +206,11 @@ public class EntityAerwhaleMount extends EntityZephyrooSaddleMount {
         int k;
 
         for (k = 0; k < j; ++k) {
-            this.dropItem(ItemsAether.raw_aerwhale, 3);
+            if (this.isBurning()) {
+                this.dropItem(ItemsAether.enchanted_aerwhale, 3);
+            } else {
+                this.dropItem(ItemsAether.raw_aerwhale, 3);
+            }
         }
 
         j = this.rand.nextInt(3) + 1 + this.rand.nextInt(1 + lootLevel);
@@ -212,31 +225,39 @@ public class EntityAerwhaleMount extends EntityZephyrooSaddleMount {
 
         super.dropFewItems(recentlyHit, lootLevel);
     }
-    
+
     @Override
-   	public boolean getCanSpawnHere() {
-   	      final int i = MathHelper.floor_double(this.posX);
-   	      final int j = MathHelper.floor_double(this.boundingBox.minY);
-   	      final int k = MathHelper.floor_double(this.posZ);
-   	      final boolean canSpawn = this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
-   	      return (this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_dirt || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.arctic_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.verdant_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.enchanted_aether_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.divine_grass) && this.worldObj.getBlockLightValue(i, j, k) > 7 && canSpawn;
-   	                       
-   	}
+    public boolean getCanSpawnHere() {
+        final int i = MathHelper.floor_double(this.posX);
+        final int j = MathHelper.floor_double(this.boundingBox.minY);
+        final int k = MathHelper.floor_double(this.posZ);
+        final boolean canSpawn = this.worldObj.checkNoEntityCollision(this.boundingBox)
+            && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox)
+                .isEmpty()
+            && !this.worldObj.isAnyLiquid(this.boundingBox);
+        return (this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_dirt
+            || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_grass
+            || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.arctic_grass
+            || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.verdant_grass
+            || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.enchanted_aether_grass
+            || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.divine_grass)
+            && this.worldObj.getBlockLightValue(i, j, k) > 7
+            && canSpawn;
+
+    }
 
     @Override
     protected double getMountJumpStrength() {
         return 14.0D;
     }
-    
-    public EntityAerwhaleMount createChild(EntityAgeable p_90011_1_)
-    {
-    	EntityAerwhaleMount entityaerwhale = new EntityAerwhaleMount(this.worldObj);
+
+    public EntityAerwhaleMount createChild(EntityAgeable p_90011_1_) {
+        EntityAerwhaleMount entityaerwhale = new EntityAerwhaleMount(this.worldObj);
 
         return entityaerwhale;
     }
-    
-    public boolean isBreedingItem(ItemStack p_70877_1_)
-    {
+
+    public boolean isBreedingItem(ItemStack p_70877_1_) {
         return p_70877_1_ != null && p_70877_1_.getItem() == ItemsAether.void_tomato;
     }
 

@@ -13,15 +13,18 @@ import com.gildedgames.the_aether.entities.projectile.EntityAercenturionProjecti
 
 public class AercenturionProjectileRenderer extends RenderLiving {
 
-	private static final ResourceLocation soundwaveTexture = new ResourceLocation("aether_legacy", "textures/entities/projectile/valkyrie_wave.png");
-	
+    private static final ResourceLocation soundwaveTexture = new ResourceLocation(
+        "aether_legacy",
+        "textures/entities/projectile/valkyrie_wave.png");
+
     public AercenturionProjectileRenderer() {
         super(new AercenturionModel(), 0.5f);
 
         this.shadowSize = 0.0F;
     }
 
-    public void doRenderNotchWave(EntityAercenturionProjectile notchwave, double par2, double par4, double par6, float par8, float par9) {
+    public void doRenderNotchWave(EntityAercenturionProjectile notchwave, double par2, double par4, double par6,
+        float par8, float par9) {
         GL11.glPushMatrix();
         GL11.glEnable(GL12.GL_RESCALE_NORMAL);
         GL11.glTranslated(par2, par4, par6);

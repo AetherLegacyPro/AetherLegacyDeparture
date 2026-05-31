@@ -7,14 +7,13 @@ import com.gildedgames.the_aether.Aether;
 
 public class BlockAerScalesBlock extends BlockBreakable {
 
-	public BlockAerScalesBlock() {
-		super(Aether.find("cer_scales_block"), Material.rock, false);
+    public BlockAerScalesBlock() {
+        super(Aether.find("cer_scales_block"), Material.rock, false);
 
-		this.setHardness(15.0F);
-		this.setResistance(5000F);
-		this.setStepSound(soundTypeMetal);
-		this.setHarvestLevel("pickaxe", 3);
-	}
-
+        this.setHardness(15.0F);
+        this.setResistance(5000F);
+        this.setStepSound(soundTypeMetal);
+        this.setHarvestLevel("pickaxe", 3);
+    }
 
 }

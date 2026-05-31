@@ -1,11 +1,14 @@
 package com.gildedgames.the_aether.blocks.ancient.enchanter;
 
-import cpw.mods.fml.relauncher.*;
-import net.minecraft.client.model.*;
+import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.model.ModelRenderer;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class AncientEnchanterModel extends ModelBase
-{
+public class AncientEnchanterModel extends ModelBase {
+
     public ModelRenderer TopBase;
     public ModelRenderer CornerTopLeft;
     public ModelRenderer AmbrosiumTopLeft;
@@ -23,7 +26,7 @@ public class AncientEnchanterModel extends ModelBase
     private float offsetX;
     private float offsetY;
     private float offsetZ;
-    
+
     public AncientEnchanterModel() {
         this.offsetX = 0.0f;
         this.offsetY = 0.0f;
@@ -38,15 +41,18 @@ public class AncientEnchanterModel extends ModelBase
         this.setRotationPointWithOffset(this.CornerTopLeft, 4.0f, 8.0f, 4.0f);
         this.CornerTopLeft.mirror = true;
         this.setRotation(this.CornerTopLeft, 0.0f, 0.0f, 0.0f);
-        (this.AmbrosiumTopLeft = new ModelRenderer(this, 0, 29).setTextureSize(64, 64)).addBox(-1.0f, 0.0f, -1.0f, 2, 1, 2);
+        (this.AmbrosiumTopLeft = new ModelRenderer(this, 0, 29).setTextureSize(64, 64))
+            .addBox(-1.0f, 0.0f, -1.0f, 2, 1, 2);
         this.setRotationPointWithOffset(this.AmbrosiumTopLeft, 6.0f, 7.0f, 6.0f);
         this.AmbrosiumTopLeft.mirror = true;
         this.setRotation(this.AmbrosiumTopLeft, 0.0f, 0.0f, 0.0f);
-        (this.CornerBottomLeft = new ModelRenderer(this, 48, 6).setTextureSize(64, 64)).addBox(0.0f, 0.0f, 0.0f, 4, 5, 4);
+        (this.CornerBottomLeft = new ModelRenderer(this, 48, 6).setTextureSize(64, 64))
+            .addBox(0.0f, 0.0f, 0.0f, 4, 5, 4);
         this.setRotationPointWithOffset(this.CornerBottomLeft, -8.0f, 8.0f, 4.0f);
         this.CornerBottomLeft.mirror = true;
         this.setRotation(this.CornerBottomLeft, 0.0f, 0.0f, 0.0f);
-        (this.CornerBottomRight = new ModelRenderer(this, 48, 6).setTextureSize(64, 64)).addBox(0.0f, 0.0f, 0.0f, 4, 5, 4);
+        (this.CornerBottomRight = new ModelRenderer(this, 48, 6).setTextureSize(64, 64))
+            .addBox(0.0f, 0.0f, 0.0f, 4, 5, 4);
         this.setRotationPointWithOffset(this.CornerBottomRight, -8.0f, 8.0f, -8.0f);
         this.CornerBottomRight.mirror = true;
         this.setRotation(this.CornerBottomRight, 0.0f, 0.0f, 0.0f);
@@ -54,15 +60,18 @@ public class AncientEnchanterModel extends ModelBase
         this.setRotationPointWithOffset(this.CornerTopRight, 4.0f, 8.0f, -8.0f);
         this.CornerTopRight.mirror = true;
         this.setRotation(this.CornerTopRight, 0.0f, 0.0f, 0.0f);
-        (this.AmbrosiumTopRight = new ModelRenderer(this, 0, 29).setTextureSize(64, 64)).addBox(-1.0f, 0.0f, -1.0f, 2, 1, 2);
+        (this.AmbrosiumTopRight = new ModelRenderer(this, 0, 29).setTextureSize(64, 64))
+            .addBox(-1.0f, 0.0f, -1.0f, 2, 1, 2);
         this.setRotationPointWithOffset(this.AmbrosiumTopRight, 6.0f, 7.0f, -6.0f);
         this.AmbrosiumTopRight.mirror = true;
         this.setRotation(this.AmbrosiumTopRight, 0.0f, 0.0f, 0.0f);
-        (this.AmbrosiumBottomLeft = new ModelRenderer(this, 0, 29).setTextureSize(64, 64)).addBox(-1.0f, 0.0f, -1.0f, 2, 1, 2);
+        (this.AmbrosiumBottomLeft = new ModelRenderer(this, 0, 29).setTextureSize(64, 64))
+            .addBox(-1.0f, 0.0f, -1.0f, 2, 1, 2);
         this.setRotationPointWithOffset(this.AmbrosiumBottomLeft, -6.0f, 7.0f, 6.0f);
         this.AmbrosiumBottomLeft.mirror = true;
         this.setRotation(this.AmbrosiumBottomLeft, 0.0f, 0.0f, 0.0f);
-        (this.AmbrosiumBottomRight = new ModelRenderer(this, 0, 29).setTextureSize(64, 64)).addBox(-1.0f, 0.0f, -1.0f, 2, 1, 2);
+        (this.AmbrosiumBottomRight = new ModelRenderer(this, 0, 29).setTextureSize(64, 64))
+            .addBox(-1.0f, 0.0f, -1.0f, 2, 1, 2);
         this.setRotationPointWithOffset(this.AmbrosiumBottomRight, -6.0f, 7.0f, -6.0f);
         this.AmbrosiumBottomRight.mirror = true;
         this.setRotation(this.AmbrosiumBottomRight, 0.0f, 0.0f, 0.0f);
@@ -78,7 +87,8 @@ public class AncientEnchanterModel extends ModelBase
         this.setRotationPointWithOffset(this.BottomBase, -7.0f, 22.0f, -7.0f);
         this.BottomBase.mirror = true;
         this.setRotation(this.BottomBase, 0.0f, 0.0f, 0.0f);
-        (this.UpperBottomBase = new ModelRenderer(this, 16, 5).setTextureSize(64, 64)).addBox(0.0f, 0.0f, 0.0f, 8, 2, 8);
+        (this.UpperBottomBase = new ModelRenderer(this, 16, 5).setTextureSize(64, 64))
+            .addBox(0.0f, 0.0f, 0.0f, 8, 2, 8);
         this.setRotationPointWithOffset(this.UpperBottomBase, -4.0f, 20.0f, -4.0f);
         this.UpperBottomBase.mirror = true;
         this.setRotation(this.UpperBottomBase, 0.0f, 0.0f, 0.0f);
@@ -87,7 +97,7 @@ public class AncientEnchanterModel extends ModelBase
         this.Scroll.mirror = true;
         this.setRotation(this.Scroll, 0.0f, 0.0f, -0.1047198f);
     }
-    
+
     public void renderAll(final float f5) {
         this.TopBase.render(f5);
         this.CornerTopLeft.render(f5);
@@ -104,15 +114,14 @@ public class AncientEnchanterModel extends ModelBase
         this.UpperBottomBase.render(f5);
         this.Scroll.render(f5);
     }
-    
+
     private void setRotation(final ModelRenderer model, final float x, final float y, final float z) {
         model.rotateAngleX = x;
         model.rotateAngleY = y;
         model.rotateAngleZ = z;
     }
-    
+
     private void setRotationPointWithOffset(final ModelRenderer renderer, final float x, final float y, final float z) {
         renderer.setRotationPoint(x + this.offsetX, y + this.offsetY, z + this.offsetZ);
     }
 }
-

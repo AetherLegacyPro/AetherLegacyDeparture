@@ -10,32 +10,32 @@ import net.minecraft.world.IBlockAccess;
 
 public class BlockPrimevalDebris extends Block {
 
-	public BlockPrimevalDebris() {
-		super(Material.iron);
+    public BlockPrimevalDebris() {
+        super(Material.iron);
 
-		this.setHardness(30F);
-		this.setResistance(600000F);
-		this.setStepSound(soundTypeMetal);
-		this.setHarvestLevel("pickaxe", 3);
-		this.setBlockTextureName("aether_legacy:primeval_artifact");
-		setBlockName("Primeval Artifact");
-	}
-	
-	@Override
-	public int getExpDrop(IBlockAccess p_149690_1_, int p_149690_5_, int p_149690_7_) {
-		Random random = new Random();
+        this.setHardness(30F);
+        this.setResistance(600000F);
+        this.setStepSound(soundTypeMetal);
+        this.setHarvestLevel("pickaxe", 3);
+        this.setBlockTextureName("aether_legacy:primeval_artifact");
+        setBlockName("Primeval Artifact");
+    }
 
-		if (this.getItemDropped(p_149690_5_, random, p_149690_7_) != Item.getItemFromBlock(this)) {
-			int amount = 0;
+    @Override
+    public int getExpDrop(IBlockAccess p_149690_1_, int p_149690_5_, int p_149690_7_) {
+        Random random = new Random();
 
-			if (this == BlocksAether.primeval_artifact) {
-				amount = MathHelper.getRandomIntegerInRange(random, 5, 10);
-			}
+        if (this.getItemDropped(p_149690_5_, random, p_149690_7_) != Item.getItemFromBlock(this)) {
+            int amount = 0;
 
-			return amount;
-		}
+            if (this == BlocksAether.primeval_artifact) {
+                amount = MathHelper.getRandomIntegerInRange(random, 5, 10);
+            }
 
-		return 0;
-	}
+            return amount;
+        }
+
+        return 0;
+    }
 
 }

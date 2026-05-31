@@ -2,7 +2,10 @@ package com.gildedgames.the_aether.entities.hostile.swet;
 
 public enum EnumSwetType {
 
-    BLUE(), PURPLE(), POISON(), GOLDEN();
+    BLUE(),
+    PURPLE(),
+    POISON(),
+    GOLDEN();
 
     EnumSwetType() {
 

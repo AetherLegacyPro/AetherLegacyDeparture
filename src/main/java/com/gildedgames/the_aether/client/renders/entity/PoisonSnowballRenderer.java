@@ -1,8 +1,5 @@
 package com.gildedgames.the_aether.client.renders.entity;
 
-import com.gildedgames.the_aether.Aether;
-import com.gildedgames.the_aether.entities.projectile.EntityPoisonSnowball;
-
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
@@ -10,6 +7,9 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
+
+import com.gildedgames.the_aether.Aether;
+import com.gildedgames.the_aether.entities.projectile.EntityPoisonSnowball;
 
 public class PoisonSnowballRenderer extends Render {
 
@@ -19,7 +19,8 @@ public class PoisonSnowballRenderer extends Render {
         this.shadowSize = 0.0F;
     }
 
-    public void doRenderNotchWave(EntityPoisonSnowball notchwave, double par2, double par4, double par6, float par8, float par9) {
+    public void doRenderNotchWave(EntityPoisonSnowball notchwave, double par2, double par4, double par6, float par8,
+        float par9) {
         GL11.glPushMatrix();
         GL11.glEnable(GL12.GL_RESCALE_NORMAL);
         GL11.glTranslated(par2, par4, par6);

@@ -1,26 +1,33 @@
 package com.gildedgames.the_aether.client.gui.dialogue.entity;
 
-import com.gildedgames.the_aether.client.gui.dialogue.DialogueOption;
-import com.gildedgames.the_aether.client.gui.dialogue.GuiDialogue;
-import com.gildedgames.the_aether.entities.bosses.valkyrie_queen.EntityDivineValkyrieQueen;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.EnumDifficulty;
 
+import com.gildedgames.the_aether.client.gui.dialogue.DialogueOption;
+import com.gildedgames.the_aether.client.gui.dialogue.GuiDialogue;
+import com.gildedgames.the_aether.entities.bosses.valkyrie_queen.EntityDivineValkyrieQueen;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.network.AetherNetwork;
 import com.gildedgames.the_aether.network.packets.PacketInitiateValkyrieFight;
 
 public class GuiDivineValkyrieDialogue extends GuiDialogue {
 
-    private EntityDivineValkyrieQueen divinevalkyrieQueen;   
+    private EntityDivineValkyrieQueen divinevalkyrieQueen;
 
     private String title;
 
     private int medalSlotId = -1;
 
     public GuiDivineValkyrieDialogue(EntityDivineValkyrieQueen divinevalkyrieQueen) {
-        super("[\247e" + divinevalkyrieQueen.getName() + ", " + I18n.format("title.aether_legacy.valkyrie_queen.name") + "\247r]", new DialogueOption(I18n.format("gui.queen.dialog.0")), new DialogueOption(I18n.format("gui.queen.dialog.1")), new DialogueOption(I18n.format("gui.queen.dialog.2")));
+        super(
+            "[\247e" + divinevalkyrieQueen.getName()
+                + ", "
+                + I18n.format("title.aether_legacy.valkyrie_queen.name")
+                + "\247r]",
+            new DialogueOption(I18n.format("gui.queen.dialog.0")),
+            new DialogueOption(I18n.format("gui.queen.dialog.1")),
+            new DialogueOption(I18n.format("gui.queen.dialog.2")));
 
         this.title = this.getDialogue();
         this.divinevalkyrieQueen = divinevalkyrieQueen;
@@ -28,14 +35,18 @@ public class GuiDivineValkyrieDialogue extends GuiDialogue {
 
     @Override
     public void dialogueClicked(DialogueOption dialogue) {
-        if (this.getDialogueOptions().size() == 3) {
+        if (this.getDialogueOptions()
+            .size() == 3) {
             if (dialogue.getDialogueId() == 0) {
                 this.addDialogueMessage(this.title + ": " + I18n.format("gui.queen.answer.0"));
                 this.dialogueTreeCompleted();
             } else if (dialogue.getDialogueId() == 1) {
                 DialogueOption medalDialogue = new DialogueOption(this.getMedalDiaulogue());
 
-                this.addDialogueWithOptions(this.title + ": " + I18n.format("gui.queen.answer.1"), medalDialogue, new DialogueOption(I18n.format("gui.valkyrie.dialog.player.denyfight")));
+                this.addDialogueWithOptions(
+                    this.title + ": " + I18n.format("gui.queen.answer.1"),
+                    medalDialogue,
+                    new DialogueOption(I18n.format("gui.valkyrie.dialog.player.denyfight")));
             } else if (dialogue.getDialogueId() == 2) {
                 this.addDialogueMessage(this.title + ": " + I18n.format("gui.queen.answer.2"));
                 this.dialogueTreeCompleted();
@@ -50,7 +61,8 @@ public class GuiDivineValkyrieDialogue extends GuiDialogue {
                 }
 
                 if (this.medalSlotId != -1) {
-                    AetherNetwork.sendToServer(new PacketInitiateValkyrieFight(this.medalSlotId, this.divinevalkyrieQueen.getEntityId()));
+                    AetherNetwork.sendToServer(
+                        new PacketInitiateValkyrieFight(this.medalSlotId, this.divinevalkyrieQueen.getEntityId()));
 
                     this.divinevalkyrieQueen.setBossReady(true);
                     this.addDialogueMessage(this.title + ": " + I18n.format("gui.valkyrie.dialog.ready"));
@@ -84,4 +96,3 @@ public class GuiDivineValkyrieDialogue extends GuiDialogue {
     }
 
 }
-

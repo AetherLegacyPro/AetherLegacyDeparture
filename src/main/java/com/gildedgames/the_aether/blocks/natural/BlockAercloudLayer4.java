@@ -1,12 +1,6 @@
 package com.gildedgames.the_aether.blocks.natural;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
 import java.util.List;
-
-import com.gildedgames.the_aether.blocks.BlocksAether;
-import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -21,11 +15,15 @@ import net.minecraft.util.Facing;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockAercloudLayer4 extends Block
-{
+import com.gildedgames.the_aether.blocks.BlocksAether;
+import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
 
-    public BlockAercloudLayer4()
-    {
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
+public class BlockAercloudLayer4 extends Block {
+
+    public BlockAercloudLayer4() {
         super(Material.cloth);
         this.setHardness(0.1F);
         this.setStepSound(soundTypeCloth);
@@ -35,236 +33,239 @@ public class BlockAercloudLayer4 extends Block
     }
 
     @SideOnly(Side.CLIENT)
-	@SuppressWarnings({"unchecked", "rawtypes"})
-	public void getSubBlocks(Item p_149666_1_, CreativeTabs p_149666_2_, List p_149666_3_) {
-		p_149666_3_.add(new ItemStack(this, 1, 0));
-		p_149666_3_.add(new ItemStack(this, 1, 1));
-		p_149666_3_.add(new ItemStack(this, 1, 2));
-		p_149666_3_.add(new ItemStack(this, 1, 3));
-		p_149666_3_.add(new ItemStack(this, 1, 4));
-	}
-    
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    public void getSubBlocks(Item p_149666_1_, CreativeTabs p_149666_2_, List p_149666_3_) {
+        p_149666_3_.add(new ItemStack(this, 1, 0));
+        p_149666_3_.add(new ItemStack(this, 1, 1));
+        p_149666_3_.add(new ItemStack(this, 1, 2));
+        p_149666_3_.add(new ItemStack(this, 1, 3));
+        p_149666_3_.add(new ItemStack(this, 1, 4));
+    }
+
     @Override
-	public boolean canPlaceBlockAt(World world, int x, int y, int z) {
-		Block soild = world.getBlock(x, y - 1, z);
-		return soild == BlocksAether.aether_grass || soild == BlocksAether.aether_dirt || soild == BlocksAether.arctic_grass || soild == BlocksAether.enchanted_aether_grass || soild == BlocksAether.holystone || soild == BlocksAether.aercloud;
-	}
+    public boolean canPlaceBlockAt(World world, int x, int y, int z) {
+        Block soild = world.getBlock(x, y - 1, z);
+        return soild == BlocksAether.aether_grass || soild == BlocksAether.aether_dirt
+            || soild == BlocksAether.arctic_grass
+            || soild == BlocksAether.enchanted_aether_grass
+            || soild == BlocksAether.holystone
+            || soild == BlocksAether.aercloud;
+    }
 
-	@Override
-	public boolean canBlockStay(World world, int x, int y, int z) {
-		Block soild = world.getBlock(x, y - 1, z);
-		return (soild != null && this.canPlaceBlockAt(world, x, y, z));
-	}
+    @Override
+    public boolean canBlockStay(World world, int x, int y, int z) {
+        Block soild = world.getBlock(x, y - 1, z);
+        return (soild != null && this.canPlaceBlockAt(world, x, y, z));
+    }
 
-	@Override
-	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
-		
-		//blue aercloud
-		if (world.getBlockMetadata(x, y, z) == 1) {
-			if (entity instanceof EntityPlayer player) {
+    @Override
+    public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
 
-				if (player.isSneaking()) {
-					if (entity.motionY < 0) {
-						entity.motionY *= 0.005D;
-					}
+        // blue aercloud
+        if (world.getBlockMetadata(x, y, z) == 1) {
+            if (entity instanceof EntityPlayer player) {
 
-					return;
-				}
+                if (player.isSneaking()) {
+                    if (entity.motionY < 0) {
+                        entity.motionY *= 0.005D;
+                    }
 
-				entity.motionY = 1.1D;
-			} else {
-				if (entity instanceof EntityArrow)
-				{
-					if (entity.ticksExisted >= 1200)
-					{
-						entity.setDead();
-					}
-				}
-				
-				entity.motionY = 1.1D;
-			}
-			
-		}
-		
-		else if (world.getBlockMetadata(x, y, z) == 3) {
-			if (entity instanceof EntityPlayer player) {
+                    return;
+                }
 
-				if (player.isSneaking()) {
-					if (entity.motionZ < 0) {
-						entity.motionZ *= 0.005D;
-					}
+                entity.motionY = 1.1D;
+            } else {
+                if (entity instanceof EntityArrow) {
+                    if (entity.ticksExisted >= 1200) {
+                        entity.setDead();
+                    }
+                }
 
-					return;
-				}
+                entity.motionY = 1.1D;
+            }
 
-				entity.motionZ = 2D;
-			} else {
-				if (entity instanceof EntityArrow)
-				{
-					if (entity.ticksExisted >= 1200)
-					{
-						entity.setDead();
-					}
-				}
-				
-				entity.motionZ = 2D;
-			}
-			
-		}
-		
-		else if (world.getBlockMetadata(x, y, z) == 4) {
-			if (entity instanceof EntityPlayer player) {
-
-				if (player.isSneaking()) {
-					if (entity.motionX < 0) {
-						entity.motionX *= 0.005D;
-					}
-
-					return;
-				}
-
-				entity.motionX = 2D;
-			} else {
-				if (entity instanceof EntityArrow)
-				{
-					if (entity.ticksExisted >= 1200)
-					{
-						entity.setDead();
-					}
-				}
-				
-				entity.motionX = 2D;
-			}
-			
-		}
-			//gold aercloud
-		else if (world.getBlockMetadata(x, y, z) == 2) {
-				if (entity instanceof EntityPlayer player) {
-
-					if (player.isSneaking()) {
-						if (entity.motionY < 0) {
-							entity.motionY *= 0.005D;
-						}
-
-						return;
-					}					
-							entity.motionY = -1.1D;
-				} else {
-					if (entity instanceof EntityArrow)
-					{
-						if (entity.ticksExisted >= 1200)
-						{
-							entity.setDead();
-						}
-					}
-					
-					entity.motionY = -1.1D;
-				}
-
-			if (world.isRemote) {
-				if (!(entity instanceof net.minecraft.client.particle.EntityFX)) {
-					for (int count = 0; count < 50; count++) {
-						double xOffset = x + world.rand.nextDouble();
-						double yOffset = y + world.rand.nextDouble();
-						double zOffset = z + world.rand.nextDouble();
-
-						world.spawnParticle("splash", xOffset, yOffset, zOffset, 0, 0, 0);
-					}
-				}
-			}
-		} else if (entity.motionY < 0) {
-			entity.motionY *= 0.005D;
-			}	
-		}
-
-	@Override
-	public boolean renderAsNormalBlock() {
-		return false;
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public int getRenderBlockPass() {
-		return 1;
-	}
-
-	@Override
-	public boolean isOpaqueCube() {
-		return false;
-	}
-
-	@Override
-	public int damageDropped(int meta) {
-		return meta;
-	}
-	
-	protected boolean canSilkHarvest() {
-        return true;
         }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public int getRenderColor(int meta) {
-		if (meta == 1) {
-			return 0xCCFFFF;
-		} else if (meta == 2) {
-			return 0xFFFF80;
-		} else if (meta == 3) {
-			return 0xbb88f3;
-		} else if (meta == 4) {
-			return 0xb6ea78;
-		}
+        else if (world.getBlockMetadata(x, y, z) == 3) {
+            if (entity instanceof EntityPlayer player) {
 
-		return this.getBlockColor();
-	}
+                if (player.isSneaking()) {
+                    if (entity.motionZ < 0) {
+                        entity.motionZ *= 0.005D;
+                    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public int colorMultiplier(IBlockAccess world, int x, int y, int z) {
-		int meta = world.getBlockMetadata(x, y, z);
+                    return;
+                }
 
-		return this.getRenderColor(meta);
-	}
+                entity.motionZ = 2D;
+            } else {
+                if (entity instanceof EntityArrow) {
+                    if (entity.ticksExisted >= 1200) {
+                        entity.setDead();
+                    }
+                }
 
-	public String getUnlocalizedName(ItemStack stack) {
-		return stack.getItemDamage() == 1 ? "blue_aercloud_layer" : stack.getItemDamage() == 2 ? "golden_aercloud_layer" : stack.getItemDamage() == 3 ? "purple_aercloud_layer" : stack.getItemDamage() == 4 ? "green_aercloud_layer" : "cold_aercloud_layer";
-	}
+                entity.motionZ = 2D;
+            }
 
-	public int getColorFromItemStack(ItemStack stack, int pass) {
-		if (stack.getItemDamage() == 1) {
-			return 0xCCFFFF;
-		} else if (stack.getItemDamage() == 2) {
-			return 0xFFFF80;
-		} else if (stack.getItemDamage() == 3) {
-			return 0xbb88f3;
-		} else if (stack.getItemDamage() == 4) {
-			return 0xb6ea78;
-		}
+        }
 
-		return 0;
-	}
+        else if (world.getBlockMetadata(x, y, z) == 4) {
+            if (entity instanceof EntityPlayer player) {
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public boolean shouldSideBeRendered(IBlockAccess p_149646_1_, int p_149646_2_, int p_149646_3_, int p_149646_4_, int p_149646_5_) {
-		Block block = p_149646_1_.getBlock(p_149646_2_, p_149646_3_, p_149646_4_);
+                if (player.isSneaking()) {
+                    if (entity.motionX < 0) {
+                        entity.motionX *= 0.005D;
+                    }
 
-		if (p_149646_1_.getBlockMetadata(p_149646_2_, p_149646_3_, p_149646_4_) != p_149646_1_.getBlockMetadata(p_149646_2_ - Facing.offsetsXForSide[p_149646_5_], p_149646_3_ - Facing.offsetsYForSide[p_149646_5_], p_149646_4_ - Facing.offsetsZForSide[p_149646_5_])) {
-			return true;
-		}
+                    return;
+                }
 
-		if (block == this) {
-			return false;
-		}
+                entity.motionX = 2D;
+            } else {
+                if (entity instanceof EntityArrow) {
+                    if (entity.ticksExisted >= 1200) {
+                        entity.setDead();
+                    }
+                }
 
-		return super.shouldSideBeRendered(p_149646_1_, p_149646_2_, p_149646_3_, p_149646_4_, p_149646_5_);
-	}
+                entity.motionX = 2D;
+            }
 
-	@Override
-	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
-		return world.getBlockMetadata(x, y, z) != 1 ? AxisAlignedBB.getBoundingBox(x, y, z, x + 1.0D, y + 0.01D, z + 1.0D) : AxisAlignedBB.getBoundingBox(x, y, z, x, y, z);
-	}
+        }
+        // gold aercloud
+        else if (world.getBlockMetadata(x, y, z) == 2) {
+            if (entity instanceof EntityPlayer player) {
+
+                if (player.isSneaking()) {
+                    if (entity.motionY < 0) {
+                        entity.motionY *= 0.005D;
+                    }
+
+                    return;
+                }
+                entity.motionY = -1.1D;
+            } else {
+                if (entity instanceof EntityArrow) {
+                    if (entity.ticksExisted >= 1200) {
+                        entity.setDead();
+                    }
+                }
+
+                entity.motionY = -1.1D;
+            }
+
+            if (world.isRemote) {
+                if (!(entity instanceof net.minecraft.client.particle.EntityFX)) {
+                    for (int count = 0; count < 50; count++) {
+                        double xOffset = x + world.rand.nextDouble();
+                        double yOffset = y + world.rand.nextDouble();
+                        double zOffset = z + world.rand.nextDouble();
+
+                        world.spawnParticle("splash", xOffset, yOffset, zOffset, 0, 0, 0);
+                    }
+                }
+            }
+        } else if (entity.motionY < 0) {
+            entity.motionY *= 0.005D;
+        }
+    }
+
+    @Override
+    public boolean renderAsNormalBlock() {
+        return false;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public int getRenderBlockPass() {
+        return 1;
+    }
+
+    @Override
+    public boolean isOpaqueCube() {
+        return false;
+    }
+
+    @Override
+    public int damageDropped(int meta) {
+        return meta;
+    }
+
+    protected boolean canSilkHarvest() {
+        return true;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public int getRenderColor(int meta) {
+        if (meta == 1) {
+            return 0xCCFFFF;
+        } else if (meta == 2) {
+            return 0xFFFF80;
+        } else if (meta == 3) {
+            return 0xbb88f3;
+        } else if (meta == 4) {
+            return 0xb6ea78;
+        }
+
+        return this.getBlockColor();
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public int colorMultiplier(IBlockAccess world, int x, int y, int z) {
+        int meta = world.getBlockMetadata(x, y, z);
+
+        return this.getRenderColor(meta);
+    }
+
+    public String getUnlocalizedName(ItemStack stack) {
+        return stack.getItemDamage() == 1 ? "blue_aercloud_layer"
+            : stack.getItemDamage() == 2 ? "golden_aercloud_layer"
+                : stack.getItemDamage() == 3 ? "purple_aercloud_layer"
+                    : stack.getItemDamage() == 4 ? "green_aercloud_layer" : "cold_aercloud_layer";
+    }
+
+    public int getColorFromItemStack(ItemStack stack, int pass) {
+        if (stack.getItemDamage() == 1) {
+            return 0xCCFFFF;
+        } else if (stack.getItemDamage() == 2) {
+            return 0xFFFF80;
+        } else if (stack.getItemDamage() == 3) {
+            return 0xbb88f3;
+        } else if (stack.getItemDamage() == 4) {
+            return 0xb6ea78;
+        }
+
+        return 0;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public boolean shouldSideBeRendered(IBlockAccess p_149646_1_, int p_149646_2_, int p_149646_3_, int p_149646_4_,
+        int p_149646_5_) {
+        Block block = p_149646_1_.getBlock(p_149646_2_, p_149646_3_, p_149646_4_);
+
+        if (p_149646_1_.getBlockMetadata(p_149646_2_, p_149646_3_, p_149646_4_) != p_149646_1_.getBlockMetadata(
+            p_149646_2_ - Facing.offsetsXForSide[p_149646_5_],
+            p_149646_3_ - Facing.offsetsYForSide[p_149646_5_],
+            p_149646_4_ - Facing.offsetsZForSide[p_149646_5_])) {
+            return true;
+        }
+
+        if (block == this) {
+            return false;
+        }
+
+        return super.shouldSideBeRendered(p_149646_1_, p_149646_2_, p_149646_3_, p_149646_4_, p_149646_5_);
+    }
+
+    @Override
+    public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
+        return world.getBlockMetadata(x, y, z) != 1
+            ? AxisAlignedBB.getBoundingBox(x, y, z, x + 1.0D, y + 0.01D, z + 1.0D)
+            : AxisAlignedBB.getBoundingBox(x, y, z, x, y, z);
+    }
 
 }
-
-

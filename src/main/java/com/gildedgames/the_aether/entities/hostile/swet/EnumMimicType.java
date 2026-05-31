@@ -2,9 +2,13 @@ package com.gildedgames.the_aether.entities.hostile.swet;
 
 public enum EnumMimicType {
 
-    RED(), ORANGE(), YELLOW(), GREEN(), PURPLE();
+    RED(),
+    ORANGE(),
+    YELLOW(),
+    GREEN(),
+    PURPLE();
 
-	EnumMimicType() {
+    EnumMimicType() {
 
     }
 

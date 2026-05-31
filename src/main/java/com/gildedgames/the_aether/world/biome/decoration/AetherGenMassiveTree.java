@@ -1,27 +1,27 @@
 package com.gildedgames.the_aether.world.biome.decoration;
 
-import net.minecraft.world.gen.feature.*;
-import net.minecraft.block.*;
-import net.minecraft.world.*;
-import java.util.*;
+import java.util.Random;
+
+import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 
 import com.gildedgames.the_aether.blocks.BlocksAether;
 
-import net.minecraft.init.*;
+public class AetherGenMassiveTree extends WorldGenAbstractTree {
 
-public class AetherGenMassiveTree extends WorldGenAbstractTree
-{
     Block leaves;
     int randHeight;
     boolean branches;
-    
+
     public AetherGenMassiveTree(final Block leafID, final int heightWeight, final boolean branchFlag) {
         super(true);
         this.leaves = leafID;
         this.randHeight = heightWeight;
         this.branches = branchFlag;
     }
-    
+
     public boolean generate(final World world, final Random random, final int x, final int y, final int z) {
         boolean cangen = true;
         final int height = random.nextInt(this.randHeight) + (this.branches ? 8 : 4);
@@ -254,11 +254,10 @@ public class AetherGenMassiveTree extends WorldGenAbstractTree
         }
         return true;
     }
-    
+
     public void setBlockAirCheck(final World world, final int x, final int y, final int z, final Block blockID) {
         if (world.getBlock(x, y, z) == Blocks.air) {
             world.setBlock(x, y, z, blockID);
         }
     }
 }
-

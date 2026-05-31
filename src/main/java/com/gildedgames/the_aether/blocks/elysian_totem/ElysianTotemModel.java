@@ -1,10 +1,11 @@
 package com.gildedgames.the_aether.blocks.elysian_totem;
 
-import net.minecraft.client.model.*;
-import net.minecraft.entity.*;
+import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.entity.Entity;
 
-public class ElysianTotemModel extends ModelBase
-{
+public class ElysianTotemModel extends ModelBase {
+
     public ModelRenderer Shape1;
     public ModelRenderer Shape2;
     public ModelRenderer Shape3;
@@ -16,7 +17,7 @@ public class ElysianTotemModel extends ModelBase
     public ModelRenderer Shape9;
     public ModelRenderer Shape10;
     public ModelRenderer Shape11;
-    
+
     public ElysianTotemModel() {
         this.textureWidth = 128;
         this.textureHeight = 64;
@@ -83,7 +84,7 @@ public class ElysianTotemModel extends ModelBase
         this.setRotation(this.Shape11, 0.0f, 0.0f, 0.0f);
         this.Shape11.mirror = false;
     }
-    
+
     public void renderAll(final float f5) {
         this.Shape1.render(f5);
         this.Shape2.render(f5);
@@ -97,14 +98,15 @@ public class ElysianTotemModel extends ModelBase
         this.Shape10.render(f5);
         this.Shape11.render(f5);
     }
-    
+
     private void setRotation(final ModelRenderer model, final float x, final float y, final float z) {
         model.rotateAngleX = x;
         model.rotateAngleY = y;
         model.rotateAngleZ = z;
     }
-    
-    public void setRotationAngles(final float f, final float f1, final float f2, final float f3, final float f4, final float f5, final Entity entity) {
+
+    public void setRotationAngles(final float f, final float f1, final float f2, final float f3, final float f4,
+        final float f5, final Entity entity) {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
     }
 }
