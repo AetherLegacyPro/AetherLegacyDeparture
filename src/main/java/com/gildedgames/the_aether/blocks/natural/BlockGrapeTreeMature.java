@@ -61,9 +61,7 @@ public class BlockGrapeTreeMature extends BlockAetherFlower {
 
         world.setBlock(x, y, z, BlocksAether.grape_tree_stage_one);
 
-        if (randomNum != 0) {
-            this.dropBlockAsItem(world, x, y, z, new ItemStack(ItemsAether.grapes, randomNum, 0));
-        }
+        this.dropBlockAsItem(world, x, y, z, new ItemStack(ItemsAether.grapes, randomNum, 0));
     }
 
     @Override

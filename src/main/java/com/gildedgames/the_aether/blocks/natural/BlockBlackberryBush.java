@@ -61,9 +61,7 @@ public class BlockBlackberryBush extends BlockAetherFlower {
 
         world.setBlock(x, y, z, BlocksAether.small_blackberry_bush);
 
-        if (randomNum != 0) {
-            this.dropBlockAsItem(world, x, y, z, new ItemStack(ItemsAether.blackberry, randomNum, 0));
-        }
+        this.dropBlockAsItem(world, x, y, z, new ItemStack(ItemsAether.blackberry, randomNum, 0));
     }
 
     @Override

@@ -50,9 +50,13 @@ public class BlockBerryBush extends BlockAetherFlower {
         if (world.getBlock(x, y, z) == BlocksAether.aether_farmland) {
             min = 2;
             max = 3;
+        }
+        if (world.getBlock(x, y, z) == BlocksAether.enchanted_aether_farmland) {
+            min = 4;
+            max = 5;
         } else {
             min = 1;
-            max = 3;
+            max = 2;
         }
 
         int randomNum = world.rand.nextInt(max - min + 1) + min;
@@ -61,9 +65,7 @@ public class BlockBerryBush extends BlockAetherFlower {
 
         world.setBlock(x, y, z, BlocksAether.small_blueberry_bush);
 
-        if (randomNum != 0) {
-            this.dropBlockAsItem(world, x, y, z, new ItemStack(ItemsAether.blueberry, randomNum, 0));
-        }
+        this.dropBlockAsItem(world, x, y, z, new ItemStack(ItemsAether.blueberry, randomNum, 0));
     }
 
     @Override

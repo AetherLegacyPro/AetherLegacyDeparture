@@ -3,12 +3,12 @@ package com.gildedgames.the_aether.blocks.natural;
 import java.util.ArrayList;
 import java.util.Random;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockLog;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
@@ -20,6 +20,8 @@ import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.items.tools.ItemAetherTool;
+import com.gildedgames.the_aether.items.tools.ItemAmplifiedHolystoneTool;
+import com.gildedgames.the_aether.items.tools.ItemAmplifiedSkyrootTool;
 import com.gildedgames.the_aether.items.tools.ItemArkeniumTool;
 import com.gildedgames.the_aether.items.tools.ItemContinuumTool;
 import com.gildedgames.the_aether.items.tools.ItemDivineralTool;
@@ -33,6 +35,7 @@ import com.gildedgames.the_aether.items.tools.tipped.ItemTippedContinuumTool;
 import com.gildedgames.the_aether.items.tools.tipped.ItemTippedGravititeTool;
 import com.gildedgames.the_aether.items.tools.tipped.ItemTippedHolystoneTool;
 import com.gildedgames.the_aether.items.tools.tipped.ItemTippedSkyrootTool;
+import com.gildedgames.the_aether.items.tools.tipped.ItemTippedValkyrieTool;
 import com.gildedgames.the_aether.items.tools.tipped.ItemTippedZaniteTool;
 import com.gildedgames.the_aether.items.util.EnumAetherToolType;
 import com.gildedgames.the_aether.items.weapons.ItemAmplifiedBattleSentryHammer;
@@ -58,6 +61,7 @@ public class BlockGoldenOakNewLog extends BlockLog {
         int size = meta == 0 ? 2 : 1;
 
         ItemStack stack = player.getCurrentEquippedItem();
+        Block block = worldIn.getBlock(x, y, z);
 
         if (this.canSilkHarvest(worldIn, player, x, y, z, meta) && EnchantmentHelper.getSilkTouchModifier(player)) {
             ArrayList<ItemStack> items = new ArrayList<>();
@@ -74,12 +78,19 @@ public class BlockGoldenOakNewLog extends BlockLog {
         } else {
             if (stack != null && ((stack.getItem() instanceof ItemAetherTool
                 && ((ItemAetherTool) stack.getItem()).toolType == EnumAetherToolType.AXE)
-                || stack.getItem() == Items.diamond_axe)) {
+                || stack.getItem()
+                    .getDigSpeed(stack, block, meta) > 1)) {
                 if (stack.getItem() instanceof ItemZaniteTool || stack.getItem() instanceof ItemArkeniumTool
                     || stack.getItem() instanceof ItemContinuumTool
                     || stack.getItem() instanceof ItemGravititeTool
                     || stack.getItem() instanceof ItemValkyrieTool
-                    || stack.getItem() == Items.diamond_axe
+                    || stack.getItem()
+                        .getHarvestLevel(
+                            stack,
+                            String.valueOf(
+                                stack.getItem()
+                                    .getClass()))
+                        >= 3
                     || stack.getItem() instanceof ItemDivineralTool
                     || stack.getItem() instanceof ItemTippedSkyrootTool
                     || stack.getItem() instanceof ItemTippedHolystoneTool
@@ -87,6 +98,9 @@ public class BlockGoldenOakNewLog extends BlockLog {
                     || stack.getItem() instanceof ItemTippedArkeniumTool
                     || stack.getItem() instanceof ItemTippedContinuumTool
                     || stack.getItem() instanceof ItemTippedGravititeTool
+                    || stack.getItem() instanceof ItemTippedValkyrieTool
+                    || stack.getItem() instanceof ItemAmplifiedSkyrootTool
+                    || stack.getItem() instanceof ItemAmplifiedHolystoneTool
                     || stack.getItem() instanceof ItemBattleSentryHammer
                     || stack.getItem() instanceof ItemTippedBattleSentryHammer
                     || stack.getItem() instanceof ItemAmplifiedBattleSentryHammer) {
@@ -106,8 +120,18 @@ public class BlockGoldenOakNewLog extends BlockLog {
                         z,
                         meta,
                         EnchantmentHelper.getEnchantmentLevel(Enchantment.fortune.effectId, stack));
-                } else if (stack.getItem() instanceof ItemSkyrootTool) {
-                    for (int i = 0; i < size; ++i) {
+                } else if (stack.getItem() instanceof ItemSkyrootTool
+                    || stack.getItem() instanceof ItemTippedSkyrootTool) {
+                        for (int i = 0; i < size; ++i) {
+                            this.dropBlockAsItem(
+                                player.worldObj,
+                                x,
+                                y,
+                                z,
+                                meta,
+                                EnchantmentHelper.getEnchantmentLevel(Enchantment.fortune.effectId, stack));
+                        }
+                    } else {
                         this.dropBlockAsItem(
                             player.worldObj,
                             x,
@@ -116,15 +140,6 @@ public class BlockGoldenOakNewLog extends BlockLog {
                             meta,
                             EnchantmentHelper.getEnchantmentLevel(Enchantment.fortune.effectId, stack));
                     }
-                } else {
-                    this.dropBlockAsItem(
-                        player.worldObj,
-                        x,
-                        y,
-                        z,
-                        meta,
-                        EnchantmentHelper.getEnchantmentLevel(Enchantment.fortune.effectId, stack));
-                }
             } else {
                 super.harvestBlock(worldIn, player, x, y, z, meta);
             }

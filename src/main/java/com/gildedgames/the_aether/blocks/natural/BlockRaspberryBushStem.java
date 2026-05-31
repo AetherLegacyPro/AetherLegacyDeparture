@@ -2,7 +2,9 @@ package com.gildedgames.the_aether.blocks.natural;
 
 import java.util.Random;
 
+import com.gildedgames.the_aether.items.ItemsAether;
 import net.minecraft.block.IGrowable;
+import net.minecraft.item.Item;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -20,6 +22,11 @@ public class BlockRaspberryBushStem extends BlockAetherFlower implements IGrowab
         this.setCreativeTab(null);
         this.setBlockTextureName(Aether.find("berry_bush_stem"));
         this.setBlockBounds(0.5F - 0.4F, 0.0F, 0.5F - 0.4F, 0.5F + 0.4F, 0.4F * 2.0F, 0.5F + 0.4F);
+    }
+
+    @Override
+    public Item getItemDropped(int meta, Random rand, int fortune) {
+        return ItemsAether.raspberry_seeds;
     }
 
     @Override

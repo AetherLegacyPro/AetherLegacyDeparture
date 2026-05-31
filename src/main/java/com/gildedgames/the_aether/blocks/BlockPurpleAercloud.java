@@ -1,17 +1,23 @@
 package com.gildedgames.the_aether.blocks;
 
 import java.util.List;
+import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.Facing;
+import net.minecraft.util.IIcon;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -55,7 +61,6 @@ public class BlockPurpleAercloud extends Block implements IColoredBlock, INamedB
                     return;
                 }
 
-                entity.motionZ = 4.0D;
             } else {
                 if (entity instanceof EntityArrow) {
                     if (entity.ticksExisted >= 1200) {
@@ -63,8 +68,8 @@ public class BlockPurpleAercloud extends Block implements IColoredBlock, INamedB
                     }
                 }
 
-                entity.motionZ = 4.0D;
             }
+            entity.motionZ = 4.0D;
 
         }
         // violet
@@ -78,7 +83,6 @@ public class BlockPurpleAercloud extends Block implements IColoredBlock, INamedB
 
                     return;
                 }
-                entity.motionZ = 4.0D;
             } else {
                 if (entity instanceof EntityArrow) {
                     if (entity.ticksExisted >= 1200) {
@@ -86,8 +90,8 @@ public class BlockPurpleAercloud extends Block implements IColoredBlock, INamedB
                     }
                 }
 
-                entity.motionZ = 4.0D;
             }
+            entity.motionZ = 4.0D;
         }
 
         // light purple
@@ -101,7 +105,6 @@ public class BlockPurpleAercloud extends Block implements IColoredBlock, INamedB
 
                     return;
                 }
-                entity.motionZ = 4.0D;
             } else {
                 if (entity instanceof EntityArrow) {
                     if (entity.ticksExisted >= 1200) {
@@ -109,8 +112,8 @@ public class BlockPurpleAercloud extends Block implements IColoredBlock, INamedB
                     }
                 }
 
-                entity.motionZ = 4.0D;
             }
+            entity.motionZ = 4.0D;
 
             if (world.isRemote) {
                 if (!(entity instanceof net.minecraft.client.particle.EntityFX)) {

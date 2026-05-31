@@ -375,7 +375,7 @@ public class AetherConfig {
 
         disable_eternal_day = config.get(
             "Misc",
-            "Enables eternal day making time cycle in the Aether base on if having killed the Sun Spirit. This is mainly intended for use in modpacks.",
+            "Disables eternal day making time cycle in the Aether base on if having killed the Sun Spirit. This is mainly intended for use in modpacks.",
             false)
             .getBoolean(false);
 

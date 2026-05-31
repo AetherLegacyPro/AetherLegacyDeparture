@@ -65,9 +65,7 @@ public class BlockStrawberryBush extends BlockAetherFlower {
 
         world.setBlock(x, y, z, BlocksAether.small_strawberry_bush);
 
-        if (randomNum != 0) {
-            this.dropBlockAsItem(world, x, y, z, new ItemStack(ItemsAether.strawberry, randomNum, 0));
-        }
+        this.dropBlockAsItem(world, x, y, z, new ItemStack(ItemsAether.strawberry, randomNum, 0));
     }
 
     @Override

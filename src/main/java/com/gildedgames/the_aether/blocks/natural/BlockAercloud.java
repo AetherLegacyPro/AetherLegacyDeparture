@@ -58,7 +58,6 @@ public class BlockAercloud extends Block implements IColoredBlock, INamedBlock {
                     return;
                 }
 
-                entity.motionY = 2.0D;
             } else {
                 if (entity instanceof EntityArrow) {
                     if (entity.ticksExisted >= 1200) {
@@ -66,8 +65,8 @@ public class BlockAercloud extends Block implements IColoredBlock, INamedBlock {
                     }
                 }
 
-                entity.motionY = 2.0D;
             }
+            entity.motionY = 2.0D;
 
         }
         // gold aercloud
@@ -83,7 +82,6 @@ public class BlockAercloud extends Block implements IColoredBlock, INamedBlock {
 
                     return;
                 }
-                entity.motionY = -2.0D;
             } else {
                 if (entity instanceof EntityArrow) {
                     if (entity.ticksExisted >= 1200) {
@@ -91,8 +89,8 @@ public class BlockAercloud extends Block implements IColoredBlock, INamedBlock {
                     }
                 }
 
-                entity.motionY = -2.0D;
             }
+            entity.motionY = -2.0D;
 
             if (world.isRemote) {
                 if (!(entity instanceof net.minecraft.client.particle.EntityFX)) {

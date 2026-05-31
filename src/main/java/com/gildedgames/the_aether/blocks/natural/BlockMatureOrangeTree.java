@@ -61,9 +61,7 @@ public class BlockMatureOrangeTree extends BlockAetherFlower {
 
         world.setBlock(x, y, z, BlocksAether.small_orange_tree);
 
-        if (randomNum != 0) {
-            this.dropBlockAsItem(world, x, y, z, new ItemStack(ItemsAether.orange, randomNum, 0));
-        }
+        this.dropBlockAsItem(world, x, y, z, new ItemStack(ItemsAether.orange, randomNum, 0));
     }
 
     @Override
