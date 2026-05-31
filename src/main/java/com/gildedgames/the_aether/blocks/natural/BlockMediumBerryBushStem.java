@@ -2,13 +2,13 @@ package com.gildedgames.the_aether.blocks.natural;
 
 import java.util.Random;
 
-import com.gildedgames.the_aether.items.ItemsAether;
 import net.minecraft.block.IGrowable;
 import net.minecraft.item.Item;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import com.gildedgames.the_aether.blocks.BlocksAether;
+import com.gildedgames.the_aether.items.ItemsAether;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
