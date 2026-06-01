@@ -321,19 +321,19 @@ public class ChunkProviderAether implements IChunkProvider {
 		if (AetherConfig.silver_dungeon_enable) {
 			this.silverDungeonStructure.func_151539_a(this, this.worldObj, x, z, ablock);
 		}
-		if (AetherConfig.tier2_silver_dungeon_enable && ancient_silver_chance > 3 && (Math.abs(x) > 1200 || Math.abs(z) > 1200)) {
+		if (AetherConfig.tier2_silver_dungeon_enable && ancient_silver_chance > 2 && (Math.abs(x) > 1200 || Math.abs(z) > 1200)) {
 			this.ancientsilverDungeonStructure.func_151539_a(this, this.worldObj, x, z, ablock);
 		}
-		if (AetherConfig.tier3_silver_dungeon_enable && divine_silver_chance >= 5 && (Math.abs(x) > 3000 || Math.abs(z) > 3000)) {
+		if (AetherConfig.tier3_silver_dungeon_enable && divine_silver_chance >= 4 && (Math.abs(x) > 3000 || Math.abs(z) > 3000)) {
 			this.divinesilverDungeonStructure.func_151539_a(this, this.worldObj, x, z, ablock);
 		}
 		if (AetherConfig.gold_dungeon_enable) {
 			this.goldenDungeonStructure.func_151539_a(this, this.worldObj, x, z, ablock);
 		}
-		if (AetherConfig.tier2_gold_dungeon_enable && ancient_gold_chance > 3 && (Math.abs(x) > 2000 || Math.abs(z) > 2000)) {
+		if (AetherConfig.tier2_gold_dungeon_enable && ancient_gold_chance > 2 && (Math.abs(x) > 2000 || Math.abs(z) > 2000)) {
 			this.ancientGoldenDungeonStructure.func_151539_a(this, this.worldObj, x, z, ablock);
 		}
-		if (AetherConfig.tier3_gold_dungeon_enable && divine_gold_chance >= 5 && (Math.abs(x) > 5000 || Math.abs(z) > 5000)) {
+		if (AetherConfig.tier3_gold_dungeon_enable && divine_gold_chance >= 4 && (Math.abs(x) > 5000 || Math.abs(z) > 5000)) {
 			this.divineGoldenDungeonStructure.func_151539_a(this, this.worldObj, x, z, ablock);
 		}
 		
@@ -485,7 +485,7 @@ public class ChunkProviderAether implements IChunkProvider {
 	            new AetherCloudsGenNew(BlocksAether.aercloud, 2, 4, false).generate(this.worldObj, this.rand, x, y, z);
 	        }
 		 //Purple Aerclouds
-	if (AetherConfig.enablePurpleAercloud() == true) {
+		 if (AetherConfig.enablePurpleAercloud()) {
 		 if (this.rand.nextInt(60) == 0) {
 	            final int x1 = x + this.rand.nextInt(64);
 	            final int y = this.rand.nextInt(64) + 32;
@@ -493,7 +493,7 @@ public class ChunkProviderAether implements IChunkProvider {
 	            new AetherCloudsGenNew(BlocksAether.purple_aercloud, 0, 8, false).generate(this.worldObj, this.rand, x, y, z);
 	        }
 		 }
-	if (AetherConfig.enableVioletAercloud() == true) {
+	if (AetherConfig.enableVioletAercloud()) {
 		 if (this.rand.nextInt(14) == 0) {
 	            final int x1 = x + this.rand.nextInt(128);
 	            final int y = this.rand.nextInt(64);
@@ -501,7 +501,7 @@ public class ChunkProviderAether implements IChunkProvider {
 	            new AetherCloudsGenNew(BlocksAether.purple_aercloud, 1, 4, false).generate(this.worldObj, this.rand, x, y, z);
 	        }
 		}
-	if (AetherConfig.enableDarkPurpleAercloud() == true) {
+	if (AetherConfig.enableDarkPurpleAercloud()) {
 		 if (this.rand.nextInt(17) == 0) {
 	            final int x1 = x + this.rand.nextInt(256);
 	            final int y = this.rand.nextInt(64) + 64;
@@ -510,7 +510,7 @@ public class ChunkProviderAether implements IChunkProvider {
 	        }
 		}
 		//Green Aerclouds
-	if (AetherConfig.enableLightGreenAercloud() == true) {
+	if (AetherConfig.enableLightGreenAercloud()) {
 		 if (this.rand.nextInt(70) == 0) {
 	            final int x1 = x + this.rand.nextInt(48);
 	            final int y = this.rand.nextInt(64) + 16;
@@ -518,7 +518,7 @@ public class ChunkProviderAether implements IChunkProvider {
 	            new AetherCloudsGenNew(BlocksAether.green_aercloud, 0, 9, false).generate(this.worldObj, this.rand, x, y, z);
 	        }
 		}
-	if (AetherConfig.enableGreenAercloud() == true) {
+	if (AetherConfig.enableGreenAercloud()) {
 		 if (this.rand.nextInt(14) == 0) {
 	            final int x1 = x + this.rand.nextInt(128);
 	            final int y = this.rand.nextInt(64) + 20;
@@ -526,7 +526,7 @@ public class ChunkProviderAether implements IChunkProvider {
 	            new AetherCloudsGenNew(BlocksAether.green_aercloud, 1, 4, false).generate(this.worldObj, this.rand, x, y, z);
 	        }
 		}
-	if (AetherConfig.enableLimeAercloud() == true) {
+	if (AetherConfig.enableLimeAercloud()) {
 		 if (this.rand.nextInt(17) == 0) {
 	            final int x1 = x + this.rand.nextInt(128);
 	            final int y = this.rand.nextInt(64) + 50;
@@ -535,7 +535,7 @@ public class ChunkProviderAether implements IChunkProvider {
 	        }
 		}
 		//Pink Aerclouds
-	if (AetherConfig.enablePinkAercloud() == true) {
+	if (AetherConfig.enablePinkAercloud()) {
 		 if (this.rand.nextInt(52) == 0) {
 	            final int x1 = x + this.rand.nextInt(1024);
 	            final int y = this.rand.nextInt(64) + 148;
@@ -543,7 +543,7 @@ public class ChunkProviderAether implements IChunkProvider {
 	            new AetherCloudsGenNew(BlocksAether.pink_aercloud, 0, 9, false).generate(this.worldObj, this.rand, x, y, z);
 	        }
 		}
-	if (AetherConfig.enableMagentaAercloud() == true) {
+	if (AetherConfig.enableMagentaAercloud()) {
 		 if (this.rand.nextInt(54) == 0) {
 	            final int x1 = x + this.rand.nextInt(1024);
 	            final int y = this.rand.nextInt(64) + 148;
@@ -551,7 +551,7 @@ public class ChunkProviderAether implements IChunkProvider {
 	            new AetherCloudsGenNew(BlocksAether.pink_aercloud, 1, 4, false).generate(this.worldObj, this.rand, x, y, z);
 	        }
 		}
-	if (AetherConfig.enableOrangeAercloud() == true) {
+	if (AetherConfig.enableOrangeAercloud()) {
 		 if (this.rand.nextInt(50) == 0) {
 	            final int x1 = x + this.rand.nextInt(512);
 	            final int y = this.rand.nextInt(64) + 148;
@@ -559,6 +559,15 @@ public class ChunkProviderAether implements IChunkProvider {
 	            new AetherCloudsGenNew(BlocksAether.pink_aercloud, 2, 4, false).generate(this.worldObj, this.rand, x, y, z);
 	        }
 		}
+	
+	if (AetherConfig.enableStormAercloud()) {
+		if (this.rand.nextInt(1700) == 0) {
+			final int x1 = x + this.rand.nextInt(128);
+			final int y = this.rand.nextInt(16) + 232;
+			final int z1 = z + this.rand.nextInt(128);
+			new AetherCloudsGenNew(BlocksAether.storm_aercloud, 0, 4, false).generate(this.worldObj, this.rand, x, y, z);
+		}
+	}
 	        
 		
 		for (int numberoftreegen = 3, i2 = 0; i2 < numberoftreegen; ++i2) {

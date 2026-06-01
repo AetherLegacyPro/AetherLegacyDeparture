@@ -75,9 +75,9 @@ public class ItemTippedDragonSlayer extends ItemSword {
 			return false;
 		}
 
-		String s = EntityList.getEntityString(entityliving);
+		String s = EntityList.getEntityString(entityliving).toLowerCase();
 
-		if (s.toLowerCase().contains("dragon")) {
+		if (s.contains("dragon") || s.contains("wyrmling")) {
 			if (entityliving.getHealth() > 0) {
 				entityliving.attackEntityFrom(DamageSource.causeMobDamage(entityliving1), 30);
 			}

@@ -247,9 +247,14 @@ public class EntityAerca extends EntityFlying implements IMob
 
         for (k = 0; k < j; ++k) {
             this.dropItem(ItemsAether.raw_aerwhale, 1);
+            if (this.isBurning()) {
+                this.dropItem(ItemsAether.enchanted_aerwhale, 1);
+            } else {
+                this.dropItem(ItemsAether.raw_aerwhale, 1);
+            }
         }
 
-        j = this.rand.nextInt(1) + 1 + this.rand.nextInt(1 + lootLevel);
+        j = this.rand.nextInt(2) + 1 + this.rand.nextInt(1 + lootLevel);
 
         for (k = 0; k < j; ++k) {
             if (this.isBurning()) {

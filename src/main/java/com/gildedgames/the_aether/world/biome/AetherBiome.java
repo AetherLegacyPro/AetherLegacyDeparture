@@ -200,7 +200,7 @@ public class AetherBiome extends BiomeGenBase {
 		this.flowers.add(new FlowerEntry(BlocksAether.quickshoot, 0, 8));		
 		this.flowers.add(new FlowerEntry(BlocksAether.arctic_tallgrass, 0, 7));		
 		this.flowers.add(new FlowerEntry(BlocksAether.enchanted_aether_tulips, 0, 7));
-		this.flowers.add(new FlowerEntry(BlocksAether.enchanted_quickshoot, 0, 8));
+		this.flowers.add(new FlowerEntry(BlocksAether.enchanted_quickshoot, 0, 9));
 	}
 
 	@Override
