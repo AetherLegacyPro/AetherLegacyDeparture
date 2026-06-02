@@ -121,8 +121,9 @@ public class PlayerAetherRenderer {
             }
         }
 
-        this.modelMisc.isSneak = this.modelWings.isSneak = this.modelWings.isSneak = playerAether.getEntity().isSneaking();
-        this.modelMisc.isSneak = this.modelAgilityBoots.isSneak = this.modelAgilityBoots.isSneak = playerAether.getEntity().isSneaking();
+        boolean isSneaking = playerAether.getEntity().isSneaking();
+        this.modelMisc.isSneak = this.modelWings.isSneak = this.modelGlow.isSneak = isSneaking;
+        this.modelAgilityBoots.isSneak = isSneaking;
 
         this.doRender(playerAether, x, y, z, partialTicks);
 
@@ -404,11 +405,7 @@ public class PlayerAetherRenderer {
             return;
         }
         ItemAccessory shield = (ItemAccessory)shieldStack.getItem();
-        if (player.motionX == 0.0 && (player.motionY == -0.0784000015258789 || player.motionY == 0.0) && player.motionZ == 0.0 && shield.hasInactiveTexture()) {
-            mc.getTextureManager().bindTexture(shield.texture);
-        } else {
-            mc.getTextureManager().bindTexture(shield.texture_inactive);
-        }
+        mc.getTextureManager().bindTexture(shield.texture);
 
         GL11.glPushMatrix();
         GL11.glEnable(GL11.GL_BLEND);
