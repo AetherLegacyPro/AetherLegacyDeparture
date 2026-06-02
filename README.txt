@@ -52,6 +52,24 @@ If you see anything that is being done twice or legacy classes I forgot to delet
 If you have an idea or feature you would like to add go ahead and ask me if I approve of it.
 I will not be adding in major concepts from the modern aether or its addons especially new features from the upcoming Aether II whenever that releases or concepts like the platinum dungeon in lost content.
 
+
+----------------------
+DEPARTURE CONTRIBUTORS 
+----------------------
+rrogalski - credit for creation of the asset grabber
+Delirus - credit for the cave generation code
+jss2a98aj - credit for adding in Baubles Expanded compact
+
+leavesthblank - credit for many bug fixes,improvements and overhaul feedback
+JackOfNoneTrades - credit for misc bug fixing
+thenextelement - credit for misc bug fixing
+M3MEMonster - credit for bug fixing and some improvements
+Pilzinsel64 - credit for code improvements for "explicit load chunk on spawning portal"
+
+Shahelion - credit for some textures and overhaul feedback
+mpk1197 - credit for the texture for the Elysian Dragon
+brickmasters2 - credit for the new dungeon key textures
+
 -----------------------------------------------
 LICENSING COMMENTS
 -----------------------------------------------
