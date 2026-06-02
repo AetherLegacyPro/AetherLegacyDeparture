@@ -29,7 +29,7 @@ Known issues
 ------------
 Tie most accessories like gloves and capes to be damaged only when the player is, not at random.
 New items with extended reach sometimes being buggy and refusing to work correctly when either breaking blocks and hitting mobs further away.(The code for it is tied in multiple classes making it quite confusing to add on to and replicate)
-New shields having a renderer error when shifting
+DONE - New shields having a renderer error when shifting thanks to JackOfNoneTrades.
 Aerclouds not always negating fall damage if the player is falling too fast? (I have not encountered this bug but others have)
 Several textures are not to my liking right now and will be improved upon in the future.
 
