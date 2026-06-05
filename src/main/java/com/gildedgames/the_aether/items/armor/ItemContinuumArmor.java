@@ -16,8 +16,8 @@ import com.gildedgames.the_aether.items.armor.base.ItemZaniteArmorBase;
 
 public class ItemContinuumArmor extends ItemZaniteArmorBase implements ISpecialArmor {
 
-    private final int[][] damageReductionAmountArray = new int[][] { new int[] { 1, 2, 3, 1 }, new int[] { 1, 4, 5, 2 },
-        new int[] { 2, 5, 6, 2 }, new int[] { 3, 6, 8, 3 }, new int[] { 4, 8, 10, 4 } };
+    private final int[][] damageReductionAmountArray = new int[][] { new int[] { 1, 3, 2, 1 }, new int[] { 1, 5, 4, 2 },
+        new int[] { 2, 6, 5, 2 }, new int[] { 3, 8, 6, 3 }, new int[] { 4, 10, 8, 4 } };
 
     public ItemContinuumArmor(int armorType, ArmorMaterial material, String name, Item repair) {
         super(armorType, material, name, repair);
