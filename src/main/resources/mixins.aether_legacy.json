@@ -1,0 +1,7 @@
+{
+	"required": true,
+	"minVersion": "0.7.11",
+	"refmap": "mixins.aether_legacy.refmap.json",
+	"target": "@env(DEFAULT)",
+	"compatibilityLevel": "JAVA_8"
+}
