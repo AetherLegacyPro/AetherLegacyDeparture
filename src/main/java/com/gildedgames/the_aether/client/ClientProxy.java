@@ -115,6 +115,10 @@ public class ClientProxy extends CommonProxy {
         if (Loader.isModLoaded("battlegear2") && AetherConfig.enable_battlegear2_compatibility) {
             AetherClientCompatibility.initialization();
         }
+
+        if (Loader.isModLoaded("NotEnoughItems")) {
+            com.gildedgames.the_aether.client.nei.NEIIntegration.init();
+        }
     }
 
     public void generateFile(String input, String name, String path) {

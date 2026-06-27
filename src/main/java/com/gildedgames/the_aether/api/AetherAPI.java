@@ -263,6 +263,19 @@ public class AetherAPI {
         return new ArrayList<>(iFreezableRegistry.values());
     }
 
+    // Fuel value getters (used by NEI integration and other clients)
+    public List<AetherEnchantmentFuel> getEnchantmentFuelValues() {
+        return new ArrayList<>(iEnchantmentFuelRegistry.values());
+    }
+
+    public List<AetherAmplifierFuel> getAmplifierFuelValues() {
+        return new ArrayList<>(iAmplifierFuelRegistry.values());
+    }
+
+    public List<AetherFreezableFuel> getFreezableFuelValues() {
+        return new ArrayList<>(iFreezableFuelRegistry.values());
+    }
+
     public List<AetherMoaType> getMoaTypeValues() {
         return new ArrayList<>(iMoaTypeRegistry.values());
     }

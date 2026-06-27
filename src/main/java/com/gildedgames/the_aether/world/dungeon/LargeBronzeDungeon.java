@@ -75,8 +75,6 @@ public class LargeBronzeDungeon extends AetherDungeon {
         world.setBlock(i + 7, j - 1, k + 7, BlocksAether.treasure_chest);
         world.setBlock(i + 8, j - 1, k + 8, BlocksAether.treasure_chest);
 
-        world.setBlock(i, j, k, setRandomBlock(world, random));
-
         generateEmptyRoom(world, random, i, j, k);
 
         return true;
@@ -863,30 +861,19 @@ public class LargeBronzeDungeon extends AetherDungeon {
 
     public static ItemStack getAncientBronzeLoot(Random random) {
         int item = random.nextInt(10);
-        switch (item) {
-            case 0:
-                return new ItemStack(ItemsAether.gummy_swet);
-            case 1:
-                return new ItemStack(ItemsAether.phoenix_bow);
-            case 2:
-                return new ItemStack(ItemsAether.flaming_sword);
-            case 3:
-                return new ItemStack(ItemsAether.jeb_hammer);
-            case 4:
-                return new ItemStack(ItemsAether.lightning_knife, random.nextInt(5) + 6);
-            case 5:
-                return new ItemStack(ItemsAether.valkyrie_lance);
-            case 6:
-                return new ItemStack(ItemsAether.agility_cape);
-            case 7:
-                return new ItemStack(ItemsAether.sentry_boots);
-            case 8:
-                return new ItemStack(ItemsAether.repulsion_shield);
-            case 9:
-                return new ItemStack(ItemsAether.cloud_staff);
-            default:
-                return new ItemStack(ItemsAether.arkenium_fragement, random.nextInt(2) + 2);
-        }
+        return switch (item) {
+            case 0 -> new ItemStack(ItemsAether.gummy_swet);
+            case 1 -> new ItemStack(ItemsAether.phoenix_bow);
+            case 2 -> new ItemStack(ItemsAether.flaming_sword);
+            case 3 -> new ItemStack(ItemsAether.jeb_hammer);
+            case 4 -> new ItemStack(ItemsAether.lightning_knife, random.nextInt(5) + 6);
+            case 5 -> new ItemStack(ItemsAether.valkyrie_lance);
+            case 6 -> new ItemStack(ItemsAether.agility_cape);
+            case 7 -> new ItemStack(ItemsAether.sentry_boots);
+            case 8 -> new ItemStack(ItemsAether.repulsion_shield);
+            case 9 -> new ItemStack(ItemsAether.cloud_staff);
+            default -> new ItemStack(ItemsAether.arkenium_fragement, random.nextInt(2) + 2);
+        };
 
     }
 

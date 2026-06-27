@@ -127,8 +127,6 @@ public class MythicBronzeDungeon extends AetherDungeon {
 
         }
 
-        world.setBlock(i, j, k, setRandomBlock(world, random));
-
         generateEmptyRoom(world, random, i, j, k);
 
         return true;
@@ -1026,41 +1024,25 @@ public class MythicBronzeDungeon extends AetherDungeon {
 
     public static ItemStack getMythicBronzeLoot(Random random) {
         int item = random.nextInt(17);
-        switch (item) {
-            case 0:
-                return new ItemStack(ItemsAether.gummy_swet, random.nextInt(4) + 1, 1);
-            case 1:
-                return new ItemStack(ItemsAether.jeb_shield);
-            case 2:
-                return new ItemStack(ItemsAether.tipped_flaming_sword);
-            case 3:
-                return new ItemStack(ItemsAether.amplified_jeb_hammer);
-            case 4:
-                return new ItemStack(ItemsAether.builder_slayer);
-            case 5:
-                return new ItemStack(ItemsAether.tipped_valkyrie_lance);
-            case 6:
-                return new ItemStack(ItemsAether.haste_ring);
-            case 7:
-                return new ItemStack(ItemsAether.scaled_sentry_boots);
-            case 8:
-                return new ItemStack(ItemsAether.repulsion_shield);
-            case 9:
-                return new ItemStack(BlocksAether.enchanted_gravitite, random.nextInt(4) + 1);
-            case 10:
-                return new ItemStack(ItemsAether.sentry_shield);
-            case 11:
-            case 13:
-                return new ItemStack(ItemsAether.zanite_gemstone, random.nextInt(25) + 20);
-            case 12:
-                return new ItemStack(ItemsAether.arkenium_fragement, random.nextInt(15) + 20);
-            case 14:
-                return new ItemStack(ItemsAether.continuum_gemstone, random.nextInt(10) + 5);
-            case 15:
-                return new ItemStack(BlocksAether.primeval_artifact, random.nextInt(8) + 2);
-        }
+        return switch (item) {
+            case 0 -> new ItemStack(ItemsAether.gummy_swet, random.nextInt(4) + 1, 1);
+            case 1 -> new ItemStack(ItemsAether.jeb_shield);
+            case 2 -> new ItemStack(ItemsAether.tipped_flaming_sword);
+            case 3 -> new ItemStack(ItemsAether.amplified_jeb_hammer);
+            case 4 -> new ItemStack(ItemsAether.builder_slayer);
+            case 5 -> new ItemStack(ItemsAether.tipped_valkyrie_lance);
+            case 6 -> new ItemStack(ItemsAether.haste_ring);
+            case 7 -> new ItemStack(ItemsAether.scaled_sentry_boots);
+            case 8 -> new ItemStack(ItemsAether.repulsion_shield);
+            case 9 -> new ItemStack(BlocksAether.enchanted_gravitite, random.nextInt(4) + 1);
+            case 10 -> new ItemStack(ItemsAether.sentry_shield);
+            case 11, 13 -> new ItemStack(ItemsAether.zanite_gemstone, random.nextInt(25) + 20);
+            case 12 -> new ItemStack(ItemsAether.arkenium_fragement, random.nextInt(15) + 20);
+            case 14 -> new ItemStack(ItemsAether.continuum_gemstone, random.nextInt(10) + 5);
+            case 15 -> new ItemStack(BlocksAether.primeval_artifact, random.nextInt(8) + 2);
+            default -> new ItemStack(BlocksAether.primeval_artifact, random.nextInt(15) + 4);
+        };
 
-        return new ItemStack(BlocksAether.primeval_artifact, random.nextInt(15) + 4);
     }
 
     protected Block setRandomBlock(World world, Random random) {
@@ -1075,10 +1057,6 @@ public class MythicBronzeDungeon extends AetherDungeon {
 
     public Block lockedLightBlock() {
         return BlocksAether.locked_mythic_sentry_stone;
-    }
-
-    public Block TrapBlock() {
-        return BlocksAether.divine_carved_trap;
     }
 
     public Block lockedBlock() {

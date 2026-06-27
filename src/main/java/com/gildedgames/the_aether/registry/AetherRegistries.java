@@ -474,14 +474,8 @@ public class AetherRegistries {
         AetherAPI.instance()
             .register(
                 new AetherEnchantment(
-                    new ItemStack(BlocksAether.golden_oak_log, 1, 1),
+                    new ItemStack(BlocksAether.golden_oak_new_log, 1, 1),
                     ItemsAether.mimicry_ambrosium_shard,
-                    250));
-        AetherAPI.instance()
-            .register(
-                new AetherEnchantment(
-                    new ItemStack(BlocksAether.golden_oak_log, 1, 0),
-                    BlocksAether.enchanted_agiosite,
                     250));
         AetherAPI.instance()
             .register(new AetherEnchantment(BlocksAether.enchanted_holystone, ItemsAether.healing_stone, 750));
@@ -1341,6 +1335,8 @@ public class AetherRegistries {
         final ItemStack charcoal = new ItemStack(Items.coal, 1, 1);
         FurnaceRecipes.smelting()
             .func_151394_a(new ItemStack(BlocksAether.skyroot_log, 1, 1), charcoal, 0.15F);
+        FurnaceRecipes.smelting()
+            .func_151394_a(new ItemStack(BlocksAether.golden_oak_new_log, 1, 1), charcoal, 0.15F);
         FurnaceRecipes.smelting()
             .func_151394_a(new ItemStack(BlocksAether.golden_oak_log, 1, 1), charcoal, 0.15F);
         FurnaceRecipes.smelting()
