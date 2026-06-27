@@ -1,30 +1,39 @@
 package com.gildedgames.the_aether.client.nei;
 
-import com.gildedgames.the_aether.Aether;
+import net.minecraft.item.ItemStack;
 
-import cpw.mods.fml.common.Loader;
+import com.gildedgames.the_aether.blocks.BlocksAether;
 
-public class NEIIntegration {
+import codechicken.nei.api.API;
+import codechicken.nei.api.IConfigureNEI;
+import cpw.mods.fml.common.FMLCommonHandler;
 
-    public static void init() {
-        // Only register if NEI is present
-        if (!Loader.isModLoaded("NotEnoughItems")) return;
+public class NEIIntegration implements IConfigureNEI {
 
-        try {
-            // Register all recipe handlers
-            codechicken.nei.api.API.registerRecipeHandler(new EnchanterRecipeHandler());
-            codechicken.nei.api.API.registerUsageHandler(new EnchanterRecipeHandler());
-
-            codechicken.nei.api.API.registerRecipeHandler(new FreezerRecipeHandler());
-            codechicken.nei.api.API.registerUsageHandler(new FreezerRecipeHandler());
-
-            codechicken.nei.api.API.registerRecipeHandler(new AmplifierRecipeHandler());
-            codechicken.nei.api.API.registerUsageHandler(new AmplifierRecipeHandler());
-
-            Aether.LOG.info("NEI recipe handlers registered successfully.");
-        } catch (Throwable t) {
-            Aether.LOG.warn("Failed to register NEI recipe handlers: " + t.getMessage());
-            t.printStackTrace();
+    @Override
+    public void loadConfig() {
+        if (FMLCommonHandler.instance()
+            .getSide()
+            .isClient()) {
+            API.registerRecipeHandler(new EnchanterRecipeHandler());
+            API.registerUsageHandler(new EnchanterRecipeHandler());
+            API.addRecipeCatalyst(new ItemStack(BlocksAether.enchanter), new EnchanterRecipeHandler());
+            API.registerRecipeHandler(new FreezerRecipeHandler());
+            API.registerUsageHandler(new FreezerRecipeHandler());
+            API.addRecipeCatalyst(new ItemStack(BlocksAether.freezer), new FreezerRecipeHandler());
+            API.registerRecipeHandler(new AmplifierRecipeHandler());
+            API.registerUsageHandler(new AmplifierRecipeHandler());
+            API.addRecipeCatalyst(new ItemStack(BlocksAether.amplifier), new AmplifierRecipeHandler());
         }
+    }
+
+    @Override
+    public String getName() {
+        return "Aether NEI Integration";
+    }
+
+    @Override
+    public String getVersion() {
+        return "1.0";
     }
 }

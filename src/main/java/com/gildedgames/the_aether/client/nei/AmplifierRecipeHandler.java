@@ -39,7 +39,7 @@ public class AmplifierRecipeHandler extends TemplateRecipeHandler {
             List<PositionedStack> ing = new ArrayList<>();
             ing.add(this.input);
             if (this.fuel != null) ing.add(this.fuel);
-            return getCycledIngredients(cycleticks / 48, ing);
+            return getCycledIngredients(cycleticks / 20, ing);
         }
 
         @Override

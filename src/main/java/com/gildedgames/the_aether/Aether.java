@@ -8,6 +8,8 @@ import org.apache.logging.log4j.Logger;
 
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.blocks.ancient.enchanter.AetherEnchantmentsAncientEnchanter;
+import com.gildedgames.the_aether.client.nei.IMCSenderGTNH;
+import com.gildedgames.the_aether.client.nei.NEIIntegration;
 import com.gildedgames.the_aether.entities.EntitiesAether;
 import com.gildedgames.the_aether.events.AetherEntityEvents;
 import com.gildedgames.the_aether.items.ItemsAether;
@@ -28,6 +30,7 @@ import com.gildedgames.the_aether.world.biome.decoration.overhaul.PalladiumDunge
 import com.gildedgames.the_aether.world.dungeon.osmium.OsmiumDungeon;
 
 import cpw.mods.fml.common.IWorldGenerator;
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -84,6 +87,8 @@ public class Aether {
 
         proxy.init();
 
+        IMCSenderGTNH.IMCSender();
+
         CommonProxy.registerEvent(new PlayerAetherEvents());
         CommonProxy.registerEvent(new AetherEventHandler());
         CommonProxy.registerEvent(new AetherEntityEvents());
@@ -96,6 +101,10 @@ public class Aether {
     @EventHandler
     public void postInit(FMLPostInitializationEvent event) {
         GameRegistry.registerWorldGenerator(new AetherGenOverhaulLate(), Integer.MAX_VALUE);
+
+        if (Loader.isModLoaded("NotEnoughItems")) {
+            new NEIIntegration().loadConfig();
+        }
     }
 
     public static ResourceLocation locate(String location) {
