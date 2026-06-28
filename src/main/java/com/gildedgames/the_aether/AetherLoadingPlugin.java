@@ -32,7 +32,7 @@ public class AetherLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader
 		List<String> mixins = new ArrayList<>();
 
 		// mixins are resolved according to "package" property in mixins.the_aether.early.json
-		mixins.add("minecraft.MixinItemRenderer_AetherGloves");
+		mixins.add("minecraft.MixinRenderPlayer_AetherGloves");
 
 		return mixins;
 	}
