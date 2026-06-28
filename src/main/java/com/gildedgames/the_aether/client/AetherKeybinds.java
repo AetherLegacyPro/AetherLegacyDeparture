@@ -11,8 +11,8 @@ public class AetherKeybinds  {
     public static void initialization() {
         keyBindings[0] = keyBindingAccessories;
 
-        for (int i = 0; i < keyBindings.length; ++i) {
-            ClientRegistry.registerKeyBinding(keyBindings[i]);
+        for (KeyBinding keyBinding : keyBindings) {
+            ClientRegistry.registerKeyBinding(keyBinding);
         }
     }
 

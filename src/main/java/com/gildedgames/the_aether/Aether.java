@@ -1,10 +1,9 @@
 package com.gildedgames.the_aether;
 
+import com.gildedgames.the_aether.client.nei.IMCSenderGTNH;
 import com.gildedgames.the_aether.events.AetherEntityEvents;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.blocks.ancient.enchanter.AetherEnchantmentsAncientEnchanter;
 import com.gildedgames.the_aether.entities.EntitiesAether;
@@ -24,7 +23,6 @@ import com.gildedgames.the_aether.world.biome.decoration.overhaul.DivineIslandWo
 import com.gildedgames.the_aether.world.biome.decoration.overhaul.GoldenIslandWorldGen;
 import com.gildedgames.the_aether.world.biome.decoration.overhaul.PalladiumDungeonWorldGen;
 import com.gildedgames.the_aether.world.dungeon.osmium.OsmiumDungeon;
-
 import cpw.mods.fml.common.IWorldGenerator;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -34,7 +32,6 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -57,7 +54,7 @@ public class Aether {
 		AetherNetwork.preInitialization();
 		BlocksAether.initialization();
 		BlocksAether.initializeHarvestLevels();
-		
+
 		ItemsAether.initialization();
 		AetherConfig.init(event.getModConfigurationDirectory());
 		if(AetherConfig.UseBaublesExpandedMenu()) {
@@ -77,12 +74,12 @@ public class Aether {
 		EntitiesAether.initialization();
 		AetherCreativeTabs.initialization();
 		AetherTileEntities.initialization();
-		AetherEnchantmentsAncientEnchanter.init();		
+		AetherEnchantmentsAncientEnchanter.init();
 		AetherWorld.initialization();
 		AchievementsAether.initialization();
 
 		proxy.init();
-
+        IMCSenderGTNH.IMCSender();
 		CommonProxy.registerEvent(new PlayerAetherEvents());
 		CommonProxy.registerEvent(new AetherEventHandler());
 		CommonProxy.registerEvent(new AetherEntityEvents());
@@ -91,7 +88,7 @@ public class Aether {
 			com.gildedgames.the_aether.compatibility.BaublesExpandedCompatibility.initializeSlotTypeData();
 		}
 	}
-	
+
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
 		GameRegistry.registerWorldGenerator(new AetherGenOverhaulLate(), Integer.MAX_VALUE);
@@ -104,11 +101,11 @@ public class Aether {
 	public static ResourceLocation locateII(String location) {
 		return new ResourceLocation("aetherii", location);
 	}
-	
+
 	public static ResourceLocation locateHighlands(String location) {
 		return new ResourceLocation("aether", location);
 	}
-	
+
 	public static boolean isGamePaused() {
         final Minecraft mc = Minecraft.getMinecraft();
         return mc.isSingleplayer() && mc.currentScreen != null && mc.currentScreen.doesGuiPauseGame() && !mc.getIntegratedServer().getPublic();
@@ -121,7 +118,7 @@ public class Aether {
 	public static String findII(String location) {
 		return "aetherii:" + location;
 	}
-	
+
 	public static String findHighlands(String location) {
 		return "aether:" + location;
 	}
@@ -129,7 +126,7 @@ public class Aether {
 	public static String modAddress() {
 		return MOD_ID + ":";
 	}
-	
+
 	public static String getUnlocalisedName(String name) {
 		return MOD_ID + "." + name;
 	}
