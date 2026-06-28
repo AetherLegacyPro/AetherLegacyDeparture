@@ -39,7 +39,7 @@ public class AetherEntityRenderer extends EntityRenderer {
 		this.previous = previous;
 		
 		if (AetherConfig.disable_1stperson_glove_renderer == true) {
-			ObfuscationReflectionHelper.setPrivateValue(EntityRenderer.class, this, new AetherItemRendererAlternate(mc), 7);
+			//ObfuscationReflectionHelper.setPrivateValue(EntityRenderer.class, this, new AetherItemRendererAlternate(mc), 7);
 		}
 		else {
 			ObfuscationReflectionHelper.setPrivateValue(EntityRenderer.class, this, new AetherItemRenderer(mc), 7);
