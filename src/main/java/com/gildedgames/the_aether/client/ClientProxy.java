@@ -28,7 +28,6 @@ import com.gildedgames.the_aether.client.renders.block.TileEntityElysianChestRen
 import com.gildedgames.the_aether.client.renders.block.TileEntitySkyrootChestRenderer;
 import com.gildedgames.the_aether.client.renders.block.TileEntityTreasureChestBreakableRenderer;
 import com.gildedgames.the_aether.client.renders.block.TreasureChestBreakableRenderer;
-import com.gildedgames.the_aether.compatibility.client.AetherClientCompatibility;
 import com.gildedgames.the_aether.entities.particles.EntityCloudSmokeFX;
 import com.gildedgames.the_aether.entities.particles.EntityGoldenFX;
 import com.gildedgames.the_aether.tileentity.TileEntityAncientEnchanter;
@@ -39,7 +38,6 @@ import com.gildedgames.the_aether.tileentity.TileEntityTreasureChestBreakable;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
-import cpw.mods.fml.common.Loader;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -97,10 +95,6 @@ public class ClientProxy extends CommonProxy {
 		registerEvent(new AetherMusicHandler());
 		registerEvent(new AetherClientEvents());
 		registerEvent(new GuiAetherInGame(Minecraft.getMinecraft()));
-		
-		if (Loader.isModLoaded("battlegear2") && AetherConfig.enable_battlegear2_compatibility) {
-		AetherClientCompatibility.initialization();
-		}
 	}
 
 	public void generateFile(String input, String name, String path)
