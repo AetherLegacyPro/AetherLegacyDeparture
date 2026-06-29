@@ -25,17 +25,17 @@ public class MixinEntityRenderer_ExtendedReach {
 
 	/**
 	 * @author Charsy89
-	 * @reason Modifies the stored value returned by PlayerControllerMP#getBlockReachDistance to be 8.0D instead of the
+	 * @reason Modifies the stored value returned by PlayerControllerMP#getBlockReachDistance to be 8.0F instead of the
 	 *         normal getBlockReachDistance return value, if the player is holding certain Aether items.
 	 */
 	@ModifyVariable(method = "getMouseOver", at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/client/multiplayer/PlayerControllerMP;getBlockReachDistance()F"))
-	private double aether$extendReachDistance(double original) {
+	private float aether$extendReachDistance(float original) {
 		ItemStack stack = this.mc.thePlayer.getCurrentEquippedItem();
 
 		if (stack == null || !(stack.getItem() instanceof ItemAmplifiedValkyrieTool || (stack.getItem() instanceof ItemValkyrieTool) || (stack.getItem() instanceof ItemTippedValkyrieTool) || (stack.getItem() instanceof ItemArkeniumTool) || (stack.getItem() instanceof ItemTippedArkeniumTool) || (stack.getItem() instanceof ItemAmplifiedContinuumTool) || (stack.getItem() instanceof ItemTippedValkyrieTool) || (stack.getItem() instanceof ItemArkeniumTool) || (stack.getItem() instanceof ItemTippedArkeniumTool) || (stack.getItem() instanceof ItemAscensiteTool))) {
 			return original; // player not using proper item, return original reach value
 		}
 
-		return 8.0D; // player has proper item so return extended reach value
+		return 8.0F; // player has proper item so return extended reach value
 	}
 }
