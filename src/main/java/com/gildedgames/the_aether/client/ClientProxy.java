@@ -3,7 +3,6 @@ package com.gildedgames.the_aether.client;
 import com.gildedgames.the_aether.AetherConfig;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityFX;
-import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IIcon;
@@ -17,7 +16,6 @@ import com.gildedgames.the_aether.blocks.elysian_totem.TileEntityElysianTotemRen
 import com.gildedgames.the_aether.client.audio.AetherMusicHandler;
 import com.gildedgames.the_aether.client.gui.GuiAetherInGame;
 import com.gildedgames.the_aether.client.gui.GuiSunAltar;
-import com.gildedgames.the_aether.client.renders.AetherEntityRenderer;
 import com.gildedgames.the_aether.client.renders.RendersAether;
 import com.gildedgames.the_aether.client.renders.TileEntityAncientEnchanterRenderer;
 import com.gildedgames.the_aether.client.renders.block.BlockAceninumClusterRenderer;
@@ -79,10 +77,6 @@ public class ClientProxy extends CommonProxy {
 		BlocksAether.AuraliteClusterRenderId = RenderingRegistry.getNextAvailableRenderId();
 		RenderingRegistry.registerBlockHandler(new BlockAuraliteClusterRenderer());
 		RenderingRegistry.registerBlockHandler(new BlockAceninumClusterRenderer());
-		
-		EntityRenderer previousRenderer = Minecraft.getMinecraft().entityRenderer;
-		
-		Minecraft.getMinecraft().entityRenderer = new AetherEntityRenderer(Minecraft.getMinecraft(), previousRenderer, Minecraft.getMinecraft().getResourceManager());
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAncientEnchanter.class, new TileEntityAncientEnchanterRenderer());
 		
