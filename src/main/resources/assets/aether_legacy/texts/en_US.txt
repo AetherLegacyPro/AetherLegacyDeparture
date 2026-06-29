@@ -17,14 +17,14 @@ Icestone freezes water into ice and lava into obsidian.
 Some dungeons in the Aether contain chests which are Mimics.
 White Aerclouds prevent fall damage when landed upon.
 Blue Aerclouds are bouncy, and launch mobs very high in the air.
-Cloud Parachutes can be crafted with four White Aercloud blocks. 
+Cloud Parachutes can be crafted with four White Aercloud blocks.
 Parachutes auto-activate when falling off an island.
 Golden Parachutes have twenty uses rather than one.
 The leaves of Golden Oak trees occasionally drop Golden Apples.
 Aerogel acts as an explosion-resistant, transparent block.
 Quicksoil increases the speed of walking mobs and sliding items.
 Holystone tools occasionally generate Ambrosium.
-Dungeons can contain extremely powerful and unique rewards. 
+Dungeons can contain extremely powerful and unique rewards.
 Dungeons have various difficulties: from Bronze, Silver, and Gold, to Osmium, Cobalt, and Palladium.
 Normal music discs can be enchanted into a Blue version.
 You can harvest Aechor Plant poison with Skyroot Buckets.
@@ -93,7 +93,7 @@ Gravitite is cool and all, but ever heard of Divineral?
 Check what variation of mossy holystone lies outside a dungeon...
 Rest up in the Aether by crafting a skyroot bed.
 Place hellfire stone within the enchanter, it may save your life.
-While Cyros are intimating in groups, individually are not very threatening. 
+While Cyros are intimating in groups, individually are not very threatening.
 The Cyro Guardian guards a significant amount of precious resources!
 Try enchanting the various aether stones to brighten them up!
 The Ancient Altar can only be found occasionally within Divine and Unseen tier dungeons.
