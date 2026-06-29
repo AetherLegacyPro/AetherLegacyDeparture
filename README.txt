@@ -67,7 +67,7 @@ M3MEMonster - credit for bug fixing and some improvements
 Pilzinsel64 - credit for code improvements for "explicit load chunk on spawning portal"
 
 Shahelion - credit for some textures and overhaul feedback
-mpk1197 - credit for the texture for the Elysian Dragon
+mpk1197 - credit for the texture of the Elysian Dragon
 brickmasters2 - credit for the new dungeon key textures
 
 -----------------------------------------------
