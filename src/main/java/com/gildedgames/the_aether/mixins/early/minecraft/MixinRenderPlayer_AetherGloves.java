@@ -36,6 +36,10 @@ public class MixinRenderPlayer_AetherGloves {
 		PlayerAether playerAether = PlayerAether.get(ep);
 		ItemStack gloves = playerAether.getAccessoryInventory().getFirstStackIfWearing(AccessoryType.GLOVES);
 
+		if(gloves == null) {
+			return;
+		}
+
 		if(gloves.getItem() instanceof ItemAccessory accessory) {
 			Minecraft.getMinecraft().getTextureManager().bindTexture(accessory.texture);
 
