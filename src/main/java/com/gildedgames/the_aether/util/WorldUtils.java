@@ -6,20 +6,20 @@ import net.minecraft.world.WorldServer;
 
 public class WorldUtils {
 
-    public static void ensureBlockExists(World world, int x, int y, int z) {
-        if (world instanceof WorldServer worldServer) {
-            ensureBlockExists(worldServer, x, y, z);
-        }
-    }
+	public static void ensureBlockExists(World world, int x, int y, int z) {
+		if (world instanceof WorldServer worldServer) {
+			ensureBlockExists(worldServer, x, y, z);
+		}
+	}
 
-    public static void ensureBlockExists(WorldServer world, int x, int y, int z) {
-        if (world != null && !world.blockExists(x, y, z)) {
-            world.getChunkProvider().loadChunk(x >> 4, z >> 4);
-        }
-    }
+	public static void ensureBlockExists(WorldServer world, int x, int y, int z) {
+		if (world != null && !world.blockExists(x, y, z)) {
+			world.getChunkProvider().loadChunk(x >> 4, z >> 4);
+		}
+	}
 
 	public static Block getBlockSafe(World world, int x, int y, int z) {
-        ensureBlockExists(world, x, y, z);
+		ensureBlockExists(world, x, y, z);
 		return world.getBlock(x, y, z);
 	}
 
