@@ -62,7 +62,7 @@ public class AetherAPI {
 
 		return type;
 	}
-//-----------------------------------	
+//-----------------------------------
 	public AetherAmplifier register(AetherAmplifier type) {
 		ItemStack stack = type.getInput();
 		ResourceLocation registryName = new ResourceLocation(stack.getItem().getUnlocalizedName() + "_meta_" + (stack.isItemStackDamageable() ? 0 : stack.getItemDamage()));
@@ -99,7 +99,21 @@ public class AetherAPI {
 		return type;
 	}
 
-	public AetherMoaType register(String modId, String name, AetherMoaType type) {
+    //Fuel value getters (used by NEI integration and other clients)
+    public List<AetherEnchantmentFuel> getEnchantmentFuelValues() {
+        return new ArrayList<>(iEnchantmentFuelRegistry.values());
+    }
+
+    public List<AetherAmplifierFuel> getAmplifierFuelValues() {
+        return new ArrayList<>(iAmplifierFuelRegistry.values());
+    }
+
+    public List<AetherFreezableFuel> getFreezableFuelValues() {
+        return new ArrayList<>(iFreezableFuelRegistry.values());
+    }
+
+
+    public AetherMoaType register(String modId, String name, AetherMoaType type) {
 		iMoaTypeRegistry.put(new ResourceLocation(modId, name), (AetherMoaType) type.setRegistryName(modId, name));
 
 		return type;
@@ -170,7 +184,7 @@ public class AetherAPI {
 	public List<AetherEnchantment> getEnchantmentValues() {
 		return new ArrayList<>(iEnchantmentRegistry.values());
 	}
-	
+
 	public List<AetherAmplifier> getAmplifierValues() {
 		return new ArrayList<>(iAmplifierRegistry.values());
 	}

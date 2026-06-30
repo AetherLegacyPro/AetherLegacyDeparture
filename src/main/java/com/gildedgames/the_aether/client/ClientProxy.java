@@ -1,6 +1,7 @@
 package com.gildedgames.the_aether.client;
 
 import com.gildedgames.the_aether.AetherConfig;
+import com.gildedgames.the_aether.client.nei.NEIIntegration;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityFX;
 import net.minecraft.entity.player.EntityPlayer;
@@ -36,6 +37,7 @@ import com.gildedgames.the_aether.tileentity.TileEntityTreasureChestBreakable;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
+import cpw.mods.fml.common.Loader;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -54,11 +56,11 @@ public class ClientProxy extends CommonProxy {
 		treasureChestRenderID = RenderingRegistry.getNextAvailableRenderId();
 		aetherFlowerRenderID = RenderingRegistry.getNextAvailableRenderId();
 		ancientEnchanterID = RenderingRegistry.getNextAvailableRenderId();
-		
+
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySkyrootChest.class, new TileEntitySkyrootChestRenderer());
 		BlocksAether.SkyrootChestRenderId = RenderingRegistry.getNextAvailableRenderId();
 		RenderingRegistry.registerBlockHandler(new SkyrootChestRenderer(new TileEntitySkyrootChest()));
-		
+
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityElysianChest.class, new TileEntityElysianChestRenderer());
 		BlocksAether.ElysianChestRenderId = RenderingRegistry.getNextAvailableRenderId();
 		RenderingRegistry.registerBlockHandler(new ElysianChestRenderer(new TileEntityElysianChest()));
@@ -66,20 +68,20 @@ public class ClientProxy extends CommonProxy {
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTreasureChestBreakable.class, new TileEntityTreasureChestBreakableRenderer());
 		BlocksAether.TreasureChestBreakbleRenderId = RenderingRegistry.getNextAvailableRenderId();
 		RenderingRegistry.registerBlockHandler(new TreasureChestBreakableRenderer(new TileEntityTreasureChestBreakable()));
-		
+
 		BlocksAether.AncientEnchanterRenderId = RenderingRegistry.getNextAvailableRenderId();
 		RenderingRegistry.registerBlockHandler(new RenderHandlerTileEntity(new TileEntityAncientEnchanter(), BlocksAether.AncientEnchanterRenderId));
-		
+
 		BlocksAether.ElysianTotemRenderId = RenderingRegistry.getNextAvailableRenderId();
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityElysianTotem.class, new TileEntityElysianTotemRenderer());
 		RenderingRegistry.registerBlockHandler(new RenderHandlerTileEntity(new TileEntityElysianTotem(), BlocksAether.ElysianTotemRenderId, 0.6f).setYOffset(-0.5f));
-		
+
 		BlocksAether.AuraliteClusterRenderId = RenderingRegistry.getNextAvailableRenderId();
 		RenderingRegistry.registerBlockHandler(new BlockAuraliteClusterRenderer());
 		RenderingRegistry.registerBlockHandler(new BlockAceninumClusterRenderer());
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAncientEnchanter.class, new TileEntityAncientEnchanterRenderer());
-		
+
 		RendersAether.initialization();
 
 		if(!AetherConfig.UseBaublesExpandedMenu()) {
@@ -89,6 +91,10 @@ public class ClientProxy extends CommonProxy {
 		registerEvent(new AetherMusicHandler());
 		registerEvent(new AetherClientEvents());
 		registerEvent(new GuiAetherInGame(Minecraft.getMinecraft()));
+
+        if (Loader.isModLoaded("NotEnoughItems")) {
+            new NEIIntegration().loadConfig();
+        }
 	}
 
 	public void generateFile(String input, String name, String path)
@@ -124,7 +130,7 @@ public class ClientProxy extends CommonProxy {
 			Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(text));
 		}
 	}
-	
+
 	@Override
 	public void spawnAltarParticles(final World world, final int x, final int y, final int z, final Random rand) {
 	    for (int particleAmount = 50, count = 0; count < particleAmount; ++count) {
@@ -132,7 +138,7 @@ public class ClientProxy extends CommonProxy {
 	       FMLClientHandler.instance().getClient().effectRenderer.addEffect(particles);
 	   }
 	}
-	 
+
 	 @Override
 	 public void spawnCloudSmoke(final World world, final double x, final double y, final double z, final Random rand, final double radius, final double forceX, final double forceY, final double forceZ, final double riseRate) {
 	     final double xOffset = x + rand.nextDouble() * radius * 2.0 - radius;

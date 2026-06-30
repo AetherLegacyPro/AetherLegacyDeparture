@@ -32,24 +32,24 @@ public class AetherRegistries {
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.golden_gloves, AccessoryType.GLOVES));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.chain_gloves, AccessoryType.GLOVES));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.diamond_gloves, AccessoryType.GLOVES));
-		
+
 		if (Loader.isModLoaded("etfuturum") && AetherConfig.enable_copper_recipes) {
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.netherite_gloves, AccessoryType.GLOVES));
 		}
 		if (Loader.isModLoaded("etfuturum") && AetherConfig.enable_netherite_recipes) {
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.copper_gloves, AccessoryType.GLOVES));
 		}
-		
+
 		if (Loader.isModLoaded("netherlicious")) {
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.effrine_gloves, AccessoryType.GLOVES));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.heavy_blaze_gloves, AccessoryType.GLOVES));
 		}
-		
+
 		if (Loader.isModLoaded("nova_craft")) {
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.pherithium_gloves, AccessoryType.GLOVES));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.vanite_gloves, AccessoryType.GLOVES));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.klangite_gloves, AccessoryType.GLOVES));
-		
+
 		if (AetherConfig.enable_ascensite) {
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.ascensite_gloves, AccessoryType.GLOVES));
 			}
@@ -65,7 +65,7 @@ public class AetherRegistries {
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.continuum_gloves, AccessoryType.GLOVES));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.divineral_gloves, AccessoryType.GLOVES));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.elysian_gloves, AccessoryType.GLOVES));
-		
+
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.amplified_zanite_gloves, AccessoryType.GLOVES));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.amplified_arkenium_gloves, AccessoryType.GLOVES));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.amplified_continuum_gloves, AccessoryType.GLOVES));
@@ -77,7 +77,7 @@ public class AetherRegistries {
 
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.iron_ring, AccessoryType.RING));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.golden_ring, AccessoryType.RING));
-		AetherAPI.instance().register(new AetherAccessory(ItemsAether.diamond_ring, AccessoryType.RING));		
+		AetherAPI.instance().register(new AetherAccessory(ItemsAether.diamond_ring, AccessoryType.RING));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.zanite_ring, AccessoryType.RING));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.arkenium_ring, AccessoryType.RING));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.continuum_ring, AccessoryType.RING));
@@ -85,23 +85,23 @@ public class AetherRegistries {
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.divineral_ring, AccessoryType.RING));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.auralite_ring, AccessoryType.RING));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.ice_ring, AccessoryType.RING));
-		
+
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.valkyrie_ring, AccessoryType.RING));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.reinforced_valkyrie_ring, AccessoryType.RING));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.amplified_valkyrie_ring, AccessoryType.RING));
-		
+
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.bone_ring, AccessoryType.RING));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.reinforced_bone_ring, AccessoryType.RING));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.amplified_bone_ring, AccessoryType.RING));
-				
+
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.haste_ring, AccessoryType.RING));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.reinforced_haste_ring, AccessoryType.RING));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.amplified_haste_ring, AccessoryType.RING));
-		
+
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.elysian_ring, AccessoryType.RING));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.reinforced_elysian_ring, AccessoryType.RING));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.amplified_elysian_ring, AccessoryType.RING));
-		
+
 		if (Loader.isModLoaded("etfuturum") && AetherConfig.enable_copper_recipes) {
 			AetherAPI.instance().register(new AetherAccessory(ItemsAether.copper_ring, AccessoryType.RING));
 		}
@@ -119,11 +119,11 @@ public class AetherRegistries {
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.divineral_pendant, AccessoryType.PENDANT));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.ice_pendant, AccessoryType.PENDANT));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.false_wings, AccessoryType.PENDANT));
-		
+
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.auralite_pendant, AccessoryType.PENDANT));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.reinforced_auralite_pendant, AccessoryType.PENDANT));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.amplified_auralite_pendant, AccessoryType.PENDANT));
-		
+
 		if (Loader.isModLoaded("etfuturum") && AetherConfig.enable_copper_recipes) {
 			AetherAPI.instance().register(new AetherAccessory(ItemsAether.copper_pendant, AccessoryType.PENDANT));
 		}
@@ -137,7 +137,7 @@ public class AetherRegistries {
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.white_cape, AccessoryType.CAPE));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.black_cape, AccessoryType.CAPE));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.green_cape, AccessoryType.CAPE));
-		AetherAPI.instance().register(new AetherAccessory(ItemsAether.purple_cape, AccessoryType.CAPE));	
+		AetherAPI.instance().register(new AetherAccessory(ItemsAether.purple_cape, AccessoryType.CAPE));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.orange_cape, AccessoryType.CAPE));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.lime_cape, AccessoryType.CAPE));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.pink_cape, AccessoryType.CAPE));
@@ -147,7 +147,7 @@ public class AetherRegistries {
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.light_blue_cape, AccessoryType.CAPE));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.magenta_cape, AccessoryType.CAPE));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.brown_cape, AccessoryType.CAPE));
-		
+
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.swet_cape, AccessoryType.CAPE));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.invisibility_cape, AccessoryType.CAPE));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.agility_cape, AccessoryType.CAPE));
@@ -159,15 +159,15 @@ public class AetherRegistries {
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.golden_feather, AccessoryType.MISC));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.reinforced_golden_feather, AccessoryType.MISC));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.amplified_golden_feather, AccessoryType.MISC));
-		
+
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.regeneration_stone, AccessoryType.MISC));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.reinforced_regeneration_stone, AccessoryType.MISC));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.healing_matrix, AccessoryType.MISC));
-		
+
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.iron_bubble, AccessoryType.MISC));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.reinforced_iron_bubble, AccessoryType.MISC));
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.amplified_iron_bubble, AccessoryType.MISC));
-		
+
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.flaming_stone, AccessoryType.MISC));
 
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.repulsion_shield, AccessoryType.SHIELD));
@@ -182,7 +182,7 @@ public class AetherRegistries {
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.skyroot_axe, 550));
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.skyroot_shovel, 550));
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.skyroot_sword, 550));
-		
+
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.tipped_skyroot_pickaxe, 1100));
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.tipped_skyroot_axe, 1100));
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.tipped_skyroot_shovel, 1100));
@@ -192,7 +192,7 @@ public class AetherRegistries {
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.holystone_axe, 550));
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.holystone_shovel, 550));
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.holystone_sword, 550));
-		
+
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.tipped_holystone_pickaxe, 1100));
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.tipped_holystone_axe, 1100));
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.tipped_holystone_shovel, 1100));
@@ -202,7 +202,7 @@ public class AetherRegistries {
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.zanite_axe, 2250));
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.zanite_shovel, 2250));
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.zanite_sword, 2250));
-		
+
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.tipped_zanite_pickaxe, 4500));
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.tipped_zanite_axe, 4500));
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.tipped_zanite_shovel, 4500));
@@ -212,17 +212,17 @@ public class AetherRegistries {
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.gravitite_axe, 5500));
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.gravitite_shovel, 5500));
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.gravitite_sword, 5500));
-		
+
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.tipped_gravitite_pickaxe, 11000));
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.tipped_gravitite_axe, 11000));
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.tipped_gravitite_shovel, 11000));
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.tipped_gravitite_sword, 11000));
-		
+
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.continuum_pickaxe, 7500));
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.continuum_axe, 7500));
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.continuum_shovel, 7500));
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.continuum_sword, 7500));
-		
+
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.tipped_continuum_pickaxe, 15000));
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.tipped_continuum_axe, 15000));
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.tipped_continuum_shovel, 15000));
@@ -232,27 +232,27 @@ public class AetherRegistries {
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.zanite_chestplate, 6000));
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.zanite_leggings, 6000));
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.zanite_boots, 6000));
-		
+
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.scaled_zanite_helmet, 12000));
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.scaled_zanite_chestplate, 12000));
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.scaled_zanite_leggings, 12000));
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.scaled_zanite_boots, 12000));
-		
+
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.arkenium_helmet, 10000));
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.arkenium_chestplate, 10000));
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.arkenium_leggings, 10000));
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.arkenium_boots, 10000));
-		
+
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.scaled_arkenium_helmet, 20000));
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.scaled_arkenium_chestplate, 20000));
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.scaled_arkenium_leggings, 20000));
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.scaled_arkenium_boots, 20000));
-		
+
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.continuum_helmet, 14000));
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.continuum_chestplate, 14000));
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.continuum_leggings, 14000));
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.continuum_boots, 14000));
-		
+
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.scaled_continuum_helmet, 28000));
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.scaled_continuum_chestplate, 28000));
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.scaled_continuum_leggings, 28000));
@@ -262,7 +262,7 @@ public class AetherRegistries {
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.gravitite_chestplate, 13000));
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.gravitite_leggings, 13000));
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.gravitite_boots, 13000));
-		
+
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.scaled_gravitite_helmet, 26000));
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.scaled_gravitite_chestplate, 26000));
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.scaled_gravitite_leggings, 26000));
@@ -270,7 +270,7 @@ public class AetherRegistries {
 
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.zanite_ring, 2250));
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.zanite_pendant, 2250));
-		
+
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.auralite_ring, 7250));
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.auralite_pendant, 7250));
 
@@ -278,9 +278,7 @@ public class AetherRegistries {
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.dart_shooter, new ItemStack(ItemsAether.dart_shooter, 1, 2), 500));
 
 		AetherAPI.instance().register(new AetherEnchantment(new ItemStack(ItemsAether.skyroot_bucket, 1, 2), new ItemStack(ItemsAether.skyroot_bucket.setContainerItem(null), 1, 3), 1000));
-
-		AetherAPI.instance().register(new AetherEnchantment(new ItemStack(BlocksAether.golden_oak_log, 1, 1), ItemsAether.mimicry_ambrosium_shard, 250));
-		AetherAPI.instance().register(new AetherEnchantment(new ItemStack(BlocksAether.golden_oak_log, 1, 0), BlocksAether.enchanted_agiosite, 250));
+		AetherAPI.instance().register(new AetherEnchantment(new ItemStack(BlocksAether.golden_oak_new_log, 1, 1), ItemsAether.mimicry_ambrosium_shard, 250));
 		AetherAPI.instance().register(new AetherEnchantment(BlocksAether.enchanted_holystone, ItemsAether.healing_stone, 750));
 		AetherAPI.instance().register(new AetherEnchantment(BlocksAether.enchanted_agiosite, ItemsAether.dexterity_stone, 750));
 		AetherAPI.instance().register(new AetherEnchantment(BlocksAether.enchanted_deific, ItemsAether.agility_stone, 750));
@@ -291,46 +289,46 @@ public class AetherRegistries {
 		AetherAPI.instance().register(new AetherEnchantment(BlocksAether.gravitite_ore, BlocksAether.enchanted_gravitite, 2000));
 		AetherAPI.instance().register(new AetherEnchantment(BlocksAether.aetheral_gravitite_ore, BlocksAether.enchanted_gravitite, 2000));
 		AetherAPI.instance().register(new AetherEnchantment(BlocksAether.agiosite_gravitite_ore, BlocksAether.enchanted_gravitite, 2000));
-		AetherAPI.instance().register(new AetherEnchantment(BlocksAether.deific_gravitite_ore, BlocksAether.enchanted_gravitite, 2000));	
+		AetherAPI.instance().register(new AetherEnchantment(BlocksAether.deific_gravitite_ore, BlocksAether.enchanted_gravitite, 2000));
 		AetherAPI.instance().register(new AetherEnchantment(BlocksAether.quicksoil, BlocksAether.quicksoil_glass, 250));
 		AetherAPI.instance().register(new AetherEnchantment(new ItemStack(BlocksAether.agiosite, 1, 1), BlocksAether.enchanted_agiosite, 250));
 		AetherAPI.instance().register(new AetherEnchantment(new ItemStack(BlocksAether.deific, 1, 1), BlocksAether.enchanted_deific, 300));
-		AetherAPI.instance().register(new AetherEnchantment(new ItemStack(BlocksAether.aetheral_stone, 1, 1), BlocksAether.enchanted_aetheral_stone, 350));		
+		AetherAPI.instance().register(new AetherEnchantment(new ItemStack(BlocksAether.aetheral_stone, 1, 1), BlocksAether.enchanted_aetheral_stone, 350));
 		AetherAPI.instance().register(new AetherEnchantment(new ItemStack(BlocksAether.agiosite, 1, 0), BlocksAether.enchanted_agiosite, 250));
 		AetherAPI.instance().register(new AetherEnchantment(new ItemStack(BlocksAether.deific, 1, 0), BlocksAether.enchanted_deific, 300));
-		AetherAPI.instance().register(new AetherEnchantment(new ItemStack(BlocksAether.aetheral_stone, 1, 0), BlocksAether.enchanted_aetheral_stone, 350));		
+		AetherAPI.instance().register(new AetherEnchantment(new ItemStack(BlocksAether.aetheral_stone, 1, 0), BlocksAether.enchanted_aetheral_stone, 350));
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.uncooked_fruit_stew_bowl, ItemsAether.enchanted_fruit_stew, 800));
 		AetherAPI.instance().register(new AetherEnchantment(new ItemStack(BlocksAether.arkenium_ore, 1, 1), ItemsAether.arkenium_fragement, 1000));
 		AetherAPI.instance().register(new AetherEnchantment(BlocksAether.arkenium_ore, ItemsAether.arkenium_fragement, 1000));
 		AetherAPI.instance().register(new AetherEnchantment(BlocksAether.aetheral_arkenium_ore, ItemsAether.arkenium_fragement, 1000));
 		AetherAPI.instance().register(new AetherEnchantment(BlocksAether.agiosite_arkenium_ore, ItemsAether.arkenium_fragement, 1000));
-		AetherAPI.instance().register(new AetherEnchantment(BlocksAether.deific_arkenium_ore, ItemsAether.arkenium_fragement, 1000));		
+		AetherAPI.instance().register(new AetherEnchantment(BlocksAether.deific_arkenium_ore, ItemsAether.arkenium_fragement, 1000));
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.arkenium_chunk, ItemsAether.arkenium_ingot, 4000));
 		AetherAPI.instance().register(new AetherEnchantment(BlocksAether.continuum_ore, ItemsAether.continuum_gemstone, 1200));
 		AetherAPI.instance().register(new AetherEnchantment(new ItemStack(BlocksAether.continuum_ore, 1, 1), ItemsAether.continuum_gemstone, 1200));
 		AetherAPI.instance().register(new AetherEnchantment(new ItemStack(BlocksAether.continuum_ore, 1, 0), ItemsAether.continuum_gemstone, 1200));
 		AetherAPI.instance().register(new AetherEnchantment(BlocksAether.aetheral_continuum_ore, ItemsAether.continuum_gemstone, 1200));
 		AetherAPI.instance().register(new AetherEnchantment(BlocksAether.agiosite_continuum_ore, ItemsAether.continuum_gemstone, 1200));
-		AetherAPI.instance().register(new AetherEnchantment(BlocksAether.deific_continuum_ore, ItemsAether.continuum_gemstone, 1200));		
+		AetherAPI.instance().register(new AetherEnchantment(BlocksAether.deific_continuum_ore, ItemsAether.continuum_gemstone, 1200));
 		AetherAPI.instance().register(new AetherEnchantment(BlocksAether.primeval_artifact, ItemsAether.enchanted_divineral, 8100));
 		AetherAPI.instance().register(new AetherEnchantment(new ItemStack(BlocksAether.holystone, 1, 1), BlocksAether.enchanted_holystone, 500));
 		AetherAPI.instance().register(new AetherEnchantment(new ItemStack(BlocksAether.frozen_quicksoil, 1, 0), BlocksAether.frozen_quicksoil_glass, 300));
 		AetherAPI.instance().register(new AetherEnchantment(new ItemStack(BlocksAether.frozen_quicksoil, 1, 1), BlocksAether.frozen_quicksoil_glass, 300));
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.cracked_empyrean_gemstone, ItemsAether.charged_empyrean_gemstone, 2000));
-		
-		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.blueberry, ItemsAether.enchanted_blueberry, 600));		
+
+		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.blueberry, ItemsAether.enchanted_blueberry, 600));
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.orange, ItemsAether.enchanted_orange, 600));
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.grapes, ItemsAether.enchanted_grapes, 600));
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.strawberry, ItemsAether.enchanted_strawberry, 600));
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.raspberry, ItemsAether.enchanted_raspberry, 500));
-		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.raspberry, ItemsAether.enchanted_blackberry, 500));	
+		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.blackberry, ItemsAether.enchanted_blackberry, 500));
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.wynberry, ItemsAether.rainbow_strawberry, 800));
 		AetherAPI.instance().register(new AetherEnchantment(Items.porkchop, Items.cooked_porkchop, 600));
 		AetherAPI.instance().register(new AetherEnchantment(Items.beef, Items.cooked_beef, 600));
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.raw_thunderlo, ItemsAether.enchanted_thunderlo, 500));
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.raw_aerwhale, ItemsAether.enchanted_aerwhale, 700));
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.aechor_petal, ItemsAether.blue_aechor_petal, 1400));
-		
+
 		AetherAPI.instance().register(new AetherEnchantment(ItemsAether.aerca_tooth, ItemsAether.aerca_powder, 1500));
 
 		AetherAPI.instance().register(new AetherEnchantment(Items.bow, 4000));
@@ -347,7 +345,7 @@ public class AetherRegistries {
 		AetherAPI.instance().register(new AetherEnchantment(Items.record_strad, ItemsAether.aether_tune, 2500));
 		AetherAPI.instance().register(new AetherEnchantment(Items.record_wait, ItemsAether.aether_tune, 2500));
 		AetherAPI.instance().register(new AetherEnchantment(Items.record_ward, ItemsAether.aether_tune, 2500));
-		
+
 		AetherAPI.instance().register(new AetherEnchantment(Items.wooden_pickaxe, 225));
 		AetherAPI.instance().register(new AetherEnchantment(Items.wooden_axe, 225));
 		AetherAPI.instance().register(new AetherEnchantment(Items.wooden_shovel, 225));
@@ -429,18 +427,18 @@ public class AetherRegistries {
 		AetherAPI.instance().register(new AetherFreezable(ItemsAether.iron_pendant, ItemsAether.ice_pendant, 2500));
 		AetherAPI.instance().register(new AetherFreezable(ItemsAether.golden_pendant, ItemsAether.ice_pendant, 2500));
 		AetherAPI.instance().register(new AetherFreezable(BlocksAether.aether_grass, BlocksAether.arctic_grass, 150));
-		
+
 		if (AetherConfig.DiamondFreezableRecipe()) {
 		AetherAPI.instance().register(new AetherFreezable(BlocksAether.diamond_aercloud, new ItemStack(Items.diamond), 3000));
 		}
-		
+
 		if (AetherConfig.BlazeRodRecipe()) {
 		AetherAPI.instance().register(new AetherFreezable(ItemsAether.cinerarium_rod, Items.blaze_rod, 1800));
-		}		
+		}
 		if (!AetherConfig.BlazeRodRecipe()) {
 			AetherAPI.instance().register(new AetherFreezable(ItemsAether.cinerarium_rod, ItemsAether.cyro_rod, 1800));
 		}
-		
+
 		AetherAPI.instance().register(new AetherFreezable(Items.blaze_rod, ItemsAether.cyro_rod, 1800));
 		AetherAPI.instance().register(new AetherFreezable(new ItemStack(ItemsAether.poison_gummy_swet, 1, 0), new ItemStack(ItemsAether.poison_gummy_swet, 1, 1), 1000));
 	}
@@ -450,14 +448,14 @@ public class AetherRegistries {
 		AetherAPI.instance().register(new AetherFreezableFuel(ItemsAether.icestone_crystal, 500));
 		AetherAPI.instance().register(new AetherFreezableFuel(ItemsAether.cyro_rod, 2200));
 	}
-	
+
 	public static void initializeAmplifiers() {
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.tipped_gravitite_sword, ItemsAether.divineral_sword, 1800));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.tipped_gravitite_pickaxe, ItemsAether.divineral_pickaxe, 1800));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.tipped_gravitite_shovel, ItemsAether.divineral_shovel, 1800));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.tipped_gravitite_axe, ItemsAether.divineral_axe, 1800));
-		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.gravitite_hoe, ItemsAether.divineral_hoe, 1800));		
-		
+		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.gravitite_hoe, ItemsAether.divineral_hoe, 1800));
+
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.scaled_gravitite_helmet, ItemsAether.divineral_helmet, 1800));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.scaled_gravitite_chestplate, ItemsAether.divineral_chestplate, 1800));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.scaled_gravitite_leggings, ItemsAether.divineral_leggings, 1800));
@@ -465,56 +463,56 @@ public class AetherRegistries {
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.gravitite_gloves, ItemsAether.divineral_gloves, 900));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.gravitite_ring, ItemsAether.divineral_ring, 900));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.gravitite_pendant, ItemsAether.divineral_pendant, 900));
-		
+
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.tipped_continuum_sword, ItemsAether.amplified_continuum_sword, 1800));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.tipped_continuum_pickaxe, ItemsAether.amplified_continuum_pickaxe, 1800));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.tipped_continuum_shovel, ItemsAether.amplified_continuum_shovel, 1800));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.tipped_continuum_axe, ItemsAether.amplified_continuum_axe, 1800));
-		
+
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.scaled_continuum_helmet, ItemsAether.amplified_continuum_helmet, 1800));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.scaled_continuum_chestplate, ItemsAether.amplified_continuum_chestplate, 1800));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.scaled_continuum_leggings, ItemsAether.amplified_continuum_leggings, 1800));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.scaled_continuum_boots, ItemsAether.amplified_continuum_boots, 1800));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.continuum_gloves, ItemsAether.amplified_continuum_gloves, 900));
-		
+
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.scaled_agility_boots, ItemsAether.amplified_agility_boots, 3600));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.scaled_sentry_boots, ItemsAether.amplified_sentry_boots, 3600));
-		
+
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.scaled_neptune_helmet, ItemsAether.amplified_neptune_helmet, 2700));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.scaled_neptune_chestplate, ItemsAether.amplified_neptune_chestplate, 2700));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.scaled_neptune_leggings, ItemsAether.amplified_neptune_leggings, 2700));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.scaled_neptune_boots, ItemsAether.amplified_neptune_boots, 2700));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.neptune_gloves, ItemsAether.amplified_neptune_gloves, 900));
-		
+
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.scaled_valkyrie_helmet, ItemsAether.amplified_valkyrie_helmet, 4500));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.scaled_valkyrie_chestplate, ItemsAether.amplified_valkyrie_chestplate, 4500));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.scaled_valkyrie_leggings, ItemsAether.amplified_valkyrie_leggings, 4500));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.scaled_valkyrie_boots, ItemsAether.amplified_valkyrie_boots, 4500));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.valkyrie_gloves, ItemsAether.amplified_valkyrie_gloves, 900));
-		
+
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.scaled_obsidian_helmet, ItemsAether.amplified_obsidian_helmet, 3600));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.scaled_obsidian_chestplate, ItemsAether.amplified_obsidian_chestplate, 3600));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.scaled_obsidian_leggings, ItemsAether.amplified_obsidian_leggings, 3600));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.scaled_obsidian_boots, ItemsAether.amplified_obsidian_boots, 3600));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.obsidian_gloves, ItemsAether.amplified_obsidian_gloves, 900));
-		
+
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.scaled_elysian_helmet, ItemsAether.amplified_elysian_helmet, 3600));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.scaled_elysian_chestplate, ItemsAether.amplified_elysian_chestplate, 3600));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.scaled_elysian_leggings, ItemsAether.amplified_elysian_leggings, 3600));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.scaled_elysian_boots, ItemsAether.amplified_elysian_boots, 3600));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.elysian_gloves, ItemsAether.amplified_elysian_gloves, 900));
-		
+
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.scaled_phoenix_helmet, ItemsAether.amplified_phoenix_helmet, 3600));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.scaled_phoenix_chestplate, ItemsAether.amplified_phoenix_chestplate, 3600));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.scaled_phoenix_leggings, ItemsAether.amplified_phoenix_leggings, 3600));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.scaled_phoenix_boots, ItemsAether.amplified_phoenix_boots, 3600));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.phoenix_gloves, ItemsAether.amplified_phoenix_gloves, 900));
-			
+
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.tipped_skyroot_sword, ItemsAether.amplified_skyroot_sword, 1800));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.tipped_skyroot_pickaxe, ItemsAether.amplified_skyroot_pickaxe, 1800));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.tipped_skyroot_shovel, ItemsAether.amplified_skyroot_shovel, 1800));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.tipped_skyroot_axe, ItemsAether.amplified_skyroot_axe, 1800));
-		
+
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.tipped_holystone_sword, ItemsAether.amplified_holystone_sword, 1800));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.tipped_holystone_pickaxe, ItemsAether.amplified_holystone_pickaxe, 1800));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.tipped_holystone_axe, ItemsAether.amplified_holystone_axe, 1800));
@@ -524,59 +522,59 @@ public class AetherRegistries {
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.tipped_zanite_pickaxe, ItemsAether.amplified_zanite_pickaxe, 1800));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.tipped_zanite_shovel, ItemsAether.amplified_zanite_shovel, 1800));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.tipped_zanite_axe, ItemsAether.amplified_zanite_axe, 1800));
-		
+
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.scaled_zanite_helmet, ItemsAether.amplified_zanite_helmet, 1800));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.scaled_zanite_chestplate, ItemsAether.amplified_zanite_chestplate, 1800));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.scaled_zanite_leggings, ItemsAether.amplified_zanite_leggings, 1800));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.scaled_zanite_boots, ItemsAether.amplified_zanite_boots, 1800));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.zanite_gloves, ItemsAether.amplified_zanite_gloves, 900));
-		
+
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.scaled_arkenium_helmet, ItemsAether.amplified_arkenium_helmet, 1800));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.scaled_arkenium_chestplate, ItemsAether.amplified_arkenium_chestplate, 1800));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.scaled_arkenium_leggings, ItemsAether.amplified_arkenium_leggings, 1800));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.scaled_arkenium_boots, ItemsAether.amplified_arkenium_boots, 1800));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.arkenium_gloves, ItemsAether.amplified_arkenium_gloves, 900));
-		
+
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.tipped_flaming_sword, ItemsAether.amplified_flaming_sword, 3600));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.tipped_lightning_sword, ItemsAether.amplified_lightning_sword, 3600));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.tipped_holy_sword, ItemsAether.amplified_holy_sword, 3600));
-		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.tipped_vampire_blade, ItemsAether.amplified_vampire_blade, 3600)); 
+		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.tipped_vampire_blade, ItemsAether.amplified_vampire_blade, 3600));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.tipped_phoenix_bow, ItemsAether.amplified_phoenix_bow, 3600));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.tipped_cyro_bow, ItemsAether.amplified_cyro_bow, 3600));
-		
+
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.tipped_valkyrie_lance, ItemsAether.amplified_valkyrie_lance, 3600));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.tipped_valkyrie_pickaxe, ItemsAether.amplified_valkyrie_pickaxe, 3600));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.tipped_valkyrie_shovel, ItemsAether.amplified_valkyrie_shovel, 3600));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.tipped_valkyrie_axe, ItemsAether.amplified_valkyrie_axe, 3600));
-		
+
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.tipped_notch_hammer, ItemsAether.amplified_notch_hammer, 7200));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.tipped_jeb_hammer, ItemsAether.amplified_jeb_hammer, 3600));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.tipped_battle_sentry_hammer, ItemsAether.amplified_battle_sentry_hammer, 5400));
-		
+
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.tipped_overworld_slayer, ItemsAether.amplified_overworld_slayer, 5400));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.tipped_nether_slayer, ItemsAether.amplified_nether_slayer, 3600));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.tipped_ender_slayer, ItemsAether.amplified_ender_slayer, 3600));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.tipped_dragon_bane, ItemsAether.amplified_dragon_bane, 3600));
-		
+
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.tipped_notched_pickaxe, ItemsAether.amplified_notched_pickaxe, 7200));
-		
+
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.reinforced_valkyrie_ring, ItemsAether.amplified_valkyrie_ring, 2700));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.reinforced_bone_ring, ItemsAether.amplified_bone_ring, 1800));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.reinforced_haste_ring, ItemsAether.amplified_haste_ring, 2700));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.reinforced_auralite_pendant, ItemsAether.amplified_auralite_pendant, 1800));
-		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.reinforced_regeneration_stone, ItemsAether.healing_matrix, 2700));		
+		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.reinforced_regeneration_stone, ItemsAether.healing_matrix, 2700));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.reinforced_iron_bubble, ItemsAether.amplified_iron_bubble, 1800));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.reinforced_golden_feather, ItemsAether.amplified_golden_feather, 2700));
 		AetherAPI.instance().register(new AetherAmplifier(ItemsAether.reinforced_elysian_ring, ItemsAether.amplified_elysian_ring, 2700));
 
 	}
-	
+
 	public static void initializeAmplifierFuel() {
 		AetherAPI.instance().register(new AetherAmplifierFuel(BlocksAether.divineral_block, 8100));
 		AetherAPI.instance().register(new AetherAmplifierFuel(ItemsAether.divineral_ingot, 900));
 		AetherAPI.instance().register(new AetherAmplifierFuel(ItemsAether.notched_core, 900));
 		AetherAPI.instance().register(new AetherAmplifierFuel(ItemsAether.enchanted_divineral, 100));
-		
+
 		AetherAPI.instance().register(new AetherAmplifierFuel(ItemsAether.divineral_sword, 300));
 		AetherAPI.instance().register(new AetherAmplifierFuel(ItemsAether.divineral_pickaxe, 300));
 		AetherAPI.instance().register(new AetherAmplifierFuel(ItemsAether.divineral_axe, 300));
@@ -587,22 +585,22 @@ public class AetherRegistries {
 		AetherAPI.instance().register(new AetherAmplifierFuel(ItemsAether.divineral_leggings, 300));
 		AetherAPI.instance().register(new AetherAmplifierFuel(ItemsAether.divineral_boots, 300));
 		AetherAPI.instance().register(new AetherAmplifierFuel(ItemsAether.divineral_gloves, 300));
-		
+
 		AetherAPI.instance().register(new AetherAmplifierFuel(ItemsAether.amplified_neptune_helmet, 600));
 		AetherAPI.instance().register(new AetherAmplifierFuel(ItemsAether.amplified_neptune_chestplate, 600));
 		AetherAPI.instance().register(new AetherAmplifierFuel(ItemsAether.amplified_neptune_leggings, 600));
 		AetherAPI.instance().register(new AetherAmplifierFuel(ItemsAether.amplified_neptune_boots, 600));
 		AetherAPI.instance().register(new AetherAmplifierFuel(ItemsAether.amplified_neptune_gloves, 600));
-		
+
 		AetherAPI.instance().register(new AetherAmplifierFuel(ItemsAether.amplified_valkyrie_helmet, 1100));
 		AetherAPI.instance().register(new AetherAmplifierFuel(ItemsAether.amplified_valkyrie_chestplate, 1100));
 		AetherAPI.instance().register(new AetherAmplifierFuel(ItemsAether.amplified_valkyrie_leggings, 1100));
 		AetherAPI.instance().register(new AetherAmplifierFuel(ItemsAether.amplified_valkyrie_boots, 1100));
 		AetherAPI.instance().register(new AetherAmplifierFuel(ItemsAether.amplified_valkyrie_gloves, 1100));
-		
+
 		AetherAPI.instance().register(new AetherAmplifierFuel(ItemsAether.amplified_agility_boots, 900));
-		
-		
+
+
 		AetherAPI.instance().register(new AetherAmplifierFuel(ItemsAether.lightning_knife, 36));
 		AetherAPI.instance().register(new AetherAmplifierFuel(ItemsAether.jeb_hammer, 180));
 		AetherAPI.instance().register(new AetherAmplifierFuel(ItemsAether.flaming_sword, 180));
@@ -613,7 +611,7 @@ public class AetherRegistries {
 		AetherAPI.instance().register(new AetherAmplifierFuel(ItemsAether.repulsion_shield, 360));
 		AetherAPI.instance().register(new AetherAmplifierFuel(ItemsAether.cloud_staff, 180));
 		AetherAPI.instance().register(new AetherAmplifierFuel(ItemsAether.zanite_shield, 360));
-		
+
 		AetherAPI.instance().register(new AetherAmplifierFuel(ItemsAether.valkyrie_pickaxe, 360));
 		AetherAPI.instance().register(new AetherAmplifierFuel(ItemsAether.valkyrie_shovel, 360));
 		AetherAPI.instance().register(new AetherAmplifierFuel(ItemsAether.valkyrie_axe, 360));
@@ -634,7 +632,7 @@ public class AetherRegistries {
 		AetherAPI.instance().register(new AetherAmplifierFuel(ItemsAether.regeneration_stone, 300));
 		AetherAPI.instance().register(new AetherAmplifierFuel(ItemsAether.aer_cape, 300));
 		AetherAPI.instance().register(new AetherAmplifierFuel(ItemsAether.invisibility_cape, 300));
-		
+
 		AetherAPI.instance().register(new AetherAmplifierFuel(ItemsAether.notch_hammer, 300));
 		AetherAPI.instance().register(new AetherAmplifierFuel(ItemsAether.vampire_blade, 300));
 		AetherAPI.instance().register(new AetherAmplifierFuel(ItemsAether.iron_bubble, 300));
@@ -678,6 +676,7 @@ public class AetherRegistries {
 		FurnaceRecipes.smelting().func_151394_a(new ItemStack(BlocksAether.wisproot_log, 1, 1), charcoal, 0.15F);
 		FurnaceRecipes.smelting().func_151394_a(new ItemStack(BlocksAether.void_log, 1, 1), charcoal, 0.15F);
 		FurnaceRecipes.smelting().func_151394_a(new ItemStack(BlocksAether.divine_oak_log, 1, 1), charcoal, 0.15F);
+        FurnaceRecipes.smelting().func_151394_a(new ItemStack(BlocksAether.golden_oak_new_log, 1, 1), charcoal, 0.15F);
 
 		//Stick
 		OreDictionary.registerOre("stickWood", ItemsAether.skyroot_stick);
@@ -727,14 +726,14 @@ public class AetherRegistries {
 		registerShapeless(new ItemStack(Items.dye, 2, 11), BlocksAether.quickshoot);
 		registerShapeless(new ItemStack(Items.dye, 3, 11), BlocksAether.enchanted_quickshoot);
 		registerShapeless(new ItemStack(Items.dye, 1, 14), BlocksAether.enchanted_bloom);
-		
+
 		registerShapeless(new ItemStack(Items.dye, 2, 10), BlocksAether.divine_bloom);
 		registerShapeless(new ItemStack(Items.dye, 2, 5), BlocksAether.divine_lily);
 		registerShapeless(new ItemStack(ItemsAether.blue_dye, 2, 0), BlocksAether.divine_stalk);
-		
+
 		registerShapeless(new ItemStack(BlocksAether.golden_oak_new_log), new ItemStack(BlocksAether.golden_oak_log, 1, 0));
 		registerShapeless(new ItemStack(BlocksAether.golden_oak_new_log), new ItemStack(BlocksAether.golden_oak_log, 1, 1));
-		
+
 		if (AetherConfig.RedstoneItemsCraftable()) {
 			registerShapeless(new ItemStack(Blocks.wooden_button), BlocksAether.skyroot_planks);
 			registerShapeless(new ItemStack(Blocks.wooden_button), BlocksAether.greatroot_planks);
@@ -745,7 +744,7 @@ public class AetherRegistries {
 			registerShapeless(new ItemStack(Blocks.sticky_piston), Blocks.piston, ItemsAether.golden_swet_ball);
 			registerShapeless(new ItemStack(Blocks.sticky_piston), Blocks.piston, ItemsAether.purple_swet_ball);
 		}
-		
+
 		registerShapeless(new ItemStack(BlocksAether.skyroot_planks, 4), new ItemStack(BlocksAether.skyroot_log, 1, 0));
 		registerShapeless(new ItemStack(BlocksAether.skyroot_planks, 4), new ItemStack(BlocksAether.skyroot_log, 1, 1));
 		registerShapeless(new ItemStack(BlocksAether.golden_oak_planks, 4), new ItemStack(BlocksAether.golden_oak_new_log, 1, 0));
@@ -757,13 +756,13 @@ public class AetherRegistries {
 		registerShapeless(new ItemStack(BlocksAether.void_planks, 4), new ItemStack(BlocksAether.void_log, 1, 0));
 		registerShapeless(new ItemStack(BlocksAether.void_planks, 4), new ItemStack(BlocksAether.void_log, 1, 1));
 		registerShapeless(new ItemStack(BlocksAether.divine_oak_planks, 4), new ItemStack(BlocksAether.divine_oak_log, 1, 0));
-		registerShapeless(new ItemStack(BlocksAether.divine_oak_planks, 4), new ItemStack(BlocksAether.divine_oak_log, 1, 1));		
+		registerShapeless(new ItemStack(BlocksAether.divine_oak_planks, 4), new ItemStack(BlocksAether.divine_oak_log, 1, 1));
 		registerShapeless(new ItemStack(BlocksAether.skyroot_planks, 4), new ItemStack(BlocksAether.skyroot_log_wall));
 		registerShapeless(new ItemStack(BlocksAether.golden_oak_planks, 4), new ItemStack(BlocksAether.golden_oak_log_wall));
 		registerShapeless(new ItemStack(BlocksAether.wisproot_planks, 4), new ItemStack(BlocksAether.wisproot_log_wall));
 		registerShapeless(new ItemStack(BlocksAether.greatroot_planks, 4), new ItemStack(BlocksAether.greatroot_log_wall));
 		registerShapeless(new ItemStack(BlocksAether.void_planks, 4), new ItemStack(BlocksAether.void_log_wall));
-		registerShapeless(new ItemStack(BlocksAether.divine_oak_planks, 4), new ItemStack(BlocksAether.divine_oak_log_wall));		
+		registerShapeless(new ItemStack(BlocksAether.divine_oak_planks, 4), new ItemStack(BlocksAether.divine_oak_log_wall));
 		registerShapeless(new ItemStack(ItemsAether.lore_book), new ItemStack(Items.book), new ItemStack(ItemsAether.ambrosium_shard));
 		registerShapeless(new ItemStack(ItemsAether.lore_book), new ItemStack(Items.book), new ItemStack(Items.flint));
 		registerShapeless(new ItemStack(ItemsAether.lore_book), new ItemStack(Items.book), new ItemStack(Items.glowstone_dust));
@@ -782,7 +781,7 @@ public class AetherRegistries {
 			registerShapeless(new ItemStack(ItemsAether.netherite_ring), new ItemStack(ItemsAether.diamond_ring), new ItemStack(OtherModItems.netherite_ingot));
 			registerShapeless(new ItemStack(ItemsAether.netherite_pendant), new ItemStack(ItemsAether.diamond_pendant), new ItemStack(OtherModItems.netherite_ingot));
 		}
-		
+
 		if (Loader.isModLoaded("nova_craft")) {
 			if (Loader.isModLoaded("etfuturum") && AetherConfig.enable_netherite_recipes) {
 				registerShapeless(new ItemStack(ItemsAether.klangite_gloves), new ItemStack(ItemsAether.netherite_gloves), new ItemStack(OtherModItems.klangite_ingot));
@@ -790,7 +789,7 @@ public class AetherRegistries {
 				registerShapeless(new ItemStack(ItemsAether.klangite_gloves), new ItemStack(ItemsAether.diamond_gloves), new ItemStack(OtherModItems.klangite_ingot));
 			}
 		}
-		
+
 		registerShapeless(new ItemStack(ItemsAether.aercloud_globule, 8), new ItemStack(BlocksAether.aercloud, 1, 0));
 		registerShapeless(new ItemStack(ItemsAether.aercloud_globule, 1), new ItemStack(BlocksAether.aercloud_layer, 1, 0));
 		registerShapeless(new ItemStack(ItemsAether.aercloud_globule, 2), new ItemStack(BlocksAether.aercloud_layer_2, 1, 0));
@@ -836,7 +835,7 @@ public class AetherRegistries {
 		registerShapeless(new ItemStack(ItemsAether.green_aercloud_globule, 6), new ItemStack(BlocksAether.aercloud_layer_6, 1, 4));
 		registerShapeless(new ItemStack(ItemsAether.green_aercloud_globule, 7), new ItemStack(BlocksAether.aercloud_layer_7, 1, 4));
 		registerShapeless(new ItemStack(BlocksAether.aercloud_layer, 1, 4), ItemsAether.green_aercloud_globule);
-		
+
 		registerShapeless(new ItemStack(Items.book, 1), new ItemStack(Items.paper), new ItemStack(Items.paper), new ItemStack(Items.paper), new ItemStack(ItemsAether.zephyroo_leather));
 		//registerShapeless(new ItemStack(Items.book, 1), new ItemStack(Items.paper), new ItemStack(Items.paper), new ItemStack(Items.paper), new ItemStack(ItemsAether.thunderlo_leather));
 
@@ -860,14 +859,14 @@ public class AetherRegistries {
 		register(new ItemStack(BlocksAether.zanite_trapdoor, 2), "XXX", "XXX", 'X', ItemsAether.zanite_gemstone);
 		register(new ItemStack(BlocksAether.glowing_icestone, 4), "XYX", "YXY", "XYX", 'X', BlocksAether.icestone, 'Y', Blocks.glowstone);
 		register(new ItemStack(BlocksAether.aether_enchantment_table, 1), " B ", "D#D", "###", '#', BlocksAether.aerogel, 'B', Items.book, 'D', BlocksAether.enchanted_gravitite);
-		
+
 		register(new ItemStack(BlocksAether.auralite_pillar, 8), " X ", " X ", " X ", 'X', BlocksAether.block_of_auralite);
 		register(new ItemStack(BlocksAether.luminous_stone, 4), "XYX", "YZY", "XYX", 'X', BlocksAether.block_of_auralite, 'Y', Blocks.glowstone, 'Z', ItemsAether.arkenium_fragement);
-		
+
 		if (AetherConfig.BuddingAuraliteRecipe()) {
 		register(new ItemStack(BlocksAether.budding_auralite, 2), "VXV", "XYX", "VXV", 'Y', ItemsAether.arkenium_ingot, 'X', BlocksAether.block_of_auralite, 'V', BlocksAether.icestone);
 		}
-		
+
 		register(new ItemStack(BlocksAether.crystallized_genesis_stone, 3), "YXY", "YXY", "YXY", 'X', ItemsAether.aceninum_shard, 'Y', BlocksAether.genesis_stone_2);
 		register(new ItemStack(BlocksAether.block_of_auralite), "XX", "XX", 'X', ItemsAether.auralite_crystal);
 		register(new ItemStack(BlocksAether.block_of_aceninum), "XXX", "XXX", "XXX", 'X', ItemsAether.aceninum_shard);
@@ -906,17 +905,17 @@ public class AetherRegistries {
 		register(new ItemStack(BlocksAether.empyrean_block), "XXX", "XXX", "XXX", 'X', ItemsAether.empyrean_gemstone);
 		register(new ItemStack(ItemsAether.charged_empyrean_gemstone, 9), "X", 'X', BlocksAether.charged_empyrean_block);
 		register(new ItemStack(BlocksAether.charged_empyrean_block), "XXX", "XXX", "XXX", 'X', ItemsAether.charged_empyrean_gemstone);
-		
+
 		register(new ItemStack(BlocksAether.divine_enchantment_table), "WUW", "XZX", "YVY", 'Z', new ItemStack(ItemsAether.notched_core), 'V', new ItemStack(BlocksAether.reinforced_arkenium_block), 'Y', new ItemStack(BlocksAether.aerogel), 'X', ItemsAether.divineral_ingot, 'W', ItemsAether.divine_essence, 'U', ItemsAether.lore_book);
-		
+
 		register(new ItemStack(ItemsAether.charged_tempest_core), " Z ", "YXY", " Z ", 'X', new ItemStack(ItemsAether.swet_ball), 'Y', new ItemStack(ItemsAether.aerca_powder), 'Z', new ItemStack(ItemsAether.tempest_core));
 		register(new ItemStack(ItemsAether.charged_tempest_core), " Z ", "YXY", " Z ", 'X', new ItemStack(ItemsAether.golden_swet_ball), 'Y', new ItemStack(ItemsAether.aerca_powder), 'Z', new ItemStack(ItemsAether.tempest_core));
 		register(new ItemStack(ItemsAether.charged_tempest_core), " Z ", "YXY", " Z ", 'X', new ItemStack(ItemsAether.purple_swet_ball), 'Y', new ItemStack(ItemsAether.aerca_powder), 'Z', new ItemStack(ItemsAether.tempest_core));
-		
+
 		register(new ItemStack(Items.gunpowder), "XXX", "XXX", "XXX", 'X', ItemsAether.uligo_swet_ball);
-		
+
 		register(new ItemStack(ItemsAether.cracked_empyrean_gemstone), " X ", "XYX", " Z ", 'X', ItemsAether.auralite_crystal, 'Y', ItemsAether.empyrean_gemstone, 'Z', ItemsAether.tempest_core);
-		
+
 		//Scaled Recipes
 		/*register(new ItemStack(ItemsAether.scaled_zanite_helmet), "VXX", "XYX", "XXV", 'X', ItemsAether.zarnillys_scales, 'Y', ItemsAether.zanite_helmet, 'V', ItemsAether.zephyroo_leather);
 		register(new ItemStack(ItemsAether.scaled_zanite_chestplate), "VXX", "XYX", "XXV", 'X', ItemsAether.zarnillys_scales, 'Y', ItemsAether.zanite_chestplate, 'V', ItemsAether.zephyroo_leather);
@@ -957,7 +956,7 @@ public class AetherRegistries {
 		register(new ItemStack(ItemsAether.scaled_elysian_leggings), "VXX", "XYX", "XXV", 'X', ItemsAether.zarnillys_scales, 'Y', ItemsAether.elysian_leggings, 'V', ItemsAether.zephyroo_leather);
 		register(new ItemStack(ItemsAether.scaled_elysian_boots), "VXX", "XYX", "XXV", 'X', ItemsAether.zarnillys_scales, 'Y', ItemsAether.elysian_boots, 'V', ItemsAether.zephyroo_leather);
 		*/
-		
+
 		register(new ItemStack(ItemsAether.scaled_zanite_helmet), "VXX", "XYX", "XXV", 'X', ItemsAether.zarnillys_scales, 'Y', ItemsAether.zanite_helmet, 'V', ItemsAether.thunderlo_leather);
 		register(new ItemStack(ItemsAether.scaled_zanite_chestplate), "VXX", "XYX", "XXV", 'X', ItemsAether.zarnillys_scales, 'Y', ItemsAether.zanite_chestplate, 'V', ItemsAether.thunderlo_leather);
 		register(new ItemStack(ItemsAether.scaled_zanite_leggings), "VXX", "XYX", "XXV", 'X', ItemsAether.zarnillys_scales, 'Y', ItemsAether.zanite_leggings, 'V', ItemsAether.thunderlo_leather);
@@ -1076,12 +1075,12 @@ public class AetherRegistries {
 		register(new ItemStack(BlocksAether.ambrosium_torch, 3), "Z", "Y", 'Z', ItemsAether.ambrosium_shard, 'Y', ItemsAether.skyroot_stick);
 		register(new ItemStack(Items.lead, 2), "YY ", "YX ", "  Y", 'Y', Items.string, 'X', ItemsAether.swet_ball);
 		register(new ItemStack(ItemsAether.arkenium_apple), "XXX", "XYX", "XXX", 'X', ItemsAether.arkenium_ingot, 'Y', ItemsAether.white_apple);
-		
+
 		register(new ItemStack(ItemsAether.arkenium_nugget, 9), "X", 'X', ItemsAether.arkenium_ingot);
 		register(new ItemStack(ItemsAether.continuum_nugget, 9), "X", 'X', ItemsAether.continuum_gemstone);
 		register(new ItemStack(ItemsAether.zanite_nugget, 9), "X", 'X', ItemsAether.zanite_gemstone);
 		register(new ItemStack(ItemsAether.gravitite_nugget, 9), "X", 'X', ItemsAether.raw_gravitite);
-		
+
 		register(new ItemStack(ItemsAether.arkenium_ingot), "XXX", "XXX", "XXX", 'X', ItemsAether.arkenium_nugget);
 		register(new ItemStack(ItemsAether.continuum_gemstone), "XXX", "XXX", "XXX", 'X', ItemsAether.continuum_nugget);
 		register(new ItemStack(ItemsAether.zanite_gemstone), "XXX", "XXX", "XXX", 'X', ItemsAether.zanite_nugget);
@@ -1126,26 +1125,26 @@ public class AetherRegistries {
 		register(new ItemStack(Blocks.daylight_detector), "XXX", "YYY", "ZZZ", 'X', BlocksAether.quicksoil_glass, 'Y', ItemsAether.auralite_crystal, 'Z', BlocksAether.void_slab);
 		register(new ItemStack(Items.comparator), " X ", "XYX", "ZZZ", 'X', Blocks.redstone_torch, 'Y', ItemsAether.auralite_crystal, 'Z', BlocksAether.enchanted_holystone);
 		}
-		
+
 		if (AetherConfig.BrewingItemsCraftable()) {
 		register(new ItemStack(Items.brewing_stand), " Y ", "XXX", 'Y', ItemsAether.cinerarium_rod, 'X', BlocksAether.enchanted_holystone);
 		register(new ItemStack(Items.brewing_stand), " Y ", "XXX", 'Y', Items.blaze_rod, 'X', BlocksAether.enchanted_holystone);
 		register(new ItemStack(Items.cauldron), "X X", "X X", "XXX", 'X', ItemsAether.zanite_gemstone);
 		register(new ItemStack(Items.glass_bottle, 3), "Y Y", " Y ", 'Y', BlocksAether.frozen_quicksoil_glass);
 		}
-		
-		
+
+
 		register(new ItemStack(BlocksAether.aether_tnt), "XVX", "VYV", "XVX", 'X', Items.gunpowder, 'Y', ItemsAether.zanite_gemstone, 'V', new ItemStack(BlocksAether.quicksoil, 1, 1));
 		register(new ItemStack(BlocksAether.aether_tnt), "XVX", "VYV", "XVX", 'X', Items.gunpowder, 'Y', ItemsAether.zanite_gemstone, 'V', new ItemStack(BlocksAether.quicksoil, 1, 1));
-		
+
 		if (!AetherConfig.disableParachutes()) {
 		register(new ItemStack(ItemsAether.cloud_parachute, 1), "XX", "XX", 'X', new ItemStack(BlocksAether.aercloud, 1));
 		register(new ItemStack(ItemsAether.blue_parachute, 1), "XX", "XX", 'X', new ItemStack(BlocksAether.aercloud, 1, 1));
 		register(new ItemStack(ItemsAether.golden_parachute, 1), "XX", "XX", 'X', new ItemStack(BlocksAether.aercloud, 1, 2));
 		}
-		
+
 		register(new ItemStack(BlocksAether.reinforced_arkenium_block, 2), "ZXW", "XYX", "WXZ", 'X', BlocksAether.arkenium_block, 'Y', BlocksAether.enchanted_gravitite, 'Z', BlocksAether.zanite_block, 'W', BlocksAether.block_of_auralite);
-		
+
 		register(new ItemStack(Items.saddle, 1), "XXX", "XZX", 'X', Items.leather, 'Z', Items.string);
 		register(new ItemStack(BlocksAether.skyroot_chest, 1), "XXX", "X X", "XXX", 'X', BlocksAether.skyroot_planks);
 		register(new ItemStack(BlocksAether.skyroot_chest, 1), "XXX", "X X", "XXX", 'X', BlocksAether.golden_oak_planks);
@@ -1181,7 +1180,7 @@ public class AetherRegistries {
 		register(new ItemStack(ItemsAether.continuum_chestplate, 1), "X X", "XXX", "XXX", 'X', ItemsAether.continuum_gemstone);
 		register(new ItemStack(ItemsAether.continuum_leggings, 1), "XXX", "X X", "X X", 'X', ItemsAether.continuum_gemstone);
 		register(new ItemStack(ItemsAether.continuum_boots, 1), "X X", "X X", 'X', ItemsAether.continuum_gemstone);
-		
+
 
 		register(new ItemStack(ItemsAether.skyroot_pickaxe, 1), "ZZZ", " Y ", " Y ", 'Z', BlocksAether.skyroot_planks, 'Y', ItemsAether.skyroot_stick);
 		register(new ItemStack(ItemsAether.skyroot_pickaxe, 1), "ZZZ", " Y ", " Y ", 'Z', BlocksAether.greatroot_planks, 'Y', ItemsAether.skyroot_stick);
@@ -1294,7 +1293,7 @@ public class AetherRegistries {
 		register(new ItemStack(ItemsAether.effrine_gloves), "C C", 'C', OtherModItems.Ingot);
 		register(new ItemStack(ItemsAether.heavy_blaze_gloves), "C C", 'C', OtherModItems.Materials);
 		}
-		
+
 		register(new ItemStack(ItemsAether.zanite_shears), " C ", "C  ", 'C', ItemsAether.zanite_gemstone);
 
 		register(new ItemStack(BlocksAether.skyroot_fence, 3), "ZXZ", "ZXZ", 'Z', new ItemStack(BlocksAether.skyroot_planks), 'X', new ItemStack(ItemsAether.skyroot_stick));
@@ -1350,10 +1349,10 @@ public class AetherRegistries {
 		register(new ItemStack(BlocksAether.genesis_slab, 6), "ZZZ", 'Z', new ItemStack(BlocksAether.genesis_stone_2));
 		register(new ItemStack(BlocksAether.ancient_angelic_stone_slab, 6), "ZZZ", 'Z', new ItemStack(BlocksAether.ancient_angelic_stone));
 		register(new ItemStack(BlocksAether.ancient_hellfire_stone_slab, 6), "ZZZ", 'Z', new ItemStack(BlocksAether.ancient_hellfire_stone));
-		
+
 		register(new ItemStack(Items.paper, 6), "ZZZ", 'Z', new ItemStack(BlocksAether.wisproot_log, 1, 0));
 		register(new ItemStack(Items.paper, 6), "ZZZ", 'Z', new ItemStack(BlocksAether.wisproot_log, 1, 1));
-		
+
 		register(new ItemStack(BlocksAether.skyroot_log_wall, 6), "ZZZ", "ZZZ", 'Z', new ItemStack(BlocksAether.skyroot_log));
 		register(new ItemStack(BlocksAether.golden_oak_log_wall, 6), "ZZZ", "ZZZ", 'Z', new ItemStack(BlocksAether.golden_oak_new_log, 0, 0));
 		register(new ItemStack(BlocksAether.divine_oak_log_wall, 6), "ZZZ", "ZZZ", 'Z', new ItemStack(BlocksAether.divine_oak_log));
@@ -1442,14 +1441,14 @@ public class AetherRegistries {
 		register(new ItemStack(BlocksAether.ancient_angelic_stone_stairs, 4), "Z  ", "ZZ ", "ZZZ", 'Z', new ItemStack(BlocksAether.ancient_angelic_stone));
 		register(new ItemStack(BlocksAether.ancient_hellfire_stairs, 4), "Z  ", "ZZ ", "ZZZ", 'Z', new ItemStack(BlocksAether.ancient_hellfire_stone));
 
-		
-		
+
+
 		register(new ItemStack(BlocksAether.skyroot_bookshelf, 1),  "ZZZ", "XXX", "ZZZ", 'Z', new ItemStack(BlocksAether.skyroot_planks), 'X', new ItemStack(Items.book));
 		register(new ItemStack(BlocksAether.skyroot_bookshelf, 1),  "ZZZ", "XXX", "ZZZ", 'Z', new ItemStack(BlocksAether.greatroot_planks), 'X', new ItemStack(Items.book));
 		register(new ItemStack(BlocksAether.skyroot_bookshelf, 1),  "ZZZ", "XXX", "ZZZ", 'Z', new ItemStack(BlocksAether.wisproot_planks), 'X', new ItemStack(Items.book));
 		register(new ItemStack(BlocksAether.skyroot_bookshelf, 1),  "ZZZ", "XXX", "ZZZ", 'Z', new ItemStack(BlocksAether.void_planks), 'X', new ItemStack(Items.book));
-		
-		
+
+
 		register(new ItemStack(ItemsAether.skyroot_bed_item, 1),  "XXX", "ZZZ", 'Z', new ItemStack(BlocksAether.skyroot_planks), 'X', Blocks.wool);
 	}
 
