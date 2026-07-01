@@ -2,7 +2,6 @@ package com.gildedgames.the_aether;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityFX;
-import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IIcon;
@@ -17,7 +16,6 @@ import com.gildedgames.the_aether.client.AetherKeybinds;
 import com.gildedgames.the_aether.client.audio.AetherMusicHandler;
 import com.gildedgames.the_aether.client.gui.GuiAetherInGame;
 import com.gildedgames.the_aether.client.gui.GuiSunAltar;
-import com.gildedgames.the_aether.client.renders.AetherEntityRenderer;
 import com.gildedgames.the_aether.client.renders.RendersAether;
 import com.gildedgames.the_aether.client.renders.TileEntityAncientEnchanterRenderer;
 import com.gildedgames.the_aether.client.renders.block.BlockAceninumClusterRenderer;
@@ -28,7 +26,6 @@ import com.gildedgames.the_aether.client.renders.block.TileEntityElysianChestRen
 import com.gildedgames.the_aether.client.renders.block.TileEntitySkyrootChestRenderer;
 import com.gildedgames.the_aether.client.renders.block.TileEntityTreasureChestBreakableRenderer;
 import com.gildedgames.the_aether.client.renders.block.TreasureChestBreakableRenderer;
-import com.gildedgames.the_aether.compatibility.client.AetherClientCompatibility;
 import com.gildedgames.the_aether.entities.particles.EntityCloudSmokeFX;
 import com.gildedgames.the_aether.entities.particles.EntityGoldenFX;
 import com.gildedgames.the_aether.tileentity.TileEntityAncientEnchanter;
@@ -39,7 +36,6 @@ import com.gildedgames.the_aether.tileentity.TileEntityTreasureChestBreakable;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
-import cpw.mods.fml.common.Loader;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -82,10 +78,6 @@ import java.util.Random;
 			RenderingRegistry.registerBlockHandler(new BlockAuraliteClusterRenderer());
 			RenderingRegistry.registerBlockHandler(new BlockAceninumClusterRenderer());
 			
-			EntityRenderer previousRenderer = Minecraft.getMinecraft().entityRenderer;
-			
-			Minecraft.getMinecraft().entityRenderer = new AetherEntityRenderer(Minecraft.getMinecraft(), previousRenderer, Minecraft.getMinecraft().getResourceManager());
-			
 			ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAncientEnchanter.class, new TileEntityAncientEnchanterRenderer());
 			
 			RendersAether.initialization();
@@ -97,10 +89,6 @@ import java.util.Random;
 			registerEvent(new AetherMusicHandler());
 			registerEvent(new AetherClientEvents());
 			registerEvent(new GuiAetherInGame(Minecraft.getMinecraft()));
-
-			if (Loader.isModLoaded("battlegear2") && AetherConfig.enable_battlegear2_compatibility) {
-			AetherClientCompatibility.initialization();
-			}
 		}
 
 		public void generateFile(String input, String name, String path)
