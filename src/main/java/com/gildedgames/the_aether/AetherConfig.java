@@ -13,8 +13,8 @@ public class AetherConfig {
 	//Important Options
 	private static int aether_biome_id, arctic_peaks_biome_id, divine_forest_biome_id, genesis_island_biome_id, golden_hills_biome_id, aether_dimension_id, inebriation_id;
 	private static boolean use_baubles_expanded_menu, disable_parachutes;
-	public static boolean enable_log_reporting_biomes, enable_assets_message, disable_1stperson_glove_renderer;
-	public static boolean cloud_icon, enable_battlegear2_compatibility;
+	public static boolean enable_log_reporting_biomes, enable_assets_message;
+	public static boolean cloud_icon;
 	private static boolean sun_altar_multiplayer, repeat_sun_spirit_dialog, aether_start;
 	private static boolean redownloadFiles, enable_tooltips;
 
@@ -168,8 +168,6 @@ public class AetherConfig {
 		enable_boss_spawneggs = config.get("Misc", "Enable Boss Spawn Eggs", false).getBoolean(false);
 		enable_tooltips = config.get("Misc", "Enables Tooltips", true).getBoolean(true);
 		cloud_icon = config.get("Misc", "Changes Position of Cloud Icon Slightly", false).getBoolean(false);
-		enable_battlegear2_compatibility = config.get("Misc", "Fixes Rendering Issues with Battlegears 2", true).getBoolean(true);
-		disable_1stperson_glove_renderer = config.get("Misc", "Temp fix to a rendering issue with the backhand mod, It does not generally work as I think various performance mods are breaking it; a proper fix is neeeded.", false).getBoolean(false);
 
 		aether_start = config.get("Gameplay", "Spawns Player with Aether Portal Frame", false).getBoolean(false);
 
@@ -251,14 +249,6 @@ public class AetherConfig {
 	
 	public static boolean enableLogReporting() {
 		return AetherConfig.enable_log_reporting_biomes;
-	}
-	
-	public static boolean Disable1stPersonGloveRendering() {
-		return AetherConfig.disable_1stperson_glove_renderer;
-	}
-	
-	public static boolean EnableBattlegear2Compatibility() {
-		return AetherConfig.enable_battlegear2_compatibility;
 	}
 	
 	public static boolean enablecloudIcon() {

@@ -1,0 +1,8 @@
+{
+	"required": true,
+	"minVersion": "0.7.11",
+	"package": "com.gildedgames.the_aether.mixins.early",
+	"refmap": "mixins.aether_legacy.refmap.json",
+	"target": "@env(DEFAULT)",
+	"compatibilityLevel": "JAVA_8"
+}

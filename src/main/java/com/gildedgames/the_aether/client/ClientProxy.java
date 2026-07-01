@@ -4,7 +4,6 @@ import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.client.nei.NEIIntegration;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityFX;
-import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IIcon;
@@ -18,7 +17,6 @@ import com.gildedgames.the_aether.blocks.elysian_totem.TileEntityElysianTotemRen
 import com.gildedgames.the_aether.client.audio.AetherMusicHandler;
 import com.gildedgames.the_aether.client.gui.GuiAetherInGame;
 import com.gildedgames.the_aether.client.gui.GuiSunAltar;
-import com.gildedgames.the_aether.client.renders.AetherEntityRenderer;
 import com.gildedgames.the_aether.client.renders.RendersAether;
 import com.gildedgames.the_aether.client.renders.TileEntityAncientEnchanterRenderer;
 import com.gildedgames.the_aether.client.renders.block.BlockAceninumClusterRenderer;
@@ -29,7 +27,6 @@ import com.gildedgames.the_aether.client.renders.block.TileEntityElysianChestRen
 import com.gildedgames.the_aether.client.renders.block.TileEntitySkyrootChestRenderer;
 import com.gildedgames.the_aether.client.renders.block.TileEntityTreasureChestBreakableRenderer;
 import com.gildedgames.the_aether.client.renders.block.TreasureChestBreakableRenderer;
-import com.gildedgames.the_aether.compatibility.client.AetherClientCompatibility;
 import com.gildedgames.the_aether.entities.particles.EntityCloudSmokeFX;
 import com.gildedgames.the_aether.entities.particles.EntityGoldenFX;
 import com.gildedgames.the_aether.tileentity.TileEntityAncientEnchanter;
@@ -82,11 +79,7 @@ public class ClientProxy extends CommonProxy {
 		BlocksAether.AuraliteClusterRenderId = RenderingRegistry.getNextAvailableRenderId();
 		RenderingRegistry.registerBlockHandler(new BlockAuraliteClusterRenderer());
 		RenderingRegistry.registerBlockHandler(new BlockAceninumClusterRenderer());
-
-		EntityRenderer previousRenderer = Minecraft.getMinecraft().entityRenderer;
-
-		Minecraft.getMinecraft().entityRenderer = new AetherEntityRenderer(Minecraft.getMinecraft(), previousRenderer, Minecraft.getMinecraft().getResourceManager());
-
+		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAncientEnchanter.class, new TileEntityAncientEnchanterRenderer());
 
 		RendersAether.initialization();
@@ -98,10 +91,6 @@ public class ClientProxy extends CommonProxy {
 		registerEvent(new AetherMusicHandler());
 		registerEvent(new AetherClientEvents());
 		registerEvent(new GuiAetherInGame(Minecraft.getMinecraft()));
-
-		if (Loader.isModLoaded("battlegear2") && AetherConfig.enable_battlegear2_compatibility) {
-		    AetherClientCompatibility.initialization();
-		}
 
         if (Loader.isModLoaded("NotEnoughItems")) {
             new NEIIntegration().loadConfig();
