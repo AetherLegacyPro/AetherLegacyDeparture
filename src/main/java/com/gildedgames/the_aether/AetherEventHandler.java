@@ -1,6 +1,5 @@
 package com.gildedgames.the_aether;
 
-import com.gildedgames.the_aether.api.player.IPlayerAether;
 import com.gildedgames.the_aether.api.player.util.IAccessoryInventory;
 import com.gildedgames.the_aether.entities.passive.mountable.EntityAerbunny;
 import com.gildedgames.the_aether.items.tools.ItemArkeniumHoe;
@@ -73,15 +72,10 @@ import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 import cpw.mods.fml.common.eventhandler.Event;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent.ItemCraftedEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.SidedProxy;
 
 import java.util.Random;
 
 public class AetherEventHandler {
-	@SidedProxy(clientSide = "com.gildedgames.the_aether.ClientProxy", serverSide = "com.gildedgames.the_aether.CommonProxy")
-    public static CommonProxy proxy;
 
 	@SubscribeEvent
 	public void checkBlockBannedEvent(PlayerInteractEvent event) {
@@ -527,10 +521,4 @@ public class AetherEventHandler {
 			PlayerAether.get(event.entityPlayer).setBedLocation(event.entityPlayer.getBedLocation(AetherConfig.getAetherDimensionID()));
 		}
 	}
-
-	@Mod.EventHandler
-    public void preInit(FMLPreInitializationEvent event) {
-		proxy.preInit(event);
-    }
-
 }
