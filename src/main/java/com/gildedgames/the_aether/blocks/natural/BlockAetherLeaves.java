@@ -2,7 +2,6 @@ package com.gildedgames.the_aether.blocks.natural;
 
 import java.util.ArrayList;
 import java.util.Random;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.entities.particles.ParticleCrystalLeaves;
 import com.gildedgames.the_aether.entities.particles.ParticleGoldenOakLeaves;
@@ -18,7 +17,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -26,31 +24,31 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class BlockAetherLeaves extends BlockLeaves {
 
 	public BlockAetherLeaves() {
-		super();
+        super();
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public int getBlockColor() {
-		return 16777215;
+        return 16777215;
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public int getRenderColor(int meta) {
-		return 16777215;
+        return 16777215;
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public int colorMultiplier(IBlockAccess world, int x, int y, int z) {
-		return 16777215;
+        return 16777215;
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean isOpaqueCube() {
-		return Blocks.leaves.isOpaqueCube();
+        return Blocks.leaves.isOpaqueCube();
 	}
 
 	@Override
@@ -78,7 +76,7 @@ public class BlockAetherLeaves extends BlockLeaves {
 				FMLClientHandler.instance().getClient().effectRenderer.addEffect(obj);
 			}
 		}
-		
+
 		if (this == BlocksAether.golden_oak_fruit_leaves) {
 			for (int ammount = 0; ammount < 4; ammount++) {
 				double d = x + (rand.nextFloat() - 0.5D) * 10;
@@ -124,7 +122,7 @@ public class BlockAetherLeaves extends BlockLeaves {
 				}
 			}
 		}
-		
+
 		else if (this == BlocksAether.void_leaves || this == BlocksAether.void_fruit_leaves) {
 			if (rand.nextInt(5) == 0) {
 				for (int l = 0; l < 6; ++l) {
@@ -154,15 +152,15 @@ public class BlockAetherLeaves extends BlockLeaves {
 		if (this == BlocksAether.crystal_fruit_leaves) {
 			drops.add(new ItemStack(ItemsAether.white_apple));
 		}
-		
+
 		else if (this == BlocksAether.purple_skyroot_fruit_leaves) {
 			drops.add(new ItemStack(ItemsAether.white_apple));
 		}
-		
+
 		else if (this == BlocksAether.void_fruit_leaves) {
 			drops.add(new ItemStack(ItemsAether.void_tomato));
 		}
-		
+
 		else if (this == BlocksAether.golden_oak_fruit_leaves) {
 			drops.add(new ItemStack(Items.golden_apple));
 		}
@@ -181,7 +179,7 @@ public class BlockAetherLeaves extends BlockLeaves {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta) {
-		return field_150129_M[Blocks.leaves.isOpaqueCube() ? 1 : 0][0];
+        return field_150129_M[Blocks.leaves.isOpaqueCube() ? 1 : 0][0];
 	}
 
 	@Override
@@ -192,7 +190,7 @@ public class BlockAetherLeaves extends BlockLeaves {
 
 	@Override
 	public String[] func_150125_e() {
-		return new String[]{this.getUnlocalizedName()};
+        return new String[]{this.getUnlocalizedName()};
 	}
 
 }

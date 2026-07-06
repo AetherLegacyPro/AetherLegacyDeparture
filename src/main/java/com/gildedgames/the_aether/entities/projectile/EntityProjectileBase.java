@@ -3,9 +3,7 @@ package com.gildedgames.the_aether.entities.projectile;
 import cpw.mods.fml.common.registry.IThrowableEntity;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-
 import java.util.List;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -27,7 +25,6 @@ public abstract class EntityProjectileBase extends Entity implements IProjectile
 	public Block inTile;
 	public boolean inGround;
 	public int throwableShake;
-	public int canBePickedUp;
 	private EntityLivingBase thrower;
 	private String throwerName;
 	public int ticksInGround;
@@ -35,14 +32,12 @@ public abstract class EntityProjectileBase extends Entity implements IProjectile
 
 	public EntityProjectileBase(World world) {
 		super(world);
-
 		this.yOffset = 0.0F;
 		this.setSize(0.25F, 0.25F);
 	}
 
 	public EntityProjectileBase(World worldIn, double x, double y, double z) {
 		this(worldIn);
-
 		this.setPosition(x, y, z);
 	}
 
@@ -54,7 +49,6 @@ public abstract class EntityProjectileBase extends Entity implements IProjectile
 
 	@Override
 	protected void entityInit() {
-
 	}
 
 	@Override
@@ -131,7 +125,6 @@ public abstract class EntityProjectileBase extends Entity implements IProjectile
 				if (this.ticksInGround == 1200) {
 					this.setDead();
 				}
-
 				return;
 			}
 
@@ -237,11 +230,11 @@ public abstract class EntityProjectileBase extends Entity implements IProjectile
 	}
 
 	protected float getBoundingBoxExpansion() {
-		return 1.0F;
+        return 1.0F;
 	}
 
 	protected float getGravityVelocity() {
-		return 0.03F;
+        return 0.03F;
 	}
 
 	protected abstract void onImpact(MovingObjectPosition object);
@@ -258,7 +251,6 @@ public abstract class EntityProjectileBase extends Entity implements IProjectile
 		if ((this.throwerName == null || this.throwerName.isEmpty()) && this.thrower != null && this.thrower instanceof EntityPlayer) {
 			this.throwerName = this.thrower.getCommandSenderName();
 		}
-
 		compound.setString("ownerName", this.throwerName == null ? "" : this.throwerName);
 	}
 
@@ -280,7 +272,7 @@ public abstract class EntityProjectileBase extends Entity implements IProjectile
 	@Override
 	@SideOnly(Side.CLIENT)
 	public float getShadowSize() {
-		return 0.0F;
+        return 0.0F;
 	}
 
 	@Override
@@ -295,7 +287,6 @@ public abstract class EntityProjectileBase extends Entity implements IProjectile
 		if (this.thrower == null && this.throwerName != null && !this.throwerName.isEmpty()) {
 			this.thrower = this.worldObj.getPlayerEntityByName(this.throwerName);
 		}
-
 		return this.thrower;
 	}
 }

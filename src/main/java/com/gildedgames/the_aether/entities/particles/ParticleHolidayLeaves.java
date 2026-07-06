@@ -7,10 +7,8 @@ public class ParticleHolidayLeaves extends EntityPortalFX {
 
 	public ParticleHolidayLeaves(World world, double xCoord, double yCoord, double zCoord, double xSpeed, double ySpeed, double zSpeed) {
 		super(world, xCoord, yCoord, zCoord, xSpeed, ySpeed, zSpeed);
-
 		this.particleRed = 1F;
 		this.particleGreen = 1F;
 		this.particleBlue = 1F;
 	}
-
 }

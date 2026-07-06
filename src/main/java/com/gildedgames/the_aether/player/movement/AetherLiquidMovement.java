@@ -9,14 +9,13 @@ public class AetherLiquidMovement {
 	private IPlayerAether player;
 
 	public AetherLiquidMovement(IPlayerAether player) {
-		this.player = player;
+        this.player = player;
 	}
 
 	public void onUpdate() {
 		Entity entity = this.player.getEntity();
 
 		if (entity instanceof EntityLivingBase entityLiving) {
-
 			float movementLR = this.negativeDifference(entityLiving, entityLiving.moveStrafing);
 			float movementFB = this.negativeDifference(entityLiving, entityLiving.moveForward);
 

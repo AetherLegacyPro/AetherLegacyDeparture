@@ -2,43 +2,37 @@ package com.gildedgames.the_aether.tileentity;
 
 import java.util.List;
 import java.util.Map;
-
 import com.gildedgames.the_aether.api.AetherAPI;
 import com.gildedgames.the_aether.api.events.AetherHooks;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-
 import com.gildedgames.the_aether.api.enchantments.AetherEnchantment;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.blocks.container.BlockAetherContainer;
 import com.gildedgames.the_aether.tileentity.util.AetherTileEntity;
 import com.gildedgames.the_aether.util.FilledList;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class TileEntityEnchanter extends AetherTileEntity {
 
 	public int progress, ticksRequired, powerRemaining;
-
 	private final FilledList<ItemStack> enchantedItemStacks = new FilledList<>(3, null);
-
 	private AetherEnchantment currentEnchantment;
 
 	public TileEntityEnchanter() {
-		super("Altar");
+        super("Altar");
 	}
 
 	@Override
 	public List<ItemStack> getTileInventory() {
-		return this.enchantedItemStacks;
+        return this.enchantedItemStacks;
 	}
 
 	@Override
 	public void onSlotChanged(int index) {
-
 	}
 
 	@Override
@@ -47,7 +41,6 @@ public class TileEntityEnchanter extends AetherTileEntity {
 
 		if (this.powerRemaining > 0) {
 			this.powerRemaining--;
-
 			if (this.currentEnchantment != null) {
 				if (this.worldObj.getBlock(this.xCoord, this.yCoord - 1, this.zCoord) == BlocksAether.enchanted_gravitite) {
 					this.progress += 2.5F;
@@ -61,11 +54,9 @@ public class TileEntityEnchanter extends AetherTileEntity {
 			if (this.progress >= this.ticksRequired) {
 				if (!this.worldObj.isRemote) {
 					ItemStack result = this.currentEnchantment.getOutput().copy();
-
 					EnchantmentHelper.setEnchantments(EnchantmentHelper.getEnchantments(this.getStackInSlot(0)), result);
 
-					if (this.getStackInSlot(0).hasTagCompound())
-					{
+					if (this.getStackInSlot(0).hasTagCompound()) {
 						result.setTagCompound(this.getStackInSlot(0).getTagCompound());
 					}
 
@@ -96,7 +87,6 @@ public class TileEntityEnchanter extends AetherTileEntity {
 			if (this.powerRemaining <= 0) {
 				if (this.getStackInSlot(1) != null && AetherAPI.instance().isEnchantmentFuel(this.getStackInSlot(1))) {
 					this.powerRemaining += AetherAPI.instance().getEnchantmentFuel(this.getStackInSlot(1)).getTimeGiven();
-
 					if (!this.worldObj.isRemote) {
 						this.decrStackSize(1, 1);
 					}
@@ -128,7 +118,6 @@ public class TileEntityEnchanter extends AetherTileEntity {
 	@SuppressWarnings("unchecked")
 	public void addEnchantmentWeight(ItemStack stack) {
 		Map<Enchantment, Integer> enchantments = (Map<Enchantment, Integer>) (Map<?, ?>) EnchantmentHelper.getEnchantments(stack); // returns Integer, Integer
-
 		if (!enchantments.isEmpty()) {
 			for (int levels : enchantments.values()) {
 				this.ticksRequired += (levels * 1250);
@@ -147,17 +136,16 @@ public class TileEntityEnchanter extends AetherTileEntity {
 
 	@SideOnly(Side.CLIENT)
 	public int getEnchantmentTimeRemaining(int i) {
-		return (this.powerRemaining * i) / 500;
+        return (this.powerRemaining * i) / 500;
 	}
 
 	public boolean isEnchanting() {
-		return this.powerRemaining > 0;
+        return this.powerRemaining > 0;
 	}
 
 	@Override
 	public void readFromNBT(NBTTagCompound compound) {
 		super.readFromNBT(compound);
-
 		this.progress = compound.getInteger("progress");
 		this.powerRemaining = compound.getInteger("powerRemaining");
 		this.ticksRequired = compound.getInteger("ticksRequired");
@@ -166,7 +154,6 @@ public class TileEntityEnchanter extends AetherTileEntity {
 	@Override
 	public void writeToNBT(NBTTagCompound compound) {
 		super.writeToNBT(compound);
-
 		compound.setInteger("progress", this.progress);
 		compound.setInteger("powerRemaining", this.powerRemaining);
 		compound.setInteger("ticksRequired", this.ticksRequired);
@@ -181,13 +168,12 @@ public class TileEntityEnchanter extends AetherTileEntity {
 		} else if (slot == 0 && AetherAPI.instance().hasEnchantment(stackInSlot)) {
 			return true;
 		}
-
 		return false;
 	}
 
 	@Override
 	public int[] getAccessibleSlotsFromSide(int side) {
-		return side == 0 ? new int[]{2} : new int[]{0, 1};
+        return side == 0 ? new int[]{2} : new int[]{0, 1};
 	}
 
 }

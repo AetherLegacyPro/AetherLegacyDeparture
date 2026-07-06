@@ -1,16 +1,13 @@
 package com.gildedgames.the_aether.blocks.decorative;
 
 import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-
 import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.entities.particles.ParticleGoldenOakLeaves;
-
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -19,7 +16,6 @@ public class BlockGoldenOakBookshelf extends Block {
 
 	public BlockGoldenOakBookshelf() {
 		super(Material.wood);
-
 		this.setHardness(2.5F);
 		this.setResistance(6F);
 		this.setHarvestLevel("axe", 1);
@@ -38,7 +34,7 @@ public class BlockGoldenOakBookshelf extends Block {
 		return 3;
 	}
 
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void randomDisplayTick(World world, int x, int y, int z, Random rand) {
@@ -50,7 +46,7 @@ public class BlockGoldenOakBookshelf extends Block {
 		if (net.minecraft.client.Minecraft.getMinecraft().gameSettings.particleSetting == 2) {
 			return;
 		}
-		
+
 		if (this == BlocksAether.golden_oak_bookshelf) {
 			for (int ammount = 0; ammount < 3; ammount++) {
 				double d = x + (rand.nextFloat() - 0.5D) * 10;
@@ -64,6 +60,6 @@ public class BlockGoldenOakBookshelf extends Block {
 				FMLClientHandler.instance().getClient().effectRenderer.addEffect(obj);
 			}
 		}
-		
+
 	}
 }

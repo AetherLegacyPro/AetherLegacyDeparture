@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.items.weapons.tipped;
 
 import java.util.Random;
-
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
 import net.minecraft.block.Block;
@@ -12,17 +11,14 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.world.World;
-
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 
 public class ItemTippedEnderSlayer extends ItemSword {
-	
+
 	public boolean newWorld;
 	public Random random;
-
 	public float[] level = new float[]{6.0F, 6.0F, 6.0F, 6.0F, 6.0F};
-	
 	public float[] level2 = new float[]{13.0F, 13.0F, 13.0F, 13.0F, 13.0F};
 
 	public ItemTippedEnderSlayer() {
@@ -33,7 +29,7 @@ public class ItemTippedEnderSlayer extends ItemSword {
 
 	@Override
 	public Multimap<String, AttributeModifier> getItemAttributeModifiers() {
-		return null;
+        return null;
 	}
 
 	@Override
@@ -41,28 +37,27 @@ public class ItemTippedEnderSlayer extends ItemSword {
 		Multimap<String, AttributeModifier> multimap = HashMultimap.create();
 
 		if (stack.getItem() instanceof ItemTippedEnderSlayer) {
-			if (newWorld == true) {
+			if (newWorld) {
 				multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(field_111210_e, "Weapon modifier", this.calculateIncrease2(stack), 0));
 			}
 			else {
 				multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(field_111210_e, "Weapon modifier", this.calculateIncrease(stack), 0));
 			}
-		}		
+		}
 
 		return multimap;
 	}
-	
+
 	@Override
-	public void onUpdate(ItemStack p_77663_1_, World p_77663_2_, Entity p_77663_3_, int p_77663_4_, boolean p_77663_5_) {
-		super.onUpdate(p_77663_1_, p_77663_2_, p_77663_3_, p_77663_4_, p_77663_5_);
-		if (p_77663_2_.provider.dimensionId == 1) {
+	public void onUpdate(ItemStack stack, World world, Entity entity, int p_77663_4_, boolean p_77663_5_) {
+		super.onUpdate(stack, world, entity, p_77663_4_, p_77663_5_);
+		if (world.provider.dimensionId == 1) {
 				newWorld = true;
-			}
-		else {
+			} else {
 				newWorld = false;
 		}
 	}
-	
+
 	private float calculateIncrease2(ItemStack tool) {
 		int current = tool.getItemDamage();
 
@@ -78,7 +73,7 @@ public class ItemTippedEnderSlayer extends ItemSword {
 			return level2[0];
 		}
 	}
-	
+
 	private float calculateIncrease(ItemStack tool) {
 		int current = tool.getItemDamage();
 
@@ -97,30 +92,29 @@ public class ItemTippedEnderSlayer extends ItemSword {
 
 	@Override
 	public boolean hasEffect(ItemStack stack, int pass) {
-		if (newWorld == true) {
+		if (newWorld) {
 			return true;
-		}
-		else {
-			return false;	
+		} else {
+			return false;
 		}
 	}
 
 	private boolean isBetween(int max, int origin, int min) {
-		return origin <= max && origin >= min ? true : false;
+        return origin <= max && origin >= min ? true : false;
 	}
 
 	@Override
 	public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
-		return false;
+        return false;
 	}
-	
+
 	@Override
 	public EnumRarity getRarity(ItemStack stack) {
-		if (newWorld == true) {
+		if (newWorld) {
 			return ItemsAether.powered;
 		}
 		else {
-			return ItemsAether.scaled_aether_loot;	
+			return ItemsAether.scaled_aether_loot;
 		}
 	}
 
@@ -128,13 +122,8 @@ public class ItemTippedEnderSlayer extends ItemSword {
 	public float getDigSpeed(ItemStack itemstack, Block block, int meta) {
 		return super.getDigSpeed(itemstack, block, meta) * (2.0F * (float) itemstack.getItemDamage() / (float) itemstack.getMaxDamage() + 0.5F);
 	}
-	
-	protected String getChargedHitSound() {
-        return "aether_legacy:projectile.charged_hit";
-    }
-	
-	protected float getSoundVolume()
-    {
+
+	protected float getSoundVolume() {
         return 0.8F;
     }
 

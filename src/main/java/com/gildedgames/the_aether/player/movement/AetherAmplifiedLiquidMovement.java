@@ -1,23 +1,20 @@
 package com.gildedgames.the_aether.player.movement;
 
 import com.gildedgames.the_aether.api.player.IPlayerAether;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 
 public class AetherAmplifiedLiquidMovement {
-
 	private IPlayerAether player;
 
 	public AetherAmplifiedLiquidMovement(IPlayerAether player) {
-		this.player = player;
+        this.player = player;
 	}
 
 	public void onUpdate() {
 		Entity entity = this.player.getEntity();
 
 		if (entity instanceof EntityLivingBase entityLiving) {
-
 			float movementLR = this.negativeDifference(entityLiving, entityLiving.moveStrafing);
 			float movementFB = this.negativeDifference(entityLiving, entityLiving.moveForward);
 

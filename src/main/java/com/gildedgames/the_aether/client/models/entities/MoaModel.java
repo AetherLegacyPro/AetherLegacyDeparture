@@ -4,19 +4,14 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
-
 import com.gildedgames.the_aether.entities.passive.mountable.EntityMoa;
 
 public class MoaModel extends ModelBase {
 
 	public ModelRenderer head, body;
-
 	public ModelRenderer legs, legs2;
-
 	public ModelRenderer wings, wings2;
-
 	public ModelRenderer jaw, neck;
-
 	public ModelRenderer feather1, feather2, feather3;
 
 	public MoaModel(float scale) {

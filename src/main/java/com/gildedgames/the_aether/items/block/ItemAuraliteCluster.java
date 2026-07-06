@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.items.block;
 
 import com.gildedgames.the_aether.Aether;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -10,28 +9,25 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
 public class ItemAuraliteCluster extends ItemBlock {
-	
+
 	private static final String[] item_names = new String[] {"auralite_bud", "auralite_medium_bud", "auralite_large_bud", "auralite_cluster"};
 
-	public ItemAuraliteCluster(Block p_i45328_1_) {
-		super(p_i45328_1_);
+	public ItemAuraliteCluster(Block block) {
+		super(block);
 		setHasSubtypes(true);
 	}
-	
-	public int getMetadata(int p_77647_1_)
-	{
-		return p_77647_1_ < 6 ? 0 : 6;
+
+	public int getMetadata(int p_77647_1_) {
+        return p_77647_1_ < 6 ? 0 : 6;
 	}
 
     @SideOnly(Side.CLIENT)
-    public IIcon getIconFromDamage(int p_77617_1_)
-    {
+    public IIcon getIconFromDamage(int p_77617_1_) {
     	return field_150939_a.getIcon(0, p_77617_1_);
     }
-	
-	public String modAddress(ItemStack p_77667_1_)
-	{
-		return "tile." +  Aether.getUnlocalisedName(item_names[p_77667_1_.getItemDamage() % 4]);
+
+	public String modAddress(ItemStack stack) {
+		return "tile." +  Aether.getUnlocalisedName(item_names[stack.getItemDamage() % 4]);
 	}
- 
+
 }

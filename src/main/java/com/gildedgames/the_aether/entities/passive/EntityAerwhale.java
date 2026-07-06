@@ -5,27 +5,21 @@ import net.minecraft.entity.player.*;
 import net.minecraft.entity.ai.*;
 import net.minecraft.world.*;
 import net.minecraft.util.*;
-
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.items.ItemsAether;
-
 import net.minecraft.entity.*;
 
-public class EntityAerwhale extends EntityFlying implements IMob
-{
-    public int flapSoundTime;
+public class EntityAerwhale extends EntityFlying implements IMob {
     public int courseChangeCooldown;
     public double waypointX;
     public double waypointY;
     public double waypointZ;
     private EntityLivingBase targetedEntity;
     private int targetObstructedTicks;
-    public float animTime;
-    public float prevAnimTime;
-    
-    public EntityAerwhale(final World p_i1731_1_) {
-        super(p_i1731_1_);
+
+    public EntityAerwhale(final World world) {
+        super(world);
         this.targetObstructedTicks = 0;
         this.tasks.addTask(0, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0f));
         this.tasks.addTask(1, new EntityAILookIdle(this));
@@ -33,20 +27,20 @@ public class EntityAerwhale extends EntityFlying implements IMob
         this.isImmuneToFire = false;
         this.experienceValue = 1;
     }
-    
+
     protected boolean canTriggerWalking() {
         return false;
     }
-    
+
     public boolean doesEntityNotTriggerPressurePlate() {
         return true;
     }
-    
+
     protected void entityInit() {
         super.entityInit();
         this.dataWatcher.addObject(16, (byte) 0);
     }
-    
+
     public void onUpdate() {
         super.onUpdate();
         if (!this.worldObj.isRemote) {
@@ -78,27 +72,23 @@ public class EntityAerwhale extends EntityFlying implements IMob
             }
         }
     }
-    
-    public void onLivingUpdate()
-	{		
-		
+
+    public void onLivingUpdate() {
 		super.onLivingUpdate();
 	}
-    
+
     public boolean attackEntityFrom(DamageSource ds, float i) {
-		if (ds == DamageSource.inWall)
-        {
+		if (ds == DamageSource.inWall) {
             return false;
         }
-		
-		boolean flag = super.attackEntityFrom(ds, i);
 
+		boolean flag = super.attackEntityFrom(ds, i);
 		return flag;
 	}
-    
+
     protected void updateEntityActionState() {
         super.updateEntityActionState();
-        
+
         double distanceX = this.waypointX - this.posX;
         double distanceY = this.waypointY - this.posY;
         double distanceZ = this.waypointZ - this.posZ;
@@ -131,7 +121,7 @@ public class EntityAerwhale extends EntityFlying implements IMob
             this.targetedEntity = null;
         }
         this.getEntitySenses().clearSensingCache();
-        
+
         if (this.targetedEntity != null) {
             distanceX = this.targetedEntity.posX - this.posX;
             distanceY = this.targetedEntity.boundingBox.minY + this.targetedEntity.height / 2.0f - (this.posY + this.height / 2.0f);
@@ -146,7 +136,7 @@ public class EntityAerwhale extends EntityFlying implements IMob
             this.renderYawOffset = n2;
         }
     }
-    
+
     private boolean isCourseTraversable(final double x, final double y, final double z, final double distance) {
         final double boxX = (this.waypointX - this.posX) / distance;
         final double boxY = (this.waypointY - this.posY) / distance;
@@ -160,7 +150,7 @@ public class EntityAerwhale extends EntityFlying implements IMob
         }
         return true;
     }
-    
+
     @Override
     protected void dropFewItems(boolean recentlyHit, int lootLevel) {
         int j = this.rand.nextInt(3) + this.rand.nextInt(1 + lootLevel);
@@ -183,7 +173,7 @@ public class EntityAerwhale extends EntityFlying implements IMob
 
         super.dropFewItems(recentlyHit, lootLevel);
     }
-    
+
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(140.0);
@@ -191,24 +181,24 @@ public class EntityAerwhale extends EntityFlying implements IMob
 
 	@Override
 	public String getLivingSound() {
-		return "aether_legacy:aemob.aerwhale.call";
+        return "aether_legacy:aemob.aerwhale.call";
 	}
 
 	@Override
 	protected String getHurtSound() {
-		return "aether_legacy:aemob.aerwhale.death";
+        return "aether_legacy:aemob.aerwhale.death";
 	}
 
 	@Override
 	protected String getDeathSound() {
-		return "aether_legacy:aemob.aerwhale.death";
+        return "aether_legacy:aemob.aerwhale.death";
 	}
 
 	@Override
 	public boolean canDespawn() {
-		return true;
+        return true;
 	}
-    
+
 	@Override
 	public boolean getCanSpawnHere() {
 	      final int i = MathHelper.floor_double(this.posX);
@@ -216,6 +206,5 @@ public class EntityAerwhale extends EntityFlying implements IMob
 	      final int k = MathHelper.floor_double(this.posZ);
 	      final boolean canSpawn = this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
 	      return (this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.arctic_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.verdant_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.enchanted_aether_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.divine_grass) && this.worldObj.getBlockLightValue(i, j, k) > 7 && canSpawn && this.rand.nextInt(AetherConfig.getAerwhaleSpawnrate()) == 0 && super.getCanSpawnHere();
-	                       
 	}
 }

@@ -10,17 +10,15 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.registry.IThrowableEntity;
-
 import java.util.List;
 
 public class EntityPhoenixArrow extends EntityArrow implements IThrowableEntity {
 
 	private int timeInGround;
-
 	private boolean hitGround;
 
 	public EntityPhoenixArrow(World worldIn) {
-		super(worldIn);
+        super(worldIn);
 	}
 
 	public EntityPhoenixArrow(World worldIn, EntityLivingBase shooter, float distance) {
@@ -52,8 +50,7 @@ public class EntityPhoenixArrow extends EntityArrow implements IThrowableEntity 
 		vec31 = Vec3.createVectorHelper(this.posX, this.posY, this.posZ);
 		vec3 = Vec3.createVectorHelper(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
 
-		if (movingobjectposition != null)
-		{
+		if (movingobjectposition != null) {
 			vec3 = Vec3.createVectorHelper(movingobjectposition.hitVec.xCoord, movingobjectposition.hitVec.yCoord, movingobjectposition.hitVec.zCoord);
 		}
 
@@ -63,22 +60,18 @@ public class EntityPhoenixArrow extends EntityArrow implements IThrowableEntity 
 		int i;
 		float f1;
 
-		for (i = 0; i < list.size(); ++i)
-		{
+		for (i = 0; i < list.size(); ++i) {
 			Entity entity1 = (Entity)list.get(i);
 
-			if (entity1.canBeCollidedWith() && (entity1 != this.shootingEntity))
-			{
+			if (entity1.canBeCollidedWith() && (entity1 != this.shootingEntity)) {
 				f1 = 0.3F;
 				AxisAlignedBB axisalignedbb1 = entity1.boundingBox.expand(f1, f1, f1);
 				MovingObjectPosition movingobjectposition1 = axisalignedbb1.calculateIntercept(vec31, vec3);
 
-				if (movingobjectposition1 != null)
-				{
+				if (movingobjectposition1 != null) {
 					double d1 = vec31.distanceTo(movingobjectposition1.hitVec);
 
-					if (d1 < d0 || d0 == 0.0D)
-					{
+					if (d1 < d0 || d0 == 0.0D) {
 						entity = entity1;
 						d0 = d1;
 					}
@@ -86,16 +79,13 @@ public class EntityPhoenixArrow extends EntityArrow implements IThrowableEntity 
 			}
 		}
 
-		if (entity != null)
-		{
+		if (entity != null) {
 			movingobjectposition = new MovingObjectPosition(entity);
 		}
 
-		if (movingobjectposition != null && movingobjectposition.entityHit instanceof EntityPlayer entityplayer)
-		{
+		if (movingobjectposition != null && movingobjectposition.entityHit instanceof EntityPlayer entityplayer) {
 
-			if (entityplayer.capabilities.disableDamage || this.shootingEntity instanceof EntityPlayer && !((EntityPlayer)this.shootingEntity).canAttackPlayer(entityplayer))
-			{
+			if (entityplayer.capabilities.disableDamage || this.shootingEntity instanceof EntityPlayer && !((EntityPlayer)this.shootingEntity).canAttackPlayer(entityplayer)) {
 				movingobjectposition = null;
 			}
 		}
@@ -114,12 +104,12 @@ public class EntityPhoenixArrow extends EntityArrow implements IThrowableEntity 
 
 	@Override
 	public void setThrower(Entity entity) {
-		this.shootingEntity = entity;
+        this.shootingEntity = entity;
 	}
 
 	@Override
 	public Entity getThrower() {
-		return this.shootingEntity;
+        return this.shootingEntity;
 	}
 
 }

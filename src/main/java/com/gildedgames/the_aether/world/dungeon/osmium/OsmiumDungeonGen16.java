@@ -1,9 +1,7 @@
 package com.gildedgames.the_aether.world.dungeon.osmium;
 
 import java.util.Random;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntityMobSpawner;
@@ -13,11 +11,10 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 public class OsmiumDungeonGen16 extends WorldGenerator {
 
 	public OsmiumDungeonGen16() {
-
 	}
-	
+
 	public boolean generate(final World world, final Random random, final int i, final int j, final int k) {
-		
+
 		world.setBlock(i + 54, j + 41, k + 50, placeBuildingBlock(random), 0, 2);
 		world.setBlock(i + 57, j + 41, k + 50, placeBuildingBlock(random), 0, 2);
 		world.setBlock(i + 58, j + 41, k + 50, placeBuildingBlock(random), 0, 2);
@@ -2374,18 +2371,18 @@ public class OsmiumDungeonGen16 extends WorldGenerator {
 		world.setBlock(i + 45, j + 45, k + 28, placeBuildingBlock(random), 0, 2);
 		world.setBlock(i + 46, j + 45, k + 28, placeBuildingBlock(random), 0, 2);
 		world.setBlock(i + 47, j + 45, k + 28, placeBuildingBlock(random), 0, 2);
-		
+
 		world.setBlock(i + 39, j + 41, k + 59, Blocks.mob_spawner, 0, 2);
 		TileEntityMobSpawner tileentitymobspawner = (TileEntityMobSpawner)world.getTileEntity(i + 39, j + 41, k + 59);
-        
+
         if (tileentitymobspawner != null)
         {
         	tileentitymobspawner.func_145881_a().setEntityName("aether_legacy.uligo");
         }
-		
+
 		return true;
 	}
-	
+
 	private Block placeBuildingBlock(Random random) {
         if (random.nextDouble() < 0.005) {
             return BlocksAether.fuse_trap;

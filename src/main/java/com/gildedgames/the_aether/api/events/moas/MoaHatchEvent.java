@@ -9,12 +9,11 @@ public class MoaHatchEvent extends MoaEvent {
 
 	public MoaHatchEvent(AetherMoaType moaType, TileEntity incubator) {
 		super(moaType);
-
 		this.incubator = incubator;
 	}
 
 	public TileEntity getTileEntity() {
-		return this.incubator;
+        return this.incubator;
 	}
 
 }

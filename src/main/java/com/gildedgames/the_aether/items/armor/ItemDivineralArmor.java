@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.items.armor;
 
 import java.util.List;
-
 import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.entities.block.EntityFireProofItemAether;
@@ -21,18 +20,13 @@ import net.minecraft.world.World;
 public class ItemDivineralArmor extends ItemArmor {
 
 	private String[] defualt_location = new String[]{"textures/models/armor/iron_layer_1.png", "textures/models/armor/iron_layer_2.png"};
-
 	public boolean shouldDefualt = false;
-
 	private int colorization = -1;
-
 	private String armorName;
-
 	private Item source = null;
 
 	public ItemDivineralArmor(int armorType, ArmorMaterial material, String name, Item repair) {
 		super(material, 0, armorType);
-
 		this.source = repair;
 		this.armorName = name;
 		this.setCreativeTab(AetherCreativeTabs.armor);
@@ -41,7 +35,6 @@ public class ItemDivineralArmor extends ItemArmor {
 
 	public ItemDivineralArmor(int armorType, ArmorMaterial material, String name, Item repair, int hex) {
 		this(armorType, material, name, repair);
-
 		this.source = repair;
 		this.armorName = name;
 		this.colorization = hex;
@@ -50,7 +43,7 @@ public class ItemDivineralArmor extends ItemArmor {
 
 	@Override
 	public int getColor(ItemStack stack) {
-		return this.colorization;
+        return this.colorization;
 	}
 
 	@Override
@@ -62,7 +55,6 @@ public class ItemDivineralArmor extends ItemArmor {
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type) {
 		boolean leggings = this.getUnlocalizedName().contains("leggings");
 		String type1 = leggings ? "layer_2" : "layer_1";
-
 		return this.shouldDefualt ? (leggings ? defualt_location[1] : defualt_location[0]) : Aether.modAddress() + "textures/armor/" + this.armorName + "_" + type1 + ".png";
 	}
 
@@ -70,7 +62,7 @@ public class ItemDivineralArmor extends ItemArmor {
 	public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
 		return this.source == null ? false : repair.getItem() == this.source;
 	}
-	
+
 	public void onArmorTick(final World world, final EntityPlayer player, final ItemStack itemStack) {
 		boolean hasDivineralHelmet = false;
         boolean hasDivineralChest = false;
@@ -94,8 +86,8 @@ public class ItemDivineralArmor extends ItemArmor {
             hasDivineralBoots = (boots.getItem() == ItemsAether.divineral_boots);
         }
         if (hasDivineralHelmet && hasDivineralChest && hasDivineralLegs && hasDivineralBoots) {
-        	
-    		player.triggerAchievement(AchievementsAether.divineral_set);    			   		
+
+    		player.triggerAchievement(AchievementsAether.divineral_set);
         	}
 		}
         boolean hasObsidianHelmet = false;
@@ -116,8 +108,8 @@ public class ItemDivineralArmor extends ItemArmor {
             hasObsidianBoots = (boots.getItem() == ItemsAether.amplified_obsidian_boots);
             }
         if (hasObsidianHelmet && hasObsidianChest && hasObsidianLegs && hasObsidianBoots) {
-            	
-        	player.triggerAchievement(AchievementsAether.obsidian_set);    			   		
+
+        	player.triggerAchievement(AchievementsAether.obsidian_set);
             }
     	}
         boolean hasNeptuneHelmet = false;
@@ -138,8 +130,8 @@ public class ItemDivineralArmor extends ItemArmor {
             hasNeptuneBoots = (boots.getItem() == ItemsAether.amplified_neptune_boots);
             }
         if (hasNeptuneHelmet && hasNeptuneChest && hasNeptuneLegs && hasNeptuneBoots) {
-            	
-        	player.triggerAchievement(AchievementsAether.neptune_set);    			   		
+
+        	player.triggerAchievement(AchievementsAether.neptune_set);
             }
     	}
         boolean hasValkyrieHelmet = false;
@@ -160,8 +152,8 @@ public class ItemDivineralArmor extends ItemArmor {
             hasValkyrieBoots = (boots.getItem() == ItemsAether.amplified_valkyrie_boots);
             }
         if (hasValkyrieHelmet && hasValkyrieChest && hasValkyrieLegs && hasValkyrieBoots) {
-            	
-        	player.triggerAchievement(AchievementsAether.valkyrie_set);    			   		
+
+        	player.triggerAchievement(AchievementsAether.valkyrie_set);
             }
     	}
         boolean hasSentryBoots = false;
@@ -170,8 +162,8 @@ public class ItemDivineralArmor extends ItemArmor {
         	hasSentryBoots = (boots.getItem() == ItemsAether.amplified_sentry_boots);
             }
         if (hasSentryBoots) {
-            	
-        	player.triggerAchievement(AchievementsAether.amplified_sentry_boots);    			   		
+
+        	player.triggerAchievement(AchievementsAether.amplified_sentry_boots);
             }
     	}
         boolean hasAgilityBoots = false;
@@ -180,25 +172,25 @@ public class ItemDivineralArmor extends ItemArmor {
         	hasAgilityBoots = (boots.getItem() == ItemsAether.amplified_agility_boots);
             }
         if (hasAgilityBoots) {
-            	
-        	player.triggerAchievement(AchievementsAether.amplified_agility_boots);    			   		
+
+        	player.triggerAchievement(AchievementsAether.amplified_agility_boots);
             }
     	}
     }
-	
+
 	public boolean hasCustomEntity(final ItemStack stack) {
         return true;
     }
-    
+
     public Entity createEntity(final World world, final Entity location, final ItemStack itemstack) {
         return new EntityFireProofItemAether(world, location, itemstack);
     }
-	
+
 	@Override
 	public EnumRarity getRarity(ItemStack stack) {
-		return ItemsAether.divine_aether_loot;
+        return ItemsAether.divine_aether_loot;
 	}
-	
+
 	public void addInformation(final ItemStack stack, final EntityPlayer player, final List tooltip, final boolean who) {
 		if(AetherConfig.enableTooltips()) {
 			if (stack.getItem() == ItemsAether.divineral_helmet || stack.getItem() == ItemsAether.divineral_chestplate || stack.getItem() == ItemsAether.divineral_leggings || stack.getItem() == ItemsAether.divineral_boots) {

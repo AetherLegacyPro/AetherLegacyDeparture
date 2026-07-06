@@ -1,12 +1,10 @@
 package com.gildedgames.the_aether.client.models.entities;
 
 import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
-
 import com.gildedgames.the_aether.entities.bosses.sun_spirit.EntityAncientSunSpirit;
 
 public class AncientSunSpiritModel extends ModelBiped {
@@ -20,11 +18,11 @@ public class AncientSunSpiritModel extends ModelBiped {
 	public ModelRenderer bipedLeftArm3;
 
 	public AncientSunSpiritModel() {
-		this(0.0F);
+        this(0.0F);
 	}
 
 	public AncientSunSpiritModel(float modelSize) {
-		this(modelSize, 0.0F);
+        this(modelSize, 0.0F);
 	}
 
 	public AncientSunSpiritModel(float modelSize, float rotationPointY) {

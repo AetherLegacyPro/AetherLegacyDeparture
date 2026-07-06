@@ -9,7 +9,6 @@ public class BlockGlowingIcestone extends Block {
 
 	public BlockGlowingIcestone() {
 		super(Material.ice);
-
 		this.setHardness(3F);
 		this.setTickRandomly(true);
 		this.setLightLevel(0.9375F);

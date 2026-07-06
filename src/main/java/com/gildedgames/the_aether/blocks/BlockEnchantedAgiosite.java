@@ -7,7 +7,6 @@ public class BlockEnchantedAgiosite extends Block {
 
 	public BlockEnchantedAgiosite() {
 		super(Material.rock);
-
 		this.setHardness(4.0F);
 		this.setResistance(6.0F);
 		this.setStepSound(soundTypeStone);

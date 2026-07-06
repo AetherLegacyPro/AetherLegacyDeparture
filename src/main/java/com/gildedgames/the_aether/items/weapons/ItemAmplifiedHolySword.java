@@ -13,8 +13,8 @@ import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
+import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
-
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 
@@ -30,13 +30,12 @@ public class ItemAmplifiedHolySword extends ItemSword {
 
 	@Override
 	public Multimap<String, AttributeModifier> getItemAttributeModifiers() {
-		return null;
+        return null;
 	}
 
 	@Override
 	public Multimap<String, AttributeModifier> getAttributeModifiers(ItemStack stack) {
 		Multimap<String, AttributeModifier> multimap = HashMultimap.create();
-
 		if (stack.getItem() instanceof ItemAmplifiedHolySword) {
 			multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(field_111210_e, "Weapon modifier", this.calculateIncrease(stack), 0));
 		}
@@ -61,62 +60,55 @@ public class ItemAmplifiedHolySword extends ItemSword {
 	}
 
 	private boolean isBetween(int max, int origin, int min) {
-		return origin <= max && origin >= min ? true : false;
+        return origin <= max && origin >= min ? true : false;
 	}
 
 	@Override
 	public boolean getIsRepairable(ItemStack stack, ItemStack repairStack) {
-		return false;
+        return false;
 	}
-	
+
 	@Override
     public boolean hitEntity(ItemStack itemstack, EntityLivingBase entityliving, EntityLivingBase entityliving1) {
-    
         if (this == ItemsAether.amplified_holy_sword && (entityliving.isEntityUndead() || entityliving.getCreatureAttribute() == EnumCreatureAttribute.UNDEAD) || (entityliving.getCreatureAttribute() == EnumCreatureAttribute.UNDEFINED) || (entityliving.getCreatureAttribute() == EnumCreatureAttribute.ARTHROPOD)) {
 
             float damage = 20.0F;
-
             int level = EnchantmentHelper.getEnchantmentLevel(Enchantment.smite.effectId, itemstack);
 
-            if (level > 0)
-            {
-                damage += (level * 2.5);
+            if (level > 0) {
+                damage += (float) (level * 2.5);
+                entityliving.attackEntityFrom(DamageSource.magic, damage);
             }
-            
-            float damagee = 7.0F;
-            
+
+            float damage2 = 7.0F;
             int level1 = EnchantmentHelper.getEnchantmentLevel(Enchantment.sharpness.effectId, itemstack);
 
-            if (level1 > 0)
-            {
-                damagee += (level1 * 1.2);
+            if (level1 > 0) {
+                damage2 += (float) (level1 * 1.2);
+                entityliving.attackEntityFrom(DamageSource.magic, damage2);
             }
-            
-            float damageee = 15F;
-            
+
+            float damage3 = 15F;
             int level2 = EnchantmentHelper.getEnchantmentLevel(Enchantment.baneOfArthropods.effectId, itemstack);
 
-            if (level2 > 0)
-            {
-                damageee += (level2 * 4);
+            if (level2 > 0) {
+                damage3 += (level2 * 4);
+                entityliving.attackEntityFrom(DamageSource.magic, damage3);
             }
-
-            //entityliving.attackEntityFrom(DamageSource.drown, damage);
-            //itemstack.damageItem(1, entityliving1);
         }
-        
+
         return super.hitEntity(itemstack, entityliving, entityliving1);
     }
-	
+
 	@Override
 	public EnumRarity getRarity(ItemStack stack) {
-		return ItemsAether.divine_aether_loot;
+        return ItemsAether.divine_aether_loot;
 	}
-	
+
 	public boolean hasCustomEntity(final ItemStack stack) {
         return true;
     }
-    
+
     public Entity createEntity(final World world, final Entity location, final ItemStack itemstack) {
         return new EntityFireProofItemAether(world, location, itemstack);
     }

@@ -3,7 +3,6 @@ package com.gildedgames.the_aether.player;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.UUID;
-
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.api.player.IPlayerAether;
 import com.gildedgames.the_aether.api.player.util.IAccessoryInventory;
@@ -33,7 +32,6 @@ import net.minecraft.potion.Potion;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.items.tools.ItemAmplifiedValkyrieTool;
 import com.gildedgames.the_aether.items.tools.ItemArkeniumTool;
@@ -61,69 +59,44 @@ import com.gildedgames.the_aether.player.abilities.AbiltyAgilityBoots;
 import com.gildedgames.the_aether.player.abilities.AbilityJebShield;
 import com.gildedgames.the_aether.player.perks.util.DonatorMoaSkin;
 import com.gildedgames.the_aether.world.TeleporterAether;
-
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.ReflectionHelper;
 
 public class PlayerAether implements IPlayerAether {
 
 	private EntityPlayer player;
-	
 	private EntityParachute parachute;
-
 	private IAetherBoss focusedBoss;
-
 	private IAccessoryInventory accessories;
-
 	private final ArrayList<IAetherAbility> abilities = new ArrayList<>();
-
 	public final ArrayList<Entity> clouds = new ArrayList<>(2);
 
 	public int shardCount;
 	public int powerCount;
 	public int dexCount;
-	
+
 	public DonatorMoaSkin donatorMoaSkin = new DonatorMoaSkin();
-
 	public boolean shouldRenderHalo, shouldRenderGlow, shouldRenderCape;
-
 	public boolean seenSpiritDialog = false;
-
 	private boolean isJumping;
-
 	private boolean isMountSneaking;
-
 	private boolean inPortal;
-
 	private int portalCounter;
-
 	public int teleportDirection;
-
 	private String hammerName = StatCollector.translateToLocal("item.notch_hammer.name");
-
 	private int cooldown;
-
 	private int cooldownMax;
-
 	public float wingSinage;
-
     public float timeInPortal;
-
     public float prevTimeInPortal;
-
     public Entity riddenEntity;
-
     private ChunkCoordinates bedLocation;
-
 	public boolean isPoisoned = false, isCured = false;
-
 	public boolean shouldGetPortal;
-
 	public int poisonTime = 0, cureTime = 0;
-
 	private final UUID uuid = UUID.fromString("df6eabe7-6947-4a56-9099-002f90370706");
 
-	private AttributeModifier healthModifier;	
+	private AttributeModifier healthModifier;
 	private AttributeModifier powerModifier;
 	private AttributeModifier dexModifier;
 
@@ -162,14 +135,11 @@ public class PlayerAether implements IPlayerAether {
 	@Override
 	public void init(Entity entity, World world) {
 		this.player = (EntityPlayer) entity;
-		
-		
 	}
 
 	@Override
 	public void onUpdate() {
-		if (!this.player.worldObj.isRemote)
-		{
+		if (!this.player.worldObj.isRemote) {
 			AetherNetwork.sendToAll(new PacketPerkChanged(this.getEntity().getEntityId(), EnumAetherPerkType.Halo, this.shouldRenderHalo));
 			AetherNetwork.sendToAll(new PacketPerkChanged(this.getEntity().getEntityId(), EnumAetherPerkType.Glow, this.shouldRenderGlow));
 			AetherNetwork.sendToAll(new PacketCapeChanged(this.getEntity().getEntityId(), this.shouldRenderCape));
@@ -178,27 +148,21 @@ public class PlayerAether implements IPlayerAether {
 			AetherNetwork.sendToAll(new PacketPortalItem(this.getEntity(), this.shouldGetPortal));
 		}
 
-		if (this.isPoisoned)
-		{
-			if (poisonTime > 0)
-			{
+		if (this.isPoisoned) {
+			if (poisonTime > 0) {
 				this.poisonTime--;
 			}
-			else
-			{
+			else {
 				this.poisonTime = 0;
 				this.isPoisoned = false;
 			}
 		}
 
-		if (this.isCured)
-		{
-			if (cureTime > 0)
-			{
+		if (this.isCured) {
+			if (cureTime > 0) {
 				this.cureTime--;
 			}
-			else
-			{
+			else {
 				this.cureTime = 0;
 				this.isCured = false;
 			}
@@ -206,7 +170,6 @@ public class PlayerAether implements IPlayerAether {
 
 		for (int i = 0; i < this.getAbilities().size(); ++i) {
 			IAetherAbility ability = this.getAbilities().get(i);
-
 			if (ability.shouldExecute()) {
 				ability.onUpdate();
 			}
@@ -228,8 +191,7 @@ public class PlayerAether implements IPlayerAether {
 			this.getEntity().fallDistance = 0.0F;
 		}
 
-		if (this.getEntity().motionY < -2F)
-		{
+		if (this.getEntity().motionY < -2F) {
 			this.activateParachute();
 		}
 
@@ -246,17 +208,14 @@ public class PlayerAether implements IPlayerAether {
 		}
 
 		boolean hasJumped = ReflectionHelper.getPrivateValue(EntityLivingBase.class, this.getEntity(), "isJumping", "field_70703_bu");
-
 		this.setJumping(hasJumped);
-
 		this.getEntity().worldObj.theProfiler.startSection("portal");
 
 		if (this.getEntity().dimension == AetherConfig.getAetherDimensionID()) {
 			if (this.getEntity().posY < -12) {
 				this.teleportPlayer(false);
 
-				if (this.riddenEntity != null && this.riddenEntity != parachute)
-				{
+				if (this.riddenEntity != null && this.riddenEntity != parachute) {
 					this.getEntity().mountEntity(this.riddenEntity);
 					this.riddenEntity = null;
 				}
@@ -266,10 +225,9 @@ public class PlayerAether implements IPlayerAether {
 		if (this.inPortal) {
 			if (this.getEntity().timeUntilPortal <= 0) {
 				int limit = this.getEntity().getMaxInPortalTime();
-				
+
 				if (this.getEntity().ridingEntity == null) {
-					if (this.portalCounter >= limit)
-					{
+					if (this.portalCounter >= limit) {
 						this.portalCounter = 0;
 						this.getEntity().timeUntilPortal = this.getEntity().getPortalCooldown();
 
@@ -277,28 +235,24 @@ public class PlayerAether implements IPlayerAether {
 							this.teleportPlayer(true);
 						if (this.player.worldObj.isRemote && Minecraft.getMinecraft().thePlayer.getEntityId() == this.player.getEntityId()) {
 						          Minecraft.getMinecraft().thePlayer.playSound("aether_legacy:aeportal.aetravel", 1.0f, 1.0f);
-						        }				                
+                        }
 							this.getEntity().triggerAchievement(AchievementsAether.enter_aether);
 						}
 					}
-					else
-					{
+					else {
 						this.portalCounter++;
 					}
 				}
 			}
-			else
-			{
+			else {
 				this.getEntity().timeUntilPortal = this.getEntity().getPortalCooldown();
 			}
 
-			if (this.getEntity().worldObj.getBlock((int) this.getEntity().posX, (int) this.getEntity().posY - 1, (int) this.getEntity().posZ) != Blocks.air)
-			{
+			if (this.getEntity().worldObj.getBlock((int) this.getEntity().posX, (int) this.getEntity().posY - 1, (int) this.getEntity().posZ) != Blocks.air) {
 				AxisAlignedBB playerBounding = this.getEntity().boundingBox;
 
 				if (this.getEntity().worldObj.getBlock((int) playerBounding.minX, (int) playerBounding.minY, (int) playerBounding.minZ) != BlocksAether.aether_portal
-						&& this.getEntity().worldObj.getBlock((int) playerBounding.minX, (int) playerBounding.minY, (int) playerBounding.minZ) != BlocksAether.aether_portal)
-				{
+						&& this.getEntity().worldObj.getBlock((int) playerBounding.minX, (int) playerBounding.minY, (int) playerBounding.minZ) != BlocksAether.aether_portal) {
 					this.inPortal = false;
 				}
 			}
@@ -322,89 +276,67 @@ public class PlayerAether implements IPlayerAether {
 			if (stack != null && stack.getItem() instanceof ItemValkyrieTool) {
 				distance = 8.0D;
 			}
-			
+
 			else if (stack != null && stack.getItem() instanceof ItemTippedValkyrieTool) {
 				distance = 8.0D;
 			}
-			
+
 			else if (stack != null && stack.getItem() instanceof ItemAscensiteTool) {
 				distance = 10.0D;
 			}
-			
+
 			else if (stack != null && stack.getItem() instanceof ItemAmplifiedValkyrieTool) {
 				distance = 10.0D;
 			}
-			
+
 			else if (stack != null && stack.getItem() instanceof ItemArkeniumTool) {
 				distance = 6.0D;
 			}
-			
+
 			else if (stack != null && stack.getItem() instanceof ItemTippedArkeniumTool) {
 				distance = 6.0D;
 			}
 
-			((EntityPlayerMP) this.getEntity()).theItemInWorldManager.setBlockReachDistance(distance);			
+			((EntityPlayerMP) this.getEntity()).theItemInWorldManager.setBlockReachDistance(distance);
 		}
-		
-		
+
 		else {
             this.prevTimeInPortal = this.timeInPortal;
 
-            if (this.isInsideBlock(BlocksAether.aether_portal))
-            {
+            if (this.isInsideBlock(BlocksAether.aether_portal)) {
                 this.timeInPortal += 0.0125F;
-
-                if (this.timeInPortal >= 1.0F)
-                {
+                if (this.timeInPortal >= 1.0F) {
                     this.timeInPortal = 1.0F;
                 }
             }
-            else if (this.getEntity().isPotionActive(Potion.confusion) && this.getEntity().getActivePotionEffect(Potion.confusion).getDuration() > 60)
-            {
+            else if (this.getEntity().isPotionActive(Potion.confusion) && this.getEntity().getActivePotionEffect(Potion.confusion).getDuration() > 60) {
                 this.timeInPortal += 0.006666667F;
 
-                if (this.timeInPortal > 1.0F)
-                {
+                if (this.timeInPortal > 1.0F) {
                     this.timeInPortal = 1.0F;
                 }
             }
-            else
-            {
-                if (this.timeInPortal > 0.0F)
-                {
+            else {
+                if (this.timeInPortal > 0.0F) {
                     this.timeInPortal -= 0.05F;
                 }
 
-                if (this.timeInPortal < 0.0F)
-                {
+                if (this.timeInPortal < 0.0F) {
                     this.timeInPortal = 0.0F;
                 }
             }
 		}
 
-		if (!player.worldObj.isRemote)
-		{
-			if (this.bedLocation != null)
-			{
-				if (player.dimension == AetherConfig.getAetherDimensionID())
-				{
-					if (player.worldObj.getBlock(this.bedLocation.posX, this.bedLocation.posY, this.bedLocation.posZ) != BlocksAether.skyroot_bed)
-					{
+		if (!player.worldObj.isRemote) {
+			if (this.bedLocation != null) {
+				if (player.dimension == AetherConfig.getAetherDimensionID()) {
+					if (player.worldObj.getBlock(this.bedLocation.posX, this.bedLocation.posY, this.bedLocation.posZ) != BlocksAether.skyroot_bed) {
 						this.setBedLocation(null);
 					}
 				}
 			}
 		}
 	}
-	
-	 public boolean onLivingAttack(final DamageSource source) {
-	        for (final IAetherAbility ability : this.abilities) {
-	            if (!((PlayerAether) ability).onLivingAttack(source)) {
-	                return false;
-	            }
-	        }
-	        return true;
-	    }
 
 	@Override
 	public void setInPortal() {
@@ -418,46 +350,34 @@ public class PlayerAether implements IPlayerAether {
 		this.inPortal = true;
 	}
 
-	private void activateParachute()
-	{
-		if (!this.player.capabilities.isCreativeMode)
-		{
+	private void activateParachute() {
+		if (!this.player.capabilities.isCreativeMode) {
 			EntityParachute parachute;
-
 			ItemStack itemstack = null;
 
-			for (int i = 0; i < this.getEntity().inventory.getSizeInventory(); i++)
-			{
+			for (int i = 0; i < this.getEntity().inventory.getSizeInventory(); i++) {
 				ItemStack stackInSlot = this.getEntity().inventory.getStackInSlot(i);
-
-				if(stackInSlot != null && stackInSlot.getItem() == ItemsAether.cloud_parachute)
-				{
+				if(stackInSlot != null && stackInSlot.getItem() == ItemsAether.cloud_parachute) {
 					itemstack = stackInSlot;
 					break;
 				}
-				else
-				{
-					if (stackInSlot != null && stackInSlot.getItem() == ItemsAether.golden_parachute)
-					{
+				else {
+					if (stackInSlot != null && stackInSlot.getItem() == ItemsAether.golden_parachute) {
 						itemstack = stackInSlot;
 						break;
 					}
 				}
 			}
 
-			if (itemstack != null)
-			{
-				if (itemstack.getItem() == ItemsAether.cloud_parachute)
-				{
+			if (itemstack != null) {
+				if (itemstack.getItem() == ItemsAether.cloud_parachute) {
 					parachute = new EntityParachute(this.getEntity().worldObj, this.getEntity(), false);
 					parachute.setPosition(this.getEntity().posX, this.getEntity().posY, this.getEntity().posZ);
 					this.getEntity().worldObj.spawnEntityInWorld(parachute);
 					this.getEntity().inventory.consumeInventoryItem(itemstack.getItem());
 				}
-				else
-				{
-					if (itemstack.getItem() == ItemsAether.golden_parachute)
-					{
+				else {
+					if (itemstack.getItem() == ItemsAether.golden_parachute) {
 						itemstack.damageItem(1, this.getEntity());
 						parachute = new EntityParachute(this.getEntity().worldObj, this.getEntity(), true);
 						parachute.setPosition(this.getEntity().posX, this.getEntity().posY, this.getEntity().posZ);
@@ -465,7 +385,7 @@ public class PlayerAether implements IPlayerAether {
 					}
 				}
 			}
-					
+
 		}
 	}
 
@@ -509,9 +429,8 @@ public class PlayerAether implements IPlayerAether {
 				this.getEntity().riddenByEntity.mountEntity(null);
 			}
 
-			if (server != null && server.getConfigurationManager() != null)
-			{
-				server.getConfigurationManager().transferPlayerToDimension((EntityPlayerMP) this.getEntity(), transferDimension, teleporter);	
+			if (server != null && server.getConfigurationManager() != null) {
+				server.getConfigurationManager().transferPlayerToDimension((EntityPlayerMP) this.getEntity(), transferDimension, teleporter);
 			}
 		}
 	}
@@ -520,13 +439,11 @@ public class PlayerAether implements IPlayerAether {
 	public void saveNBTData(NBTTagCompound compound) {
 		NBTTagCompound aetherTag = new NBTTagCompound();
 
-		if (AetherRankings.isRankedPlayer(this.player.getUniqueID()))
-		{
+		if (AetherRankings.isRankedPlayer(this.player.getUniqueID())) {
 			aetherTag.setBoolean("halo", this.shouldRenderHalo);
 		}
 
-		if (AetherRankings.isDeveloper(this.player.getUniqueID()))
-		{
+        if (AetherRankings.isDeveloper(this.player.getUniqueID())) {
 			aetherTag.setBoolean("glow", this.shouldRenderGlow);
 		}
 
@@ -540,8 +457,7 @@ public class PlayerAether implements IPlayerAether {
 		aetherTag.setBoolean("seen_spirit_dialog", this.seenSpiritDialog);
 		aetherTag.setBoolean("get_portal", this.shouldGetPortal);
 
-		if (this.bedLocation != null)
-		{
+		if (this.bedLocation != null) {
 			aetherTag.setInteger("bedX", this.bedLocation.posX);
 			aetherTag.setInteger("bedY", this.bedLocation.posY);
 			aetherTag.setInteger("bedZ", this.bedLocation.posZ);
@@ -554,53 +470,43 @@ public class PlayerAether implements IPlayerAether {
 	public void loadNBTData(NBTTagCompound compound) {
 		NBTTagCompound aetherTag = compound.getCompoundTag("aetherI");
 
-		if (aetherTag.hasKey("halo"))
-		{
+		if (aetherTag.hasKey("halo")) {
 			this.shouldRenderHalo = aetherTag.getBoolean("halo");
 		}
 
-		if (aetherTag.hasKey("glow"))
-		{
+		if (aetherTag.hasKey("glow")) {
 			this.shouldRenderGlow = aetherTag.getBoolean("glow");
 		}
 
-		if (aetherTag.hasKey("cape"))
-		{
+		if (aetherTag.hasKey("cape")) {
 			this.shouldRenderCape = aetherTag.getBoolean("cape");
 		}
 
-		if (aetherTag.hasKey("poisoned"))
-		{
+		if (aetherTag.hasKey("poisoned")) {
 			this.isPoisoned = aetherTag.getBoolean("poisoned");
 		}
 
-		if (aetherTag.hasKey("poison_time"))
-		{
+		if (aetherTag.hasKey("poison_time")) {
 			this.poisonTime = aetherTag.getInteger("poison_time");
 		}
 
-		if (aetherTag.hasKey("seen_spirit_dialog"))
-		{
+		if (aetherTag.hasKey("seen_spirit_dialog")) {
 			this.seenSpiritDialog = aetherTag.getBoolean("seen_spirit_dialog");
 		}
 
-		if (aetherTag.hasKey("get_portal"))
-		{
+		if (aetherTag.hasKey("get_portal")) {
 			this.shouldGetPortal = aetherTag.getBoolean("get_portal");
 		}
 
-		if (aetherTag.hasKey("shardCount"))
-		{
+		if (aetherTag.hasKey("shardCount")) {
 			this.shardCount = aetherTag.getInteger("shardCount");
 		}
-		
-		if (aetherTag.hasKey("dexCount"))
-		{
+
+		if (aetherTag.hasKey("dexCount")) {
 			this.dexCount = aetherTag.getInteger("dexCount");
 		}
-		
-		if (aetherTag.hasKey("powerCount"))
-		{
+
+		if (aetherTag.hasKey("powerCount")) {
 			this.powerCount = aetherTag.getInteger("powerCount");
 		}
 
@@ -610,107 +516,90 @@ public class PlayerAether implements IPlayerAether {
 
 	@Override
 	public void setFocusedBoss(IAetherBoss boss) {
-		this.focusedBoss = boss;
+        this.focusedBoss = boss;
 	}
 
 	@Override
 	public IAetherBoss getFocusedBoss() {
-		return this.focusedBoss;
+        return this.focusedBoss;
 	}
 
 	@Override
 	public void setAccessoryInventory(IAccessoryInventory inventory) {
-		accessories = inventory;
+        accessories = inventory;
 	}
 
 	@Override
 	public IAccessoryInventory getAccessoryInventory() {
-		return accessories;
+        return accessories;
 	}
 
 	@Override
 	public ArrayList<IAetherAbility> getAbilities() {
-		return this.abilities;
+        return this.abilities;
 	}
 
 	@Override
 	public EntityPlayer getEntity() {
-		return this.player;
+        return this.player;
 	}
 
 	@Override
 	public void updateShardCount(int amount) {
-
-		if (!this.getEntity().worldObj.isRemote)
-		{
-			if (this.getShardsUsed() <= this.getMaxShardCount())
-			{
+		if (!this.getEntity().worldObj.isRemote) {
+			if (this.getShardsUsed() <= this.getMaxShardCount()) {
 				this.shardCount += amount;
 				AetherNetwork.sendToAll(new PacketUpdateLifeShardCount(this.player, this.shardCount));
-
 				this.healthModifier = new AttributeModifier(uuid, "Aether Health Modifier", (this.shardCount * 2.0D), 0);
 
-				if (this.player.getEntityAttribute(SharedMonsterAttributes.maxHealth).getModifier(this.uuid) != null)
-				{
+				if (this.player.getEntityAttribute(SharedMonsterAttributes.maxHealth).getModifier(this.uuid) != null) {
 					this.player.getEntityAttribute(SharedMonsterAttributes.maxHealth).removeModifier(this.healthModifier);
 				}
 
 				this.player.getEntityAttribute(SharedMonsterAttributes.maxHealth).applyModifier(this.healthModifier);
 			}
-			else
-			{
+			else {
 				AetherNetwork.sendToAll(new PacketUpdateLifeShardCount(this.player, this.shardCount));
 			}
 		}
 	}
-	
+
 	@Override
 	public void updatePowerShardCount(int amount) {
 
-		if (!this.getEntity().worldObj.isRemote)
-		{
-			if (this.getPowerShardsUsed() <= this.getMaxPowerShardCount())
-			{
+		if (!this.getEntity().worldObj.isRemote) {
+			if (this.getPowerShardsUsed() <= this.getMaxPowerShardCount()) {
 				this.powerCount += amount;
 				AetherNetwork.sendToAll(new PacketUpdatePowerShardCount(this.player, this.powerCount));
+                this.powerModifier = new AttributeModifier(uuid, "Aether Damage Modifier", (this.powerCount * 1.0D), 0);
 
-				this.powerModifier = new AttributeModifier(uuid, "Aether Damage Modifier", (this.powerCount * 1.0D), 0);
-
-				if (this.player.getEntityAttribute(SharedMonsterAttributes.attackDamage).getModifier(this.uuid) != null)
-				{
+				if (this.player.getEntityAttribute(SharedMonsterAttributes.attackDamage).getModifier(this.uuid) != null) {
 					this.player.getEntityAttribute(SharedMonsterAttributes.attackDamage).removeModifier(this.powerModifier);
 				}
 
 				this.player.getEntityAttribute(SharedMonsterAttributes.attackDamage).applyModifier(this.powerModifier);
 			}
-			else
-			{
+			else {
 				AetherNetwork.sendToAll(new PacketUpdatePowerShardCount(this.player, this.powerCount));
 			}
 		}
 	}
-	
+
 	@Override
 	public void updateDexShardCount(int amount) {
-
-		if (!this.getEntity().worldObj.isRemote)
-		{
-			if (this.getDexShardsUsed() <= this.getMaxDexShardCount())
-			{
+		if (!this.getEntity().worldObj.isRemote) {
+			if (this.getDexShardsUsed() <= this.getMaxDexShardCount()) {
 				this.dexCount += amount;
 				AetherNetwork.sendToAll(new PacketUpdateDexterityShardCount(this.player, this.dexCount));
-
 				this.dexModifier = new AttributeModifier(uuid, "Aether Dexterity Modifier", (this.dexCount * 0.01D), 0);
 
-				if (this.player.getEntityAttribute(SharedMonsterAttributes.movementSpeed).getModifier(this.uuid) != null)
-				{
+				if (this.player.getEntityAttribute(SharedMonsterAttributes.movementSpeed).getModifier(this.uuid) != null) {
 					this.player.getEntityAttribute(SharedMonsterAttributes.movementSpeed).removeModifier(this.dexModifier);
 				}
 
 				this.player.getEntityAttribute(SharedMonsterAttributes.movementSpeed).applyModifier(this.dexModifier);
 			}
-			else
-			{
+			else {
 				AetherNetwork.sendToAll(new PacketUpdateDexterityShardCount(this.player, this.dexCount));
 			}
 		}
@@ -718,47 +607,47 @@ public class PlayerAether implements IPlayerAether {
 
 	@Override
 	public int getShardsUsed() {
-		return this.shardCount;
+        return this.shardCount;
 	}
-	
+
 	@Override
 	public int getPowerShardsUsed() {
-		return this.powerCount;
+        return this.powerCount;
 	}
-	
+
 	@Override
 	public int getDexShardsUsed() {
-		return this.dexCount;
+        return this.dexCount;
 	}
 
 	@Override
 	public int getMaxShardCount() {
-		return AetherConfig.getMaxLifeShards();
+        return AetherConfig.getMaxLifeShards();
 	}
-	
+
 	@Override
 	public int getMaxPowerShardCount() {
-		return AetherConfig.getMaxPowerShards();
+        return AetherConfig.getMaxPowerShards();
 	}
-	
+
 	@Override
 	public int getMaxDexShardCount() {
-		return AetherConfig.getMaxDexShards();
+        return AetherConfig.getMaxDexShards();
 	}
 
 	@Override
 	public void setJumping(boolean isJumping) {
-		this.isJumping = isJumping;
+        this.isJumping = isJumping;
 	}
 
 	@Override
 	public boolean isJumping() {
-		return this.isJumping;
+        return this.isJumping;
 	}
 
 	@Override
 	public void setMountSneaking(boolean isSneaking) {
-		this.isMountSneaking = isSneaking;
+        this.isMountSneaking = isSneaking;
 	}
 
 	@Override
@@ -768,7 +657,7 @@ public class PlayerAether implements IPlayerAether {
 
 	@Override
 	public boolean isDonator() {
-		return true;
+        return true;
 	}
 
 	public boolean setHammerCooldown(int cooldown, String hammerName) {
@@ -776,56 +665,48 @@ public class PlayerAether implements IPlayerAether {
 			this.cooldown = cooldown;
 			this.cooldownMax = cooldown;
 			this.hammerName = hammerName;
-
 			return true;
 		}
-
 		return false;
 	}
 
 	@Override
 	public String getHammerName() {
-		return this.hammerName;
+        return this.hammerName;
 	}
 
 	@Override
 	public int getHammerCooldown() {
-		return this.cooldown;
+        return this.cooldown;
 	}
 
 	@Override
 	public int getHammerMaxCooldown() {
-		return this.cooldownMax;
+        return this.cooldownMax;
 	}
 
-	public void setBedLocation(ChunkCoordinates bedLocation)
-	{
-		this.bedLocation = bedLocation;
+	public void setBedLocation(ChunkCoordinates bedLocation) {
+        this.bedLocation = bedLocation;
 	}
 
-	public ChunkCoordinates getBedLocation()
-	{
-		return bedLocation;
+	public ChunkCoordinates getBedLocation() {
+        return bedLocation;
 	}
 
-	public boolean isPoisoned()
-	{
-		return this.isPoisoned;
+	public boolean isPoisoned() {
+        return this.isPoisoned;
 	}
 
-	public void setPoisoned()
-	{
+	public void setPoisoned() {
 		this.isPoisoned = true;
 		this.poisonTime = 500;
 	}
 
-	public boolean isCured()
-	{
-		return this.isCured;
+	public boolean isCured() {
+        return this.isCured;
 	}
 
-	public void setCured(int time)
-	{
+	public void setCured(int time) {
 		this.isCured = true;
 		this.cureTime = time;
 
@@ -833,10 +714,8 @@ public class PlayerAether implements IPlayerAether {
 		this.poisonTime = 0;
 	}
 
-	public void givePortalFrame()
-	{
-		if (this.shouldGetPortal)
-		{
+	public void givePortalFrame() {
+		if (this.shouldGetPortal) {
 			this.player.inventory.addItemStackToInventory(new ItemStack(ItemsAether.aether_portal_frame));
 			this.shouldGetPortal = false;
 		}

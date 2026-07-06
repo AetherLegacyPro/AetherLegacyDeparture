@@ -2,11 +2,7 @@ package com.gildedgames.the_aether.world;
 
 import net.minecraft.world.gen.MapGenBase;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
-import net.minecraft.world.gen.feature.WorldGenLakes;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.terraingen.PopulateChunkEvent;
-
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.world.biome.AetherBiome;
@@ -40,9 +36,6 @@ import com.gildedgames.the_aether.world.gen.MapGenGoldenDungeon;
 import com.gildedgames.the_aether.world.gen.MapGenLargeColdAercloud;
 import com.gildedgames.the_aether.world.gen.MapGenQuicksoil;
 import com.gildedgames.the_aether.world.gen.MapGenSilverDungeon;
-
-import cpw.mods.fml.common.eventhandler.Event;
-
 import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
@@ -59,40 +52,40 @@ import net.minecraft.world.chunk.IChunkProvider;
 
 public class ChunkProviderAether implements IChunkProvider {
 
-	private Random rand;	
+	private Random rand;
 	public static int placementFlagType;
-	private World worldObj;	
+	private World worldObj;
 	private World aetherWorld;
 	private NoiseGeneratorOctaves noiseGen1, perlinNoise1;
 	private double[] buffer;
 	double[] pnr, ar, br;
-	
+
 	int ancient_silver_chance = (int)(1 + Math.random() * 12);
 	int divine_silver_chance = (int)(1 + Math.random() * 10);
 	int ancient_gold_chance = (int)(1 + Math.random() * 12);
 	int divine_gold_chance = (int)(1 + Math.random() * 10);
-	
+
 	private MapGenBase aetherCaveGenerator;
-	
-	protected AetherDungeon dungeon_bronze = new BronzeDungeon();	
-	protected AetherDungeon large_dungeon_bronze = new LargeBronzeDungeon();	
-	protected AetherDungeon divine_dungeon_bronze = new DivineBronzeDungeon();	
+
+	protected AetherDungeon dungeon_bronze = new BronzeDungeon();
+	protected AetherDungeon large_dungeon_bronze = new LargeBronzeDungeon();
+	protected AetherDungeon divine_dungeon_bronze = new DivineBronzeDungeon();
 	protected AetherDungeon mythic_dungeon_bronze = new MythicBronzeDungeon();
-	
-	protected AetherDungeon cyro_dungeon = new CobaltDungeon();	
-	protected AetherDungeon zarnillys_den = new ZarnillysDen();	
-	private MapGenQuicksoil quicksoilGen = new MapGenQuicksoil();	
+
+	protected AetherDungeon cyro_dungeon = new CobaltDungeon();
+	protected AetherDungeon zarnillys_den = new ZarnillysDen();
+	private MapGenQuicksoil quicksoilGen = new MapGenQuicksoil();
 	private MapGenAetherCaves aether_caves = new MapGenAetherCaves();
-	
-	private MapGenSilverDungeon silverDungeonStructure = new MapGenSilverDungeon();	
-	private MapGenAncientSilverDungeon ancientsilverDungeonStructure = new MapGenAncientSilverDungeon();	
+
+	private MapGenSilverDungeon silverDungeonStructure = new MapGenSilverDungeon();
+	private MapGenAncientSilverDungeon ancientsilverDungeonStructure = new MapGenAncientSilverDungeon();
 	private MapGenDivineSilverDungeon divinesilverDungeonStructure = new MapGenDivineSilverDungeon();
 
-	private MapGenGoldenDungeon goldenDungeonStructure = new MapGenGoldenDungeon();	
-	private MapGenAncientGoldenDungeon ancientGoldenDungeonStructure = new MapGenAncientGoldenDungeon();	
+	private MapGenGoldenDungeon goldenDungeonStructure = new MapGenGoldenDungeon();
+	private MapGenAncientGoldenDungeon ancientGoldenDungeonStructure = new MapGenAncientGoldenDungeon();
 	private MapGenDivineGoldenDungeon divineGoldenDungeonStructure = new MapGenDivineGoldenDungeon();
-	
-	private MapGenLargeColdAercloud largeColdAercloudStructure = new MapGenLargeColdAercloud();	
+
+	private MapGenLargeColdAercloud largeColdAercloudStructure = new MapGenLargeColdAercloud();
 	public AetherGenDungeonOakTree golden_oak_tree_dungeon = new AetherGenDungeonOakTree();
 	public AetherGenFloatingIsland crystal_island = new AetherGenFloatingIsland();
 	public AetherGenVoidFloatingIsland void_island = new AetherGenVoidFloatingIsland();
@@ -105,8 +98,6 @@ public class ChunkProviderAether implements IChunkProvider {
 		this.aetherWorld = world;
 		this.noiseGen1 = new NoiseGeneratorOctaves(this.rand, 16);
 		this.perlinNoise1 = new NoiseGeneratorOctaves(this.rand, 8);
-		
-
 	}
 
 	public void setBlocksInChunk(int x, int z, Block[] blocks) {
@@ -158,17 +149,12 @@ public class ChunkProviderAether implements IChunkProvider {
 						d3 += d7;
 						d4 += d8;
 					}
-
 				}
-
 			}
-
-		}			
-
+		}
 	}
 
 	public void buildSurfaces(int i, int j, Block[] blocks) {
-		
 		this.rand.setSeed(this.worldObj.getSeed());
 		for (int k = 0; k < 16; k++) {
 			for (int l = 0; l < 16; l++) {
@@ -206,7 +192,7 @@ public class ChunkProviderAether implements IChunkProvider {
 					}
 				}
 			}
-		}       
+		}
 	}
 
 	private double[] setupNoiseGenerators(double[] buffer, int x, int z) {
@@ -260,9 +246,9 @@ public class ChunkProviderAether implements IChunkProvider {
 			}
 
 		}
-		
+
 		int id2 = 0;
-		
+
 		for (int j22 = 0; j22 < 3; j22++) {
 			for (int l22 = 0; l22 < 3; l22++) {
 				for (int j32 = 0; j32 < 33; j32++) {
@@ -274,13 +260,13 @@ public class ChunkProviderAether implements IChunkProvider {
 
 					if (d122 < 0.0D) {
 						d82 = d102;
-					} else if (d122 > 4.0D) { //1.0
+					} else if (d122 > 4.0D) {
 						d82 = d112;
 					} else {
 						d82 = d102 + (d112 - d102) * d122;
 					}
 
-					d82 -= 10D; //8D
+					d82 -= 10D;
 
 					if (j32 > 24 - 23) {
 						double d132 = (float) (j32 - (24 - 23)) / ((float) 24 - 1.0F);
@@ -309,12 +295,11 @@ public class ChunkProviderAether implements IChunkProvider {
 		this.rand.setSeed((long) x * 341873128712L + (long) z * 132897987541L);
 		Block[] ablock = new Block[32768];
 		final byte[] metadata = new byte[32768];
-		
+
 		this.setBlocksInChunk(x, z, ablock);
 		this.buildSurfaces(x, z, ablock);
 		((MapGenAetherCaves) this.aetherCaveGenerator).generate(this, this.aetherWorld, x, z, ablock, metadata);
 		this.quicksoilGen.func_151539_a(this, this.worldObj, x, z, ablock);
-
 
 		this.largeColdAercloudStructure.func_151539_a(this, this.worldObj, x, z, ablock);
 
@@ -336,7 +321,7 @@ public class ChunkProviderAether implements IChunkProvider {
 		if (AetherConfig.tier3_gold_dungeon_enable && divine_gold_chance >= 4 && (Math.abs(x) > 5000 || Math.abs(z) > 5000)) {
 			this.divineGoldenDungeonStructure.func_151539_a(this, this.worldObj, x, z, ablock);
 		}
-		
+
 		Chunk chunk = new Chunk(this.worldObj, ablock, x, z);
 		chunk.generateSkylightMap();
 
@@ -353,7 +338,7 @@ public class ChunkProviderAether implements IChunkProvider {
 	public void recreateStructures(int x, int z) {
 		this.largeColdAercloudStructure.func_151539_a(this, this.worldObj, x, z, null);
 		this.aether_caves.func_151539_a(this, this.worldObj, x, z, null);
-		
+
 		if (AetherConfig.silver_dungeon_enable) {
 			this.silverDungeonStructure.func_151539_a(this, this.worldObj, x, z, null);
 		}
@@ -375,8 +360,7 @@ public class ChunkProviderAether implements IChunkProvider {
 	}
 
 	@Override
-	public ChunkPosition func_147416_a(World worldIn, String structureName, int x, int y, int z) //getNearestStructurePos
-	{
+	public ChunkPosition func_147416_a(World worldIn, String structureName, int x, int y, int z) { //getNearestStructurePos
 		return null;
 	}
 
@@ -392,50 +376,50 @@ public class ChunkProviderAether implements IChunkProvider {
 		this.rand.setSeed((long) x * k + (long) z * l ^ this.worldObj.getSeed());
 
 		this.largeColdAercloudStructure.generateStructuresInChunk(this.worldObj, this.rand, chunkX, chunkZ);
-		
+
 		if (AetherConfig.silver_dungeon_enable) {
 			this.silverDungeonStructure.generateStructuresInChunk(this.worldObj, this.rand, chunkX, chunkZ);
 		}
-		
+
 		if (AetherConfig.gold_dungeon_enable) {
 			this.goldenDungeonStructure.generateStructuresInChunk(this.worldObj, this.rand, chunkX, chunkZ);
 		}
-		
+
 		if(AetherConfig.tier2_silver_dungeon_enable && (Math.abs(x) > 1200 || Math.abs(z) > 1200)) {
 			this.ancientsilverDungeonStructure.generateStructuresInChunk(this.worldObj, this.rand, chunkX, chunkZ);
 		}
-		
+
 		if(AetherConfig.tier3_silver_dungeon_enable && (Math.abs(x) > 3000 || Math.abs(z) > 3000)) {
 			this.divinesilverDungeonStructure.generateStructuresInChunk(this.worldObj, this.rand, chunkX, chunkZ);
 		}
-		
+
 		if(AetherConfig.tier2_gold_dungeon_enable && (Math.abs(x) > 2000 || Math.abs(z) > 2000)) {
 			this.ancientGoldenDungeonStructure.generateStructuresInChunk(this.worldObj, this.rand, chunkX, chunkZ);
 		}
-		
+
 		if(AetherConfig.tier3_gold_dungeon_enable && (Math.abs(x) > 5000 || Math.abs(z) > 5000)) {
 			this.divineGoldenDungeonStructure.generateStructuresInChunk(this.worldObj, this.rand, chunkX, chunkZ);
 		}
 
 		biome.decorate(this.worldObj, this.rand, x, z);
-		
+
 		int den_chance = (int)(1 + Math.random() * 5);
 		if(AetherConfig.zarnyllis_den_gen && den_chance == 1) {
 			this.zarnillys_den.generate(this.worldObj, this.rand, x, this.rand.nextInt(6) + 50, z);
 		}
-		
+
 		if (AetherConfig.bronze_dungeon_enable) {
 			this.dungeon_bronze.generate(this.worldObj, this.rand, x, this.rand.nextInt(28) + 24, z);
 		}
-		
+
 		if (AetherConfig.tier2_bronze_dungeon_enable && (Math.abs(x) > 750 || Math.abs(z) > 750)) {
 			this.large_dungeon_bronze.generate(this.worldObj, this.rand, x, this.rand.nextInt(18) + 26, z);
 		}
-		
+
 		if (AetherConfig.tier3_bronze_dungeon_enable && (Math.abs(x) > 2000 || Math.abs(z) > 2000)) {
 			this.divine_dungeon_bronze.generate(this.worldObj, this.rand, x, this.rand.nextInt(12) + 24, z);
 		}
-		
+
 		int mythic_bronze_chance = (int)(1 + Math.random() * 3);
 		if(AetherConfig.tier4_bronze_dungeon_enable && mythic_bronze_chance == 1 && (Math.abs(x) > 5000 || Math.abs(z) > 5000)) {
 			this.mythic_dungeon_bronze.generate(this.worldObj, this.rand, x, this.rand.nextInt(4) + 24, z);
@@ -444,48 +428,48 @@ public class ChunkProviderAether implements IChunkProvider {
 				this.cyro_dungeon.generate(this.worldObj, this.rand, x, this.rand.nextInt(14) + 22, z);
 			}
 		}
-		
+
 		SpawnerAnimals.performWorldGenSpawning(this.worldObj, biome, x + 8, z + 8, 16, 16, this.rand);
-		
 		final BiomeGenBase biomegenbase = AetherWorld.aether_biome;
-		
+
 		//Standard 3 Aerclouds
 		 if (this.rand.nextInt(50) == 0) {
 	            final int x1 = x + this.rand.nextInt(16);
 	            final int y = this.rand.nextInt(64) + 32;
 	            final int z1 = z + this.rand.nextInt(16);
 	            new AetherCloudsGenNew(BlocksAether.aercloud, 0, 16, false).generate(this.worldObj, this.rand, x, y, z);
-	        }
-		 
+         }
+
 		 if (this.rand.nextInt(6) == 0) {
 	            final int x1 = x + this.rand.nextInt(16);
 	            final int y = this.rand.nextInt(128);
 	            final int z1 = z + this.rand.nextInt(16);
 	            new AetherCloudsGenNew(BlocksAether.aercloud, 0, 64, false).generate(this.worldObj, this.rand, x, y, z);
-	        }
-		 
+         }
+
 		 if (this.rand.nextInt(20) == 0) {
 	            final int x1 = x + this.rand.nextInt(16);
 	            final int y = this.rand.nextInt(64);
 	            final int z1 = z + this.rand.nextInt(16);
 	            new AetherCloudsGenNew(BlocksAether.aercloud, 1, 4, false).generate(this.worldObj, this.rand, x, y, z);
-	        }
-		 
+         }
+
 		 if (this.rand.nextInt(12) == 0) {
 	            final int x1 = x + this.rand.nextInt(16);
 	            final int y = this.rand.nextInt(64)+ 64;
 	            final int z1 = z + this.rand.nextInt(16);
 	            new AetherCloudsGenNew(BlocksAether.aercloud, 1, 4, false).generate(this.worldObj, this.rand, x, y, z);
-	        }
-		 
+         }
+
 		 if (this.rand.nextInt(30) == 0) {
 	            final int x1 = x + this.rand.nextInt(64);
 	            final int y = this.rand.nextInt(64) + 128;
 	            final int z1 = z + this.rand.nextInt(64);
 	            new AetherCloudsGenNew(BlocksAether.aercloud, 2, 4, false).generate(this.worldObj, this.rand, x, y, z);
-	        }
+         }
+
 		 //Purple Aerclouds
-		 if (AetherConfig.enablePurpleAercloud()) {
+    if (AetherConfig.enablePurpleAercloud()) {
 		 if (this.rand.nextInt(60) == 0) {
 	            final int x1 = x + this.rand.nextInt(64);
 	            final int y = this.rand.nextInt(64) + 32;
@@ -559,7 +543,7 @@ public class ChunkProviderAether implements IChunkProvider {
 	            new AetherCloudsGenNew(BlocksAether.pink_aercloud, 2, 4, false).generate(this.worldObj, this.rand, x, y, z);
 	        }
 		}
-	
+
 	if (AetherConfig.enableStormAercloud()) {
 		if (this.rand.nextInt(1700) == 0) {
 			final int x1 = x + this.rand.nextInt(128);
@@ -568,8 +552,8 @@ public class ChunkProviderAether implements IChunkProvider {
 			new AetherCloudsGenNew(BlocksAether.storm_aercloud, 0, 4, false).generate(this.worldObj, this.rand, x, y, z);
 		}
 	}
-	        
-		
+
+
 		for (int numberoftreegen = 3, i2 = 0; i2 < numberoftreegen; ++i2) {
             final int k2 = x + this.rand.nextInt(16) + 8;
             final int j2 = z + this.rand.nextInt(16) + 8;
@@ -577,7 +561,7 @@ public class ChunkProviderAether implements IChunkProvider {
             worldgenerator.setScale(1.0, 1.0, 1.0);
             worldgenerator.generate(this.worldObj, this.rand, k2, this.worldObj.getHeightValue(k2, j2), j2);
         }
-		
+
 		for (int n = 0; n < 6; ++n) {
             if (this.rand.nextInt(2) == 0) {
                 final int x2 = x + this.rand.nextInt(16) + 8;
@@ -586,7 +570,7 @@ public class ChunkProviderAether implements IChunkProvider {
                 new AetherGenFlowers(BlocksAether.purple_flower, 64).generate(this.worldObj, this.rand, x2, y2, z2);
             }
         }
-		
+
 		for (int n = 0; n < 6; ++n) {
             if (this.rand.nextInt(2) == 0) {
                 final int x2 = x + this.rand.nextInt(16) + 8;
@@ -595,7 +579,7 @@ public class ChunkProviderAether implements IChunkProvider {
                 new AetherGenFlowers(BlocksAether.white_flower, 64).generate(this.worldObj, this.rand, x2, y2, z2);
             }
         }
-		
+
 		for (int n = 0; n < 6; ++n) {
             if (this.rand.nextInt(2) == 0) {
                 final int x2 = x + this.rand.nextInt(16) + 8;
@@ -604,7 +588,7 @@ public class ChunkProviderAether implements IChunkProvider {
                 new AetherGenFlowers(BlocksAether.aercloud_layer, 64).generate(this.worldObj, this.rand, x2, y2, z2);
             }
         }
-		
+
 		for (int n = 0; n < 3; ++n) {
             if (this.rand.nextInt(2) == 0) {
                 final int x2 = x + this.rand.nextInt(16) + 8;
@@ -613,7 +597,7 @@ public class ChunkProviderAether implements IChunkProvider {
                 new AetherGenFlowers(BlocksAether.white_rose, 64).generate(this.worldObj, this.rand, x2, y2, z2);
             }
         }
-		
+
 		for (int n = 0; n < 6; ++n) {
             if (this.rand.nextInt(2) == 0) {
                 final int x2 = x + this.rand.nextInt(16) + 8;
@@ -622,7 +606,7 @@ public class ChunkProviderAether implements IChunkProvider {
                 new AetherGenFlowers(BlocksAether.aechor_sprout, 64).generate(this.worldObj, this.rand, x2, y2, z2);
             }
         }
-		
+
 		for (int n = 0; n < 5; ++n) {
             if (this.rand.nextInt(2) == 0) {
                 final int x2 = x + this.rand.nextInt(16) + 8;
@@ -631,7 +615,7 @@ public class ChunkProviderAether implements IChunkProvider {
                 new AetherGenFlowers(BlocksAether.blue_swingtip, 64).generate(this.worldObj, this.rand, x2, y2, z2);
             }
         }
-		
+
 		for (int n = 0; n < 4; ++n) {
             if (this.rand.nextInt(2) == 0) {
                 final int x2 = x + this.rand.nextInt(16) + 8;
@@ -640,7 +624,7 @@ public class ChunkProviderAether implements IChunkProvider {
                 new AetherGenFlowers(BlocksAether.neverbloom, 64).generate(this.worldObj, this.rand, x2, y2, z2);
             }
         }
-		
+
 		for (int n = 0; n < 4; ++n) {
             if (this.rand.nextInt(2) == 0) {
                 final int x2 = x + this.rand.nextInt(16) + 8;
@@ -649,7 +633,7 @@ public class ChunkProviderAether implements IChunkProvider {
                 new AetherGenFlowers(BlocksAether.burstblossom, 64).generate(this.worldObj, this.rand, x2, y2, z2);
             }
         }
-		
+
 		for (int n = 0; n < 3; ++n) {
             if (this.rand.nextInt(2) == 0) {
                 final int x2 = x + this.rand.nextInt(16) + 8;
@@ -658,7 +642,7 @@ public class ChunkProviderAether implements IChunkProvider {
                 new AetherGenFlowers(BlocksAether.carrion_flower, 64).generate(this.worldObj, this.rand, x2, y2, z2);
             }
         }
-		
+
 		for (int n = 0; n < 3; ++n) {
             if (this.rand.nextInt(2) == 0) {
                 final int x2 = x + this.rand.nextInt(16) + 8;
@@ -667,7 +651,7 @@ public class ChunkProviderAether implements IChunkProvider {
                 new AetherGenFlowers(BlocksAether.blue_swingtip, 64).generate(this.worldObj, this.rand, x2, y2, z2);
             }
         }
-		
+
 		for (int n = 0; n < 3; ++n) {
             if (this.rand.nextInt(2) == 0) {
             	final int x2 = x + this.rand.nextInt(16) + 8;
@@ -676,7 +660,7 @@ public class ChunkProviderAether implements IChunkProvider {
                 new AetherGenFlowers(BlocksAether.quickshoot, 64).generate(this.worldObj, this.rand, x2, y2, z2);
             }
         }
-		
+
 		for (int n = 0; n < 3; ++n) {
             if (this.rand.nextInt(2) == 0) {
             	final int x2 = x + this.rand.nextInt(16) + 8;
@@ -685,7 +669,7 @@ public class ChunkProviderAether implements IChunkProvider {
                 new AetherGenFlowers(BlocksAether.aether_tulips, 64).generate(this.worldObj, this.rand, x2, y2, z2);
             }
         }
-		
+
 		if (AetherConfig.tallgrassEnabled()) {
 		final int numberofgrassgen = 4;
 		for (int i2 = 0; i2 < numberofgrassgen; ++i2) {
@@ -701,7 +685,7 @@ public class ChunkProviderAether implements IChunkProvider {
             final int y2 = this.rand.nextInt(128);
             final int z2 = z + this.rand.nextInt(16) + 8;
             new WorldGenBerryBush(BlocksAether.berry_bush, 3).generate(this.worldObj, this.rand, x2, y2, z2);
-        }		
+        }
 		for (int n3 = 0; n3 < 2; ++n3) {
             final int x3 = x + this.rand.nextInt(18) + 8;
             final int y3 = this.rand.nextInt(128);
@@ -747,7 +731,7 @@ public class ChunkProviderAether implements IChunkProvider {
              final int l5 = z + this.rand.nextInt(8) + 8;
              new AetherGenLiquids(Blocks.water).generate(this.worldObj, this.rand, j3, l4, l5);
           }
-		}		
+		}
 		for (int k3 = 0; k3 < 25; k3++) {
 			final int j3 = x + this.rand.nextInt(8) + 8;
 			final int l5 = z + this.rand.nextInt(8) + 8;
@@ -775,48 +759,47 @@ public class ChunkProviderAether implements IChunkProvider {
 				this.holiday_tree.generate(this.worldObj, this.rand, j3, l4, l5);
 			}
 		}
-	}	
-	
+	}
+
 	@Override
 	public Chunk loadChunk(int chunkX, int chunkZ) {
-		return this.provideChunk(chunkX, chunkZ);
+        return this.provideChunk(chunkX, chunkZ);
 	}
 
 	@Override
 	public boolean chunkExists(int chunkX, int chunkZ) {
-		return true;
+        return true;
 	}
 
 	@Override
 	public boolean saveChunks(boolean p_73151_1_, IProgressUpdate p_73151_2_) {
-		return true;
+        return true;
 	}
 
 	@Override
 	public boolean unloadQueuedChunks() {
-		return true;
+        return true;
 	}
 
 	@Override
 	public boolean canSave() {
-		return true;
+        return true;
 	}
 
 	@Override
 	public String makeString() {
-		return "AetherRandomLevelSource";
+        return "AetherRandomLevelSource";
 	}
 
 	@Override
 	public int getLoadedChunkCount() {
-		return 0;
+        return 0;
 	}
 
 	@Override
 	public void saveExtraData() {
-
 	}
-	
+
 	static {
         ChunkProviderAether.placementFlagType = 2;
     }

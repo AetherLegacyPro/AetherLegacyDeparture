@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.items.tools.tipped;
 
 import java.util.List;
-
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.entities.block.EntityFloatingBlock;
@@ -9,7 +8,6 @@ import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.items.tools.ItemAetherTool;
 import com.gildedgames.the_aether.items.util.EnumAetherToolType;
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
@@ -32,17 +30,17 @@ public class ItemTippedGravititeTool extends ItemAetherTool {
 
 	@Override
 	public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
-		if (AetherConfig.RepairMaterialTipped() == true) {
+		if (AetherConfig.RepairMaterialTipped()) {
 			return repair.getItem() == ItemsAether.auralite_crystal;
-			}
-			else {
+        }
+        else {
 			return repair.getItem() == Item.getItemFromBlock(BlocksAether.enchanted_gravitite);
 		}
 	}
-	
+
 	@Override
 	public EnumRarity getRarity(ItemStack stack) {
-		return ItemsAether.scaled_aether_loot;
+        return ItemsAether.scaled_aether_loot;
 	}
 
 	@Override
@@ -72,9 +70,9 @@ public class ItemTippedGravititeTool extends ItemAetherTool {
 	}
 
 	private boolean isBetween(int max, int origin, int min) {
-		return origin <= max && origin >= min ? true : false;
+        return origin <= max && origin >= min ? true : false;
 	}
-	
+
 	@Override
 	public boolean onItemUse(ItemStack heldItem, EntityPlayer player, World world, int x, int y, int z, int facing, float hitX, float hitY, float hitZ) {
 		Block block = world.getBlock(x, y, z);
@@ -96,7 +94,7 @@ public class ItemTippedGravititeTool extends ItemAetherTool {
 
 		return true;
 	}
-	
+
 	public void addInformation(final ItemStack stack, final EntityPlayer player, final List tooltip, final boolean who) {
 		if(AetherConfig.enableTooltips())
         tooltip.add(EnumChatFormatting.AQUA + "" + StatCollector.translateToLocal("tooltip.gravitite_tools.desc"));

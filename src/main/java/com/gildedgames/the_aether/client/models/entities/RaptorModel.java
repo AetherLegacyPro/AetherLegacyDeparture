@@ -8,13 +8,9 @@ import net.minecraft.util.MathHelper;
 public class RaptorModel extends ModelBase {
 
 	public ModelRenderer head, body;
-
 	public ModelRenderer legs, legs2;
-
 	public ModelRenderer wings, wings2;
-
 	public ModelRenderer jaw, neck;
-
 	public ModelRenderer feather1, feather2, feather3;
 
 	public RaptorModel() {

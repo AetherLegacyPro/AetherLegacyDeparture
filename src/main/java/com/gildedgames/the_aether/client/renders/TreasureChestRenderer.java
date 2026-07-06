@@ -8,21 +8,16 @@ import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
-
 import com.gildedgames.the_aether.blocks.dungeon.BlockTreasureChest;
 import com.gildedgames.the_aether.tileentity.TileEntityTreasureChest;
 
 public class TreasureChestRenderer extends TileEntitySpecialRenderer {
 
 	private static final ResourceLocation TEXTURE_DOUBLE = Aether.locate("textures/tile_entities/treasure_chest_large.png");
-
 	private static final ResourceLocation TEXTURE_SINGLE = Aether.locate("textures/tile_entities/treasure_chest.png");
-
 	private final ModelChest chestModel = new ModelChest();
-
 	private final ModelChest largeChestModel = new ModelLargeChest();
 
 	@Override

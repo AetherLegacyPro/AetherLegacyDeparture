@@ -1,13 +1,11 @@
 package com.gildedgames.the_aether.world.gen;
 
 import java.util.Random;
-
 import com.gildedgames.the_aether.world.util.RandomTracker;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.MapGenStructure;
 import net.minecraft.world.gen.structure.StructureStart;
-
 import com.gildedgames.the_aether.world.gen.components.ComponentSilverDungeon;
 
 public class MapGenSilverDungeon extends MapGenStructure {
@@ -17,17 +15,15 @@ public class MapGenSilverDungeon extends MapGenStructure {
 
 	@Override
 	public String func_143025_a() {
-		return "aether_legacy:silver_dungeon";
+        return "aether_legacy:silver_dungeon";
 	}
 
 	@Override
 	protected boolean canSpawnStructureAtCoords(int chunkX, int chunkZ) {
 		RandomTracker randomTracker = new RandomTracker();
 
-		if (randomTracker.testRandom(this.rand, 110) != 0)
-		{
-			if (randomTracker.testRandom(this.rand, 150) != 0)
-			{
+		if (randomTracker.testRandom(this.rand, 110) != 0) {
+			if (randomTracker.testRandom(this.rand, 150) != 0) {
 				return false;
 			}
 		}
@@ -72,7 +68,6 @@ public class MapGenSilverDungeon extends MapGenStructure {
 
 			dungeon.setStaircasePosition(this.firstStaircaseZ, this.secondStaircaseZ, this.finalStaircaseZ);
 			dungeon.setCloudTendencies(this.xTendency, this.zTendency);
-
 			dungeon.getBoundingBox().offset(0, random.nextInt(64), 0);
 			this.components.add(dungeon);
 			this.updateBoundingBox();
@@ -81,7 +76,6 @@ public class MapGenSilverDungeon extends MapGenStructure {
 		@Override
 		public void func_143022_a(NBTTagCompound tagCompound) {
 			super.func_143022_a(tagCompound);
-
 			tagCompound.setInteger("firstStaircaseZ", this.firstStaircaseZ);
 			tagCompound.setInteger("secondStaircaseZ", this.secondStaircaseZ);
 			tagCompound.setInteger("finalStaircaseZ", this.finalStaircaseZ);
@@ -92,14 +86,12 @@ public class MapGenSilverDungeon extends MapGenStructure {
 		@Override
 		public void func_143017_b(NBTTagCompound tagCompound) {
 			super.func_143017_b(tagCompound);
-
 			this.firstStaircaseZ = tagCompound.getInteger("firstStaircaseZ");
 			this.secondStaircaseZ = tagCompound.getInteger("secondStaircaseZ");
 			this.finalStaircaseZ = tagCompound.getInteger("finalStaircaseZ");
 			this.xTendency = tagCompound.getInteger("zTendency");
 			this.zTendency = tagCompound.getInteger("zTendency");
 		}
-
 	}
 
 }

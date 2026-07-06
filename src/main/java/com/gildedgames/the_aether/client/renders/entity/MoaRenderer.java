@@ -9,9 +9,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.opengl.GL11;
-
 import com.gildedgames.the_aether.entities.util.AetherMoaTypes;
 import com.gildedgames.the_aether.player.PlayerAether;
 import com.gildedgames.the_aether.player.perks.util.DonatorMoaSkin;
@@ -19,30 +17,19 @@ import com.gildedgames.the_aether.player.perks.util.DonatorMoaSkin;
 public class MoaRenderer extends RenderLiving {
 
 	private static final ResourceLocation TEXTURE_OUTSIDE = Aether.locate("textures/entities/moa/canvas/moa_outside.png");
-
 	private static final ResourceLocation TEXTURE_EYE = Aether.locate("textures/entities/moa/canvas/moa_eye.png");
-
 	private static final ResourceLocation TEXTURE_BODY = Aether.locate("textures/entities/moa/canvas/moa_body.png");
-
 	private static final ResourceLocation TEXTURE_MARKINGS = Aether.locate("textures/entities/moa/canvas/moa_markings.png");
-
 	private static final ResourceLocation TEXTURE_WING = Aether.locate("textures/entities/moa/canvas/moa_wing.png");
-
 	private static final ResourceLocation TEXTURE_WING_MARKINGS = Aether.locate("textures/entities/moa/canvas/moa_wing_markings.png");
-
 	private static final ResourceLocation TEXTURE_UNCHANGED = Aether.locate("textures/entities/moa/canvas/moa_unchanged.png");
-
 	private static final ResourceLocation SADDLE = Aether.locate("textures/entities/moa/moa_saddle.png");
-
 	private static final ResourceLocation BLACK_SADDLE = Aether.locate("textures/entities/moa/black_moa_saddle.png");
-
 	private static final ResourceLocation MOS = new ResourceLocation("aether_legacy", "textures/entities/moa/mos.png");
-
 	private static final ResourceLocation RAPTOR = new ResourceLocation("aether_legacy", "textures/entities/moa/raptor.png");
 
 	public MoaRenderer() {
 		super(new MoaModel(0.0F), 1.0F);
-
 		this.setRenderPassModel(new MoaModel(0.5F));
 	}
 
@@ -130,17 +117,11 @@ public class MoaRenderer extends RenderLiving {
 
 	protected void scaleMoa(EntityMoa entityMoa) {
 		float moaScale = entityMoa.isChild() ? 1.0f : 1.8f;
-
 		GL11.glScalef(moaScale, moaScale, moaScale);
 	}
 
 	@Override
 	protected void preRenderCallback(EntityLivingBase entityliving, float f) {
-		/*
-		 * Dear person who finds this,
-		 * have fun :)
-		 * GL11.glRotatef((entityliving.ticksExisted * entityliving.ticksExisted) * (f * f), 0.0F, 1.0F, 0.0F);
-		 */
 		this.scaleMoa((EntityMoa) entityliving);
 	}
 
@@ -156,30 +137,27 @@ public class MoaRenderer extends RenderLiving {
 			}
 		}
 
-		if (moa.hasCustomNameTag() && "Mos".equals(moa.getCustomNameTag()) && (moa.getMoaType() == AetherMoaTypes.orange))
-		{
+		if (moa.hasCustomNameTag() && "Mos".equals(moa.getCustomNameTag()) && (moa.getMoaType() == AetherMoaTypes.orange)) {
 			return MOS;
 		}
-		else if (moa.hasCustomNameTag() && "Raptor__".equals(moa.getCustomNameTag()) && (moa.getMoaType() == AetherMoaTypes.blue))
-		{
+		else if (moa.hasCustomNameTag() && "Raptor__".equals(moa.getCustomNameTag()) && (moa.getMoaType() == AetherMoaTypes.blue)) {
 			return RAPTOR;
 		}
-		else
-		{
+		else {
 			return moa.getMoaType().getTexture(moa.isSaddled(), moa.riddenByEntity != null);
 		}
 	}
 
 	private static float r(int r) {
-		return ((r >> 16) & 0xff) / 255F;
+        return ((r >> 16) & 0xff) / 255F;
 	}
 
 	private static float g(int g) {
-		return ((g >> 8) & 0xff) / 255F;
+        return ((g >> 8) & 0xff) / 255F;
 	}
 
 	private static float b(int b) {
-		return (b & 0xff) / 255F;
+        return (b & 0xff) / 255F;
 	}
 
 }

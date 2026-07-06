@@ -1,12 +1,10 @@
 package com.gildedgames.the_aether.world.biome.decoration;
 
 import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
 
 public class AetherGenHolidayTree extends WorldGenerator {
@@ -26,7 +24,6 @@ public class AetherGenHolidayTree extends WorldGenerator {
 						int x1 = xss;
 						int z1 = yss;
 						int y1 = world.getHeightValue(x1, z1);
-
 						Block block1 = world.getBlock(x1, y1 - 1, z1);
 
 						if (block1 != Blocks.air) {

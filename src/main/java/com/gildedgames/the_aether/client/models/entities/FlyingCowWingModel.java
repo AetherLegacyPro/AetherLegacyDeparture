@@ -3,9 +3,7 @@ package com.gildedgames.the_aether.client.models.entities;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
-
 import org.lwjgl.opengl.GL11;
-
 import com.gildedgames.the_aether.entities.passive.mountable.EntityFlyingCow;
 
 public class FlyingCowWingModel extends ModelBase {

@@ -9,10 +9,8 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
-
 import com.gildedgames.the_aether.inventory.ContainerAccessories;
 import com.gildedgames.the_aether.network.AetherNetwork;
 import com.gildedgames.the_aether.network.packets.PacketOpenContainer;
@@ -22,11 +20,8 @@ public class GuiAccessories extends GuiContainer {
 
 	private static final ResourceLocation ACCESSORIES = Aether.locate("textures/gui/inventory/accessories.png");
 
-	//private PlayerAether playerAether;
-
 	public GuiAccessories(PlayerAether player, InventoryAccessories inventory) {
 		super(new ContainerAccessories(inventory, player.getEntity()));
-		//playerAether = player;
 		allowUserInput = true;
 	}
 
@@ -34,14 +29,6 @@ public class GuiAccessories extends GuiContainer {
 	@SuppressWarnings("unchecked")
 	public void initGui() {
 		super.initGui();
-
-		/*
-		if (AetherRankings.isRankedPlayer(this.playerAether.getEntity().getUniqueID()) || this.playerAether.isDonator()) {
-			buttonList.add(new GuiButtonPerks(this.width / 2 - 108, this.height / 2 - 83));
-		}
-		 */
-
-		//buttonList.add(new GuiAccessoryButton(this.guiLeft + 8, this.guiTop + 65));
 	}
 
 	@Override
@@ -83,23 +70,17 @@ public class GuiAccessories extends GuiContainer {
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
 		GL11.glColor3d(1.0D, 1.0D, 1.0D);
-
 		this.mc.renderEngine.bindTexture(ACCESSORIES);
-
 		this.drawTexturedModalRect(this.width / 2 - 88, this.height / 2 - 166 / 2, 0, 0, 176, 166);
-
 		GuiInventory.func_147046_a(this.guiLeft + 35, this.guiTop + 75, 30, (float) (this.guiLeft + 51) - (float) mouseX, (float) (this.guiTop + 75 - 50) - (float) mouseY, this.mc.thePlayer);
 	}
 
 	@Override
-	public void handleKeyboardInput()
-	{
+	public void handleKeyboardInput() {
 		super.handleKeyboardInput();
-
 		int keyPressed = Keyboard.getEventKey();
 
-		if (keyPressed == AetherKeybinds.keyBindingAccessories.getKeyCode() && Keyboard.getEventKeyState())
-		{
+		if (keyPressed == AetherKeybinds.keyBindingAccessories.getKeyCode() && Keyboard.getEventKeyState()) {
 			Minecraft.getMinecraft().thePlayer.closeScreen();
 		}
 	}

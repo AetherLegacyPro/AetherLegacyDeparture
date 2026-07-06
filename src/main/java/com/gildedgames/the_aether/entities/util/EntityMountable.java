@@ -12,35 +12,29 @@ import net.minecraft.world.World;
 public abstract class EntityMountable extends EntityAetherAnimal {
 
 	protected float jumpPower;
-
 	protected int field_110285_bP;
-
 	protected boolean mountJumping;
-
-	protected boolean playStepSound = false;
-
 	protected boolean canJumpMidAir = false;
 
 	public EntityMountable(World world) {
-		super(world);
+        super(world);
 	}
 
 	@Override
 	public void entityInit() {
 		super.entityInit();
-
-		this.dataWatcher.addObject(17, (byte) 0); //onGroundClient
+		this.dataWatcher.addObject(17, (byte) 0);
 		this.dataWatcher.addObject(18, (byte) 0);
 	}
 
 	@Override
 	public boolean canRiderInteract() {
-		return true;
+        return true;
 	}
 
 	@Override
 	public boolean shouldDismountInWater(Entity rider) {
-		return false;
+        return false;
 	}
 
 	public boolean isOnGround() {
@@ -48,11 +42,11 @@ public abstract class EntityMountable extends EntityAetherAnimal {
 	}
 
 	private void setOnGround(boolean onGround) {
-		this.dataWatcher.updateObject(17, (byte) (onGround ? 1 : 0));
+        this.dataWatcher.updateObject(17, (byte) (onGround ? 1 : 0));
 	}
 
 	public boolean isRiderSneaking() {
-		return this.dataWatcher.getWatchableObjectByte(18) == (byte) 1;
+        return this.dataWatcher.getWatchableObjectByte(18) == (byte) 1;
 	}
 
 	public void setRiderSneaking(boolean riderSneaking) {
@@ -62,12 +56,10 @@ public abstract class EntityMountable extends EntityAetherAnimal {
 	@Override
 	public void onUpdate() {
 		super.onUpdate();
-
 		if (!this.worldObj.isRemote) {
 			if (this.onGround != this.isOnGround()) {
 				this.setOnGround(this.onGround);
 			}
-
 			this.updateRider();
 		}
 	}
@@ -108,12 +100,9 @@ public abstract class EntityMountable extends EntityAetherAnimal {
 		Entity entity = this.riddenByEntity;
 
 		if (entity instanceof EntityPlayer player) {
-
 			this.prevRotationYaw = this.rotationYaw = player.rotationYaw;
 			this.prevRotationPitch = this.rotationPitch = player.rotationPitch;
-
 			this.rotationYawHead = player.rotationYawHead;
-
 			par1 = player.moveStrafing;
 			par2 = player.moveForward;
 
@@ -144,7 +133,6 @@ public abstract class EntityMountable extends EntityAetherAnimal {
 
 				this.setMountJumping(true);
 				this.isAirBorne = true;
-
 				this.jumpPower = 0.0F;
 
 				if (!this.worldObj.isRemote) {
@@ -154,7 +142,6 @@ public abstract class EntityMountable extends EntityAetherAnimal {
 
 			this.motionX *= 0.35F;
 			this.motionZ *= 0.35F;
-
 			this.stepHeight = 1.0F;
 
 			if (!this.worldObj.isRemote) {
@@ -196,27 +183,27 @@ public abstract class EntityMountable extends EntityAetherAnimal {
 	}
 
 	public float getMountedMoveSpeed() {
-		return 0.15F;
+        return 0.15F;
 	}
 
 	protected double getMountJumpStrength() {
-		return 1.0D;
+        return 1.0D;
 	}
 
 	protected void setMountJumping(boolean mountJumping) {
-		this.mountJumping = mountJumping;
+        this.mountJumping = mountJumping;
 	}
 
 	protected boolean isMountJumping() {
-		return this.mountJumping;
+        return this.mountJumping;
 	}
 
 	public void onMountedJump(float par1, float par2) {
-		this.jumpPower = 0.4F;
+        this.jumpPower = 0.4F;
 	}
 
 	public boolean canDismount() {
-		return true;
+        return true;
 	}
 
 }

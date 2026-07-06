@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.items.dungeon;
 
 import java.util.List;
-
 import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.entities.block.EntityFireProofItemAether;
 import com.gildedgames.the_aether.items.ItemsAether;
@@ -28,47 +27,46 @@ public class ItemDungeonKey extends Item {
 
 	@SideOnly(Side.CLIENT)
 	private IIcon goldenIcon;
-	
+
 	@SideOnly(Side.CLIENT)
 	private IIcon cobaltIcon;
-	
+
 	@SideOnly(Side.CLIENT)
 	private IIcon osmiumIcon;
-	
+
 	@SideOnly(Side.CLIENT)
 	private IIcon ancientbronzeIcon;
-	
+
 	@SideOnly(Side.CLIENT)
 	private IIcon divinebronzeIcon;
-	
+
 	@SideOnly(Side.CLIENT)
 	private IIcon mythicbronzeIcon;
-	
+
 	@SideOnly(Side.CLIENT)
 	private IIcon ancientsilverIcon;
-	
+
 	@SideOnly(Side.CLIENT)
 	private IIcon divinesilverIcon;
-	
+
 	@SideOnly(Side.CLIENT)
 	private IIcon ancientgoldenIcon;
-	
+
 	@SideOnly(Side.CLIENT)
 	private IIcon divinegoldenIcon;
-		
+
 	@SideOnly(Side.CLIENT)
 	private IIcon mythicsilverIcon;
-	
+
 	@SideOnly(Side.CLIENT)
 	private IIcon mythicgoldenIcon;
-	
+
 	@SideOnly(Side.CLIENT)
-	private IIcon palladiumIcon;	
-	
+	private IIcon palladiumIcon;
+
 
 	public ItemDungeonKey() {
 		super();
-
 		this.setMaxStackSize(1);
 		this.setHasSubtypes(true);
 		this.setCreativeTab(AetherCreativeTabs.misc);
@@ -97,16 +95,16 @@ public class ItemDungeonKey extends Item {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIconFromDamage(int meta) {
-		return meta == 1 ? this.silverIcon 
-		: meta == 2 ? this.goldenIcon 
-	    : meta == 3 ? this.ancientbronzeIcon 
-		: meta == 4 ? this.divinebronzeIcon 
+		return meta == 1 ? this.silverIcon
+		: meta == 2 ? this.goldenIcon
+	    : meta == 3 ? this.ancientbronzeIcon
+		: meta == 4 ? this.divinebronzeIcon
 		: meta == 5 ? this.ancientsilverIcon
 		: meta == 6 ? this.divinesilverIcon
 		: meta == 7 ? this.ancientgoldenIcon
 		: meta == 8 ? this.divinegoldenIcon
 		: meta == 9 ? this.mythicbronzeIcon
-		: meta == 10 ? this.cobaltIcon 
+		: meta == 10 ? this.cobaltIcon
 		: meta == 11 ? this.osmiumIcon
 		: meta == 12 ? this.mythicsilverIcon
 		: meta == 13 ? this.mythicgoldenIcon
@@ -123,20 +121,19 @@ public class ItemDungeonKey extends Item {
 
 	@Override
 	public EnumRarity getRarity(ItemStack stack) {
-		return ItemsAether.aether_loot;
+        return ItemsAether.aether_loot;
 	}
 
 	@Override
 	public String getUnlocalizedName(ItemStack itemstack) {
 		int meta = itemstack.getItemDamage();
-
 		return this.getUnlocalizedName() + "_" + EnumDungeonKeyType.getType(meta).toString();
 	}
-	
+
 	public boolean hasCustomEntity(final ItemStack stack) {
         return true;
     }
-    
+
     public Entity createEntity(final World world, final Entity location, final ItemStack itemstack) {
         return new EntityFireProofItemAether(world, location, itemstack);
     }

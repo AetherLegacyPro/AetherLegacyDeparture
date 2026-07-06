@@ -2,12 +2,10 @@ package com.gildedgames.the_aether.client.renders.entity;
 
 import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.entities.projectile.EntityZephyrSnowball;
-
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
@@ -15,7 +13,6 @@ public class ZephyrSnowballRenderer extends Render {
 
     public ZephyrSnowballRenderer() {
         super();
-
         this.shadowSize = 0.0F;
     }
 

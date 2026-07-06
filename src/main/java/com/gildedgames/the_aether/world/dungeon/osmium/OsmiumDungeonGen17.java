@@ -1,12 +1,10 @@
 package com.gildedgames.the_aether.world.dungeon.osmium;
 
 import java.util.Random;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.entities.bosses.EntityElderZarnillys;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.tileentity.TileEntitySkyrootChest;
-
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -15,11 +13,10 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 public class OsmiumDungeonGen17 extends WorldGenerator {
 
 	public OsmiumDungeonGen17() {
-
 	}
-	
+
 	public boolean generate(final World world, final Random random, final int i, final int j, final int k) {
-		
+
 		world.setBlock(i + 9, j + 45, k + 36, placeBuildingBlock(random), 0, 2);
 		world.setBlock(i + 10, j + 45, k + 36, placeBuildingBlock(random), 0, 2);
 		world.setBlock(i + 11, j + 45, k + 36, placeBuildingBlock(random), 0, 2);
@@ -2281,88 +2278,88 @@ public class OsmiumDungeonGen17 extends WorldGenerator {
 		world.setBlock(i + 36, j + 48, k + 27, placeBuildingBlock(random), 0, 2);
 		world.setBlock(i + 42, j + 48, k + 27, placeBuildingBlock(random), 0, 2);
 		world.setBlock(i + 58, j + 48, k + 27, placeBuildingBlock(random), 0, 2);
-		
+
 		EntityElderZarnillys zarnillys = new EntityElderZarnillys(world);
 		zarnillys.setPosition(i + 54, j + 46, k + 31);
 		if (!world.isRemote) {
 			world.spawnEntityInWorld(zarnillys);
 		}
-		
+
 		EntityElderZarnillys zarnillys2 = new EntityElderZarnillys(world);
 		zarnillys2.setPosition(i + 15, j + 46, k + 38);
 		if (!world.isRemote) {
 			world.spawnEntityInWorld(zarnillys2);
 		}
-				
+
 		world.setBlock(i + 39, j + 47, k + 23, BlocksAether.skyroot_chest, 2, 2);
 		TileEntitySkyrootChest chest = (TileEntitySkyrootChest) world.getTileEntity(i + 39, j + 47, k + 23);
 		for (int slot = 0; slot < 3 + random.nextInt(25); slot++) {
 			chest.setInventorySlotContents(random.nextInt(chest.getSizeInventory()), this.getNormalLoot(random));
 		}
-		
+
 		world.setBlock(i + 40, j + 47, k + 23, BlocksAether.skyroot_chest, 2, 2);
 		TileEntitySkyrootChest chest2 = (TileEntitySkyrootChest) world.getTileEntity(i + 40, j + 47, k + 23);
 		for (int slot = 0; slot < 3 + random.nextInt(25); slot++) {
 			chest2.setInventorySlotContents(random.nextInt(chest2.getSizeInventory()), this.getNormalLoot(random));
 		}
-		
+
 		world.setBlock(i + 54, j + 47, k + 25, BlocksAether.skyroot_chest, 3, 2);
 		TileEntitySkyrootChest chest3 = (TileEntitySkyrootChest) world.getTileEntity(i + 54, j + 47, k + 25);
 		for (int slot = 0; slot < 3 + random.nextInt(25); slot++) {
 			chest3.setInventorySlotContents(random.nextInt(chest3.getSizeInventory()), this.getNormalLoot(random));
 		}
-		
+
 		world.setBlock(i + 55, j + 47, k + 25, BlocksAether.skyroot_chest, 3, 2);
 		TileEntitySkyrootChest chest4 = (TileEntitySkyrootChest) world.getTileEntity(i + 55, j + 47, k + 25);
 		for (int slot = 0; slot < 3 + random.nextInt(25); slot++) {
 			chest4.setInventorySlotContents(random.nextInt(chest4.getSizeInventory()), this.getNormalLoot(random));
 		}
-		
+
 		world.setBlock(i + 10, j + 47, k + 38, BlocksAether.skyroot_chest, 5, 2);
 		TileEntitySkyrootChest chest5 = (TileEntitySkyrootChest) world.getTileEntity(i + 10, j + 47, k + 38);
 		for (int slot = 0; slot < 3 + random.nextInt(25); slot++) {
 			chest5.setInventorySlotContents(random.nextInt(chest5.getSizeInventory()), this.getNormalLoot(random));
 		}
-		
+
 		world.setBlock(i + 68, j + 47, k + 38, BlocksAether.skyroot_chest, 4, 2);
 		TileEntitySkyrootChest chest6 = (TileEntitySkyrootChest) world.getTileEntity(i + 68, j + 47, k + 38);
 		for (int slot = 0; slot < 3 + random.nextInt(25); slot++) {
 			chest6.setInventorySlotContents(random.nextInt(chest6.getSizeInventory()), this.getNormalLoot(random));
 		}
-		
+
 		world.setBlock(i + 48, j + 47, k + 44, BlocksAether.skyroot_chest, 3, 2);
 		TileEntitySkyrootChest chest7 = (TileEntitySkyrootChest) world.getTileEntity(i + 48, j + 47, k + 44);
 		for (int slot = 0; slot < 3 + random.nextInt(25); slot++) {
 			chest7.setInventorySlotContents(random.nextInt(chest7.getSizeInventory()), this.getNormalLoot(random));
 		}
-		
+
 		world.setBlock(i + 31, j + 47, k + 45, BlocksAether.skyroot_chest, 4, 2);
 		TileEntitySkyrootChest chest8 = (TileEntitySkyrootChest) world.getTileEntity(i + 31, j + 47, k + 45);
 		for (int slot = 0; slot < 3 + random.nextInt(25); slot++) {
 			chest8.setInventorySlotContents(random.nextInt(chest8.getSizeInventory()), this.getNormalLoot(random));
 		}
-		
+
 		world.setBlock(i + 47, j + 47, k + 45, BlocksAether.skyroot_chest, 5, 2);
 		TileEntitySkyrootChest chest9 = (TileEntitySkyrootChest) world.getTileEntity(i + 47, j + 47, k + 45);
 		for (int slot = 0; slot < 3 + random.nextInt(25); slot++) {
 			chest9.setInventorySlotContents(random.nextInt(chest9.getSizeInventory()), this.getNormalLoot(random));
 		}
-		
+
 		world.setBlock(i + 31, j + 47, k + 46, BlocksAether.skyroot_chest, 4, 2);
 		TileEntitySkyrootChest chest10 = (TileEntitySkyrootChest) world.getTileEntity(i + 31, j + 47, k + 46);
 		for (int slot = 0; slot < 3 + random.nextInt(25); slot++) {
 			chest10.setInventorySlotContents(random.nextInt(chest10.getSizeInventory()), this.getNormalLoot(random));
 		}
-		
+
 		world.setBlock(i + 39, j + 47, k + 67, BlocksAether.skyroot_chest, 2, 2);
 		TileEntitySkyrootChest chest11 = (TileEntitySkyrootChest) world.getTileEntity(i + 39, j + 47, k + 67);
 		for (int slot = 0; slot < 3 + random.nextInt(25); slot++) {
 			chest11.setInventorySlotContents(random.nextInt(chest11.getSizeInventory()), this.getNormalLoot(random));
 		}
-		
+
 		return true;
 	}
-	
+
 	private ItemStack getNormalLoot(Random random) {
 		int item = random.nextInt(16);
 		switch (item) {
@@ -2380,29 +2377,29 @@ public class OsmiumDungeonGen17 extends WorldGenerator {
 				return new ItemStack(ItemsAether.arkenium_sword);
 			case 6:
 				return new ItemStack(ItemsAether.arkenium_fragement, random.nextInt(3) + 2);
-			case 7: 
+			case 7:
 				if (random.nextInt(20) == 0)
 					return new ItemStack(ItemsAether.gravitite_pickaxe);
-			case 8: 
+			case 8:
 				return new ItemStack(BlocksAether.enchanted_holystone, random.nextInt(30) + 20);
-			case 9: 
+			case 9:
 				if (random.nextInt(10) == 0)
-					return new ItemStack(ItemsAether.ascending_dawn);							
-			case 10: 
+					return new ItemStack(ItemsAether.ascending_dawn);
+			case 10:
 				if (random.nextInt(4) == 0)
-					return new ItemStack(ItemsAether.gravitite_pendant);			
-			case 11: 
+					return new ItemStack(ItemsAether.gravitite_pendant);
+			case 11:
 				if (random.nextInt(10) == 0)
-					return new ItemStack(BlocksAether.enchanted_agiosite, random.nextInt(10) + 20);			
-			case 12: 
+					return new ItemStack(BlocksAether.enchanted_agiosite, random.nextInt(10) + 20);
+			case 12:
 				if (random.nextInt(10) == 0)
 					return new ItemStack(BlocksAether.aerogel, random.nextInt(2) + 1);
-			
-			default: 
+
+			default:
 				return new ItemStack(ItemsAether.arkenium_fragement, random.nextInt(3) + 2);
-		} 
+		}
 	}
-	
+
 	private Block placeBuildingBlock(Random random) {
         if (random.nextDouble() < 0.005) {
             return BlocksAether.fuse_trap;

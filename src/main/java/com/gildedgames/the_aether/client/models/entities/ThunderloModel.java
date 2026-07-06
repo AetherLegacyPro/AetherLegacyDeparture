@@ -1,17 +1,13 @@
 package com.gildedgames.the_aether.client.models.entities;
 
 import org.lwjgl.opengl.GL11;
-
 import com.gildedgames.the_aether.entities.passive.EntityThunderlo;
-
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
 
-public class ThunderloModel extends ModelBase
-{
-	//fields
+public class ThunderloModel extends ModelBase {
 	ModelRenderer head1;
 	ModelRenderer head2;
 	ModelRenderer beard;
@@ -28,22 +24,17 @@ public class ThunderloModel extends ModelBase
 	ModelRenderer leg3;
 	ModelRenderer leg4;
 
-	protected void convertToChild(ModelRenderer parParent, ModelRenderer parChild)
-	{
-		// move child rotation point to be relative to parent
+	protected void convertToChild(ModelRenderer parParent, ModelRenderer parChild) {
 		parChild.rotationPointX -= parParent.rotationPointX;
 		parChild.rotationPointY -= parParent.rotationPointY;
 		parChild.rotationPointZ -= parParent.rotationPointZ;
-		// make rotations relative to parent
 		parChild.rotateAngleX -= parParent.rotateAngleX;
 		parChild.rotateAngleY -= parParent.rotateAngleY;
 		parChild.rotateAngleZ -= parParent.rotateAngleZ;
-		// create relationship
 		parParent.addChild(parChild);
 	}
 
-	public ThunderloModel()
-	{
+	public ThunderloModel() {
 		textureWidth = 128;
 		textureHeight = 64;
 
@@ -87,17 +78,17 @@ public class ThunderloModel extends ModelBase
 		horn2.setRotationPoint(-0.5F, 5F, -8F);
 		horn2.setTextureSize(128, 64);
 		setRotation(horn2, 0F, 0F, 0.4886922F);
-		convertToChild(head1, horn2);		
+		convertToChild(head1, horn2);
 		(tail1 = new ModelRenderer(this, 87, 28)).addBox(-4.0f, -4.0f, 0.0f, 8, 8, 8);
         tail1.setRotationPoint(0.0f, 5.5f, 13.0f); //-1.0f, 5.0f, 24.0f
         tail1.setTextureSize(128, 64);
         tail1.mirror = true;
-        setRotation(this.tail1, -0.3141593f, 0.0f, 0.0f);        
+        setRotation(this.tail1, -0.3141593f, 0.0f, 0.0f);
         (this.tail2 = new ModelRenderer(this, 87, 47)).addBox(-3.0f, -1.0f, 9.0f, 6, 6, 6);
         tail2.setRotationPoint(0.0f, 5.5f, 13.5f);
         tail2.setTextureSize(128, 64);
         tail2.mirror = true;
-        setRotation(this.tail2, -0.1396263f, 0.0f, 0.0f);	
+        setRotation(this.tail2, -0.1396263f, 0.0f, 0.0f);
 		body = new ModelRenderer(this, 82, 0);
 		body.addBox(-6F, -5F, -7F, 12, 10, 11);
 		body.setRotationPoint(0F, 6F, 6F);
@@ -130,12 +121,11 @@ public class ThunderloModel extends ModelBase
 		setRotation(leg4, 0F, 0F, 0F);
 	}
 
-	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
-	{
+	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
 		super.render(entity, f, f1, f2, f3, f4, f5);
 		setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-		if (this.isChild)
-		{
+
+		if (this.isChild) {
 			float f6 = 2.0F;
 			GL11.glPushMatrix();
 			GL11.glScalef(1.9F / f6, 1.9F / f6, 1.9F / f6);
@@ -155,8 +145,7 @@ public class ThunderloModel extends ModelBase
 			leg4.render(f5);
 			GL11.glPopMatrix();
 		}
-		else
-		{
+		else {
 			float f6 = 2.0F;
 			GL11.glPushMatrix();
 			GL11.glScalef(2.5F / f6, 2.5F / f6, 2.5F / f6);
@@ -174,30 +163,27 @@ public class ThunderloModel extends ModelBase
 		}
 	}
 
-	private void setRotation(ModelRenderer model, float x, float y, float z)
-	{
+	private void setRotation(ModelRenderer model, float x, float y, float z) {
 		model.rotateAngleX = x;
 		model.rotateAngleY = y;
 		model.rotateAngleZ = z;
 	}
 
-	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
-	{
+	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity) {
 		super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
         EntityThunderlo entitythunderlo = (EntityThunderlo)entity;
         float f6 = (180F / (float)Math.PI);
         this.head1.rotateAngleX = f4 / (180F / (float)Math.PI);
-        this.head1.rotateAngleY = f3 / (200F / (float)Math.PI); //220
+        this.head1.rotateAngleY = f3 / (200F / (float)Math.PI);
         this.leg1.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.4F * f1;
         this.leg2.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * 1.4F * f1;
         this.leg3.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * 1.4F * f1;
         this.leg4.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.4F * f1;
-        if (entitythunderlo.isSprinting())
-        {
+
+        if (entitythunderlo.isSprinting()) {
             this.head1.rotateAngleX += 0.5F;
         }
-        else
-        {
+        else {
             this.head1.rotateAngleX += 0.0F;
         }
 	}

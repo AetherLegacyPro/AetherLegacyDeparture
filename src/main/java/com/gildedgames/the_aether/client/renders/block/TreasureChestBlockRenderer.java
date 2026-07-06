@@ -3,14 +3,11 @@ package com.gildedgames.the_aether.client.renders.block;
 import com.gildedgames.the_aether.CommonProxy;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
-
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.world.IBlockAccess;
-
 import com.gildedgames.the_aether.tileentity.TileEntityTreasureChest;
-
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
 public class TreasureChestBlockRenderer implements ISimpleBlockRenderingHandler {
@@ -30,12 +27,12 @@ public class TreasureChestBlockRenderer implements ISimpleBlockRenderingHandler 
 
 	@Override
 	public boolean shouldRender3DInInventory(int modelId) {
-		return true;
+        return true;
 	}
 
 	@Override
 	public int getRenderId() {
-		return CommonProxy.treasureChestRenderID;
+        return CommonProxy.treasureChestRenderID;
 	}
 
 }

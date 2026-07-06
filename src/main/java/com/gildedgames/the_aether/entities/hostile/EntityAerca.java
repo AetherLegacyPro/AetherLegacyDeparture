@@ -5,28 +5,22 @@ import net.minecraft.entity.player.*;
 import net.minecraft.entity.ai.*;
 import net.minecraft.world.*;
 import net.minecraft.util.*;
-
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
-
 import net.minecraft.entity.*;
 
-public class EntityAerca extends EntityFlying implements IMob
-{
-    public int flapSoundTime;
+public class EntityAerca extends EntityFlying implements IMob {
     public int courseChangeCooldown;
     public double waypointX;
     public double waypointY;
     public double waypointZ;
     private EntityLivingBase targetedEntity;
     private int targetObstructedTicks;
-    public float animTime;
-    public float prevAnimTime;
-    
-    public EntityAerca(final World p_i1731_1_) {
-        super(p_i1731_1_);
+
+    public EntityAerca(final World world) {
+        super(world);
         this.targetObstructedTicks = 0;
         this.tasks.addTask(0, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0f));
         this.tasks.addTask(1, new EntityAILookIdle(this));
@@ -34,20 +28,20 @@ public class EntityAerca extends EntityFlying implements IMob
         this.isImmuneToFire = false;
         this.experienceValue = 10;
     }
-    
+
     protected boolean canTriggerWalking() {
         return false;
     }
-    
+
     public boolean doesEntityNotTriggerPressurePlate() {
         return true;
     }
-    
+
     protected void entityInit() {
         super.entityInit();
         this.dataWatcher.addObject(16, (byte) 0);
     }
-    
+
     public void onUpdate() {
         super.onUpdate();
         if (!this.worldObj.isRemote) {
@@ -79,29 +73,25 @@ public class EntityAerca extends EntityFlying implements IMob
             }
         }
     }
-    
-    public void onLivingUpdate()
-	{		
+
+    public void onLivingUpdate() {
     	if (this.worldObj.isDaytime() && !this.worldObj.isRemote && this.worldObj.canBlockSeeTheSky(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY), MathHelper.floor_double(this.posZ))) {
             this.damageEntity(DamageSource.drown, 2.0f);
         }
-		
+
 		super.onLivingUpdate();
 	}
-    
+
     @Override
-    public boolean attackEntityAsMob(final Entity target) {			
+    public boolean attackEntityAsMob(final Entity target) {
 
         if (target instanceof EntityPlayer) {
-                      
             target.attackEntityFrom(DamageSource.generic, 2.0F);
-
-             
         }
-        
+
         return true;
     }
-    
+
     protected void updateEntityActionState() {
         super.updateEntityActionState();
         if (this.worldObj.isDaytime() && !this.worldObj.isRemote && this.worldObj.canBlockSeeTheSky(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY), MathHelper.floor_double(this.posZ))) {
@@ -156,7 +146,7 @@ public class EntityAerca extends EntityFlying implements IMob
             this.renderYawOffset = n2;
         }
     }
-    
+
     public EntityPlayer getClosestVulnerableVisiblePlayer(final double p_72846_7_) {
         double d4 = -1.0;
         EntityPlayer entityplayer = null;
@@ -183,7 +173,7 @@ public class EntityAerca extends EntityFlying implements IMob
         }
         return entityplayer;
     }
-    
+
     private boolean isCourseTraversable(final double x, final double y, final double z, final double distance) {
         final double boxX = (this.waypointX - this.posX) / distance;
         final double boxY = (this.waypointY - this.posY) / distance;
@@ -197,7 +187,7 @@ public class EntityAerca extends EntityFlying implements IMob
         }
         return true;
     }
-    
+
     public void onCollideWithPlayer(final EntityPlayer player) {
         super.onCollideWithPlayer(player);
         if (!player.capabilities.isCreativeMode && !this.worldObj.isRemote && this.getEntitySenses().canSee(player) && this.getDistanceToEntity(player) <= 1.8f && player.boundingBox.maxY >= this.boundingBox.minY && player.boundingBox.minY <= this.boundingBox.maxY && this.attackTime <= 0 && this.attackEntityAsMob((player))) {
@@ -205,12 +195,12 @@ public class EntityAerca extends EntityFlying implements IMob
             player.attackEntityFrom(DamageSource.causeMobDamage(this), 2.0f);
         }
     }
-    
+
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(80.0);
     }
-    
+
     @Override
    	public String getLivingSound() {
    		return "aether_legacy:aemob.aerwhale.call";
@@ -225,23 +215,23 @@ public class EntityAerca extends EntityFlying implements IMob
    	protected String getDeathSound() {
    		return "aether_legacy:aemob.aerwhale.death";
    	}
-   	
+
    	@Override
     protected float getSoundVolume() {
         return 0.6F;
     }
-   	
+
     protected float getSoundPitch() {
         return super.getSoundPitch() * 0.55f;
     }
-    
+
    	@Override
     protected void dropFewItems(boolean recentlyHit, int lootLevel) {
         int j = this.rand.nextInt(3) + this.rand.nextInt(1 + lootLevel);
         int k;
 
-        int rand = (int)(1 + Math.random() * 3);
-        if(rand == 1) {
+        int chance_special = (int)(1 + Math.random() * 3);
+        if(chance_special == 1) {
             dropItem(ItemsAether.aerca_tooth, 1 + lootLevel);
         }
 
@@ -266,20 +256,15 @@ public class EntityAerca extends EntityFlying implements IMob
 
         super.dropFewItems(recentlyHit, lootLevel);
     }
-   	
-   	public void onDeath(DamageSource p_70645_1_)
-    {
-        super.onDeath(p_70645_1_);
 
-        if (p_70645_1_.getEntity() instanceof EntityPlayer entityplayer)
-        {
+   	public void onDeath(DamageSource source) {
+        super.onDeath(source);
 
+        if (source.getEntity() instanceof EntityPlayer entityplayer) {
 			entityplayer.triggerAchievement(AchievementsAether.aether_hunter);
-            
         }
-            
     }
-    
+
    	@Override
 	public boolean getCanSpawnHere() {
 	      final int i = MathHelper.floor_double(this.posX);
@@ -287,6 +272,5 @@ public class EntityAerca extends EntityFlying implements IMob
 	      final int k = MathHelper.floor_double(this.posZ);
 	      final boolean canSpawn = this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
 	      return (this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.arctic_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.verdant_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.enchanted_aether_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.divine_grass) && this.worldObj.getBlockLightValue(i, j, k) < 8 && canSpawn && this.rand.nextInt(AetherConfig.getAercaSpawnrate()) == 0 && super.getCanSpawnHere();
-	                       
 	}
 }

@@ -6,17 +6,14 @@ import com.gildedgames.the_aether.entities.bosses.valkyrie_queen.EntityDivineVal
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.EnumDifficulty;
-
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.network.AetherNetwork;
 import com.gildedgames.the_aether.network.packets.PacketInitiateValkyrieFight;
 
 public class GuiDivineValkyrieDialogue extends GuiDialogue {
 
-    private EntityDivineValkyrieQueen divinevalkyrieQueen;   
-
+    private EntityDivineValkyrieQueen divinevalkyrieQueen;
     private String title;
-
     private int medalSlotId = -1;
 
     public GuiDivineValkyrieDialogue(EntityDivineValkyrieQueen divinevalkyrieQueen) {

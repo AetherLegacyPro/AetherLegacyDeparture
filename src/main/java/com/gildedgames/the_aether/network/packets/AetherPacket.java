@@ -2,7 +2,6 @@ package com.gildedgames.the_aether.network.packets;
 
 import com.gildedgames.the_aether.Aether;
 import net.minecraft.entity.player.EntityPlayer;
-
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;

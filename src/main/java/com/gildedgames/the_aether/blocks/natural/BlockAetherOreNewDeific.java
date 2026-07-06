@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.blocks.natural;
 
 import java.util.Random;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.items.tools.ItemAetherTool;
@@ -23,7 +22,6 @@ public class BlockAetherOreNewDeific extends Block {
 
 	public BlockAetherOreNewDeific(int level) {
 		super(Material.rock);
-
 		this.setHardness(5.5F);
 		this.setResistance(7.0F);
 		this.setStepSound(soundTypeStone);
@@ -47,10 +45,10 @@ public class BlockAetherOreNewDeific extends Block {
 			for (int i = 0; i < 3; ++i) {
 				this.dropBlockAsItem(worldIn, x, y, z, meta, EnchantmentHelper.getEnchantmentLevel(Enchantment.fortune.effectId, stack));
 			}
-			
+
 		} else {
 			super.harvestBlock(worldIn, player, x, y, z, meta);
-			}	
+        }
 	}
 
 	@Override
@@ -91,5 +89,4 @@ public class BlockAetherOreNewDeific extends Block {
 
 		return 0;
 	}
-
 }

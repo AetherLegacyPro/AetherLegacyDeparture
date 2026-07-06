@@ -22,7 +22,7 @@ public class ItemCloudStaff extends Item {
 
 	@Override
 	public EnumRarity getRarity(ItemStack stack) {
-		return ItemsAether.aether_loot;
+        return ItemsAether.aether_loot;
 	}
 
 	@Override
@@ -45,12 +45,9 @@ public class ItemCloudStaff extends Item {
 
 			stack.damageItem(1, entityplayer);
 		}
-		else if (entityplayer.isSneaking())
-		{
-			for (Entity cloud : playerAether.clouds)
-			{
-				if (cloud instanceof EntityMiniCloud)
-				{
+		else if (entityplayer.isSneaking()) {
+			for (Entity cloud : playerAether.clouds) {
+				if (cloud instanceof EntityMiniCloud) {
 					((EntityMiniCloud) cloud).lifeSpan = 0;
 				}
 			}

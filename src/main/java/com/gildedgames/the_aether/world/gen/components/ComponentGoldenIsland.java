@@ -6,13 +6,11 @@ import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
 
 public class ComponentGoldenIsland extends AetherStructure {
 
 	public ComponentGoldenIsland() {
-
 	}
 
 	public ComponentGoldenIsland(int chunkX, int chunkZ) {
@@ -100,7 +98,6 @@ public class ComponentGoldenIsland extends AetherStructure {
 			int i5 = this.random.nextInt(24) - this.random.nextInt(24);
 			int l5 = this.random.nextInt(24) - this.random.nextInt(24);
 			int j6 = this.random.nextInt(24) - this.random.nextInt(24);
-
 			this.generateCaves(i5, l5, j6, 24 + l3 / 3);
 		}
 	}

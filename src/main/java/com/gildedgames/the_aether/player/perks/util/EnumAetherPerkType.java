@@ -2,7 +2,6 @@ package com.gildedgames.the_aether.player.perks.util;
 
 public enum EnumAetherPerkType {
     Information(0), Halo(1), Moa(2), Glow(3);
-
     private int perkID;
 
     EnumAetherPerkType(int id) {

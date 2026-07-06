@@ -8,7 +8,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-
 import com.gildedgames.the_aether.CommonProxy;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.blocks.ancient.enchanter.RenderHandlerTileEntity;
@@ -33,12 +32,10 @@ import com.gildedgames.the_aether.tileentity.TileEntityAncientEnchanter;
 import com.gildedgames.the_aether.tileentity.TileEntityElysianChest;
 import com.gildedgames.the_aether.tileentity.TileEntitySkyrootChest;
 import com.gildedgames.the_aether.tileentity.TileEntityTreasureChestBreakable;
-
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.Loader;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -79,9 +76,8 @@ public class ClientProxy extends CommonProxy {
 		BlocksAether.AuraliteClusterRenderId = RenderingRegistry.getNextAvailableRenderId();
 		RenderingRegistry.registerBlockHandler(new BlockAuraliteClusterRenderer());
 		RenderingRegistry.registerBlockHandler(new BlockAceninumClusterRenderer());
-		
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAncientEnchanter.class, new TileEntityAncientEnchanterRenderer());
 
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAncientEnchanter.class, new TileEntityAncientEnchanterRenderer());
 		RendersAether.initialization();
 
 		if(!AetherConfig.UseBaublesExpandedMenu()) {
@@ -97,13 +93,11 @@ public class ClientProxy extends CommonProxy {
         }
 	}
 
-	public void generateFile(String input, String name, String path)
-	{
+	public void generateFile(String input, String name, String path) {
 		try {
 			File file = new File(path + "/" + name);
 
-			if (!file.exists())
-			{
+			if (!file.exists()) {
 				InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream(input);
 				FileOutputStream outputStream = new FileOutputStream(file);
 
@@ -150,7 +144,7 @@ public class ClientProxy extends CommonProxy {
 
 	@Override
 	public void openSunAltar() {
-		FMLClientHandler.instance().getClient().displayGuiScreen(new GuiSunAltar());
+        FMLClientHandler.instance().getClient().displayGuiScreen(new GuiSunAltar());
 	}
 
 	@Override

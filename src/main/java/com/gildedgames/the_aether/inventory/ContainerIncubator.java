@@ -7,24 +7,20 @@ import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.inventory.slots.SlotIncubator;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.tileentity.TileEntityIncubator;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class ContainerIncubator extends Container {
 
 	private int progress, powerRemaining;
-
 	private TileEntityIncubator incubator;
 
 	public ContainerIncubator(EntityPlayer player, InventoryPlayer inventory, TileEntityIncubator incubator) {
 		this.incubator = incubator;
-
 		this.addSlotToContainer(new SlotIncubator(incubator, 1, 73, 17, player));
 		this.addSlotToContainer(new Slot(incubator, 0, 73, 53));
 
@@ -42,7 +38,6 @@ public class ContainerIncubator extends Container {
 	@Override
 	public void addCraftingToCrafters(ICrafting listener) {
 		super.addCraftingToCrafters(listener);
-
 		listener.sendProgressBarUpdate(this, 0, this.incubator.progress);
 		listener.sendProgressBarUpdate(this, 1, this.incubator.powerRemaining);
 	}
@@ -81,7 +76,7 @@ public class ContainerIncubator extends Container {
 
 	@Override
 	public boolean canInteractWith(EntityPlayer entityplayer) {
-		return this.incubator.isUseableByPlayer(entityplayer);
+        return this.incubator.isUseableByPlayer(entityplayer);
 	}
 
 	@Override

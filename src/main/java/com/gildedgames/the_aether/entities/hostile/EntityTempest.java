@@ -4,35 +4,28 @@ import net.minecraft.entity.monster.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.world.*;
-
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.entities.projectile.EntityTempestSnowball;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
-
 import cpw.mods.fml.relauncher.*;
 import net.minecraft.entity.*;
 import net.minecraft.util.*;
 
-public class EntityTempest extends EntityAetherMob implements IMob
-{
+public class EntityTempest extends EntityAetherMob implements IMob {
+
     private int heightOffsetUpdateTime;
     private float heightOffset;
     private int attackTimer;
     public float sinage;
     public int timeUntilShoot;
-    
     public int courseChangeCooldown;
-
 	public double waypointX, waypointY, waypointZ;
-
 	public int prevAttackCounter;
-
 	public int attackCounter;
-	
 	private final float base;
-    
+
     public EntityTempest(final World world) {
         super(world);
         this.heightOffset = 1.5f;
@@ -47,7 +40,7 @@ public class EntityTempest extends EntityAetherMob implements IMob
         this.base = (this.getRNG().nextFloat() - this.getRNG().nextFloat()) * 0.2F + 1.0F;
         this.setHealth(25);
     }
-    
+
     public void onUpdate() {
         super.onUpdate();
         this.jumpMovementFactor = 0.0f;
@@ -64,49 +57,42 @@ public class EntityTempest extends EntityAetherMob implements IMob
             this.attackEntity(this.entityToAttack, this.getDistanceToEntity(this.entityToAttack));
         }
     }
-    
+
     @Override
    	public boolean getCanSpawnHere() {
    		return this.rand.nextInt(AetherConfig.getTempestSpawnrate()) == 0 && super.getCanSpawnHere();
    	}
-    
+
     @Override
-	protected void updateEntityActionState()
-	{
-	
-		if (!this.worldObj.isRemote && this.worldObj.difficultySetting == EnumDifficulty.PEACEFUL)
-		{
+	protected void updateEntityActionState() {
+		if (!this.worldObj.isRemote && this.worldObj.difficultySetting == EnumDifficulty.PEACEFUL) {
 			this.setDead();
 		}
-                                
+
 		this.despawnEntity();
 		this.prevAttackCounter = this.attackCounter;
 		double d0 = this.waypointX - this.posX;
 		double d1 = this.waypointY - this.posY;
 		double d2 = this.waypointZ - this.posZ;
 		double d3 = d0 * d0 + d1 * d1 + d2 * d2;
-		
-		
-		if (d3 < 1.0D || d3 > 3600.0D)
-		{
+
+
+		if (d3 < 1.0D || d3 > 3600.0D) {
 			this.waypointX = this.posX + (double)((this.rand.nextFloat() * 2.0F - 1.0F) * 16.0F);
 			this.waypointY = this.posY + (double)((this.rand.nextFloat() * 2.0F - 1.0F) * 16.0F);
 			this.waypointZ = this.posZ + (double)((this.rand.nextFloat() * 2.0F - 1.0F) * 16.0F);
 		}
 
-		if (this.courseChangeCooldown-- <= 0)
-		{
+		if (this.courseChangeCooldown-- <= 0) {
 			this.courseChangeCooldown += this.rand.nextInt(5) + 2;
 			d3 = MathHelper.sqrt_double(d3);
 
-			if (this.isCourseTraversable(this.waypointX, this.waypointY, this.waypointZ, d3))
-			{
+			if (this.isCourseTraversable(this.waypointX, this.waypointY, this.waypointZ, d3)) {
 				this.motionX += d0 / d3 * 0.1D;
 				this.motionY += d1 / d3 * 0.1D;
 				this.motionZ += d2 / d3 * 0.1D;
 			}
-			else
-			{
+			else {
 				this.waypointX = this.posX;
 				this.waypointY = this.posY;
 				this.waypointZ = this.posZ;
@@ -142,7 +128,7 @@ public class EntityTempest extends EntityAetherMob implements IMob
 					this.playSound("aether_legacy:aemob.zephyr.call", 3F, this.base);
 
 					EntityTempestSnowball projectile = new EntityTempestSnowball(this.worldObj, this, x, y, z);
-			            
+
 					Vec3 lookVector = this.getLook(1.0F);
 
 					projectile.posX = this.posX + lookVector.xCoord * 4D;
@@ -158,31 +144,27 @@ public class EntityTempest extends EntityAetherMob implements IMob
 				}
 			} else if (this.attackCounter > 0) {
 				this.attackCounter--;
-					}           
-			
+            }
 		}
 	}
-    
-    private boolean isCourseTraversable(double p_70790_1_, double p_70790_3_, double p_70790_5_, double p_70790_7_)
-	{
+
+    private boolean isCourseTraversable(double p_70790_1_, double p_70790_3_, double p_70790_5_, double p_70790_7_) {
 		double d4 = (this.waypointX - this.posX) / p_70790_7_;
 		double d5 = (this.waypointY - this.posY) / p_70790_7_;
 		double d6 = (this.waypointZ - this.posZ) / p_70790_7_;
 		AxisAlignedBB axisalignedbb = this.boundingBox.copy();
 
-		for (int i = 1; (double)i < p_70790_7_; ++i)
-		{
+		for (int i = 1; (double)i < p_70790_7_; ++i) {
 			axisalignedbb.offset(d4, d5, d6);
 
-			if (!this.worldObj.getCollidingBoundingBoxes(this, axisalignedbb).isEmpty())
-			{
+			if (!this.worldObj.getCollidingBoundingBoxes(this, axisalignedbb).isEmpty()) {
 				return false;
 			}
 		}
 
 		return true;
 	}
-    
+
     public void onLivingUpdate() {
     	if (this.worldObj.isDaytime() && !this.worldObj.isRemote && this.worldObj.canBlockSeeTheSky(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY), MathHelper.floor_double(this.posZ))) {
             this.damageEntity(DamageSource.drown, 1.0f);
@@ -208,7 +190,7 @@ public class EntityTempest extends EntityAetherMob implements IMob
         }
         super.onLivingUpdate();
     }
-    
+
     @SideOnly(Side.CLIENT)
     private void tickAnimation() {
         if (this.hurtTime > 0) {
@@ -221,7 +203,7 @@ public class EntityTempest extends EntityAetherMob implements IMob
             this.sinage -= 6.283186f;
         }
     }
-    
+
     protected void attackEntity(final Entity entity, final float f) {
         if (entity instanceof EntityLivingBase target) {
 			if (f < 10.0f) {
@@ -247,7 +229,7 @@ public class EntityTempest extends EntityAetherMob implements IMob
             }
         }
     }
-    
+
     public void shootTarget(final EntityLivingBase target) {
         if (this.worldObj.difficultySetting.getDifficultyId() == 0) {
             return;
@@ -262,57 +244,51 @@ public class EntityTempest extends EntityAetherMob implements IMob
             this.worldObj.spawnEntityInWorld(snowball);
         }
     }
-    
-    public void onDeath(DamageSource p_70645_1_)
-    {
-        super.onDeath(p_70645_1_);
 
-        if (p_70645_1_.getEntity() instanceof EntityPlayer entityplayer)
-        {
+    public void onDeath(DamageSource source) {
+        super.onDeath(source);
 
+        if (source.getEntity() instanceof EntityPlayer entityplayer){
 			entityplayer.triggerAchievement(AchievementsAether.aether_hunter);
-            
         }
-            
     }
-    
+
     protected void fall(final float par1) {
     }
-    
+
     protected void jump() {
     }
-    
+
     @Override
 	protected String getLivingSound() {
-		return "aether_legacy:aemob.zephyr.call";
+        return "aether_legacy:aemob.zephyr.call";
 	}
 
 	@Override
 	protected String getHurtSound() {
-		return "aether_legacy:aemob.zephyr.call";
+        return "aether_legacy:aemob.zephyr.call";
 	}
 
 	@Override
 	protected String getDeathSound() {
-		return null;
+        return null;
 	}
-    
+
     public boolean canDespawn() {
         return true;
     }
-    
+
     @Override
 	protected void dropFewItems(boolean var1, int var2) {
-		int rand = (int)(1 + Math.random() * 3);
-		switch (rand)
-        {
+		int drop_chance = (int)(1 + Math.random() * 3);
+		switch (drop_chance) {
         case 1: this.dropItem(ItemsAether.tempest_core, 1);
-        break;
+            break;
         case 2: this.dropItem(Item.getItemFromBlock(BlocksAether.storm_aercloud), 1);
-        break;
-        case 3: 
-        break;
+            break;
+        case 3:
+            break;
         }
 	}
-    
+
 }

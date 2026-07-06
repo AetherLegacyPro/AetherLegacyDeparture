@@ -15,14 +15,13 @@ import cpw.mods.fml.common.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.server.management.*;
 import java.util.*;
-
 import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.blocks.ancient.enchanter.AetherEnchantmentAncientEnchanter;
 import com.gildedgames.the_aether.entities.fake.item.EntityFakeItem;
 import com.gildedgames.the_aether.items.ItemsAether;
 
-public class TileEntityAncientEnchanter extends TileEntity implements IInventory
-{
+public class TileEntityAncientEnchanter extends TileEntity implements IInventory {
+
     private static List<AetherEnchantmentAncientEnchanter> enchantments;
     private final Random rand;
     private EntityFakeItem renderedItem;
@@ -36,7 +35,7 @@ public class TileEntityAncientEnchanter extends TileEntity implements IInventory
     private double ambSpinningSpeed;
     private double itemFloatingSpeed;
     private AetherEnchantmentAncientEnchanter currentEnchantment;
-    
+
     public TileEntityAncientEnchanter() {
         this.renderedItem = null;
         this.ambRotation = 0.0f;
@@ -48,19 +47,19 @@ public class TileEntityAncientEnchanter extends TileEntity implements IInventory
         this.enchantTimeForItem = 0;
         this.rand = new Random();
     }
-    
+
     public void setAchievementPlayer(final EntityPlayer player) {
         this.achievementPlayer = player;
     }
-    
+
     public int getSizeInventory() {
         return this.enchanterItemStacks.length;
     }
-    
+
     public ItemStack getStackInSlot(final int i) {
         return this.enchanterItemStacks[i];
     }
-    
+
     public ItemStack decrStackSize(final int i, final int j) {
         if (this.enchanterItemStacks[i] == null) {
             return null;
@@ -82,7 +81,7 @@ public class TileEntityAncientEnchanter extends TileEntity implements IInventory
         }
         return itemstack2;
     }
-    
+
     public ItemStack getStackInSlotOnClosing(final int par1) {
         if (this.enchanterItemStacks[par1] != null) {
             final ItemStack var2 = this.enchanterItemStacks[par1];
@@ -91,7 +90,7 @@ public class TileEntityAncientEnchanter extends TileEntity implements IInventory
         }
         return null;
     }
-    
+
     public void setInventorySlotContents(final int i, final ItemStack itemstack) {
         this.enchanterItemStacks[i] = itemstack;
         if (i == 0) {
@@ -104,11 +103,11 @@ public class TileEntityAncientEnchanter extends TileEntity implements IInventory
             this.sendToAllInOurWorld(this.getDescriptionPacket());
         }
     }
-    
+
     public String getInventoryName() {
         return "Enchanter";
     }
-    
+
     public void readFromNBT(final NBTTagCompound nbttagcompound) {
         super.readFromNBT(nbttagcompound);
         final NBTTagList nbttaglist = nbttagcompound.getTagList("Items", 10);
@@ -123,7 +122,7 @@ public class TileEntityAncientEnchanter extends TileEntity implements IInventory
         this.enchantProgress = nbttagcompound.getShort("BurnTime");
         this.enchantTimeForItem = nbttagcompound.getShort("CookTime");
     }
-    
+
     public void writeToNBT(final NBTTagCompound nbttagcompound) {
         super.writeToNBT(nbttagcompound);
         nbttagcompound.setShort("BurnTime", (short)this.enchantProgress);
@@ -139,11 +138,11 @@ public class TileEntityAncientEnchanter extends TileEntity implements IInventory
         }
         nbttagcompound.setTag("Items", nbttaglist);
     }
-    
+
     public int getInventoryStackLimit() {
         return 64;
     }
-    
+
     public void addEnchantable(final EntityPlayer player, final ItemStack stack) {
         if (stack == null || !this.isEnchantable(stack)) {
             return;
@@ -190,26 +189,26 @@ public class TileEntityAncientEnchanter extends TileEntity implements IInventory
             this.sendToAllInOurWorld(this.getDescriptionPacket());
         }
     }
-    
+
     public boolean canEnchant() {
         return this.worldObj.getBlock(this.xCoord, this.yCoord + 1, this.zCoord) == Blocks.air;
     }
-    
+
     public int getRemainingStackSize(final ItemStack newStack, final ItemStack currentStack, final int stackSizeLimit) {
         if (this.canCombineStackWithRemainder(newStack, currentStack, stackSizeLimit)) {
             return currentStack.stackSize + newStack.stackSize - stackSizeLimit;
         }
         return 0;
     }
-    
+
     public boolean canCombineStackWithRemainder(final ItemStack newStack, final ItemStack currentStack, final int stackSizeLimit) {
         return newStack.getItem() == currentStack.getItem() && newStack.getItemDamage() == currentStack.getItemDamage() && !this.stackIsFull(currentStack, stackSizeLimit) && currentStack.stackSize + newStack.stackSize > stackSizeLimit;
     }
-    
+
     public boolean stackIsFull(final ItemStack stack, final int stackSizeLimit) {
         return stack.stackSize == stackSizeLimit;
     }
-    
+
     public void combineStackWithRemainder(final ItemStack newStack, final ItemStack currentStack, final int stackSizeLimit) {
         if (!this.canCombineStackWithRemainder(newStack, currentStack, stackSizeLimit)) {
             return;
@@ -217,7 +216,7 @@ public class TileEntityAncientEnchanter extends TileEntity implements IInventory
         newStack.stackSize = this.getRemainingStackSize(newStack, currentStack, stackSizeLimit);
         currentStack.stackSize = this.getInventoryStackLimit();
     }
-    
+
     public void addAmbrosium(final EntityPlayer player, final ItemStack stack) {
         if (stack == null || stack.getItem() != ItemsAether.ambrosium_shard) {
             return;
@@ -245,7 +244,7 @@ public class TileEntityAncientEnchanter extends TileEntity implements IInventory
             this.sendToAllInOurWorld(this.getDescriptionPacket());
         }
     }
-    
+
     public void dropNextStack() {
         if (this.enchanterItemStacks[1] != null) {
             if (!this.worldObj.isRemote) {
@@ -264,7 +263,7 @@ public class TileEntityAncientEnchanter extends TileEntity implements IInventory
             this.decrStackSize(0, this.enchanterItemStacks[0].stackSize);
         }
     }
-    
+
     @SideOnly(Side.CLIENT)
     public int getCookProgressScaled(final int i) {
         if (this.enchantTimeForItem == 0) {
@@ -272,16 +271,16 @@ public class TileEntityAncientEnchanter extends TileEntity implements IInventory
         }
         return this.enchantProgress * i / this.enchantTimeForItem;
     }
-    
+
     @SideOnly(Side.CLIENT)
     public int getBurnTimeRemainingScaled(final int i) {
         return this.enchantPowerRemaining * i / 500;
     }
-    
+
     public boolean isBurning() {
         return this.enchantPowerRemaining > 0;
     }
-    
+
     public void updateEntity() {
         if (!this.worldObj.isRemote) {
             if (this.renderedItem == null) {
@@ -290,7 +289,7 @@ public class TileEntityAncientEnchanter extends TileEntity implements IInventory
                     this.worldObj.spawnEntityInWorld(this.renderedItem);
                 }
             }
-            
+
             else if (this.getEnchanterStacks(0) == null) {
                 this.renderedItem.setDead();
                 this.renderedItem = null;
@@ -324,7 +323,7 @@ public class TileEntityAncientEnchanter extends TileEntity implements IInventory
             final ItemStack fuelStack = this.getStackInSlot(1);
             if (this.canEnchant() && fuelStack != null && fuelStack.stackSize >= this.currentEnchantment.enchantAmbrosiumNeeded && inputStack != null) {
                 Aether.proxy.spawnAltarParticles(this.worldObj, this.xCoord, this.yCoord, this.zCoord, this.rand);
-                
+
                 if (!this.worldObj.isRemote) {
                     final ItemStack outputStack = this.currentEnchantment.getResult(this.rand);
                     outputStack.stackSize = 1;
@@ -356,29 +355,29 @@ public class TileEntityAncientEnchanter extends TileEntity implements IInventory
             }
         }
     }
-    
+
     public boolean isUseableByPlayer(final EntityPlayer par1EntityPlayer) {
         return this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) == this && par1EntityPlayer.getDistanceSq(this.xCoord + 0.5, this.yCoord + 0.5, this.zCoord + 0.5) <= 64.0;
     }
-    
+
     public static void addEnchantment(final ItemStack from, final ItemStack to, final int i) {
         TileEntityAncientEnchanter.enchantments.add(new AetherEnchantmentAncientEnchanter(from, to, i));
     }
-    
+
     public static void addEnchantment(final ItemStack from, final ItemStack to, final int i, final boolean limit) {
     	TileEntityAncientEnchanter.enchantments.add(new AetherEnchantmentAncientEnchanter(from, to, i, limit));
     }
-    
+
     public static void addEnchantment(final ItemStack from, final ItemStack to, final int i, final boolean limit, final boolean repairing) {
         final AetherEnchantmentAncientEnchanter enchantment = new AetherEnchantmentAncientEnchanter(from, to, i, limit);
         enchantment.repairing = repairing;
         TileEntityAncientEnchanter.enchantments.add(enchantment);
     }
-    
+
     public static void addEnchantment(final AetherEnchantmentAncientEnchanter enchantment) {
     	TileEntityAncientEnchanter.enchantments.add(enchantment);
     }
-    
+
     public boolean isEnchantable(final ItemStack stack) {
         for (final AetherEnchantmentAncientEnchanter enchantment : TileEntityAncientEnchanter.enchantments) {
             if (stack != null && enchantment != null && stack.getItem() == enchantment.getRequirement().getItem() && (stack.getItemDamage() == enchantment.getRequirement().getItemDamage() || enchantment.repairing)) {
@@ -387,7 +386,7 @@ public class TileEntityAncientEnchanter extends TileEntity implements IInventory
         }
         return false;
     }
-    
+
     public boolean isLimitedToOne(final ItemStack stack) {
         for (final AetherEnchantmentAncientEnchanter enchantment : TileEntityAncientEnchanter.enchantments) {
             if (stack != null && enchantment != null && stack.getItem() == enchantment.getRequirement().getItem() && stack.getItemDamage() == enchantment.getRequirement().getItemDamage() && enchantment.limitStackToOne) {
@@ -396,19 +395,19 @@ public class TileEntityAncientEnchanter extends TileEntity implements IInventory
         }
         return false;
     }
-    
+
     public void openInventory() {
     }
-    
+
     public void closeInventory() {
     }
-    
+
     public Packet getDescriptionPacket() {
         final NBTTagCompound var1 = new NBTTagCompound();
         this.writeToNBT(var1);
         return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, var1);
     }
-    
+
     private void sendToAllInOurWorld(final Packet pkt) {
         final ServerConfigurationManager scm = FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager();
         for (final EntityPlayerMP player : scm.playerEntityList) {
@@ -417,37 +416,37 @@ public class TileEntityAncientEnchanter extends TileEntity implements IInventory
             }
         }
     }
-    
+
     public ItemStack getEnchanterStacks(final int index) {
         return this.enchanterItemStacks[index];
     }
-    
+
     public float getAmbRotation() {
         return this.ambRotation;
     }
-    
+
    public double getItemFloating() {
         if (this.worldObj.isRemote && Aether.isGamePaused()) {
           return 0.0;
         }
         return this.itemFloatingSpeed;
     }
-    
+
    public double getAmbSpinning() {
        if (this.worldObj.isRemote && Aether.isGamePaused()) {
           return 0.0;
         }
        return this.ambSpinningSpeed;
     }
-    
+
     public boolean hasCustomInventoryName() {
         return false;
     }
-    
+
     public boolean isItemValidForSlot(final int i, final ItemStack itemstack) {
         return false;
     }
-    
+
     static {
     	TileEntityAncientEnchanter.enchantments = new ArrayList<>();
     }

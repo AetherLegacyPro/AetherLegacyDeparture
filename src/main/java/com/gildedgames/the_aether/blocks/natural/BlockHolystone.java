@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.blocks.natural;
 
 import com.gildedgames.the_aether.items.util.DoubleDropHelper;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -11,7 +10,6 @@ public class BlockHolystone extends Block {
 
 	public BlockHolystone() {
 		super(Material.rock);
-
 		this.setHardness(0.7F);
 		this.setStepSound(soundTypeStone);
 		this.setHarvestLevel("pickaxe", 0);
@@ -25,7 +23,7 @@ public class BlockHolystone extends Block {
 
 	@Override
 	public int damageDropped(int meta) {
-		return 1;
+        return 1;
 	}
 
 }

@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.client.audio.music;
 
 import java.util.Random;
-
 import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.AetherConfig;
 import net.minecraft.client.Minecraft;
@@ -11,7 +10,6 @@ import net.minecraft.client.audio.SoundCategory;
 import net.minecraft.server.gui.IUpdatePlayerListBox;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -24,7 +22,7 @@ public class AetherMusicTicker implements IUpdatePlayerListBox {
 	private int timeUntilNextMusic = 100;
 
 	public AetherMusicTicker(Minecraft mcIn) {
-		this.mc = mcIn;
+        this.mc = mcIn;
 	}
 
 	public void update() {
@@ -64,34 +62,30 @@ public class AetherMusicTicker implements IUpdatePlayerListBox {
 	}
 
 	public boolean playingMusic() {
-		return this.currentMusic != null;
+        return this.currentMusic != null;
 	}
 
-	public boolean playingRecord()
-	{
-		return this.currentRecord != null;
+	public boolean playingRecord() {
+        return this.currentRecord != null;
 	}
 
-	public boolean playingMenuMusic()
-	{
-		return this.menuMusic != null;
+	public boolean playingMenuMusic() {
+        return this.menuMusic != null;
 	}
 
-	public boolean playingMinecraftMusic()
-	{
-		return this.minecraftMusic != null;
+	public boolean playingMinecraftMusic() {
+        return this.minecraftMusic != null;
 	}
 
-	public ISound getRecord()
-	{
-		return this.currentRecord;
+	public ISound getRecord() {
+        return this.currentRecord;
 	}
 
 	public AetherMusicTicker.TrackType getRandomTrack() {
 		int num = this.rand.nextInt(8);
 
-		return num == 0 ? TrackType.TRACK_ONE : num == 1 ? TrackType.TRACK_TWO : num == 2 ? TrackType.TRACK_THREE 
-				: num == 3 ? TrackType.TRACK_THREE : num == 4 ? TrackType.TRACK_FOUR : num == 5 ? TrackType.TRACK_FIVE
+		return num == 0 ? TrackType.TRACK_ONE : num == 1 ? TrackType.TRACK_TWO : num == 2 ? TrackType.TRACK_THREE
+                : num == 3 ? TrackType.TRACK_THREE : num == 4 ? TrackType.TRACK_FOUR : num == 5 ? TrackType.TRACK_FIVE
 				: num == 6 ? TrackType.TRACK_SIX : num == 7 ? TrackType.TRACK_SEVEN: TrackType.TRACK_EIGHT;
 	}
 
@@ -101,18 +95,15 @@ public class AetherMusicTicker implements IUpdatePlayerListBox {
 		this.timeUntilNextMusic = Integer.MAX_VALUE;
 	}
 
-	public void trackRecord(ISound record)
-	{
+	public void trackRecord(ISound record) {
 		this.currentRecord = record;
 	}
 
-	public void trackMinecraftMusic(ISound record)
-	{
-		this.minecraftMusic = record;
+	public void trackMinecraftMusic(ISound record) {
+        this.minecraftMusic = record;
 	}
 
-	public void playMenuMusic()
-	{
+	public void playMenuMusic() {
 		this.menuMusic = PositionedSoundRecord.func_147673_a(TrackType.TRACK_MENU.getMusicLocation());
 		this.mc.getSoundHandler().playSound(this.menuMusic);
 	}
@@ -125,19 +116,15 @@ public class AetherMusicTicker implements IUpdatePlayerListBox {
 		}
 	}
 
-	public void stopMenuMusic()
-	{
-		if (this.menuMusic != null)
-		{
+	public void stopMenuMusic() {
+		if (this.menuMusic != null) {
 			this.mc.getSoundHandler().stopSound(this.menuMusic);
 			this.menuMusic = null;
 		}
 	}
 
-	public void stopMinecraftMusic()
-	{
-		if (this.minecraftMusic != null)
-		{
+	public void stopMinecraftMusic() {
+		if (this.minecraftMusic != null) {
 			this.mc.getSoundHandler().stopSound(this.minecraftMusic);
 			this.minecraftMusic = null;
 		}
@@ -149,13 +136,13 @@ public class AetherMusicTicker implements IUpdatePlayerListBox {
 		TRACK_TWO(Aether.locate("music.aether2"), 1200, 1500),
 		TRACK_THREE(Aether.locate("music.aether3"), 1200, 1500),
 		TRACK_FOUR(Aether.locate("music.aether4"), 1200, 1500),
-		
+
 		//new tracks from Aether II
 		TRACK_FIVE(Aether.locate("music.aether5"), 1200, 1500),
-		TRACK_SIX(Aether.locate("music.aether6"), 1200, 1500),		
+		TRACK_SIX(Aether.locate("music.aether6"), 1200, 1500),
 		TRACK_SEVEN(Aether.locate("music.night1"), 1200, 1500),
 		TRACK_EIGHT(Aether.locate("music.night2"), 1200, 1500),
-		
+
 		TRACK_MENU(Aether.locate("music.menu"), 1200, 1500);
 
 		private final ResourceLocation musicLocation;
@@ -169,15 +156,15 @@ public class AetherMusicTicker implements IUpdatePlayerListBox {
 		}
 
 		public ResourceLocation getMusicLocation() {
-			return this.musicLocation;
+            return this.musicLocation;
 		}
 
 		public int getMinDelay() {
-			return this.minDelay;
+            return this.minDelay;
 		}
 
 		public int getMaxDelay() {
-			return this.maxDelay;
+            return this.maxDelay;
 		}
 	}
 

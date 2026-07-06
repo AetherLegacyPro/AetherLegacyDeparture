@@ -2,7 +2,6 @@ package com.gildedgames.the_aether.entities.fake.item;
 
 import cpw.mods.fml.relauncher.*;
 import java.util.*;
-//import net.aetherteam.aether.entities.altar.*;
 import org.lwjgl.opengl.*;
 import net.minecraft.block.*;
 import net.minecraft.init.*;
@@ -16,14 +15,13 @@ import net.minecraft.client.renderer.entity.*;
 import net.minecraft.client.renderer.*;
 
 @SideOnly(Side.CLIENT)
-public class RenderFakeItem extends Render
-{
+public class RenderFakeItem extends Render {
     private static final ResourceLocation TEXTURE_GLINT;
     private RenderBlocks itemRenderBlocks;
     private Random random;
     public boolean renderWithColor;
     public static boolean renderInFrame;
-    
+
     public RenderFakeItem() {
         this.itemRenderBlocks = new RenderBlocks();
         this.random = new Random();
@@ -31,21 +29,21 @@ public class RenderFakeItem extends Render
         this.shadowSize = 0.15f;
         this.shadowOpaque = 0.75f;
     }
-    
-    public void doRenderItem(final EntityFakeItem par1Entity, final double par2, final double par4, final double par6, final float par8, final float par9) {
+
+    public void doRenderItem(final EntityFakeItem entityFakeItem, final double par2, final double par4, final double par6, final float par8, final float par9) {
         this.random.setSeed(187L);
-        final ItemStack itemstack = par1Entity.getEntityItem();
+        final ItemStack itemstack = entityFakeItem.getEntityItem();
         if (itemstack.getItem() != null) {
             GL11.glPushMatrix();
-            final float f2 = this.shouldBob() ? (MathHelper.sin((par1Entity.age + par9) / 10.0f + par1Entity.hoverStart) * 0.1f + 0.1f) : 0.0f;
-            final float f3 = ((par1Entity.age + par9) / 20.0f + par1Entity.hoverStart) * 57.295776f;
+            final float f2 = this.shouldBob() ? (MathHelper.sin((entityFakeItem.age + par9) / 10.0f + entityFakeItem.hoverStart) * 0.1f + 0.1f) : 0.0f;
+            final float f3 = ((entityFakeItem.age + par9) / 20.0f + entityFakeItem.hoverStart) * 57.295776f;
             final byte b0 = this.getMiniBlockCount(itemstack);
             GL11.glTranslatef((float)par2, (float)par4 + f2, (float)par6);
             GL11.glEnable(32826);
             final Block block = Block.getBlockFromItem(itemstack.getItem());
             final int size = itemstack.stackSize;
             final int count = (size > 40) ? 5 : ((size > 20) ? 4 : ((size > 5) ? 3 : ((size > 1) ? 2 : 1)));
-            if (!renderEntityItem(par1Entity, itemstack, f2, f3, this.random, this.renderManager.renderEngine, this.field_147909_c, count)) {
+            if (!renderEntityItem(entityFakeItem, itemstack, f2, f3, this.random, this.renderManager.renderEngine, this.field_147909_c, count)) {
                 if (itemstack.getItemSpriteNumber() == 0 && block != Blocks.air && RenderBlocks.renderItemIn3d(Block.getBlockFromItem(itemstack.getItem()).getRenderType())) {
                     GL11.glRotatef(f3, 0.0f, 1.0f, 0.0f);
                     if (RenderFakeItem.renderInFrame) {
@@ -92,10 +90,10 @@ public class RenderFakeItem extends Render
                             final float f6 = (i >> 8 & 0xFF) / 255.0f;
                             final float f7 = (i & 0xFF) / 255.0f;
                             GL11.glColor4f(f5 * f8, f6 * f8, f7 * f8, 1.0f);
-                            this.renderDroppedItem(par1Entity, icon, b0, par9, f5 * f8, f6 * f8, f7 * f8);
+                            this.renderDroppedItem(entityFakeItem, icon, b0, par9, f5 * f8, f6 * f8, f7 * f8);
                         }
                         else {
-                            this.renderDroppedItem(par1Entity, icon, b0, par9, 1.0f, 1.0f, 1.0f);
+                            this.renderDroppedItem(entityFakeItem, icon, b0, par9, 1.0f, 1.0f, 1.0f);
                         }
                     }
                 }
@@ -115,10 +113,10 @@ public class RenderFakeItem extends Render
                         final float f9 = (l >> 8 & 0xFF) / 255.0f;
                         final float f5 = (l & 0xFF) / 255.0f;
                         final float f6 = 1.0f;
-                        this.renderDroppedItem(par1Entity, icon2, b0, par9, f8 * f6, f9 * f6, f5 * f6);
+                        this.renderDroppedItem(entityFakeItem, icon2, b0, par9, f8 * f6, f9 * f6, f5 * f6);
                     }
                     else {
-                        this.renderDroppedItem(par1Entity, icon2, b0, par9, 1.0f, 1.0f, 1.0f);
+                        this.renderDroppedItem(entityFakeItem, icon2, b0, par9, 1.0f, 1.0f, 1.0f);
                     }
                 }
             }
@@ -127,8 +125,8 @@ public class RenderFakeItem extends Render
             GL11.glPopMatrix();
         }
     }
-    
-    private void renderDroppedItem(final EntityFakeItem par1EntityItem, IIcon par2IIcon, final int par3, final float par4, final float par5, final float par6, final float par7) {
+
+    private void renderDroppedItem(final EntityFakeItem entityFakeItemItem, IIcon par2IIcon, final int par3, final float par4, final float par5, final float par6, final float par7) {
         final Tessellator tessellator = Tessellator.instance;
         par2IIcon = this.field_147909_c.getIconSafe(par2IIcon);
         final float f4 = par2IIcon.getMinU();
@@ -144,11 +142,11 @@ public class RenderFakeItem extends Render
                 GL11.glRotatef(180.0f, 0.0f, 1.0f, 0.0f);
             }
             else {
-                GL11.glRotatef(((par1EntityItem.age + par4) / 20.0f + par1EntityItem.hoverStart) * 57.295776f, 0.0f, 1.0f, 0.0f);
+                GL11.glRotatef(((entityFakeItemItem.age + par4) / 20.0f + entityFakeItemItem.hoverStart) * 57.295776f, 0.0f, 1.0f, 0.0f);
             }
             final float f11 = 0.0625f;
             final float f12 = 0.021875f;
-            final ItemStack itemstack = par1EntityItem.getEntityItem();
+            final ItemStack itemstack = entityFakeItemItem.getEntityItem();
             final byte b0 = this.getMiniItemCount(itemstack);
             GL11.glTranslatef(-f9, -f10, -((f11 + f12) * b0 / 2.0f));
             for (int k = 0; k < b0; ++k) {
@@ -219,11 +217,11 @@ public class RenderFakeItem extends Render
             }
         }
     }
-    
-    public void doRender(final Entity par1Entity, final double par2, final double par4, final double par6, final float par8, final float par9) {
-        this.doRenderItem((EntityFakeItem)par1Entity, par2, par4, par6, par8, par9);
+
+    public void doRender(final Entity entityFakeItem, final double par2, final double par4, final double par6, final float par8, final float par9) {
+        this.doRenderItem((EntityFakeItem)entityFakeItem, par2, par4, par6, par8, par9);
     }
-    
+
     public static boolean renderEntityItem(final EntityFakeItem entity, final ItemStack item, final float bobing, final float rotation, final Random random, final TextureManager engine, final RenderBlocks renderBlocks, final int count) {
         final IItemRenderer customRenderer = MinecraftForgeClient.getItemRenderer(item, IItemRenderer.ItemRenderType.ENTITY);
         if (customRenderer == null) {
@@ -271,15 +269,15 @@ public class RenderFakeItem extends Render
         }
         return true;
     }
-    
+
     public boolean shouldSpreadItems() {
         return true;
     }
-    
+
     public boolean shouldBob() {
         return true;
     }
-    
+
     public byte getMiniBlockCount(final ItemStack stack) {
         byte ret = 1;
         if (stack.stackSize > 1) {
@@ -296,7 +294,7 @@ public class RenderFakeItem extends Render
         }
         return ret;
     }
-    
+
     public byte getMiniItemCount(final ItemStack stack) {
         byte ret = 1;
         if (stack.stackSize > 1) {
@@ -310,11 +308,11 @@ public class RenderFakeItem extends Render
         }
         return ret;
     }
-    
+
     protected ResourceLocation getEntityTexture(final Entity entity) {
         return null;
     }
-    
+
     static {
         TEXTURE_GLINT = new ResourceLocation("textures/misc/enchanted_item_glint.png");
         RenderFakeItem.renderInFrame = false;

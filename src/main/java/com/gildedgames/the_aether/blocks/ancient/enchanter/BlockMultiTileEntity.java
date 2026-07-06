@@ -9,33 +9,25 @@ import net.minecraft.util.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.*;
 
-public abstract class BlockMultiTileEntity extends BlockContainer
-{
+public abstract class BlockMultiTileEntity extends BlockContainer {
     protected AxisAlignedBB size;
-    protected static final int TILE_ENTITY = 0;
-    public static final int DUMMY_BLOCK = 1;
     public boolean useDefaultCollision;
-    
+
     protected BlockMultiTileEntity(final Material material) {
         super(material);
         this.size = AxisAlignedBB.getBoundingBox(0.0, 0.0, 0.0, 1.0, 1.0, 1.0);
         this.useDefaultCollision = false;
     }
-    
+
     public boolean isDummyBlock(final World world, final int x, final int y, final int z) {
         final int metadata = world.getBlockMetadata(x, y, z);
         return metadata == 1;
     }
-    
-    public boolean isTileEntity(final World world, final int x, final int y, final int z) {
-        final int metadata = world.getBlockMetadata(x, y, z);
-        return metadata == 0;
-    }
-    
+
     public boolean hasTileEntity(final int metadata) {
         return metadata == 0;
     }
-    
+
     public TileEntityMultiBlock getLinkedTileEntity(final World world, final int x, final int y, final int z) {
         final int minX = x - this.getWidth();
         final int minY = y - this.getHeight();
@@ -55,27 +47,23 @@ public abstract class BlockMultiTileEntity extends BlockContainer
         }
         return null;
     }
-    
+
     public int getWidth() {
         return (int)(this.size.maxX - this.size.minX + 1.0);
     }
-    
+
     public int getHeight() {
         return (int)(this.size.maxY - this.size.minY + 1.0);
     }
-    
+
     public int getLength() {
         return (int)(this.size.maxZ - this.size.minZ + 1.0);
     }
-    
+
     public void setBlockSize(final float minX, final float minY, final float minZ, final float maxX, final float maxY, final float maxZ) {
         this.size = AxisAlignedBB.getBoundingBox(minX, minY, minZ, maxX, maxY, maxZ);
     }
-    
-    public AxisAlignedBB getBlockSize() {
-        return this.size;
-    }
-    
+
     public void onBlockPlacedBy(final World world, final int x, final int y, final int z, final EntityLivingBase entityliving, final ItemStack stack) {
         super.onBlockPlacedBy(world, x, y, z, entityliving, stack);
         final TileEntityMultiBlock tileEntity = (TileEntityMultiBlock)world.getTileEntity(x, y, z);
@@ -111,7 +99,7 @@ public abstract class BlockMultiTileEntity extends BlockContainer
                     }
                     return null;
                 }
-                
+
                 @Override
                 public boolean shouldReturnObject(final World world, final int x, final int y, final int z) {
                     return false;
@@ -121,11 +109,11 @@ public abstract class BlockMultiTileEntity extends BlockContainer
             tileEntity.hasInit = true;
         }
     }
-    
+
     public void onBlockAdded(final World world, final int x, final int y, final int z) {
         super.onBlockAdded(world, x, y, z);
     }
-    
+
     public boolean onBlockActivated(final World world, final int x, final int y, final int z, final EntityPlayer entityplayer, final int par6, final float par7, final float par8, final float par9) {
         final TileEntityMultiBlock tileEntity = this.getLinkedTileEntity(world, x, y, z);
         if (tileEntity != null) {
@@ -151,7 +139,7 @@ public abstract class BlockMultiTileEntity extends BlockContainer
         }
         return false;
     }
-    
+
     public void breakBlock(final World world, final int x, final int y, final int z, final Block blockID, final int blockMetadata) {
         final TileEntityMultiBlock tileEntity = this.getLinkedTileEntity(world, x, y, z);
         if (tileEntity != null) {
@@ -167,7 +155,7 @@ public abstract class BlockMultiTileEntity extends BlockContainer
                     }
                     return null;
                 }
-                
+
                 @Override
                 public boolean shouldReturnObject(final World world, final int x, final int y, final int z) {
                     return false;
@@ -177,7 +165,7 @@ public abstract class BlockMultiTileEntity extends BlockContainer
         }
         super.breakBlock(world, x, y, z, blockID, blockMetadata);
     }
-    
+
     public AxisAlignedBB getCollisionBoundingBoxFromPool(final World world, final int x, final int y, final int z) {
         if (this.useDefaultCollision) {
             return super.getCollisionBoundingBoxFromPool(world, x, y, z);
@@ -189,12 +177,12 @@ public abstract class BlockMultiTileEntity extends BlockContainer
         }
         return super.getCollisionBoundingBoxFromPool(world, x, y, z);
     }
-    
+
     public final TileEntity createNewTileEntity(final World world, final int meta) {
         final TileEntityMultiBlock tileEntity = this.createMultiTileEntity(world);
         return tileEntity;
     }
-    
+
     public abstract TileEntityMultiBlock createMultiTileEntity(final World p0);
 }
 

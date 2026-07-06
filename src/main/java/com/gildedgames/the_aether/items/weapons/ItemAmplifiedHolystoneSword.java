@@ -2,10 +2,8 @@ package com.gildedgames.the_aether.items.weapons;
 
 import java.util.List;
 import java.util.Random;
-
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,7 +13,6 @@ import net.minecraft.item.ItemSword;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
-
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.entities.block.EntityFireProofItemAether;
 
@@ -29,7 +26,7 @@ public class ItemAmplifiedHolystoneSword extends ItemSword {
 
 	@Override
 	public boolean getIsRepairable(ItemStack repairingItem, ItemStack mateiral) {
-		return false;
+        return false;
 	}
 
 	@Override
@@ -43,20 +40,20 @@ public class ItemAmplifiedHolystoneSword extends ItemSword {
 		itemstack.damageItem(1, entityliving1);
 		return true;
 	}
-	
+
 	@Override
 	public EnumRarity getRarity(ItemStack stack) {
-		return ItemsAether.divine_aether_loot;
+        return ItemsAether.divine_aether_loot;
 	}
-	
+
 	public boolean hasCustomEntity(final ItemStack stack) {
         return true;
     }
-    
+
     public Entity createEntity(final World world, final Entity location, final ItemStack itemstack) {
         return new EntityFireProofItemAether(world, location, itemstack);
     }
-    
+
     public void addInformation(final ItemStack stack, final EntityPlayer player, final List tooltip, final boolean who) {
 		if(AetherConfig.enableTooltips())
         tooltip.add(EnumChatFormatting.LIGHT_PURPLE + "" + StatCollector.translateToLocal("tooltip.amplified_holystone_tools.desc"));

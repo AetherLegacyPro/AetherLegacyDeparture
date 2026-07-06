@@ -10,7 +10,7 @@ public class AbilityArkeniumArmor implements IAetherAbility {
 	private final IPlayerAether player;
 
 	public AbilityArkeniumArmor(IPlayerAether player) {
-		this.player = player;
+        this.player = player;
 	}
 
 	@Override
@@ -20,25 +20,17 @@ public class AbilityArkeniumArmor implements IAetherAbility {
 
 	@Override
 	public void onUpdate() {
-			
 		if (this.player.getAccessoryInventory().isWearingArkeniumSet()) {
-			
 			this.player.getEntity().addPotionEffect(new EffectInebriation(Potion.nightVision.id, 300, 0));
-			
-			}
-		
+        }
+
 		if (this.player.getAccessoryInventory().isWearingArkeniumComboSet()) {
-			
 			this.player.getEntity().addPotionEffect(new EffectInebriation(Potion.nightVision.id, 300, 0));
-			
-			}
-		
+        }
+
 	    if (this.player.getAccessoryInventory().isWearingAmplifiedArkeniumSet()) {
-			
 			this.player.getEntity().addPotionEffect(new EffectInebriation(Potion.nightVision.id, 300, 0));
 			this.player.getEntity().addPotionEffect(new EffectInebriation(Potion.digSpeed.id, 20, 0));
-			
-			}
-				
-		}
-	}
+        }
+    }
+}

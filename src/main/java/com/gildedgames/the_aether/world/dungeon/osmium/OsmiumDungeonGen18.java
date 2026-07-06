@@ -1,9 +1,7 @@
 package com.gildedgames.the_aether.world.dungeon.osmium;
 
 import java.util.Random;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntityMobSpawner;
@@ -13,11 +11,10 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 public class OsmiumDungeonGen18 extends WorldGenerator {
 
 	public OsmiumDungeonGen18() {
-
 	}
-	
+
 	public boolean generate(final World world, final Random random, final int i, final int j, final int k) {
-		
+
 		world.setBlock(i + 60, j + 48, k + 49, placeBuildingBlock(random), 0, 2);
 		world.setBlock(i + 19, j + 48, k + 50, placeBuildingBlock(random), 0, 2);
 		world.setBlock(i + 20, j + 48, k + 50, placeBuildingBlock(random), 0, 2);
@@ -2459,42 +2456,42 @@ public class OsmiumDungeonGen18 extends WorldGenerator {
 		world.setBlock(i + 45, j + 51, k + 67, placeBuildingBlock(random), 0, 2);
 		world.setBlock(i + 46, j + 51, k + 67, placeBuildingBlock(random), 0, 2);
 		world.setBlock(i + 47, j + 51, k + 67, placeBuildingBlock(random), 0, 2);
-		
+
 		world.setBlock(i + 19, j + 49, k + 38, Blocks.mob_spawner, 0, 2);
 		TileEntityMobSpawner tileentitymobspawner = (TileEntityMobSpawner)world.getTileEntity(i + 19, j + 49, k + 38);
-        
+
         if (tileentitymobspawner != null)
         {
         	tileentitymobspawner.func_145881_a().setEntityName("aether_legacy.uligo");
         }
-		
+
 		world.setBlock(i + 53, j + 49, k + 46, Blocks.mob_spawner, 0, 2);
 		TileEntityMobSpawner tileentitymobspawner2 = (TileEntityMobSpawner)world.getTileEntity(i + 53, j + 49, k + 46);
-        
+
         if (tileentitymobspawner2 != null)
         {
         	tileentitymobspawner2.func_145881_a().setEntityName("aether_legacy.uligo");
         }
-		
+
 		world.setBlock(i + 46, j + 49, k + 53, Blocks.mob_spawner, 0, 2);
 		TileEntityMobSpawner tileentitymobspawner3 = (TileEntityMobSpawner)world.getTileEntity(i + 46, j + 49, k + 53);
-        
+
         if (tileentitymobspawner3 != null)
         {
         	tileentitymobspawner3.func_145881_a().setEntityName("aether_legacy.tempest");
         }
-		
+
 		world.setBlock(i + 39, j + 49, k + 59, Blocks.mob_spawner, 0, 2);
 		TileEntityMobSpawner tileentitymobspawner4 = (TileEntityMobSpawner)world.getTileEntity(i + 39, j + 49, k + 59);
-        
+
         if (tileentitymobspawner4 != null)
         {
         	tileentitymobspawner4.func_145881_a().setEntityName("aether_legacy.cyro");
         }
-        
+
 		return true;
 	}
-	
+
 	private Block placeBuildingBlock(Random random) {
         if (random.nextDouble() < 0.005) {
             return BlocksAether.fuse_trap;

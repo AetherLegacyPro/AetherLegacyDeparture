@@ -2,7 +2,6 @@ package com.gildedgames.the_aether.blocks.natural;
 
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.items.util.DoubleDropHelper;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,9 +11,7 @@ public class BlockFrozenQuicksoil extends Block {
 
 	public BlockFrozenQuicksoil() {
 		super(Material.sand);
-
 		this.slipperiness = 1.23F;
-
 		this.setHardness(1.2F);
 		this.setStepSound(soundTypeSand);
 		this.setHarvestLevel("shovel", 0);
@@ -28,9 +25,9 @@ public class BlockFrozenQuicksoil extends Block {
 
 	@Override
 	public int damageDropped(int meta) {
-		return 1;
+        return 1;
 	}
-	
+
 	@Override
 	protected boolean canSilkHarvest() {
         return false;

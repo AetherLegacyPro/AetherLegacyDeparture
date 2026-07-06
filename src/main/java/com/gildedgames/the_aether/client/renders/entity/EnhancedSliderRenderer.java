@@ -3,32 +3,24 @@ package com.gildedgames.the_aether.client.renders.entity;
 import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.client.models.entities.EnhancedSliderModel;
 import com.gildedgames.the_aether.entities.bosses.slider.EntityEnhancedSlider;
-
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.opengl.GL11;
 
 public class EnhancedSliderRenderer extends RenderLiving {
 
     private static final ResourceLocation TEXTURE_AWAKE_RED = Aether.locate("textures/bosses/slider/ancient_slider_awake_critical.png");
-
     private static final ResourceLocation TEXTURE_AWAKE = Aether.locate("textures/bosses/slider/ancient_slider_awake.png");
-
     private static final ResourceLocation TEXTURE_SLEEP = Aether.locate("textures/bosses/slider/ancient_slider_asleep.png");
-
     private static final ResourceLocation TEXTURE_SLEEP_RED = Aether.locate("textures/bosses/slider/ancient_slider_asleep_critical.png");
-
     private static final ResourceLocation TEXTURE_GLOW = Aether.locate("textures/bosses/slider/slider_awake_glow.png");
-
     private static final ResourceLocation TEXTURE_GLOW_RED = Aether.locate("textures/bosses/slider/slider_awake_critical_glow.png");
 
     public EnhancedSliderRenderer() {
         super(new EnhancedSliderModel(0.0F, 12.0F), 1.5F);
-
         this.setRenderPassModel(this.mainModel);
     }
 
@@ -71,10 +63,6 @@ public class EnhancedSliderRenderer extends RenderLiving {
         ((EnhancedSliderModel) this.mainModel).hurtAngle = slider.hurtAngle;
         ((EnhancedSliderModel) this.mainModel).hurtAngleX = slider.hurtAngleX;
         ((EnhancedSliderModel) this.mainModel).hurtAngleZ = slider.hurtAngleZ;
-    }
-
-    protected void renderLivingAt(EntityEnhancedSlider slider, double x, double y, double z) {
-        super.renderLivingAt(slider, x, y, z);
     }
 
     @Override

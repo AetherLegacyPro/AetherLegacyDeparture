@@ -15,19 +15,16 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
-
 import com.gildedgames.the_aether.entities.passive.mountable.EntityMoa;
 import com.gildedgames.the_aether.entities.projectile.darts.EntityDartGolden;
 
 public class EntityRaptor extends EntityMob {
 
 	public float wingRotation, destPos, prevDestPos, prevWingRotation;
-
 	public int shootTime, ticksUntilFlap;
 
 	public EntityRaptor(World world) {
 		super(world);
-
 		this.stepHeight = 1.0F;
 		this.setSize(0.5F, 1.0F);
 		this.tasks.addTask(0, new EntityAISwimming(this));
@@ -43,7 +40,6 @@ public class EntityRaptor extends EntityMob {
 	@Override
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
-
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(1D);
 		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(35.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(3.0D);
@@ -87,7 +83,7 @@ public class EntityRaptor extends EntityMob {
 				this.rotationYaw = (float) ((Math.atan2(d1, d) * 180D) / 3.1415927410125732D) - 90F;
 			}
 		}
-		
+
 		this.updateWingRotation();
 
 		if (!this.worldObj.isRemote && this.worldObj.difficultySetting == EnumDifficulty.PEACEFUL) {
@@ -127,7 +123,6 @@ public class EntityRaptor extends EntityMob {
 
 		this.prevWingRotation = this.wingRotation;
 		this.prevDestPos = this.destPos;
-
 		this.destPos += 0.2D;
 		this.destPos = EntityMoa.minMax(0.01F, 1.0F, this.destPos);
 
@@ -143,12 +138,9 @@ public class EntityRaptor extends EntityMob {
 	}
 
 	@Override
-	public boolean attackEntityFrom(DamageSource source, float amount)
-	{
-		if (source.getEntity() != null)
-		{
-			if (source.getEntity() instanceof EntityLivingBase)
-			{
+	public boolean attackEntityFrom(DamageSource source, float amount) {
+		if (source.getEntity() != null) {
+			if (source.getEntity() instanceof EntityLivingBase) {
 				this.setAttackTarget((EntityLivingBase) source.getEntity());
 			}
 		}
@@ -158,32 +150,32 @@ public class EntityRaptor extends EntityMob {
 
 	@Override
 	public void writeEntityToNBT(NBTTagCompound nbttagcompound) {
-		super.writeEntityToNBT(nbttagcompound);
+        super.writeEntityToNBT(nbttagcompound);
 	}
 
 	@Override
 	public void readEntityFromNBT(NBTTagCompound nbttagcompound) {
-		super.readEntityFromNBT(nbttagcompound);
+        super.readEntityFromNBT(nbttagcompound);
 	}
 
 	@Override
 	protected String getLivingSound() {
-		return "aether_legacy:aemob.moa.say";
+        return "aether_legacy:aemob.moa.say";
 	}
 
 	@Override
 	protected String getHurtSound() {
-		return "aether_legacy:aemob.moa.say";
+        return "aether_legacy:aemob.moa.say";
 	}
 
 	@Override
 	protected String getDeathSound() {
-		return "aether_legacy:aemob.moa.say";
+        return "aether_legacy:aemob.moa.say";
 	}
 
 	@Override
 	protected void dropFewItems(boolean var1, int var2) {
-		this.dropItem(Items.feather, 1 + this.rand.nextInt(4));
+        this.dropItem(Items.feather, 1 + this.rand.nextInt(4));
 	}
 
 }

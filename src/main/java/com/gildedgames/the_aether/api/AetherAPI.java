@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
-
 import com.gildedgames.the_aether.api.accessories.AetherAccessory;
 import com.gildedgames.the_aether.api.enchantments.AetherAmplifier;
 import com.gildedgames.the_aether.api.enchantments.AetherAmplifierFuel;
@@ -14,7 +13,6 @@ import com.gildedgames.the_aether.api.freezables.AetherFreezable;
 import com.gildedgames.the_aether.api.freezables.AetherFreezableFuel;
 import com.gildedgames.the_aether.api.moa.AetherMoaType;
 import com.gildedgames.the_aether.api.player.IPlayerAether;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -62,7 +60,7 @@ public class AetherAPI {
 
 		return type;
 	}
-//-----------------------------------
+
 	public AetherAmplifier register(AetherAmplifier type) {
 		ItemStack stack = type.getInput();
 		ResourceLocation registryName = new ResourceLocation(stack.getItem().getUnlocalizedName() + "_meta_" + (stack.isItemStackDamageable() ? 0 : stack.getItemDamage()));
@@ -80,7 +78,7 @@ public class AetherAPI {
 
 		return type;
 	}
-//-----------------------------------
+
 	public AetherFreezable register(AetherFreezable type) {
 		ItemStack stack = type.getInput();
 		ResourceLocation registryName = new ResourceLocation(stack.getItem().getUnlocalizedName() + "_meta_" + (stack.isItemStackDamageable() ? 0 : stack.getItemDamage()));
@@ -140,7 +138,7 @@ public class AetherAPI {
 	public AetherEnchantment getEnchantment(ItemStack stack) {
 		return iEnchantmentRegistry.get(new ResourceLocation(stack.getItem().getUnlocalizedName() + "_meta_" + (stack.isItemStackDamageable() ? 0 : stack.getItemDamage())));
 	}
-//----------------
+
 	public boolean hasAmplifier(ItemStack stack) {
 		return iAmplifierRegistry.containsKey(new ResourceLocation(stack.getItem().getUnlocalizedName() + "_meta_" + (stack.isItemStackDamageable() ? 0 : stack.getItemDamage())));
 	}
@@ -148,7 +146,7 @@ public class AetherAPI {
 	public AetherAmplifier getAmplifier(ItemStack stack) {
 		return iAmplifierRegistry.get(new ResourceLocation(stack.getItem().getUnlocalizedName() + "_meta_" + (stack.isItemStackDamageable() ? 0 : stack.getItemDamage())));
 	}
-//----------------
+
 	public boolean isEnchantmentFuel(ItemStack stack) {
 		return iEnchantmentFuelRegistry.containsKey(new ResourceLocation(stack.getItem().getUnlocalizedName() + "_meta_" + (stack.isItemStackDamageable() ? 0 : stack.getItemDamage())));
 	}
@@ -156,7 +154,7 @@ public class AetherAPI {
 	public AetherEnchantmentFuel getEnchantmentFuel(ItemStack stack) {
 		return iEnchantmentFuelRegistry.get(new ResourceLocation(stack.getItem().getUnlocalizedName() + "_meta_" + (stack.isItemStackDamageable() ? 0 : stack.getItemDamage())));
 	}
-//----------------
+
 	public boolean isAmplifierFuel(ItemStack stack) {
 		return iAmplifierFuelRegistry.containsKey(new ResourceLocation(stack.getItem().getUnlocalizedName() + "_meta_" + (stack.isItemStackDamageable() ? 0 : stack.getItemDamage())));
 	}
@@ -164,7 +162,7 @@ public class AetherAPI {
 	public AetherAmplifierFuel getAmplifierFuel(ItemStack stack) {
 		return iAmplifierFuelRegistry.get(new ResourceLocation(stack.getItem().getUnlocalizedName() + "_meta_" + (stack.isItemStackDamageable() ? 0 : stack.getItemDamage())));
 	}
-//---------------
+
 	public boolean hasFreezable(ItemStack stack) {
 		return iFreezableRegistry.containsKey(new ResourceLocation(stack.getItem().getUnlocalizedName() + "_meta_" + (stack.isItemStackDamageable() ? 0 : stack.getItemDamage())));
 	}
@@ -182,15 +180,15 @@ public class AetherAPI {
 	}
 
 	public List<AetherEnchantment> getEnchantmentValues() {
-		return new ArrayList<>(iEnchantmentRegistry.values());
+        return new ArrayList<>(iEnchantmentRegistry.values());
 	}
 
 	public List<AetherAmplifier> getAmplifierValues() {
-		return new ArrayList<>(iAmplifierRegistry.values());
+        return new ArrayList<>(iAmplifierRegistry.values());
 	}
 
 	public List<AetherFreezable> getFreezableValues() {
-		return new ArrayList<>(iFreezableRegistry.values());
+        return new ArrayList<>(iFreezableRegistry.values());
 	}
 
 	public List<AetherMoaType> getMoaTypeValues() {
@@ -198,11 +196,11 @@ public class AetherAPI {
 	}
 
 	public int getMoaTypeId(AetherMoaType type) {
-		return this.getMoaTypeValues().indexOf(type);
+        return this.getMoaTypeValues().indexOf(type);
 	}
 
 	public AetherMoaType getMoaType(int id) {
-		return this.getMoaTypeValues().get(id);
+        return this.getMoaTypeValues().get(id);
 	}
 
 	public AetherMoaType getRandomMoaType() {
@@ -210,11 +208,11 @@ public class AetherAPI {
 	}
 
 	public int getMoaTypeSize() {
-		return this.getMoaTypeValues().size();
+        return this.getMoaTypeValues().size();
 	}
 
 	public static AetherAPI instance() {
-		return instance;
+        return instance;
 	}
 
 }

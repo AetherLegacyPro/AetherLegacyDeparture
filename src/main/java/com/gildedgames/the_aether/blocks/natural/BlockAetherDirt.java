@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.blocks.natural;
 
 import com.gildedgames.the_aether.items.util.DoubleDropHelper;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -11,7 +10,6 @@ public class BlockAetherDirt extends Block {
 
 	public BlockAetherDirt() {
 		super(Material.ground);
-
 		this.setHardness(0.45F);
 		this.setResistance(0.45F);
 		this.setHarvestLevel("shovel", 0);

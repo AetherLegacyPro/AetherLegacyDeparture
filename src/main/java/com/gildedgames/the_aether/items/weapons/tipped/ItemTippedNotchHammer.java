@@ -28,13 +28,12 @@ public class ItemTippedNotchHammer extends ItemSword {
 
 	@Override
 	public Multimap<String, AttributeModifier> getItemAttributeModifiers() {
-		return null;
+        return null;
 	}
 
 	@Override
 	public Multimap<String, AttributeModifier> getAttributeModifiers(ItemStack stack) {
 		Multimap<String, AttributeModifier> multimap = HashMultimap.create();
-
 		if (stack.getItem() instanceof ItemTippedNotchHammer) {
 			multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(field_111210_e, "Weapon modifier", this.calculateIncrease(stack), 0));
 		}
@@ -59,7 +58,7 @@ public class ItemTippedNotchHammer extends ItemSword {
 	}
 
 	private boolean isBetween(int max, int origin, int min) {
-		return origin <= max && origin >= min ? true : false;
+        return origin <= max && origin >= min ? true : false;
 	}
 
 	@Override
@@ -71,7 +70,7 @@ public class ItemTippedNotchHammer extends ItemSword {
 	public float getDigSpeed(ItemStack itemstack, Block block, int meta) {
 		return super.getDigSpeed(itemstack, block, meta) * (2.0F * (float) itemstack.getItemDamage() / (float) itemstack.getMaxDamage() + 0.5F);
 	}
-	
+
 	@Override
     public ItemStack onItemRightClick(ItemStack itemstack, World world, EntityPlayer entityplayer) {
         if (entityplayer.capabilities.isCreativeMode) {
@@ -97,10 +96,10 @@ public class ItemTippedNotchHammer extends ItemSword {
         return itemstack;
     }
 
-	
+
 	@Override
 	public EnumRarity getRarity(ItemStack stack) {
-		return ItemsAether.scaled_aether_loot;
+        return ItemsAether.scaled_aether_loot;
 	}
 
 }

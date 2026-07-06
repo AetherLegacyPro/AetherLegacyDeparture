@@ -2,7 +2,6 @@ package com.gildedgames.the_aether.entities.hostile;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import com.gildedgames.the_aether.AetherConfig;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.entity.Entity;
@@ -19,13 +18,11 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.entities.particles.AetherParticle;
 import com.gildedgames.the_aether.entities.particles.ParticleEvilWhirly;
 import com.gildedgames.the_aether.entities.particles.ParticlePassiveWhirly;
 import com.gildedgames.the_aether.player.perks.AetherRankings;
-
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -33,26 +30,18 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class EntityWhirlwind extends EntityMob {
 
 	public ArrayList<Object> particles = new ArrayList<>();
-
 	public int lifeLeft;
-
 	public int actionTimer;
-
 	public float movementAngle;
 	public float movementCurve;
-
 	public boolean isRainbow;
-
 	public boolean canDropItems = true;
 
 	public EntityWhirlwind(World world) {
 		super(world);
-
 		this.setSize(0.6F, 0.8F);
-
 		this.movementAngle = this.rand.nextFloat() * 360F;
 		this.movementCurve = (this.rand.nextFloat() - this.rand.nextFloat()) * 0.1F;
-
 		this.lifeLeft = this.rand.nextInt(512) + 512;
 
 		if (this.rand.nextInt(10) == 0) {
@@ -71,36 +60,33 @@ public class EntityWhirlwind extends EntityMob {
 	@Override
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
-
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(10.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue((this.rand.nextDouble() * 0.025D) + 0.025D);
 		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(35.0D);
-
 		this.setHealth(10.0F);
 	}
 
 	@Override
 	protected void entityInit() {
 		super.entityInit();
-
 		this.dataWatcher.addObject(20, (byte) 0);
 		this.dataWatcher.addObject(21, (byte) 15);
 	}
 
 	public void setColorData(int data) {
-		this.dataWatcher.updateObject(21, (byte) data);
+        this.dataWatcher.updateObject(21, (byte) data);
 	}
 
 	public int getColorData() {
-		return this.dataWatcher.getWatchableObjectByte(21);
+        return this.dataWatcher.getWatchableObjectByte(21);
 	}
 
 	public void setEvil(boolean isEvil) {
-		this.dataWatcher.updateObject(20, (byte) (isEvil ? 1 : 0));
+        this.dataWatcher.updateObject(20, (byte) (isEvil ? 1 : 0));
 	}
 
 	public boolean isEvil() {
-		return this.dataWatcher.getWatchableObjectByte(20) == (byte) 1;
+        return this.dataWatcher.getWatchableObjectByte(20) == (byte) 1;
 	}
 
 	public void onLivingUpdate() {
@@ -227,7 +213,7 @@ public class EntityWhirlwind extends EntityMob {
 
 	@Override
 	public boolean canTriggerWalking() {
-		return false;
+        return false;
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -344,18 +330,16 @@ public class EntityWhirlwind extends EntityMob {
 		int i = MathHelper.floor_double(this.posX);
 		int j = MathHelper.floor_double(this.boundingBox.minY);
 		int k = MathHelper.floor_double(this.posZ);
-
 		return this.rand.nextInt(AetherConfig.getWhirlwindSpawnrate()) == 0 && this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_grass && this.worldObj.getBlockLightValue(i, j, k) > 8 && this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
 	}
 
 	public EntityPlayer findClosestPlayer() {
-		return this.worldObj.getClosestPlayerToEntity(this, 16D);
+        return this.worldObj.getClosestPlayerToEntity(this, 16D);
 	}
 
 	@Override
 	public void writeEntityToNBT(NBTTagCompound compound) {
 		super.writeEntityToNBT(compound);
-
 		compound.setFloat("movementAngle", this.movementAngle);
 		compound.setFloat("movementCurve", this.movementCurve);
 		compound.setBoolean("isRainbow", this.isRainbow);
@@ -365,7 +349,6 @@ public class EntityWhirlwind extends EntityMob {
 	@Override
 	public void readEntityFromNBT(NBTTagCompound compound) {
 		super.readEntityFromNBT(compound);
-
 		this.movementAngle = compound.getFloat("movementAngle");
 		this.movementCurve = compound.getFloat("movementCurve");
 		this.isRainbow = compound.getBoolean("isRainbow");
@@ -374,17 +357,16 @@ public class EntityWhirlwind extends EntityMob {
 
 	@Override
 	public boolean attackEntityFrom(DamageSource source, float damage) {
-		return false;
+        return false;
 	}
 
 	@Override
 	public void applyEntityCollision(Entity entity) {
-
 	}
 
 	@Override
 	public int getMaxSpawnedInChunk() {
-		return 3;
+        return 3;
 	}
 
 	@Override

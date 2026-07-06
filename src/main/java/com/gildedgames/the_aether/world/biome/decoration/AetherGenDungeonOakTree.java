@@ -3,7 +3,6 @@ package com.gildedgames.the_aether.world.biome.decoration;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-
 import java.util.Random;
 
 public class AetherGenDungeonOakTree extends WorldGenAbstractTree {

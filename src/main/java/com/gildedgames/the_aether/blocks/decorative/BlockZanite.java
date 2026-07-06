@@ -3,14 +3,12 @@ package com.gildedgames.the_aether.blocks.decorative;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.world.IBlockAccess;
-
 import com.gildedgames.the_aether.Aether;
 
 public class BlockZanite extends Block {
 
 	public BlockZanite() {
 		super(Material.iron);
-
 		this.setHardness(3F);
 		this.setStepSound(soundTypeMetal);
 		this.setHarvestLevel("pickaxe", 1);

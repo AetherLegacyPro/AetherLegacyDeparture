@@ -13,7 +13,6 @@ public enum EnumCrystalType {
     private String explosionParticle = "";
 
     private EnumCrystalType() {
-
     }
 
     EnumCrystalType(String deathSound, String deathParticle, String explosionSound, String explosionParticle) {

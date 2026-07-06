@@ -2,12 +2,9 @@ package com.gildedgames.the_aether.blocks.natural;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-
 import java.util.List;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
@@ -21,11 +18,9 @@ import net.minecraft.util.Facing;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockAercloudLayer3 extends Block
-{
+public class BlockAercloudLayer3 extends Block {
 
-    public BlockAercloudLayer3()
-    {
+    public BlockAercloudLayer3() {
         super(Material.cloth);
         this.setHardness(0.1F);
         this.setStepSound(soundTypeCloth);
@@ -36,14 +31,14 @@ public class BlockAercloudLayer3 extends Block
 
     @SideOnly(Side.CLIENT)
 	@SuppressWarnings({"unchecked", "rawtypes"})
-	public void getSubBlocks(Item p_149666_1_, CreativeTabs p_149666_2_, List p_149666_3_) {
-		p_149666_3_.add(new ItemStack(this, 1, 0));
-		p_149666_3_.add(new ItemStack(this, 1, 1));
-		p_149666_3_.add(new ItemStack(this, 1, 2));
-		p_149666_3_.add(new ItemStack(this, 1, 3));
-		p_149666_3_.add(new ItemStack(this, 1, 4));
+	public void getSubBlocks(Item item, CreativeTabs creativeTabs, List list) {
+		list.add(new ItemStack(this, 1, 0));
+		list.add(new ItemStack(this, 1, 1));
+		list.add(new ItemStack(this, 1, 2));
+		list.add(new ItemStack(this, 1, 3));
+		list.add(new ItemStack(this, 1, 4));
 	}
-    
+
     @Override
 	public boolean canPlaceBlockAt(World world, int x, int y, int z) {
 		Block soild = world.getBlock(x, y - 1, z);
@@ -58,7 +53,7 @@ public class BlockAercloudLayer3 extends Block
 
 	@Override
 	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
-		
+
 		//blue aercloud
 		if (world.getBlockMetadata(x, y, z) == 1) {
 			if (entity instanceof EntityPlayer player) {
@@ -80,12 +75,12 @@ public class BlockAercloudLayer3 extends Block
 						entity.setDead();
 					}
 				}
-				
+
 				entity.motionY = 0.75D;
 			}
-			
+
 		}
-		
+
 		else if (world.getBlockMetadata(x, y, z) == 3) {
 			if (entity instanceof EntityPlayer player) {
 
@@ -106,12 +101,12 @@ public class BlockAercloudLayer3 extends Block
 						entity.setDead();
 					}
 				}
-				
+
 				entity.motionZ = 1.5D;
 			}
-			
+
 		}
-		
+
 		else if (world.getBlockMetadata(x, y, z) == 4) {
 			if (entity instanceof EntityPlayer player) {
 
@@ -132,12 +127,13 @@ public class BlockAercloudLayer3 extends Block
 						entity.setDead();
 					}
 				}
-				
+
 				entity.motionX = 1.5D;
 			}
-			
+
 		}
-			//gold aercloud
+
+        //gold aercloud
 		else if (world.getBlockMetadata(x, y, z) == 2) {
 				if (entity instanceof EntityPlayer player) {
 
@@ -147,7 +143,7 @@ public class BlockAercloudLayer3 extends Block
 						}
 
 						return;
-					}					
+					}
 							entity.motionY = -0.75D;
 				} else {
 					if (entity instanceof EntityArrow)
@@ -157,7 +153,7 @@ public class BlockAercloudLayer3 extends Block
 							entity.setDead();
 						}
 					}
-					
+
 					entity.motionY = -0.75D;
 				}
 
@@ -174,18 +170,18 @@ public class BlockAercloudLayer3 extends Block
 			}
 		} else if (entity.motionY < 0) {
 			entity.motionY *= 0.005D;
-			}	
-		}
+        }
+    }
 
 	@Override
 	public boolean renderAsNormalBlock() {
-		return false;
+        return false;
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public int getRenderBlockPass() {
-		return 1;
+        return 1;
 	}
 
 	@Override
@@ -195,12 +191,12 @@ public class BlockAercloudLayer3 extends Block
 
 	@Override
 	public int damageDropped(int meta) {
-		return meta;
+        return meta;
 	}
-	
+
 	protected boolean canSilkHarvest() {
         return true;
-        }
+    }
 
 	@Override
 	@SideOnly(Side.CLIENT)
@@ -246,10 +242,10 @@ public class BlockAercloudLayer3 extends Block
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public boolean shouldSideBeRendered(IBlockAccess p_149646_1_, int p_149646_2_, int p_149646_3_, int p_149646_4_, int p_149646_5_) {
-		Block block = p_149646_1_.getBlock(p_149646_2_, p_149646_3_, p_149646_4_);
+	public boolean shouldSideBeRendered(IBlockAccess iBlockAccess, int p_149646_2_, int p_149646_3_, int p_149646_4_, int p_149646_5_) {
+		Block block = iBlockAccess.getBlock(p_149646_2_, p_149646_3_, p_149646_4_);
 
-		if (p_149646_1_.getBlockMetadata(p_149646_2_, p_149646_3_, p_149646_4_) != p_149646_1_.getBlockMetadata(p_149646_2_ - Facing.offsetsXForSide[p_149646_5_], p_149646_3_ - Facing.offsetsYForSide[p_149646_5_], p_149646_4_ - Facing.offsetsZForSide[p_149646_5_])) {
+		if (iBlockAccess.getBlockMetadata(p_149646_2_, p_149646_3_, p_149646_4_) != iBlockAccess.getBlockMetadata(p_149646_2_ - Facing.offsetsXForSide[p_149646_5_], p_149646_3_ - Facing.offsetsYForSide[p_149646_5_], p_149646_4_ - Facing.offsetsZForSide[p_149646_5_])) {
 			return true;
 		}
 
@@ -257,13 +253,12 @@ public class BlockAercloudLayer3 extends Block
 			return false;
 		}
 
-		return super.shouldSideBeRendered(p_149646_1_, p_149646_2_, p_149646_3_, p_149646_4_, p_149646_5_);
+		return super.shouldSideBeRendered(iBlockAccess, p_149646_2_, p_149646_3_, p_149646_4_, p_149646_5_);
 	}
 
 	@Override
 	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
 		return world.getBlockMetadata(x, y, z) != 1 ? AxisAlignedBB.getBoundingBox(x, y, z, x + 1.0D, y + 0.01D, z + 1.0D) : AxisAlignedBB.getBoundingBox(x, y, z, x, y, z);
 	}
-
 }
 

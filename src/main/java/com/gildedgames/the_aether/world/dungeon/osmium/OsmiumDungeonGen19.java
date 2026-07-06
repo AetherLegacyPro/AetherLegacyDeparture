@@ -1,12 +1,10 @@
 package com.gildedgames.the_aether.world.dungeon.osmium;
 
 import java.util.Random;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.entities.bosses.EntityElderZarnillys;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.tileentity.TileEntitySkyrootChest;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -17,9 +15,8 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 public class OsmiumDungeonGen19 extends WorldGenerator {
 
 	public OsmiumDungeonGen19() {
-
 	}
-	
+
 	public boolean generate(final World world, final Random random, final int i, final int j, final int k) {
 
 		world.setBlock(i + 32, j + 51, k + 68, placeBuildingBlock(random), 0, 2);
@@ -2456,63 +2453,63 @@ public class OsmiumDungeonGen19 extends WorldGenerator {
 		world.setBlock(i + 49, j + 57, k + 30, placeBuildingBlock(random), 0, 2);
 		world.setBlock(i + 50, j + 57, k + 30, placeBuildingBlock(random), 0, 2);
 		world.setBlock(i + 27, j + 57, k + 31, placeBuildingBlock(random), 0, 2);
-		
+
 		world.setBlock(i + 51, j + 56, k + 38, BlocksAether.treasure_chest, 4, 2);
 		world.setBlock(i + 51, j + 38, k + 38, BlocksAether.ancient_enchanter, 4, 2);
-		
+
 		EntityElderZarnillys zarnillys = new EntityElderZarnillys(world);
 		zarnillys.setPosition(i + 31, j + 54, k + 27);
 		if (!world.isRemote) {
 			world.spawnEntityInWorld(zarnillys);
 		}
-		
+
 		EntityElderZarnillys zarnillys2 = new EntityElderZarnillys(world);
 		zarnillys2.setPosition(i + 22, j + 54, k + 38);
 		if (!world.isRemote) {
 			world.spawnEntityInWorld(zarnillys2);
 		}
-		
+
 		EntityElderZarnillys zarnillys3 = new EntityElderZarnillys(world);
 		zarnillys3.setPosition(i + 56, j + 54, k + 41);
 		if (!world.isRemote) {
 			world.spawnEntityInWorld(zarnillys3);
 		}
-		
+
 		EntityElderZarnillys zarnillys4 = new EntityElderZarnillys(world);
 		zarnillys4.setPosition(i + 39, j + 54, k + 57);
 		if (!world.isRemote) {
 			world.spawnEntityInWorld(zarnillys4);
 		}
-		
+
 		world.setBlock(i + 39, j + 55, k + 19, BlocksAether.skyroot_chest, 3, 2);
 		TileEntitySkyrootChest chest = (TileEntitySkyrootChest) world.getTileEntity(i + 39, j + 55, k + 19);
 		for (int slot = 0; slot < 3 + random.nextInt(25); slot++) {
 			chest.setInventorySlotContents(random.nextInt(chest.getSizeInventory()), this.getNormalLoot(random));
 		}
-		
+
 		world.setBlock(i + 52, j + 55, k + 36, BlocksAether.skyroot_chest, 5, 2);
 		TileEntitySkyrootChest chest2 = (TileEntitySkyrootChest) world.getTileEntity(i + 52, j + 55, k + 36);
 		for (int slot = 0; slot < 3 + random.nextInt(25); slot++) {
 			chest2.setInventorySlotContents(random.nextInt(chest2.getSizeInventory()), this.getNormalLoot(random));
 		}
-		
+
 		world.setBlock(i + 52, j + 55, k + 40, BlocksAether.skyroot_chest, 5, 2);
 		TileEntitySkyrootChest chest3 = (TileEntitySkyrootChest) world.getTileEntity(i + 52, j + 55, k + 40);
 		for (int slot = 0; slot < 3 + random.nextInt(25); slot++) {
 			chest3.setInventorySlotContents(random.nextInt(chest3.getSizeInventory()), this.getNormalLoot(random));
 		}
-		
+
 		world.setBlock(i + 39, j + 55, k + 23, Blocks.mob_spawner, 0, 2);
 		TileEntityMobSpawner tileentitymobspawner = (TileEntityMobSpawner)world.getTileEntity(i + 39, j + 55, k + 23);
-        
+
         if (tileentitymobspawner != null)
         {
         	tileentitymobspawner.func_145881_a().setEntityName("aether_legacy.uro");
         }
-		
+
 		return true;
 	}
-	
+
 	private ItemStack getNormalLoot(Random random) {
 		int item = random.nextInt(16);
 		switch (item) {
@@ -2530,29 +2527,29 @@ public class OsmiumDungeonGen19 extends WorldGenerator {
 				return new ItemStack(ItemsAether.arkenium_sword);
 			case 6:
 				return new ItemStack(ItemsAether.arkenium_fragement, random.nextInt(4) + 2);
-			case 7: 
+			case 7:
 				if (random.nextInt(20) == 0)
 					return new ItemStack(ItemsAether.gravitite_pickaxe);
-			case 8: 
+			case 8:
 				return new ItemStack(BlocksAether.enchanted_holystone, random.nextInt(30) + 20);
-			case 9: 
+			case 9:
 				if (random.nextInt(10) == 0)
-					return new ItemStack(ItemsAether.ascending_dawn);							
-			case 10: 
+					return new ItemStack(ItemsAether.ascending_dawn);
+			case 10:
 				if (random.nextInt(4) == 0)
-					return new ItemStack(ItemsAether.gravitite_pendant);			
-			case 11: 
+					return new ItemStack(ItemsAether.gravitite_pendant);
+			case 11:
 				if (random.nextInt(10) == 0)
-					return new ItemStack(BlocksAether.enchanted_agiosite, random.nextInt(10) + 20);			
-			case 12: 
+					return new ItemStack(BlocksAether.enchanted_agiosite, random.nextInt(10) + 20);
+			case 12:
 				if (random.nextInt(10) == 0)
 					return new ItemStack(BlocksAether.aerogel, random.nextInt(2) + 1);
-			
-			default: 
+
+			default:
 				return new ItemStack(ItemsAether.arkenium_fragement, random.nextInt(3) + 2);
-		} 
+		}
 	}
-	
+
 	private Block placeBuildingBlock(Random random) {
         if (random.nextDouble() < 0.005) {
             return BlocksAether.fuse_trap;

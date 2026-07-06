@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.blocks.container;
 
 import java.util.Random;
-
 import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.entities.particles.NewAetherParticleHandler;
@@ -22,7 +21,6 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -36,7 +34,6 @@ public class BlockAmplifier extends BlockAetherContainer {
 
 	public BlockAmplifier() {
 		super(Material.iron);
-
 		this.setHardness(15.0F);
 	}
 
@@ -62,13 +59,13 @@ public class BlockAmplifier extends BlockAetherContainer {
 		} else if (side == 0) {
 			return this.blockIconBottom;
 		}
-				
+
 		return this.blockIcon;
 	}
 
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
-		return new TileEntityAmplifier();
+        return new TileEntityAmplifier();
 	}
 
 	@Override
@@ -83,45 +80,45 @@ public class BlockAmplifier extends BlockAetherContainer {
 			float f = (float) x + 0.5F;
 			float f1 = (float) y + 1.0F + (random.nextFloat() * 6F) / 16F;
 			float f2 = (float) z + 0.5F;
-			
+
 			world.spawnParticle("smoke", f, f1, f2, 0.0D, 0.0D, 0.0D);
 			world.spawnParticle("flame", f, f1, f2, 0.0D, 0.0D, 0.0D);
 			world.spawnParticle("flame", f, f1, f2, 0.1D, 0.0D, 0.1D);
 			world.spawnParticle("flame", f, f1, f2, -0.1D, 0.0D, -0.1D);
 			world.spawnParticle("flame", f, f1, f2, -0.1D, 0.0D, 0.1D);
 			world.spawnParticle("flame", f, f1, f2, 0.1D, 0.0D, -0.1D);
-		
-	        
+
+
 	        	world.spawnParticle("smoke", f, f1, f2, 0.0, 0.0, 0.0);
 	        	NewAetherParticleHandler.AMPLIFIER_FLAME.spawn(world, f, f1, f2, 0.0D, 0.0D, 0.0D, 0.0f);
 	            NewAetherParticleHandler.AMPLIFIER_FLAME.spawn(world, f, f1, f2, 0.0D, 0.0D, 0.0D, 0.0f);
 	            NewAetherParticleHandler.ETHEREAL_FLAME.spawn(world, f, f1, f2, 0.0D, 0.0D, 0.0D, 0.0f);
-	        	       
+
 	        	world.spawnParticle("smoke", f, f1, f2, 0.0, 0.0, 0.0);
 	        	NewAetherParticleHandler.AMPLIFIER_FLAME.spawn(world, f, f1, f2, 0.0D, 0.0D, 0.0D, 0.0f);
 	            NewAetherParticleHandler.AMPLIFIER_FLAME.spawn(world, f, f1, f2, 0.0D, 0.0D, 0.0D, 0.0f);
 	            NewAetherParticleHandler.ETHEREAL_FLAME.spawn(world, f, f1, f2, 0.0D, 0.0D, 0.0D, 0.0f);
-	        
+
 	        	world.spawnParticle("smoke", f, f1, f2, 0.0, 0.0, 0.0);
 	        	NewAetherParticleHandler.AMPLIFIER_FLAME.spawn(world, f, f1, f2, 0.1D, 0.0D, 0.1D, 0.0f);
 	            NewAetherParticleHandler.AMPLIFIER_FLAME.spawn(world, f, f1, f2, 0.1D, 0.0D, 0.1D, 0.0f);
 	            NewAetherParticleHandler.ETHEREAL_FLAME.spawn(world, f, f1, f2, 0.1D, 0.0D, 0.1D, 0.0f);
-	        
+
 	        	world.spawnParticle("smoke", f, f1, f2, 0.0, 0.0, 0.0);
 	            NewAetherParticleHandler.AMPLIFIER_FLAME.spawn(world, f, f1, f2, -0.1D, 0.0D, -0.1D, 0.0f);
 	            NewAetherParticleHandler.AMPLIFIER_FLAME.spawn(world, f, f1, f2, -0.1D, 0.0D, -0.1D, 0.0f);
 	            NewAetherParticleHandler.ETHEREAL_FLAME.spawn(world, f, f1, f2, -0.1D, 0.0D, -0.1D, 0.0f);
-	            
+
 	            world.spawnParticle("smoke", f, f1, f2, 0.0, 0.0, 0.0);
 	            NewAetherParticleHandler.AMPLIFIER_FLAME.spawn(world, f, f1, f2, -0.1D, 0.0D, 0.1D, 0.0f);
 	            NewAetherParticleHandler.AMPLIFIER_FLAME.spawn(world, f, f1, f2, -0.1D, 0.0D, 0.1D, 0.0f);
 	            NewAetherParticleHandler.ETHEREAL_FLAME.spawn(world, f, f1, f2, -0.1D, 0.0D, 0.1D, 0.0f);
-	      
+
 	        	world.spawnParticle("smoke", f, f1, f2, 0.0, 0.0, 0.0);
 	        	NewAetherParticleHandler.AMPLIFIER_FLAME.spawn(world, f, f1, f2, 0.1D, 0.0, -0.1D, 0.0f);
 	            NewAetherParticleHandler.AMPLIFIER_FLAME.spawn(world, f, f1, f2, 0.1D, 0.0, -0.1D, 0.0f);
 	            NewAetherParticleHandler.ETHEREAL_FLAME.spawn(world, f, f1, f2, 0.1D, 0.0, -0.1D, 0.0f);
-	        
+
 		}
 	}
 
@@ -132,34 +129,34 @@ public class BlockAmplifier extends BlockAetherContainer {
 		 && (world.getBlock(x + 3, y, z + 2) == BlocksAether.golden_oak_bookshelf)
 		 && (world.getBlock(x + 2, y, z + 3) == BlocksAether.golden_oak_bookshelf)
 		 && (world.getBlock(x + 1, y, z + 3) == BlocksAether.golden_oak_bookshelf)
-			
+
 		 && (world.getBlock(x - 3, y, z + 3) == BlocksAether.golden_oak_bookshelf)
 		 && (world.getBlock(x - 3, y, z + 2) == BlocksAether.golden_oak_bookshelf)
 		 && (world.getBlock(x - 3, y, z + 1) == BlocksAether.golden_oak_bookshelf)
 		 && (world.getBlock(x - 2, y, z + 3) == BlocksAether.golden_oak_bookshelf)
 		 && (world.getBlock(x - 1, y, z + 3) == BlocksAether.golden_oak_bookshelf)
-		 
+
 		 && (world.getBlock(x + 3, y, z - 3) == BlocksAether.golden_oak_bookshelf)
 		 && (world.getBlock(x + 3, y, z - 2) == BlocksAether.golden_oak_bookshelf)
 		 && (world.getBlock(x + 3, y, z - 1) == BlocksAether.golden_oak_bookshelf)
 		 && (world.getBlock(x + 2, y, z - 3) == BlocksAether.golden_oak_bookshelf)
 		 && (world.getBlock(x + 1, y, z - 3) == BlocksAether.golden_oak_bookshelf)
-		 
+
 		 && (world.getBlock(x - 3, y, z - 3) == BlocksAether.golden_oak_bookshelf)
 		 && (world.getBlock(x - 3, y, z - 2) == BlocksAether.golden_oak_bookshelf)
 		 && (world.getBlock(x - 3, y, z - 1) == BlocksAether.golden_oak_bookshelf)
 		 && (world.getBlock(x - 2, y, z - 3) == BlocksAether.golden_oak_bookshelf)
 		 && (world.getBlock(x - 1, y, z - 3) == BlocksAether.golden_oak_bookshelf)
-			
+
 		 && (world.getBlock(x + 3, y + 1, z + 3) == BlocksAether.ambrosium_block)
 		 && (world.getBlock(x - 3, y + 1, z + 3) == BlocksAether.ambrosium_block)
 		 && (world.getBlock(x + 3, y + 1, z - 3) == BlocksAether.ambrosium_block)
-		 && (world.getBlock(x - 3, y + 1, z - 3) == BlocksAether.ambrosium_block)		 
+		 && (world.getBlock(x - 3, y + 1, z - 3) == BlocksAether.ambrosium_block)
 		 && (world.getBlock(x, y - 1, z + 3) == BlocksAether.charged_empyrean_block)
 		 && (world.getBlock(x, y - 1, z - 3) == BlocksAether.charged_empyrean_block)
 		 && (world.getBlock(x + 3, y - 1, z) == BlocksAether.charged_empyrean_block)
 		 && (world.getBlock(x - 3, y - 1, z) == BlocksAether.charged_empyrean_block)
-		 
+
 		 && (world.getBlock(x - 1, y - 1, z) == BlocksAether.reinforced_arkenium_block)
 		 && (world.getBlock(x + 1, y - 1, z) == BlocksAether.reinforced_arkenium_block)
 		 && (world.getBlock(x, y - 1, z - 1) == BlocksAether.reinforced_arkenium_block)
@@ -168,19 +165,17 @@ public class BlockAmplifier extends BlockAetherContainer {
 		 && (world.getBlock(x + 1, y - 1, z + 1) == BlocksAether.reinforced_arkenium_block)
 		 && (world.getBlock(x - 1, y - 1, z + 1) == BlocksAether.reinforced_arkenium_block)
 		 && (world.getBlock(x + 1, y - 1, z - 1) == BlocksAether.reinforced_arkenium_block)
-		 
+
 		 && ((world.getBlock(x - 2, y - 1, z - 2) == BlocksAether.arkenium_block) || (world.getBlock(x - 2, y - 1, z - 2) == BlocksAether.zanite_block))
 		 && ((world.getBlock(x + 2, y - 1, z + 2) == BlocksAether.arkenium_block) || (world.getBlock(x + 2, y - 1, z + 2) == BlocksAether.zanite_block))
 		 && ((world.getBlock(x - 2, y - 1, z + 2) == BlocksAether.arkenium_block) || (world.getBlock(x - 2, y - 1, z + 2) == BlocksAether.zanite_block))
 		 && ((world.getBlock(x + 2, y - 1, z - 2) == BlocksAether.arkenium_block) || (world.getBlock(x + 2, y - 1, z - 2) == BlocksAether.zanite_block))
-		 
-		 && (world.getBlock(x, y - 1, z) == BlocksAether.hellfire))
-	{
+
+		 && (world.getBlock(x, y - 1, z) == BlocksAether.hellfire)) {
 		player.openGui(Aether.instance, AetherGuiHandler.amplifier, world, x, y, z);
 		player.triggerAchievement(AchievementsAether.amplifier_structure);
 	}
-	else if (!world.isRemote)
-	{
+	else if (!world.isRemote) {
 		player.addChatComponentMessage(new ChatComponentText(I18n.format("gui.amplifier.invalid_structure")));
 	}
 		return true;

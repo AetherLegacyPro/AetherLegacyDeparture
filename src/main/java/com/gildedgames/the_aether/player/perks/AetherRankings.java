@@ -82,8 +82,7 @@ public class AetherRankings {
 		return false;
 	}
 
-	public static boolean isDeveloper(UUID uuid)
-	{
+	public static boolean isDeveloper(UUID uuid) {
 		if (ranks.get("Aether Legacy Developer-" + uuid) != null) {
 			return true;
 		} else if (ranks.get("Retired Developer-" + uuid) != null) {
@@ -97,31 +96,31 @@ public class AetherRankings {
 	}
 
 	public static void addCelebrityRank(String uuid) {
-		ranks.put("Celeberity-" + uuid, getUUID(uuid));
+        ranks.put("Celeberity-" + uuid, getUUID(uuid));
 	}
 
 	public static void addDeveloperRank(String uuid) {
-		ranks.put("Aether Legacy Developer-" + uuid, getUUID(uuid));
+        ranks.put("Aether Legacy Developer-" + uuid, getUUID(uuid));
 	}
 
 	public static void addTesterRank(String uuid) {
-		ranks.put("Aether Legacy Tester-" + uuid, getUUID(uuid));
+        ranks.put("Aether Legacy Tester-" + uuid, getUUID(uuid));
 	}
 
 	public static void addGGRank(String uuid) {
-		ranks.put("Gilded Games-" + uuid, getUUID(uuid));
+        ranks.put("Gilded Games-" + uuid, getUUID(uuid));
 	}
 
 	public static void addRetiredGGRank(String uuid) {
-		ranks.put("Retired Gilded Games-" + uuid, getUUID(uuid));
+        ranks.put("Retired Gilded Games-" + uuid, getUUID(uuid));
 	}
 
 	public static void addRetiredRank(String uuid) {
-		ranks.put("Retired Developer-" + uuid, getUUID(uuid));
+        ranks.put("Retired Developer-" + uuid, getUUID(uuid));
 	}
 
 	public static void addContributor(String uuid) {
-		ranks.put("Aether Legacy Contributor-" + uuid, getUUID(uuid));
+        ranks.put("Aether Legacy Contributor-" + uuid, getUUID(uuid));
 	}
 
 }

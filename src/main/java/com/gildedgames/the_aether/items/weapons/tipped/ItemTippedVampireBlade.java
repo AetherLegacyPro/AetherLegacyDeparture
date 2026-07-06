@@ -10,7 +10,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
-
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 
@@ -26,13 +25,12 @@ public class ItemTippedVampireBlade extends ItemSword {
 
 	@Override
 	public Multimap<String, AttributeModifier> getItemAttributeModifiers() {
-		return null;
+        return null;
 	}
 
 	@Override
 	public Multimap<String, AttributeModifier> getAttributeModifiers(ItemStack stack) {
 		Multimap<String, AttributeModifier> multimap = HashMultimap.create();
-
 		if (stack.getItem() instanceof ItemTippedVampireBlade) {
 			multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(field_111210_e, "Weapon modifier", this.calculateIncrease(stack), 0));
 		}
@@ -57,33 +55,23 @@ public class ItemTippedVampireBlade extends ItemSword {
 	}
 
 	private boolean isBetween(int max, int origin, int min) {
-		return origin <= max && origin >= min ? true : false;
+        return origin <= max && origin >= min ? true : false;
 	}
 
 	@Override
 	public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
-		return false;
+        return false;
 	}
-	
+
 	@Override
 	public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker) {
 		EntityPlayer player = (EntityPlayer) attacker;
 
-		int rand = (int)(1 + Math.random() * 4);
-		switch (rand)
-        {
-        case 1:
-        	if (player.getHealth() < player.getMaxHealth()) {
-        		player.heal(1.0F);
-				}
-        	break;
-        case 2:
-        	break;
-        case 3:
-        	break;
-        case 4:	
-			break;
-		
+		int heal_chance = (int)(1 + Math.random() * 4);
+        if (heal_chance == 1) {
+            if (player.getHealth() < player.getMaxHealth()) {
+                player.heal(1.0F);
+            }
         }
 
 		return super.hitEntity(stack, target, attacker);
@@ -93,10 +81,10 @@ public class ItemTippedVampireBlade extends ItemSword {
 	public float getDigSpeed(ItemStack itemstack, Block block, int meta) {
 		return super.getDigSpeed(itemstack, block, meta) * (2.0F * (float) itemstack.getItemDamage() / (float) itemstack.getMaxDamage() + 0.5F);
 	}
-	
+
 	@Override
 	public EnumRarity getRarity(ItemStack stack) {
-		return ItemsAether.scaled_aether_loot;
+        return ItemsAether.scaled_aether_loot;
 	}
 
 }

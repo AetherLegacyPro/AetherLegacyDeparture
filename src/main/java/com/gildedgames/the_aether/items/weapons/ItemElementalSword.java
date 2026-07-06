@@ -23,7 +23,7 @@ public class ItemElementalSword extends ItemSword {
 
 	@Override
 	public EnumRarity getRarity(ItemStack stack) {
-		return ItemsAether.aether_loot;
+        return ItemsAether.aether_loot;
 	}
 
 	@Override
@@ -31,27 +31,23 @@ public class ItemElementalSword extends ItemSword {
 		if (this == ItemsAether.flaming_sword) {
 			int defaultTime = 30;
 			int fireAspectModifier = EnchantmentHelper.getFireAspectModifier(entityliving1);
-			if (fireAspectModifier > 0)
-			{
+			if (fireAspectModifier > 0) {
 				defaultTime += (fireAspectModifier * 4);
 			}
 			entityliving.setFire(defaultTime);
-		
-		} else if (this == ItemsAether.lightning_sword) {
+		}
+
+        else if (this == ItemsAether.lightning_sword) {
 			EntityLightningBolt lightning = new EntityLightningBolt(entityliving1.worldObj, entityliving.posX, entityliving.posY, entityliving.posZ);
-
 			entityliving1.worldObj.spawnEntityInWorld(lightning);
-		} else if (this == ItemsAether.holy_sword && (entityliving.isEntityUndead() || entityliving.getCreatureAttribute() == EnumCreatureAttribute.UNDEAD)) {
+		}
 
+        else if (this == ItemsAether.holy_sword && (entityliving.isEntityUndead() || entityliving.getCreatureAttribute() == EnumCreatureAttribute.UNDEAD)) {
 			float damage = 15.0F;
-
 			int level = EnchantmentHelper.getEnchantmentLevel(Enchantment.smite.effectId, itemstack);
-
-			if (level > 0)
-			{
-				damage += (level * 2.5);
+			if (level > 0) {
+				damage += (float) (level * 2.5);
 			}
-
 			entityliving.attackEntityFrom(DamageSource.drown, damage);
 			itemstack.damageItem(2, entityliving1);
 		}
@@ -61,7 +57,7 @@ public class ItemElementalSword extends ItemSword {
 
 	@Override
 	public boolean getIsRepairable(ItemStack stack, ItemStack repairStack) {
-		return false;
+        return false;
 	}
 
 }

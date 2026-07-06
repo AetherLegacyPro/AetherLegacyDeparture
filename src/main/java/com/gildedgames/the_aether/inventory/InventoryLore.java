@@ -1,21 +1,17 @@
 package com.gildedgames.the_aether.inventory;
 
 import javax.annotation.Nullable;
-
 import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.item.ItemStack;
-
 import com.gildedgames.the_aether.items.ItemsAether;
 
 public class InventoryLore extends InventoryBasic {
-
 	private EntityPlayer player;
 
 	public InventoryLore(EntityPlayer player) {
 		super("Lore Item", false, 1);
-
 		this.player = player;
 	}
 

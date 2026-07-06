@@ -1,35 +1,29 @@
 package com.gildedgames.the_aether.entities.projectile;
 
 import java.util.ArrayList;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.MovingObjectPosition.MovingObjectType;
 import net.minecraft.world.World;
-
 import com.gildedgames.the_aether.api.player.util.IAetherBoss;
 import com.gildedgames.the_aether.entities.util.EntitySaddleMount;
 
 public class EntityAmplifiedHammerProjectile extends EntityProjectileBase {
 
-	public ArrayList<Block> harvestBlockBans = new ArrayList<>();
-
 	public EntityAmplifiedHammerProjectile(World worldIn) {
-		super(worldIn);
+        super(worldIn);
 	}
 
 	public EntityAmplifiedHammerProjectile(World worldIn, EntityLivingBase shooter) {
-		super(worldIn, shooter);
+        super(worldIn, shooter);
 	}
 
 	@Override
 	public void onUpdate() {
 		super.onUpdate();
-
 		this.worldObj.spawnParticle("reddust", this.posX, this.posY + 0.2F, this.posZ, 1.0D, 1.0D, 1.0D);
-
 		if (this.ticksInAir > 150) {
 			this.setDead();
 		} else {
@@ -60,12 +54,12 @@ public class EntityAmplifiedHammerProjectile extends EntityProjectileBase {
 
 	@Override
 	protected float getBoundingBoxExpansion() {
-		return 4F;
+        return 4F;
 	}
 
 	@Override
 	protected float getGravityVelocity() {
-		return 0.0F;
+        return 0.0F;
 	}
 
 }

@@ -10,13 +10,11 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.opengl.GL11;
 
 public class SheepuffRenderer extends RenderLiving {
 
     private static final ResourceLocation TEXTURE = Aether.locate("textures/entities/sheepuff/sheepuff.png");
-
     private static final ResourceLocation TEXTURE_FUR = Aether.locate("textures/entities/sheepuff/fur.png");
 
     public SheepuffRenderer() {

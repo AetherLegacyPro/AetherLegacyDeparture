@@ -8,11 +8,8 @@ import net.minecraft.entity.player.EntityPlayer;
 public class EntityAIAttackContinuously extends EntityAIBase {
 
 	private EntityCreature attacker;
-
 	private int attackTick;
-
 	double speedTowardsTarget;
-
 	private double targetX;
 	private double targetY;
 	private double targetZ;
@@ -20,7 +17,6 @@ public class EntityAIAttackContinuously extends EntityAIBase {
 	public EntityAIAttackContinuously(EntityCreature creature, double speedIn) {
 		this.attacker = creature;
 		this.speedTowardsTarget = speedIn;
-
 		this.setMutexBits(3);
 	}
 
@@ -58,7 +54,6 @@ public class EntityAIAttackContinuously extends EntityAIBase {
 
 		this.attacker.getNavigator().setPath(this.attacker.getNavigator().getPathToEntityLiving(entitylivingbase), this.speedTowardsTarget);
 		this.attacker.getLookHelper().setLookPositionWithEntity(entitylivingbase, 360.0F, 360.0F);
-
 		double d0 = this.attacker.getDistanceSq(entitylivingbase.posX, entitylivingbase.boundingBox.minY, entitylivingbase.posZ);
 
 		if (this.attacker.getEntitySenses().canSee(entitylivingbase) && (this.targetX == 0.0D && this.targetY == 0.0D && this.targetZ == 0.0D || entitylivingbase.getDistanceSq(this.targetX, this.targetY, this.targetZ) >= 1.0D || this.attacker.getRNG().nextFloat() < 0.05F)) {
@@ -71,13 +66,13 @@ public class EntityAIAttackContinuously extends EntityAIBase {
 		this.checkAndPerformAttack(entitylivingbase, d0);
 	}
 
-	protected void checkAndPerformAttack(EntityLivingBase p_190102_1_, double p_190102_2_) {
-		double d0 = this.getAttackReachSqr(p_190102_1_);
+	protected void checkAndPerformAttack(EntityLivingBase entityLivingBase, double p_190102_2_) {
+		double d0 = this.getAttackReachSqr(entityLivingBase);
 
 		if (p_190102_2_ <= d0 && this.attackTick <= 0) {
 			this.attackTick = 20;
 			this.attacker.swingItem();
-			this.attacker.attackEntityAsMob(p_190102_1_);
+			this.attacker.attackEntityAsMob(entityLivingBase);
 		}
 	}
 

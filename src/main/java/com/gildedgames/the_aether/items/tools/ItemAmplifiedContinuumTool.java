@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.items.tools;
 
 import java.util.List;
-
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.entities.block.EntityFireProofItemAether;
 import com.gildedgames.the_aether.entities.block.EntityFloatingBlock;
@@ -58,7 +57,7 @@ public class ItemAmplifiedContinuumTool extends ItemAetherTool {
 			return 1.0F;
 		}
 	}
-	
+
 	@Override
 	public boolean onBlockDestroyed(ItemStack stack, World world, Block block, int x, int y, int z, EntityLivingBase entityLiving) {
 		if (!world.isRemote && world.rand.nextInt(100) <= 5) {
@@ -69,7 +68,7 @@ public class ItemAmplifiedContinuumTool extends ItemAetherTool {
 
 		return super.onBlockDestroyed(stack, world, block, x, y, z, entityLiving);
 	}
-	
+
 	@Override
 	public boolean onItemUse(ItemStack heldItem, EntityPlayer player, World world, int x, int y, int z, int facing, float hitX, float hitY, float hitZ) {
 		Block block = world.getBlock(x, y, z);
@@ -93,22 +92,22 @@ public class ItemAmplifiedContinuumTool extends ItemAetherTool {
 	}
 
 	private boolean isBetween(int max, int origin, int min) {
-		return origin <= max && origin >= min ? true : false;
+        return origin <= max && origin >= min ? true : false;
 	}
-	
+
 	@Override
 	public EnumRarity getRarity(ItemStack stack) {
-		return ItemsAether.divine_aether_loot;
+        return ItemsAether.divine_aether_loot;
 	}
-	
+
 	public boolean hasCustomEntity(final ItemStack stack) {
         return true;
     }
-    
+
     public Entity createEntity(final World world, final Entity location, final ItemStack itemstack) {
         return new EntityFireProofItemAether(world, location, itemstack);
     }
-    
+
     public void addInformation(final ItemStack stack, final EntityPlayer player, final List tooltip, final boolean who) {
 		if(AetherConfig.enableTooltips())
         tooltip.add(EnumChatFormatting.LIGHT_PURPLE + "" + StatCollector.translateToLocal("tooltip.amplified_continuum_tools.desc"));

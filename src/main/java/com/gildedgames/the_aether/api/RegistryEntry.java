@@ -25,7 +25,7 @@ public class RegistryEntry {
 	}
 
 	public ResourceLocation getRegistryName() {
-		return this.location;
+        return this.location;
 	}
 
 }

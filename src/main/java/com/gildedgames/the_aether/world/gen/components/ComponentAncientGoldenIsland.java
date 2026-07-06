@@ -6,13 +6,11 @@ import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
 
 public class ComponentAncientGoldenIsland extends AetherStructure {
 
 	public ComponentAncientGoldenIsland() {
-
 	}
 
 	public ComponentAncientGoldenIsland(int chunkX, int chunkZ) {

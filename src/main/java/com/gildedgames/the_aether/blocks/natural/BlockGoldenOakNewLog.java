@@ -2,7 +2,6 @@ package com.gildedgames.the_aether.blocks.natural;
 
 import java.util.ArrayList;
 import java.util.Random;
-
 import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.items.ItemsAether;
@@ -28,50 +27,40 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraftforge.event.ForgeEventFactory;
 
 public class BlockGoldenOakNewLog extends BlockLog {
-	
-	@SideOnly(Side.CLIENT)
-	private IIcon iconFace, iconTop;
 
 	public BlockGoldenOakNewLog() {
-		super();
+        super();
 	}
 
 	@Override
 	public void harvestBlock(World worldIn, EntityPlayer player, int x, int y, int z, int meta) {
 		player.addStat(StatList.mineBlockStatArray[getIdFromBlock(this)], 1);
 		player.addExhaustion(0.025F);
-
 		int size = meta == 0 ? 2 : 1;
-
 		ItemStack stack = player.getCurrentEquippedItem();
 
 
-		if (this.canSilkHarvest(worldIn, player, x, y, z, meta) && EnchantmentHelper.getSilkTouchModifier(player))
-		{
+		if (this.canSilkHarvest(worldIn, player, x, y, z, meta) && EnchantmentHelper.getSilkTouchModifier(player)) {
 			ArrayList<ItemStack> items = new ArrayList<>();
 			ItemStack itemstack = this.createStackedBlock(meta);
 
-			if (itemstack != null)
-			{
+			if (itemstack != null) {
 				items.add(itemstack);
 			}
 
 			ForgeEventFactory.fireBlockHarvesting(items, worldIn, this, x, y, z, meta, 0, 1.0f, true, player);
-			for (ItemStack is : items)
-			{
+			for (ItemStack is : items) {
 				this.dropBlockAsItem(worldIn, x, y, z, is);
 			}
 		}
-		else
-		{
+		else {
 			if (stack != null && ((stack.getItem() instanceof ItemAetherTool && ((ItemAetherTool) stack.getItem()).toolType == EnumAetherToolType.AXE) || stack.getItem() == Items.diamond_axe)) {
-				if (stack.getItem() instanceof ItemZaniteTool || stack.getItem() instanceof ItemArkeniumTool || stack.getItem() instanceof ItemContinuumTool || stack.getItem() instanceof ItemGravititeTool 
+				if (stack.getItem() instanceof ItemZaniteTool || stack.getItem() instanceof ItemArkeniumTool || stack.getItem() instanceof ItemContinuumTool || stack.getItem() instanceof ItemGravititeTool
 						|| stack.getItem() instanceof ItemValkyrieTool || stack.getItem() == Items.diamond_axe || stack.getItem() instanceof ItemDivineralTool
 						|| stack.getItem() instanceof ItemTippedSkyrootTool || stack.getItem() instanceof ItemTippedHolystoneTool || stack.getItem() instanceof ItemTippedZaniteTool
 						|| stack.getItem() instanceof ItemTippedArkeniumTool || stack.getItem() instanceof ItemTippedContinuumTool || stack.getItem() instanceof ItemTippedGravititeTool
@@ -101,7 +90,7 @@ public class BlockGoldenOakNewLog extends BlockLog {
 
 	@Override
 	public int damageDropped(int meta) {
-		return 1;
+        return 1;
 	}
 
 	@Override

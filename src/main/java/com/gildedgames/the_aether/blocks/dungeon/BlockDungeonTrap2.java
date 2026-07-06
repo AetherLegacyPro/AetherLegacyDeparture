@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.blocks.dungeon;
 
 import com.gildedgames.the_aether.entities.hostile.EntityUligo;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -16,10 +15,9 @@ public class BlockDungeonTrap2 extends Block {
 
 	public BlockDungeonTrap2(Block pickBlock) {
 		super(Material.rock);
-
 		this.pickBlock = pickBlock;
 		this.setHardness(this.pickBlock != null ? -1F : -1F);
-		
+
 		if (pickBlock != null) {
 			this.pickBlock = pickBlock;
 			this.setResistance(6000000.0F);
@@ -40,9 +38,9 @@ public class BlockDungeonTrap2 extends Block {
 
 			world.playSoundEffect(x, y, z, "random.explode", 2.0F, world.rand.nextFloat() - world.rand.nextFloat() * 0.2F + 1.2F);
 		}
-				
+
 	}
-	
+
 	@Override
 	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
 		if (world.getBlockMetadata(x, y, z) == 0) {
@@ -54,17 +52,15 @@ public class BlockDungeonTrap2 extends Block {
 					}
 
 					return;
-				}					
+				}
 					entity.motionY = -4.0D;
 			} else {
-				if (entity instanceof EntityArrow)
-				{
-					if (entity.ticksExisted >= 1200)
-					{
+				if (entity instanceof EntityArrow) {
+					if (entity.ticksExisted >= 1200) {
 						entity.setDead();
 					}
 				}
-				
+
 				entity.motionY = -4.0D;
 			}
 
@@ -72,9 +68,8 @@ public class BlockDungeonTrap2 extends Block {
 		entity.motionY *= 0.005D;
 		}
 	}
-	
-	public AxisAlignedBB getCollisionBoundingBoxFromPool(World p_149668_1_, int p_149668_2_, int p_149668_3_, int p_149668_4_)
-    {
+
+	public AxisAlignedBB getCollisionBoundingBoxFromPool(World p_149668_1_, int p_149668_2_, int p_149668_3_, int p_149668_4_) {
         return null;
     }
 

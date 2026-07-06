@@ -3,7 +3,6 @@ package com.gildedgames.the_aether.entities.bosses.crystal_dragon;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import java.util.Random;
-
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
@@ -14,108 +13,86 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
-
 import com.gildedgames.the_aether.Aether;
 
 @SideOnly(Side.CLIENT)
-public class CrystalDragonRenderer extends RenderLiving
-{
+public class CrystalDragonRenderer extends RenderLiving {
     private static final ResourceLocation genesisDragonExplodingTextures = Aether.locate("textures/entities/crystal_dragon/crystal_dragon_exploding.png");
     private static final ResourceLocation genesisDragonCrystalBeamTextures = Aether.locate("textures/entities/crystal_dragon/genesis_endercrystal_beam.png");
     private static final ResourceLocation genesisDragonEyesTextures = Aether.locate("textures/entities/crystal_dragon/crystal_dragon_eyes.png");
     private static final ResourceLocation genesisDragonTextures = Aether.locate("textures/entities/crystal_dragon/crystal_dragon.png");
-    /** An instance of the dragon model in RenderDragon */
     protected CrystalDragonModel modelDragon;
 
-    public CrystalDragonRenderer()
-    {
+    public CrystalDragonRenderer() {
         super(new CrystalDragonModel(), 0.5F);
         this.modelDragon = (CrystalDragonModel)this.mainModel;
         this.setRenderPassModel(this.mainModel);
     }
 
-    protected void rotateCorpse(EntityCrystalDragon p_77043_1_, float p_77043_2_, float p_77043_3_, float p_77043_4_)
-    {
-        float f3 = (float)p_77043_1_.getMovementOffsets(7, p_77043_4_)[0];
-        float f4 = (float)(p_77043_1_.getMovementOffsets(5, p_77043_4_)[1] - p_77043_1_.getMovementOffsets(10, p_77043_4_)[1]);
+    protected void rotateCorpse(EntityCrystalDragon entityCrystalDragon, float p_77043_2_, float p_77043_3_, float p_77043_4_) {
+        float f3 = (float)entityCrystalDragon.getMovementOffsets(7, p_77043_4_)[0];
+        float f4 = (float)(entityCrystalDragon.getMovementOffsets(5, p_77043_4_)[1] - entityCrystalDragon.getMovementOffsets(10, p_77043_4_)[1]);
         GL11.glRotatef(-f3, 0.0F, 1.0F, 0.0F);
         GL11.glRotatef(f4 * 10.0F, 1.0F, 0.0F, 0.0F);
         GL11.glTranslatef(0.0F, 0.0F, 1.0F);
 
-        if (p_77043_1_.deathTime > 0)
-        {
-            float f5 = ((float)p_77043_1_.deathTime + p_77043_4_ - 1.0F) / 20.0F * 1.6F;
+        if (entityCrystalDragon.deathTime > 0) {
+            float f5 = ((float)entityCrystalDragon.deathTime + p_77043_4_ - 1.0F) / 20.0F * 1.6F;
             f5 = MathHelper.sqrt_float(f5);
 
-            if (f5 > 1.0F)
-            {
+            if (f5 > 1.0F) {
                 f5 = 1.0F;
             }
 
-            GL11.glRotatef(f5 * this.getDeathMaxRotation(p_77043_1_), 0.0F, 0.0F, 1.0F);
+            GL11.glRotatef(f5 * this.getDeathMaxRotation(entityCrystalDragon), 0.0F, 0.0F, 1.0F);
         }
     }
-    
+
     @Override
-    protected void preRenderCallback(EntityLivingBase dragon, float partialTickTime)
-    {
+    protected void preRenderCallback(EntityLivingBase dragon, float partialTickTime) {
     	GL11.glTranslated(0, 1.2D, 0);
         GL11.glScalef(0.85F, 0.85F, 0.85F);
     }
 
-    /**
-     * Renders the model in RenderLiving
-     */
-    protected void renderModel(EntityCrystalDragon p_77036_1_, float p_77036_2_, float p_77036_3_, float p_77036_4_, float p_77036_5_, float p_77036_6_, float p_77036_7_)
-    {
-        if (p_77036_1_.deathTicks > 0)
-        {
-            float f6 = (float)p_77036_1_.deathTicks / 200.0F;
+    protected void renderModel(EntityCrystalDragon entityCrystalDragon, float p_77036_2_, float p_77036_3_, float p_77036_4_, float p_77036_5_, float p_77036_6_, float p_77036_7_) {
+        if (entityCrystalDragon.deathTicks > 0) {
+            float f6 = (float)entityCrystalDragon.deathTicks / 200.0F;
             GL11.glDepthFunc(GL11.GL_LEQUAL);
             GL11.glEnable(GL11.GL_ALPHA_TEST);
             GL11.glAlphaFunc(GL11.GL_GREATER, f6);
             this.bindTexture(genesisDragonExplodingTextures);
-            this.mainModel.render(p_77036_1_, p_77036_2_, p_77036_3_, p_77036_4_, p_77036_5_, p_77036_6_, p_77036_7_);
+            this.mainModel.render(entityCrystalDragon, p_77036_2_, p_77036_3_, p_77036_4_, p_77036_5_, p_77036_6_, p_77036_7_);
             GL11.glAlphaFunc(GL11.GL_GREATER, 0.1F);
             GL11.glDepthFunc(GL11.GL_EQUAL);
         }
 
-        this.bindEntityTexture(p_77036_1_);
-        this.mainModel.render(p_77036_1_, p_77036_2_, p_77036_3_, p_77036_4_, p_77036_5_, p_77036_6_, p_77036_7_);
+        this.bindEntityTexture(entityCrystalDragon);
+        this.mainModel.render(entityCrystalDragon, p_77036_2_, p_77036_3_, p_77036_4_, p_77036_5_, p_77036_6_, p_77036_7_);
 
-        if (p_77036_1_.hurtTime > 0)
-        {
+        if (entityCrystalDragon.hurtTime > 0) {
             GL11.glDepthFunc(GL11.GL_EQUAL);
             GL11.glDisable(GL11.GL_TEXTURE_2D);
             GL11.glEnable(GL11.GL_BLEND);
             GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
             GL11.glColor4f(1.0F, 0.0F, 0.0F, 0.5F);
-            this.mainModel.render(p_77036_1_, p_77036_2_, p_77036_3_, p_77036_4_, p_77036_5_, p_77036_6_, p_77036_7_);
+            this.mainModel.render(entityCrystalDragon, p_77036_2_, p_77036_3_, p_77036_4_, p_77036_5_, p_77036_6_, p_77036_7_);
             GL11.glEnable(GL11.GL_TEXTURE_2D);
             GL11.glDisable(GL11.GL_BLEND);
             GL11.glDepthFunc(GL11.GL_LEQUAL);
         }
     }
 
-    /**
-     * Actually renders the given argument. This is a synthetic bridge method, always casting down its argument and then
-     * handing it off to a worker function which does the actual work. In all probabilty, the class Render is generic
-     * (Render<T extends Entity) and this method has signature public void func_76986_a(T entity, double d, double d1,
-     * double d2, float f, float f1). But JAD is pre 1.5 so doesn't do that.
-     */
-    public void doRender(EntityCrystalDragon p_76986_1_, double p_76986_2_, double p_76986_4_, double p_76986_6_, float p_76986_8_, float p_76986_9_)
-    {
-        
-        super.doRender(p_76986_1_, p_76986_2_, p_76986_4_, p_76986_6_, p_76986_8_, p_76986_9_);
+    public void doRender(EntityCrystalDragon entityCrystalDragon, double p_76986_2_, double p_76986_4_, double p_76986_6_, float p_76986_8_, float p_76986_9_) {
 
-        if (p_76986_1_.healingEnderCrystal != null)
-        {
-            float f2 = (float)p_76986_1_.healingEnderCrystal.innerRotation + p_76986_9_;
+        super.doRender(entityCrystalDragon, p_76986_2_, p_76986_4_, p_76986_6_, p_76986_8_, p_76986_9_);
+
+        if (entityCrystalDragon.healingEnderCrystal != null) {
+            float f2 = (float)entityCrystalDragon.healingEnderCrystal.innerRotation + p_76986_9_;
             float f3 = MathHelper.sin(f2 * 0.2F) / 2.0F + 0.5F;
             f3 = (f3 * f3 + f3) * 0.2F;
-            float f4 = (float)(p_76986_1_.healingEnderCrystal.posX - p_76986_1_.posX - (p_76986_1_.prevPosX - p_76986_1_.posX) * (double)(1.0F - p_76986_9_));
-            float f5 = (float)((double)f3 + p_76986_1_.healingEnderCrystal.posY - 1.0D - p_76986_1_.posY - (p_76986_1_.prevPosY - p_76986_1_.posY) * (double)(1.0F - p_76986_9_));
-            float f6 = (float)(p_76986_1_.healingEnderCrystal.posZ - p_76986_1_.posZ - (p_76986_1_.prevPosZ - p_76986_1_.posZ) * (double)(1.0F - p_76986_9_));
+            float f4 = (float)(entityCrystalDragon.healingEnderCrystal.posX - entityCrystalDragon.posX - (entityCrystalDragon.prevPosX - entityCrystalDragon.posX) * (double)(1.0F - p_76986_9_));
+            float f5 = (float)((double)f3 + entityCrystalDragon.healingEnderCrystal.posY - 1.0D - entityCrystalDragon.posY - (entityCrystalDragon.prevPosY - entityCrystalDragon.posY) * (double)(1.0F - p_76986_9_));
+            float f6 = (float)(entityCrystalDragon.healingEnderCrystal.posZ - entityCrystalDragon.posZ - (entityCrystalDragon.prevPosZ - entityCrystalDragon.posZ) * (double)(1.0F - p_76986_9_));
             float f7 = MathHelper.sqrt_float(f4 * f4 + f6 * f6);
             float f8 = MathHelper.sqrt_float(f4 * f4 + f5 * f5 + f6 * f6);
             GL11.glPushMatrix();
@@ -127,8 +104,8 @@ public class CrystalDragonRenderer extends RenderLiving
             GL11.glDisable(GL11.GL_CULL_FACE);
             this.bindTexture(genesisDragonCrystalBeamTextures);
             GL11.glShadeModel(GL11.GL_SMOOTH);
-            float f9 = 0.0F - ((float)p_76986_1_.ticksExisted + p_76986_9_) * 0.01F;
-            float f10 = MathHelper.sqrt_float(f4 * f4 + f5 * f5 + f6 * f6) / 32.0F - ((float)p_76986_1_.ticksExisted + p_76986_9_) * 0.01F;
+            float f9 = 0.0F - ((float)entityCrystalDragon.ticksExisted + p_76986_9_) * 0.01F;
+            float f10 = MathHelper.sqrt_float(f4 * f4 + f5 * f5 + f6 * f6) / 32.0F - ((float)entityCrystalDragon.ticksExisted + p_76986_9_) * 0.01F;
             tessellator.startDrawing(5);
             byte b0 = 8;
 
@@ -151,27 +128,20 @@ public class CrystalDragonRenderer extends RenderLiving
         }
     }
 
-    /**
-     * Returns the location of an entity's texture. Doesn't seem to be called unless you call Render.bindEntityTexture.
-     */
-    protected ResourceLocation getEntityTexture(EntityCrystalDragon p_110775_1_)
-    {
+    protected ResourceLocation getEntityTexture(EntityCrystalDragon entityCrystalDragon) {
         return genesisDragonTextures;
     }
 
-    protected void renderEquippedItems(EntityCrystalDragon p_77029_1_, float p_77029_2_)
-    {
-        super.renderEquippedItems(p_77029_1_, p_77029_2_);
+    protected void renderEquippedItems(EntityCrystalDragon entityCrystalDragon, float p_77029_2_) {
+        super.renderEquippedItems(entityCrystalDragon, p_77029_2_);
         Tessellator tessellator = Tessellator.instance;
 
-        if (p_77029_1_.deathTicks > 0)
-        {
+        if (entityCrystalDragon.deathTicks > 0) {
             RenderHelper.disableStandardItemLighting();
-            float f1 = ((float)p_77029_1_.deathTicks + p_77029_2_) / 200.0F;
+            float f1 = ((float)entityCrystalDragon.deathTicks + p_77029_2_) / 200.0F;
             float f2 = 0.0F;
 
-            if (f1 > 0.8F)
-            {
+            if (f1 > 0.8F) {
                 f2 = (f1 - 0.8F) / 0.2F;
             }
 
@@ -186,8 +156,7 @@ public class CrystalDragonRenderer extends RenderLiving
             GL11.glPushMatrix();
             GL11.glTranslatef(0.0F, -1.0F, -2.0F);
 
-            for (int i = 0; (float)i < (f1 + f1 * f1) / 2.0F * 60.0F; ++i)
-            {
+            for (int i = 0; (float)i < (f1 + f1 * f1) / 2.0F * 60.0F; ++i) {
                 GL11.glRotatef(random.nextFloat() * 360.0F, 1.0F, 0.0F, 0.0F);
                 GL11.glRotatef(random.nextFloat() * 360.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(random.nextFloat() * 360.0F, 0.0F, 0.0F, 1.0F);
@@ -219,22 +188,15 @@ public class CrystalDragonRenderer extends RenderLiving
         }
     }
 
-    /**
-     * Queries whether should render the specified pass or not.
-     */
-    protected int shouldRenderPass(EntityCrystalDragon p_77032_1_, int p_77032_2_, float p_77032_3_)
-    {
-        if (p_77032_2_ == 1)
-        {
+    protected int shouldRenderPass(EntityCrystalDragon entityCrystalDragon, int p_77032_2_, float p_77032_3_) {
+        if (p_77032_2_ == 1) {
             GL11.glDepthFunc(GL11.GL_LEQUAL);
         }
 
-        if (p_77032_2_ != 0)
-        {
+        if (p_77032_2_ != 0) {
             return -1;
         }
-        else
-        {
+        else {
             this.bindTexture(genesisDragonEyesTextures);
             GL11.glEnable(GL11.GL_BLEND);
             GL11.glDisable(GL11.GL_ALPHA_TEST);
@@ -251,71 +213,36 @@ public class CrystalDragonRenderer extends RenderLiving
         }
     }
 
-    /**
-     * Actually renders the given argument. This is a synthetic bridge method, always casting down its argument and then
-     * handing it off to a worker function which does the actual work. In all probabilty, the class Render is generic
-     * (Render<T extends Entity) and this method has signature public void func_76986_a(T entity, double d, double d1,
-     * double d2, float f, float f1). But JAD is pre 1.5 so doesn't do that.
-     */
-    public void doRender(EntityLiving p_76986_1_, double p_76986_2_, double p_76986_4_, double p_76986_6_, float p_76986_8_, float p_76986_9_)
-    {
-        this.doRender((EntityCrystalDragon)p_76986_1_, p_76986_2_, p_76986_4_, p_76986_6_, p_76986_8_, p_76986_9_);
+    public void doRender(EntityLiving entityCrystalDragon, double p_76986_2_, double p_76986_4_, double p_76986_6_, float p_76986_8_, float p_76986_9_) {
+        this.doRender((EntityCrystalDragon)entityCrystalDragon, p_76986_2_, p_76986_4_, p_76986_6_, p_76986_8_, p_76986_9_);
     }
 
-    /**
-     * Queries whether should render the specified pass or not.
-     */
-    protected int shouldRenderPass(EntityLivingBase p_77032_1_, int p_77032_2_, float p_77032_3_)
-    {
-        return this.shouldRenderPass((EntityCrystalDragon)p_77032_1_, p_77032_2_, p_77032_3_);
+    protected int shouldRenderPass(EntityLivingBase entityLivingBase, int p_77032_2_, float p_77032_3_) {
+        return this.shouldRenderPass((EntityCrystalDragon)entityLivingBase, p_77032_2_, p_77032_3_);
     }
 
-    protected void renderEquippedItems(EntityLivingBase p_77029_1_, float p_77029_2_)
-    {
-        this.renderEquippedItems((EntityCrystalDragon)p_77029_1_, p_77029_2_);
+    protected void renderEquippedItems(EntityLivingBase entityCrystalDragon, float p_77029_2_) {
+        this.renderEquippedItems((EntityCrystalDragon)entityCrystalDragon, p_77029_2_);
     }
 
-    protected void rotateCorpse(EntityLivingBase p_77043_1_, float p_77043_2_, float p_77043_3_, float p_77043_4_)
-    {
-        this.rotateCorpse((EntityCrystalDragon)p_77043_1_, p_77043_2_, p_77043_3_, p_77043_4_);
+    protected void rotateCorpse(EntityLivingBase entityCrystalDragon, float p_77043_2_, float p_77043_3_, float p_77043_4_) {
+        this.rotateCorpse((EntityCrystalDragon)entityCrystalDragon, p_77043_2_, p_77043_3_, p_77043_4_);
     }
 
-    /**
-     * Renders the model in RenderLiving
-     */
-    protected void renderModel(EntityLivingBase p_77036_1_, float p_77036_2_, float p_77036_3_, float p_77036_4_, float p_77036_5_, float p_77036_6_, float p_77036_7_)
-    {
-        this.renderModel((EntityCrystalDragon)p_77036_1_, p_77036_2_, p_77036_3_, p_77036_4_, p_77036_5_, p_77036_6_, p_77036_7_);
+    protected void renderModel(EntityLivingBase entityCrystalDragon, float p_77036_2_, float p_77036_3_, float p_77036_4_, float p_77036_5_, float p_77036_6_, float p_77036_7_) {
+        this.renderModel((EntityCrystalDragon)entityCrystalDragon, p_77036_2_, p_77036_3_, p_77036_4_, p_77036_5_, p_77036_6_, p_77036_7_);
     }
 
-    /**
-     * Actually renders the given argument. This is a synthetic bridge method, always casting down its argument and then
-     * handing it off to a worker function which does the actual work. In all probabilty, the class Render is generic
-     * (Render<T extends Entity) and this method has signature public void func_76986_a(T entity, double d, double d1,
-     * double d2, float f, float f1). But JAD is pre 1.5 so doesn't do that.
-     */
-    public void doRender(EntityLivingBase p_76986_1_, double p_76986_2_, double p_76986_4_, double p_76986_6_, float p_76986_8_, float p_76986_9_)
-    {
-        this.doRender((EntityCrystalDragon)p_76986_1_, p_76986_2_, p_76986_4_, p_76986_6_, p_76986_8_, p_76986_9_);
+    public void doRender(EntityLivingBase entityCrystalDragon, double p_76986_2_, double p_76986_4_, double p_76986_6_, float p_76986_8_, float p_76986_9_) {
+        this.doRender((EntityCrystalDragon)entityCrystalDragon, p_76986_2_, p_76986_4_, p_76986_6_, p_76986_8_, p_76986_9_);
     }
 
-    /**
-     * Returns the location of an entity's texture. Doesn't seem to be called unless you call Render.bindEntityTexture.
-     */
-    protected ResourceLocation getEntityTexture(Entity p_110775_1_)
-    {
-        return this.getEntityTexture((EntityCrystalDragon)p_110775_1_);
+    protected ResourceLocation getEntityTexture(Entity entity) {
+        return this.getEntityTexture((EntityCrystalDragon)entity);
     }
 
-    /**
-     * Actually renders the given argument. This is a synthetic bridge method, always casting down its argument and then
-     * handing it off to a worker function which does the actual work. In all probabilty, the class Render is generic
-     * (Render<T extends Entity) and this method has signature public void func_76986_a(T entity, double d, double d1,
-     * double d2, float f, float f1). But JAD is pre 1.5 so doesn't do that.
-     */
-    public void doRender(Entity p_76986_1_, double p_76986_2_, double p_76986_4_, double p_76986_6_, float p_76986_8_, float p_76986_9_)
-    {
-        this.doRender((EntityCrystalDragon)p_76986_1_, p_76986_2_, p_76986_4_, p_76986_6_, p_76986_8_, p_76986_9_);
+    public void doRender(Entity entityCrystalDragon, double p_76986_2_, double p_76986_4_, double p_76986_6_, float p_76986_8_, float p_76986_9_) {
+        this.doRender((EntityCrystalDragon)entityCrystalDragon, p_76986_2_, p_76986_4_, p_76986_6_, p_76986_8_, p_76986_9_);
     }
 
 

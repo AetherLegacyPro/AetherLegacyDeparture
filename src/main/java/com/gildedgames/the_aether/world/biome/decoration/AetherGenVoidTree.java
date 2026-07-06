@@ -1,25 +1,23 @@
 package com.gildedgames.the_aether.world.biome.decoration;
 
 import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
 
 public class AetherGenVoidTree extends WorldGenAbstractTree {
 
 	public AetherGenVoidTree(boolean p_i45448_1_) {
-		super(p_i45448_1_);
+        super(p_i45448_1_);
 	}
-	
+
 	@Override
 	public boolean generate(World world, Random random, int j, int k, int l) {
 		boolean cangen = true;
 
-		if (k - 11 <= world.getHeight() && k <= 30.0D) {	
-			
+		if (k - 11 <= world.getHeight() && k <= 30.0D) {
+
 			for (int x = 0; x < 1; ++x) {
 				world.setBlock(x + j, k, l, BlocksAether.void_log);
 				world.setBlock(x + j, k - 1, l, BlocksAether.void_log);

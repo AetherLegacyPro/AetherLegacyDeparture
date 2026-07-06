@@ -7,7 +7,6 @@ import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
@@ -15,7 +14,6 @@ public class PhoenixArrowRenderer extends Render {
 
     public PhoenixArrowRenderer() {
         super();
-
     }
 
     public void renderArrow(EntityPhoenixArrow var1, double var2, double var4, double var6, float var8, float var9) {

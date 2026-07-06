@@ -14,14 +14,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
-
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 
 public class ItemDragonSlayer extends ItemSword {
 
 	public float[] level = new float[]{8.0F, 8.0F, 8.0F, 8.0F, 8.0F};
-	
+
 	public ItemDragonSlayer() {
 		super(ToolMaterial.EMERALD);
 		this.setCreativeTab(AetherCreativeTabs.weapons);
@@ -30,13 +29,12 @@ public class ItemDragonSlayer extends ItemSword {
 
 	@Override
 	public Multimap<String, AttributeModifier> getItemAttributeModifiers() {
-		return null;
+        return null;
 	}
 
 	@Override
 	public Multimap<String, AttributeModifier> getAttributeModifiers(ItemStack stack) {
 		Multimap<String, AttributeModifier> multimap = HashMultimap.create();
-
 		if (stack.getItem() instanceof ItemDragonSlayer) {
 			multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(field_111210_e, "Weapon modifier", this.calculateIncrease(stack), 0));
 		}
@@ -59,7 +57,7 @@ public class ItemDragonSlayer extends ItemSword {
 			return level[0];
 		}
 	}
-	
+
 	@Override
     public boolean hitEntity(ItemStack itemstack, EntityLivingBase entityliving, EntityLivingBase entityliving1) {
         if (entityliving == null || entityliving1 == null) {
@@ -78,28 +76,28 @@ public class ItemDragonSlayer extends ItemSword {
     }
 
 	private boolean isBetween(int max, int origin, int min) {
-		return origin <= max && origin >= min ? true : false;
+        return origin <= max && origin >= min ? true : false;
 	}
 
 	@Override
 	public boolean getIsRepairable(ItemStack stack, ItemStack repairStack) {
-		return false;
+        return false;
 	}
-	
+
 	@Override
 	public float getDigSpeed(ItemStack itemstack, Block block, int meta) {
 		return super.getDigSpeed(itemstack, block, meta) * (2.0F * (float) itemstack.getItemDamage() / (float) itemstack.getMaxDamage() + 0.5F);
 	}
-	
+
 	@Override
 	public EnumRarity getRarity(ItemStack stack) {
-		return ItemsAether.aether_loot;
+        return ItemsAether.aether_loot;
 	}
-	
+
 	public boolean hasCustomEntity(final ItemStack stack) {
         return true;
     }
-    
+
     public Entity createEntity(final World world, final Entity location, final ItemStack itemstack) {
         return new EntityFireProofItemAether(world, location, itemstack);
     }

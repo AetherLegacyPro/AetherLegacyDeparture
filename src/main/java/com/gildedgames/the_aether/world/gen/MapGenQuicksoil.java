@@ -5,13 +5,12 @@ import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.MapGenBase;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
 
 public class MapGenQuicksoil extends MapGenBase {
 
 	@Override
-	public void func_151539_a(IChunkProvider provider, World p_151539_2_, int p_151539_3_, int p_151539_4_, Block[] blocks) {
+	public void func_151539_a(IChunkProvider provider, World world, int p_151539_3_, int p_151539_4_, Block[] blocks) {
 		if (this.rand.nextInt(10) == 0) {
 			for (int x = 3; x < 12; x++) {
 				for (int z = 3; z < 12; z++) {

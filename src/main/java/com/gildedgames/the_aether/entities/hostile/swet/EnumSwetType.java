@@ -5,7 +5,6 @@ public enum EnumSwetType {
     BLUE(), PURPLE(), POISON(), GOLDEN();
 
     EnumSwetType() {
-
     }
 
     public int getId() {

@@ -4,19 +4,16 @@ import net.minecraft.world.gen.feature.*;
 import net.minecraft.block.*;
 import net.minecraft.world.*;
 import java.util.*;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
-
 import net.minecraft.init.*;
 
-public class AetherGenGoldenFruitTree extends WorldGenAbstractTree
-{
+public class AetherGenGoldenFruitTree extends WorldGenAbstractTree {
     Block leaves;
     Block fruit;
     int fruitChance;
     int randHeight;
     boolean branches;
-    
+
     public AetherGenGoldenFruitTree(final Block leafID, final Block fruitMeta, final int fruitChance, final int heightWeight, final boolean branchFlag) {
         super(true);
         this.leaves = leafID;
@@ -25,7 +22,7 @@ public class AetherGenGoldenFruitTree extends WorldGenAbstractTree
         this.randHeight = heightWeight;
         this.branches = branchFlag;
     }
-    
+
     public boolean generate(final World world, final Random random, final int x, final int y, final int z) {
         boolean cangen = true;
         final int height = random.nextInt(this.randHeight) + (this.branches ? 8 : 4);
@@ -229,13 +226,13 @@ public class AetherGenGoldenFruitTree extends WorldGenAbstractTree
         }
         return true;
     }
-    
+
     public void setBlockAirCheck(final World world, final int x, final int y, final int z, final Block blockID) {
         if (world.getBlock(x, y, z) == Blocks.air) {
             world.setBlock(x, y, z, blockID);
         }
     }
-    
+
     public void setBlockAirCheck(final World world, final int x, final int y, final int z, final Block blockID, final Block leaveID) {
         if (world.getBlock(x, y, z) == Blocks.air) {
             if (leaveID == Blocks.air) {

@@ -6,7 +6,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
-
 import com.gildedgames.the_aether.items.ItemsAether;
 
 public class EntityDartPoison extends EntityDartBase {
@@ -28,12 +27,9 @@ public class EntityDartPoison extends EntityDartBase {
     public void onDartHit(MovingObjectPosition movingobjectposition) {
         super.onDartHit(movingobjectposition);
 
-        if (!worldObj.isRemote)
-        {
-            if (movingobjectposition.entityHit != null)
-            {
-                if (movingobjectposition.entityHit instanceof EntityLivingBase)
-                {
+        if (!worldObj.isRemote) {
+            if (movingobjectposition.entityHit != null) {
+                if (movingobjectposition.entityHit instanceof EntityLivingBase) {
                     ((EntityLivingBase) movingobjectposition.entityHit).addPotionEffect(new EffectInebriation(PotionInebriation.inebriation.id, 500, 0));
                 }
             }

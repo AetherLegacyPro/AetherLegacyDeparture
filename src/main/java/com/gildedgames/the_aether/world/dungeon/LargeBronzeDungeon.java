@@ -3,7 +3,6 @@ package com.gildedgames.the_aether.world.dungeon;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
-
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.tileentity.TileEntitySkyrootChest;
 import com.gildedgames.the_aether.world.util.RandomTracker;
@@ -13,7 +12,6 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityMobSpawner;
 import net.minecraft.world.World;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.entities.bosses.slider.EntityEnhancedSlider;
 import com.gildedgames.the_aether.world.dungeon.util.AetherDungeon;
@@ -25,44 +23,36 @@ public class LargeBronzeDungeon extends AetherDungeon {
 	private int roomCount;
 
 	public LargeBronzeDungeon() {
-		needsCorridor = false;
+        needsCorridor = false;
 	}
 
 	@Override
 	public boolean generate(World world, Random random, int i, int j, int k) {
 		replaceAir = true;
 		replaceSolid = true;
-
 		roomMaximum = random.nextInt(2) + 2;
 		roomCount = 0;
-
 		generateBossRoom(world, random, i, j, k);
-
 		return true;
 	}
 
-	public boolean generateBossRoom(World world, Random random, int i, int j, int k)
-	{
+	public boolean generateBossRoom(World world, Random random, int i, int j, int k) {
 		if (!isBoxSolid(world, new PositionData(i, j - 3, k), new PositionData(16, 18, 16)) || !isBoxSolid(world, new PositionData(i + 20, j, k + 2), new PositionData(12, 12, 12))) {
-			return false;													
+			return false;
 		}
 
 		RandomTracker randomTracker = new RandomTracker();
 
-		if (randomTracker.testRandom(random,25) != 0)
-		{
-			if (randomTracker.testRandom(random,50) != 0)
-			{
+		if (randomTracker.testRandom(random,25) != 0) {
+			if (randomTracker.testRandom(random,50) != 0) {
 				return false;
 			}
 		}
 
 		setBlocks(this.lockedBlock(), this.lockedLightBlock(), 15);
-
 		addHollowBox(world, random, new PositionData(i - 1, j - 1, k - 1), new PositionData(17, 13, 17));
 		addHollowBox(world, random, new PositionData(i, j, k), new PositionData(17, 13, 17));
 		addHollowBox(world, random, new PositionData(i, j, k), new PositionData(16, 12, 16));
-
 		addHollowBox(world, random, new PositionData(i + 6, j - 2, k + 6), new PositionData(4, 3, 4));
 
 		EntityEnhancedSlider slider = new EntityEnhancedSlider(world);
@@ -75,26 +65,21 @@ public class LargeBronzeDungeon extends AetherDungeon {
 
 		world.setBlock(i + 7, j - 1, k + 7, BlocksAether.treasure_chest);
         world.setBlock(i + 8, j - 1, k + 8, BlocksAether.treasure_chest);
-		
 		world.setBlock(i, j, k, setRandomBlock(world, random));
-		
 		generateEmptyRoom(world, random, i, j, k);
 
 		return true;
 	}
 
-	public boolean generateEmptyRoom(World world, Random random, int i, int j, int k)
-	{
+	public boolean generateEmptyRoom(World world, Random random, int i, int j, int k) {
 		int x = i;
 		int y = j;
 		int z = k;
 
 		int rooms = random.nextInt(4);
 
-		switch (rooms)
-		{
-			case 0:
-			{
+		switch (rooms) {
+			case 0: {
 				//EAST
 				x = i + 20;
 				y = j;
@@ -106,9 +91,7 @@ public class LargeBronzeDungeon extends AetherDungeon {
 
 				setBlocks(this.mainBlock(), this.mainLightBlock(), 20);
 				addHollowBox(world, random, new PositionData(x, y, z), new PositionData(12, 12, 12));
-
 				setBlocks(this.fillerBlock(), this.fillerBlock1(), 5);
-
 				addSquareTube(world, random, new PositionData(x - 5, y, z + 3), new PositionData(6, 6, 6), 0);
 
 				for (int p = x + 2; p < x + 10; p += 3) {
@@ -120,8 +103,7 @@ public class LargeBronzeDungeon extends AetherDungeon {
 
 				break;
 			}
-			case 1:
-			{
+			case 1: {
 				//WEST
 				x = i - 16;
 				y = j;
@@ -133,9 +115,7 @@ public class LargeBronzeDungeon extends AetherDungeon {
 
 				setBlocks(this.mainBlock(), this.mainLightBlock(), 20);
 				addHollowBox(world, random, new PositionData(x, y, z), new PositionData(12, 12, 12));
-
 				setBlocks(this.fillerBlock(), this.fillerBlock1(), 5);
-
 				addSquareTube(world, random, new PositionData(x + 11, y, z + 3), new PositionData(6, 6, 6), 0);
 
 				for (int p = x + 2; p < x + 10; p += 3) {
@@ -144,7 +124,7 @@ public class LargeBronzeDungeon extends AetherDungeon {
 						world.setBlock(p, j, q, BlocksAether.carved_trap);
 					}
 				}
-				
+
 				for (int p = x + 3; p < x + 7; p += 4) {
 					for (int q = z + 3; q < z + 9; q += 2)   {
 						world.setBlock(p, j, q, setRandomBlock(world, random));
@@ -154,8 +134,7 @@ public class LargeBronzeDungeon extends AetherDungeon {
 
 				break;
 			}
-			case 2:
-			{
+			case 2: {
 				//SOUTH
 				x = i + 2;
 				y = j;
@@ -167,9 +146,7 @@ public class LargeBronzeDungeon extends AetherDungeon {
 
 				setBlocks(this.mainBlock(), this.mainLightBlock(), 20);
 				addHollowBox(world, random, new PositionData(x, y, z), new PositionData(12, 12, 12));
-
 				setBlocks(this.fillerBlock(), this.fillerBlock1(), 5);
-
 				addSquareTube(world, random, new PositionData(x + 3, y, z - 5), new PositionData(6, 6, 6), 2);
 
 				for (int p = x + 2; p < x + 10; p += 3) {
@@ -181,8 +158,7 @@ public class LargeBronzeDungeon extends AetherDungeon {
 
 				break;
 			}
-			case 3:
-			{
+			case 3: {
 				//NORTH
 				x = i + 2;
 				y = j;
@@ -194,9 +170,7 @@ public class LargeBronzeDungeon extends AetherDungeon {
 
 				setBlocks(this.mainBlock(), this.mainLightBlock(), 20);
 				addHollowBox(world, random, new PositionData(x, y, z), new PositionData(12, 12, 12));
-
 				setBlocks(this.fillerBlock(), this.fillerBlock1(), 5);
-
 				addSquareTube(world, random, new PositionData(x + 3, y, z + 11), new PositionData(6, 6, 6), 2);
 
 				for (int p = x + 2; p < x + 10; p += 3) {
@@ -209,23 +183,19 @@ public class LargeBronzeDungeon extends AetherDungeon {
 			}
 		}
 
-		if ((!determineRoomPosition(world, random, new PositionData(x, y, z)) && roomCount == 0))
-		{
+		if ((!determineRoomPosition(world, random, new PositionData(x, y, z)) && roomCount == 0)) {
 			return false;
 		}
 
-		if (needsCorridor)
-		{
+		if (needsCorridor) {
 			endCorridor(world, random, new PositionData(x, y, z));
 		}
 
 		return true;
 	}
 
-	public boolean determineRoomPosition(World world, Random random, PositionData pos)
-	{
-		if (roomCount >= roomMaximum)
-		{
+	public boolean determineRoomPosition(World world, Random random, PositionData pos) {
+		if (roomCount >= roomMaximum) {
 			this.needsCorridor = true;
 			return true;
 		}
@@ -235,64 +205,52 @@ public class LargeBronzeDungeon extends AetherDungeon {
 		sides.add(2);
 		sides.add(3);
 		sides.add(4);
-
 		Collections.shuffle(sides);
 
-		if (generateRoomWithSide(world, random, pos, sides.get(0)))
-		{
+		if (generateRoomWithSide(world, random, pos, sides.get(0))) {
 			return true;
 		}
-		else if (generateRoomWithSide(world, random, pos, sides.get(1)))
-		{
+		else if (generateRoomWithSide(world, random, pos, sides.get(1))) {
 			return true;
 		}
-		else if (generateRoomWithSide(world, random, pos, sides.get(2)))
-		{
+		else if (generateRoomWithSide(world, random, pos, sides.get(2))) {
 			return true;
 		}
-		else if (generateRoomWithSide(world, random, pos, sides.get(3)))
-		{
+		else if (generateRoomWithSide(world, random, pos, sides.get(3))) {
 			return true;
 		}
-		else
-		{
+		else {
 			this.needsCorridor = true;
 			return false;
 		}
 	}
 
-	public boolean generateRoomWithSide(World world, Random random, PositionData pos, int switchCase)
-	{
+	public boolean generateRoomWithSide(World world, Random random, PositionData pos, int switchCase) {
 		int x = pos.getX();
 		int y = pos.getY();
 		int z = pos.getZ();
 		int dir = 0;
 
-		switch (switchCase)
-		{
-			case 1:
-			{
+		switch (switchCase) {
+			case 1: {
 				x += 16;
 				z += 0;
 				dir = 0;
 				break;
 			}
-			case 2:
-			{
+			case 2: {
 				x += 0;
 				z += 16;
 				dir = 1;
 				break;
 			}
-			case 3:
-			{
+			case 3: {
 				x -= 16;
 				z += 0;
 				dir = 2;
 				break;
 			}
-			case 4:
-			{
+			case 4:{
 				x += 0;
 				z -= 16;
 				dir = 3;
@@ -313,7 +271,6 @@ public class LargeBronzeDungeon extends AetherDungeon {
 		}
 
 		setBlocks(this.mainBlock(), this.mainLightBlock(), 20);
-
 		addHollowBox(world, random, new PositionData(x, y, z), new PositionData(12, 8, 12));
 
 		for (int p = x; p < x + 12; p++) {
@@ -337,7 +294,7 @@ public class LargeBronzeDungeon extends AetherDungeon {
 		addPlaneY(world, random, new PositionData(x + 4, y + 1, z + 4), new PositionData(4, 0, 4));
 		int type = random.nextInt(2);
 		int p = x + 5 + random.nextInt(2);
-		int q = z +  5 + random.nextInt(2); 
+		int q = z +  5 + random.nextInt(2);
 
 		switch (type) {
 			case 0: {
@@ -358,77 +315,77 @@ public class LargeBronzeDungeon extends AetherDungeon {
 					for (p = 0; p < 3 + random.nextInt(5); p++) {
 						chestt.setInventorySlotContents(random.nextInt(chestt.getSizeInventory()), this.getNormalLoot(random));
 					}
-					// - -	
+					// - -
 					world.setBlock(x + 4, y + 6, z + 4, BlocksAether.ancient_carved_stone_wall);
-										
+
 					world.setBlock(x + 3, y + 1, z + 3, BlocksAether.ancient_carved_stone);
 					world.setBlock(x + 4, y + 1, z + 3, BlocksAether.ancient_carved_stone);
 					world.setBlock(x + 3, y + 1, z + 4, BlocksAether.ancient_carved_stone);
 					world.setBlock(x + 3, y + 2, z + 3, BlocksAether.ancient_carved_stone_wall);
 					world.setBlock(x + 4, y + 2, z + 3, BlocksAether.ancient_carved_stone_wall);
 					world.setBlock(x + 3, y + 2, z + 4, BlocksAether.ancient_carved_stone_wall);
-					
+
 					// + -
 					world.setBlock(x + 7, y + 6, z + 4, BlocksAether.ancient_carved_stone_wall);
-					
+
 					world.setBlock(x + 8, y + 1, z + 3, BlocksAether.ancient_carved_stone);
 					world.setBlock(x + 7, y + 1, z + 3, BlocksAether.ancient_carved_stone);
-					world.setBlock(x + 8, y + 1, z + 4, BlocksAether.ancient_carved_stone);				
+					world.setBlock(x + 8, y + 1, z + 4, BlocksAether.ancient_carved_stone);
 					world.setBlock(x + 8, y + 2, z + 3, BlocksAether.ancient_carved_stone_wall);
 					world.setBlock(x + 7, y + 2, z + 3, BlocksAether.ancient_carved_stone_wall);
 					world.setBlock(x + 8, y + 2, z + 4, BlocksAether.ancient_carved_stone_wall);
-					
+
 					// - +
 					world.setBlock(x + 4, y + 6, z + 7, BlocksAether.ancient_carved_stone_wall);
-					
+
 					world.setBlock(x + 3, y + 1, z + 8, BlocksAether.ancient_carved_stone);
 					world.setBlock(x + 3, y + 1, z + 7, BlocksAether.ancient_carved_stone);
-					world.setBlock(x + 4, y + 1, z + 8, BlocksAether.ancient_carved_stone);					
+					world.setBlock(x + 4, y + 1, z + 8, BlocksAether.ancient_carved_stone);
 					world.setBlock(x + 3, y + 2, z + 8, BlocksAether.ancient_carved_stone_wall);
 					world.setBlock(x + 3, y + 2, z + 7, BlocksAether.ancient_carved_stone_wall);
 					world.setBlock(x + 4, y + 2, z + 8, BlocksAether.ancient_carved_stone_wall);
-					
+
 					// + +
 					world.setBlock(x + 7, y + 6, z + 7, BlocksAether.ancient_carved_stone_wall);
-					
+
 					world.setBlock(x + 8, y + 1, z + 8, BlocksAether.ancient_carved_stone);
 					world.setBlock(x + 7, y + 1, z + 8, BlocksAether.ancient_carved_stone);
-					world.setBlock(x + 8, y + 1, z + 7, BlocksAether.ancient_carved_stone);					
+					world.setBlock(x + 8, y + 1, z + 7, BlocksAether.ancient_carved_stone);
 					world.setBlock(x + 8, y + 2, z + 8, BlocksAether.ancient_carved_stone_wall);
 					world.setBlock(x + 7, y + 2, z + 8, BlocksAether.ancient_carved_stone_wall);
 					world.setBlock(x + 8, y + 2, z + 7, BlocksAether.ancient_carved_stone_wall);
-					
+
 					world.setBlock(x + 1, y + 1, z + 1, BlocksAether.ancient_carved_stone_wall);
 					world.setBlock(x + 1, y + 2, z + 1, BlocksAether.ancient_carved_stone_wall);
 					world.setBlock(x + 1, y + 3, z + 1, BlocksAether.ancient_carved_stone_wall);
 					world.setBlock(x + 1, y + 4, z + 1, BlocksAether.ancient_carved_stone_wall);
 					world.setBlock(x + 1, y + 5, z + 1, BlocksAether.ancient_carved_stone_wall);
 					world.setBlock(x + 1, y + 6, z + 1, BlocksAether.ancient_carved_stone_wall);
-					
-					world.setBlock(x + 9, y + 1, z + 1, BlocksAether.ancient_carved_stone_wall);					
+
+					world.setBlock(x + 9, y + 1, z + 1, BlocksAether.ancient_carved_stone_wall);
 					world.setBlock(x + 9, y + 2, z + 1, BlocksAether.ancient_carved_stone_wall);
 					world.setBlock(x + 9, y + 3, z + 1, BlocksAether.ancient_carved_stone_wall);
 					world.setBlock(x + 9, y + 4, z + 1, BlocksAether.ancient_carved_stone_wall);
 					world.setBlock(x + 9, y + 5, z + 1, BlocksAether.ancient_carved_stone_wall);
-					world.setBlock(x + 9, y + 6, z + 1, BlocksAether.ancient_carved_stone_wall);	
-					
+					world.setBlock(x + 9, y + 6, z + 1, BlocksAether.ancient_carved_stone_wall);
+
 					world.setBlock(x + 9, y + 1, z + 9, BlocksAether.ancient_carved_stone_wall);
 					world.setBlock(x + 9, y + 2, z + 9, BlocksAether.ancient_carved_stone_wall);
 					world.setBlock(x + 9, y + 3, z + 9, BlocksAether.ancient_carved_stone_wall);
 					world.setBlock(x + 9, y + 4, z + 9, BlocksAether.ancient_carved_stone_wall);
 					world.setBlock(x + 9, y + 5, z + 9, BlocksAether.ancient_carved_stone_wall);
-					world.setBlock(x + 9, y + 6, z + 9, BlocksAether.ancient_carved_stone_wall);	
-					
+					world.setBlock(x + 9, y + 6, z + 9, BlocksAether.ancient_carved_stone_wall);
+
 					world.setBlock(x + 1, y + 1, z + 9, BlocksAether.ancient_carved_stone_wall);
 					world.setBlock(x + 1, y + 2, z + 9, BlocksAether.ancient_carved_stone_wall);
 					world.setBlock(x + 1, y + 3, z + 9, BlocksAether.ancient_carved_stone_wall);
 					world.setBlock(x + 1, y + 4, z + 9, BlocksAether.ancient_carved_stone_wall);
 					world.setBlock(x + 1, y + 5, z + 9, BlocksAether.ancient_carved_stone_wall);
 					world.setBlock(x + 1, y + 6, z + 9, BlocksAether.ancient_carved_stone_wall);
-					
+
 					world.setBlock(x + 7, y + 5, z + 7, Blocks.mob_spawner);
 			          TileEntityMobSpawner tileentitymobspawner = (TileEntityMobSpawner)world.getTileEntity(x + 7, y + 5, z + 7);
-			            
+
 			           if (tileentitymobspawner != null)
 			           {
 			            tileentitymobspawner.func_145881_a().setEntityName("aether_legacy.cyro");
@@ -445,78 +402,78 @@ public class LargeBronzeDungeon extends AetherDungeon {
 					for (p = 0; p < 3 + random.nextInt(5); p++) {
 						chest.setInventorySlotContents(random.nextInt(chest.getSizeInventory()), this.getNormalLoot(random));
 					}
-					
-					// - -	
+
+					// - -
 					world.setBlock(x + 4, y + 6, z + 4, BlocksAether.ancient_carved_stone_wall);
-										
+
 					world.setBlock(x + 3, y + 1, z + 3, BlocksAether.ancient_carved_stone);
 					world.setBlock(x + 4, y + 1, z + 3, BlocksAether.ancient_carved_stone);
 					world.setBlock(x + 3, y + 1, z + 4, BlocksAether.ancient_carved_stone);
 					world.setBlock(x + 3, y + 2, z + 3, BlocksAether.ancient_carved_stone_wall);
 					world.setBlock(x + 4, y + 2, z + 3, BlocksAether.ancient_carved_stone_wall);
 					world.setBlock(x + 3, y + 2, z + 4, BlocksAether.ancient_carved_stone_wall);
-					
+
 					// + -
 					world.setBlock(x + 7, y + 6, z + 4, BlocksAether.ancient_carved_stone_wall);
-					
+
 					world.setBlock(x + 8, y + 1, z + 3, BlocksAether.ancient_carved_stone);
 					world.setBlock(x + 7, y + 1, z + 3, BlocksAether.ancient_carved_stone);
-					world.setBlock(x + 8, y + 1, z + 4, BlocksAether.ancient_carved_stone);				
+					world.setBlock(x + 8, y + 1, z + 4, BlocksAether.ancient_carved_stone);
 					world.setBlock(x + 8, y + 2, z + 3, BlocksAether.ancient_carved_stone_wall);
 					world.setBlock(x + 7, y + 2, z + 3, BlocksAether.ancient_carved_stone_wall);
 					world.setBlock(x + 8, y + 2, z + 4, BlocksAether.ancient_carved_stone_wall);
-					
+
 					// - +
 					world.setBlock(x + 4, y + 6, z + 7, BlocksAether.ancient_carved_stone_wall);
-					
+
 					world.setBlock(x + 3, y + 1, z + 8, BlocksAether.ancient_carved_stone);
 					world.setBlock(x + 3, y + 1, z + 7, BlocksAether.ancient_carved_stone);
-					world.setBlock(x + 4, y + 1, z + 8, BlocksAether.ancient_carved_stone);					
+					world.setBlock(x + 4, y + 1, z + 8, BlocksAether.ancient_carved_stone);
 					world.setBlock(x + 3, y + 2, z + 8, BlocksAether.ancient_carved_stone_wall);
 					world.setBlock(x + 3, y + 2, z + 7, BlocksAether.ancient_carved_stone_wall);
 					world.setBlock(x + 4, y + 2, z + 8, BlocksAether.ancient_carved_stone_wall);
-					
+
 					// + +
 					world.setBlock(x + 7, y + 6, z + 7, BlocksAether.ancient_carved_stone_wall);
-					
+
 					world.setBlock(x + 8, y + 1, z + 8, BlocksAether.ancient_carved_stone);
 					world.setBlock(x + 7, y + 1, z + 8, BlocksAether.ancient_carved_stone);
-					world.setBlock(x + 8, y + 1, z + 7, BlocksAether.ancient_carved_stone);					
+					world.setBlock(x + 8, y + 1, z + 7, BlocksAether.ancient_carved_stone);
 					world.setBlock(x + 8, y + 2, z + 8, BlocksAether.ancient_carved_stone_wall);
 					world.setBlock(x + 7, y + 2, z + 8, BlocksAether.ancient_carved_stone_wall);
 					world.setBlock(x + 8, y + 2, z + 7, BlocksAether.ancient_carved_stone_wall);
-					
+
 					world.setBlock(x + 1, y + 1, z + 1, BlocksAether.ancient_carved_stone_wall);
 					world.setBlock(x + 1, y + 2, z + 1, BlocksAether.ancient_carved_stone_wall);
 					world.setBlock(x + 1, y + 3, z + 1, BlocksAether.ancient_carved_stone_wall);
 					world.setBlock(x + 1, y + 4, z + 1, BlocksAether.ancient_carved_stone_wall);
 					world.setBlock(x + 1, y + 5, z + 1, BlocksAether.ancient_carved_stone_wall);
 					world.setBlock(x + 1, y + 6, z + 1, BlocksAether.ancient_carved_stone_wall);
-					
-					world.setBlock(x + 11, y + 1, z + 1, BlocksAether.ancient_carved_stone_wall);					
+
+					world.setBlock(x + 11, y + 1, z + 1, BlocksAether.ancient_carved_stone_wall);
 					world.setBlock(x + 11, y + 2, z + 1, BlocksAether.ancient_carved_stone_wall);
 					world.setBlock(x + 11, y + 3, z + 1, BlocksAether.ancient_carved_stone_wall);
 					world.setBlock(x + 11, y + 4, z + 1, BlocksAether.ancient_carved_stone_wall);
 					world.setBlock(x + 11, y + 5, z + 1, BlocksAether.ancient_carved_stone_wall);
-					world.setBlock(x + 11, y + 6, z + 1, BlocksAether.ancient_carved_stone_wall);	
-					
+					world.setBlock(x + 11, y + 6, z + 1, BlocksAether.ancient_carved_stone_wall);
+
 					world.setBlock(x + 11, y + 1, z + 11, BlocksAether.ancient_carved_stone_wall);
 					world.setBlock(x + 11, y + 2, z + 11, BlocksAether.ancient_carved_stone_wall);
 					world.setBlock(x + 11, y + 3, z + 11, BlocksAether.ancient_carved_stone_wall);
 					world.setBlock(x + 11, y + 4, z + 11, BlocksAether.ancient_carved_stone_wall);
 					world.setBlock(x + 11, y + 5, z + 11, BlocksAether.ancient_carved_stone_wall);
-					world.setBlock(x + 11, y + 6, z + 11, BlocksAether.ancient_carved_stone_wall);	
-					
+					world.setBlock(x + 11, y + 6, z + 11, BlocksAether.ancient_carved_stone_wall);
+
 					world.setBlock(x + 1, y + 1, z + 11, BlocksAether.ancient_carved_stone_wall);
 					world.setBlock(x + 1, y + 2, z + 11, BlocksAether.ancient_carved_stone_wall);
 					world.setBlock(x + 1, y + 3, z + 11, BlocksAether.ancient_carved_stone_wall);
 					world.setBlock(x + 1, y + 4, z + 11, BlocksAether.ancient_carved_stone_wall);
 					world.setBlock(x + 1, y + 5, z + 11, BlocksAether.ancient_carved_stone_wall);
 					world.setBlock(x + 1, y + 6, z + 11, BlocksAether.ancient_carved_stone_wall);
-									
+
 					world.setBlock(x + 7, y + 5, z + 7, Blocks.mob_spawner);
 			          TileEntityMobSpawner tileentitymobspawnerr = (TileEntityMobSpawner)world.getTileEntity(x + 7, y + 5, z + 7);
-			            
+
 			           if (tileentitymobspawnerr != null)
 			           {
 			            tileentitymobspawnerr.func_145881_a().setEntityName("aether_legacy.cyro");
@@ -549,16 +506,14 @@ public class LargeBronzeDungeon extends AetherDungeon {
 
 		roomCount++;
 
-		if(!determineRoomPosition(world, random,  new PositionData(x, y, z)))
-		{
+		if(!determineRoomPosition(world, random,  new PositionData(x, y, z))) {
 			return false;
 		}
 
 		return determineRoomPosition(world, random, new PositionData(x, y, z));
 	}
 
-	public boolean endCorridor(World world, Random random, PositionData pos)
-	{
+	public boolean endCorridor(World world, Random random, PositionData pos) {
 		ArrayList<Integer> sides = new ArrayList<>();
 		sides.add(1);
 		sides.add(2);
@@ -567,41 +522,32 @@ public class LargeBronzeDungeon extends AetherDungeon {
 
 		Collections.shuffle(sides);
 
-		if (generateEndCorridor(world, random, pos, sides.get(0)))
-		{
+		if (generateEndCorridor(world, random, pos, sides.get(0))) {
 			return true;
 		}
-		else if (generateEndCorridor(world, random, pos, sides.get(1)))
-		{
+		else if (generateEndCorridor(world, random, pos, sides.get(1))) {
 			return true;
 		}
-		else if (generateEndCorridor(world, random, pos, sides.get(2)))
-		{
+		else if (generateEndCorridor(world, random, pos, sides.get(2))) {
 			return true;
 		}
-		else if (generateEndCorridor(world, random, pos, sides.get(3)))
-		{
+		else if (generateEndCorridor(world, random, pos, sides.get(3))) {
 			return true;
 		}
-		else
-		{
+		else {
 			return false;
 		}
 	}
 
-	public boolean generateEndCorridor(World world, Random random, PositionData pos, int switchCase)
-	{
-		if (!this.needsCorridor)
-		{
+	public boolean generateEndCorridor(World world, Random random, PositionData pos, int switchCase) {
+		if (!this.needsCorridor) {
 			return false;
 		}
 
 		replaceAir = false;
 
-		switch (switchCase)
-		{
-			case 1:
-			{
+		switch (switchCase) {
+			case 1: {
 				//EAST
 
 				boolean tunnelling = true;
@@ -613,41 +559,34 @@ public class LargeBronzeDungeon extends AetherDungeon {
 				x += 11;
 				z += 3;
 
-				if (!isBoxSolid(world, new PositionData(x + 1, y, z), new PositionData(2, 8, 6)))
-				{
+				if (!isBoxSolid(world, new PositionData(x + 1, y, z), new PositionData(2, 8, 6))) {
 					return false;
 				}
 
-				while(tunnelling)
-				{
-					if(isBoxEmpty(world, new PositionData(x, y, z), new PositionData(1, 8, 6)))
-					{
+				while(tunnelling) {
+					if(isBoxEmpty(world, new PositionData(x, y, z), new PositionData(1, 8, 6))) {
 						tunnelling = false;
 					}
 
 					if (hasBlock(world, new PositionData(x + 1, y, z), new PositionData(2, 8, 6), BlocksAether.ancient_carved_stone)
-							|| hasBlock(world, new PositionData(x + 1, y, z), new PositionData(2, 8, 6), BlocksAether.locked_ancient_carved_stone))
-					{
+							|| hasBlock(world, new PositionData(x + 1, y, z), new PositionData(2, 8, 6), BlocksAether.locked_ancient_carved_stone)) {
 						tunnelling = false;
 					}
 
-					if (x - pos.getX() > 100)
-					{
+					if (x - pos.getX() > 100) {
 						maxLength = true;
 						tunnelling = false;
 					}
 
 					setBlocks(this.fillerBlock(), this.fillerBlock1(), 5);
 					addPlaneX(world, random, new PositionData(x, y, z), new PositionData(0, 8, 6));
-
 					setBlocks(Blocks.air, Blocks.air, 1);
 					addPlaneX(world, random, new PositionData(x, y + 1, z + 1), new PositionData(0, 6, 4));
 
 					x++;
 				}
 
-				if (maxLength)
-				{
+				if (maxLength) {
 					return false;
 				}
 
@@ -655,8 +594,7 @@ public class LargeBronzeDungeon extends AetherDungeon {
 
 				return true;
 			}
-			case 2:
-			{
+			case 2: {
 				//WEST
 
 				boolean tunnelling = true;
@@ -668,50 +606,41 @@ public class LargeBronzeDungeon extends AetherDungeon {
 				x -= 0;
 				z += 3;
 
-				if (!isBoxSolid(world, new PositionData(x - 1, y, z), new PositionData(1, 8, 6)))
-				{
+				if (!isBoxSolid(world, new PositionData(x - 1, y, z), new PositionData(1, 8, 6))) {
 					return false;
 				}
 
-				while(tunnelling)
-				{
-					if(isBoxEmpty(world, new PositionData(x, y, z), new PositionData(1, 8, 6)))
-					{
+				while(tunnelling) {
+					if(isBoxEmpty(world, new PositionData(x, y, z), new PositionData(1, 8, 6))) {
 						tunnelling = false;
 					}
 
 					if (hasBlock(world, new PositionData(x - 1, y, z), new PositionData(1, 8, 6), BlocksAether.ancient_carved_stone)
-							|| hasBlock(world, new PositionData(x - 1, y, z), new PositionData(1, 8, 6), BlocksAether.locked_ancient_carved_stone))
-					{
+                         || hasBlock(world, new PositionData(x - 1, y, z), new PositionData(1, 8, 6), BlocksAether.locked_ancient_carved_stone)) {
 						tunnelling = false;
 					}
 
-					if (pos.getX() - x > 100)
-					{
+					if (pos.getX() - x > 100) {
 						maxLength = true;
 						tunnelling = false;
 					}
 
 					setBlocks(this.fillerBlock(), this.fillerBlock1(), 5);
 					addPlaneX(world, random, new PositionData(x, y, z), new PositionData(0, 8, 6));
-
 					setBlocks(Blocks.air, Blocks.air, 1);
 					addPlaneX(world, random, new PositionData(x, y + 1, z + 1), new PositionData(0, 6, 4));
 
 					x--;
 				}
 
-				if (maxLength)
-				{
+				if (maxLength) {
 					return false;
 				}
 
 				this.needsCorridor = false;
-
 				return true;
 			}
-			case 3:
-			{
+			case 3: {
 				//SOUTH
 				// BUGGED
 
@@ -724,51 +653,41 @@ public class LargeBronzeDungeon extends AetherDungeon {
 				x += 3;
 				z += 11;
 
-				if (!isBoxSolid(world, new PositionData(x, y, z + 1), new PositionData(6, 8, 2)))
-				{
+				if (!isBoxSolid(world, new PositionData(x, y, z + 1), new PositionData(6, 8, 2))) {
 					return false;
 				}
 
-				while(tunnelling)
-				{
-					if(isBoxEmpty(world, new PositionData(x, y, z), new PositionData(6, 8, 1)))
-					{
+				while(tunnelling) {
+					if(isBoxEmpty(world, new PositionData(x, y, z), new PositionData(6, 8, 1))) {
 						tunnelling = false;
 					}
 
 					if (hasBlock(world, new PositionData(x, y, z + 1), new PositionData(6, 8, 2), BlocksAether.ancient_carved_stone)
-							|| hasBlock(world, new PositionData(x, y, z + 1), new PositionData(6, 8, 2), BlocksAether.locked_ancient_carved_stone))
-					{
+							|| hasBlock(world, new PositionData(x, y, z + 1), new PositionData(6, 8, 2), BlocksAether.locked_ancient_carved_stone)) {
 						tunnelling = false;
 					}
 
-					if (z - pos.getZ() > 100)
-					{
+					if (z - pos.getZ() > 100) {
 						maxLength = true;
 						tunnelling = false;
 					}
 
 					setBlocks(this.fillerBlock(), this.fillerBlock1(), 5);
 					addPlaneZ(world, random, new PositionData(x, y, z), new PositionData(6, 8, 0));
-					
-
 					setBlocks(Blocks.air, Blocks.air, 1);
 					addPlaneZ(world, random, new PositionData(x + 1, y + 1, z), new PositionData(4, 6, 0));
 
 					z++;
 				}
 
-				if (maxLength)
-				{
+				if (maxLength) {
 					return false;
 				}
 
 				this.needsCorridor = false;
-
 				return true;
 			}
-			case 4:
-			{
+			case 4: {
 				//NORTH
 
 				boolean tunnelling = true;
@@ -780,46 +699,38 @@ public class LargeBronzeDungeon extends AetherDungeon {
 				x += 3;
 				z -= 0;
 
-				if (!isBoxSolid(world, new PositionData(x, y, z - 1), new PositionData(6, 8, 1)))
-				{
+				if (!isBoxSolid(world, new PositionData(x, y, z - 1), new PositionData(6, 8, 1))) {
 					return false;
 				}
 
-				while(tunnelling)
-				{
-					if(isBoxEmpty(world, new PositionData(x, y, z), new PositionData(6, 8, 1)))
-					{
+				while(tunnelling) {
+					if(isBoxEmpty(world, new PositionData(x, y, z), new PositionData(6, 8, 1))) {
 						tunnelling = false;
 					}
 
 					if (hasBlock(world, new PositionData(x, y, z - 1), new PositionData(6, 8, 1), BlocksAether.ancient_carved_stone)
-							|| hasBlock(world, new PositionData(x, y, z - 1), new PositionData(6, 8, 1), BlocksAether.locked_ancient_carved_stone))
-					{
+							|| hasBlock(world, new PositionData(x, y, z - 1), new PositionData(6, 8, 1), BlocksAether.locked_ancient_carved_stone)) {
 						tunnelling = false;
 					}
 
-					if (pos.getZ() - z > 100)
-					{
+					if (pos.getZ() - z > 100) {
 						maxLength = true;
 						tunnelling = false;
 					}
 
 					setBlocks(this.fillerBlock(), this.fillerBlock1(), 5);
 					addPlaneZ(world, random, new PositionData(x, y, z), new PositionData(6, 8, 0));
-
 					setBlocks(Blocks.air, Blocks.air, 1);
 					addPlaneZ(world, random, new PositionData(x + 1, y + 1, z), new PositionData(4, 6, 0));
 
 					z--;
 				}
 
-				if (maxLength)
-				{
+				if (maxLength) {
 					return false;
 				}
 
 				this.needsCorridor = false;
-
 				return true;
 			}
 		}
@@ -907,7 +818,7 @@ public class LargeBronzeDungeon extends AetherDungeon {
         }
 
     }
-	
+
 	protected Block setRandomBlock(World world, Random random) {
 		int nextInt = random.nextInt(15);
 
@@ -917,35 +828,35 @@ public class LargeBronzeDungeon extends AetherDungeon {
 
 		return BlocksAether.ancient_carved_stone;
 	}
-	
+
 
 	public Block lockedLightBlock() {
-		return BlocksAether.locked_ancient_sentry_stone;
+        return BlocksAether.locked_ancient_sentry_stone;
 	}
-	
+
 	public Block TrapBlock() {
-		return BlocksAether.carved_trap;
+        return BlocksAether.carved_trap;
 	}
 
 	public Block lockedBlock() {
-		return BlocksAether.locked_ancient_carved_stone;
+        return BlocksAether.locked_ancient_carved_stone;
 	}
 
 	public Block mainLightBlock() {
-		return BlocksAether.ancient_sentry_stone;
+        return BlocksAether.ancient_sentry_stone;
 	}
 
 	public Block mainBlock() {
-		return BlocksAether.ancient_carved_stone;
+        return BlocksAether.ancient_carved_stone;
 	}
 
 	public Block fillerBlock() {
-		return BlocksAether.holystone;
+        return BlocksAether.holystone;
 	}
 
 	public Block fillerBlock1() {
-		return BlocksAether.bloodmoss_stone;
+        return BlocksAether.bloodmoss_stone;
 	}
-	
+
 
 }

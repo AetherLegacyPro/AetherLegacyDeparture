@@ -1,13 +1,11 @@
 package com.gildedgames.the_aether.world.gen;
 
 import java.util.Random;
-
 import com.gildedgames.the_aether.world.util.RandomTracker;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.MapGenStructure;
 import net.minecraft.world.gen.structure.StructureStart;
-
 import com.gildedgames.the_aether.world.gen.components.ComponentDivineSilverDungeon;
 
 public class MapGenDivineSilverDungeon extends MapGenStructure {
@@ -24,10 +22,8 @@ public class MapGenDivineSilverDungeon extends MapGenStructure {
 	protected boolean canSpawnStructureAtCoords(int chunkX, int chunkZ) {
 		RandomTracker randomTracker = new RandomTracker();
 
-		if (randomTracker.testRandom(this.rand, 250) != 0)
-		{
-			if (randomTracker.testRandom(this.rand, 290) != 0)
-			{
+		if (randomTracker.testRandom(this.rand, 250) != 0) {
+			if (randomTracker.testRandom(this.rand, 290) != 0) {
 				return false;
 			}
 		}
@@ -81,7 +77,6 @@ public class MapGenDivineSilverDungeon extends MapGenStructure {
 		@Override
 		public void func_143022_a(NBTTagCompound tagCompound) {
 			super.func_143022_a(tagCompound);
-
 			tagCompound.setInteger("firstStaircaseZ", this.firstStaircaseZ);
 			tagCompound.setInteger("secondStaircaseZ", this.secondStaircaseZ);
 			tagCompound.setInteger("finalStaircaseZ", this.finalStaircaseZ);
@@ -92,14 +87,12 @@ public class MapGenDivineSilverDungeon extends MapGenStructure {
 		@Override
 		public void func_143017_b(NBTTagCompound tagCompound) {
 			super.func_143017_b(tagCompound);
-
 			this.firstStaircaseZ = tagCompound.getInteger("firstStaircaseZ");
 			this.secondStaircaseZ = tagCompound.getInteger("secondStaircaseZ");
 			this.finalStaircaseZ = tagCompound.getInteger("finalStaircaseZ");
 			this.xTendency = tagCompound.getInteger("zTendency");
 			this.zTendency = tagCompound.getInteger("zTendency");
 		}
-
 	}
 
 }

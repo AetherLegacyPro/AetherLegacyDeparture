@@ -9,21 +9,20 @@ public class PacketOpenContainer extends AetherPacket<PacketOpenContainer> {
 	public int id;
 
 	public PacketOpenContainer() {
-
 	}
 
 	public PacketOpenContainer(int id) {
-		this.id = id;
+        this.id = id;
 	}
 
 	@Override
 	public void fromBytes(ByteBuf buf) {
-		id = buf.readInt();
+        id = buf.readInt();
 	}
 
 	@Override
 	public void toBytes(ByteBuf buf) {
-		buf.writeInt(id);
+        buf.writeInt(id);
 	}
 
 	@Override

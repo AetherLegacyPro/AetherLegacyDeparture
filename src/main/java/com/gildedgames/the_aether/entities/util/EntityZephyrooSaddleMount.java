@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.entities.util;
 
 import com.gildedgames.the_aether.items.ItemsAether;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
@@ -10,13 +9,12 @@ import net.minecraft.world.World;
 public abstract class EntityZephyrooSaddleMount extends EntityMountable {
 
 	public EntityZephyrooSaddleMount(World world) {
-		super(world);
+        super(world);
 	}
 
 	@Override
 	public void entityInit() {
 		super.entityInit();
-
 		this.dataWatcher.addObject(19, (byte) 0);
 	}
 
@@ -37,7 +35,6 @@ public abstract class EntityZephyrooSaddleMount extends EntityMountable {
 				}
 
 				this.setSaddled(true);
-
 				return true;
 			}
 		} else if (this.riddenByEntity == null) {
@@ -45,7 +42,6 @@ public abstract class EntityZephyrooSaddleMount extends EntityMountable {
 				entityplayer.mountEntity(this);
 				entityplayer.prevRotationYaw = entityplayer.rotationYaw = this.rotationYaw;
 			}
-
 			return true;
 		}
 
@@ -64,7 +60,6 @@ public abstract class EntityZephyrooSaddleMount extends EntityMountable {
 	@Override
 	protected void dropFewItems(boolean recentlyHit, int lootLevel) {
 		super.dropFewItems(recentlyHit, lootLevel);
-
 		if (this.isSaddled()) {
 			this.dropItem(ItemsAether.zephyroo_saddle, 1);
 		}
@@ -77,17 +72,17 @@ public abstract class EntityZephyrooSaddleMount extends EntityMountable {
 
 	@Override
 	public boolean shouldRiderFaceForward(EntityPlayer player) {
-		return false;
+        return false;
 	}
 
 	@Override
 	protected boolean canTriggerWalking() {
-		return this.onGround;
+        return this.onGround;
 	}
 
 	@Override
 	public boolean canBeSteered() {
-		return true;
+        return true;
 	}
 
 	public void setSaddled(boolean saddled) {
@@ -95,24 +90,22 @@ public abstract class EntityZephyrooSaddleMount extends EntityMountable {
 	}
 
 	public boolean isSaddled() {
-		return this.dataWatcher.getWatchableObjectByte(19) == (byte) 1;
+        return this.dataWatcher.getWatchableObjectByte(19) == (byte) 1;
 	}
 
 	public boolean canSaddle() {
-		return true;
+        return true;
 	}
 
 	@Override
 	public void writeEntityToNBT(NBTTagCompound compound) {
 		super.writeEntityToNBT(compound);
-
 		compound.setBoolean("isSaddled", this.isSaddled());
 	}
 
 	@Override
 	public void readEntityFromNBT(NBTTagCompound compound) {
 		super.readEntityFromNBT(compound);
-
 		this.setSaddled(compound.getBoolean("isSaddled"));
 	}
 

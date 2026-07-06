@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.blocks.natural;
 
 import com.gildedgames.the_aether.items.util.DoubleDropHelper;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -11,9 +10,7 @@ public class BlockQuicksoil extends Block {
 
 	public BlockQuicksoil() {
 		super(Material.sand);
-
 		this.slipperiness = 1.1F;
-
 		this.setHardness(0.5F);
 		this.setStepSound(soundTypeSand);
 		this.setHarvestLevel("shovel", 0);
@@ -27,7 +24,7 @@ public class BlockQuicksoil extends Block {
 
 	@Override
 	public int damageDropped(int meta) {
-		return 1;
+        return 1;
 	}
 
 }

@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.registry.recipe;
 
 import java.util.ArrayList;
-
 import net.minecraft.block.BlockColored;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.init.Items;
@@ -9,18 +8,17 @@ import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.world.World;
-
 import com.gildedgames.the_aether.items.accessories.ItemAccessoryDyed;
 
 public class RecipeAccessoryDyes implements IRecipe {
 
 	@Override
-	public boolean matches(InventoryCrafting p_77569_1_, World p_77569_2_) {
+	public boolean matches(InventoryCrafting crafting, World world) {
 		ItemStack itemstack = null;
 		ArrayList<ItemStack> arraylist = new ArrayList<>();
 
-		for (int i = 0; i < p_77569_1_.getSizeInventory(); ++i) {
-			ItemStack itemstack1 = p_77569_1_.getStackInSlot(i);
+		for (int i = 0; i < crafting.getSizeInventory(); ++i) {
+			ItemStack itemstack1 = crafting.getStackInSlot(i);
 
 			if (itemstack1 != null) {
 				if (itemstack1.getItem() instanceof ItemAccessoryDyed) {
@@ -42,8 +40,7 @@ public class RecipeAccessoryDyes implements IRecipe {
 		return itemstack != null && !arraylist.isEmpty();
 	}
 
-	public ItemStack getCraftingResult(InventoryCrafting p_77572_1_)
-	{
+	public ItemStack getCraftingResult(InventoryCrafting crafting) {
 		ItemStack itemstack = null;
 		int[] aint = new int[3];
 		int i = 0;
@@ -55,26 +52,21 @@ public class RecipeAccessoryDyes implements IRecipe {
 		float f1;
 		int l1;
 
-		for (k = 0; k < p_77572_1_.getSizeInventory(); ++k)
-		{
-			ItemStack itemstack1 = p_77572_1_.getStackInSlot(k);
+		for (k = 0; k < crafting.getSizeInventory(); ++k) {
+			ItemStack itemstack1 = crafting.getStackInSlot(k);
 
-			if (itemstack1 != null)
-			{
-				if (itemstack1.getItem() instanceof ItemAccessoryDyed)
-				{
+			if (itemstack1 != null) {
+				if (itemstack1.getItem() instanceof ItemAccessoryDyed) {
 					itemAccessoryDyed = (ItemAccessoryDyed) itemstack1.getItem();
 
-					if (itemstack != null)
-					{
+					if (itemstack != null) {
 						return null;
 					}
 
 					itemstack = itemstack1.copy();
 					itemstack.stackSize = 1;
 
-					if (itemAccessoryDyed.hasColor(itemstack1))
-					{
+                    if (itemAccessoryDyed.hasColor(itemstack1)) {
 						l = itemAccessoryDyed.getColor(itemstack);
 						f = (float)(l >> 16 & 255) / 255.0F;
 						f1 = (float)(l >> 8 & 255) / 255.0F;
@@ -86,10 +78,8 @@ public class RecipeAccessoryDyes implements IRecipe {
 						++j;
 					}
 				}
-				else
-				{
-					if (itemstack1.getItem() != Items.dye)
-					{
+				else {
+					if (itemstack1.getItem() != Items.dye) {
 						return null;
 					}
 
@@ -106,12 +96,10 @@ public class RecipeAccessoryDyes implements IRecipe {
 			}
 		}
 
-		if (itemAccessoryDyed == null)
-		{
+		if (itemAccessoryDyed == null) {
 			return null;
 		}
-		else
-		{
+		else {
 			k = aint[0] / j;
 			int i1 = aint[1] / j;
 			l = aint[2] / j;
@@ -129,12 +117,12 @@ public class RecipeAccessoryDyes implements IRecipe {
 
 	@Override
 	public int getRecipeSize() {
-		return 10;
+        return 10;
 	}
 
 	@Override
 	public ItemStack getRecipeOutput() {
-		return null;
+        return null;
 	}
 
 }

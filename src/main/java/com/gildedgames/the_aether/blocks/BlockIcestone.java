@@ -1,9 +1,7 @@
 package com.gildedgames.the_aether.blocks;
 
 import java.util.Random;
-
 import com.gildedgames.the_aether.items.ItemsAether;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
@@ -15,7 +13,6 @@ public class BlockIcestone extends Block {
 
 	public BlockIcestone() {
 		super(Material.ice);
-
 		this.setHardness(1.2F);
 		this.setTickRandomly(true);
 		this.setStepSound(soundTypeGlass);
@@ -39,29 +36,21 @@ public class BlockIcestone extends Block {
 			}
 		}
 	}
-	
+
 	protected boolean canSilkHarvest() {
-	    return true;
-	 }
-	
-	/**
-     * Returns the usual quantity dropped by the block plus a bonus of 1 to 'i' (inclusive).
-     */
-    public int quantityDroppedWithBonus(int p_149679_1_, Random p_149679_2_)
-    {
-        return MathHelper.clamp_int(this.quantityDropped(p_149679_2_) + p_149679_2_.nextInt(p_149679_1_ + 1), 1, 4);
+        return true;
     }
 
-    /**
-     * Returns the quantity of items to drop on block destruction.
-     */
-    public int quantityDropped(Random p_149745_1_)
-    {
-        return 2 + p_149745_1_.nextInt(3);
+
+    public int quantityDroppedWithBonus(int p_149679_1_, Random random) {
+        return MathHelper.clamp_int(this.quantityDropped(random) + random.nextInt(p_149679_1_ + 1), 1, 4);
     }
 
-    public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
-    {
+    public int quantityDropped(Random random) {
+        return 2 + random.nextInt(3);
+    }
+
+    public Item getItemDropped(int p_149650_1_, Random random, int p_149650_3_) {
         return ItemsAether.icestone_crystal;
     }
 

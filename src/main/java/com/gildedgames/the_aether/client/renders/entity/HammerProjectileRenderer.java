@@ -6,7 +6,6 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
@@ -14,7 +13,6 @@ public class HammerProjectileRenderer extends Render {
 
     public HammerProjectileRenderer() {
         super();
-
         this.shadowSize = 0.0F;
     }
 
@@ -24,7 +22,6 @@ public class HammerProjectileRenderer extends Render {
         GL11.glTranslated(par2, par4, par6);
 
         this.bindTexture(this.getEntityTexture(notchwave));
-
         Tessellator tessellator = Tessellator.instance;
 
         GL11.glRotatef(180F - this.renderManager.playerViewY, 0.0F, 1.0F, 0.0F);

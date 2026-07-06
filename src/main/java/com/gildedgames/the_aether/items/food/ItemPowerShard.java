@@ -22,7 +22,7 @@ public class ItemPowerShard extends Item {
 
 	@Override
 	public EnumRarity getRarity(ItemStack stack) {
-		return ItemsAether.divine_aether_loot;
+        return ItemsAether.divine_aether_loot;
 	}
 
 	@Override
@@ -31,22 +31,17 @@ public class ItemPowerShard extends Item {
 		ItemStack heldItem = player.getHeldItem();
 
 		player.triggerAchievement(AchievementsAether.powering_up);
-		if (!worldIn.isRemote)
-		{
+		if (!worldIn.isRemote) {
 			playerAether.updatePowerShardCount(0);
-
-			if (playerAether.getPowerShardsUsed() < playerAether.getMaxPowerShardCount())
-			{
+			if (playerAether.getPowerShardsUsed() < playerAether.getMaxPowerShardCount()) {
 				playerAether.updatePowerShardCount(1);
 				--heldItem.stackSize;
 			}
 
 			return heldItem;
 		}
-		else
-		{
-			if (playerAether.getPowerShardsUsed() >= playerAether.getMaxPowerShardCount())
-			{
+		else {
+			if (playerAether.getPowerShardsUsed() >= playerAether.getMaxPowerShardCount()) {
 				Aether.proxy.sendMessage(player, StatCollector.translateToLocalFormatted("gui.item.power_shard.maxshards", playerAether.getMaxPowerShardCount()));
 			}
 		}

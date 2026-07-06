@@ -7,30 +7,21 @@ import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.shader.Framebuffer;
-
 import org.lwjgl.opengl.GL11;
-
 import com.gildedgames.the_aether.client.gui.trivia.AetherTrivia;
-
 import cpw.mods.fml.client.FMLClientHandler;
 
 public class AetherLoadingScreen extends LoadingScreenRenderer {
 
 	private String message = "";
-
 	private Minecraft mc;
-
 	private String currentDisplayedTrivia = "";
-
 	private long systemTime = Minecraft.getSystemTime();
-
 	private Framebuffer framebuffer;
 
 	public AetherLoadingScreen(Minecraft mcIn) {
 		super(mcIn);
-
 		this.mc = mcIn;
-
 		this.framebuffer = new Framebuffer(mcIn.displayWidth, mcIn.displayHeight, false);
 		this.framebuffer.setFramebufferFilter(9728);
 	}
@@ -38,7 +29,6 @@ public class AetherLoadingScreen extends LoadingScreenRenderer {
 	@Override
 	public void resetProgressAndMessage(String message) {
 		super.resetProgressAndMessage(message);
-
 		this.currentDisplayedTrivia = AetherTrivia.getNewTrivia();
 	}
 

@@ -1,24 +1,21 @@
 package com.gildedgames.the_aether.world.biome.decoration;
 
 import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
 
 public class AetherGenBlueSkyrootTree extends WorldGenAbstractTree {
 
 	public AetherGenBlueSkyrootTree(boolean notify) {
-		super(notify);
+        super(notify);
 	}
 
 	@Override
 	public boolean generate(World world, Random random, int x, int y, int z) {
 		int l = random.nextInt(3) + 4;
-
 		Block j1 = world.getBlock(x, y - 1, z);
 
 		if (j1 != BlocksAether.aether_grass && j1 != BlocksAether.aether_dirt) {
@@ -41,7 +38,6 @@ public class AetherGenBlueSkyrootTree extends WorldGenAbstractTree {
 						this.setBlockAndNotifyAdequately(world, k3, k1, i4, BlocksAether.blue_skyroot_leaves, 0);
 					}
 				}
-
 			}
 		}
 

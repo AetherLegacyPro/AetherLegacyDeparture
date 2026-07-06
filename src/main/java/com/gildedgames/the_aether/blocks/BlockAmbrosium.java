@@ -7,7 +7,6 @@ public class BlockAmbrosium extends Block {
 
 	public BlockAmbrosium() {
 		super(Material.rock);
-
 		this.setHardness(0.5F);
 		this.setStepSound(soundTypeStone);
 		this.setHarvestLevel("pickaxe", 0);

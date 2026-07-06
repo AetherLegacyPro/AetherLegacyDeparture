@@ -2,27 +2,24 @@ package com.gildedgames.the_aether.items.weapons;
 
 import java.util.List;
 import java.util.Random;
-
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.items.util.EnumAetherToolType;
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
-
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemSword;
-import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 
 public class ItemContinuumSword extends ItemSword {
-	
+
 	public float[] level = new float[] {5F, 6F, 7F, 8F, 9F};
 
 	public ItemContinuumSword(float damage, EnumAetherToolType toolType) {
@@ -33,13 +30,12 @@ public class ItemContinuumSword extends ItemSword {
 
 	@Override
 	public Multimap<String, AttributeModifier> getItemAttributeModifiers() {
-		return null;
+        return null;
 	}
 
 	@Override
 	public Multimap<String, AttributeModifier> getAttributeModifiers(ItemStack stack) {
 		Multimap<String, AttributeModifier> multimap = HashMultimap.create();
-
 		if (stack.getItem() instanceof ItemContinuumSword) {
 			multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(field_111210_e, "Weapon modifier", this.calculateIncrease(stack), 0));
 		}
@@ -62,7 +58,7 @@ public class ItemContinuumSword extends ItemSword {
 			return level[0];
 		}
 	}
-	
+
 	@Override
 	public boolean hitEntity(ItemStack itemstack, EntityLivingBase entityliving, EntityLivingBase entityliving1) {
 		if ((new Random()).nextInt(5) == 0 && entityliving1 instanceof EntityPlayer && entityliving.hurtTime > 0 && entityliving.deathTime <= 0) {
@@ -76,7 +72,7 @@ public class ItemContinuumSword extends ItemSword {
 	}
 
 	private boolean isBetween(int max, int origin, int min) {
-		return origin <= max && origin >= min ? true : false;
+        return origin <= max && origin >= min ? true : false;
 	}
 
 	@Override
@@ -88,7 +84,7 @@ public class ItemContinuumSword extends ItemSword {
 	public float getDigSpeed(ItemStack itemstack, Block block, int meta) {
 		return super.getDigSpeed(itemstack, block, meta) * (2.0F * (float) itemstack.getItemDamage() / (float) itemstack.getMaxDamage() + 0.5F);
 	}
-	
+
 	public void addInformation(final ItemStack stack, final EntityPlayer player, final List tooltip, final boolean who) {
 		if(AetherConfig.enableTooltips())
         tooltip.add(EnumChatFormatting.GRAY + "" + StatCollector.translateToLocal("tooltip.continuum_tools.desc"));

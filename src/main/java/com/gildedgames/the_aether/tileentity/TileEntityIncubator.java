@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.tileentity;
 
 import java.util.List;
-
 import com.gildedgames.the_aether.api.events.AetherHooks;
 import com.gildedgames.the_aether.entities.passive.mountable.EntityMoa;
 import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
@@ -9,7 +8,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.blocks.container.BlockAetherContainer;
 import com.gildedgames.the_aether.items.ItemMoaEgg;
@@ -20,22 +18,18 @@ import com.gildedgames.the_aether.util.FilledList;
 public class TileEntityIncubator extends AetherTileEntity {
 
 	public EntityPlayer owner;
-
 	public int progress;
-
 	public int powerRemaining;
-
 	public int ticksRequired = 5700;
-
 	private final FilledList<ItemStack> incubatorItemStacks = new FilledList<>(3, null);
 
 	public TileEntityIncubator() {
-		super("Incubator");
+        super("Incubator");
 	}
 
 	@Override
 	public List<ItemStack> getTileInventory() {
-		return this.incubatorItemStacks;
+        return this.incubatorItemStacks;
 	}
 
 	@Override
@@ -48,7 +42,6 @@ public class TileEntityIncubator extends AetherTileEntity {
 	@Override
 	public void readFromNBT(NBTTagCompound compound) {
 		super.readFromNBT(compound);
-
 		this.progress = compound.getInteger("progress");
 		this.powerRemaining = compound.getInteger("powerRemaining");
 	}
@@ -56,30 +49,27 @@ public class TileEntityIncubator extends AetherTileEntity {
 	@Override
 	public void writeToNBT(NBTTagCompound compound) {
 		super.writeToNBT(compound);
-
 		compound.setInteger("progress", this.progress);
 		compound.setInteger("powerRemaining", this.powerRemaining);
 	}
 
 	public int getProgressScaled(int i) {
-		return (this.progress * i) / this.ticksRequired;
+        return (this.progress * i) / this.ticksRequired;
 	}
 
 	public int getPowerTimeRemainingScaled(int i) {
-		return (this.powerRemaining * i) / 500;
+        return (this.powerRemaining * i) / 500;
 	}
 
 	public boolean isIncubating() {
-		return this.powerRemaining > 0;
+        return this.powerRemaining > 0;
 	}
 
 	@Override
 	public void updateEntity() {
 		boolean flag = this.isIncubating();
-
 		if (this.powerRemaining > 0) {
 			this.powerRemaining--;
-
 			if (this.getStackInSlot(1) != null) {
 				this.progress++;
 			}
@@ -87,14 +77,12 @@ public class TileEntityIncubator extends AetherTileEntity {
 
 		if (this.progress >= this.ticksRequired) {
 			if (this.getStackInSlot(1).getItem() instanceof ItemMoaEgg moaEgg) {
-
 				if (this.owner != null) {
 					this.owner.triggerAchievement(AchievementsAether.incubator);
 				}
 
 				if (!this.worldObj.isRemote) {
 					EntityMoa moa = new EntityMoa(this.worldObj);
-
 					moa.setPlayerGrown(true);
 					moa.setGrowingAge(-24000);
 					moa.setMoaType(moaEgg.getMoaTypeFromItemStack(this.getStackInSlot(1)));

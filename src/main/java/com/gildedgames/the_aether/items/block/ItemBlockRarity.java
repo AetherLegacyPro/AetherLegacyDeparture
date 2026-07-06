@@ -11,12 +11,11 @@ public class ItemBlockRarity extends ItemBlock {
 
     public ItemBlockRarity(Block block, EnumRarity rarity) {
         super(block);
-
         this.rarity = rarity;
     }
 
     @Override
-    public EnumRarity getRarity(ItemStack p_77613_1_) {
+    public EnumRarity getRarity(ItemStack stack) {
         return this.rarity;
     }
 

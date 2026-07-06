@@ -8,9 +8,7 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.opengl.GL11;
-
 import com.gildedgames.the_aether.client.gui.button.GuiLoreButton;
 import com.gildedgames.the_aether.inventory.ContainerLore;
 import com.gildedgames.the_aether.registry.AetherLore;
@@ -18,20 +16,14 @@ import com.gildedgames.the_aether.registry.AetherLore;
 public class GuiLore extends GuiContainer {
 
 	private static final ResourceLocation TEXTURE_LORE = Aether.locate("textures/gui/lore.png");
-
 	private static final ResourceLocation TEXTURE_LORE_BOOK = Aether.locate("textures/gui/lore_book.png");
-
 	private String stringToLoad;
-
 	private ItemStack currentItem;
-
 	private GuiButton previousPage, nextPage;
-
 	private int pageNumber;
 
 	public GuiLore(InventoryPlayer inventoryplayer) {
 		super(new ContainerLore(inventoryplayer));
-
 		this.xSize = 256;
 		this.ySize = 195;
 	}
@@ -39,10 +31,8 @@ public class GuiLore extends GuiContainer {
 	@SuppressWarnings("unchecked")
 	public void initGui() {
 		super.initGui();
-
 		this.previousPage = new GuiLoreButton(19, this.width / 2 - 110, this.height / 2 + 72, 20, 20, "<");
 		this.nextPage = new GuiLoreButton(20, this.width / 2 + 90, this.height / 2 + 72, 20, 20, ">");
-
 		this.buttonList.add(this.previousPage);
 		this.buttonList.add(this.nextPage);
 	}
@@ -66,7 +56,6 @@ public class GuiLore extends GuiContainer {
 		this.fontRendererObj.drawString(I18n.format("lore.aether_legacy.title2"), 24, 4, 4210752);
 
 		this.fontRendererObj.drawString(I18n.format("lore.aether_legacy.title_item"), 75, 0, 4210752);
-
 		ItemStack searchedStack = ((ContainerLore) this.inventorySlots).loreSlot.getStackInSlot(0);
 
 		if (searchedStack != null) {
@@ -108,7 +97,6 @@ public class GuiLore extends GuiContainer {
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float f, int i1, int i2) {
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-
 		int j = (this.width - this.xSize) / 2;
 		int k = (this.height - this.ySize) / 2;
 

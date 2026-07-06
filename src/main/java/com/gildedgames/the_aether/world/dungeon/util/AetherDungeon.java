@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.world.dungeon.util;
 
 import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
@@ -10,15 +9,12 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 public abstract class AetherDungeon extends WorldGenerator {
 
 	protected final Random random = new Random();
-
 	public int chance;
-
 	public Block airState = Blocks.air, blockState, extraBlockState, extra2BlockState;
-
 	public boolean replaceAir, replaceSolid;
 
 	public AetherDungeon() {
-		super();
+        super();
 	}
 
 	public void setBlocks(Block blockState) {
@@ -32,12 +28,11 @@ public abstract class AetherDungeon extends WorldGenerator {
 		this.blockState = blockState;
 		this.extraBlockState = extraBlockState;
 		this.chance = chances;
-
 		if (this.chance < 1) {
 			this.chance = 1;
 		}
 	}
-	
+
 
 	public void addLineX(World world, Random rand, PositionData pos, int radius) {
 		for (int lineX = pos.getX(); lineX < pos.getX() + radius; lineX++) {
@@ -121,8 +116,7 @@ public abstract class AetherDungeon extends WorldGenerator {
 		}
 	}
 
-	public void addPlaneY(World world, Random rand, PositionData pos, PositionData radius)//, int radiusX, int radiusZ)
-	{
+	public void addPlaneY(World world, Random rand, PositionData pos, PositionData radius) { //, int radiusX, int radiusZ)
 		for (int lineX = pos.getX(); lineX < pos.getX() + radius.getX(); lineX++) {
 			for (int lineZ = pos.getZ(); lineZ < pos.getZ() + radius.getZ(); lineZ++) {
 				Block block = world.getBlock(lineX, pos.getY(), lineZ);
@@ -144,8 +138,7 @@ public abstract class AetherDungeon extends WorldGenerator {
 		}
 	}
 
-	public void addPlaneZ(World world, Random rand, PositionData pos, PositionData radius)//, int radiusX, int radiusY)
-	{
+	public void addPlaneZ(World world, Random rand, PositionData pos, PositionData radius) { //, int radiusX, int radiusY)
 		for (int lineX = pos.getX(); lineX < pos.getX() + radius.getX(); lineX++) {
 			for (int lineY = pos.getY(); lineY < pos.getY() + radius.getY(); lineY++) {
 				Block block = world.getBlock(lineX, lineY, pos.getZ());
@@ -153,7 +146,6 @@ public abstract class AetherDungeon extends WorldGenerator {
 				if ((this.replaceAir || block != Blocks.air) && (this.replaceSolid || block == Blocks.air)) {
 					if (this.chance == 0) {
 						this.setBlockAndNotifyAdequately(world, lineX, lineY, pos.getZ(), this.blockState, 0);
-
 						return;
 					}
 
@@ -170,7 +162,6 @@ public abstract class AetherDungeon extends WorldGenerator {
 	public void addHollowBox(World world, Random rand, PositionData pos, PositionData radius) {
 		Block temp1 = this.blockState;
 		Block temp2 = this.extraBlockState;
-
 		this.setBlocks(this.airState, this.airState, this.chance);
 		this.addSolidBox(world, rand, pos, radius);
 		this.setBlocks(temp1, temp2, this.chance);
@@ -185,7 +176,6 @@ public abstract class AetherDungeon extends WorldGenerator {
 	public void addSquareTube(World world, Random rand, PositionData pos, PositionData radius, int angel) {
 		Block temp1 = this.blockState;
 		Block temp2 = this.extraBlockState;
-
 		this.setBlocks(this.airState, this.airState, this.chance);
 		this.addSolidBox(world, rand, pos, radius);
 		this.setBlocks(temp1, temp2, this.chance);
@@ -215,7 +205,6 @@ public abstract class AetherDungeon extends WorldGenerator {
 					if ((this.replaceAir || block != Blocks.air) && (this.replaceSolid || block == Blocks.air)) {
 						if (this.chance == 0) {
 							this.setBlockAndNotifyAdequately(world, lineX, lineY, lineZ, this.blockState, 0);
-
 							return;
 						}
 
@@ -285,7 +274,7 @@ public abstract class AetherDungeon extends WorldGenerator {
 			this.setBlockAndNotifyAdequately(world, x, y, z, state, 0);
 		}
 	}
-	
+
 	protected void setTwoBlock(World world, Random random, int x, int y, int z, Block statee, Block extraStatee, int chancee) {
 		if (random.nextInt(chancee) == 0) {
 			this.setBlockAndNotifyAdequately(world, x, y, z, extraStatee, 0);

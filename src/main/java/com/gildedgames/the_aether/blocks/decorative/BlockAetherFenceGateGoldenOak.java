@@ -2,10 +2,8 @@ package com.gildedgames.the_aether.blocks.decorative;
 
 import net.minecraft.block.BlockFenceGate;
 import net.minecraft.util.IIcon;
-
 import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.blocks.BlocksAether;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -13,7 +11,6 @@ public class BlockAetherFenceGateGoldenOak extends BlockFenceGate {
 
 	public BlockAetherFenceGateGoldenOak() {
 		super();
-
 		this.setHardness(2.0F);
 		this.setResistance(5.0F);
 		this.setStepSound(soundTypeWood);

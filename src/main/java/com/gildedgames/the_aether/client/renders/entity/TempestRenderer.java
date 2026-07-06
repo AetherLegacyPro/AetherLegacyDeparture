@@ -3,25 +3,22 @@ package com.gildedgames.the_aether.client.renders.entity;
 import net.minecraft.client.renderer.entity.*;
 import net.minecraft.util.*;
 import org.lwjgl.opengl.*;
-
 import com.gildedgames.the_aether.client.models.entities.TempestModel;
 import com.gildedgames.the_aether.entities.hostile.EntityTempest;
-
 import net.minecraft.client.renderer.*;
 import net.minecraft.entity.*;
 
-public class TempestRenderer extends RenderLiving
-{
+public class TempestRenderer extends RenderLiving {
     private static final ResourceLocation TEXTURE;
     private static final ResourceLocation TEXTURE_GLOW;
     public TempestModel tempestModel;
-    
+
     public TempestRenderer(final TempestModel model) {
         super(model, 0.5f);
         this.setRenderPassModel(model);
         this.tempestModel = model;
     }
-    
+
     protected void preRenderCallback(final EntityLivingBase entityliving, final float f) {
         final EntityTempest tempest = (EntityTempest)entityliving;
         float f2 = (float)Math.sin(tempest.sinage);
@@ -40,7 +37,7 @@ public class TempestRenderer extends RenderLiving
         this.shadowSize = 0.75f;
         GL11.glScalef(1.5f, 1.5f, 1.5f);
     }
-    
+
     protected int setMarkingBrightness(final EntityTempest tempest, final int i, final float f) {
         if (i != 0) {
             return -1;
@@ -58,23 +55,16 @@ public class TempestRenderer extends RenderLiving
         GL11.glColor4f(1.0f, 1.0f, 1.0f, var4);
         return 1;
     }
-    
+
     protected int shouldRenderPass(final EntityLivingBase entityliving, final int i, final float f) {
         return this.setMarkingBrightness((EntityTempest)entityliving, i, f);
     }
-    
+
     protected ResourceLocation getEntityTexture(final Entity entity) {
         return TempestRenderer.TEXTURE;
     }
-    
+
     static {
-		/*
-		tempest_insect_glow.png
-		tempest_shell_glow.png
-		tempest_shell.png
-		tempest_insect.png
-		*/
-		// not sure if we should use 'shell' or 'insect' here   textures/mobs/tempest/glow.png
         TEXTURE = new ResourceLocation("aetherii", "textures/mobs/tempest/tempest.png");
         TEXTURE_GLOW = new ResourceLocation("aetherii", "textures/mobs/tempest/glow.png");
     }

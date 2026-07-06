@@ -7,11 +7,9 @@ import net.minecraftforge.client.event.RenderBlockOverlayEvent;
 import net.minecraftforge.client.event.RenderBlockOverlayEvent.OverlayType;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
-
 import com.gildedgames.the_aether.client.overlay.AetherOverlay;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.player.PlayerAether;
-
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class GuiAetherInGame extends Gui {

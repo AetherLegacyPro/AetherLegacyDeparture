@@ -11,7 +11,7 @@ import net.minecraft.world.World;
 public abstract class BlockAetherContainer extends BlockContainer {
 
 	public BlockAetherContainer(Material materialIn) {
-		super(materialIn);
+        super(materialIn);
 	}
 
 	@Override

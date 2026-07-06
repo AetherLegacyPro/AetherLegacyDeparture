@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.items.tools.tipped;
 
 import java.util.List;
-
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.items.tools.ItemAetherTool;
@@ -24,10 +23,10 @@ public class ItemTippedArkeniumTool extends ItemAetherTool {
 
 	@Override
 	public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
-		if (AetherConfig.RepairMaterialTipped() == true) {
+		if (AetherConfig.RepairMaterialTipped()) {
 			return repair.getItem() == ItemsAether.auralite_crystal;
-			}
-			else {
+        }
+        else {
 			return repair.getItem() == ItemsAether.arkenium_ingot;
 		}
 	}
@@ -36,10 +35,10 @@ public class ItemTippedArkeniumTool extends ItemAetherTool {
 	public float getDigSpeed(ItemStack stack, Block block, int meta) {
 		return this.calculateIncrease(stack, this.toolType.getStrVsBlock(stack, block));
 	}
-	
+
 	@Override
 	public EnumRarity getRarity(ItemStack stack) {
-		return ItemsAether.scaled_aether_loot;
+        return ItemsAether.scaled_aether_loot;
 	}
 
 	private float calculateIncrease(ItemStack tool, float original) {
@@ -64,9 +63,9 @@ public class ItemTippedArkeniumTool extends ItemAetherTool {
 	}
 
 	private boolean isBetween(int max, int origin, int min) {
-		return origin <= max && origin >= min ? true : false;
+        return origin <= max && origin >= min ? true : false;
 	}
-	
+
 	public void addInformation(final ItemStack stack, final EntityPlayer player, final List tooltip, final boolean who) {
 		if(AetherConfig.enableTooltips())
         tooltip.add(EnumChatFormatting.AQUA + "" + StatCollector.translateToLocal("tooltip.arkenium_tools.desc"));

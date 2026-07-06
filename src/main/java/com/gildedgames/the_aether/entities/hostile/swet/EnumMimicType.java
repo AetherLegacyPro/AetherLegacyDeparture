@@ -5,7 +5,6 @@ public enum EnumMimicType {
     RED(), ORANGE(), YELLOW(), GREEN(), PURPLE();
 
 	EnumMimicType() {
-
     }
 
     public int getId() {

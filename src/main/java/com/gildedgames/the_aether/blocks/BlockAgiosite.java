@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.blocks;
 
 import com.gildedgames.the_aether.items.util.DoubleDropHelper;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -11,7 +10,6 @@ public class BlockAgiosite extends Block {
 
 	public BlockAgiosite() {
 		super(Material.rock);
-
 		this.setHardness(4F);
 		this.setResistance(5F);
 		this.setStepSound(soundTypeStone);
@@ -27,6 +25,6 @@ public class BlockAgiosite extends Block {
 
 	@Override
 	public int damageDropped(int meta) {
-		return 1;
+        return 1;
 	}
 }

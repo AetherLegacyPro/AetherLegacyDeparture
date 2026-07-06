@@ -19,7 +19,7 @@ public class ItemLightningKnife extends Item {
 
 	@Override
 	public EnumRarity getRarity(ItemStack stack) {
-		return ItemsAether.aether_loot;
+        return ItemsAether.aether_loot;
 	}
 
 	@Override
@@ -32,9 +32,7 @@ public class ItemLightningKnife extends Item {
 
 		if (!worldIn.isRemote) {
 			EntityLightningKnife lightningKnife = new EntityLightningKnife(worldIn, playerIn);
-
 			lightningKnife.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
-
 			worldIn.spawnEntityInWorld(lightningKnife);
 		}
 

@@ -7,17 +7,14 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-
 import com.gildedgames.the_aether.inventory.slots.SlotEnchanter;
 import com.gildedgames.the_aether.tileentity.TileEntityEnchanter;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class ContainerEnchanter extends Container {
 
 	private TileEntityEnchanter enchanter;
-
 	public int progress, ticksRequired, powerRemaining;
 
 	public ContainerEnchanter(InventoryPlayer par1InventoryPlayer, TileEntityEnchanter tileEntityEnchanter) {
@@ -41,7 +38,6 @@ public class ContainerEnchanter extends Container {
 	@Override
 	public void addCraftingToCrafters(ICrafting listener) {
 		super.addCraftingToCrafters(listener);
-
 		listener.sendProgressBarUpdate(this, 0, this.enchanter.progress);
 		listener.sendProgressBarUpdate(this, 1, this.enchanter.powerRemaining);
 		listener.sendProgressBarUpdate(this, 2, this.enchanter.ticksRequired);

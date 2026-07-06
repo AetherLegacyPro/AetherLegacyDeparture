@@ -1,11 +1,9 @@
 package com.gildedgames.the_aether.blocks.ancient.enchanter;
 
 import java.util.*;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.tileentity.TileEntityAncientEnchanter;
-
 import net.minecraft.block.material.*;
 import net.minecraft.world.*;
 import net.minecraft.entity.player.*;
@@ -23,13 +21,13 @@ public class BlockAncientEnchanter extends BlockContainer
 {
     private Random EnchanterRand;
     private IIcon sideIcon;
-    
+
     public BlockAncientEnchanter() {
         super(Material.rock);
         this.EnchanterRand = new Random();
         this.setHardness(2.0f);
     }
-    
+
     public boolean onBlockActivated(final World world, final int x, final int y, final int z, final EntityPlayer player, final int par6, final float par7, final float par8, final float par9) {
         final TileEntityAncientEnchanter enchanter = (TileEntityAncientEnchanter)world.getTileEntity(x, y, z);
         if (enchanter != null) {
@@ -65,15 +63,15 @@ public class BlockAncientEnchanter extends BlockContainer
             else {
                 enchanter.dropNextStack();
             }
-        }      
-        
+        }
+
         return true;
     }
-    
+
     public boolean hasTileEntity(final int metadata) {
         return true;
     }
-    
+
     public TileEntity createNewTileEntity(final World par1World, final int meta) {
         try {
             return new TileEntityAncientEnchanter();
@@ -82,16 +80,16 @@ public class BlockAncientEnchanter extends BlockContainer
             throw new RuntimeException(var3);
         }
     }
-    
+
     public IIcon getIcon(final int i, final int meta) {
         return this.sideIcon;
     }
-    
+
     public void onBlockAdded(final World world, final int i, final int j, final int k) {
         super.onBlockAdded(world, i, j, k);
         this.setDefaultDirection(world, i, j, k);
     }
-    
+
     public void onBlockPlacedBy(final World world, final int i, final int j, final int k, final EntityLivingBase entityliving, final ItemStack stack) {
         final int l = MathHelper.floor_double(entityliving.rotationYaw * 4.0f / 360.0f + 0.5) & 0x3;
         if (l == 0) {
@@ -107,7 +105,7 @@ public class BlockAncientEnchanter extends BlockContainer
             world.setBlockMetadataWithNotify(i, j, k, 4, 4);
         }
     }
-    
+
     public void breakBlock(final World par1World, final int par2, final int par3, final int par4, final Block par5, final int par6) {
         final TileEntityAncientEnchanter var7 = (TileEntityAncientEnchanter)par1World.getTileEntity(par2, par3, par4);
         if (var7 != null) {
@@ -139,7 +137,7 @@ public class BlockAncientEnchanter extends BlockContainer
         }
         super.breakBlock(par1World, par2, par3, par4, par5, par6);
     }
-    
+
     private void setDefaultDirection(final World world, final int i, final int j, final int k) {
         if (world.isRemote) {
             return;
@@ -163,19 +161,19 @@ public class BlockAncientEnchanter extends BlockContainer
         }
         world.setBlockMetadataWithNotify(i, j, k, byte0, 4);
     }
-    
+
     public boolean isOpaqueCube() {
         return false;
     }
-    
+
     public boolean renderAsNormalBlock() {
         return false;
     }
-    
+
     public int getRenderType() {
         return BlocksAether.AncientEnchanterRenderId;
     }
-    
+
     public void registerBlockIcons(final IIconRegister par1IIconRegister) {
         this.sideIcon = par1IIconRegister.registerIcon("aether_legacy:primeval_artifact");
     }

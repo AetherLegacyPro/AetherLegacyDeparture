@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.items.weapons.projectile;
 
 import java.util.List;
-
 import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.entities.projectile.darts.EntityDartBase;
 import com.gildedgames.the_aether.entities.projectile.darts.EntityDartEnchanted;
@@ -19,7 +18,6 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.world.World;
@@ -34,65 +32,54 @@ public class ItemDart extends Item {
 
 	@SideOnly(Side.CLIENT)
 	private IIcon enchantedIcon;
-	
+
 	@SideOnly(Side.CLIENT)
 	private IIcon phoenixIcon;
 
-	public static final IBehaviorDispenseItem DISPENSER_BEHAVIOR = new IBehaviorDispenseItem()
-	{
-		public ItemStack dispense(IBlockSource p_82482_1_, final ItemStack p_82482_2_)
-		{
-			if (p_82482_2_.getItem() == ItemsAether.dart && p_82482_2_.getItemDamage() == EnumDartType.Poison.meta)
-			{
+	public static final IBehaviorDispenseItem DISPENSER_BEHAVIOR = new IBehaviorDispenseItem() {
+		public ItemStack dispense(IBlockSource iBlockSource, final ItemStack stack) {
+			if (stack.getItem() == ItemsAether.dart && stack.getItemDamage() == EnumDartType.Poison.meta) {
 				return (new BehaviorProjectileDispense()
 				{
 					protected IProjectile getProjectileEntity(World p_82499_1_, IPosition p_82499_2_)
 					{
 						EntityDartBase dart = new EntityDartPoison(p_82499_1_);
-
 						dart.canBePickedUp = 1;
 						dart.setPosition(p_82499_2_.getX(), p_82499_2_.getY(), p_82499_2_.getZ());
-
 						return dart;
 					}
 
-				}).dispense(p_82482_1_, p_82482_2_);
+				}).dispense(iBlockSource, stack);
 			}
-			else if (p_82482_2_.getItem() == ItemsAether.dart && p_82482_2_.getItemDamage() == EnumDartType.Enchanted.meta)
-			{
+			else if (stack.getItem() == ItemsAether.dart && stack.getItemDamage() == EnumDartType.Enchanted.meta) {
 				return (new BehaviorProjectileDispense()
 				{
 					protected IProjectile getProjectileEntity(World p_82499_1_, IPosition p_82499_2_)
 					{
 						EntityDartBase dart = new EntityDartEnchanted(p_82499_1_);
-
 						dart.canBePickedUp = 1;
 						dart.setPosition(p_82499_2_.getX(), p_82499_2_.getY(), p_82499_2_.getZ());
-
 						return dart;
 					}
 
-				}).dispense(p_82482_1_, p_82482_2_);
+				}).dispense(iBlockSource, stack);
 			}
 			return (new BehaviorProjectileDispense()
 			{
 				protected IProjectile getProjectileEntity(World p_82499_1_, IPosition p_82499_2_)
 				{
 					EntityDartBase dart = new EntityDartGolden(p_82499_1_);
-
 					dart.canBePickedUp = 1;
 					dart.setPosition(p_82499_2_.getX(), p_82499_2_.getY(), p_82499_2_.getZ());
-
 					return dart;
 				}
 
-			}).dispense(p_82482_1_, p_82482_2_);
+			}).dispense(iBlockSource, stack);
 		}
 	};
 
 	public ItemDart() {
 		super();
-
 		this.setHasSubtypes(true);
 		this.setCreativeTab(AetherCreativeTabs.weapons);
 		BlockDispenser.dispenseBehaviorRegistry.putObject(this, DISPENSER_BEHAVIOR);
@@ -121,7 +108,6 @@ public class ItemDart extends Item {
 	@Override
 	public String getUnlocalizedName(ItemStack itemstack) {
 		int i = itemstack.getItemDamage();
-
 		return this.getUnlocalizedName() + "_" + EnumDartType.values()[i].toString();
 	}
 

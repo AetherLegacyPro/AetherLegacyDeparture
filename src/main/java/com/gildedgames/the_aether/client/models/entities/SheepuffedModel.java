@@ -4,7 +4,6 @@ import net.minecraft.client.model.ModelQuadruped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-
 import com.gildedgames.the_aether.entities.passive.EntitySheepuff;
 
 public class SheepuffedModel extends ModelQuadruped {
@@ -42,7 +41,6 @@ public class SheepuffedModel extends ModelQuadruped {
 	@Override
 	public void setLivingAnimations(EntityLivingBase entitylivingbaseIn, float limbSwing, float prevLimbSwing, float partialTickTime) {
 		super.setLivingAnimations(entitylivingbaseIn, limbSwing, prevLimbSwing, partialTickTime);
-
 		this.head.rotationPointY = 6.0F + ((EntitySheepuff) entitylivingbaseIn).getHeadRotationPointY(partialTickTime) * 9.0F;
 		this.headRotationAngleX = ((EntitySheepuff) entitylivingbaseIn).getHeadRotationAngleX(partialTickTime);
 	}
@@ -50,7 +48,6 @@ public class SheepuffedModel extends ModelQuadruped {
 	@Override
 	public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn) {
 		super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entityIn);
-
 		this.head.rotateAngleX = this.headRotationAngleX;
 	}
 

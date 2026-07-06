@@ -57,23 +57,23 @@ public class AetherAmplifier extends RegistryEntry {
 	}
 
 	public int getTimeRequired() {
-		return this.timeRequired;
+        return this.timeRequired;
 	}
 
 	public ItemStack getInput() {
-		return this.input;
+        return this.input;
 	}
 
 	public ItemStack getOutput() {
-		return this.output;
+        return this.output;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof AetherAmplifier freezable) {
+		if (obj instanceof AetherAmplifier amplifier) {
 
-			boolean inputCheck = this.getInput().getItem() == freezable.getInput().getItem() && this.getInput().getItemDamage() == freezable.getInput().getItemDamage();
-			boolean outputCheck = this.getOutput().getItem() == freezable.getOutput().getItem() && this.getOutput().getItemDamage() == freezable.getOutput().getItemDamage();
+			boolean inputCheck = this.getInput().getItem() == amplifier.getInput().getItem() && this.getInput().getItemDamage() == amplifier.getInput().getItemDamage();
+			boolean outputCheck = this.getOutput().getItem() == amplifier.getOutput().getItem() && this.getOutput().getItemDamage() == amplifier.getOutput().getItemDamage();
 
 			return inputCheck && outputCheck;
 		}

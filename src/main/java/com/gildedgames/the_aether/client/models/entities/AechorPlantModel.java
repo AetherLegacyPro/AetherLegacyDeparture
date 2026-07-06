@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.client.models.entities;
 
 import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
@@ -9,36 +8,26 @@ import net.minecraft.entity.Entity;
 public class AechorPlantModel extends ModelBase {
 
 	private ModelRenderer[] petal;
-
 	private ModelRenderer[] leaf;
-
 	private ModelRenderer[] stamen;
-
 	private ModelRenderer[] stamen2;
-
 	private ModelRenderer[] thorn;
-
 	private ModelRenderer stem;
-
 	private ModelRenderer head;
-
 	public float sinage;
-
 	public float sinage2;
-
 	public float size;
 
 	public AechorPlantModel() {
-		this(0.0F);
+        this(0.0F);
 	}
 
 	public AechorPlantModel(float modelSize) {
-		this(modelSize, 0.0F);
+        this(modelSize, 0.0F);
 	}
 
 	public AechorPlantModel(float modelSize, float rotationPointY) {
 		this.size = 1.0F;
-
 		this.petal = new ModelRenderer[10];
 		this.leaf = new ModelRenderer[10];
 		this.stamen = new ModelRenderer[3];
@@ -125,9 +114,7 @@ public class AechorPlantModel extends ModelBase {
 	public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn) {
 		this.head.rotateAngleX = 0.0F;
 		this.head.rotateAngleY = headPitch / 57.29578F;
-
 		float boff = this.sinage2;
-
 		this.stem.rotateAngleY = head.rotateAngleY;
 		this.stem.rotationPointY = boff * 0.5F;
 

@@ -1,18 +1,15 @@
 package com.gildedgames.the_aether.world.biome.decoration;
 
 import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
 
 public class AetherGenFloatingIsland extends WorldGenerator {
 
 	public AetherGenFloatingIsland() {
-
 	}
 
 	public boolean generate(World world, Random random, int j, int k, int l) {
@@ -62,7 +59,7 @@ public class AetherGenFloatingIsland extends WorldGenerator {
 
 			for (int x = -2; x < 3; ++x) {
 				world.setBlock(x + j, k + 2, l, BlocksAether.arctic_grass);
-			}		
+			}
 
 			for (int x = -1; x < 2; ++x) {
 				for (int z = 1; z > -2; --z) {

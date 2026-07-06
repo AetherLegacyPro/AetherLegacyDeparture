@@ -7,7 +7,6 @@ public class BlockLightGenesisStone2 extends Block {
 
 	public BlockLightGenesisStone2() {
 		super(Material.rock);
-
 		this.setHardness(3.5F);
 		this.setLightLevel(0.8375F);
 		this.setStepSound(soundTypeStone);

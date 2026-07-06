@@ -18,7 +18,6 @@ public class PacketAccessory extends AetherPacket<PacketAccessory> {
 	private int entityID;
 
 	public PacketAccessory() {
-
 	}
 
 	public PacketAccessory(IPlayerAether player) {
@@ -46,9 +45,7 @@ public class PacketAccessory extends AetherPacket<PacketAccessory> {
 			if (parent != null) {
 				PlayerAether playerAether = PlayerAether.get(parent);
 				IAccessoryInventory newInventory = AetherConfig.UseBaublesExpandedMenu() ? new InventoryBaubles(playerAether) : new InventoryAccessories(playerAether);
-
 				newInventory.readData(message.readBuf);
-
 				PlayerAether.get(parent).setAccessoryInventory(newInventory);
 			}
 		}
@@ -56,7 +53,6 @@ public class PacketAccessory extends AetherPacket<PacketAccessory> {
 
 	@Override
 	public void handleServer(PacketAccessory message, EntityPlayer player) {
-
 	}
 
 }

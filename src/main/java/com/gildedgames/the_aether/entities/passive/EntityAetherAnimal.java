@@ -2,7 +2,6 @@ package com.gildedgames.the_aether.entities.passive;
 
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.items.ItemsAether;
-
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -10,7 +9,7 @@ import net.minecraft.world.World;
 public abstract class EntityAetherAnimal extends EntityAnimal {
 
 	public EntityAetherAnimal(World worldIn) {
-		super(worldIn);
+        super(worldIn);
 	}
 
 	@Override
@@ -20,7 +19,7 @@ public abstract class EntityAetherAnimal extends EntityAnimal {
 
 	@Override
 	public boolean isBreedingItem(ItemStack stack) {
-		return stack.getItem() == ItemsAether.blueberry;
+        return stack.getItem() == ItemsAether.blueberry;
 	}
 
 }

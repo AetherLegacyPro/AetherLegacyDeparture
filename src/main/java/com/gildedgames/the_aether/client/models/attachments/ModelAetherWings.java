@@ -7,19 +7,16 @@ import net.minecraft.entity.Entity;
 public class ModelAetherWings extends ModelBiped {
 
 	public ModelRenderer wingLeft;
-
 	public ModelRenderer wingRight;
-
 	public float sinage;
-
 	public boolean gonRound;
 
 	public ModelAetherWings() {
-		this(0.0F);
+        this(0.0F);
 	}
 
 	public ModelAetherWings(float f) {
-		this(f, 0.0F);
+        this(f, 0.0F);
 	}
 
 	public ModelAetherWings(float f, float f1) {
@@ -44,13 +41,12 @@ public class ModelAetherWings extends ModelBiped {
 	}
 
 	public void setWingSinage(float sinage) {
-		this.sinage = sinage;
+        this.sinage = sinage;
 	}
 
 	@Override
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity) {
 		this.gonRound = entity.onGround;
-
 		this.wingLeft.rotateAngleY = -0.4F;
 		this.wingRight.rotateAngleY = 0.4F;
 		this.wingLeft.rotateAngleZ = -0.125F;

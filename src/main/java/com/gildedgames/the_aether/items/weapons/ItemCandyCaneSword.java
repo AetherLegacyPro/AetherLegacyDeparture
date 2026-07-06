@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.items.weapons;
 
 import java.util.Random;
-
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
@@ -29,7 +28,6 @@ public class ItemCandyCaneSword extends ItemSword {
 			if ((new Random()).nextBoolean() && entityliving1 != null && entityliving1 instanceof EntityPlayer && !entityliving1.worldObj.isRemote && entityliving.hurtTime > 0) {
 				entityliving.dropItem(ItemsAether.candy_cane, 1);
 			}
-
 			itemstack.damageItem(1, entityliving1);
 			return true;
 		}

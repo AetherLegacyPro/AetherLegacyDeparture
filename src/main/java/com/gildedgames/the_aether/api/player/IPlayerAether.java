@@ -1,11 +1,8 @@
 package com.gildedgames.the_aether.api.player;
 
 import java.util.ArrayList;
-
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.common.IExtendedEntityProperties;
-
 import com.gildedgames.the_aether.api.player.util.IAccessoryInventory;
 import com.gildedgames.the_aether.api.player.util.IAetherAbility;
 import com.gildedgames.the_aether.api.player.util.IAetherBoss;
@@ -47,20 +44,19 @@ public interface IPlayerAether extends IExtendedEntityProperties {
 	public void updateShardCount(int amount);
 
 	public int getShardsUsed();
-	
+
 	public int getMaxShardCount();
-	
+
 	public void updatePowerShardCount(int amount);
 
 	public int getPowerShardsUsed();
-	
+
 	public int getMaxPowerShardCount();
-	
-	//
+
 	public void updateDexShardCount(int amount);
 
 	public int getDexShardsUsed();
-	
+
 	public int getMaxDexShardCount();
 
 	public boolean isDonator();

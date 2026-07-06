@@ -7,7 +7,6 @@ public class BlockOblitusStone2 extends Block {
 
 	public BlockOblitusStone2() {
 		super(Material.rock);
-		
 		this.setHardness(3F);
 		this.setStepSound(soundTypeStone);
 		this.setHarvestLevel("pickaxe", 2);

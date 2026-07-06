@@ -5,11 +5,8 @@ import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.world.IBlockAccess;
-
 import org.lwjgl.opengl.GL11;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
-
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
 public class BerryBushRenderer implements ISimpleBlockRenderingHandler {
@@ -69,12 +66,12 @@ public class BerryBushRenderer implements ISimpleBlockRenderingHandler {
 
 	@Override
 	public boolean shouldRender3DInInventory(int modelId) {
-		return true;
+        return true;
 	}
 
 	@Override
 	public int getRenderId() {
-		return CommonProxy.berryBushRenderID;
+        return CommonProxy.berryBushRenderID;
 	}
 
 }

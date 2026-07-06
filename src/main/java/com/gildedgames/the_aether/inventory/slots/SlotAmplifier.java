@@ -12,7 +12,7 @@ public class SlotAmplifier extends Slot {
 
 	@Override
 	public boolean isItemValid(ItemStack par1ItemStack) {
-		return false;
+        return false;
 	}
 
 }

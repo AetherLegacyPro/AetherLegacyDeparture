@@ -3,56 +3,46 @@ package com.gildedgames.the_aether;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
-
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import com.gildedgames.the_aether.vrl.ForgetTheOtherMethodsThisIsWhereTheMagicHappens;
-
 import java.io.File;
 import java.util.Random;
-
 import cpw.mods.fml.common.FMLCommonHandler;
-
 import cpw.mods.fml.relauncher.Side;
 
 public class CommonProxy {
 
 	public static int berryBushRenderID;
-
 	public static int treasureChestRenderID;
-
 	public static int aetherFlowerRenderID;
-	
 	public static int ancientEnchanterID;
-	
+
 
 	public void init() {
-
 	}
 
 	public void openSunAltar() {
-
 	}
 
 	public void spawnAltarParticles(final World world, final int x, final int y, final int z, final Random rand) {
     }
 
 	public void sendMessage(EntityPlayer player, String text) {
-
 	}
-	
+
 	public void spawnCloudSmoke(final World world, final double x, final double y, final double z, final Random rand, final Double radius) {
         this.spawnCloudSmoke(world, x, y, z, rand, radius, 0.0, 0.0, 0.0);
     }
-	
+
 	 public void spawnCloudSmoke(final World world, final double x, final double y, final double z, final Random rand, final double radius, final double forceX, final double forceY, final double forceZ) {
 	    this.spawnCloudSmoke(world, x, y, z, rand, radius, forceX, forceY, forceZ, 0.0);
 	}
-	    
+
 	public void spawnCloudSmoke(final World world, final double x, final double y, final double z, final Random rand, final double radius, final double forceX, final double forceY, final double forceZ, final double riseRate) {
 	}
 
 	public EntityPlayer getPlayer() {
-		return null;
+        return null;
 	}
 
 	public static void registerEvent(Object event) {
@@ -98,7 +88,7 @@ public class CommonProxy {
 
 			// We need a good static link for aether II 1.7.10. We can probably get everything we need from github auto-zip links, the source should still have the assets.
 			// This is good because it'll be easy to get every asset for every version (including unreleased versions), but the downside is I'd need to make sure
-			// assets are unzipped into instanced locations. 
+			// assets are unzipped into instanced locations.
 			// Do we want the b1.7.3 version too?
         	//ForgetTheOtherMethodsThisIsWhereTheMagicHappens.download("https://static.planetminecraft.com/files/resource_media/mod/1509/aetheriilauncher-unzipandrun8190225.zip");
 			System.out.println("Fetching aether assets complete");

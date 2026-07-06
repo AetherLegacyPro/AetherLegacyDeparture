@@ -2,14 +2,11 @@ package com.gildedgames.the_aether.entities.hostile;
 
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Vec3;
-
 import java.util.List;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.entities.projectile.EntityAercenturionProjectile;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
-
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
@@ -23,22 +20,21 @@ import net.minecraft.world.World;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 
-public class EntityAercenturion extends EntityMob
-{
+public class EntityAercenturion extends EntityMob {
 	public int shootTime;
-	
-    public EntityAercenturion(final World par1World) {
-        super(par1World);
+
+    public EntityAercenturion(final World world) {
+        super(world);
         this.setSize(1.0f, 2.0f);
         this.isImmuneToFire = true;
         this.experienceValue = 20;
     }
-    
+
     protected void entityInit() {
         super.entityInit();
         this.dataWatcher.addObject(16, (byte) 0);
     }
-    
+
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(25.0D);
@@ -46,82 +42,69 @@ public class EntityAercenturion extends EntityMob
         this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(15.0D);
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(50.0D);
     }
-    
+
     @Override
    	public void fall(float distance) {
    	}
-    
-    public int getTotalArmorValue()
-    {
+
+    public int getTotalArmorValue() {
         return 10;
     }
-    
+
     protected String getLivingSound() {
         return "aether_legacy:aemob.aercenturion.say";
     }
-    
+
     protected String getHurtSound() {
         return "aether_legacy:aemob.aercenturion.hurt";
     }
-    
+
     protected String getDeathSound() {
         return "aether_legacy:aemob.aercenturion.death";
     }
-    
-    protected String getSeenenemy() {
-        return "aether_legacy:aemob.aercenturion.seenEnemy";
-    }
-    
+
     protected float getSoundPitch() {
         return super.getSoundPitch() * 0.55f;
     }
-    
-    protected void func_145780_a(int p_145780_1_, int p_145780_2_, int p_145780_3_, Block p_145780_4_)
-    {
+
+    protected void func_145780_a(int p_145780_1_, int p_145780_2_, int p_145780_3_, Block p_145780_4_) {
         this.playSound("mob.irongolem.walk", 0.5F, 0.5F);
     }
-    
-    protected void dropFewItems(boolean p_70628_1_, int p_70628_2_)
-    {
+
+    protected void dropFewItems(boolean p_70628_1_, int p_70628_2_) {
         int j;
-        int k;
-        {
+        int k;{
             j = this.rand.nextInt(3 + p_70628_2_);
 
-            for (k = 0; k < j; ++k)
-            {
+            for (k = 0; k < j; ++k) {
                 this.dropItem(ItemsAether.zanite_gemstone, 3);
             }
         }
 
         j = this.rand.nextInt(3 + p_70628_2_);
 
-        for (k = 0; k < j; ++k)
-        {
+        for (k = 0; k < j; ++k) {
         	this.dropItem(Item.getItemFromBlock(BlocksAether.mythic_carved_stone), 6);
         }
     }
-    
-    public void onLivingUpdate()
-	{	
+
+    public void onLivingUpdate() {
     	if (this.worldObj.isRemote)
-        if (Minecraft.getMinecraft().thePlayer.capabilities.isCreativeMode == false) {  
+        if (!Minecraft.getMinecraft().thePlayer.capabilities.isCreativeMode) {
         List<Entity> volume2 = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(5, 5, 5));
         for(Entity entity2 : volume2) {
         	if(entity2 instanceof EntityPlayer && this.canEntityBeSeen(entity2)) ((EntityPlayer)entity2).addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 120, 1, true));
         	}
     	}
-		
+
 		super.onLivingUpdate();
 	}
-    
+
     @Override
 	public void onUpdate() {
 		super.onUpdate();
 
-		if (this.entityToAttack instanceof EntityPlayer && this.shouldAttackPlayer((EntityPlayer)this.entityToAttack))
-        {
-			
+		if (this.entityToAttack instanceof EntityPlayer && this.shouldAttackPlayer((EntityPlayer)this.entityToAttack)) {
 		if (this.getEntityToAttack() != null) {
 			if (this.getAttackTarget() instanceof EntityPlayer && ((EntityPlayer) this.getAttackTarget()).capabilities.isCreativeMode) {
 				this.setAttackTarget(null);
@@ -143,42 +126,36 @@ public class EntityAercenturion extends EntityMob
 
 				this.rotationYaw = (float) ((Math.atan2(d1, d) * 180D) / 3.1415927410125732D) - 90F;
 				}
-			
 			}
-				
 		}
-		
+
 		if (!this.worldObj.isRemote && this.worldObj.difficultySetting == EnumDifficulty.PEACEFUL) {
 			this.setDead();
 		}
 	}
-    
+
     public void shootTarget() {
 		if (this.worldObj.difficultySetting == EnumDifficulty.PEACEFUL) {
 			return;
-		}			
+		}
 			EntityAercenturionProjectile entityarrow2 = new EntityAercenturionProjectile(this.worldObj, this, 10.0F);
 			this.playSound("aether_legacy:aemob.aercenturion.seenEnemy", 2.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
 			this.worldObj.spawnEntityInWorld(entityarrow2);
-			
-		
 	}
-    
-    private boolean shouldAttackPlayer(EntityPlayer p_70821_1_)
-    {    	
-            Vec3 vec3 = p_70821_1_.getLook(1.0F).normalize();
-            Vec3 vec31 = Vec3.createVectorHelper(this.posX - p_70821_1_.posX, this.boundingBox.minY + (double)(this.height / 2.0F) - (p_70821_1_.posY + (double)p_70821_1_.getEyeHeight()), this.posZ - p_70821_1_.posZ);
+
+    private boolean shouldAttackPlayer(EntityPlayer entityPlayer) {
+            Vec3 vec3 = entityPlayer.getLook(1.0F).normalize();
+            Vec3 vec31 = Vec3.createVectorHelper(this.posX - entityPlayer.posX, this.boundingBox.minY + (double)(this.height / 2.0F) - (entityPlayer.posY + (double)entityPlayer.getEyeHeight()), this.posZ - entityPlayer.posZ);
             double d0 = vec31.lengthVector();
             vec31 = vec31.normalize();
             double d1 = vec3.dotProduct(vec31);
-            return d1 > 1.0D - 0.025D / d0 && p_70821_1_.canEntityBeSeen(this);
+            return d1 > 1.0D - 0.025D / d0 && entityPlayer.canEntityBeSeen(this);
     }
-    
+
     @Override
-    public boolean attackEntityAsMob(final Entity target) {			
+    public boolean attackEntityAsMob(final Entity target) {
 
         if (target instanceof EntityPlayer) {
-
             ItemStack helmet = ((EntityPlayer) target).getCurrentArmor(3);
             ItemStack chest = ((EntityPlayer) target).getCurrentArmor(2);
             ItemStack legs = ((EntityPlayer) target).getCurrentArmor(1);
@@ -187,7 +164,7 @@ public class EntityAercenturion extends EntityMob
             boolean hasdivineralHelmet = false;
             boolean hasdivineralChest = false;
             boolean hasdivineralLegs = false;
-            boolean hasdivineralBoots = false;          
+            boolean hasdivineralBoots = false;
 
 
             if(helmet != null)
@@ -200,8 +177,8 @@ public class EntityAercenturion extends EntityMob
                 hasdivineralLegs = ((legs.getItem() == ItemsAether.divineral_leggings) || (legs.getItem() == ItemsAether.amplified_arkenium_leggings) || (legs.getItem() == ItemsAether.amplified_continuum_leggings) || (legs.getItem() == ItemsAether.amplified_neptune_leggings) || (legs.getItem() == ItemsAether.amplified_valkyrie_leggings) || (legs.getItem() == ItemsAether.amplified_zanite_leggings) || (legs.getItem() == ItemsAether.amplified_phoenix_leggings) || (legs.getItem() == ItemsAether.amplified_obsidian_leggings));
 
             if(boots != null)
-                hasdivineralBoots = ((boots.getItem() == ItemsAether.divineral_boots) || (boots.getItem() == ItemsAether.amplified_arkenium_boots) || (boots.getItem() == ItemsAether.amplified_continuum_boots) || (boots.getItem() == ItemsAether.amplified_neptune_boots) || (boots.getItem() == ItemsAether.amplified_valkyrie_boots) || (boots.getItem() == ItemsAether.amplified_zanite_boots) || (boots.getItem() == ItemsAether.amplified_phoenix_boots) || (boots.getItem() == ItemsAether.amplified_obsidian_boots) || (boots.getItem() == ItemsAether.amplified_agility_boots));         
-            
+                hasdivineralBoots = ((boots.getItem() == ItemsAether.divineral_boots) || (boots.getItem() == ItemsAether.amplified_arkenium_boots) || (boots.getItem() == ItemsAether.amplified_continuum_boots) || (boots.getItem() == ItemsAether.amplified_neptune_boots) || (boots.getItem() == ItemsAether.amplified_valkyrie_boots) || (boots.getItem() == ItemsAether.amplified_zanite_boots) || (boots.getItem() == ItemsAether.amplified_phoenix_boots) || (boots.getItem() == ItemsAether.amplified_obsidian_boots) || (boots.getItem() == ItemsAether.amplified_agility_boots));
+
             if (hasdivineralHelmet || hasdivineralChest || hasdivineralLegs || hasdivineralBoots) {
 
             	target.attackEntityFrom(DamageSource.magic, 6.0F);
@@ -212,8 +189,8 @@ public class EntityAercenturion extends EntityMob
                 }
                 this.playSound("aether_legacy:aemob.aercenturion.seenEnemy", 1.0f, 1.0f);
                 return flag;
-            }                  
-            
+            }
+
             else {
             	target.attackEntityFrom(DamageSource.magic, 10.0F);
             	this.worldObj.setEntityState(this, (byte)4);
@@ -224,23 +201,18 @@ public class EntityAercenturion extends EntityMob
                 this.playSound("aether_legacy:aemob.aercenturion.seenEnemy", 2.0f, 1.0f);
                 return flag;
             }
-             
+
         }
-        
+
         return true;
     }
-    
-    public void onDeath(DamageSource p_70645_1_)
-    {
-        super.onDeath(p_70645_1_);
 
-        if (p_70645_1_.getEntity() instanceof EntityPlayer entityplayer)
-        {
+    public void onDeath(DamageSource source) {
+        super.onDeath(source);
 
+        if (source.getEntity() instanceof EntityPlayer entityplayer) {
 			entityplayer.triggerAchievement(AchievementsAether.kill_aercenturion);
-            
         }
-            
     }
 
 }

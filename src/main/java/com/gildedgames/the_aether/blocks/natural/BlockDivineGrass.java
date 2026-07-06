@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.blocks.natural;
 
 import java.util.Random;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.entities.particles.ParticleDivineGrass;
 import com.gildedgames.the_aether.items.util.DoubleDropHelper;
@@ -46,7 +45,7 @@ public class BlockDivineGrass extends Block implements IGrowable {
 
 	@Override
 	public int damageDropped(int meta) {
-		return 1;
+        return 1;
 	}
 
 	@Override
@@ -66,26 +65,23 @@ public class BlockDivineGrass extends Block implements IGrowable {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side) {
-		if (side == 1)
-		{
+		if (side == 1) {
 			return this.blockIconTop;
 		}
-		else if (side == 0)
-		{
+		else if (side == 0) {
 			return BlocksAether.aether_dirt.getBlockTextureFromSide(side);
 		}
-		else
-		{
+        else {
 			Material material = world.getBlock(x, y + 1, z).getMaterial();
 			return material != Material.snow && material != Material.craftedSnow ? this.blockIcon : this.blockIconSnowy;
 		}
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void randomDisplayTick(World world, int x, int y, int z, Random rand) {
-		
 		super.randomDisplayTick(world, x, y, z, rand);
+
 		if (!world.isRemote) {
 			return;
 		}
@@ -107,21 +103,21 @@ public class BlockDivineGrass extends Block implements IGrowable {
 				FMLClientHandler.instance().getClient().effectRenderer.addEffect(obj);
 			}
 		}
-	
+
 	}
 
 	@Override
-	public boolean func_149851_a(World p_149851_1_, int p_149851_2_, int p_149851_3_, int p_149851_4_, boolean p_149851_5_) {
+	public boolean func_149851_a(World world, int p_149851_2_, int p_149851_3_, int p_149851_4_, boolean p_149851_5_) {
 		return true;
 	}
 
 	@Override
-	public boolean func_149852_a(World p_149852_1_, Random p_149852_2_, int p_149852_3_, int p_149852_4_, int p_149852_5_) {
+	public boolean func_149852_a(World world, Random random, int p_149852_3_, int p_149852_4_, int p_149852_5_) {
 		return true;
 	}
 
 	@Override
-	public void func_149853_b(World p_149853_1_, Random p_149853_2_, int p_149853_3_, int p_149853_4_, int p_149853_5_) {
+	public void func_149853_b(World world, Random random, int p_149853_3_, int p_149853_4_, int p_149853_5_) {
 		int l = 0;
 
 		while (l < 128) {
@@ -132,33 +128,33 @@ public class BlockDivineGrass extends Block implements IGrowable {
 
 			while (true) {
 				if (l1 < l / 16) {
-					i1 += p_149853_2_.nextInt(3) - 1;
-					j1 += (p_149853_2_.nextInt(3) - 1) * p_149853_2_.nextInt(3) / 2;
-					k1 += p_149853_2_.nextInt(3) - 1;
+					i1 += random.nextInt(3) - 1;
+					j1 += (random.nextInt(3) - 1) * random.nextInt(3) / 2;
+					k1 += random.nextInt(3) - 1;
 
-					if (p_149853_1_.getBlock(i1, j1 - 1, k1) == BlocksAether.divine_grass && !p_149853_1_.getBlock(i1, j1, k1).isNormalCube()) {
+					if (world.getBlock(i1, j1 - 1, k1) == BlocksAether.divine_grass && !world.getBlock(i1, j1, k1).isNormalCube()) {
 						++l1;
 						continue;
 					}
-				} else if (p_149853_1_.isAirBlock(i1, j1, k1)) {
-					if (p_149853_2_.nextInt(8) != 0) {
-						if (BlocksAether.divine_aether_tallgrass.canBlockStay(p_149853_1_, i1, j1, k1)) {
-							p_149853_1_.setBlock(i1, j1, k1, BlocksAether.divine_aether_tallgrass, 1, 3);
+				} else if (world.isAirBlock(i1, j1, k1)) {
+					if (random.nextInt(8) != 0) {
+						if (BlocksAether.divine_aether_tallgrass.canBlockStay(world, i1, j1, k1)) {
+							world.setBlock(i1, j1, k1, BlocksAether.divine_aether_tallgrass, 1, 3);
 						}
 					}
-					else if (p_149853_2_.nextInt(7) != 0) {
-						if (BlocksAether.divine_stalk.canBlockStay(p_149853_1_, i1, j1, k1)) {
-							p_149853_1_.setBlock(i1, j1, k1, BlocksAether.divine_stalk, 1, 3);
-						}
-					} 
-					else if (p_149853_2_.nextInt(6) != 0) {
-						if (BlocksAether.divine_bloom.canBlockStay(p_149853_1_, i1, j1, k1)) {
-							p_149853_1_.setBlock(i1, j1, k1, BlocksAether.divine_bloom, 1, 3);
+					else if (random.nextInt(7) != 0) {
+						if (BlocksAether.divine_stalk.canBlockStay(world, i1, j1, k1)) {
+							world.setBlock(i1, j1, k1, BlocksAether.divine_stalk, 1, 3);
 						}
 					}
-					else if (p_149853_2_.nextInt(6) != 1) {
-						if (BlocksAether.divine_lily.canBlockStay(p_149853_1_, i1, j1, k1)) {
-							p_149853_1_.setBlock(i1, j1, k1, BlocksAether.divine_lily, 1, 3);
+					else if (random.nextInt(6) != 0) {
+						if (BlocksAether.divine_bloom.canBlockStay(world, i1, j1, k1)) {
+							world.setBlock(i1, j1, k1, BlocksAether.divine_bloom, 1, 3);
+						}
+					}
+					else if (random.nextInt(6) != 1) {
+						if (BlocksAether.divine_lily.canBlockStay(world, i1, j1, k1)) {
+							world.setBlock(i1, j1, k1, BlocksAether.divine_lily, 1, 3);
 						}
 					}
 				}
@@ -168,5 +164,4 @@ public class BlockDivineGrass extends Block implements IGrowable {
 			}
 		}
 	}
-
 }

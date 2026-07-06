@@ -1,12 +1,9 @@
 package com.gildedgames.the_aether.client.renders.entity;
 
 import org.lwjgl.opengl.GL11;
-
 import com.gildedgames.the_aether.Aether;
-import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.client.models.entities.AerwhaleMountModel;
 import com.gildedgames.the_aether.entities.passive.mountable.EntityAerwhaleMount;
-
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -15,19 +12,15 @@ import net.minecraft.util.ResourceLocation;
 public class AerwhaleMountRenderer extends RenderLiving {
 
     private static final ResourceLocation TEXTURE = Aether.locate("textures/entities/aerwhale/aerwhale.png");
-
     private static final ResourceLocation TEXTURE_SADDLE = Aether.locate("textures/entities/aerwhale_mount/aerwhale_saddle.png");
-    
     private final AerwhaleMountModel saddleModel = new AerwhaleMountModel();
 
-    public AerwhaleMountRenderer()
-    {
+    public AerwhaleMountRenderer() {
         super(new AerwhaleMountModel(), 0.5F);
     }
-    
+
     @Override
-    protected void preRenderCallback(EntityLivingBase aerwhale, float partialTickTime)
-    {
+    protected void preRenderCallback(EntityLivingBase aerwhale, float partialTickTime) {
     	GL11.glTranslated(0, 1.2D, 0);
         GL11.glScalef(2.0F, 2.0F, 2.0F);
     }
@@ -35,12 +28,14 @@ public class AerwhaleMountRenderer extends RenderLiving {
     protected int renderLayers(EntityAerwhaleMount entity, int pass, float particleTicks) {
         if (entity.isInvisible()) {
             return 0;
-        } else if (pass == 1 && entity.isSaddled()) {
+        }
+        else if (pass == 1 && entity.isSaddled()) {
             this.setRenderPassModel(this.saddleModel);
             this.bindTexture(TEXTURE_SADDLE);
 
             return 1;
-        } else if (pass == 1 && entity.isSaddled()) {
+        }
+        else if (pass == 1 && entity.isSaddled()) {
             this.setRenderPassModel(this.saddleModel);
             this.bindTexture(TEXTURE_SADDLE);
 

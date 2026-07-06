@@ -7,17 +7,14 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-
 import com.gildedgames.the_aether.inventory.slots.SlotAmplifier;
 import com.gildedgames.the_aether.tileentity.TileEntityAmplifier;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class ContainerAmplifier extends Container {
 
 	private TileEntityAmplifier amplify;
-
 	public int progress, ticksRequired, powerRemaining;
 
 	public ContainerAmplifier(InventoryPlayer par1InventoryPlayer, TileEntityAmplifier tileEntityAmplifier) {
@@ -41,7 +38,6 @@ public class ContainerAmplifier extends Container {
 	@Override
 	public void addCraftingToCrafters(ICrafting listener) {
 		super.addCraftingToCrafters(listener);
-
 		listener.sendProgressBarUpdate(this, 0, this.amplify.progress);
 		listener.sendProgressBarUpdate(this, 1, this.amplify.powerRemaining);
 		listener.sendProgressBarUpdate(this, 2, this.amplify.ticksRequired);
@@ -140,7 +136,6 @@ public class ContainerAmplifier extends Container {
 
 			slot.onPickupFromSlot(par1EntityPlayer, itemstack1);
 		}
-
 		return itemstack;
 	}
 

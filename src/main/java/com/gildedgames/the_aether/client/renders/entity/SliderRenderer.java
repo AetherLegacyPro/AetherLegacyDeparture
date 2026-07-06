@@ -7,28 +7,20 @@ import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.opengl.GL11;
-
 import com.gildedgames.the_aether.entities.bosses.slider.EntitySlider;
 
 public class SliderRenderer extends RenderLiving {
 
     private static final ResourceLocation TEXTURE_AWAKE_RED = Aether.locate("textures/bosses/slider/slider_awake_critical.png");
-
     private static final ResourceLocation TEXTURE_AWAKE = Aether.locate("textures/bosses/slider/slider_awake.png");
-
     private static final ResourceLocation TEXTURE_SLEEP = Aether.locate("textures/bosses/slider/slider_asleep.png");
-
     private static final ResourceLocation TEXTURE_SLEEP_RED = Aether.locate("textures/bosses/slider/slider_asleep_critical.png");
-
     private static final ResourceLocation TEXTURE_GLOW = Aether.locate("textures/bosses/slider/slider_awake_glow.png");
-
     private static final ResourceLocation TEXTURE_GLOW_RED = Aether.locate("textures/bosses/slider/slider_awake_critical_glow.png");
 
     public SliderRenderer() {
         super(new SliderModel(0.0F, 12.0F), 1.5F);
-
         this.setRenderPassModel(this.mainModel);
     }
 
@@ -71,10 +63,6 @@ public class SliderRenderer extends RenderLiving {
         ((SliderModel) this.mainModel).hurtAngle = slider.hurtAngle;
         ((SliderModel) this.mainModel).hurtAngleX = slider.hurtAngleX;
         ((SliderModel) this.mainModel).hurtAngleZ = slider.hurtAngleZ;
-    }
-
-    protected void renderLivingAt(EntitySlider slider, double x, double y, double z) {
-        super.renderLivingAt(slider, x, y, z);
     }
 
     @Override

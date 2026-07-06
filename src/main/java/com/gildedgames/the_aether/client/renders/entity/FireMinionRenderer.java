@@ -5,7 +5,6 @@ import com.gildedgames.the_aether.client.models.entities.SunSpiritModel;
 import net.minecraft.client.renderer.entity.RenderBiped;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
-
 import com.gildedgames.the_aether.entities.bosses.EntityFireMinion;
 
 public class FireMinionRenderer extends RenderBiped {

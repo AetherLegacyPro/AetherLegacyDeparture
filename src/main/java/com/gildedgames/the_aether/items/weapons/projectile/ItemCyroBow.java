@@ -18,7 +18,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.ArrowNockEvent;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -29,7 +28,6 @@ public class ItemCyroBow extends ItemBow {
 
 	public ItemCyroBow() {
 		super();
-
 		this.maxStackSize = 1;
 		this.setMaxDamage(384);
 		this.setFull3D();
@@ -40,7 +38,7 @@ public class ItemCyroBow extends ItemBow {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getItemIconForUseDuration(int p_94599_1_) {
-		return this.iconArray[p_94599_1_];
+        return this.iconArray[p_94599_1_];
 	}
 
 	@Override
@@ -66,18 +64,18 @@ public class ItemCyroBow extends ItemBow {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IIconRegister p_94581_1_) {
-		this.itemIcon = p_94581_1_.registerIcon(Aether.find("weapons/cyro_bow"));
+	public void registerIcons(IIconRegister iconRegister) {
+		this.itemIcon = iconRegister.registerIcon(Aether.find("weapons/cyro_bow"));
 		this.iconArray = new IIcon[bowPullIconNameArray.length];
 
 		for (int i = 0; i < this.iconArray.length; ++i) {
-			this.iconArray[i] = p_94581_1_.registerIcon(this.getIconString() + "_" + bowPullIconNameArray[i]);
+			this.iconArray[i] = iconRegister.registerIcon(this.getIconString() + "_" + bowPullIconNameArray[i]);
 		}
 	}
 
 	@Override
 	public EnumRarity getRarity(ItemStack stack) {
-		return ItemsAether.aether_loot;
+        return ItemsAether.aether_loot;
 	}
 
 	private ItemStack findAmmo(EntityPlayer player) {
@@ -175,7 +173,6 @@ public class ItemCyroBow extends ItemBow {
 
 	public EntityCyroArrow createArrow(World worldIn, float distance, ItemStack stack, EntityLivingBase shooter) {
 		EntityCyroArrow entityCyroArrow = new EntityCyroArrow(worldIn, shooter, distance);
-
 		return entityCyroArrow;
 	}
 
@@ -193,7 +190,6 @@ public class ItemCyroBow extends ItemBow {
 	@Override
 	public ItemStack onItemRightClick(ItemStack heldItem, World worldIn, EntityPlayer playerIn) {
 		boolean flag = this.findAmmo(playerIn) != null;
-
 		ArrowNockEvent event = new ArrowNockEvent(playerIn, heldItem);
 		MinecraftForge.EVENT_BUS.post(event);
 		if (event.isCanceled()) {

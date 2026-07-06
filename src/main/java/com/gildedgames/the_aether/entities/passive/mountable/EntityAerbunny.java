@@ -4,7 +4,6 @@ import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.entities.passive.EntityAetherAnimal;
 import com.gildedgames.the_aether.items.ItemsAether;
-
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -20,27 +19,20 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-
 import com.gildedgames.the_aether.entities.ai.aerbunny.AerbunnyAIHop;
 import com.gildedgames.the_aether.player.PlayerAether;
-
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 
 public class EntityAerbunny extends EntityAetherAnimal implements IEntityAdditionalSpawnData {
 
     private int puff;
-
     public int puffiness;
-
     private int jumpTicks;
-
     private int jumps;
 
     public EntityAerbunny(World world) {
         super(world);
-
         this.ignoreFrustumCheck = true;
-
         this.setSize(0.4F, 0.4F);
         this.tasks.addTask(3, new EntityAIMate(this, 1.0D));
 		this.tasks.addTask(3, new EntityAITempt(this, 0.25D, ItemsAether.blueberry, false));
@@ -68,7 +60,7 @@ public class EntityAerbunny extends EntityAetherAnimal implements IEntityAdditio
     public double getYOffset() {
         return 0.4D;
     }
-    
+
     @Override
 	public boolean getCanSpawnHere() {
 	      final int i = MathHelper.floor_double(this.posX);
@@ -76,7 +68,6 @@ public class EntityAerbunny extends EntityAetherAnimal implements IEntityAdditio
 	      final int k = MathHelper.floor_double(this.posZ);
 	      final boolean canSpawn = this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
 	      return (this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_dirt || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.arctic_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.verdant_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.enchanted_aether_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.divine_grass) && this.worldObj.getBlockLightValue(i, j, k) > 7 && canSpawn && this.rand.nextInt(AetherConfig.getAerbunnySpawnrate()) == 0 && super.getCanSpawnHere();
-	                       
 	}
 
     @Override
@@ -165,9 +156,7 @@ public class EntityAerbunny extends EntityAetherAnimal implements IEntityAdditio
             }
 
             this.getNavigator().clearPathEntity();
-
             this.setRotation(player.rotationYaw, player.rotationPitch);
-
             player.fallDistance = 0.0F;
 
             if (!player.onGround) {
@@ -248,23 +237,13 @@ public class EntityAerbunny extends EntityAetherAnimal implements IEntityAdditio
         return "aether_legacy:aemob.aerbunny.death";
     }
 
-    public EntityAerbunny createChild(EntityAgeable p_90011_1_)
-    {
+    public EntityAerbunny createChild(EntityAgeable entityAgeable) {
     	EntityAerbunny entityaerbunny = new EntityAerbunny(this.worldObj);
-
         return entityaerbunny;
     }
-    
-    public EntityAerbunny createChild2(EntityAgeable p_90011_2_)
-    {
-    	EntityAerbunny entityaerbunny2 = new EntityAerbunny(this.worldObj);
 
-        return entityaerbunny2;
-    }
-    
-    public boolean isBreedingItem(ItemStack p_70877_1_)
-    {
-        return p_70877_1_ != null && p_70877_1_.getItem() == ItemsAether.blueberry;
+    public boolean isBreedingItem(ItemStack itemStack) {
+        return itemStack != null && itemStack.getItem() == ItemsAether.blueberry;
     }
 
     @Override

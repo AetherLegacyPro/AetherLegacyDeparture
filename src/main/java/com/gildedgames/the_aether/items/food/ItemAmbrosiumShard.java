@@ -5,13 +5,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
 
 public class ItemAmbrosiumShard extends Item {
 
 	public ItemAmbrosiumShard() {
-		this.setCreativeTab(AetherCreativeTabs.material);
+        this.setCreativeTab(AetherCreativeTabs.material);
 	}
 
 	@Override
@@ -24,17 +23,15 @@ public class ItemAmbrosiumShard extends Item {
 			}
 
 			worldIn.setBlock(x, y, z, BlocksAether.enchanted_aether_grass);
-
 			return true;
 		}
-		
+
 		else if (worldIn.getBlock(x, y, z) == BlocksAether.aether_farmland) {
 			if (!playerIn.capabilities.isCreativeMode) {
 				--heldItem.stackSize;
 			}
 
 			worldIn.setBlock(x, y, z, BlocksAether.enchanted_aether_farmland);
-
 			return true;
 		}
 
@@ -51,7 +48,6 @@ public class ItemAmbrosiumShard extends Item {
 			}
 
 			playerIn.heal(1F);
-
 			return heldItem;
 		}
 

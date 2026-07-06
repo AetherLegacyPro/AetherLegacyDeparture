@@ -15,33 +15,25 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-
 import com.gildedgames.the_aether.entities.util.EntitySaddleMount;
 
 public class EntityFlyingCow extends EntitySaddleMount {
 
     public float wingFold;
-
     public float wingAngle;
-
     private float aimingForFold;
-
     public int maxJumps;
-
     public int jumpsRemaining;
-
     private int ticks;
 
     public EntityFlyingCow(World world) {
         super(world);
-
         this.ticks = 0;
         this.maxJumps = 1;
         this.jumpsRemaining = 0;
         this.stepHeight = 1.0F;
         this.ignoreFrustumCheck = true;
         this.canJumpMidAir = true;
-
         this.setSize(0.9F, 1.3F);
         this.getNavigator().setAvoidsWater(true);
         this.tasks.addTask(0, new EntityAISwimming(this));
@@ -60,7 +52,7 @@ public class EntityFlyingCow extends EntitySaddleMount {
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(10.0D);
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.20000000298023224D);
     }
-    
+
     @Override
    	public boolean getCanSpawnHere() {
    	      final int i = MathHelper.floor_double(this.posX);
@@ -68,7 +60,7 @@ public class EntityFlyingCow extends EntitySaddleMount {
    	      final int k = MathHelper.floor_double(this.posZ);
    	      final boolean canSpawn = this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
    	      return (this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_dirt || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.arctic_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.verdant_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.enchanted_aether_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.divine_grass) && this.worldObj.getBlockLightValue(i, j, k) > 7 && canSpawn && this.rand.nextInt(AetherConfig.getFlyingCowSpawnrate()) == 0 && super.getCanSpawnHere();
-   	                       
+
    	}
 
     @Override
@@ -94,7 +86,6 @@ public class EntityFlyingCow extends EntitySaddleMount {
     @Override
     public void writeEntityToNBT(NBTTagCompound compound) {
         super.writeEntityToNBT(compound);
-
         compound.setInteger("maxJumps", (short) this.maxJumps);
         compound.setInteger("jumpsRemaining", (short) this.jumpsRemaining);
     }
@@ -102,7 +93,6 @@ public class EntityFlyingCow extends EntitySaddleMount {
     @Override
     public void readEntityFromNBT(NBTTagCompound compound) {
         super.readEntityFromNBT(compound);
-
         this.maxJumps = compound.getInteger("maxJumps");
         this.jumpsRemaining = compound.getInteger("jumpsRemaining");
     }

@@ -3,21 +3,19 @@ package com.gildedgames.the_aether.player.abilities;
 import com.gildedgames.the_aether.api.player.IPlayerAether;
 import com.gildedgames.the_aether.api.player.util.IAetherAbility;
 import com.gildedgames.the_aether.items.ItemsAether;
-
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 
 public class AbilityHealingMatrix implements IAetherAbility {
-
 	private final IPlayerAether player;
 
 	public AbilityHealingMatrix(IPlayerAether player) {
-		this.player = player;
+        this.player = player;
 	}
 
 	@Override
 	public boolean shouldExecute() {
-		return true;
+        return true;
 	}
 
 	@Override

@@ -2,7 +2,6 @@ package com.gildedgames.the_aether.items.tools;
 
 import java.util.Random;
 import java.util.Set;
-
 import com.gildedgames.the_aether.items.util.EnumAetherMultiToolType;
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
 import net.minecraft.block.Block;
@@ -10,27 +9,22 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
-
 import com.google.common.collect.Multimap;
 
 public abstract class ItemAetherMultiTool extends ItemTool {
 
 	private float attackDamage;
-
 	private String toolClass;
-
 	public Random random = new Random();
-
 	public EnumAetherMultiToolType toolType;
 
 	public ItemAetherMultiTool(float damage, ToolMaterial toolMaterial, EnumAetherMultiToolType toolType) {
 		super(damage, toolMaterial, toolType.getToolBlockSet());
-
 		this.toolType = toolType;
 
 		if (toolType == EnumAetherMultiToolType.MULTI) {
 			this.toolClass = "multi";
-		} 
+		}
 
 		this.setCreativeTab(AetherCreativeTabs.tools);
 	}
@@ -75,7 +69,7 @@ public abstract class ItemAetherMultiTool extends ItemTool {
 	}
 
 	public float getEffectiveSpeed() {
-		return this.efficiencyOnProperMaterial;
+        return this.efficiencyOnProperMaterial;
 	}
 
 }

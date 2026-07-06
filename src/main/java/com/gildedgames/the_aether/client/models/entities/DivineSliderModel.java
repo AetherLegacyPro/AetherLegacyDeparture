@@ -3,22 +3,12 @@ package com.gildedgames.the_aether.client.models.entities;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
-
 import org.lwjgl.opengl.GL11;
 
 public class DivineSliderModel extends ModelBase {
 
 	public ModelRenderer head;
-
 	public float hurtAngle, hurtAngleX, hurtAngleZ;
-
-	public DivineSliderModel() {
-		this(0.0F);
-	}
-
-	public DivineSliderModel(float modelSize) {
-		this(modelSize, 0.0F);
-	}
 
 	public DivineSliderModel(float modelSize, float rotationPointY) {
 		this.head = new ModelRenderer(this, 0, 0);
@@ -28,10 +18,9 @@ public class DivineSliderModel extends ModelBase {
 
 	@Override
 	public void render(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
-		this.head.rotateAngleY = this.head.rotateAngleY = 0.0F;
+		this.head.rotateAngleY = 0.0F;
 
 		GL11.glPushMatrix();
-
 		GL11.glScalef(2.0F, 2.0F, 2.0F);
 
 		if (this.hurtAngle > 0.01F) {
@@ -39,7 +28,6 @@ public class DivineSliderModel extends ModelBase {
 		}
 
 		this.head.render(scale);
-
 		GL11.glPopMatrix();
 	}
 

@@ -5,50 +5,37 @@ import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.WorldProvider;
 
-public class PacketSendShouldCycle extends AetherPacket<PacketSendShouldCycle>
-{
+public class PacketSendShouldCycle extends AetherPacket<PacketSendShouldCycle> {
     private boolean shouldCycle;
 
-    public PacketSendShouldCycle()
-    {
-
+    public PacketSendShouldCycle() {
     }
 
-    public PacketSendShouldCycle(boolean shouldCycle)
-    {
+    public PacketSendShouldCycle(boolean shouldCycle) {
         this.shouldCycle = shouldCycle;
     }
 
     @Override
-    public void fromBytes(ByteBuf buf)
-    {
+    public void fromBytes(ByteBuf buf) {
         this.shouldCycle = buf.readBoolean();
     }
 
     @Override
-    public void toBytes(ByteBuf buf)
-    {
+    public void toBytes(ByteBuf buf) {
         buf.writeBoolean(this.shouldCycle);
     }
 
     @Override
-    public void handleClient(PacketSendShouldCycle message, EntityPlayer player)
-    {
-        if (player != null && player.worldObj != null && player.worldObj.provider != null)
-        {
+    public void handleClient(PacketSendShouldCycle message, EntityPlayer player) {
+        if (player != null && player.worldObj != null && player.worldObj.provider != null) {
             WorldProvider provider = player.worldObj.provider;
-
-            if (provider instanceof AetherWorldProvider providerAether)
-            {
-
+            if (provider instanceof AetherWorldProvider providerAether) {
 				providerAether.setShouldCycleCatchup(message.shouldCycle);
             }
         }
     }
 
     @Override
-    public void handleServer(PacketSendShouldCycle message, EntityPlayer player)
-    {
-
+    public void handleServer(PacketSendShouldCycle message, EntityPlayer player) {
     }
 }

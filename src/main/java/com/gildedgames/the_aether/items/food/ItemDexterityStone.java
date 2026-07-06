@@ -11,18 +11,17 @@ public class ItemDexterityStone extends ItemAetherFood {
 
 	public ItemDexterityStone() {
 		super(0);
-
 		this.setAlwaysEdible();
 	}
 
 	@Override
 	public EnumRarity getRarity(ItemStack stack) {
-		return EnumRarity.rare;
+        return EnumRarity.rare;
 	}
 
 	@Override
 	public boolean hasEffect(ItemStack stack, int pass) {
-		return true;
+        return true;
 	}
 
 	@Override

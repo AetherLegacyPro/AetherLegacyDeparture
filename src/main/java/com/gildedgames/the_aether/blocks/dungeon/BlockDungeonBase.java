@@ -17,7 +17,7 @@ public class BlockDungeonBase extends Block {
 	private boolean isLit;
 
 	public BlockDungeonBase(boolean isLit) {
-		this(null, isLit);
+        this(null, isLit);
 	}
 
 	public BlockDungeonBase(Block pickBlock, boolean isLit) {
@@ -59,11 +59,11 @@ public class BlockDungeonBase extends Block {
 	}
 
 	public Block getUnlockedBlock() {
-		return this.pickBlock == null ? this : this.pickBlock;
+        return this.pickBlock == null ? this : this.pickBlock;
 	}
-	
+
 	public void onBlockDestroyedByExplosion(final World world, final int x, final int y, final int z, final Explosion explosion) {
-		world.setBlockToAir(x, y, z);		
+		world.setBlockToAir(x, y, z);
 	}
 
 }

@@ -1,13 +1,11 @@
 package com.gildedgames.the_aether.blocks.dungeon;
 
 import java.util.Random;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.blocks.container.BlockElysianChest;
 import com.gildedgames.the_aether.entities.bosses.EntityElysianGuardian;
 import com.gildedgames.the_aether.entities.particles.NewAetherParticleHandler;
 import com.gildedgames.the_aether.tileentity.TileEntityElysianChestMimic;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.effect.EntityLightningBolt;
@@ -29,42 +27,38 @@ public class BlockMimicElysian extends BlockElysianChest {
 
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
-		return new TileEntityElysianChestMimic();
+        return new TileEntityElysianChestMimic();
 	}
 
 	@Override
 	public boolean onBlockActivated(World worldIn, int x, int y, int z, EntityPlayer playerIn, int side, float hitX, float hitY, float hitZ) {
 		worldIn.spawnEntityInWorld(new EntityLightningBolt(worldIn, x, y - 1, z));
 		this.spawnMimic(worldIn, playerIn, x, y, z);
-		
 		worldIn.playSoundEffect((double) x + 0.5D, (double) y + 0.5D, (double) z + 0.5D, "ambient.cave.cave", 0.5F, worldIn.rand.nextFloat() * 0.1F + 0.9F);
-		
+
 		if (!worldIn.isRemote) {
 			EntityItem entityItem = new EntityItem(worldIn, x, y, z, new ItemStack(BlocksAether.elysian_chest, 1));
-
 			worldIn.spawnEntityInWorld(entityItem);
 		}
-		
+
 		return true;
 	}
-	
+
 	public void onBlockDestroyedByPlayer(World world, int x, int y, int z, int l) {
 		world.spawnEntityInWorld(new EntityLightningBolt(world, x, y - 1, z));
-		
 		world.playSoundEffect((double) x + 0.5D, (double) y + 0.5D, (double) z + 0.5D, "ambient.cave.cave", 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
-		
+
 		if (!world.isRemote) {
 			EntityItem entityItem = new EntityItem(world, x, y, z, new ItemStack(BlocksAether.elysian_chest, 1));
-
 			world.spawnEntityInWorld(entityItem);
 		}
-		
+
 		if (!world.isRemote) {
 		EntityElysianGuardian guardian = new EntityElysianGuardian(world);
 		guardian.setPosition((double) x + 0.5D, (double) y + 1.5D, (double) z + 0.5D);
 		world.spawnEntityInWorld(guardian);
 		}
-				
+
 	}
 
 	@Override
@@ -76,7 +70,7 @@ public class BlockMimicElysian extends BlockElysianChest {
 	public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z, EntityPlayer player) {
 		return new ItemStack(BlocksAether.elysian_chest);
 	}
-	
+
 	private void explode(World world, EntityPlayer player, int x, int y, int z) {
 	    final float f = 3.5f;
 	    world.createExplosion(player, x, y, z, f, true);
@@ -84,11 +78,11 @@ public class BlockMimicElysian extends BlockElysianChest {
 
 	private void spawnMimic(World world, EntityPlayer player, int x, int y, int z) {
 		if (!world.isRemote) {
-			
+
 			this.explode(world, player, x, y, z);
 			world.spawnEntityInWorld(new EntityLightningBolt(world, x, y, z));
-			
 			EntityElysianGuardian guardian = new EntityElysianGuardian(world);
+
 			if (!player.capabilities.isCreativeMode) {
 				guardian.setAttackTarget(player);
 			}
@@ -98,29 +92,27 @@ public class BlockMimicElysian extends BlockElysianChest {
 		world.setBlockToAir(x, y, z);
 	   }
 	}
-	
+
 	@Override
 	protected boolean canSilkHarvest() {
         return false;
     }
-	
+
 	@Override
 	public Item getItemDropped(int meta, Random random, int fortune) {
-		return null;
+        return null;
 	}
-	
-	@SideOnly(Side.CLIENT)
-    public void randomDisplayTick(World p_149734_1_, int p_149734_2_, int p_149734_3_, int p_149734_4_, Random p_149734_5_)
-    {
-        super.randomDisplayTick(p_149734_1_, p_149734_2_, p_149734_3_, p_149734_4_, p_149734_5_);
 
-        if (p_149734_5_.nextInt(15) == 0)
-        {
-            NewAetherParticleHandler.ELYSIAN_TELEPORT.spawn(p_149734_1_, p_149734_2_ + p_149734_5_.nextFloat(), p_149734_3_ + 0.1f, p_149734_4_ + p_149734_5_.nextFloat(), 0.0, 0.0, 0.0, 0.0f);
-            NewAetherParticleHandler.ELYSIAN_TELEPORT.spawn(p_149734_1_, p_149734_2_ + p_149734_5_.nextFloat(), p_149734_3_ + 0.4f, p_149734_4_ + p_149734_5_.nextFloat(), 0.0, 0.0, 0.0, 0.0f);
-            NewAetherParticleHandler.ELYSIAN_TELEPORT.spawn(p_149734_1_, p_149734_2_ + p_149734_5_.nextFloat(), p_149734_3_ + 0.6f, p_149734_4_ + p_149734_5_.nextFloat(), 0.0, 0.0, 0.0, 0.0f);
-            NewAetherParticleHandler.ELYSIAN_TELEPORT.spawn(p_149734_1_, p_149734_2_ + p_149734_5_.nextFloat(), p_149734_3_ + 0.9f, p_149734_4_ + p_149734_5_.nextFloat(), 0.0, 0.0, 0.0, 0.0f);
-            NewAetherParticleHandler.ELYSIAN_TELEPORT.spawn(p_149734_1_, p_149734_2_ + p_149734_5_.nextFloat(), p_149734_3_ + 1.1f, p_149734_4_ + p_149734_5_.nextFloat(), 0.0, 0.0, 0.0, 0.0f);
+	@SideOnly(Side.CLIENT)
+    public void randomDisplayTick(World world, int p_149734_2_, int p_149734_3_, int p_149734_4_, Random random) {
+        super.randomDisplayTick(world, p_149734_2_, p_149734_3_, p_149734_4_, random);
+
+        if (random.nextInt(15) == 0) {
+            NewAetherParticleHandler.ELYSIAN_TELEPORT.spawn(world, p_149734_2_ + random.nextFloat(), p_149734_3_ + 0.1f, p_149734_4_ + random.nextFloat(), 0.0, 0.0, 0.0, 0.0f);
+            NewAetherParticleHandler.ELYSIAN_TELEPORT.spawn(world, p_149734_2_ + random.nextFloat(), p_149734_3_ + 0.4f, p_149734_4_ + random.nextFloat(), 0.0, 0.0, 0.0, 0.0f);
+            NewAetherParticleHandler.ELYSIAN_TELEPORT.spawn(world, p_149734_2_ + random.nextFloat(), p_149734_3_ + 0.6f, p_149734_4_ + random.nextFloat(), 0.0, 0.0, 0.0, 0.0f);
+            NewAetherParticleHandler.ELYSIAN_TELEPORT.spawn(world, p_149734_2_ + random.nextFloat(), p_149734_3_ + 0.9f, p_149734_4_ + random.nextFloat(), 0.0, 0.0, 0.0, 0.0f);
+            NewAetherParticleHandler.ELYSIAN_TELEPORT.spawn(world, p_149734_2_ + random.nextFloat(), p_149734_3_ + 1.1f, p_149734_4_ + random.nextFloat(), 0.0, 0.0, 0.0, 0.0f);
 
         }
     }

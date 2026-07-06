@@ -8,11 +8,9 @@ import cpw.mods.fml.common.FMLCommonHandler;
 public class PacketSetTime extends AetherPacket<PacketSetTime> {
 
 	public float timeVariable;
-
 	public int dimensionId;
 
 	public PacketSetTime() {
-
 	}
 
 	public PacketSetTime(float timeVariable, int dimensionId) {
@@ -34,7 +32,6 @@ public class PacketSetTime extends AetherPacket<PacketSetTime> {
 
 	@Override
 	public void handleClient(PacketSetTime message, EntityPlayer player) {
-
 	}
 
 	@Override
@@ -44,13 +41,11 @@ public class PacketSetTime extends AetherPacket<PacketSetTime> {
 
 	public void setTime(float sliderValue, int dimension) {
 		MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
-
 		for (int i = 0; i < server.worldServers.length; ++i) {
 			long shouldTime = (long) (24000L * sliderValue);
 			long worldTime = server.worldServers[i].getWorldInfo().getWorldTime();
 			long remainder = worldTime % 24000L;
 			long add = shouldTime > remainder ? shouldTime - remainder : shouldTime + 24000 - remainder;
-
 			server.worldServers[i].setWorldTime(worldTime + add);
 		}
 	}

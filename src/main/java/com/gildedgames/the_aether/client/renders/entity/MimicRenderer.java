@@ -1,14 +1,12 @@
 package com.gildedgames.the_aether.client.renders.entity;
 
 import java.util.Calendar;
-
 import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.client.models.entities.MimicModel;
 import com.gildedgames.the_aether.entities.hostile.EntityMimic;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.opengl.GL11;
 
 public class MimicRenderer extends RenderLiving {
@@ -17,7 +15,6 @@ public class MimicRenderer extends RenderLiving {
 
 	public MimicRenderer() {
 		super(new MimicModel(), 0.0F);
-
 		this.modelbase = (MimicModel) this.mainModel;
 	}
 
@@ -56,7 +53,7 @@ public class MimicRenderer extends RenderLiving {
 	}
 
 	protected ResourceLocation getEntityTexture(Entity entity) {
-		return null;
+        return null;
 	}
 
 }

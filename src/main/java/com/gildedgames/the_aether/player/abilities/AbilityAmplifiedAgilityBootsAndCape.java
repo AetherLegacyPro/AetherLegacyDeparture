@@ -9,16 +9,15 @@ import net.minecraft.entity.EntityLivingBase;
 public class AbilityAmplifiedAgilityBootsAndCape implements IAetherAbility {
 
 	private final IPlayerAether player;
-
 	private boolean stepUpdate;
 
 	public AbilityAmplifiedAgilityBootsAndCape(IPlayerAether player) {
-		this.player = player;
+        this.player = player;
 	}
 
 	@Override
 	public boolean shouldExecute() {
-		return true;
+        return true;
 	}
 
 	@Override
@@ -27,30 +26,28 @@ public class AbilityAmplifiedAgilityBootsAndCape implements IAetherAbility {
 		if (this.player.getAccessoryInventory().wearingArmor(ItemsAether.amplified_agility_boots)
 			&& this.player.getAccessoryInventory().wearingAccessory(ItemsAether.agility_cape)) {
 			EntityLivingBase entityLiving = (EntityLivingBase) entity;
-
 			float movementLR = this.negativeDifference(entityLiving, entityLiving.moveStrafing);
 			float movementFB = this.negativeDifference(entityLiving, entityLiving.moveForward);
 
 			if (entityLiving.isInWater()) {
 				entityLiving.moveFlying(movementLR, movementFB, 0.035F);
 			}
-			
+
 			if (entityLiving.handleLavaMovement()) {
 				entityLiving.moveFlying(movementLR, movementFB, 0.065F);
 			}
-			
+
 			if (entityLiving.isSprinting()) {
 				entityLiving.moveFlying(movementLR, movementFB, 0.10F);
 			}
-			
+
 			if (entityLiving.isEntityAlive()) {
 				entityLiving.moveFlying(movementLR, movementFB, 0.022F);
 			}
 		}
-		
+
 		if (this.player.getAccessoryInventory().isWearingPureSpeed()) {
 			EntityLivingBase entityLiving = (EntityLivingBase) entity;
-
 			float movementLR = this.negativeDifference(entityLiving, entityLiving.moveStrafing);
 			float movementFB = this.negativeDifference(entityLiving, entityLiving.moveForward);
 
@@ -70,9 +67,7 @@ public class AbilityAmplifiedAgilityBootsAndCape implements IAetherAbility {
 				entityLiving.moveFlying(movementLR, movementFB, 0.022F);
 			}
 		}
-		
-		
-	
+
 		if (this.player.getAccessoryInventory().wearingArmor(ItemsAether.amplified_agility_boots)) {
 			if (!this.player.getEntity().isSneaking()) {
 				this.player.getEntity().stepHeight = 1.0F;
@@ -90,9 +85,7 @@ public class AbilityAmplifiedAgilityBootsAndCape implements IAetherAbility {
 			}
 		}
 	}
-	
-	
-	
+
 	public float negativeDifference(EntityLivingBase entity, float number) {
 		if (number < 0.0F) {
 			return number + 0.15F;

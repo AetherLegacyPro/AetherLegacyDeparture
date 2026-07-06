@@ -25,25 +25,21 @@ import net.minecraft.util.ObjectIntIdentityMap;
 public class InventoryAccessories implements IInventory, IAccessoryInventory {
 
 	private final FilledList<ItemStack> stacks = new FilledList<>(8, null);
-
 	private final IPlayerAether playerAether;
-
 	private final ObjectIntIdentityMap orderedList = AccessoryType.createCompleteList();
 
 	public InventoryAccessories(IPlayerAether playerAether) {
-		this.playerAether = playerAether;
+        this.playerAether = playerAether;
 	}
-
-	//IInventory
 
 	@Override
 	public int getSizeInventory() {
-		return stacks.size();
+        return stacks.size();
 	}
 
 	@Override
 	public ItemStack getStackInSlot(int slot) {
-		return stacks.get(slot);
+        return stacks.get(slot);
 	}
 
 	@Override
@@ -79,17 +75,17 @@ public class InventoryAccessories implements IInventory, IAccessoryInventory {
 
 	@Override
 	public String getInventoryName() {
-		return "aether_legacy:accessories";
+        return "aether_legacy:accessories";
 	}
 
 	@Override
 	public boolean hasCustomInventoryName() {
-		return true;
+        return true;
 	}
 
 	@Override
 	public int getInventoryStackLimit() {
-		return 1;
+        return 1;
 	}
 
 	@Override
@@ -106,12 +102,10 @@ public class InventoryAccessories implements IInventory, IAccessoryInventory {
 
 	@Override
 	public void openInventory() {
-
 	}
 
 	@Override
 	public void closeInventory() {
-
 	}
 
 	@Override
@@ -124,8 +118,6 @@ public class InventoryAccessories implements IInventory, IAccessoryInventory {
 		}
 		return false;
 	}
-
-	//IAccessoryInventory
 
 	@Override
 	public void dropAccessories() {

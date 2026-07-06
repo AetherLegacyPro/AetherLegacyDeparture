@@ -5,42 +5,34 @@ import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 
-public class PacketSwetJump extends AetherPacket<PacketSwetJump>
-{
+public class PacketSwetJump extends AetherPacket<PacketSwetJump> {
     public int id;
     public boolean bool;
 
-    public PacketSwetJump()
-    {
-
+    public PacketSwetJump() {
     }
 
-    public PacketSwetJump(int entity, boolean bool)
-    {
+    public PacketSwetJump(int entity, boolean bool) {
         this.id = entity;
         this.bool = bool;
     }
 
     @Override
-    public void fromBytes(ByteBuf buf)
-    {
+    public void fromBytes(ByteBuf buf) {
         this.id = buf.readInt();
         this.bool = buf.readBoolean();
     }
 
     @Override
-    public void toBytes(ByteBuf buf)
-    {
+    public void toBytes(ByteBuf buf) {
         buf.writeInt(this.id);
         buf.writeBoolean(this.bool);
     }
 
     @Override
-    public void handleClient(PacketSwetJump message, EntityPlayer player)
-    {
+    public void handleClient(PacketSwetJump message, EntityPlayer player) {
         if (player != null && player.worldObj != null) {
             Entity entity = player.worldObj.getEntityByID(message.id);
-
             if (entity instanceof EntitySwet) {
                 ((EntitySwet) entity).midJump = message.bool;
             }
@@ -48,8 +40,6 @@ public class PacketSwetJump extends AetherPacket<PacketSwetJump>
     }
 
     @Override
-    public void handleServer(PacketSwetJump message, EntityPlayer player)
-    {
-
+    public void handleServer(PacketSwetJump message, EntityPlayer player) {
     }
 }

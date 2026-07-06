@@ -10,9 +10,7 @@ import net.minecraft.item.ItemSword;
 import net.minecraft.network.play.server.S12PacketEntityVelocity;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
-
 import java.util.List;
-
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.entities.passive.mountable.EntitySwet;
@@ -31,8 +29,6 @@ public class ItemGravititeSword extends ItemSword {
 
 	@Override
 	public boolean hitEntity(ItemStack itemstack, EntityLivingBase hitentity, EntityLivingBase player) {
-		
-		
 		if ((hitentity.hurtTime > 0 || hitentity.deathTime > 0) && !(hitentity instanceof EntitySwet)) {
 			hitentity.addVelocity(0.0D, 1.0D, 0.0D);
 		}
@@ -43,7 +39,7 @@ public class ItemGravititeSword extends ItemSword {
 
 		return super.hitEntity(itemstack, hitentity, player);
 	}
-	
+
 	public void addInformation(final ItemStack stack, final EntityPlayer player, final List tooltip, final boolean who) {
 		if(AetherConfig.enableTooltips())
         tooltip.add(EnumChatFormatting.GRAY + "" + StatCollector.translateToLocal("tooltip.gravitite_sword.desc"));

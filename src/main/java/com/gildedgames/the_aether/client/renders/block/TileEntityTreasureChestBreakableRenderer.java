@@ -5,26 +5,23 @@ import cpw.mods.fml.relauncher.*;
 import net.minecraft.util.*;
 import net.minecraft.client.model.*;
 import org.lwjgl.opengl.*;
-
 import com.gildedgames.the_aether.blocks.container.BlockTreasureChestBreakable;
 import com.gildedgames.the_aether.tileentity.TileEntityTreasureChestBreakable;
-
 import net.minecraft.block.*;
 import net.minecraft.tileentity.*;
 
 @SideOnly(Side.CLIENT)
-public class TileEntityTreasureChestBreakableRenderer extends TileEntitySpecialRenderer
-{
+public class TileEntityTreasureChestBreakableRenderer extends TileEntitySpecialRenderer {
   private static final ResourceLocation TEXTURE_DOUBLE;
   private static final ResourceLocation TEXTURE_SINGLE;
   private final ModelChest chestModel;
   private final ModelChest largeChestModel;
-  
+
   public TileEntityTreasureChestBreakableRenderer() {
       this.chestModel = new ModelChest();
       this.largeChestModel = new ModelLargeChest();
   }
-  
+
   public void renderTileEntityChestAt(final TileEntityTreasureChestBreakable par1TileEntityChest, final double par2, final double par4, final double par6, final float par8) {
       int var9;
       if (!par1TileEntityChest.hasWorldObj()) {
@@ -95,11 +92,11 @@ public class TileEntityTreasureChestBreakableRenderer extends TileEntitySpecialR
           GL11.glPopMatrix();
       }
   }
-  
+
   public void renderTileEntityAt(final TileEntity par1TileEntity, final double par2, final double par4, final double par6, final float par8) {
       this.renderTileEntityChestAt((TileEntityTreasureChestBreakable)par1TileEntity, par2, par4, par6, par8);
   }
-  
+
   static {
       TEXTURE_DOUBLE = new ResourceLocation("aether_legacy", "textures/tile_entities/treasure_chest_large.png");
       TEXTURE_SINGLE = new ResourceLocation("aether_legacy", "textures/tile_entities/treasure_chest.png");

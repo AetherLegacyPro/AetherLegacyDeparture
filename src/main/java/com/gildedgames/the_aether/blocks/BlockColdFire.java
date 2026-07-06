@@ -6,10 +6,8 @@ import net.minecraft.client.particle.*;
 import net.minecraft.init.*;
 import net.minecraftforge.common.util.*;
 import java.util.*;
-
 import com.gildedgames.the_aether.entities.hostile.EntityCyro;
-import com.gildedgames.the_aether.entities.hostile.EntityCyroGuardian;
-
+import com.gildedgames.the_aether.entities.bosses.cyro_guardian.EntityCyroGuardian;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
@@ -19,10 +17,9 @@ import net.minecraft.util.*;
 import net.minecraft.entity.*;
 import net.minecraft.world.*;
 
-public class BlockColdFire extends BlockFire
-{
+public class BlockColdFire extends BlockFire {
     private IIcon[] field_149850_M;
-    
+
     public BlockColdFire() {
         this.setLightLevel(0.20f);
         this.setBlockBounds(0.0f, 0.0f, 0.0f, 1.0f, 0.015625f, 1.0f);
@@ -31,30 +28,33 @@ public class BlockColdFire extends BlockFire
 	public boolean isCollidable() {
         return true;
     }
-    
+
     @SideOnly(Side.CLIENT)
-    public void registerBlockIcons(final IIconRegister p_149651_1_) {
-    	this.field_149850_M = new IIcon[] { p_149651_1_.registerIcon("aether_legacy:coldfire_0"), p_149651_1_.registerIcon("aether_legacy:coldfire_1") };    }
-    
+    public void registerBlockIcons(final IIconRegister iconRegister) {
+    	this.field_149850_M = new IIcon[] {
+            iconRegister.registerIcon("aether_legacy:coldfire_0"), iconRegister.registerIcon("aether_legacy:coldfire_1")
+        };
+    }
+
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(final int i1, final int i2) {
         return this.field_149850_M[0];
     }
-    
+
     @SideOnly(Side.CLIENT)
     public IIcon getFireIcon(final int i1) {
         return this.field_149850_M[i1];
     }
-    
+
     @SideOnly(Side.CLIENT)
     public boolean addDestroyEffects(final World world, final int x, final int y, final int z, final int meta, final EffectRenderer effectRenderer) {
         return true;
     }
-    
+
     private boolean canNeighborBurn(final World world, final int x, final int y, final int z) {
         return Blocks.fire.canCatchFire(world, x + 1, y, z, ForgeDirection.WEST) || Blocks.fire.canCatchFire(world, x - 1, y, z, ForgeDirection.EAST) || Blocks.fire.canCatchFire(world, x, y - 1, z, ForgeDirection.UP) || Blocks.fire.canCatchFire(world, x, y + 1, z, ForgeDirection.DOWN) || Blocks.fire.canCatchFire(world, x, y, z - 1, ForgeDirection.SOUTH) || Blocks.fire.canCatchFire(world, x, y, z + 1, ForgeDirection.NORTH);
     }
-    
+
     private void tryCatchFire(final World world, final int x, final int y, final int z, final int i1, final Random rand, final int i2, final ForgeDirection face) {
         final int j1 = world.getBlock(x, y, z).getFlammability(world, x, y, z, face);
         if (rand.nextInt(i1) < j1) {
@@ -69,11 +69,11 @@ public class BlockColdFire extends BlockFire
             }
         }
     }
-    
+
     public ItemStack getPickBlock(final MovingObjectPosition target, final World world, final int x, final int y, final int z, final EntityPlayer player) {
         return null;
     }
-    
+
     @Override
 	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
 		if (entity instanceof EntityPlayer player) {
@@ -81,24 +81,24 @@ public class BlockColdFire extends BlockFire
 			entity.attackEntityFrom(DamageSource.magic, 1.0F);
 			player.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 120, 0));
 			player.addPotionEffect(new PotionEffect(Potion.digSlowdown.id, 140, 0));
-		
+
 		}
 		if (entity instanceof EntityCyro player) {
 
 			player.addPotionEffect(new PotionEffect(Potion.regeneration.id, 60, 1));
-		
+
 		}
 		if (entity instanceof EntityCyroGuardian player) {
 
 			player.addPotionEffect(new PotionEffect(Potion.regeneration.id, 100, 3));
-		
+
 		}
 		else  {
 			entity.attackEntityFrom(DamageSource.magic, 1.0F);
 		}
-		
+
 	}
-    
+
     private int getChanceOfNeighborsEncouragingFire(final World world, final int x, final int y, final int z) {
         final byte b0 = 0;
         if (!world.isAirBlock(x, y, z)) {
@@ -113,27 +113,27 @@ public class BlockColdFire extends BlockFire
         l = this.getChanceToEncourageFire(world, x, y, z + 1, l, ForgeDirection.NORTH);
         return l;
     }
-    
+
     @Override
     @SideOnly(Side.CLIENT)
     public void randomDisplayTick(final World p_149734_1_, final int p_149734_2_, final int p_149734_3_, final int p_149734_4_, final Random p_149734_5_) {
         super.randomDisplayTick(p_149734_1_, p_149734_2_, p_149734_3_, p_149734_4_, p_149734_5_);
         if (p_149734_5_.nextInt(15) == 0) {
-        	
+
         	float f;
             float f1;
             float f2;
-            
+
         	 for (int i = 0; i < 2; ++i)
-        	    {       		 
+        	    {
         		 f = (float)p_149734_2_ + p_149734_5_.nextFloat() * 0.1F;
                  f1 = (float)p_149734_3_ + p_149734_5_.nextFloat();
                  f2 = (float)p_149734_4_ + p_149734_5_.nextFloat();
                  p_149734_1_.spawnParticle("snowshovel", f, f1, f2, 0.0D, 0.0D, 0.0D);
-             }        	    
+             }
         }
     }
-    
+
     public void updateTick(final World world, final int x, final int y, final int z, final Random rand) {
         if (world.getGameRules().getGameRuleBooleanValue("doFireTick")) {
             final boolean flag = world.getBlock(x, y - 1, z).isFireSource(world, x, y - 1, z, ForgeDirection.UP) || world.getBlock(x, y - 1, z) == BlocksAether.coldfire;

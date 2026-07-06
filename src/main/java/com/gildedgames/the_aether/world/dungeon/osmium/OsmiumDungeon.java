@@ -1,12 +1,10 @@
 package com.gildedgames.the_aether.world.dungeon.osmium;
 
 import java.util.Random;
-
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.world.AetherWorld;
-
 import cpw.mods.fml.common.IWorldGenerator;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -16,38 +14,38 @@ import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 
 public class OsmiumDungeon implements IWorldGenerator  {
-	
+
 	@Override
 	public void generate(Random rand, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
 		if (world.provider.dimensionId == AetherConfig.getAetherDimensionID()) {
 	         this.generateAether(world, rand, chunkX * 16, chunkZ * 16);
 	      }
 	   }
-	
+
 	int aether_random = AetherConfig.osmium_dungeon_rarity;
-		
+
 	public void generateAether(World world, Random rand, int x, int z) {
 		if(Math.abs(x) < 2000 && Math.abs(z) < 2000) return;
-		
+
 		int chunkX;
 		int chunkZ;
 		BiomeGenBase biome;
-		Type[] biomeList;			
+		Type[] biomeList;
 		chunkX = x * 16 + rand.nextInt(16) + 8;
 		chunkZ = z * 16 + rand.nextInt(16) + 8;
 		biome = world.getBiomeGenForCoords(x, z);
-		biomeList = BiomeDictionary.getTypesForBiome(biome);		
+		biomeList = BiomeDictionary.getTypesForBiome(biome);
 		if ((biome == AetherWorld.aether_biome) && AetherConfig.osmium_dungeon_rarity != 0 && rand.nextInt(aether_random) == 0 && AetherConfig.osmium_dungeon_enable) {
-			
+
 		int x1 = x + rand.nextInt(16) + 8;
 	  	int y1 = 128;
 	  	int z1 = z + rand.nextInt(16) + 8;
-	  	
+
 	  	if (AetherConfig.enableLogReporting()) {
             System.out.println("Osmium Dungeon generated at (X:" + x1 + ", Z:" + z1 + ")");
             System.out.println("Large Structure is generating, be patient!");
         }
-	  	
+
 	  	new OsmiumDungeonGen1().generate(world, rand, x1, y1, z1);
 	  	new OsmiumDungeonGen2().generate(world, rand, x1, y1, z1);
 	  	new OsmiumDungeonGen3().generate(world, rand, x1, y1, z1);
@@ -69,14 +67,14 @@ public class OsmiumDungeon implements IWorldGenerator  {
 	  	new OsmiumDungeonGen19().generate(world, rand, x1, y1, z1);
 	  	new OsmiumDungeonGen20().generate(world, rand, x1, y1, z1);
 	  	new OsmiumDungeonGen21().generate(world, rand, x1, y1, z1);
-	  	
+
 	  	new OsmiumDungeonStormAercloudGen1().generate(world, rand, x1 - 2, y1 + 27, z1 - 10);
 	  	new OsmiumDungeonStormAercloudGen2().generate(world, rand, x1 - 2, y1 + 27, z1 - 10);
-		
+
 		}
-	
+
 	}
-	
+
 	public static ItemStack getOsmiumLoot(Random random) {
 		int item = random.nextInt(17);
 

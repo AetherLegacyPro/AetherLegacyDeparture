@@ -5,11 +5,8 @@ import java.util.Random;
 public class AetherNameGen {
 
 	public static Random rand = new Random();
-
 	public static String[] valkNamePrefix = {"Har", "Her", "Gon", "Sko", "Hil"};
-
 	public static String[] valkNameMiddix = {"fjo", "ska", "bri", "", ""};
-
 	public static String[] valkNameSuffix = {"tur", "pul", "dul", "gul", "or"};
 
 	public static String[] name1 = new String[]{"Del", "Ros", "Per", "Cyn",
@@ -66,7 +63,6 @@ public class AetherNameGen {
 
 	public static String gen() {
 		String name = name1[rand.nextInt(name1.length)];
-
 		int middle = 2 + rand.nextInt(2);
 		for (int i = 0; i < middle; i++)
 			name += name2[rand.nextInt(name2.length)];
@@ -75,9 +71,7 @@ public class AetherNameGen {
 	}
 
 	public static String valkGen() {
-
 		String result = "";
-
 		result += valkNamePrefix[rand.nextInt(valkNamePrefix.length)];
 		result += valkNameMiddix[rand.nextInt(valkNameMiddix.length)];
 		result += valkNameSuffix[rand.nextInt(valkNameSuffix.length)];

@@ -14,21 +14,18 @@ public class BlockMimicChest extends BlockSkyrootChest {
 
 	public BlockMimicChest() {
 		super(13);
-
 		this.setHardness(2.0F);
 	}
 
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
-		return new TileEntityChestMimic();
+        return new TileEntityChestMimic();
 	}
 
 	@Override
 	public boolean onBlockActivated(World worldIn, int x, int y, int z, EntityPlayer playerIn, int side, float hitX, float hitY, float hitZ) {
 		this.spawnMimic(worldIn, playerIn, x, y, z);
-
 		worldIn.playSoundEffect((double) x + 0.5D, (double) y + 0.5D, (double) z + 0.5D, "random.chestopen", 0.5F, worldIn.rand.nextFloat() * 0.1F + 0.9F);
-
 		return true;
 	}
 
@@ -45,8 +42,8 @@ public class BlockMimicChest extends BlockSkyrootChest {
 	private void spawnMimic(World world, EntityPlayer player, int x, int y, int z) {
 		if (!world.isRemote) {
 			int rand = (int)(1 + Math.random() * 5);
-			switch (rand)
-	        {
+
+			switch (rand) {
 	        case 1:
 			EntityMimic mimic = new EntityMimic(world);
 			if (!player.capabilities.isCreativeMode) {

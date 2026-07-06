@@ -16,37 +16,30 @@ import net.minecraft.util.Direction;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.IExtendedEntityProperties;
-
 import com.gildedgames.the_aether.world.TeleporterAether;
-
 import cpw.mods.fml.common.FMLCommonHandler;
 
 public class EntityHook implements IExtendedEntityProperties {
 
 	private Entity entity;
-
 	private boolean inPortal;
-
 	public int teleportDirection;
 
 	@Override
 	public void init(Entity entity, World world) {
-		this.entity = entity;
+        this.entity = entity;
 	}
 
 	@Override
 	public void saveNBTData(NBTTagCompound compound) {
-
 	}
 
 	@Override
 	public void loadNBTData(NBTTagCompound compound) {
-
 	}
 
 	public void onUpdate() {
 		this.entity.worldObj.theProfiler.startSection("portal");
-
 		if (this.entity.dimension == AetherConfig.getAetherDimensionID()) {
 			if (this.entity.posY < -2 && this.entity.riddenByEntity == null && this.entity.ridingEntity == null) {
 				if (!this.entity.worldObj.isRemote) {
@@ -74,10 +67,8 @@ public class EntityHook implements IExtendedEntityProperties {
 		this.entity.worldObj.theProfiler.endSection();
 
 		if (this.entity instanceof EntityLiving livingEntity) {
-
 			if (livingEntity.getAttackTarget() instanceof EntityPlayer) {
 				PlayerAether playerAether = PlayerAether.get((EntityPlayer) livingEntity.getAttackTarget());
-
 				if (playerAether.getAccessoryInventory().wearingAccessory(ItemsAether.invisibility_cape)) {
 					livingEntity.setAttackTarget(null);
 				}
@@ -85,22 +76,17 @@ public class EntityHook implements IExtendedEntityProperties {
 		}
 
 		if (this.entity instanceof EntityCreature creature) {
-
 			if (creature.getEntityToAttack() instanceof EntityPlayer) {
 				PlayerAether playerAether = PlayerAether.get((EntityPlayer) creature.getEntityToAttack());
-
 				if (playerAether.getAccessoryInventory().wearingAccessory(ItemsAether.invisibility_cape)) {
 					creature.setTarget(null);
 				}
 			}
 		}
 
-		if (this.entity instanceof EntityLivingBase living)
-		{
-
+		if (this.entity instanceof EntityLivingBase living) {
 			if (living.getAITarget() instanceof EntityPlayer) {
 				PlayerAether playerAether = PlayerAether.get((EntityPlayer) living.getAITarget());
-
 				if (playerAether.getAccessoryInventory().wearingAccessory(ItemsAether.invisibility_cape)) {
 					living.setRevengeTarget(null);
 				}
@@ -134,14 +120,12 @@ public class EntityHook implements IExtendedEntityProperties {
 			MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
 			WorldServer previousWorldIn = server.worldServerForDimension(previousDimension);
 			WorldServer newWorldIn = server.worldServerForDimension(transferDimension);
-
 			this.entity.dimension = newWorldIn.provider.dimensionId;
 			previousWorldIn.removePlayerEntityDangerously(this.entity);
 			this.entity.isDead = false;
 
 			server.getConfigurationManager().transferEntityToWorld(this.entity, previousWorldIn.provider.dimensionId, previousWorldIn, newWorldIn, new TeleporterAether(shouldSpawnPortal, newWorldIn));
 		} catch (Exception e) {
-
 		}
 	}
 

@@ -4,27 +4,23 @@ import net.minecraft.world.gen.feature.*;
 import net.minecraft.block.*;
 import net.minecraft.world.*;
 import java.util.*;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
-
 import net.minecraft.init.*;
 
-public class PalladiumDecorationGemstonePiles extends WorldGenAbstractTree
-{
+public class PalladiumDecorationGemstonePiles extends WorldGenAbstractTree {
     Block leaves;
     int randHeight;
     boolean branches;
-    
+
     public PalladiumDecorationGemstonePiles(final Block leafID, final int heightWeight, final boolean branchFlag) {
         super(true);
         this.leaves = leafID;
         this.randHeight = heightWeight;
         this.branches = branchFlag;
     }
-    
+
     public boolean generate(final World world, final Random random, final int x, final int y, final int z) {
-    	boolean cangen = true;
-    		
+
     		int random2 = (int)(1 + Math.random() * 30);
     		int random3 = (int)(0 + Math.random() * 8);
     		switch (random2) {
@@ -54,13 +50,10 @@ public class PalladiumDecorationGemstonePiles extends WorldGenAbstractTree
                 default: world.setBlock(x, y, z, BlocksAether.zanite_pile, random3, random3);
     			break;
     		}
-    	
 
-        	
-              
         return true;
     }
-    
+
     public void setBlockAirCheck(final World world, final int x, final int y, final int z, final Block blockID) {
         if (world.getBlock(x, y, z) == Blocks.air) {
             world.setBlock(x, y, z, blockID);

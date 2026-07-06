@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.blocks.dungeon;
 
 import com.gildedgames.the_aether.Aether;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockRotatedPillar;
@@ -12,7 +11,6 @@ import net.minecraft.util.IIcon;
 public class BlockPillar extends BlockRotatedPillar {
 
 	private String topTexture;
-
 	private String sideTexture;
 
 	@SideOnly(Side.CLIENT)
@@ -20,10 +18,8 @@ public class BlockPillar extends BlockRotatedPillar {
 
 	public BlockPillar(String topIcon, String sideTexture) {
 		super(Material.rock);
-
 		this.topTexture = topIcon;
 		this.sideTexture = sideTexture;
-
 		this.setHardness(0.5F);
 		this.setStepSound(soundTypeMetal);
 		this.setHarvestLevel("pickaxe", 0);
@@ -32,7 +28,7 @@ public class BlockPillar extends BlockRotatedPillar {
 	@Override
 	@SideOnly(Side.CLIENT)
 	protected IIcon getSideIcon(int meta) {
-		return this.sideIcon;
+        return this.sideIcon;
 	}
 
 	@Override

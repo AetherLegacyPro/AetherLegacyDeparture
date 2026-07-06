@@ -9,12 +9,10 @@ import net.minecraft.block.*;
 import net.minecraft.util.*;
 import net.minecraft.inventory.*;
 import java.util.*;
-
 import com.gildedgames.the_aether.blocks.container.BlockSkyrootChest;
 import com.gildedgames.the_aether.inventory.InventoryLargeSkyrootChest;
 
-public class TileEntitySkyrootChest extends TileEntity implements IInventory
-{
+public class TileEntitySkyrootChest extends TileEntity implements IInventory {
   private ItemStack[] chestContents;
   public boolean adjacentChestChecked;
   public TileEntitySkyrootChest adjacentChestZNeg;
@@ -27,26 +25,26 @@ public class TileEntitySkyrootChest extends TileEntity implements IInventory
   private int ticksSinceSync;
   private int cachedChestType;
   private String customName;
-  
+
   public TileEntitySkyrootChest() {
       this.chestContents = new ItemStack[36];
       this.cachedChestType = -1;
   }
-  
+
   @SideOnly(Side.CLIENT)
   public TileEntitySkyrootChest(final int par1) {
       this.chestContents = new ItemStack[36];
       this.cachedChestType = par1;
   }
-  
+
   public int getSizeInventory() {
       return 27;
   }
-  
+
   public ItemStack getStackInSlot(final int par1) {
       return this.chestContents[par1];
   }
-  
+
   public ItemStack decrStackSize(final int par1, final int par2) {
       if (this.chestContents[par1] == null) {
           return null;
@@ -64,7 +62,7 @@ public class TileEntitySkyrootChest extends TileEntity implements IInventory
       this.markDirty();
       return itemstack;
   }
-  
+
   public ItemStack getStackInSlotOnClosing(final int par1) {
       if (this.chestContents[par1] != null) {
           final ItemStack itemstack = this.chestContents[par1];
@@ -73,7 +71,7 @@ public class TileEntitySkyrootChest extends TileEntity implements IInventory
       }
       return null;
   }
-  
+
   public void setInventorySlotContents(final int par1, final ItemStack par2ItemStack) {
       this.chestContents[par1] = par2ItemStack;
       if (par2ItemStack != null && par2ItemStack.stackSize > this.getInventoryStackLimit()) {
@@ -81,19 +79,19 @@ public class TileEntitySkyrootChest extends TileEntity implements IInventory
       }
       this.markDirty();
   }
-  
+
   public String getInventoryName() {
       return this.hasCustomInventoryName() ? this.customName : "container.chest";
   }
-  
+
   public boolean hasCustomInventoryName() {
       return this.customName != null && !this.customName.isEmpty();
   }
-  
+
   public void setChestGuiName(final String par1Str) {
       this.customName = par1Str;
   }
-  
+
   public void readFromNBT(final NBTTagCompound par1NBTTagCompound) {
       super.readFromNBT(par1NBTTagCompound);
       final NBTTagList nbttaglist = par1NBTTagCompound.getTagList("Items", 10);
@@ -109,7 +107,7 @@ public class TileEntitySkyrootChest extends TileEntity implements IInventory
           }
       }
   }
-  
+
   public void writeToNBT(final NBTTagCompound par1NBTTagCompound) {
       super.writeToNBT(par1NBTTagCompound);
       final NBTTagList nbttaglist = new NBTTagList();
@@ -126,20 +124,20 @@ public class TileEntitySkyrootChest extends TileEntity implements IInventory
           par1NBTTagCompound.setString("CustomName", this.customName);
       }
   }
-  
+
   public int getInventoryStackLimit() {
       return 64;
   }
-  
+
   public boolean isUseableByPlayer(final EntityPlayer par1EntityPlayer) {
       return this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) == this && par1EntityPlayer.getDistanceSq(this.xCoord + 0.5, this.yCoord + 0.5, this.zCoord + 0.5) <= 64.0;
   }
-  
+
   public void updateContainingBlockInfo() {
       super.updateContainingBlockInfo();
       this.adjacentChestChecked = false;
   }
-  
+
   private void func_90009_a(final TileEntitySkyrootChest par1TileEntityChest, final int par2) {
       if (par1TileEntityChest.isInvalid()) {
           this.adjacentChestChecked = false;
@@ -177,7 +175,7 @@ public class TileEntitySkyrootChest extends TileEntity implements IInventory
           }
       }
   }
-  
+
   public void checkForAdjacentChests() {
       if (!this.adjacentChestChecked) {
           this.adjacentChestChecked = true;
@@ -211,12 +209,12 @@ public class TileEntitySkyrootChest extends TileEntity implements IInventory
           }
       }
   }
-  
+
   private boolean func_94044_a(final int par1, final int par2, final int par3) {
       final Block block = this.worldObj.getBlock(par1, par2, par3);
       return block instanceof BlockSkyrootChest && ((BlockSkyrootChest)block).chestType == this.getChestType();
   }
-  
+
   public void updateEntity() {
       super.updateEntity();
       this.checkForAdjacentChests();
@@ -277,7 +275,7 @@ public class TileEntitySkyrootChest extends TileEntity implements IInventory
           }
       }
   }
-  
+
   public boolean receiveClientEvent(final int par1, final int par2) {
       if (par1 == 1) {
           this.numUsingPlayers = par2;
@@ -285,7 +283,7 @@ public class TileEntitySkyrootChest extends TileEntity implements IInventory
       }
       return super.receiveClientEvent(par1, par2);
   }
-  
+
   public void openInventory() {
       if (this.numUsingPlayers < 0) {
           this.numUsingPlayers = 0;
@@ -295,7 +293,7 @@ public class TileEntitySkyrootChest extends TileEntity implements IInventory
       this.worldObj.notifyBlocksOfNeighborChange(this.xCoord, this.yCoord, this.zCoord, this.getBlockType());
       this.worldObj.notifyBlocksOfNeighborChange(this.xCoord, this.yCoord - 1, this.zCoord, this.getBlockType());
   }
-  
+
   public void closeInventory() {
       if (this.getBlockType() != null && this.getBlockType() instanceof BlockSkyrootChest) {
           --this.numUsingPlayers;
@@ -304,17 +302,17 @@ public class TileEntitySkyrootChest extends TileEntity implements IInventory
           this.worldObj.notifyBlocksOfNeighborChange(this.xCoord, this.yCoord - 1, this.zCoord, this.getBlockType());
       }
   }
-  
+
   public boolean isItemValidForSlot(final int par1, final ItemStack par2ItemStack) {
       return true;
   }
-  
+
   public void invalidate() {
       super.invalidate();
       this.updateContainingBlockInfo();
       this.checkForAdjacentChests();
   }
-  
+
   public int getChestType() {
       if (this.cachedChestType == -1) {
           if (this.worldObj == null || !(this.getBlockType() instanceof BlockSkyrootChest)) {
@@ -324,10 +322,11 @@ public class TileEntitySkyrootChest extends TileEntity implements IInventory
       }
       return this.cachedChestType;
   }
-  
+
   @SideOnly(Side.CLIENT)
   public AxisAlignedBB getRenderBoundingBox() {
       return AxisAlignedBB.getBoundingBox(this.xCoord - 1, this.yCoord, this.zCoord - 1, this.xCoord + 2, this.yCoord + 2, this.zCoord + 2);
   }
+
 }
 

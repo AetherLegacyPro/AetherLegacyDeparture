@@ -3,10 +3,8 @@ package com.gildedgames.the_aether.registry.creative_tabs;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.items.ItemsAether;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -33,11 +31,10 @@ public class AetherCreativeTabs {
 	}
 
 	public static class AetherTab extends CreativeTabs {
-
 		private ItemStack stack;
 
 		public AetherTab(String unlocalizedName) {
-			super(unlocalizedName);
+            super(unlocalizedName);
 		}
 
 		public AetherTab(String unlocalizedName, ItemStack stack) {
@@ -46,24 +43,23 @@ public class AetherCreativeTabs {
 		}
 
 		public void setIcon(ItemStack stack) {
-			this.stack = stack;
+            this.stack = stack;
 		}
 
 		@SideOnly(Side.CLIENT)
 		public String getTranslatedTabLabel() {
-			return "tab." + this.getTabLabel();
+            return "tab." + this.getTabLabel();
 		}
 
 		@Override
 		public ItemStack getIconItemStack() {
-			return stack;
+            return stack;
 		}
 
 		@Override
 		public Item getTabIconItem() {
-			return stack.getItem();
+            return stack.getItem();
 		}
-
 	}
 
 }

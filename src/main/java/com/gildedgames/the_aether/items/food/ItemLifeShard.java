@@ -31,22 +31,16 @@ public class ItemLifeShard extends Item {
 		ItemStack heldItem = player.getHeldItem();
 
 		player.triggerAchievement(AchievementsAether.iron_skin);
-		if (!worldIn.isRemote)
-		{
+		if (!worldIn.isRemote) {
 			playerAether.updateShardCount(0);
-
-			if (playerAether.getShardsUsed() < playerAether.getMaxShardCount())
-			{
+			if (playerAether.getShardsUsed() < playerAether.getMaxShardCount()) {
 				playerAether.updateShardCount(1);
 				--heldItem.stackSize;
 			}
-
 			return heldItem;
 		}
-		else
-		{
-			if (playerAether.getShardsUsed() >= playerAether.getMaxShardCount())
-			{
+		else {
+			if (playerAether.getShardsUsed() >= playerAether.getMaxShardCount()) {
 				Aether.proxy.sendMessage(player, StatCollector.translateToLocalFormatted("gui.item.life_shard.maxshards", playerAether.getMaxShardCount()));
 			}
 		}

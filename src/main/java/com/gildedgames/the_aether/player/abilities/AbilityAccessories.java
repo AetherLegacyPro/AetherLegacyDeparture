@@ -5,7 +5,6 @@ import com.gildedgames.the_aether.api.player.IPlayerAether;
 import com.gildedgames.the_aether.api.player.util.IAccessoryInventory;
 import com.gildedgames.the_aether.api.player.util.IAetherAbility;
 import com.gildedgames.the_aether.items.ItemsAether;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
@@ -16,18 +15,16 @@ import net.minecraft.util.MathHelper;
 public class AbilityAccessories implements IAetherAbility {
 
 	private final IPlayerAether player;
-
 	private boolean invisibilityUpdate;
-
 	private boolean stepUpdate;
 
 	public AbilityAccessories(IPlayerAether player) {
-		this.player = player;
+        this.player = player;
 	}
 
 	@Override
 	public boolean shouldExecute() {
-		return true;
+        return true;
 	}
 
 	@Override
@@ -35,6 +32,7 @@ public class AbilityAccessories implements IAetherAbility {
 		final IAccessoryInventory accessoryInventory = player.getAccessoryInventory();
 		final EntityLivingBase playerEntity = player.getEntity();
 		final float ticksExisted = playerEntity.ticksExisted;
+
 		if (ticksExisted % 400 == 0) {
 			accessoryInventory.damageWornItemsAtRate(DegradationRate.VERY_FAST);
 		}

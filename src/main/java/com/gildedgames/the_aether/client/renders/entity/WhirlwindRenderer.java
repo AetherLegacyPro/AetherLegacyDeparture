@@ -12,7 +12,6 @@ public class WhirlwindRenderer extends Render {
 
     @Override
     public void doRender(Entity entity, double renderX, double renderY, double renderZ, float p_76986_8_, float p_76986_9_) {
-
     }
 
     @Override

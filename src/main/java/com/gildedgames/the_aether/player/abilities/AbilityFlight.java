@@ -6,35 +6,24 @@ import com.gildedgames.the_aether.api.player.util.IAetherAbility;
 public class AbilityFlight implements IAetherAbility {
 
 	private int flightCount;
-
 	private int maxFlightCount = 70;
-
 	private double flightMod = 1.0D;
-
 	private double maxFlightMod = 15.0D;
-	
-	
+
 	private int flightCount2;
-
 	private int maxFlightCount2 = 104;
-
 	private double flightMod2 = 1.5D;
-
 	private double maxFlightMod2 = 25.0D;
-	
-	
+
 	private int flightCount3;
-
 	private int maxFlightCount3 = 144;
-
 	private double flightMod3 = 1.8D;
-
 	private double maxFlightMod3 = 35.0D;
 
 	private final IPlayerAether player;
 
 	public AbilityFlight(IPlayerAether player) {
-		this.player = player;
+        this.player = player;
 	}
 
 	@Override
@@ -43,7 +32,7 @@ public class AbilityFlight implements IAetherAbility {
 			   this.player.getAccessoryInventory().isWearingValkyrieComboSet() ||
 			   this.player.getAccessoryInventory().isWearingAmplifiedValkyrieSet() ||
 			   this.player.getAccessoryInventory().isWearingValkyrieRingAndAmplifiedArmor() ||
-			   this.player.getAccessoryInventory().isWearingAmplifiedValkyrieRingAndAmplifiedArmor() || 
+			   this.player.getAccessoryInventory().isWearingAmplifiedValkyrieRingAndAmplifiedArmor() ||
 			   this.player.getAccessoryInventory().isWearingAscensiteSet());
 	}
 
@@ -99,7 +88,7 @@ public class AbilityFlight implements IAetherAbility {
 			this.flightMod2 = 2.0D;
 			}
 		 }
-		 
+
 		 if (this.player.getAccessoryInventory().isWearingValkyrieRingAndAmplifiedArmor()) {
 			 if (this.player.isJumping()) {
 				if (this.flightMod3 >= this.maxFlightMod3) {
@@ -125,7 +114,7 @@ public class AbilityFlight implements IAetherAbility {
 				this.flightMod3 = 2.0D;
 			}
 		}
-		 
+
 		if (this.player.getAccessoryInventory().isWearingAmplifiedValkyrieRingAndAmplifiedArmor()) {
 			 if (this.player.isJumping()) {
 				if (this.flightMod3 >= this.maxFlightMod3) {
@@ -151,7 +140,7 @@ public class AbilityFlight implements IAetherAbility {
 				this.flightMod3 = 2.0D;
 			}
 		}
-		
+
 		if (this.player.getAccessoryInventory().isWearingAscensiteSet()) {
 			 if (this.player.isJumping()) {
 				if (this.flightMod3 >= this.maxFlightMod3) {

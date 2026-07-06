@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.entities.projectile.darts;
 
 import java.util.List;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -43,46 +42,8 @@ public abstract class EntityDartBase extends EntityArrow implements IProjectile,
 
     public EntityDartBase(World world) {
         super(world);
-
         this.renderDistanceWeight = 10.0D;
         this.setSize(0.5F, 0.5F);
-    }
-
-    public EntityDartBase(World world, double x, double y, double z) {
-        super(world);
-
-        this.renderDistanceWeight = 10.0D;
-        this.setSize(0.5F, 0.5F);
-        this.setPosition(x, y, z);
-        this.yOffset = 0.0F;
-    }
-
-    public EntityDartBase(World world, EntityLivingBase shooter, EntityLivingBase target, float velocity, float inaccuracy) {
-        super(world);
-
-        this.renderDistanceWeight = 10.0D;
-        this.shootingEntity = shooter;
-
-        if (shooter instanceof EntityPlayer) {
-            this.canBePickedUp = 1;
-        }
-
-        this.posY = shooter.posY + (double) shooter.getEyeHeight() - 0.10000000149011612D;
-        double d0 = target.posX - shooter.posX;
-        double d1 = target.boundingBox.minY + (double) (target.height / 3.0F) - this.posY;
-        double d2 = target.posZ - shooter.posZ;
-        double d3 = MathHelper.sqrt_double(d0 * d0 + d2 * d2);
-
-        if (d3 >= 1.0E-7D) {
-            float f2 = (float) (Math.atan2(d2, d0) * 180.0D / Math.PI) - 90.0F;
-            float f3 = (float) (-(Math.atan2(d1, d3) * 180.0D / Math.PI));
-            double d4 = d0 / d3;
-            double d5 = d2 / d3;
-            this.setLocationAndAngles(shooter.posX + d4, this.posY, shooter.posZ + d5, f2, f3);
-            this.yOffset = 0.0F;
-            float f4 = (float) d3 * 0.2F;
-            this.setThrowableHeading(d0, d1 + (double) f4, d2, velocity, inaccuracy);
-        }
     }
 
     public EntityDartBase(World world, EntityLivingBase shooter, float velocity) {
@@ -109,7 +70,6 @@ public abstract class EntityDartBase extends EntityArrow implements IProjectile,
 
     @Override
     protected void entityInit() {
-
     }
 
     @Override
@@ -243,7 +203,6 @@ public abstract class EntityDartBase extends EntityArrow implements IProjectile,
             }
 
             if (movingobjectposition != null && movingobjectposition.entityHit instanceof EntityPlayer entityplayer) {
-
 				if (entityplayer.capabilities.disableDamage || this.shootingEntity instanceof EntityPlayer && !((EntityPlayer) this.shootingEntity).canAttackPlayer(entityplayer)) {
                     movingobjectposition = null;
                 }
@@ -309,8 +268,7 @@ public abstract class EntityDartBase extends EntityArrow implements IProjectile,
             this.func_145775_I();
         }
 
-        if (this.ticksInAir == 500)
-        {
+        if (this.ticksInAir == 500) {
             this.setDead();
         }
     }
@@ -391,64 +349,59 @@ public abstract class EntityDartBase extends EntityArrow implements IProjectile,
             }
         }
 
-        if (movingobjectposition.entityHit != null && movingobjectposition.typeOfHit != null && this.shootingEntity != null)
-        {
-            if (movingobjectposition.entityHit != this.shootingEntity && movingobjectposition.typeOfHit == MovingObjectPosition.MovingObjectType.ENTITY && movingobjectposition.entityHit != this.shootingEntity.riddenByEntity)
-            {
+        if (movingobjectposition.entityHit != null && movingobjectposition.typeOfHit != null && this.shootingEntity != null) {
+            if (movingobjectposition.entityHit != this.shootingEntity && movingobjectposition.typeOfHit == MovingObjectPosition.MovingObjectType.ENTITY && movingobjectposition.entityHit != this.shootingEntity.riddenByEntity) {
                 this.setDead();
             }
-            else
-            {
+            else {
                 this.setGravityVelocity(0.03F);
             }
         }
     }
 
-    protected float getGravityVelocity()
-    {
+    protected float getGravityVelocity() {
         return this.gravityVelocity;
     }
 
-    public void setGravityVelocity(float gravityVelocity)
-    {
+    public void setGravityVelocity(float gravityVelocity) {
         this.gravityVelocity = gravityVelocity;
     }
 
     @Override
-    public void writeEntityToNBT(NBTTagCompound p_70014_1_) {
-        p_70014_1_.setShort("xTile", (short) this.tileX);
-        p_70014_1_.setShort("yTile", (short) this.tileY);
-        p_70014_1_.setShort("zTile", (short) this.tileZ);
-        p_70014_1_.setShort("life", (short) this.ticksInGround);
-        p_70014_1_.setByte("inTile", (byte) Block.getIdFromBlock(this.inTile));
-        p_70014_1_.setByte("inData", (byte) this.inData);
-        p_70014_1_.setByte("shake", (byte) this.dartShake);
-        p_70014_1_.setByte("inGround", (byte) (this.inGround ? 1 : 0));
-        p_70014_1_.setByte("wasInGround", (byte) (this.wasInGround ? 1 : 0));
-        p_70014_1_.setByte("pickup", (byte) this.canBePickedUp);
-        p_70014_1_.setDouble("damage", this.damage);
+    public void writeEntityToNBT(NBTTagCompound compound) {
+        compound.setShort("xTile", (short) this.tileX);
+        compound.setShort("yTile", (short) this.tileY);
+        compound.setShort("zTile", (short) this.tileZ);
+        compound.setShort("life", (short) this.ticksInGround);
+        compound.setByte("inTile", (byte) Block.getIdFromBlock(this.inTile));
+        compound.setByte("inData", (byte) this.inData);
+        compound.setByte("shake", (byte) this.dartShake);
+        compound.setByte("inGround", (byte) (this.inGround ? 1 : 0));
+        compound.setByte("wasInGround", (byte) (this.wasInGround ? 1 : 0));
+        compound.setByte("pickup", (byte) this.canBePickedUp);
+        compound.setDouble("damage", this.damage);
     }
 
     @Override
-    public void readEntityFromNBT(NBTTagCompound p_70037_1_) {
-        this.tileX = p_70037_1_.getShort("xTile");
-        this.tileY = p_70037_1_.getShort("yTile");
-        this.tileZ = p_70037_1_.getShort("zTile");
-        this.ticksInGround = p_70037_1_.getShort("life");
-        this.inTile = Block.getBlockById(p_70037_1_.getByte("inTile") & 255);
-        this.inData = p_70037_1_.getByte("inData") & 255;
-        this.dartShake = p_70037_1_.getByte("shake") & 255;
-        this.inGround = p_70037_1_.getByte("inGround") == 1;
-        this.wasInGround = p_70037_1_.getByte("wasInGround") == 1;
+    public void readEntityFromNBT(NBTTagCompound compound) {
+        this.tileX = compound.getShort("xTile");
+        this.tileY = compound.getShort("yTile");
+        this.tileZ = compound.getShort("zTile");
+        this.ticksInGround = compound.getShort("life");
+        this.inTile = Block.getBlockById(compound.getByte("inTile") & 255);
+        this.inData = compound.getByte("inData") & 255;
+        this.dartShake = compound.getByte("shake") & 255;
+        this.inGround = compound.getByte("inGround") == 1;
+        this.wasInGround = compound.getByte("wasInGround") == 1;
 
-        if (p_70037_1_.hasKey("damage", 99)) {
-            this.damage = p_70037_1_.getDouble("damage");
+        if (compound.hasKey("damage", 99)) {
+            this.damage = compound.getDouble("damage");
         }
 
-        if (p_70037_1_.hasKey("pickup", 99)) {
-            this.canBePickedUp = p_70037_1_.getByte("pickup");
-        } else if (p_70037_1_.hasKey("player", 99)) {
-            this.canBePickedUp = p_70037_1_.getBoolean("player") ? 1 : 0;
+        if (compound.hasKey("pickup", 99)) {
+            this.canBePickedUp = compound.getByte("pickup");
+        } else if (compound.hasKey("player", 99)) {
+            this.canBePickedUp = compound.getBoolean("player") ? 1 : 0;
         }
     }
 
@@ -500,14 +453,11 @@ public abstract class EntityDartBase extends EntityArrow implements IProjectile,
     }
 
     @Override
-    public void setIsCritical(boolean p_70243_1_)
-    {
-
+    public void setIsCritical(boolean p_70243_1_) {
     }
 
     @Override
-    public boolean getIsCritical()
-    {
+    public boolean getIsCritical() {
         return false;
     }
 

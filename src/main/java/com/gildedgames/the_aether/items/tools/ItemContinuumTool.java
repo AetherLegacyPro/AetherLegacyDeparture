@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.items.tools;
 
 import java.util.List;
-
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.entities.block.EntityFloatingBlock;
 import com.gildedgames.the_aether.items.ItemsAether;
@@ -55,18 +54,17 @@ public class ItemContinuumTool extends ItemAetherTool {
 			return 1.0F;
 		}
 	}
-	
+
 	@Override
 	public boolean onBlockDestroyed(ItemStack stack, World world, Block block, int x, int y, int z, EntityLivingBase entityLiving) {
 		if (!world.isRemote && world.rand.nextInt(100) <= 3) {
 			EntityItem entityItem = new EntityItem(world, x, y, z, new ItemStack(ItemsAether.ambrosium_shard, 1));
-
 			world.spawnEntityInWorld(entityItem);
 		}
 
 		return super.onBlockDestroyed(stack, world, block, x, y, z, entityLiving);
 	}
-	
+
 	@Override
 	public boolean onItemUse(ItemStack heldItem, EntityPlayer player, World world, int x, int y, int z, int facing, float hitX, float hitY, float hitZ) {
 		Block block = world.getBlock(x, y, z);
@@ -90,9 +88,9 @@ public class ItemContinuumTool extends ItemAetherTool {
 	}
 
 	private boolean isBetween(int max, int origin, int min) {
-		return origin <= max && origin >= min ? true : false;
+        return origin <= max && origin >= min ? true : false;
 	}
-	
+
 	public void addInformation(final ItemStack stack, final EntityPlayer player, final List tooltip, final boolean who) {
 		if(AetherConfig.enableTooltips())
         tooltip.add(EnumChatFormatting.GRAY + "" + StatCollector.translateToLocal("tooltip.continuum_tools.desc"));

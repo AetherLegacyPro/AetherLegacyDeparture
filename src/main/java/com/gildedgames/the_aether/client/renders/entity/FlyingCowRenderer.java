@@ -12,13 +12,9 @@ import net.minecraft.util.ResourceLocation;
 public class FlyingCowRenderer extends RenderLiving {
 
     private static final ResourceLocation TEXTURE = Aether.locate("textures/entities/flying_cow/flying_cow.png");
-
     private static final ResourceLocation TEXTURE_WINGS = Aether.locate("textures/entities/flying_cow/wings.png");
-
     private static final ResourceLocation TEXTURE_SADDLE = Aether.locate("textures/entities/flying_cow/saddle.png");
-
     private final FlyingCowWingModel wingModel = new FlyingCowWingModel();
-
     private final FlyingCowModel saddleModel = new FlyingCowModel(0.5F);
 
     public FlyingCowRenderer() {

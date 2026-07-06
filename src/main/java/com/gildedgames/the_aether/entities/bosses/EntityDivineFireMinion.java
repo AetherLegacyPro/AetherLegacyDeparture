@@ -2,7 +2,6 @@ package com.gildedgames.the_aether.entities.bosses;
 
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.entities.hostile.EntityAetherMob;
-
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
@@ -18,7 +17,6 @@ public class EntityDivineFireMinion extends EntityAetherMob {
 
 	public EntityDivineFireMinion(World world) {
 		super(world);
-
 		this.isImmuneToFire = true;
 		this.setSize(1.1F, 1.8F);
 		this.tasks.addTask(2, new EntityAIWander(this, 1.0D));
@@ -35,9 +33,8 @@ public class EntityDivineFireMinion extends EntityAetherMob {
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(18.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(75.0D);
 	}
-	
-	public int getTotalArmorValue()
-    {
+
+	public int getTotalArmorValue() {
         return 8;
     }
 
@@ -55,31 +52,27 @@ public class EntityDivineFireMinion extends EntityAetherMob {
 			this.worldObj.spawnParticle("flame", d3, d4, d5, 0.0D, -0.075000002980232239D, 0.0D);
 		}
 	}
-	
+
 	@Override
 	protected void dropFewItems(boolean var1, int var2) {
 		this.dropItem(Item.getItemFromBlock(BlocksAether.divine_hellfire_stone), 3);
 	}
-	
-	public void onLivingUpdate()
-    {
-	 if (!this.worldObj.isRemote && this.worldObj.difficultySetting == EnumDifficulty.PEACEFUL)
-	 {
+
+	public void onLivingUpdate() {
+	 if (!this.worldObj.isRemote && this.worldObj.difficultySetting == EnumDifficulty.PEACEFUL) {
 	  this.setDead();
 	 }
-			
-	  this.despawnEntity(); 
-	  
+
+	  this.despawnEntity();
 	  super.onLivingUpdate();
 	}
-	
+
 	public boolean getCanSpawnHere() {
         final int i = MathHelper.floor_double(this.posX);
         final int j = MathHelper.floor_double(this.boundingBox.minY);
         final int k = MathHelper.floor_double(this.posZ);
         final boolean canSpawn = this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
         return (this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_divine_hellfire_stone || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_divine_hellfire_stone || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_divine_hellfire_stone || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_divine_hellfire_stone) && this.worldObj.getBlockLightValue(i, j, k) < 14 && canSpawn;
-                       
     }
 
 }

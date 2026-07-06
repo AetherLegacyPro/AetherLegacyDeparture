@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.items.accessories;
 
 import java.util.List;
-
 import baubles.api.expanded.IBaubleExpanded;
 import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.AetherConfig;
@@ -29,7 +28,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ObjectIntIdentityMap;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -37,13 +35,11 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class ItemAccessory extends Item implements IBaubleExpanded {
 
 	public final AccessoryType accessoryType, extraType;
-
 	public ResourceLocation texture, texture_inactive;
 
 	private int colorHex = 0xdddddd;
 	private EnumRarity rarity;
 	private DegradationRate degradationRate = DegradationRate.NEVER;
-
 	private String[] baubleTypes;
 
 	public static final IBehaviorDispenseItem DISPENSER_BEHAVIOR = new BehaviorDefaultDispenseItem() {
@@ -127,11 +123,11 @@ public class ItemAccessory extends Item implements IBaubleExpanded {
 	}
 
 	public AccessoryType getExtraType() {
-		return extraType;
+        return extraType;
 	}
 
 	public AccessoryType getType() {
-		return accessoryType;
+        return accessoryType;
 	}
 
 	public ItemAccessory setColor(int color) {
@@ -140,35 +136,35 @@ public class ItemAccessory extends Item implements IBaubleExpanded {
 	}
 
 	public int getColor() {
-		return colorHex;
+        return colorHex;
 	}
 
 	@Override
 	public EnumRarity getRarity(ItemStack stack) {
-		return rarity != null ? rarity : super.getRarity(stack);
+        return rarity != null ? rarity : super.getRarity(stack);
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public int getColorFromItemStack(ItemStack stack, int meta) {
-		return colorHex;
+        return colorHex;
 	}
 
 	public ItemAccessory setDungeonLoot() {
 		rarity = ItemsAether.aether_loot;
 		return this;
 	}
-	
+
 	public ItemAccessory setReinforcedDungeonLoot() {
 		rarity = ItemsAether.scaled_aether_loot;
 		return this;
 	}
-	
+
 	public ItemAccessory setAmplifiedDungeonLoot() {
 		rarity = ItemsAether.divine_aether_loot;
 		return this;
 	}
-	
+
 	public ItemAccessory setPoweredDungeonLoot() {
 		rarity = ItemsAether.powered;
 		return this;
@@ -185,7 +181,7 @@ public class ItemAccessory extends Item implements IBaubleExpanded {
 	}
 
 	public boolean hasInactiveTexture() {
-		return texture_inactive != null;
+        return texture_inactive != null;
 	}
 
 	public ItemAccessory setDegradationRate(DegradationRate degradationRate) {
@@ -194,12 +190,11 @@ public class ItemAccessory extends Item implements IBaubleExpanded {
 	}
 
 	public DegradationRate getDegradationRate() {
-		return degradationRate;
+        return degradationRate;
 	}
 
 
 	//Baubles support
-
 	@SuppressWarnings({"unchecked", "rawtypes"})
 	@SideOnly(Side.CLIENT)
 	@Override
@@ -231,27 +226,24 @@ public class ItemAccessory extends Item implements IBaubleExpanded {
 
 	@Override
 	public void onWornTick(ItemStack itemstack, EntityLivingBase player) {
-
 	}
 
 	@Override
 	public void onEquipped(ItemStack itemstack, EntityLivingBase player) {
-
 	}
 
 	@Override
 	public void onUnequipped(ItemStack itemstack, EntityLivingBase player) {
-
 	}
 
 	@Override
 	public boolean canEquip(ItemStack itemstack, EntityLivingBase player) {
-		return true;
+        return true;
 	}
 
 	@Override
 	public boolean canUnequip(ItemStack itemstack, EntityLivingBase player) {
-		return true;
+        return true;
 	}
 
 }

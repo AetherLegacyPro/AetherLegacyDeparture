@@ -7,7 +7,6 @@ import net.minecraft.world.World;
 public class EntityCloudSmokeFX extends EntityFX {
 
 	float smokeParticleScale;
-
 	public double riseRate;
 
 	public EntityCloudSmokeFX(World world, double x, double y, double z, double initialMotionX, double initialMotionY, double intialMotionZ, float size, float red, float blue, float green, double riseRate) {

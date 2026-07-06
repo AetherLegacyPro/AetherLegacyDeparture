@@ -8,20 +8,16 @@ import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.opengl.GL11;
 
 public class SentryRenderer extends RenderLiving {
 
 	private static final ResourceLocation TEXTURE = Aether.locate("textures/entities/sentry/sentry.png");
-
 	private static final ResourceLocation TEXTURE_LIT = Aether.locate("textures/entities/sentry/sentry_lit.png");
-
 	private static final ResourceLocation TEXTURE_EYE = Aether.locate("textures/entities/sentry/eye.png");
 
 	public SentryRenderer() {
 		super(new ModelSlime(0), 0.3F);
-
 		this.setRenderPassModel(this.mainModel);
 	}
 

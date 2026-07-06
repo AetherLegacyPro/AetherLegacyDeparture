@@ -1,10 +1,8 @@
 package com.gildedgames.the_aether.world.biome.decoration.overhaul;
 
 import java.util.Random;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.world.biome.decoration.AetherGenDivineTree;
-
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenTallGrass;
@@ -315,12 +313,12 @@ public class DivineIsland extends WorldGenerator {
       if (i == j) {
     	  int rand3 = (int)(1 + Math.random() * 3);
           if (rand3 == 1 ) {
-        	  return rand.nextInt(14) == 0 ? BlocksAether.empyrean_ore_2 : BlocksAether.enchanted_holystone;   
+        	  return rand.nextInt(14) == 0 ? BlocksAether.empyrean_ore_2 : BlocksAether.enchanted_holystone;
           }
           if (rand3 == 2 ) {
-        	  return rand.nextInt(12) == 0 ? BlocksAether.ambrosium_block : BlocksAether.enchanted_holystone;   
+        	  return rand.nextInt(12) == 0 ? BlocksAether.ambrosium_block : BlocksAether.enchanted_holystone;
           }
-        	  return rand.nextInt(10) == 0 ? BlocksAether.amethyst_glowstone : BlocksAether.enchanted_holystone;  
+        	  return rand.nextInt(10) == 0 ? BlocksAether.amethyst_glowstone : BlocksAether.enchanted_holystone;
         }
       else {
          return flag ? BlocksAether.divine_grass : BlocksAether.aether_dirt;
@@ -341,7 +339,7 @@ public class DivineIsland extends WorldGenerator {
                if (world.getBlock(x1, yTest, z1).isReplaceable(world, x1, yTest, z1) && (world.getBlock(x1, yTest - 1, z1) == BlocksAether.divine_grass || world.getBlock(x1, yTest - 1, z1) == BlocksAether.aether_dirt)) {
                   world.setBlock(x1, yTest, z1, BlocksAether.divine_lily);
                   break;
-               }             
+               }
             }
          }
       }
@@ -349,7 +347,7 @@ public class DivineIsland extends WorldGenerator {
    }
 
    private static AetherGenDivineTree tree = new AetherGenDivineTree(BlocksAether.divine_oak_leaves, 40, true);
-   
+
    private void generateTrees(World world, Random rand, int x, int y, int z) {
       int radius = this.bumpsLong1 > this.bumpsWide1 ? this.bumpsLong1 : this.bumpsWide1;
 
@@ -364,13 +362,13 @@ public class DivineIsland extends WorldGenerator {
          if (l1 > 100) {
             if (rand.nextInt(2) != 0) {
             	tree.generate(world, rand, j1, l1, k1);
-            } 
+            }
             else {
                tree.generate(world, rand, j1, l1, k1);
             }
          }
       }
-     
+
       for(i6 = 0; i6 < 10 + rand.nextInt(20); ++i6) {
          j1 = x + this.centerX + rand.nextInt(this.width) - this.centerX;
          k1 = z + this.centerZ + rand.nextInt(this.length) - this.centerZ;
@@ -389,7 +387,7 @@ public class DivineIsland extends WorldGenerator {
          int k1 = z + this.centerZ + rand.nextInt(this.length) - this.centerZ;
          int l1 = world.getHeightValue(j1, k1);
          if (l1 > 100) {
-        	 
+
         int chance = (int)(1 + Math.random() * 5);
      	switch (chance)
         {
@@ -404,7 +402,7 @@ public class DivineIsland extends WorldGenerator {
         case 5: (new WorldGenTallGrass(BlocksAether.divine_aether_tallgrass, 1)).generate(world, rand, j1, l1, k1);
         	break;
         }
-     	
+
          }
       }
 

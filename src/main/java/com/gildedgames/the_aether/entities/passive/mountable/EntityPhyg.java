@@ -12,34 +12,25 @@ import net.minecraft.init.Items;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-
 import com.gildedgames.the_aether.entities.util.EntitySaddleMount;
 import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 
 public class EntityPhyg extends EntitySaddleMount {
 
     public float wingFold;
-
     public float wingAngle;
-
     private float aimingForFold;
-
     public int maxJumps;
-
     public int jumpsRemaining;
-
     public int ticks;
 
     public EntityPhyg(World world) {
         super(world);
-
         this.jumpsRemaining = 0;
         this.maxJumps = 1;
         this.stepHeight = 1.0F;
-
         this.ignoreFrustumCheck = true;
         this.canJumpMidAir = true;
-
         this.setSize(0.9F, 1.3F);
         this.getNavigator().setAvoidsWater(true);
         this.tasks.addTask(0, new EntityAISwimming(this));
@@ -58,7 +49,7 @@ public class EntityPhyg extends EntitySaddleMount {
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(10.0D);
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.25D);
     }
-    
+
     @Override
    	public boolean getCanSpawnHere() {
    	      final int i = MathHelper.floor_double(this.posX);
@@ -66,7 +57,7 @@ public class EntityPhyg extends EntitySaddleMount {
    	      final int k = MathHelper.floor_double(this.posZ);
    	      final boolean canSpawn = this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
    	      return (this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_dirt || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.arctic_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.verdant_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.enchanted_aether_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.divine_grass) && this.worldObj.getBlockLightValue(i, j, k) > 7 && canSpawn && this.rand.nextInt(AetherConfig.getPhygSpawnrate()) == 0 && super.getCanSpawnHere();
-   	                       
+
    	}
 
     @Override
@@ -86,7 +77,6 @@ public class EntityPhyg extends EntitySaddleMount {
         }
 
         this.ticks++;
-
         this.wingAngle = this.wingFold * (float) Math.sin(this.ticks / 31.83098862F);
         this.wingFold += (this.aimingForFold - this.wingFold) / 5F;
         this.fallDistance = 0;
@@ -170,7 +160,6 @@ public class EntityPhyg extends EntitySaddleMount {
     @Override
     public void readEntityFromNBT(NBTTagCompound nbttagcompound) {
         super.readEntityFromNBT(nbttagcompound);
-
         this.maxJumps = nbttagcompound.getShort("Jumps");
         this.jumpsRemaining = nbttagcompound.getShort("Remaining");
     }
@@ -178,7 +167,6 @@ public class EntityPhyg extends EntitySaddleMount {
     @Override
     public void writeEntityToNBT(NBTTagCompound nbttagcompound) {
         super.writeEntityToNBT(nbttagcompound);
-
         nbttagcompound.setShort("Jumps", (short) this.maxJumps);
         nbttagcompound.setShort("Remaining", (short) this.jumpsRemaining);
     }

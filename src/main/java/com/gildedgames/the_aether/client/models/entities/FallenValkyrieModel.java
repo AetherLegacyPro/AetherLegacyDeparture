@@ -4,7 +4,6 @@ import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
-
 import org.lwjgl.opengl.GL11;
 
 public class FallenValkyrieModel extends ModelBiped {
@@ -28,11 +27,11 @@ public class FallenValkyrieModel extends ModelBiped {
 	public boolean gonRound, halow;
 
 	public FallenValkyrieModel() {
-		this(0.0F);
+        this(0.0F);
 	}
 
 	public FallenValkyrieModel(float f) {
-		this(f, 0.0F);
+        this(f, 0.0F);
 	}
 
 	public FallenValkyrieModel(float f, float f1) {

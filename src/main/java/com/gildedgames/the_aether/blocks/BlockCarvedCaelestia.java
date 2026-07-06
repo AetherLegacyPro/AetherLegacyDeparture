@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.blocks;
 
 import com.gildedgames.the_aether.Aether;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -11,22 +10,19 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 
 public class BlockCarvedCaelestia extends Block {
-	
+
 	public BlockCarvedCaelestia() {
 		super(Material.rock);
-
 		this.setHardness(0.5F);
 		this.setStepSound(soundTypeStone);
 		this.setHarvestLevel("pickaxe", 2);
 		setBlockName("Carved Caelestia");
 	}
-	
+
 	@SideOnly(Side.CLIENT)
-	private IIcon iconTop;
 	private IIcon blockIconBottom;
 	private IIcon blockIconTop;
-	
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister registry) {
@@ -52,5 +48,5 @@ public class BlockCarvedCaelestia extends Block {
 
 		return this.blockIcon;
 	}
-	
+
 }

@@ -3,22 +3,19 @@ package com.gildedgames.the_aether.client.renders.entity;
 import net.minecraft.client.renderer.entity.*;
 import net.minecraft.util.*;
 import org.lwjgl.opengl.*;
-
 import com.gildedgames.the_aether.client.models.entities.YoungZephyrModel;
 import com.gildedgames.the_aether.entities.hostile.EntityYoungZephyr;
-
 import net.minecraft.entity.*;
 
-public class YoungZephyrRenderer extends RenderLiving
-{
+public class YoungZephyrRenderer extends RenderLiving {
     public static final ResourceLocation TEXTURE;
     public YoungZephyrModel newZephyrModel;
-    
+
     public YoungZephyrRenderer(final YoungZephyrModel model) {
         super(model, 0.5f);
         this.newZephyrModel = model;
     }
-    
+
     public void doRender(final EntityLiving entity, final double par2, final double par4, final double par6, final float par8, final float par9) {
         final EntityYoungZephyr ent = (EntityYoungZephyr)entity;
         if (ent.isAttacking()) {
@@ -30,7 +27,7 @@ public class YoungZephyrRenderer extends RenderLiving
         }
         super.doRender(entity, par2, par4, par6, par8, par9);
     }
-    
+
     protected void preRenderCallback(final EntityLivingBase entityliving, final float f) {
         final EntityYoungZephyr newZephyr = (EntityYoungZephyr)entityliving;
         float f2 = (float)Math.sin(newZephyr.sinage);
@@ -53,11 +50,11 @@ public class YoungZephyrRenderer extends RenderLiving
         GL11.glScalef(scale, scale, scale);
         GL11.glTranslated(0.0, 0.4 * (scale - 1.25f), 0.0);
     }
-    
+
     protected ResourceLocation getEntityTexture(final Entity entity) {
         return YoungZephyrRenderer.TEXTURE;
     }
-    
+
     static {
         TEXTURE = new ResourceLocation("aether_legacy", "textures/entities/young_zephyr/young_zephyr.png");
     }

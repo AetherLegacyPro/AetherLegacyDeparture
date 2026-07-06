@@ -7,7 +7,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
-
 import com.gildedgames.the_aether.api.accessories.AccessoryType;
 import com.gildedgames.the_aether.api.accessories.AetherAccessory;
 import com.gildedgames.the_aether.api.enchantments.AetherAmplifier;
@@ -19,7 +18,6 @@ import com.gildedgames.the_aether.api.freezables.AetherFreezableFuel;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.items.othermods.OtherModItems;
-
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
@@ -34,24 +32,24 @@ public class AetherRegistries {
 		AetherAPI.instance().register(new AetherAccessory(ItemsAether.diamond_gloves, AccessoryType.GLOVES));
 
 		if (Loader.isModLoaded("etfuturum") && AetherConfig.enable_copper_recipes) {
-		AetherAPI.instance().register(new AetherAccessory(ItemsAether.netherite_gloves, AccessoryType.GLOVES));
+		    AetherAPI.instance().register(new AetherAccessory(ItemsAether.netherite_gloves, AccessoryType.GLOVES));
 		}
 		if (Loader.isModLoaded("etfuturum") && AetherConfig.enable_netherite_recipes) {
-		AetherAPI.instance().register(new AetherAccessory(ItemsAether.copper_gloves, AccessoryType.GLOVES));
+		    AetherAPI.instance().register(new AetherAccessory(ItemsAether.copper_gloves, AccessoryType.GLOVES));
 		}
 
 		if (Loader.isModLoaded("netherlicious")) {
-		AetherAPI.instance().register(new AetherAccessory(ItemsAether.effrine_gloves, AccessoryType.GLOVES));
-		AetherAPI.instance().register(new AetherAccessory(ItemsAether.heavy_blaze_gloves, AccessoryType.GLOVES));
+		    AetherAPI.instance().register(new AetherAccessory(ItemsAether.effrine_gloves, AccessoryType.GLOVES));
+		    AetherAPI.instance().register(new AetherAccessory(ItemsAether.heavy_blaze_gloves, AccessoryType.GLOVES));
 		}
 
 		if (Loader.isModLoaded("nova_craft")) {
-		AetherAPI.instance().register(new AetherAccessory(ItemsAether.pherithium_gloves, AccessoryType.GLOVES));
-		AetherAPI.instance().register(new AetherAccessory(ItemsAether.vanite_gloves, AccessoryType.GLOVES));
-		AetherAPI.instance().register(new AetherAccessory(ItemsAether.klangite_gloves, AccessoryType.GLOVES));
+		    AetherAPI.instance().register(new AetherAccessory(ItemsAether.pherithium_gloves, AccessoryType.GLOVES));
+		    AetherAPI.instance().register(new AetherAccessory(ItemsAether.vanite_gloves, AccessoryType.GLOVES));
+		    AetherAPI.instance().register(new AetherAccessory(ItemsAether.klangite_gloves, AccessoryType.GLOVES));
 
 		if (AetherConfig.enable_ascensite) {
-		AetherAPI.instance().register(new AetherAccessory(ItemsAether.ascensite_gloves, AccessoryType.GLOVES));
+		        AetherAPI.instance().register(new AetherAccessory(ItemsAether.ascensite_gloves, AccessoryType.GLOVES));
 			}
 		}
 
@@ -429,11 +427,11 @@ public class AetherRegistries {
 		AetherAPI.instance().register(new AetherFreezable(BlocksAether.aether_grass, BlocksAether.arctic_grass, 150));
 
 		if (AetherConfig.DiamondFreezableRecipe()) {
-		AetherAPI.instance().register(new AetherFreezable(BlocksAether.diamond_aercloud, new ItemStack(Items.diamond), 3000));
+		    AetherAPI.instance().register(new AetherFreezable(BlocksAether.diamond_aercloud, new ItemStack(Items.diamond), 3000));
 		}
 
 		if (AetherConfig.BlazeRodRecipe()) {
-		AetherAPI.instance().register(new AetherFreezable(ItemsAether.cinerarium_rod, Items.blaze_rod, 1800));
+		    AetherAPI.instance().register(new AetherFreezable(ItemsAether.cinerarium_rod, Items.blaze_rod, 1800));
 		}
 		if (!AetherConfig.BlazeRodRecipe()) {
 			AetherAPI.instance().register(new AetherFreezable(ItemsAether.cinerarium_rod, ItemsAether.cyro_rod, 1800));
@@ -599,7 +597,6 @@ public class AetherRegistries {
 		AetherAPI.instance().register(new AetherAmplifierFuel(ItemsAether.amplified_valkyrie_gloves, 1100));
 
 		AetherAPI.instance().register(new AetherAmplifierFuel(ItemsAether.amplified_agility_boots, 900));
-
 
 		AetherAPI.instance().register(new AetherAmplifierFuel(ItemsAether.lightning_knife, 36));
 		AetherAPI.instance().register(new AetherAmplifierFuel(ItemsAether.jeb_hammer, 180));
@@ -837,8 +834,6 @@ public class AetherRegistries {
 		registerShapeless(new ItemStack(BlocksAether.aercloud_layer, 1, 4), ItemsAether.green_aercloud_globule);
 
 		registerShapeless(new ItemStack(Items.book, 1), new ItemStack(Items.paper), new ItemStack(Items.paper), new ItemStack(Items.paper), new ItemStack(ItemsAether.zephyroo_leather));
-		//registerShapeless(new ItemStack(Items.book, 1), new ItemStack(Items.paper), new ItemStack(Items.paper), new ItemStack(Items.paper), new ItemStack(ItemsAether.thunderlo_leather));
-
 	}
 
 	private static void initializeRecipes() {
@@ -864,7 +859,7 @@ public class AetherRegistries {
 		register(new ItemStack(BlocksAether.luminous_stone, 4), "XYX", "YZY", "XYX", 'X', BlocksAether.block_of_auralite, 'Y', Blocks.glowstone, 'Z', ItemsAether.arkenium_fragement);
 
 		if (AetherConfig.BuddingAuraliteRecipe()) {
-		register(new ItemStack(BlocksAether.budding_auralite, 2), "VXV", "XYX", "VXV", 'Y', ItemsAether.arkenium_ingot, 'X', BlocksAether.block_of_auralite, 'V', BlocksAether.icestone);
+		    register(new ItemStack(BlocksAether.budding_auralite, 2), "VXV", "XYX", "VXV", 'Y', ItemsAether.arkenium_ingot, 'X', BlocksAether.block_of_auralite, 'V', BlocksAether.icestone);
 		}
 
 		register(new ItemStack(BlocksAether.crystallized_genesis_stone, 3), "YXY", "YXY", "YXY", 'X', ItemsAether.aceninum_shard, 'Y', BlocksAether.genesis_stone_2);
@@ -913,49 +908,7 @@ public class AetherRegistries {
 		register(new ItemStack(ItemsAether.charged_tempest_core), " Z ", "YXY", " Z ", 'X', new ItemStack(ItemsAether.purple_swet_ball), 'Y', new ItemStack(ItemsAether.aerca_powder), 'Z', new ItemStack(ItemsAether.tempest_core));
 
 		register(new ItemStack(Items.gunpowder), "XXX", "XXX", "XXX", 'X', ItemsAether.uligo_swet_ball);
-
 		register(new ItemStack(ItemsAether.cracked_empyrean_gemstone), " X ", "XYX", " Z ", 'X', ItemsAether.auralite_crystal, 'Y', ItemsAether.empyrean_gemstone, 'Z', ItemsAether.tempest_core);
-
-		//Scaled Recipes
-		/*register(new ItemStack(ItemsAether.scaled_zanite_helmet), "VXX", "XYX", "XXV", 'X', ItemsAether.zarnillys_scales, 'Y', ItemsAether.zanite_helmet, 'V', ItemsAether.zephyroo_leather);
-		register(new ItemStack(ItemsAether.scaled_zanite_chestplate), "VXX", "XYX", "XXV", 'X', ItemsAether.zarnillys_scales, 'Y', ItemsAether.zanite_chestplate, 'V', ItemsAether.zephyroo_leather);
-		register(new ItemStack(ItemsAether.scaled_zanite_leggings), "VXX", "XYX", "XXV", 'X', ItemsAether.zarnillys_scales, 'Y', ItemsAether.zanite_leggings, 'V', ItemsAether.zephyroo_leather);
-		register(new ItemStack(ItemsAether.scaled_zanite_boots), "VXX", "XYX", "XXV", 'X', ItemsAether.zarnillys_scales, 'Y', ItemsAether.zanite_boots, 'V', ItemsAether.zephyroo_leather);
-		register(new ItemStack(ItemsAether.scaled_gravitite_helmet), "VXX", "XYX", "XXV", 'X', ItemsAether.zarnillys_scales, 'Y', ItemsAether.gravitite_helmet, 'V', ItemsAether.zephyroo_leather);
-		register(new ItemStack(ItemsAether.scaled_gravitite_chestplate), "VXX", "XYX", "XXV", 'X', ItemsAether.zarnillys_scales, 'Y', ItemsAether.gravitite_chestplate, 'V', ItemsAether.zephyroo_leather);
-		register(new ItemStack(ItemsAether.scaled_gravitite_leggings), "VXX", "XYX", "XXV", 'X', ItemsAether.zarnillys_scales, 'Y', ItemsAether.gravitite_leggings, 'V', ItemsAether.zephyroo_leather);
-		register(new ItemStack(ItemsAether.scaled_gravitite_boots), "VXX", "XYX", "XXV", 'X', ItemsAether.zarnillys_scales, 'Y', ItemsAether.gravitite_boots, 'V', ItemsAether.zephyroo_leather);
-		register(new ItemStack(ItemsAether.scaled_arkenium_helmet), "VXX", "XYX", "XXV", 'X', ItemsAether.zarnillys_scales, 'Y', ItemsAether.arkenium_helmet, 'V', ItemsAether.zephyroo_leather);
-		register(new ItemStack(ItemsAether.scaled_arkenium_chestplate), "VXX", "XYX", "XXV", 'X', ItemsAether.zarnillys_scales, 'Y', ItemsAether.arkenium_chestplate, 'V', ItemsAether.zephyroo_leather);
-		register(new ItemStack(ItemsAether.scaled_arkenium_leggings), "VXX", "XYX", "XXV", 'X', ItemsAether.zarnillys_scales, 'Y', ItemsAether.arkenium_leggings, 'V', ItemsAether.zephyroo_leather);
-		register(new ItemStack(ItemsAether.scaled_arkenium_boots), "VXX", "XYX", "XXV", 'X', ItemsAether.zarnillys_scales, 'Y', ItemsAether.arkenium_boots, 'V', ItemsAether.zephyroo_leather);
-		register(new ItemStack(ItemsAether.scaled_continuum_helmet), "VXX", "XYX", "XXV", 'X', ItemsAether.zarnillys_scales, 'Y', ItemsAether.continuum_helmet, 'V', ItemsAether.zephyroo_leather);
-		register(new ItemStack(ItemsAether.scaled_continuum_chestplate), "VXX", "XYX", "XXV", 'X', ItemsAether.zarnillys_scales, 'Y', ItemsAether.continuum_chestplate, 'V', ItemsAether.zephyroo_leather);
-		register(new ItemStack(ItemsAether.scaled_continuum_leggings), "VXX", "XYX", "XXV", 'X', ItemsAether.zarnillys_scales, 'Y', ItemsAether.continuum_leggings, 'V', ItemsAether.zephyroo_leather);
-		register(new ItemStack(ItemsAether.scaled_continuum_boots), "VXX", "XYX", "XXV", 'X', ItemsAether.zarnillys_scales, 'Y', ItemsAether.continuum_boots, 'V', ItemsAether.zephyroo_leather);
-		register(new ItemStack(ItemsAether.scaled_phoenix_helmet), "VXX", "XYX", "XXV", 'X', ItemsAether.zarnillys_scales, 'Y', ItemsAether.phoenix_helmet, 'V', ItemsAether.zephyroo_leather);
-		register(new ItemStack(ItemsAether.scaled_phoenix_chestplate), "VXX", "XYX", "XXV", 'X', ItemsAether.zarnillys_scales, 'Y', ItemsAether.phoenix_chestplate, 'V', ItemsAether.zephyroo_leather);
-		register(new ItemStack(ItemsAether.scaled_phoenix_leggings), "VXX", "XYX", "XXV", 'X', ItemsAether.zarnillys_scales, 'Y', ItemsAether.phoenix_leggings, 'V', ItemsAether.zephyroo_leather);
-		register(new ItemStack(ItemsAether.scaled_phoenix_boots), "VXX", "XYX", "XXV", 'X', ItemsAether.zarnillys_scales, 'Y', ItemsAether.phoenix_boots, 'V', ItemsAether.zephyroo_leather);
-		register(new ItemStack(ItemsAether.scaled_obsidian_helmet), "VXX", "XYX", "XXV", 'X', ItemsAether.zarnillys_scales, 'Y', ItemsAether.obsidian_helmet, 'V', ItemsAether.zephyroo_leather);
-		register(new ItemStack(ItemsAether.scaled_obsidian_chestplate), "VXX", "XYX", "XXV", 'X', ItemsAether.zarnillys_scales, 'Y', ItemsAether.obsidian_chestplate, 'V', ItemsAether.zephyroo_leather);
-		register(new ItemStack(ItemsAether.scaled_obsidian_leggings), "VXX", "XYX", "XXV", 'X', ItemsAether.zarnillys_scales, 'Y', ItemsAether.obsidian_leggings, 'V', ItemsAether.zephyroo_leather);
-		register(new ItemStack(ItemsAether.scaled_obsidian_boots), "VXX", "XYX", "XXV", 'X', ItemsAether.zarnillys_scales, 'Y', ItemsAether.obsidian_boots, 'V', ItemsAether.zephyroo_leather);
-		register(new ItemStack(ItemsAether.scaled_neptune_helmet), "VXX", "XYX", "XXV", 'X', ItemsAether.zarnillys_scales, 'Y', ItemsAether.neptune_helmet, 'V', ItemsAether.zephyroo_leather);
-		register(new ItemStack(ItemsAether.scaled_neptune_chestplate), "VXX", "XYX", "XXV", 'X', ItemsAether.zarnillys_scales, 'Y', ItemsAether.neptune_chestplate, 'V', ItemsAether.zephyroo_leather);
-		register(new ItemStack(ItemsAether.scaled_neptune_leggings), "VXX", "XYX", "XXV", 'X', ItemsAether.zarnillys_scales, 'Y', ItemsAether.neptune_leggings, 'V', ItemsAether.zephyroo_leather);
-		register(new ItemStack(ItemsAether.scaled_neptune_boots), "VXX", "XYX", "XXV", 'X', ItemsAether.zarnillys_scales, 'Y', ItemsAether.neptune_boots, 'V', ItemsAether.zephyroo_leather);
-		register(new ItemStack(ItemsAether.scaled_valkyrie_helmet), "VXX", "XYX", "XXV", 'X', ItemsAether.zarnillys_scales, 'Y', ItemsAether.valkyrie_helmet, 'V', ItemsAether.zephyroo_leather);
-		register(new ItemStack(ItemsAether.scaled_valkyrie_chestplate), "VXX", "XYX", "XXV", 'X', ItemsAether.zarnillys_scales, 'Y', ItemsAether.valkyrie_chestplate, 'V', ItemsAether.zephyroo_leather);
-		register(new ItemStack(ItemsAether.scaled_valkyrie_leggings), "VXX", "XYX", "XXV", 'X', ItemsAether.zarnillys_scales, 'Y', ItemsAether.valkyrie_leggings, 'V', ItemsAether.zephyroo_leather);
-		register(new ItemStack(ItemsAether.scaled_valkyrie_boots), "VXX", "XYX", "XXV", 'X', ItemsAether.zarnillys_scales, 'Y', ItemsAether.valkyrie_boots, 'V', ItemsAether.zephyroo_leather);
-		register(new ItemStack(ItemsAether.scaled_sentry_boots), "VXX", "XYX", "XXV", 'X', ItemsAether.zarnillys_scales, 'Y', ItemsAether.sentry_boots, 'V', ItemsAether.zephyroo_leather);
-		register(new ItemStack(ItemsAether.scaled_agility_boots), "VXX", "XYX", "XXV", 'X', ItemsAether.zarnillys_scales, 'Y', ItemsAether.agility_boots, 'V', ItemsAether.zephyroo_leather);
-		register(new ItemStack(ItemsAether.scaled_elysian_helmet), "VXX", "XYX", "XXV", 'X', ItemsAether.zarnillys_scales, 'Y', ItemsAether.elysian_helmet, 'V', ItemsAether.zephyroo_leather);
-		register(new ItemStack(ItemsAether.scaled_elysian_chestplate), "VXX", "XYX", "XXV", 'X', ItemsAether.zarnillys_scales, 'Y', ItemsAether.elysian_chestplate, 'V', ItemsAether.zephyroo_leather);
-		register(new ItemStack(ItemsAether.scaled_elysian_leggings), "VXX", "XYX", "XXV", 'X', ItemsAether.zarnillys_scales, 'Y', ItemsAether.elysian_leggings, 'V', ItemsAether.zephyroo_leather);
-		register(new ItemStack(ItemsAether.scaled_elysian_boots), "VXX", "XYX", "XXV", 'X', ItemsAether.zarnillys_scales, 'Y', ItemsAether.elysian_boots, 'V', ItemsAether.zephyroo_leather);
-		*/
 
 		register(new ItemStack(ItemsAether.scaled_zanite_helmet), "VXX", "XYX", "XXV", 'X', ItemsAether.zarnillys_scales, 'Y', ItemsAether.zanite_helmet, 'V', ItemsAether.thunderlo_leather);
 		register(new ItemStack(ItemsAether.scaled_zanite_chestplate), "VXX", "XYX", "XXV", 'X', ItemsAether.zarnillys_scales, 'Y', ItemsAether.zanite_chestplate, 'V', ItemsAether.thunderlo_leather);
@@ -1102,35 +1055,34 @@ public class AetherRegistries {
 		}
 
 		register(new ItemStack(ItemsAether.elysian_offering), "XZX", "ZYZ", "XZX", 'X', BlocksAether.cer_scales_block, 'Y', ItemsAether.elysian_core, 'Z', ItemsAether.divineral_ingot);
-
 		register(new ItemStack(BlocksAether.golden_oak_bookshelf), "XZX", "UYV", "XWX", 'X', BlocksAether.golden_oak_planks, 'Y', BlocksAether.skyroot_bookshelf, 'Z', ItemsAether.cinerarium_rod, 'W', ItemsAether.thunderlo_horn, 'V', ItemsAether.zanite_gemstone, 'U', ItemsAether.empyrean_gemstone);
 
 		if (AetherConfig.RedstoneItemsCraftable()) {
-		register(new ItemStack(Items.repeater), "YZY", "XXX", 'Y', Blocks.redstone_torch, 'X', BlocksAether.enchanted_holystone, 'Z', Items.redstone);
-		register(new ItemStack(Blocks.piston), "WWW", "XZX", "XYX", 'X', BlocksAether.holystone, 'Y', Items.redstone, 'Z', ItemsAether.arkenium_ingot, 'W', BlocksAether.greatroot_planks);
-		register(new ItemStack(Blocks.piston), "WWW", "XZX", "XYX", 'X', new ItemStack(BlocksAether.holystone, 1, 1), 'Y', Items.redstone, 'Z', ItemsAether.arkenium_ingot, 'W', BlocksAether.greatroot_planks);
-		register(new ItemStack(Blocks.noteblock), "XXX", "XZX", "XXX", 'X', BlocksAether.greatroot_planks, 'Z', Items.redstone);
-		register(new ItemStack(Blocks.dispenser), "XXX", "XZX", "XYX", 'X', new ItemStack(BlocksAether.holystone, 1, 1), 'Z', ItemsAether.dart_shooter, 'Y', Items.redstone);
-		register(new ItemStack(Blocks.dispenser), "XXX", "XZX", "XYX", 'X', BlocksAether.holystone, 'Z', ItemsAether.dart_shooter, 'Y', Items.redstone);
-		register(new ItemStack(Blocks.dropper), "XXX", "X X", "XYX", 'X', new ItemStack(BlocksAether.holystone, 1, 1), 'Y', Items.redstone);
-		register(new ItemStack(Blocks.dropper), "XXX", "X X", "XYX", 'X', BlocksAether.holystone, 'Y', Items.redstone);
-		register(new ItemStack(Blocks.tripwire_hook), "Z  ", "Y  ", "X  ", 'X', BlocksAether.skyroot_planks, 'Y', ItemsAether.skyroot_stick, 'Z', ItemsAether.zanite_gemstone);
-		register(new ItemStack(Blocks.tripwire_hook), "Z  ", "Y  ", "X  ", 'X', BlocksAether.greatroot_planks, 'Y', ItemsAether.skyroot_stick, 'Z', ItemsAether.zanite_gemstone);
-		register(new ItemStack(Blocks.tripwire_hook), "Z  ", "Y  ", "X  ", 'X', BlocksAether.wisproot_planks, 'Y', ItemsAether.skyroot_stick, 'Z', ItemsAether.zanite_gemstone);
-		register(new ItemStack(Blocks.tripwire_hook), "Z  ", "Y  ", "X  ", 'X', BlocksAether.void_planks, 'Y', ItemsAether.skyroot_stick, 'Z', ItemsAether.zanite_gemstone);
-		register(new ItemStack(Blocks.hopper), "X X", "XYX", " Z ", 'X', ItemsAether.zanite_gemstone, 'Y', BlocksAether.skyroot_chest, 'Z', ItemsAether.arkenium_ingot);
-		register(new ItemStack(Blocks.daylight_detector), "XXX", "YYY", "ZZZ", 'X', BlocksAether.quicksoil_glass, 'Y', ItemsAether.auralite_crystal, 'Z', BlocksAether.skyroot_slab);
-		register(new ItemStack(Blocks.daylight_detector), "XXX", "YYY", "ZZZ", 'X', BlocksAether.quicksoil_glass, 'Y', ItemsAether.auralite_crystal, 'Z', BlocksAether.wisproot_slab);
-		register(new ItemStack(Blocks.daylight_detector), "XXX", "YYY", "ZZZ", 'X', BlocksAether.quicksoil_glass, 'Y', ItemsAether.auralite_crystal, 'Z', BlocksAether.greatroot_slab);
-		register(new ItemStack(Blocks.daylight_detector), "XXX", "YYY", "ZZZ", 'X', BlocksAether.quicksoil_glass, 'Y', ItemsAether.auralite_crystal, 'Z', BlocksAether.void_slab);
-		register(new ItemStack(Items.comparator), " X ", "XYX", "ZZZ", 'X', Blocks.redstone_torch, 'Y', ItemsAether.auralite_crystal, 'Z', BlocksAether.enchanted_holystone);
+		    register(new ItemStack(Items.repeater), "YZY", "XXX", 'Y', Blocks.redstone_torch, 'X', BlocksAether.enchanted_holystone, 'Z', Items.redstone);
+		    register(new ItemStack(Blocks.piston), "WWW", "XZX", "XYX", 'X', BlocksAether.holystone, 'Y', Items.redstone, 'Z', ItemsAether.arkenium_ingot, 'W', BlocksAether.greatroot_planks);
+		    register(new ItemStack(Blocks.piston), "WWW", "XZX", "XYX", 'X', new ItemStack(BlocksAether.holystone, 1, 1), 'Y', Items.redstone, 'Z', ItemsAether.arkenium_ingot, 'W', BlocksAether.greatroot_planks);
+		    register(new ItemStack(Blocks.noteblock), "XXX", "XZX", "XXX", 'X', BlocksAether.greatroot_planks, 'Z', Items.redstone);
+		    register(new ItemStack(Blocks.dispenser), "XXX", "XZX", "XYX", 'X', new ItemStack(BlocksAether.holystone, 1, 1), 'Z', ItemsAether.dart_shooter, 'Y', Items.redstone);
+		    register(new ItemStack(Blocks.dispenser), "XXX", "XZX", "XYX", 'X', BlocksAether.holystone, 'Z', ItemsAether.dart_shooter, 'Y', Items.redstone);
+		    register(new ItemStack(Blocks.dropper), "XXX", "X X", "XYX", 'X', new ItemStack(BlocksAether.holystone, 1, 1), 'Y', Items.redstone);
+		    register(new ItemStack(Blocks.dropper), "XXX", "X X", "XYX", 'X', BlocksAether.holystone, 'Y', Items.redstone);
+		    register(new ItemStack(Blocks.tripwire_hook), "Z  ", "Y  ", "X  ", 'X', BlocksAether.skyroot_planks, 'Y', ItemsAether.skyroot_stick, 'Z', ItemsAether.zanite_gemstone);
+		    register(new ItemStack(Blocks.tripwire_hook), "Z  ", "Y  ", "X  ", 'X', BlocksAether.greatroot_planks, 'Y', ItemsAether.skyroot_stick, 'Z', ItemsAether.zanite_gemstone);
+		    register(new ItemStack(Blocks.tripwire_hook), "Z  ", "Y  ", "X  ", 'X', BlocksAether.wisproot_planks, 'Y', ItemsAether.skyroot_stick, 'Z', ItemsAether.zanite_gemstone);
+		    register(new ItemStack(Blocks.tripwire_hook), "Z  ", "Y  ", "X  ", 'X', BlocksAether.void_planks, 'Y', ItemsAether.skyroot_stick, 'Z', ItemsAether.zanite_gemstone);
+		    register(new ItemStack(Blocks.hopper), "X X", "XYX", " Z ", 'X', ItemsAether.zanite_gemstone, 'Y', BlocksAether.skyroot_chest, 'Z', ItemsAether.arkenium_ingot);
+		    register(new ItemStack(Blocks.daylight_detector), "XXX", "YYY", "ZZZ", 'X', BlocksAether.quicksoil_glass, 'Y', ItemsAether.auralite_crystal, 'Z', BlocksAether.skyroot_slab);
+		    register(new ItemStack(Blocks.daylight_detector), "XXX", "YYY", "ZZZ", 'X', BlocksAether.quicksoil_glass, 'Y', ItemsAether.auralite_crystal, 'Z', BlocksAether.wisproot_slab);
+		    register(new ItemStack(Blocks.daylight_detector), "XXX", "YYY", "ZZZ", 'X', BlocksAether.quicksoil_glass, 'Y', ItemsAether.auralite_crystal, 'Z', BlocksAether.greatroot_slab);
+		    register(new ItemStack(Blocks.daylight_detector), "XXX", "YYY", "ZZZ", 'X', BlocksAether.quicksoil_glass, 'Y', ItemsAether.auralite_crystal, 'Z', BlocksAether.void_slab);
+		    register(new ItemStack(Items.comparator), " X ", "XYX", "ZZZ", 'X', Blocks.redstone_torch, 'Y', ItemsAether.auralite_crystal, 'Z', BlocksAether.enchanted_holystone);
 		}
 
 		if (AetherConfig.BrewingItemsCraftable()) {
-		register(new ItemStack(Items.brewing_stand), " Y ", "XXX", 'Y', ItemsAether.cinerarium_rod, 'X', BlocksAether.enchanted_holystone);
-		register(new ItemStack(Items.brewing_stand), " Y ", "XXX", 'Y', Items.blaze_rod, 'X', BlocksAether.enchanted_holystone);
-		register(new ItemStack(Items.cauldron), "X X", "X X", "XXX", 'X', ItemsAether.zanite_gemstone);
-		register(new ItemStack(Items.glass_bottle, 3), "Y Y", " Y ", 'Y', BlocksAether.frozen_quicksoil_glass);
+		    register(new ItemStack(Items.brewing_stand), " Y ", "XXX", 'Y', ItemsAether.cinerarium_rod, 'X', BlocksAether.enchanted_holystone);
+		    register(new ItemStack(Items.brewing_stand), " Y ", "XXX", 'Y', Items.blaze_rod, 'X', BlocksAether.enchanted_holystone);
+		    register(new ItemStack(Items.cauldron), "X X", "X X", "XXX", 'X', ItemsAether.zanite_gemstone);
+		    register(new ItemStack(Items.glass_bottle, 3), "Y Y", " Y ", 'Y', BlocksAether.frozen_quicksoil_glass);
 		}
 
 
@@ -1138,13 +1090,12 @@ public class AetherRegistries {
 		register(new ItemStack(BlocksAether.aether_tnt), "XVX", "VYV", "XVX", 'X', Items.gunpowder, 'Y', ItemsAether.zanite_gemstone, 'V', new ItemStack(BlocksAether.quicksoil, 1, 1));
 
 		if (!AetherConfig.disableParachutes()) {
-		register(new ItemStack(ItemsAether.cloud_parachute, 1), "XX", "XX", 'X', new ItemStack(BlocksAether.aercloud, 1));
-		register(new ItemStack(ItemsAether.blue_parachute, 1), "XX", "XX", 'X', new ItemStack(BlocksAether.aercloud, 1, 1));
-		register(new ItemStack(ItemsAether.golden_parachute, 1), "XX", "XX", 'X', new ItemStack(BlocksAether.aercloud, 1, 2));
+		    register(new ItemStack(ItemsAether.cloud_parachute, 1), "XX", "XX", 'X', new ItemStack(BlocksAether.aercloud, 1));
+		    register(new ItemStack(ItemsAether.blue_parachute, 1), "XX", "XX", 'X', new ItemStack(BlocksAether.aercloud, 1, 1));
+		    register(new ItemStack(ItemsAether.golden_parachute, 1), "XX", "XX", 'X', new ItemStack(BlocksAether.aercloud, 1, 2));
 		}
 
 		register(new ItemStack(BlocksAether.reinforced_arkenium_block, 2), "ZXW", "XYX", "WXZ", 'X', BlocksAether.arkenium_block, 'Y', BlocksAether.enchanted_gravitite, 'Z', BlocksAether.zanite_block, 'W', BlocksAether.block_of_auralite);
-
 		register(new ItemStack(Items.saddle, 1), "XXX", "XZX", 'X', Items.leather, 'Z', Items.string);
 		register(new ItemStack(BlocksAether.skyroot_chest, 1), "XXX", "X X", "XXX", 'X', BlocksAether.skyroot_planks);
 		register(new ItemStack(BlocksAether.skyroot_chest, 1), "XXX", "X X", "XXX", 'X', BlocksAether.golden_oak_planks);
@@ -1180,7 +1131,6 @@ public class AetherRegistries {
 		register(new ItemStack(ItemsAether.continuum_chestplate, 1), "X X", "XXX", "XXX", 'X', ItemsAether.continuum_gemstone);
 		register(new ItemStack(ItemsAether.continuum_leggings, 1), "XXX", "X X", "X X", 'X', ItemsAether.continuum_gemstone);
 		register(new ItemStack(ItemsAether.continuum_boots, 1), "X X", "X X", 'X', ItemsAether.continuum_gemstone);
-
 
 		register(new ItemStack(ItemsAether.skyroot_pickaxe, 1), "ZZZ", " Y ", " Y ", 'Z', BlocksAether.skyroot_planks, 'Y', ItemsAether.skyroot_stick);
 		register(new ItemStack(ItemsAether.skyroot_pickaxe, 1), "ZZZ", " Y ", " Y ", 'Z', BlocksAether.greatroot_planks, 'Y', ItemsAether.skyroot_stick);
@@ -1278,24 +1228,18 @@ public class AetherRegistries {
 		register(new ItemStack(ItemsAether.iron_ring), " Z ", "Z Z", " Z ", 'Z', new ItemStack(Items.iron_ingot));
 		register(new ItemStack(ItemsAether.diamond_ring), " Z ", "Z Z", " Z ", 'Z', new ItemStack(Items.diamond));
 
-		/*if (Loader.isModLoaded("nova_craft")) {
-			register(new ItemStack(ItemsAether.pherithium_gloves), "C C", 'C', OtherModItems.pherithium_ingot);
-			register(new ItemStack(ItemsAether.vanite_gloves), "C C", 'C', OtherModItems.vanite_ingot);
-		}*/
-
 		if (Loader.isModLoaded("etfuturum") && AetherConfig.enable_copper_recipes) {
-		register(new ItemStack(ItemsAether.copper_gloves), "C C", 'C', OtherModItems.copper_ingot);
-		register(new ItemStack(ItemsAether.copper_ring), " Z ", "Z Z", " Z ", 'Z', new ItemStack(OtherModItems.copper_ingot));
-		register(new ItemStack(ItemsAether.copper_pendant), " Z ", "Z Z", " ZS", 'Z', new ItemStack(OtherModItems.copper_ingot), 'S', new ItemStack(Items.string));
+		    register(new ItemStack(ItemsAether.copper_gloves), "C C", 'C', OtherModItems.copper_ingot);
+		    register(new ItemStack(ItemsAether.copper_ring), " Z ", "Z Z", " Z ", 'Z', new ItemStack(OtherModItems.copper_ingot));
+		    register(new ItemStack(ItemsAether.copper_pendant), " Z ", "Z Z", " ZS", 'Z', new ItemStack(OtherModItems.copper_ingot), 'S', new ItemStack(Items.string));
 		}
 
 		if (Loader.isModLoaded("netherlicious")) {
-		register(new ItemStack(ItemsAether.effrine_gloves), "C C", 'C', OtherModItems.Ingot);
-		register(new ItemStack(ItemsAether.heavy_blaze_gloves), "C C", 'C', OtherModItems.Materials);
+		    register(new ItemStack(ItemsAether.effrine_gloves), "C C", 'C', OtherModItems.Ingot);
+		    register(new ItemStack(ItemsAether.heavy_blaze_gloves), "C C", 'C', OtherModItems.Materials);
 		}
 
 		register(new ItemStack(ItemsAether.zanite_shears), " C ", "C  ", 'C', ItemsAether.zanite_gemstone);
-
 		register(new ItemStack(BlocksAether.skyroot_fence, 3), "ZXZ", "ZXZ", 'Z', new ItemStack(BlocksAether.skyroot_planks), 'X', new ItemStack(ItemsAether.skyroot_stick));
 		register(new ItemStack(BlocksAether.golden_oak_fence, 3), "ZXZ", "ZXZ", 'Z', new ItemStack(BlocksAether.golden_oak_planks), 'X', new ItemStack(ItemsAether.skyroot_stick));
 		register(new ItemStack(BlocksAether.divine_oak_fence, 3), "ZXZ", "ZXZ", 'Z', new ItemStack(BlocksAether.divine_oak_planks), 'X', new ItemStack(ItemsAether.skyroot_stick));
@@ -1441,13 +1385,10 @@ public class AetherRegistries {
 		register(new ItemStack(BlocksAether.ancient_angelic_stone_stairs, 4), "Z  ", "ZZ ", "ZZZ", 'Z', new ItemStack(BlocksAether.ancient_angelic_stone));
 		register(new ItemStack(BlocksAether.ancient_hellfire_stairs, 4), "Z  ", "ZZ ", "ZZZ", 'Z', new ItemStack(BlocksAether.ancient_hellfire_stone));
 
-
-
 		register(new ItemStack(BlocksAether.skyroot_bookshelf, 1),  "ZZZ", "XXX", "ZZZ", 'Z', new ItemStack(BlocksAether.skyroot_planks), 'X', new ItemStack(Items.book));
 		register(new ItemStack(BlocksAether.skyroot_bookshelf, 1),  "ZZZ", "XXX", "ZZZ", 'Z', new ItemStack(BlocksAether.greatroot_planks), 'X', new ItemStack(Items.book));
 		register(new ItemStack(BlocksAether.skyroot_bookshelf, 1),  "ZZZ", "XXX", "ZZZ", 'Z', new ItemStack(BlocksAether.wisproot_planks), 'X', new ItemStack(Items.book));
 		register(new ItemStack(BlocksAether.skyroot_bookshelf, 1),  "ZZZ", "XXX", "ZZZ", 'Z', new ItemStack(BlocksAether.void_planks), 'X', new ItemStack(Items.book));
-
 
 		register(new ItemStack(ItemsAether.skyroot_bed_item, 1),  "XXX", "ZZZ", 'Z', new ItemStack(BlocksAether.skyroot_planks), 'X', Blocks.wool);
 	}

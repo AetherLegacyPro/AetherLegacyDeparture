@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.blocks.container;
 
 import java.util.Random;
-
 import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.network.AetherGuiHandler;
@@ -18,7 +17,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -32,7 +30,6 @@ public class BlockFreezer extends BlockAetherContainer {
 
 	public BlockFreezer() {
 		super(Material.rock);
-
 		this.setHardness(2.5F);
 	}
 
@@ -64,12 +61,12 @@ public class BlockFreezer extends BlockAetherContainer {
 
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
-		return new TileEntityFreezer();
+        return new TileEntityFreezer();
 	}
 
 	@Override
 	public Item getItemDropped(int meta, Random rand, int fortune) {
-		return Item.getItemFromBlock(BlocksAether.freezer);
+        return Item.getItemFromBlock(BlocksAether.freezer);
 	}
 
 	@Override

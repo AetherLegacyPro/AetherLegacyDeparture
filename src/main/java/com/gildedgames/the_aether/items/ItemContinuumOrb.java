@@ -1,6 +1,5 @@
 package com.gildedgames.the_aether.items;
 
-import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.player.PlayerAether;
 import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
@@ -24,7 +23,7 @@ public class ItemContinuumOrb extends Item {
 	public EnumRarity getRarity(ItemStack stack) {
 		return ItemsAether.aether_loot;
 	}
-	
+
 	@Override
 	public boolean hasEffect(ItemStack stack, int pass) {
 		return true;
@@ -34,7 +33,7 @@ public class ItemContinuumOrb extends Item {
 	public ItemStack onItemRightClick(ItemStack stack, World worldIn, EntityPlayer player) {
 		PlayerAether playerAether = PlayerAether.get(player);
 		ItemStack heldItem = player.getHeldItem();
-			
+
 		player.triggerAchievement(AchievementsAether.continuum_orb);
 			int rand = (int)(1 + Math.random() * 191);
 			String ItemStack;
@@ -122,7 +121,7 @@ public class ItemContinuumOrb extends Item {
 				case 41:
 					return new ItemStack(ItemsAether.continuum_leggings);
 				case 42:
-					return new ItemStack(ItemsAether.continuum_pickaxe);	
+					return new ItemStack(ItemsAether.continuum_pickaxe);
 				case 43:
 					return new ItemStack(ItemsAether.continuum_shovel);
 				case 44:
@@ -206,13 +205,13 @@ public class ItemContinuumOrb extends Item {
 				case 83:
 					return new ItemStack(ItemsAether.gravitite_shovel);
 				case 84:
-					return new ItemStack(ItemsAether.gravitite_sword);			
+					return new ItemStack(ItemsAether.gravitite_sword);
 				case 85:
 					return new ItemStack(ItemsAether.gray_cape);
 				case 86:
 					return new ItemStack(ItemsAether.green_cape);
 				case 87:
-					return new ItemStack(ItemsAether.gummy_swet);	
+					return new ItemStack(ItemsAether.gummy_swet);
 				case 88:
 					return new ItemStack(ItemsAether.healing_matrix);
 				case 89:
@@ -296,7 +295,7 @@ public class ItemContinuumOrb extends Item {
 				case 128:
 					return new ItemStack(ItemsAether.orange_cape);
 				case 129:
-					return new ItemStack(ItemsAether.phoenix_boots);		
+					return new ItemStack(ItemsAether.phoenix_boots);
 				case 130:
 					return new ItemStack(ItemsAether.phoenix_bow);
 				case 131:
@@ -356,7 +355,7 @@ public class ItemContinuumOrb extends Item {
 				case 158:
 					return new ItemStack(ItemsAether.valkyrie_boots);
 				case 159:
-					return new ItemStack(ItemsAether.valkyrie_cape);	
+					return new ItemStack(ItemsAether.valkyrie_cape);
 				case 160:
 					return new ItemStack(ItemsAether.valkyrie_chestplate);
 				case 161:
@@ -396,7 +395,7 @@ public class ItemContinuumOrb extends Item {
 				case 178:
 					return new ItemStack(ItemsAether.zanite_boots);
 				case 179:
-					return new ItemStack(ItemsAether.zanite_chestplate);	
+					return new ItemStack(ItemsAether.zanite_chestplate);
 				case 180:
 					return new ItemStack(ItemsAether.zanite_gemstone);
 				case 181:
@@ -416,22 +415,22 @@ public class ItemContinuumOrb extends Item {
 				case 188:
 					return new ItemStack(ItemsAether.zanite_shovel);
 				case 189:
-					return new ItemStack(ItemsAether.zanite_sword);	
+					return new ItemStack(ItemsAether.zanite_sword);
 				case 190:
 					return new ItemStack(Blocks.dragon_egg);
 				case 191:
-					return new ItemStack(Items.diamond);	
-					
-					
-					
-					
-					
-					
+					return new ItemStack(Items.diamond);
+
+
+
+
+
+
 			}
-			
+
 			return null;
-		
-		
+
+
 	}
 
 }

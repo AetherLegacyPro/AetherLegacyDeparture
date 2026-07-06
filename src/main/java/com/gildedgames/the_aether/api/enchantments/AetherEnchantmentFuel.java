@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.api.enchantments;
 
 import com.gildedgames.the_aether.api.RegistryEntry;
-
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -9,15 +8,14 @@ import net.minecraft.item.ItemStack;
 public class AetherEnchantmentFuel extends RegistryEntry {
 
 	public int timeGiven;
-
 	public ItemStack fuelStack;
 
 	public AetherEnchantmentFuel(Block fuelBlock, int timeGiven) {
-		this(new ItemStack(fuelBlock), timeGiven);
+        this(new ItemStack(fuelBlock), timeGiven);
 	}
 
 	public AetherEnchantmentFuel(Item fuelItem, int timeGiven) {
-		this(new ItemStack(fuelItem), timeGiven);
+        this(new ItemStack(fuelItem), timeGiven);
 	}
 
 	public AetherEnchantmentFuel(ItemStack fuelStack, int timeGiven) {

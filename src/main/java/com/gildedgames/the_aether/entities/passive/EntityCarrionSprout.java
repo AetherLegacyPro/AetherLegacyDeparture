@@ -7,11 +7,8 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
-import com.gildedgames.the_aether.entities.passive.EntityAetherAnimal;
 import com.gildedgames.the_aether.items.ItemsAether;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -19,16 +16,9 @@ public class EntityCarrionSprout extends EntityAetherAnimal {
 
 	public float sinage;
 
-	public int poisonRemaining;
-
-	private int reloadTime;
-
 	public EntityCarrionSprout(World world) {
 		super(world);
-
 		this.sinage = this.rand.nextFloat() * 6F;
-		this.poisonRemaining = this.rand.nextInt(3) + 2;
-
 		this.setSize(this.rand.nextInt(4) + 1);
 		this.setPosition(this.posX, this.posY, this.posZ);
 		this.setSize(0.75F + ((float) this.getSize() * 0.125F), 0.5F + ((float) this.getSize() * 0.075F));
@@ -37,14 +27,12 @@ public class EntityCarrionSprout extends EntityAetherAnimal {
 	@Override
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
-
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(20.0D);
 	}
 
 	@Override
 	public void entityInit() {
 		super.entityInit();
-
 		this.dataWatcher.addObject(20, (byte) 0);
 	}
 
@@ -65,7 +53,7 @@ public class EntityCarrionSprout extends EntityAetherAnimal {
 			this.setHealth(0.0F);
 		}
 	}
-	
+
 	@SideOnly(Side.CLIENT)
     public void tickAnimation() {
         if (this.hurtTime > 0) {
@@ -91,23 +79,21 @@ public class EntityCarrionSprout extends EntityAetherAnimal {
 	@Override
 	public void writeEntityToNBT(NBTTagCompound compound) {
 		super.writeEntityToNBT(compound);
-
 		compound.setByte("size", this.getSize());
 	}
 
 	@Override
 	public void readEntityFromNBT(NBTTagCompound compound) {
 		super.readEntityFromNBT(compound);
-
 		this.setSize(compound.getByte("size"));
 	}
 
 	public void setSize(int size) {
-		this.dataWatcher.updateObject(20, (byte) size);
+        this.dataWatcher.updateObject(20, (byte) size);
 	}
 
 	public byte getSize() {
-		return this.dataWatcher.getWatchableObjectByte(20);
+        return this.dataWatcher.getWatchableObjectByte(20);
 	}
 
 	@Override
@@ -117,27 +103,25 @@ public class EntityCarrionSprout extends EntityAetherAnimal {
 
 	@Override
 	public void applyEntityCollision(Entity entity) {
-
 	}
 
 	@Override
 	public void addVelocity(double x, double y, double z) {
-
 	}
 
 	@Override
 	protected boolean isMovementBlocked() {
-		return true;
+        return true;
 	}
 
 	@Override
 	public EntityAgeable createChild(EntityAgeable baby) {
-		return null;
+        return null;
 	}
 
 	@Override
 	protected String getHurtSound() {
-		return "game.player.hurt";
+        return "game.player.hurt";
 	}
 
 	@Override
@@ -147,7 +131,7 @@ public class EntityCarrionSprout extends EntityAetherAnimal {
 
 	@Override
 	public boolean canBePushed() {
-		return false;
+        return false;
 	}
 
 	@Override
@@ -157,7 +141,6 @@ public class EntityCarrionSprout extends EntityAetherAnimal {
         final int k = MathHelper.floor_double(this.posZ);
         final boolean canSpawn = this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
         return (this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_dirt|| this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.arctic_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.verdant_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.enchanted_aether_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.divine_grass) && this.worldObj.getBlockLightValue(i, j, k) > 7 && canSpawn && this.rand.nextInt(AetherConfig.getCarrionSproutSpawnrate()) == 0 && super.getCanSpawnHere();
-                       
     }
 
 }

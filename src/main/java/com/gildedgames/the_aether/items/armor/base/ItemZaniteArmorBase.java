@@ -10,18 +10,13 @@ import net.minecraft.item.ItemStack;
 public class ItemZaniteArmorBase extends ItemArmor {
 
 	private String[] defualt_location = new String[]{"textures/models/armor/iron_layer_1.png", "textures/models/armor/iron_layer_2.png"};
-
 	public boolean shouldDefualt = false;
-
 	private int colorization = -1;
-
 	private String armorName;
-
 	private Item source = null;
 
 	public ItemZaniteArmorBase(int armorType, ArmorMaterial material, String name, Item repair) {
 		super(material, 0, armorType);
-
 		this.source = repair;
 		this.armorName = name;
 		this.setCreativeTab(AetherCreativeTabs.armor);
@@ -29,7 +24,6 @@ public class ItemZaniteArmorBase extends ItemArmor {
 
 	public ItemZaniteArmorBase(int armorType, ArmorMaterial material, String name, Item repair, int hex) {
 		this(armorType, material, name, repair);
-
 		this.source = repair;
 		this.armorName = name;
 		this.colorization = hex;
@@ -38,7 +32,7 @@ public class ItemZaniteArmorBase extends ItemArmor {
 
 	@Override
 	public int getColor(ItemStack stack) {
-		return this.colorization;
+        return this.colorization;
 	}
 
 	@Override
@@ -50,7 +44,6 @@ public class ItemZaniteArmorBase extends ItemArmor {
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type) {
 		boolean leggings = this.getUnlocalizedName().contains("leggings");
 		String type1 = leggings ? "layer_2" : "layer_1";
-
 		return this.shouldDefualt ? (leggings ? defualt_location[1] : defualt_location[0]) : Aether.modAddress() + "textures/armor/" + this.armorName + "_" + type1 + ".png";
 	}
 

@@ -1,9 +1,7 @@
 package com.gildedgames.the_aether.world.dungeon.osmium;
 
 import java.util.Random;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
@@ -12,11 +10,10 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 public class OsmiumDungeonStormAercloudGen1 extends WorldGenerator {
 
 	public OsmiumDungeonStormAercloudGen1() {
-
 	}
-	
+
 	public boolean generate(final World world, final Random random, final int i, final int j, final int k) {
-		
+
 		world.setBlock(i + 41, j + 0, k + 21, placeBuildingBlock(random), 0, 2);
 		world.setBlock(i + 40, j + 0, k + 22, placeBuildingBlock(random), 0, 2);
 		world.setBlock(i + 42, j + 0, k + 22, placeBuildingBlock(random), 0, 2);
@@ -2447,10 +2444,10 @@ public class OsmiumDungeonStormAercloudGen1 extends WorldGenerator {
 		world.setBlock(i + 22, j + 8, k + 66, placeBuildingBlock(random), 0, 2);
 		world.setBlock(i + 60, j + 8, k + 66, placeBuildingBlock(random), 0, 2);
 		world.setBlock(i + 61, j + 8, k + 66, placeBuildingBlock(random), 0, 2);
-		
+
 		return true;
 	}
-	
+
 	private Block placeBuildingBlock(Random random) {
         if (random.nextDouble() < 0.1) {
             return Blocks.air;

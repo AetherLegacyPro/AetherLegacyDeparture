@@ -14,7 +14,7 @@ public class ItemAetherSlab extends ItemSlab {
 	}
 
 	@Override
-	public EnumRarity getRarity(ItemStack p_77613_1_) {
+	public EnumRarity getRarity(ItemStack itemStack) {
 		return this.field_150939_a == BlocksAether.aerogel_slab ? ItemsAether.aether_loot : EnumRarity.common;
 	}
 }

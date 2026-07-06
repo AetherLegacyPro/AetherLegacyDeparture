@@ -27,7 +27,6 @@ public class ItemAetherParachute extends Item {
 			}
 
 			world.spawnEntityInWorld(new EntityParachute(world, entityplayer, this == ItemsAether.golden_parachute));
-
 			return heldItem;
 		}
 
@@ -36,7 +35,6 @@ public class ItemAetherParachute extends Item {
 
 	public int getColorFromItemStack(ItemStack stack, int renderPass) {
 		if (this == ItemsAether.golden_parachute) return 0xffff7f;
-
 		return 0xffffff;
 	}
 

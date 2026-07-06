@@ -57,9 +57,11 @@ public class Aether {
 
 		ItemsAether.initialization();
 		AetherConfig.init(event.getModConfigurationDirectory());
+
 		if(AetherConfig.UseBaublesExpandedMenu()) {
 			com.gildedgames.the_aether.compatibility.BaublesExpandedCompatibility.tryAssignSlots();
 		}
+
 		GameRegistry.registerWorldGenerator(new AetherGenStoneOverhaul(), Integer.MAX_VALUE);
 		GameRegistry.registerWorldGenerator((IWorldGenerator)new ArcticIslandWorldGen(), Integer.MAX_VALUE);
 		GameRegistry.registerWorldGenerator((IWorldGenerator)new GoldenIslandWorldGen(), Integer.MAX_VALUE);
@@ -95,15 +97,15 @@ public class Aether {
 	}
 
 	public static ResourceLocation locate(String location) {
-		return new ResourceLocation(MOD_ID, location);
+        return new ResourceLocation(MOD_ID, location);
 	}
 
 	public static ResourceLocation locateII(String location) {
-		return new ResourceLocation("aetherii", location);
+        return new ResourceLocation("aetherii", location);
 	}
 
 	public static ResourceLocation locateHighlands(String location) {
-		return new ResourceLocation("aether", location);
+        return new ResourceLocation("aether", location);
 	}
 
 	public static boolean isGamePaused() {
@@ -112,22 +114,22 @@ public class Aether {
     }
 
 	public static String find(String location) {
-		return modAddress() + location;
+        return modAddress() + location;
 	}
 
 	public static String findII(String location) {
-		return "aetherii:" + location;
+        return "aetherii:" + location;
 	}
 
 	public static String findHighlands(String location) {
-		return "aether:" + location;
+        return "aether:" + location;
 	}
 
 	public static String modAddress() {
-		return MOD_ID + ":";
+        return MOD_ID + ":";
 	}
 
 	public static String getUnlocalisedName(String name) {
-		return MOD_ID + "." + name;
+        return MOD_ID + "." + name;
 	}
 }

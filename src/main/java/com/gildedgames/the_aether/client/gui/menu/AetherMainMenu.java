@@ -26,15 +26,13 @@ import org.apache.logging.log4j.Logger;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GLContext;
 import org.lwjgl.util.glu.Project;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URI;
 import java.util.*;
 
-public class AetherMainMenu extends GuiMainMenu
-{
+public class AetherMainMenu extends GuiMainMenu {
     private static final Logger logger = LogManager.getLogger();
     private static final Random rand = new Random();
     private String splashText;
@@ -58,51 +56,40 @@ public class AetherMainMenu extends GuiMainMenu
     private ResourceLocation field_110351_G;
     private GuiButton selectedButton;
 
-    public AetherMainMenu()
-    {
+    public AetherMainMenu() {
         this.field_146972_A = field_96138_a;
         this.splashText = "missingno";
         BufferedReader bufferedreader = null;
 
-        try
-        {
+        try {
             ArrayList arraylist = new ArrayList();
             bufferedreader = new BufferedReader(new InputStreamReader(Minecraft.getMinecraft().getResourceManager().getResource(splashTexts).getInputStream(), Charsets.UTF_8));
             String s;
 
-            while ((s = bufferedreader.readLine()) != null)
-            {
+            while ((s = bufferedreader.readLine()) != null) {
                 s = s.trim();
 
-                if (!s.isEmpty())
-                {
+                if (!s.isEmpty()) {
                     arraylist.add(s);
                 }
             }
 
-            if (!arraylist.isEmpty())
-            {
-                do
-                {
+            if (!arraylist.isEmpty()) {
+                do {
                     this.splashText = (String)arraylist.get(rand.nextInt(arraylist.size()));
                 }
                 while (this.splashText.hashCode() == 125780783);
             }
         }
-        catch (IOException ioexception1)
-        {
+        catch (IOException ioexception1) {
             ;
         }
-        finally
-        {
-            if (bufferedreader != null)
-            {
-                try
-                {
+        finally {
+            if (bufferedreader != null) {
+                try {
                     bufferedreader.close();
                 }
-                catch (IOException ioexception)
-                {
+                catch (IOException ioexception) {
                     ;
                 }
             }
@@ -110,8 +97,7 @@ public class AetherMainMenu extends GuiMainMenu
 
         this.field_92025_p = "";
 
-        if (!GLContext.getCapabilities().OpenGL20 && !OpenGlHelper.func_153193_b())
-        {
+        if (!GLContext.getCapabilities().OpenGL20 && !OpenGlHelper.func_153193_b()) {
             this.field_92025_p = I18n.format("title.oldgl1");
             this.field_146972_A = I18n.format("title.oldgl2");
             this.field_104024_v = "https://help.mojang.com/customer/portal/articles/325948?ref=game";
@@ -119,51 +105,40 @@ public class AetherMainMenu extends GuiMainMenu
     }
 
     @Override
-    public void updateScreen()
-    {
+    public void updateScreen() {
         ++this.panoramaTimer;
     }
 
 	@Override
-    public void initGui()
-    {
+    public void initGui() {
         this.viewportTexture = new DynamicTexture(256, 256);
         this.field_110351_G = this.mc.getTextureManager().getDynamicTextureLocation("background", this.viewportTexture);
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
 
-        if (calendar.get(2) + 1 == 11 && calendar.get(5) == 9)
-        {
+        if (calendar.get(2) + 1 == 11 && calendar.get(5) == 9) {
             this.splashText = "Happy birthday, ez!";
         }
-        else if (calendar.get(2) + 1 == 6 && calendar.get(5) == 1)
-        {
+        else if (calendar.get(2) + 1 == 6 && calendar.get(5) == 1) {
             this.splashText = "Happy birthday, Notch!";
         }
-        else if (calendar.get(2) + 1 == 12 && calendar.get(5) == 24)
-        {
+        else if (calendar.get(2) + 1 == 12 && calendar.get(5) == 24) {
             this.splashText = "Merry X-mas!";
         }
-        else if (calendar.get(2) + 1 == 1 && calendar.get(5) == 1)
-        {
+        else if (calendar.get(2) + 1 == 1 && calendar.get(5) == 1) {
             this.splashText = "Happy new year!";
         }
-        else if (calendar.get(2) + 1 == 10 && calendar.get(5) == 31)
-        {
+        else if (calendar.get(2) + 1 == 10 && calendar.get(5) == 31) {
             this.splashText = "OOoooOOOoooo! Spooky!";
         }
 
         boolean flag = true;
         int i = this.height / 4 + 48;
-
         this.addSingleplayerMultiplayerButtons(80, 24);
-
         this.buttonList.add(new GuiButtonLanguage(5, this.width - 48, 4));
-
         Object object = this.field_104025_t;
 
-        synchronized (this.field_104025_t)
-        {
+        synchronized (this.field_104025_t) {
             this.field_92023_s = this.fontRendererObj.getStringWidth(this.field_92025_p);
             this.field_92024_r = this.fontRendererObj.getStringWidth(this.field_146972_A);
             int j = Math.max(this.field_92023_s, this.field_92024_r);
@@ -174,8 +149,7 @@ public class AetherMainMenu extends GuiMainMenu
         }
     }
 
-    private void addSingleplayerMultiplayerButtons(int p_73969_1_, int p_73969_2_)
-    {
+    private void addSingleplayerMultiplayerButtons(int p_73969_1_, int p_73969_2_) {
         this.buttonList.add(new AetherMainMenuButton(1, 30, p_73969_1_, I18n.format("menu.singleplayer")));
         this.buttonList.add(new AetherMainMenuButton(2, 30, p_73969_1_ + p_73969_2_, I18n.format("menu.multiplayer")));
         GuiButton realmsButton = new AetherMainMenuButton(14, 30, p_73969_1_ + p_73969_2_ * 2, I18n.format("menu.online"));
@@ -187,89 +161,71 @@ public class AetherMainMenu extends GuiMainMenu
     }
 
     @Override
-    protected void actionPerformed(GuiButton p_146284_1_)
-    {
-        if (p_146284_1_.id == 0)
-        {
+    protected void actionPerformed(GuiButton button) {
+        if (button.id == 0) {
             this.mc.displayGuiScreen(new GuiOptions(this, this.mc.gameSettings));
         }
 
-        if (p_146284_1_.id == 5)
-        {
+        if (button.id == 5) {
             this.mc.displayGuiScreen(new GuiLanguage(this, this.mc.gameSettings, this.mc.getLanguageManager()));
         }
 
-        if (p_146284_1_.id == 1)
-        {
+        if (button.id == 1) {
             this.mc.displayGuiScreen(new GuiSelectWorld(this));
         }
 
-        if (p_146284_1_.id == 2)
-        {
+        if (button.id == 2) {
             this.mc.displayGuiScreen(new GuiMultiplayer(this));
         }
 
-        if (p_146284_1_.id == 14)
-        {
+        if (button.id == 14) {
             this.func_140005_i();
         }
 
-        if (p_146284_1_.id == 4)
-        {
+        if (button.id == 4) {
             this.mc.shutdown();
         }
 
-        if (p_146284_1_.id == 6)
-        {
+        if (button.id == 6) {
             this.mc.displayGuiScreen(new GuiModList(this));
         }
 
-        if (p_146284_1_.id == 11)
-        {
+        if (button.id == 11) {
             this.mc.launchIntegratedServer("Demo_World", "Demo_World", DemoWorldServer.demoWorldSettings);
         }
 
-        if (p_146284_1_.id == 12)
-        {
+        if (button.id == 12) {
             ISaveFormat isaveformat = this.mc.getSaveLoader();
             WorldInfo worldinfo = isaveformat.getWorldInfo("Demo_World");
 
-            if (worldinfo != null)
-            {
+            if (worldinfo != null) {
                 GuiYesNo guiyesno = GuiSelectWorld.func_152129_a(this, worldinfo.getWorldName(), 12);
                 this.mc.displayGuiScreen(guiyesno);
             }
         }
     }
 
-    private void func_140005_i()
-    {
+    private void func_140005_i() {
         RealmsBridge realmsbridge = new RealmsBridge();
         realmsbridge.switchToRealms(this);
     }
 
     @Override
-    public void confirmClicked(boolean p_73878_1_, int p_73878_2_)
-    {
-        if (p_73878_1_ && p_73878_2_ == 12)
-        {
+    public void confirmClicked(boolean p_73878_1_, int p_73878_2_) {
+        if (p_73878_1_ && p_73878_2_ == 12) {
             ISaveFormat isaveformat = this.mc.getSaveLoader();
             isaveformat.flushCache();
             isaveformat.deleteWorldDirectory("Demo_World");
             this.mc.displayGuiScreen(this);
         }
-        else if (p_73878_2_ == 13)
-        {
-            if (p_73878_1_)
-            {
-                try
-                {
+        else if (p_73878_2_ == 13) {
+            if (p_73878_1_) {
+                try {
                     Class oclass = Class.forName("java.awt.Desktop");
                     Object object = oclass.getMethod("getDesktop", new Class[0]).invoke(null);
                     oclass.getMethod("browse", new Class[] {URI.class}).invoke(object, new URI(this.field_104024_v));
                 }
-                catch (Throwable throwable)
-                {
+                catch (Throwable throwable) {
                     logger.error("Couldn't open link", throwable);
                 }
             }
@@ -278,8 +234,7 @@ public class AetherMainMenu extends GuiMainMenu
         }
     }
 
-    private void drawPanorama(int p_73970_1_, int p_73970_2_, float p_73970_3_)
-    {
+    private void drawPanorama(int p_73970_1_, int p_73970_2_, float p_73970_3_) {
         Tessellator tessellator = Tessellator.instance;
         GL11.glMatrixMode(GL11.GL_PROJECTION);
         GL11.glPushMatrix();
@@ -298,8 +253,7 @@ public class AetherMainMenu extends GuiMainMenu
         OpenGlHelper.glBlendFunc(770, 771, 1, 0);
         byte b0 = 8;
 
-        for (int k = 0; k < b0 * b0; ++k)
-        {
+        for (int k = 0; k < b0 * b0; ++k) {
             GL11.glPushMatrix();
             float f1 = ((float)(k % b0) / (float)b0 - 0.5F) / 64.0F;
             float f2 = ((float)(k / b0) / (float)b0 - 0.5F) / 64.0F;
@@ -308,32 +262,26 @@ public class AetherMainMenu extends GuiMainMenu
             GL11.glRotatef(MathHelper.sin(((float)this.panoramaTimer + p_73970_3_) / 400.0F) * 25.0F + 20.0F, 1.0F, 0.0F, 0.0F);
             GL11.glRotatef(-((float)this.panoramaTimer + p_73970_3_) * 0.1F, 0.0F, 1.0F, 0.0F);
 
-            for (int l = 0; l < 6; ++l)
-            {
+            for (int l = 0; l < 6; ++l) {
                 GL11.glPushMatrix();
 
-                if (l == 1)
-                {
+                if (l == 1) {
                     GL11.glRotatef(90.0F, 0.0F, 1.0F, 0.0F);
                 }
 
-                if (l == 2)
-                {
+                if (l == 2) {
                     GL11.glRotatef(180.0F, 0.0F, 1.0F, 0.0F);
                 }
 
-                if (l == 3)
-                {
+                if (l == 3) {
                     GL11.glRotatef(-90.0F, 0.0F, 1.0F, 0.0F);
                 }
 
-                if (l == 4)
-                {
+                if (l == 4) {
                     GL11.glRotatef(90.0F, 1.0F, 0.0F, 0.0F);
                 }
 
-                if (l == 5)
-                {
+                if (l == 5) {
                     GL11.glRotatef(-90.0F, 1.0F, 0.0F, 0.0F);
                 }
 
@@ -364,8 +312,7 @@ public class AetherMainMenu extends GuiMainMenu
         GL11.glEnable(GL11.GL_DEPTH_TEST);
     }
 
-    private void rotateAndBlurSkybox(float p_73968_1_)
-    {
+    private void rotateAndBlurSkybox(float p_73968_1_) {
         this.mc.getTextureManager().bindTexture(this.field_110351_G);
         GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_LINEAR);
         GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_LINEAR);
@@ -378,8 +325,7 @@ public class AetherMainMenu extends GuiMainMenu
         GL11.glDisable(GL11.GL_ALPHA_TEST);
         byte b0 = 3;
 
-        for (int i = 0; i < b0; ++i)
-        {
+        for (int i = 0; i < b0; ++i) {
             tessellator.setColorRGBA_F(1.0F, 1.0F, 1.0F, 1.0F / (float)(i + 1));
             int j = this.width;
             int k = this.height;
@@ -395,8 +341,7 @@ public class AetherMainMenu extends GuiMainMenu
         GL11.glColorMask(true, true, true, true);
     }
 
-    private void renderSkybox(int p_73971_1_, int p_73971_2_, float p_73971_3_)
-    {
+    private void renderSkybox(int p_73971_1_, int p_73971_2_, float p_73971_3_) {
         this.mc.getFramebuffer().unbindFramebuffer();
         GL11.glViewport(0, 0, 256, 256);
         this.drawPanorama(p_73971_1_, p_73971_2_, p_73971_3_);
@@ -425,8 +370,7 @@ public class AetherMainMenu extends GuiMainMenu
     }
 
     @Override
-    public void drawScreen(int p_73863_1_, int p_73863_2_, float p_73863_3_)
-    {
+    public void drawScreen(int p_73863_1_, int p_73863_2_, float p_73863_3_) {
         GL11.glDisable(GL11.GL_ALPHA_TEST);
         this.renderSkybox(p_73863_1_, p_73863_2_, p_73863_3_);
         GL11.glEnable(GL11.GL_ALPHA_TEST);
@@ -453,17 +397,14 @@ public class AetherMainMenu extends GuiMainMenu
         GL11.glPopMatrix();
         String s = "Minecraft 1.7.10";
 
-        if (this.mc.isDemo())
-        {
+        if (this.mc.isDemo()) {
             s = s + " Demo";
         }
 
         List<String> brandings = Lists.reverse(FMLCommonHandler.instance().getBrandings(true));
-        for (int i = 0; i < brandings.size(); i++)
-        {
+        for (int i = 0; i < brandings.size(); i++) {
             String brd = brandings.get(i);
-            if (!Strings.isNullOrEmpty(brd))
-            {
+            if (!Strings.isNullOrEmpty(brd)) {
                 this.drawString(this.fontRendererObj, brd, this.width - this.fontRendererObj.getStringWidth(brd) - 2, this.height - (30 + i * (this.fontRendererObj.FONT_HEIGHT + 1)), 16777215);
             }
         }
@@ -471,54 +412,41 @@ public class AetherMainMenu extends GuiMainMenu
         String s1 = "Copyright Mojang AB. Do not distribute!";
         this.drawString(this.fontRendererObj, s1, this.width - this.fontRendererObj.getStringWidth(s1) - 2, this.height - 10, -1);
 
-        if (this.field_92025_p != null && !this.field_92025_p.isEmpty())
-        {
+        if (this.field_92025_p != null && !this.field_92025_p.isEmpty()) {
             drawRect(this.field_92022_t - 2, this.field_92021_u - 2, this.field_92020_v + 2, this.field_92019_w - 1, 1428160512);
             this.drawString(this.fontRendererObj, this.field_92025_p, this.field_92022_t, this.field_92021_u, -1);
             this.drawString(this.fontRendererObj, this.field_146972_A, (this.width - this.field_92024_r) / 2, this.buttonList.get(0).yPosition - 12, -1);
         }
 
-        for (int j = 0; j < this.buttonList.size(); ++j)
-        {
+        for (int j = 0; j < this.buttonList.size(); ++j) {
             this.buttonList.get(j).drawButton(this.mc, p_73863_1_, p_73863_2_);
 
-            //if ((this.buttonList.get(j)).getClass() == AetherMainMenuButton.class)
-            if ((this.buttonList.get(j)) instanceof AetherMainMenuButton)
-            {
-                if (this.buttonList.get(j).func_146115_a())
-                {
-                    if (this.buttonList.get(j).xPosition < 45)
-                    {
+            if ((this.buttonList.get(j)) instanceof AetherMainMenuButton) {
+                if (this.buttonList.get(j).func_146115_a()) {
+                    if (this.buttonList.get(j).xPosition < 45) {
                         this.buttonList.get(j).xPosition = this.buttonList.get(j).xPosition + 4;
                     }
                 }
-                else
-                {
-                    if (this.buttonList.get(j).xPosition > 30)
-                    {
+                else {
+                    if (this.buttonList.get(j).xPosition > 30) {
                         this.buttonList.get(j).xPosition = this.buttonList.get(j).xPosition - 4;
                     }
                 }
             }
         }
 
-        for (int j = 0; j < this.labelList.size(); ++j)
-        {
+        for (int j = 0; j < this.labelList.size(); ++j) {
             this.labelList.get(j).func_146159_a(this.mc, p_73863_1_, p_73863_2_);
         }
     }
 
     @Override
-    protected void mouseClicked(int p_73864_1_, int p_73864_2_, int p_73864_3_)
-    {
-        if (p_73864_3_ == 0)
-        {
-            for (int l = 0; l < this.buttonList.size(); ++l)
-            {
+    protected void mouseClicked(int p_73864_1_, int p_73864_2_, int p_73864_3_) {
+        if (p_73864_3_ == 0) {
+            for (int l = 0; l < this.buttonList.size(); ++l) {
                 GuiButton guibutton = this.buttonList.get(l);
 
-                if (guibutton.mousePressed(this.mc, p_73864_1_, p_73864_2_))
-                {
+                if (guibutton.mousePressed(this.mc, p_73864_1_, p_73864_2_)) {
                     GuiScreenEvent.ActionPerformedEvent.Pre event = new GuiScreenEvent.ActionPerformedEvent.Pre(this, guibutton, this.buttonList);
                     if (MinecraftForge.EVENT_BUS.post(event))
                         break;
@@ -533,10 +461,8 @@ public class AetherMainMenu extends GuiMainMenu
 
         Object object = this.field_104025_t;
 
-        synchronized (this.field_104025_t)
-        {
-            if (!this.field_92025_p.isEmpty() && p_73864_1_ >= this.field_92022_t && p_73864_1_ <= this.field_92020_v && p_73864_2_ >= this.field_92021_u && p_73864_2_ <= this.field_92019_w)
-            {
+        synchronized (this.field_104025_t) {
+            if (!this.field_92025_p.isEmpty() && p_73864_1_ >= this.field_92022_t && p_73864_1_ <= this.field_92020_v && p_73864_2_ >= this.field_92021_u && p_73864_2_ <= this.field_92019_w) {
                 GuiConfirmOpenLink guiconfirmopenlink = new GuiConfirmOpenLink(this, this.field_104024_v, 13, true);
                 guiconfirmopenlink.func_146358_g();
                 this.mc.displayGuiScreen(guiconfirmopenlink);
@@ -545,10 +471,8 @@ public class AetherMainMenu extends GuiMainMenu
     }
 
     @Override
-    protected void mouseMovedOrUp(int p_146286_1_, int p_146286_2_, int p_146286_3_)
-    {
-        if (this.selectedButton != null && p_146286_3_ == 0)
-        {
+    protected void mouseMovedOrUp(int p_146286_1_, int p_146286_2_, int p_146286_3_) {
+        if (this.selectedButton != null && p_146286_3_ == 0) {
             this.selectedButton.mouseReleased(p_146286_1_, p_146286_2_);
             this.selectedButton = null;
         }

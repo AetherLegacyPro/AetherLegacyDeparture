@@ -21,7 +21,7 @@ public class ItemDexterityShard extends Item {
 
 	@Override
 	public EnumRarity getRarity(ItemStack stack) {
-		return ItemsAether.scaled_aether_loot;
+        return ItemsAether.scaled_aether_loot;
 	}
 
 	@Override
@@ -29,22 +29,16 @@ public class ItemDexterityShard extends Item {
 		PlayerAether playerAether = PlayerAether.get(player);
 		ItemStack heldItem = player.getHeldItem();
 
-		if (!worldIn.isRemote)
-		{
+		if (!worldIn.isRemote) {
 			playerAether.updateDexShardCount(0);
-
-			if (playerAether.getDexShardsUsed() < playerAether.getMaxDexShardCount())
-			{
+			if (playerAether.getDexShardsUsed() < playerAether.getMaxDexShardCount()) {
 				playerAether.updateDexShardCount(1);
 				--heldItem.stackSize;
 			}
-
 			return heldItem;
 		}
-		else
-		{
-			if (playerAether.getDexShardsUsed() >= playerAether.getMaxDexShardCount())
-			{
+		else {
+			if (playerAether.getDexShardsUsed() >= playerAether.getMaxDexShardCount()) {
 				Aether.proxy.sendMessage(player, StatCollector.translateToLocalFormatted("gui.item.dex_shard.maxshards", playerAether.getMaxDexShardCount()));
 			}
 		}

@@ -1,10 +1,8 @@
 package com.gildedgames.the_aether.world.biome.decoration.overhaul;
 
 import java.util.Random;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.registry.ExternalContentNovaCraft;
-
 import net.minecraft.block.Block;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
@@ -12,7 +10,7 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 
 public class AetherIIDungeonGen extends WorldGenerator {
 	//Credit Goes to Roadhog360
-    
+
 	@Override
 	public boolean generate(World world, Random random, int x, int y, int z) {
 		final float size = (random.nextInt(3) + 4) + random.nextFloat(); //6
@@ -21,11 +19,11 @@ public class AetherIIDungeonGen extends WorldGenerator {
 	    final float DISTANCE_AMETHYST_SQ = ((size - 2) * (size - 2));
 	    final float DISTANCE_INNER_SQ = ((size - 3) * (size - 3));
 	    final int sizeInt = MathHelper.floor_float(size);
-	    
+
 	    if(!canGeodeGenerateHere(world, x, y, z, sizeInt)) {
 	    	return false;
 	    }
-	    
+
 		int holeX = -1;
 		int holeY = -1;
 		int holeZ = -1;
@@ -43,7 +41,7 @@ public class AetherIIDungeonGen extends WorldGenerator {
 			holeZ = Math.round(radius * MathHelper.sin(holePhi) * MathHelper.cos(holeTheta));
 			attempts++;
 		}
-		
+
         for (int i = -sizeInt; i <= sizeInt; i++) {
             for (int j = -sizeInt; j <= sizeInt; j++) {
                 for (int k = -sizeInt; k <= sizeInt; k++) {
@@ -55,13 +53,13 @@ public class AetherIIDungeonGen extends WorldGenerator {
                     	double deltaX = Math.abs(i - holeX);
                     	double deltaY = Math.abs(j - holeY);
                     	double deltaZ = Math.abs(k - holeZ);
-                    	
+
                     	if(deltaX + deltaY + deltaZ < holeSize && distSq <= DISTANCE_COBBLESTONE_SQ) {
                             world.setBlockToAir(x + i, y + j, z + k);
                             continue;
                     	}
                     }
-                    
+
                     if (distSq <= DISTANCE_INNER_SQ) {
                         world.setBlockToAir(x + i, y + j, z + k);
                     } else if (distSq <= DISTANCE_COBBLESTONE_SQ && distSq > DISTANCE_GRIMSTONE_SQ) {
@@ -73,24 +71,22 @@ public class AetherIIDungeonGen extends WorldGenerator {
                     }
                 }
             }
-            
+
             {
             	world.setBlock(x, y - 2, z, ExternalContentNovaCraft.sliderLabyrinthTotem, 1, 2);
             	world.setBlock(x, y - 3, z, ExternalContentNovaCraft.sliderLabyrinthTotem, 0, 2);
             	world.setBlock(x, y - 4, z, BlocksAether.divine_carved_stone, 0, 2);
             }
-        }        
+        }
             return true;
-         
-        
 	}
-	
+
 	private boolean canGeodeGenerateHere(World world, int x, int y, int z, int size) {
 		int air = 0;
 		if(isAirOrFluid(world, x + size, y + size, z + size)) {
 			air++;
 		}
-		if(isAirOrFluid(world, x + size, y + size, z - size)) { 
+		if(isAirOrFluid(world, x + size, y + size, z - size)) {
 			air++;
 		}
 		if(isAirOrFluid(world, x - size, y + size, z + size)) {
@@ -113,17 +109,17 @@ public class AetherIIDungeonGen extends WorldGenerator {
 		}
 		return air < 4;
 	}
-	
+
 	private boolean isAirOrFluid(World world, int x, int y, int z) {
 		return world.isAirBlock(x, y, z) || world.getBlock(x, y, z).getMaterial().isLiquid();
 	}
-	
+
 	private void placeAmethyst(World world, Random random, int x, int y, int z) {
 		if(random.nextInt(12) == 0) {
-			world.setBlock(x, y, z, BlocksAether.sentry_stone);			
+			world.setBlock(x, y, z, BlocksAether.sentry_stone);
 		} else {
 			world.setBlock(x, y, z, BlocksAether.divine_carved_stone);
 		}
 	}
-	
+
 }

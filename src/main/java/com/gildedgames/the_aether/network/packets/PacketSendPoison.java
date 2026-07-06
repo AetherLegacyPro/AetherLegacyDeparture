@@ -11,44 +11,31 @@ public class PacketSendPoison extends AetherPacket<PacketSendPoison> {
 
 	private int entityID;
 
-	public PacketSendPoison()
-	{
-
+	public PacketSendPoison() {
 	}
 
-	public PacketSendPoison(EntityPlayer thePlayer)
-	{
-		this.entityID = thePlayer.getEntityId();
+	public PacketSendPoison(EntityPlayer thePlayer) {
+        this.entityID = thePlayer.getEntityId();
 	}
 
 	@Override
-	public void fromBytes(ByteBuf buf)
-	{
-		this.entityID = buf.readInt();
+    public void fromBytes(ByteBuf buf) {
+        this.entityID = buf.readInt();
 	}
 
 	@Override
-	public void toBytes(ByteBuf buf)
-	{
-		buf.writeInt(this.entityID);
+	public void toBytes(ByteBuf buf) {
+        buf.writeInt(this.entityID);
 	}
 
 	@Override
-	public void handleClient(PacketSendPoison message, EntityPlayer player)
-	{
-		if (player != null && player.worldObj != null)
-		{
+	public void handleClient(PacketSendPoison message, EntityPlayer player) {
+		if (player != null && player.worldObj != null) {
 			Entity entity = player.worldObj.getEntityByID(message.entityID);
-
-			if (entity instanceof EntityPlayer parent)
-			{
-
+			if (entity instanceof EntityPlayer parent) {
 				IPlayerAether iPlayerAether = AetherAPI.get(parent);
-
-				if (iPlayerAether != null)
-				{
+				if (iPlayerAether != null) {
 					PlayerAether playerAether = (PlayerAether) iPlayerAether;
-
 					playerAether.setPoisoned();
 				}
 			}
@@ -56,9 +43,7 @@ public class PacketSendPoison extends AetherPacket<PacketSendPoison> {
 	}
 
 	@Override
-	public void handleServer(PacketSendPoison message, EntityPlayer player)
-	{
-
+	public void handleServer(PacketSendPoison message, EntityPlayer player) {
 	}
 
 }

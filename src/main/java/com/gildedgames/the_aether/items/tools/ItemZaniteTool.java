@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.items.tools;
 
 import java.util.List;
-
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.items.util.EnumAetherToolType;
@@ -16,7 +15,7 @@ public class ItemZaniteTool extends ItemAetherTool {
 	public float[] level = new float[]{2F, 4F, 6F, 8F, 12F};
 
 	public ItemZaniteTool(float damage, EnumAetherToolType toolType) {
-		super(damage, ToolMaterial.IRON, toolType);
+        super(damage, ToolMaterial.IRON, toolType);
 	}
 
 	@Override
@@ -53,7 +52,7 @@ public class ItemZaniteTool extends ItemAetherTool {
 	private boolean isBetween(int max, int origin, int min) {
 		return origin <= max && origin >= min ? true : false;
 	}
-	
+
 	public void addInformation(final ItemStack stack, final EntityPlayer player, final List tooltip, final boolean who) {
 		if(AetherConfig.enableTooltips())
         tooltip.add(EnumChatFormatting.GRAY + "" + StatCollector.translateToLocal("tooltip.zanite_tools.desc"));

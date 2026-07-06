@@ -1,11 +1,9 @@
 package com.gildedgames.the_aether.world.biome.decoration.overhaul;
 
 import java.util.Random;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.world.biome.decoration.AetherGenLargeWisprootTree;
 import com.gildedgames.the_aether.world.biome.decoration.AetherGenWisprootTree;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
@@ -309,30 +307,30 @@ public class ArcticIsland extends WorldGenerator {
 
    private Block materialAtLevel(Random rand, int i, boolean flag) {
       byte byte0 = -1;
-      byte byte1 = 6; //4
+      byte byte1 = 6;
       int j = byte0 - rand.nextInt(byte1);
       if (i < j) {
          return rand.nextInt(20) == 0 ? Blocks.packed_ice : BlocksAether.holystone;
       	}
       if (i < j * 3) {
-    	  return rand.nextInt(20) == 0 ? Blocks.packed_ice : BlocksAether.holystone;  
+    	  return rand.nextInt(20) == 0 ? Blocks.packed_ice : BlocksAether.holystone;
       }
       if (i < j * 2) {
-    	  return rand.nextInt(22) == 0 ? BlocksAether.zanite_ore : BlocksAether.holystone;  
+    	  return rand.nextInt(22) == 0 ? BlocksAether.zanite_ore : BlocksAether.holystone;
       }
       if (i == j) {
     	  int rand3 = (int)(1 + Math.random() * 4);
           if (rand3 == 1 ) {
-        	  return rand.nextInt(3) == 2 ?  BlocksAether.arctic_glowstone : BlocksAether.holystone;   
+        	  return rand.nextInt(3) == 2 ?  BlocksAether.arctic_glowstone : BlocksAether.holystone;
           }
           if (rand3 == 2 ) {
-        	  return rand.nextInt(2) == 1 ? BlocksAether.holystone : BlocksAether.aether_dirt;  
+        	  return rand.nextInt(2) == 1 ? BlocksAether.holystone : BlocksAether.aether_dirt;
           }
           if (rand3 == 3 ) {
-        	  return rand.nextInt(22) == 0 ? BlocksAether.zanite_ore : BlocksAether.holystone;  
+        	  return rand.nextInt(22) == 0 ? BlocksAether.zanite_ore : BlocksAether.holystone;
           }
-          
-        	 return rand.nextInt(10) == 0 ? BlocksAether.aether_dirt : BlocksAether.holystone;  
+
+        	 return rand.nextInt(10) == 0 ? BlocksAether.aether_dirt : BlocksAether.holystone;
         }
       else {
           return flag ? BlocksAether.arctic_grass : BlocksAether.holystone;
@@ -353,7 +351,7 @@ public class ArcticIsland extends WorldGenerator {
                if (world.getBlock(x1, yTest, z1).isReplaceable(world, x1, yTest, z1) && (world.getBlock(x1, yTest - 1, z1) == BlocksAether.arctic_grass || world.getBlock(x1, yTest - 1, z1) == BlocksAether.aether_dirt)) {
                   world.setBlock(x1, yTest, z1, BlocksAether.white_flower);
                   break;
-               }             
+               }
             }
          }
       }
@@ -363,7 +361,7 @@ public class ArcticIsland extends WorldGenerator {
    private static AetherGenLargeWisprootTree tree = new AetherGenLargeWisprootTree(BlocksAether.blue_light_skyroot_leaves, BlocksAether.wisproot_log, 0);
    private static AetherGenWisprootTree tree2 = new AetherGenWisprootTree(BlocksAether.blue_light_skyroot_leaves, 8, false);
 
-   
+
    private void generateTrees(World world, Random rand, int x, int y, int z) {
       int radius = this.bumpsLong1 > this.bumpsWide1 ? this.bumpsLong1 : this.bumpsWide1;
 
@@ -376,9 +374,9 @@ public class ArcticIsland extends WorldGenerator {
          k1 = z + this.centerZ + rand.nextInt(this.length) - this.centerZ;
          l1 = world.getHeightValue(j1, k1);
          this.generateTallGrass(world, rand, x, y, z);
-         tree2.generate(world, rand, j1, l1, k1);            
+         tree2.generate(world, rand, j1, l1, k1);
       }
-     
+
       for(i6 = 0; i6 < 10 + rand.nextInt(120); ++i6) {
          j1 = x + this.centerX + rand.nextInt(this.width) - this.centerX;
          k1 = z + this.centerZ + rand.nextInt(this.length) - this.centerZ;
@@ -386,7 +384,7 @@ public class ArcticIsland extends WorldGenerator {
            if (rand.nextInt(4) != 0) {
         	   this.generateTallGrass(world, rand, x, y, z);
             	tree.generate(world, rand, j1, l1, k1);
-           } 
+           }
            else {
         	  this.generateTallGrass(world, rand, x, y, z);
               tree2.generate(world, rand, j1, l1, k1);
@@ -402,7 +400,7 @@ public class ArcticIsland extends WorldGenerator {
          int k1 = z + this.centerZ + rand.nextInt(this.length) - this.centerZ;
          int l1 = world.getHeightValue(j1, k1);
          if (l1 > 100) {
-        	 
+
         int chance = (int)(1 + Math.random() * 5);
      	switch (chance)
         {
@@ -416,9 +414,9 @@ public class ArcticIsland extends WorldGenerator {
         	break;
 		}
      	(new WorldGenTallGrass(BlocksAether.arctic_tallgrass, 1)).generate(world, rand, j1, l1, k1);
-     	
+
          }
       }
-
    }
+
 }

@@ -11,11 +11,9 @@ import com.gildedgames.the_aether.entities.passive.EntityFlynx;
 import com.gildedgames.the_aether.entities.passive.EntityMiniCloud;
 import com.gildedgames.the_aether.entities.passive.EntitySheepuff;
 import com.gildedgames.the_aether.entities.passive.EntityThunderlo;
-
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
 import net.minecraftforge.client.MinecraftForgeClient;
-
 import com.gildedgames.the_aether.client.models.entities.AercenturionModel;
 import com.gildedgames.the_aether.client.models.entities.ElysianGuardianModel;
 import com.gildedgames.the_aether.client.models.entities.TempestModel;
@@ -139,7 +137,7 @@ import com.gildedgames.the_aether.entities.hostile.EntityBattleSentry;
 import com.gildedgames.the_aether.entities.hostile.EntityCinerarium;
 import com.gildedgames.the_aether.entities.hostile.EntityCockatrice;
 import com.gildedgames.the_aether.entities.hostile.EntityCyro;
-import com.gildedgames.the_aether.entities.hostile.EntityCyroGuardian;
+import com.gildedgames.the_aether.entities.bosses.cyro_guardian.EntityCyroGuardian;
 import com.gildedgames.the_aether.entities.hostile.EntityHellfireCinder;
 import com.gildedgames.the_aether.entities.hostile.EntityIrk;
 import com.gildedgames.the_aether.entities.hostile.EntityMimic;
@@ -185,7 +183,6 @@ import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.tileentity.TileEntityAetherEnchantmentTable;
 import com.gildedgames.the_aether.tileentity.TileEntityDivineEnchantmentTable;
 import com.gildedgames.the_aether.tileentity.TileEntityTreasureChest;
-
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 
@@ -217,7 +214,7 @@ public class RendersAether {
 
 		/* Darts */
 		register(EntityDartBase.class, new DartBaseRenderer());
-	
+
 		/* Crystals */
 		register(EntityCrystal.class, new CrystalRenderer());
 
@@ -226,19 +223,19 @@ public class RendersAether {
 		register(EntityEnhancedSlider.class, new EnhancedSliderRenderer());
 		register(EntityDivineSlider.class, new DivineSliderRenderer());
 		register(EntityMythicSlider.class, new MythicSliderRenderer());
-		
+
 		register(EntityCyroGuardian.class, new CyroGuardianRenderer());
-		
+
 		register(EntityLurker.class, new LurkerRenderer());
-		
+
 		register(EntityValkyrieQueen.class, new ValkyrieQueenRenderer());
 		register(EntityAncientValkyrieQueen.class, new AncientValkyrieQueenRenderer());
 		register(EntityDivineValkyrieQueen.class, new DivineValkyrieQueenRenderer());
-		
+
 		register(EntitySunSpirit.class, new SunSpiritRenderer());
 		register(EntityAncientSunSpirit.class, new AncientSunSpiritRenderer());
 		register(EntityDivineSunSpirit.class, new DivineSunSpiritRenderer());
-		
+
 		register(EntityGenesisDragon.class, new GenesisDragonRenderer());
 
 		/* Hostile */
@@ -271,7 +268,7 @@ public class RendersAether {
 		register(EntityIrk.class, new IrkRenderer());
 		register(EntityCrystalDragon.class, new CrystalDragonRenderer());
 		register(EntityZojz.class, new ZojzRenderer(new ZojzModel()));
-		
+
 		/* Passive */
 		register(EntityMoa.class, new MoaRenderer());
 		register(EntityPhyg.class, new PhygRenderer());
@@ -291,11 +288,11 @@ public class RendersAether {
 
 		MinecraftForgeClient.registerItemRenderer(ItemsAether.phoenix_bow, new PhoenixBowRenderer());
 		MinecraftForgeClient.registerItemRenderer(ItemsAether.tipped_phoenix_bow, new PhoenixBowRenderer());
-		MinecraftForgeClient.registerItemRenderer(ItemsAether.amplified_phoenix_bow, new PhoenixBowRenderer());		
+		MinecraftForgeClient.registerItemRenderer(ItemsAether.amplified_phoenix_bow, new PhoenixBowRenderer());
 		MinecraftForgeClient.registerItemRenderer(ItemsAether.cyro_bow, new PhoenixBowRenderer());
 		MinecraftForgeClient.registerItemRenderer(ItemsAether.tipped_cyro_bow, new PhoenixBowRenderer());
 		MinecraftForgeClient.registerItemRenderer(ItemsAether.amplified_cyro_bow, new PhoenixBowRenderer());
-		
+
 		RenderingRegistry.registerBlockHandler(new BerryBushRenderer());
 		RenderingRegistry.registerBlockHandler(new TreasureChestBlockRenderer());
 		RenderingRegistry.registerBlockHandler(new AetherFlowerRenderer());

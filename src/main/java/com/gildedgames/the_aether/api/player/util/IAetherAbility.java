@@ -9,7 +9,7 @@ public interface IAetherAbility {
 	boolean shouldExecute();
 
 	default boolean onPlayerAttacked(DamageSource source) {
-		return false;
+        return false;
 	}
 
 }

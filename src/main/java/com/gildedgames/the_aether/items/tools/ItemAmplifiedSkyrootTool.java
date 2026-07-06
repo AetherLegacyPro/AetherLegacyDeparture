@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.items.tools;
 
 import java.util.List;
-
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.entities.block.EntityFireProofItemAether;
@@ -31,58 +30,50 @@ public class ItemAmplifiedSkyrootTool extends ItemSkyrootTool {
 	public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
 		return repair.getItem() == ItemsAether.divineral_ingot;
 	}
-	
+
 	@Override
 	public EnumRarity getRarity(ItemStack stack) {
-		return ItemsAether.divine_aether_loot;
+        return ItemsAether.divine_aether_loot;
 	}
 
 	@Override
 	public float getDigSpeed(ItemStack stack, Block block, int meta) {
 		return this.calculateIncrease(stack, this.toolType.getStrVsBlock(stack, block));
 	}
-	
+
 	@Override
-	public boolean onBlockDestroyed(ItemStack stack, World world, Block block, int x, int y, int z, EntityLivingBase entityLiving) {		
-		
+	public boolean onBlockDestroyed(ItemStack stack, World world, Block block, int x, int y, int z, EntityLivingBase entityLiving) {
+
 		if (!world.isRemote && world.rand.nextInt(100) <= 90) {
 			EntityItem entityItem = new EntityItem(world, x, y, z, new ItemStack(BlocksAether.holystone, 1, 1));
-
 			world.spawnEntityInWorld(entityItem);
 		}
 		if (!world.isRemote && world.rand.nextInt(100) <= 40) {
 			EntityItem entityItem = new EntityItem(world, x, y, z, new ItemStack(BlocksAether.agiosite, 1, 1));
-
 			world.spawnEntityInWorld(entityItem);
 		}
 		if (!world.isRemote && world.rand.nextInt(100) <= 30) {
 			EntityItem entityItem = new EntityItem(world, x, y, z, new ItemStack(BlocksAether.aetheral_stone, 1, 1));
-
 			world.spawnEntityInWorld(entityItem);
 		}
 		if (!world.isRemote && world.rand.nextInt(100) <= 20) {
 			EntityItem entityItem = new EntityItem(world, x, y, z, new ItemStack(BlocksAether.deific, 1, 1));
-
 			world.spawnEntityInWorld(entityItem);
 		}
 		if (!world.isRemote && world.rand.nextInt(100) <= 10) {
-				EntityItem entityItem = new EntityItem(world, x, y, z, new ItemStack(BlocksAether.aether_dirt, 1, 1));
-
-				world.spawnEntityInWorld(entityItem);
+            EntityItem entityItem = new EntityItem(world, x, y, z, new ItemStack(BlocksAether.aether_dirt, 1, 1));
+            world.spawnEntityInWorld(entityItem);
 		}
 		if (!world.isRemote && world.rand.nextInt(100) <= 10) {
 			EntityItem entityItem = new EntityItem(world, x, y, z, new ItemStack(BlocksAether.skyroot_log, 1, 1));
-
 			world.spawnEntityInWorld(entityItem);
 		}
 		if (!world.isRemote && world.rand.nextInt(500) <= 1) {
 			EntityItem entityItem = new EntityItem(world, x, y, z, new ItemStack(ItemsAether.zanite_gemstone));
-
 			world.spawnEntityInWorld(entityItem);
 		}
 		if (!world.isRemote && world.rand.nextInt(100000) <= 1) {
 			EntityItem entityItem = new EntityItem(world, x, y, z, new ItemStack(BlocksAether.primeval_artifact));
-
 			world.spawnEntityInWorld(entityItem);
 	}
 
@@ -111,17 +102,17 @@ public class ItemAmplifiedSkyrootTool extends ItemSkyrootTool {
 	}
 
 	private boolean isBetween(int max, int origin, int min) {
-		return origin <= max && origin >= min ? true : false;
+        return origin <= max && origin >= min ? true : false;
 	}
-	
+
 	public boolean hasCustomEntity(final ItemStack stack) {
         return true;
     }
-    
+
     public Entity createEntity(final World world, final Entity location, final ItemStack itemstack) {
         return new EntityFireProofItemAether(world, location, itemstack);
     }
-    
+
     public void addInformation(final ItemStack stack, final EntityPlayer player, final List tooltip, final boolean who) {
 		if(AetherConfig.enableTooltips())
         tooltip.add(EnumChatFormatting.LIGHT_PURPLE + "" + StatCollector.translateToLocal("tooltip.amplified_skyroot_tools.desc"));

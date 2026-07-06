@@ -2,7 +2,6 @@ package com.gildedgames.the_aether.items.armor.base;
 
 import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
@@ -11,18 +10,13 @@ import net.minecraft.item.ItemStack;
 public class ItemArkeniumArmorBase extends ItemArmor {
 
 	private String[] defualt_location = new String[]{"aether_legacy:textures/armor/arkenium_layer_1.png", "aether_legacy:textures/armor/arkenium_layer_2.png"};
-
 	public boolean shouldDefualt = false;
-
 	private int colorization = -1;
-
 	private String armorName;
-
 	private Item source = null;
 
 	public ItemArkeniumArmorBase(int armorType, ArmorMaterial material, String name, Item repair) {
 		super(material, 0, armorType);
-
 		this.source = repair;
 		this.armorName = name;
 		this.setCreativeTab(AetherCreativeTabs.armor);
@@ -30,7 +24,6 @@ public class ItemArkeniumArmorBase extends ItemArmor {
 
 	public ItemArkeniumArmorBase(int armorType, ArmorMaterial material, String name, Item repair, int hex) {
 		this(armorType, material, name, repair);
-
 		this.source = repair;
 		this.armorName = name;
 		this.colorization = hex;
@@ -39,7 +32,7 @@ public class ItemArkeniumArmorBase extends ItemArmor {
 
 	@Override
 	public int getColor(ItemStack stack) {
-		return this.colorization;
+        return this.colorization;
 	}
 
 	@Override
@@ -51,7 +44,6 @@ public class ItemArkeniumArmorBase extends ItemArmor {
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type) {
 		boolean leggings = this.getUnlocalizedName().contains("leggings");
 		String type1 = leggings ? "layer_2" : "layer_1";
-
 		return this.shouldDefualt ? (leggings ? defualt_location[1] : defualt_location[0]) : Aether.modAddress() + "textures/armor/" + this.armorName + "_" + type1 + ".png";
 	}
 
@@ -59,5 +51,5 @@ public class ItemArkeniumArmorBase extends ItemArmor {
 	public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
 		return this.source == null ? false : repair.getItem() == this.source;
 	}
-	
+
 }

@@ -4,7 +4,6 @@ import com.gildedgames.the_aether.entities.particles.NewAetherParticleHandler;
 import com.gildedgames.the_aether.entities.projectile.EntityElysianGuardianLaser;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
@@ -19,7 +18,6 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -27,17 +25,10 @@ public class EntityElysianGuardian extends EntityMob {
 
 	private int attackTime;
 	private int timeSinceIgnited;
-
-	public int angerLevel;
-
 	public int timeLeft, chatTime;
-
 	public double safeX, safeY, safeZ;
-
 	public float sinage;
-
 	public double lastMotionY;
-
 	public int teleTimer;
 
 	public EntityElysianGuardian(World world) {
@@ -70,14 +61,12 @@ public class EntityElysianGuardian extends EntityMob {
 			this.isSwingInProgress = true;
 		}
 	}
-	
-	public boolean canBreatheUnderwater()
-    {
+
+	public boolean canBreatheUnderwater() {
         return true;
     }
-	
-	public int getTotalArmorValue()
-    {
+
+	public int getTotalArmorValue() {
         return 15;
     }
 
@@ -133,19 +122,17 @@ public class EntityElysianGuardian extends EntityMob {
 			this.teleTimer = 446;
 		}
 	}
-	
+
 	@SideOnly(Side.CLIENT)
-	protected void onDeathUpdate()
-    {
+	protected void onDeathUpdate() {
     	if (this.worldObj.isRemote) {
-    		for (int i = 0; i < 3; ++i)
-            {
+    		for (int i = 0; i < 3; ++i) {
             	NewAetherParticleHandler.ELYSIAN_TELEPORT.spawn(worldObj, this.posX + (this.rand.nextDouble() - 1.5D) * (double)this.width, this.posY + this.rand.nextDouble() * (double)this.height + 0.25D, this.posZ + (this.rand.nextDouble() - 1.5D) * (double)this.width);
             	NewAetherParticleHandler.ELYSIAN_TELEPORT.spawn(worldObj, this.posX + (this.rand.nextDouble() - 1.5D) * (double)this.width, this.posY + this.rand.nextDouble() * (double)this.height + 1.0D, this.posZ + (this.rand.nextDouble() - 1.5D) * (double)this.width);
             	NewAetherParticleHandler.ELYSIAN_TELEPORT.spawn(worldObj, this.posX + (this.rand.nextDouble() - 1.5D) * (double)this.width, this.posY + this.rand.nextDouble() * (double)this.height + 2.0D, this.posZ + (this.rand.nextDouble() - 1.5D) * (double)this.width);
             	NewAetherParticleHandler.ELYSIAN_TELEPORT.spawn(worldObj, this.posX + (this.rand.nextDouble() - 1.5D) * (double)this.width, this.posY + this.rand.nextDouble() * (double)this.height + 3.0D, this.posZ + (this.rand.nextDouble() - 1.5D) * (double)this.width);
             }
-           }
+        }
     }
 
 	@Override
@@ -214,7 +201,7 @@ public class EntityElysianGuardian extends EntityMob {
 
 		if (this.getAttackTarget() instanceof EntityPlayer player) {
 
-			if (this.getHealth() <= 0) {			
+			if (this.getHealth() <= 0) {
 
 				this.setDead();
 			}
@@ -228,7 +215,6 @@ public class EntityElysianGuardian extends EntityMob {
 	@Override
 	public void writeEntityToNBT(NBTTagCompound compound) {
 		super.writeEntityToNBT(compound);
-
 		compound.setInteger("teleTimer", this.teleTimer);
 		compound.setInteger("timeLeft", this.timeLeft);
 		compound.setDouble("safePosX", this.safeX);
@@ -239,7 +225,6 @@ public class EntityElysianGuardian extends EntityMob {
 	@Override
 	public void readEntityFromNBT(NBTTagCompound compound) {
 		super.readEntityFromNBT(compound);
-
 		this.teleTimer = compound.getInteger("teleTimer");
 		this.timeLeft = compound.getInteger("timeLeft");
 		this.safeX = compound.getInteger("safePosX");
@@ -250,16 +235,14 @@ public class EntityElysianGuardian extends EntityMob {
 	public boolean attackEntityFrom(DamageSource ds, float i) {
 		if (ds.getEntity() instanceof EntityPlayer player && worldObj.difficultySetting != EnumDifficulty.PEACEFUL) {
 
-			if (this.getAttackTarget() == null) {				
-
+			if (this.getAttackTarget() == null) {
 				this.setAttackTarget(player);
-			} 
+			}
 			 else {
 				this.teleTimer -= 10;
 			}
 		}
-		else if (ds == DamageSource.drown || ds == DamageSource.wither || ds == DamageSource.inWall)
-        {
+		else if (ds == DamageSource.drown || ds == DamageSource.wither || ds == DamageSource.inWall) {
             return false;
         }
 		else {
@@ -269,7 +252,6 @@ public class EntityElysianGuardian extends EntityMob {
 		}
 
 		boolean flag = super.attackEntityFrom(ds, i);
-
 		if (flag && this.getHealth() <= 0) {
 			spawnExplosionParticle();
 			this.setDead();
@@ -277,7 +259,7 @@ public class EntityElysianGuardian extends EntityMob {
 
 		return flag;
 	}
-	
+
 	protected void attackEntity(final Entity entity1, final float f) {
 		if (this.isCollidedHorizontally && !this.hasPath()) {
             final double d = entity1.posX - this.posX;
@@ -326,7 +308,7 @@ public class EntityElysianGuardian extends EntityMob {
                     this.motionZ = 0.0;
                     this.worldObj.playSoundAtEntity(this, "random.fizz", 1.3f, 0.3f / (this.rand.nextFloat() * 0.4f + 0.8f));
                 }
-                ++this.timeSinceIgnited;            
+                ++this.timeSinceIgnited;
             if (this.timeSinceIgnited >= 75) {
                 final byte byte0 = 9;
                 for (int j = 0; j < 9; ++j) {
@@ -348,7 +330,7 @@ public class EntityElysianGuardian extends EntityMob {
             	heal(4);
             }
         }
-		
+
 	}
 
 	@Override
@@ -359,23 +341,19 @@ public class EntityElysianGuardian extends EntityMob {
 			this.attackTime = 20;
 			this.worldObj.playSoundAtEntity(this, "aether_legacy:projectile.charged_hit", 0.9f, 0.9f / (this.rand.nextFloat() * 0.4f + 0.8f));
 			swingArm();
-			flag = entity.attackEntityFrom(DamageSource.causeMobDamage(this), 35);			
+			flag = entity.attackEntityFrom(DamageSource.causeMobDamage(this), 35);
 		}
 
 		return flag;
 	}
-	
-	public void onDeath(DamageSource p_70645_1_)
-    {
-        super.onDeath(p_70645_1_);
 
-        if (p_70645_1_.getEntity() instanceof EntityPlayer entityplayer)
-        {
+	public void onDeath(DamageSource source) {
+        super.onDeath(source);
 
+        if (source.getEntity() instanceof EntityPlayer entityplayer) {
 			entityplayer.triggerAchievement(AchievementsAether.kill_elysian_guardian);
-            
         }
-            
+
     }
 
 	@Override
@@ -387,19 +365,10 @@ public class EntityElysianGuardian extends EntityMob {
 	@Override
 	public void fall(float distance) {
 	}
-	
-	protected float getSoundPitch()
-    {
+
+	protected float getSoundPitch() {
         return super.getSoundPitch() * 0.65F;
     }
-	
-	protected String getChargedHitSound() {
-        return "aether_legacy:projectile.charged_hit";
-    }
-	
-	protected String getLaserSound() {
-		return "aether_legacy:projectile.laser.laser_fire";
-	}
 
 	@Override
 	protected String getHurtSound() {
@@ -408,9 +377,9 @@ public class EntityElysianGuardian extends EntityMob {
 
 	@Override
 	protected String getDeathSound() {
-		return "mob.irongolem.death";
+        return "mob.irongolem.death";
 	}
-	
+
 	@Override
     public boolean canDespawn() {
         return false;

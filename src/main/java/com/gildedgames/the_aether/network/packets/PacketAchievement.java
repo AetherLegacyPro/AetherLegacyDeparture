@@ -9,11 +9,10 @@ public class PacketAchievement extends AetherPacket<PacketAchievement> {
 	public int achievementType;
 
 	public PacketAchievement() {
-
 	}
 
 	public PacketAchievement(int achievementType) {
-		this.achievementType = achievementType;
+        this.achievementType = achievementType;
 	}
 
 	@Override
@@ -23,7 +22,7 @@ public class PacketAchievement extends AetherPacket<PacketAchievement> {
 
 	@Override
 	public void toBytes(ByteBuf buf) {
-		buf.writeInt(this.achievementType);
+        buf.writeInt(this.achievementType);
 	}
 
 	@Override
@@ -33,7 +32,6 @@ public class PacketAchievement extends AetherPacket<PacketAchievement> {
 
 	@Override
 	public void handleServer(PacketAchievement message, EntityPlayer player) {
-
 	}
 
 }

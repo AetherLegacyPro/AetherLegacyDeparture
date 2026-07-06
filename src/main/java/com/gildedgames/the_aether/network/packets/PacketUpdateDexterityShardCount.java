@@ -7,53 +7,38 @@ import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 
-public class PacketUpdateDexterityShardCount extends AetherPacket<PacketUpdateDexterityShardCount>
-{
+public class PacketUpdateDexterityShardCount extends AetherPacket<PacketUpdateDexterityShardCount> {
     private int entityID;
-
     private int count;
 
-    public PacketUpdateDexterityShardCount()
-    {
-
+    public PacketUpdateDexterityShardCount() {
     }
 
-    public PacketUpdateDexterityShardCount(EntityPlayer thePlayer, int count)
-    {
+    public PacketUpdateDexterityShardCount(EntityPlayer thePlayer, int count) {
         this.entityID = thePlayer.getEntityId();
         this.count = count;
     }
 
     @Override
-    public void fromBytes(ByteBuf buf)
-    {
+    public void fromBytes(ByteBuf buf) {
         this.entityID = buf.readInt();
         this.count = buf.readInt();
     }
 
     @Override
-    public void toBytes(ByteBuf buf)
-    {
+    public void toBytes(ByteBuf buf) {
         buf.writeInt(this.entityID);
         buf.writeInt(this.count);
     }
 
     @Override
-    public void handleClient(PacketUpdateDexterityShardCount message, EntityPlayer player)
-    {
-        if (player != null && player.worldObj != null)
-        {
+    public void handleClient(PacketUpdateDexterityShardCount message, EntityPlayer player) {
+        if (player != null && player.worldObj != null) {
             Entity entity = player.worldObj.getEntityByID(message.entityID);
-
-            if (entity instanceof EntityPlayer parent)
-            {
-
+            if (entity instanceof EntityPlayer parent) {
 				IPlayerAether iPlayerAether = AetherAPI.get(parent);
-
-                if (iPlayerAether != null)
-                {
+                if (iPlayerAether != null) {
                     PlayerAether playerAether = (PlayerAether) iPlayerAether;
-
                     playerAether.shardCount = message.count;
                 }
             }
@@ -61,8 +46,6 @@ public class PacketUpdateDexterityShardCount extends AetherPacket<PacketUpdateDe
     }
 
     @Override
-    public void handleServer(PacketUpdateDexterityShardCount message, EntityPlayer player)
-    {
-
+    public void handleServer(PacketUpdateDexterityShardCount message, EntityPlayer player) {
     }
 }

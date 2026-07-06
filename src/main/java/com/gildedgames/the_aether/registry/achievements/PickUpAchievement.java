@@ -2,18 +2,17 @@ package com.gildedgames.the_aether.registry.achievements;
 
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.items.ItemsAether;
-
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
 import net.minecraft.item.ItemStack;
 
 public class PickUpAchievement {
-	
+
 	 @SubscribeEvent
 	    public void AncientEnchanter(final PlayerEvent.ItemPickupEvent event) {
 	        if (event.pickedUp.getEntityItem().isItemEqual(new ItemStack(BlocksAether.ancient_enchanter))) {
 	            event.player.addStat(AchievementsAether.ancient_enchanter, 1);
-	        } 
+	        }
 	        if (event.pickedUp.getEntityItem().isItemEqual(new ItemStack(BlocksAether.primeval_artifact))) {
 	            event.player.addStat(AchievementsAether.artifact, 1);
 	        }
@@ -38,7 +37,7 @@ public class PickUpAchievement {
 	        if (event.pickedUp.getEntityItem().isItemEqual(new ItemStack(ItemsAether.continuum_gemstone))) {
 	            event.player.addStat(AchievementsAether.continuum_gemstone, 1);
 	        }
-	        
+
 	        if (event.pickedUp.getEntityItem().isItemEqual(new ItemStack(BlocksAether.enchanted_bloom))) {
 	            event.player.addStat(AchievementsAether.golden_island, 1);
 	        }
@@ -72,7 +71,7 @@ public class PickUpAchievement {
 	        if (event.pickedUp.getEntityItem().isItemEqual(new ItemStack(ItemsAether.empyrean_gemstone))) {
 	            event.player.addStat(AchievementsAether.newnew_ore, 1);
 	        }
-	        
+
 	        //Plants
 	        if (event.pickedUp.getEntityItem().isItemEqual(new ItemStack(BlocksAether.purple_flower))) {
 	            event.player.addStat(AchievementsAether.aether_florist, 1);
@@ -94,7 +93,7 @@ public class PickUpAchievement {
 	        }
 	        if (event.pickedUp.getEntityItem().isItemEqual(new ItemStack(BlocksAether.divine_aether_tallgrass))) {
 	            event.player.addStat(AchievementsAether.aether_florist, 1);
-	        }	        
+	        }
 	        if (event.pickedUp.getEntityItem().isItemEqual(new ItemStack(BlocksAether.white_rose))) {
 	            event.player.addStat(AchievementsAether.aether_florist, 1);
 	        }
@@ -103,7 +102,7 @@ public class PickUpAchievement {
 	        }
 	        if (event.pickedUp.getEntityItem().isItemEqual(new ItemStack(BlocksAether.blue_swingtip))) {
 	            event.player.addStat(AchievementsAether.aether_florist, 1);
-	        }        
+	        }
 	        if (event.pickedUp.getEntityItem().isItemEqual(new ItemStack(BlocksAether.neverbloom))) {
 	            event.player.addStat(AchievementsAether.aether_florist, 1);
 	        }
@@ -115,7 +114,7 @@ public class PickUpAchievement {
 	        }
 	        if (event.pickedUp.getEntityItem().isItemEqual(new ItemStack(BlocksAether.quickshoot))) {
 	            event.player.addStat(AchievementsAether.aether_florist, 1);
-	        }	        	        
+	        }
 	        if (event.pickedUp.getEntityItem().isItemEqual(new ItemStack(BlocksAether.enchanted_quickshoot))) {
 	            event.player.addStat(AchievementsAether.aether_florist, 1);
 	        }
@@ -127,7 +126,7 @@ public class PickUpAchievement {
 	        }
 	        if (event.pickedUp.getEntityItem().isItemEqual(new ItemStack(BlocksAether.enchanted_bloom))) {
 	            event.player.addStat(AchievementsAether.aether_florist, 1);
-	        }	        
+	        }
 	        if (event.pickedUp.getEntityItem().isItemEqual(new ItemStack(BlocksAether.divine_stalk))) {
 	            event.player.addStat(AchievementsAether.aether_florist, 1);
 	        }
@@ -154,7 +153,7 @@ public class PickUpAchievement {
 	        }
 	        if (event.pickedUp.getEntityItem().isItemEqual(new ItemStack(ItemsAether.strawberry_seeds))) {
 	            event.player.addStat(AchievementsAether.aether_florist, 1);
-	        }	        
+	        }
 	        if (event.pickedUp.getEntityItem().isItemEqual(new ItemStack(ItemsAether.blueberry))) {
 	            event.player.addStat(AchievementsAether.aether_florist, 1);
 	        }
@@ -174,8 +173,8 @@ public class PickUpAchievement {
 	            event.player.addStat(AchievementsAether.aether_florist, 1);
 	        }
 	    }
-	 
-	 @SubscribeEvent
+
+	    @SubscribeEvent
 	    public void GetWood(final PlayerEvent.ItemPickupEvent event) {
 	        if (event.pickedUp.getEntityItem().isItemEqual(new ItemStack(BlocksAether.skyroot_log, 1, 1))) {
 	            event.player.addStat(AchievementsAether.getting_wood_again, 1);
@@ -189,6 +188,6 @@ public class PickUpAchievement {
 	        if (event.pickedUp.getEntityItem().isItemEqual(new ItemStack(BlocksAether.void_log, 1, 1))) {
 	            event.player.addStat(AchievementsAether.getting_wood_again, 1);
 	        }
-	    }
+        }
 
 }

@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.items.armor.scaled;
 
 import java.util.List;
-
 import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.items.ItemsAether;
@@ -23,23 +22,18 @@ import net.minecraft.world.World;
 public class ItemScaledElysianArmor extends ItemArmor {
 
 	private String[] defualt_location = new String[]{"textures/models/armor/iron_layer_1.png", "textures/models/armor/iron_layer_2.png"};
-
 	public boolean shouldDefualt = false;
-
 	private int colorization = -1;
-
 	private String armorName;
-
 	private Item source = null;
 
 	public ItemScaledElysianArmor(int armorType, ArmorMaterial material, String name, Item repair) {
 		super(material, 0, armorType);
-
 		this.source = repair;
 		this.armorName = name;
 		this.setCreativeTab(AetherCreativeTabs.armor);
 	}
-	
+
 	public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack) {
 		boolean hasElysianHelmet = false;
         boolean hasElysianChest = false;
@@ -78,7 +72,6 @@ public class ItemScaledElysianArmor extends ItemArmor {
 
 	public ItemScaledElysianArmor(int armorType, ArmorMaterial material, String name, Item repair, int hex) {
 		this(armorType, material, name, repair);
-
 		this.source = repair;
 		this.armorName = name;
 		this.colorization = hex;
@@ -87,7 +80,7 @@ public class ItemScaledElysianArmor extends ItemArmor {
 
 	@Override
 	public int getColor(ItemStack stack) {
-		return this.colorization;
+        return this.colorization;
 	}
 
 	@Override
@@ -99,7 +92,6 @@ public class ItemScaledElysianArmor extends ItemArmor {
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type) {
 		boolean leggings = this.getUnlocalizedName().contains("leggings");
 		String type1 = leggings ? "layer_2" : "layer_1";
-
 		return this.shouldDefualt ? (leggings ? defualt_location[1] : defualt_location[0]) : Aether.modAddress() + "textures/armor/" + this.armorName + "_" + type1 + ".png";
 	}
 
@@ -107,12 +99,12 @@ public class ItemScaledElysianArmor extends ItemArmor {
 	public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
 		return this.source == null ? false : repair.getItem() == this.source;
 	}
-	
+
 	@Override
 	public EnumRarity getRarity(ItemStack stack) {
-		return ItemsAether.scaled_aether_loot;
+        return ItemsAether.scaled_aether_loot;
 	}
-	
+
 	public void addInformation(final ItemStack stack, final EntityPlayer player, final List tooltip, final boolean who) {
 		if(AetherConfig.enableTooltips())
         tooltip.add(EnumChatFormatting.AQUA + "" + StatCollector.translateToLocal("tooltip.elysian_armor.desc"));

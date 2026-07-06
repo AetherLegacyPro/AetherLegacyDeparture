@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
-
 import com.gildedgames.the_aether.player.PlayerAether;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,25 +14,19 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.ChunkCoordIntPair;
 import net.minecraft.world.Teleporter;
 import net.minecraft.world.WorldServer;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.world.util.AetherPortalPosition;
 
 public class TeleporterAether extends Teleporter {
 
 	private final boolean portalSpawn;
-
 	private final Random random;
-
 	private final WorldServer worldServerInstance;
-
 	private final LongHashMap destinationCoordinateCache = new LongHashMap();
-
 	private final List<Long> destinationCoordinateKeys = new ArrayList<>();
 
 	public TeleporterAether(boolean portalSpawn, WorldServer worldIn) {
 		super(worldIn);
-
 		this.portalSpawn = portalSpawn;
 		this.worldServerInstance = worldIn;
 		this.random = new Random(worldIn.getSeed());
@@ -42,7 +35,6 @@ public class TeleporterAether extends Teleporter {
 	public void placeInPortal(Entity entityIn, double x, double y, double z, float rotationYaw) {
 		if (!this.portalSpawn) {
 			entityIn.setPosition(entityIn.posX, 256, entityIn.posZ);
-
 			return;
 		}
 
@@ -412,5 +404,4 @@ public class TeleporterAether extends Teleporter {
 			}
 		}
 	}
-
 }

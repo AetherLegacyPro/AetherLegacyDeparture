@@ -3,7 +3,6 @@ package com.gildedgames.the_aether.client.gui;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import java.util.Random;
-
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -19,12 +18,10 @@ import net.minecraft.world.World;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 import org.lwjgl.util.glu.Project;
-
 import com.gildedgames.the_aether.inventory.ContainerAetherEnchantmentTable;
 
 @SideOnly(Side.CLIENT)
-public class GuiAetherEnchantmentTable extends GuiContainer
-{
+public class GuiAetherEnchantmentTable extends GuiContainer {
     private static final ResourceLocation field_147078_C = new ResourceLocation("textures/gui/container/enchanting_table.png");
     private static final ResourceLocation field_147070_D = new ResourceLocation("aether_legacy","textures/entities/aether_enchanting_table_book.png");
     private static final ModelBook field_147072_E = new ModelBook();
@@ -40,54 +37,38 @@ public class GuiAetherEnchantmentTable extends GuiContainer
     ItemStack field_147077_B;
     private String field_147079_H;
 
-    public GuiAetherEnchantmentTable(InventoryPlayer p_i1090_1_, World p_i1090_2_, int p_i1090_3_, int p_i1090_4_, int p_i1090_5_, String p_i1090_6_)
-    {
-        super(new ContainerAetherEnchantmentTable(p_i1090_1_, p_i1090_2_, p_i1090_3_, p_i1090_4_, p_i1090_5_));
+    public GuiAetherEnchantmentTable(InventoryPlayer inventoryPlayer, World world, int p_i1090_3_, int p_i1090_4_, int p_i1090_5_, String string) {
+        super(new ContainerAetherEnchantmentTable(inventoryPlayer, world, p_i1090_3_, p_i1090_4_, p_i1090_5_));
         this.field_147075_G = (ContainerAetherEnchantmentTable)this.inventorySlots;
-        this.field_147079_H = p_i1090_6_;
+        this.field_147079_H = string;
     }
 
-    /**
-     * Draw the foreground layer for the GuiContainer (everything in front of the items)
-     */
-    protected void drawGuiContainerForegroundLayer(int p_146979_1_, int p_146979_2_)
-    {
+    protected void drawGuiContainerForegroundLayer(int p_146979_1_, int p_146979_2_) {
         this.fontRendererObj.drawString(this.field_147079_H == null ? I18n.format("container.enchant") : this.field_147079_H, 12, 5, 4210752);
         this.fontRendererObj.drawString(I18n.format("container.inventory"), 8, this.ySize - 96 + 2, 4210752);
     }
 
-    /**
-     * Called from the main game loop to update the screen.
-     */
-    public void updateScreen()
-    {
+    public void updateScreen() {
         super.updateScreen();
         this.func_147068_g();
     }
 
-    /**
-     * Called when the mouse is clicked.
-     */
-    protected void mouseClicked(int p_73864_1_, int p_73864_2_, int p_73864_3_)
-    {
+    protected void mouseClicked(int p_73864_1_, int p_73864_2_, int p_73864_3_) {
         super.mouseClicked(p_73864_1_, p_73864_2_, p_73864_3_);
         int l = (this.width - this.xSize) / 2;
         int i1 = (this.height - this.ySize) / 2;
 
-        for (int j1 = 0; j1 < 3; ++j1)
-        {
+        for (int j1 = 0; j1 < 3; ++j1) {
             int k1 = p_73864_1_ - (l + 60);
             int l1 = p_73864_2_ - (i1 + 14 + 19 * j1);
 
-            if (k1 >= 0 && l1 >= 0 && k1 < 108 && l1 < 19 && this.field_147075_G.enchantItem(this.mc.thePlayer, j1))
-            {
+            if (k1 >= 0 && l1 >= 0 && k1 < 108 && l1 < 19 && this.field_147075_G.enchantItem(this.mc.thePlayer, j1)) {
                 this.mc.playerController.sendEnchantPacket(this.field_147075_G.windowId, j1);
             }
         }
     }
 
-    protected void drawGuiContainerBackgroundLayer(float p_146976_1_, int p_146976_2_, int p_146976_3_)
-    {
+    protected void drawGuiContainerBackgroundLayer(float p_146976_1_, int p_146976_2_, int p_146976_3_) {
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         this.mc.getTextureManager().bindTexture(field_147078_C);
         int k = (this.width - this.xSize) / 2;
@@ -121,23 +102,19 @@ public class GuiAetherEnchantmentTable extends GuiContainer
         f4 = (f4 - (float)MathHelper.truncateDoubleToInt(f4)) * 1.6F - 0.3F;
         f5 = (f5 - (float)MathHelper.truncateDoubleToInt(f5)) * 1.6F - 0.3F;
 
-        if (f4 < 0.0F)
-        {
+        if (f4 < 0.0F) {
             f4 = 0.0F;
         }
 
-        if (f5 < 0.0F)
-        {
+        if (f5 < 0.0F) {
             f5 = 0.0F;
         }
 
-        if (f4 > 1.0F)
-        {
+        if (f4 > 1.0F) {
             f4 = 1.0F;
         }
 
-        if (f5 > 1.0F)
-        {
+        if (f5 > 1.0F) {
             f5 = 1.0F;
         }
 
@@ -154,44 +131,37 @@ public class GuiAetherEnchantmentTable extends GuiContainer
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         EnchantmentNameParts.instance.reseedRandomGenerator(this.field_147075_G.nameSeed);
 
-        for (int i1 = 0; i1 < 3; ++i1)
-        {
+        for (int i1 = 0; i1 < 3; ++i1) {
             String s = EnchantmentNameParts.instance.generateNewRandomName();
             this.zLevel = 0.0F;
             this.mc.getTextureManager().bindTexture(field_147078_C);
             int j1 = this.field_147075_G.enchantLevels[i1];
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 
-            if (j1 == 0)
-            {
+            if (j1 == 0) {
                 this.drawTexturedModalRect(k + 60, l + 14 + 19 * i1, 0, 185, 108, 19);
             }
-            else
-            {
+            else {
                 String s1 = "" + j1;
                 FontRenderer fontrenderer = this.mc.standardGalacticFontRenderer;
                 int k1 = 6839882;
 
-                if (this.mc.thePlayer.experienceLevel < j1 && !this.mc.thePlayer.capabilities.isCreativeMode)
-                {
+                if (this.mc.thePlayer.experienceLevel < j1 && !this.mc.thePlayer.capabilities.isCreativeMode) {
                     this.drawTexturedModalRect(k + 60, l + 14 + 19 * i1, 0, 185, 108, 19);
                     fontrenderer.drawSplitString(s, k + 62, l + 16 + 19 * i1, 104, (k1 & 16711422) >> 1);
                     fontrenderer = this.mc.fontRenderer;
                     k1 = 4226832;
                     fontrenderer.drawStringWithShadow(s1, k + 62 + 104 - fontrenderer.getStringWidth(s1), l + 16 + 19 * i1 + 7, k1);
                 }
-                else
-                {
+                else {
                     int l1 = p_146976_2_ - (k + 60);
                     int i2 = p_146976_3_ - (l + 14 + 19 * i1);
 
-                    if (l1 >= 0 && i2 >= 0 && l1 < 108 && i2 < 19)
-                    {
+                    if (l1 >= 0 && i2 >= 0 && l1 < 108 && i2 < 19) {
                         this.drawTexturedModalRect(k + 60, l + 14 + 19 * i1, 0, 204, 108, 19);
                         k1 = 16777088;
                     }
-                    else
-                    {
+                    else {
                         this.drawTexturedModalRect(k + 60, l + 14 + 19 * i1, 0, 166, 108, 19);
                     }
 
@@ -233,26 +203,22 @@ public class GuiAetherEnchantmentTable extends GuiContainer
             this.field_147080_z -= 0.2F;
         }
 
-        if (this.field_147080_z < 0.0F)
-        {
+        if (this.field_147080_z < 0.0F) {
             this.field_147080_z = 0.0F;
         }
 
-        if (this.field_147080_z > 1.0F)
-        {
+        if (this.field_147080_z > 1.0F) {
             this.field_147080_z = 1.0F;
         }
 
         float f1 = (this.field_147082_x - this.field_147071_v) * 0.4F;
         float f = 0.2F;
 
-        if (f1 < -f)
-        {
+        if (f1 < -f) {
             f1 = -f;
         }
 
-        if (f1 > f)
-        {
+        if (f1 > f) {
             f1 = f;
         }
 

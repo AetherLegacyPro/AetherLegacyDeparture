@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.tileentity;
 
 import com.gildedgames.the_aether.blocks.elysian_totem.TileEntityElysianTotem;
-
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class AetherTileEntities {

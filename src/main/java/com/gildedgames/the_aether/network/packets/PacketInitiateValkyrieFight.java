@@ -14,7 +14,6 @@ public class PacketInitiateValkyrieFight extends AetherPacket<PacketInitiateValk
 	public int slotId, entityId;
 
 	public PacketInitiateValkyrieFight() {
-
 	}
 
 	public PacketInitiateValkyrieFight(int slotId, int entityId) {
@@ -36,36 +35,32 @@ public class PacketInitiateValkyrieFight extends AetherPacket<PacketInitiateValk
 
 	@Override
 	public void handleClient(PacketInitiateValkyrieFight message, EntityPlayer player) {
-
 	}
 
 	@Override
 	public void handleServer(PacketInitiateValkyrieFight message, EntityPlayer player) {
 		player.inventory.setInventorySlotContents(message.slotId, null);
-
 		Entity entity = player.worldObj.getEntityByID(message.entityId);
 
 		if (entity instanceof EntityValkyrieQueen) {
 			((EntityValkyrieQueen) entity).setBossReady(true);
 			PlayerAether.get(player).setFocusedBoss((EntityValkyrieQueen) entity);
 		}
-		
+
 		if (entity instanceof EntityAncientValkyrieQueen) {
 			((EntityAncientValkyrieQueen) entity).setBossReady(true);
 			PlayerAether.get(player).setFocusedBoss((EntityAncientValkyrieQueen) entity);
 		}
-		
+
 		if (entity instanceof EntityDivineValkyrieQueen) {
 			((EntityDivineValkyrieQueen) entity).setBossReady(true);
 			PlayerAether.get(player).setFocusedBoss((EntityDivineValkyrieQueen) entity);
 		}
-		
+
 		if (entity instanceof EntityLurker) {
 			((EntityLurker) entity).setBossReady(true);
 			PlayerAether.get(player).setFocusedBoss((EntityLurker) entity);
 		}
-		
-		
 	}
 
 }

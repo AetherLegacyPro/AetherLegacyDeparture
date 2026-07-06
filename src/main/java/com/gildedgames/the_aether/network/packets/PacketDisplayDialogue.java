@@ -2,10 +2,8 @@ package com.gildedgames.the_aether.network.packets;
 
 import com.gildedgames.the_aether.client.gui.dialogue.server.GuiServerDialogue;
 import io.netty.buffer.ByteBuf;
-
 import java.util.ArrayList;
 import java.util.Arrays;
-
 import net.minecraft.entity.player.EntityPlayer;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.network.ByteBufUtils;
@@ -15,18 +13,14 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class PacketDisplayDialogue extends AetherPacket<PacketDisplayDialogue> {
 
 	public String dialogueName, dialogue;
-
 	public ArrayList<String> dialogueText;
 
 	public PacketDisplayDialogue() {
-
 	}
 
 	public PacketDisplayDialogue(String dialogueName, String dialogue, String... dialogueText) {
 		this(dialogueName, dialogue, (ArrayList<String>) null);
-
 		ArrayList<String> array = new ArrayList<>(Arrays.asList(dialogueText));
-
 		this.dialogueText = array;
 	}
 
@@ -41,7 +35,6 @@ public class PacketDisplayDialogue extends AetherPacket<PacketDisplayDialogue> {
 		this.dialogueName = ByteBufUtils.readUTF8String(buf);
 		this.dialogue = ByteBufUtils.readUTF8String(buf);
 		this.dialogueText = new ArrayList<>();
-
 		int size = buf.readInt();
 
 		for (int data = 0; data < size; ++data) {
@@ -68,7 +61,6 @@ public class PacketDisplayDialogue extends AetherPacket<PacketDisplayDialogue> {
 
 	@Override
 	public void handleServer(PacketDisplayDialogue message, EntityPlayer player) {
-
 	}
 
 }

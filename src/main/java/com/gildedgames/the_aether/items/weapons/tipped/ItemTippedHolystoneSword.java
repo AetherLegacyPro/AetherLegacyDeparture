@@ -2,7 +2,6 @@ package com.gildedgames.the_aether.items.weapons.tipped;
 
 import java.util.List;
 import java.util.Random;
-
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
@@ -13,7 +12,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
-
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 
@@ -26,11 +24,10 @@ public class ItemTippedHolystoneSword extends ItemSword {
 
 	@Override
 	public boolean getIsRepairable(ItemStack repairingItem, ItemStack mateiral) {
-		if (AetherConfig.RepairMaterialTipped() == true) {
+		if (AetherConfig.RepairMaterialTipped()) {
 		return mateiral.getItem() == ItemsAether.auralite_crystal;
-		}
-		else {
-		return mateiral.getItem() == Item.getItemFromBlock(BlocksAether.holystone);	
+		} else {
+		return mateiral.getItem() == Item.getItemFromBlock(BlocksAether.holystone);
 		}
 	}
 
@@ -45,12 +42,12 @@ public class ItemTippedHolystoneSword extends ItemSword {
 		itemstack.damageItem(1, entityliving1);
 		return true;
 	}
-	
+
 	@Override
 	public EnumRarity getRarity(ItemStack stack) {
-		return ItemsAether.scaled_aether_loot;
+        return ItemsAether.scaled_aether_loot;
 	}
-	
+
 	public void addInformation(final ItemStack stack, final EntityPlayer player, final List tooltip, final boolean who) {
 		if(AetherConfig.enableTooltips())
         tooltip.add(EnumChatFormatting.AQUA + "" + StatCollector.translateToLocal("tooltip.holystone_tools.desc"));

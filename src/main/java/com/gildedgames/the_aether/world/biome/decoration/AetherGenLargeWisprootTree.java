@@ -4,25 +4,22 @@ import net.minecraft.world.gen.feature.*;
 import net.minecraft.block.*;
 import net.minecraft.world.*;
 import java.util.*;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.world.ChunkProviderAether;
-
 import net.minecraft.init.*;
 
-public class AetherGenLargeWisprootTree extends WorldGenAbstractTree
-{
+public class AetherGenLargeWisprootTree extends WorldGenAbstractTree {
     private Block leafBlock;
     private Block logBlock;
     private int logMetadata;
-    
+
     public AetherGenLargeWisprootTree(final Block leafID, final Block logID, final int logMeta) {
         super(true);
         this.leafBlock = leafID;
         this.logBlock = logID;
         this.logMetadata = logMeta;
     }
-    
+
     public boolean branch(final World world, final Random random, int i, int j, int k, final int slant) {
         final int directionX = random.nextInt(2) - 1;
         final int directionY = slant;
@@ -42,7 +39,7 @@ public class AetherGenLargeWisprootTree extends WorldGenAbstractTree
         }
         return true;
     }
-    
+
     public boolean generate(final World world, final Random random, final int i, final int j, final int k) {
         final int height = 11;
         boolean flag = true;

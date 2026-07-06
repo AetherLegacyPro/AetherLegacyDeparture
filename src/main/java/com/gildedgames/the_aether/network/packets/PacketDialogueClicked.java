@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.network.packets;
 
 import com.gildedgames.the_aether.events.DialogueClickedEvent;
-
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.common.MinecraftForge;
@@ -10,11 +9,9 @@ import cpw.mods.fml.common.network.ByteBufUtils;
 public class PacketDialogueClicked extends AetherPacket<PacketDialogueClicked> {
 
 	public String dialogueName;
-
 	public int dialogueId;
 
 	public PacketDialogueClicked() {
-
 	}
 
 	public PacketDialogueClicked(String dialogueName, int dialogueId) {
@@ -36,7 +33,6 @@ public class PacketDialogueClicked extends AetherPacket<PacketDialogueClicked> {
 
 	@Override
 	public void handleClient(PacketDialogueClicked message, EntityPlayer player) {
-
 	}
 
 	@Override

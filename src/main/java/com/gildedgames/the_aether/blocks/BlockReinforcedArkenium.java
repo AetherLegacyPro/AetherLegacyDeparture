@@ -8,13 +8,12 @@ public class BlockReinforcedArkenium extends Block {
 
 	public BlockReinforcedArkenium() {
 		super(Material.iron);
-
 		this.setHardness(6.2F);
 		this.setResistance(35F);
 		this.setStepSound(soundTypeMetal);
 		this.setHarvestLevel("pickaxe", 3);
 	}
-	
+
 	@Override
 	public boolean isBeaconBase(IBlockAccess worldObj, int x, int y, int z, int beaconX, int beaconY, int beaconZ) {
 		return true;

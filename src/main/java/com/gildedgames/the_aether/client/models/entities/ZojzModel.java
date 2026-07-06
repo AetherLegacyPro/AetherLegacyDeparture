@@ -5,8 +5,7 @@ import net.minecraft.entity.*;
 import org.lwjgl.opengl.*;
 import net.minecraft.util.*;
 
-public class ZojzModel extends ModelBase
-{
+public class ZojzModel extends ModelBase {
     ModelRenderer main_body;
     ModelRenderer RB_cloud;
     ModelRenderer LB_cloud;
@@ -16,7 +15,7 @@ public class ZojzModel extends ModelBase
     ModelRenderer tail_1;
     public float sinage;
     public float sinage2;
-    
+
     public ZojzModel() {
         this.textureWidth = 64;
         this.textureHeight = 64;
@@ -58,7 +57,7 @@ public class ZojzModel extends ModelBase
         this.tail_1.mirror = true;
         this.setRotation(this.tail_1, 0.0f, 0.0f, 0.0f);
     }
-    
+
     public void render(final Entity entity, final float f, final float f1, final float f2, final float f3, final float f4, final float f5) {
         super.render(entity, f, f1, f2, f3, f4, f5);
         this.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
@@ -74,18 +73,13 @@ public class ZojzModel extends ModelBase
         GL11.glDisable(3042);
         GL11.glPopMatrix();
     }
-    
-    public void renderTransparentTail(final Entity entity, final float f, final float f1, final float f2, final float f3, final float f4, final float f5) {
-        this.tail_1.render(f5);
-        this.tail_2.render(f5);
-    }
-    
+
     private void setRotation(final ModelRenderer model, final float x, final float y, final float z) {
         model.rotateAngleX = x;
         model.rotateAngleY = y;
         model.rotateAngleZ = z;
     }
-    
+
     public void setRotationAngles(final float f, final float f1, final float f2, final float f3, final float f4, final float f5, final Entity entity) {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
         final float boff = this.sinage2;

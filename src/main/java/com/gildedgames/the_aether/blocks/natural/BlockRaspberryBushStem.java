@@ -1,13 +1,11 @@
 package com.gildedgames.the_aether.blocks.natural;
 
 import java.util.Random;
-
 import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import net.minecraft.block.IGrowable;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -41,7 +39,7 @@ public class BlockRaspberryBushStem extends BlockAetherFlower implements IGrowab
 
 	@Override
 	public boolean func_149851_a(World world, int x, int y, int z, boolean isClient) {
-		return true;
+        return true;
 	}
 
 	@Override

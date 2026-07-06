@@ -24,12 +24,11 @@ public class AetherPortalSize {
 	public AetherPortalSize(World worldIn, int x, int y, int z, int axis) {
 		this.world = worldIn;
 		this.axis = axis;
-
 		this.leftDir = BlockPortal.field_150001_a[axis][0];
 		this.rightDir = BlockPortal.field_150001_a[axis][1];
 
 		for (int i1 = y; y > i1 - 21 && y > 0 && this.isEmptyBlock(WorldUtils.getBlockSafe(this.world, x, y - 1, z)); --y) {
-			;
+            ;
 		}
 
 		int i = this.getDistanceUntilEdge(x, y, z, this.leftDir) - 1;
@@ -78,7 +77,7 @@ public class AetherPortalSize {
 	}
 
 	public int getWidth() {
-		return this.width;
+        return this.width;
 	}
 
 	protected int calculatePortalHeight() {

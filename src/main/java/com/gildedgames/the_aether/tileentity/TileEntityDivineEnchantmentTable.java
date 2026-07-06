@@ -5,8 +5,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 
-public class TileEntityDivineEnchantmentTable extends TileEntity
-{
+public class TileEntityDivineEnchantmentTable extends TileEntity {
+
     public int field_145926_a;
     public float field_145933_i;
     public float field_145931_j;
@@ -20,60 +20,47 @@ public class TileEntityDivineEnchantmentTable extends TileEntity
     private static Random field_145923_r = new Random();
     private String field_145922_s;
 
-    public void writeToNBT(NBTTagCompound p_145841_1_)
-    {
-        super.writeToNBT(p_145841_1_);
-
-        if (this.func_145921_b())
-        {
-            p_145841_1_.setString("CustomName", this.field_145922_s);
+    public void writeToNBT(NBTTagCompound compound) {
+        super.writeToNBT(compound);
+        if (this.func_145921_b()) {
+            compound.setString("CustomName", this.field_145922_s);
         }
     }
 
-    public void readFromNBT(NBTTagCompound p_145839_1_)
-    {
-        super.readFromNBT(p_145839_1_);
-
-        if (p_145839_1_.hasKey("CustomName", 8))
-        {
-            this.field_145922_s = p_145839_1_.getString("CustomName");
+    public void readFromNBT(NBTTagCompound compound) {
+        super.readFromNBT(compound);
+        if (compound.hasKey("CustomName", 8)) {
+            this.field_145922_s = compound.getString("CustomName");
         }
     }
 
     //Book Movement I think
-    public void updateEntity()
-    {
+    public void updateEntity() {
         super.updateEntity();
         this.field_145927_n = this.field_145930_m;
         this.field_145925_p = this.field_145928_o;
         EntityPlayer entityplayer = this.worldObj.getClosestPlayer((float)this.xCoord + 0.5F, (float)this.yCoord + 0.5F, (float)this.zCoord + 0.5F, 3.0D);
 
-        if (entityplayer != null)
-        {
+        if (entityplayer != null) {
             double d0 = entityplayer.posX - (double)((float)this.xCoord + 0.5F);
             double d1 = entityplayer.posZ - (double)((float)this.zCoord + 0.5F);
             this.field_145924_q = (float)Math.atan2(d1, d0);
             this.field_145930_m += 0.1F;
 
-            if (this.field_145930_m < 0.5F || field_145923_r.nextInt(40) == 0)
-            {
+            if (this.field_145930_m < 0.5F || field_145923_r.nextInt(40) == 0) {
                 float f1 = this.field_145932_k;
-
-                do
-                {
+                do {
                     this.field_145932_k += (float)(field_145923_r.nextInt(4) - field_145923_r.nextInt(4));
                 }
                 while (f1 == this.field_145932_k);
             }
         }
-        else
-        {
+        else {
             this.field_145924_q += 0.02F;
             this.field_145930_m -= 0.1F;
         }
 
-        while (this.field_145928_o >= (float)Math.PI)
-        {
+        while (this.field_145928_o >= (float)Math.PI) {
             this.field_145928_o -= ((float)Math.PI * 2F);
         }
 
@@ -94,25 +81,21 @@ public class TileEntityDivineEnchantmentTable extends TileEntity
 
         float f2;
 
-        for (f2 = this.field_145924_q - this.field_145928_o; f2 >= (float)Math.PI; f2 -= ((float)Math.PI * 2F))
-        {
+        for (f2 = this.field_145924_q - this.field_145928_o; f2 >= (float)Math.PI; f2 -= ((float)Math.PI * 2F)) {
             ;
         }
 
-        while (f2 < -(float)Math.PI)
-        {
+        while (f2 < -(float)Math.PI) {
             f2 += ((float)Math.PI * 2F);
         }
 
         this.field_145928_o += f2 * 0.4F;
 
-        if (this.field_145930_m < 0.0F)
-        {
+        if (this.field_145930_m < 0.0F) {
             this.field_145930_m = 0.0F;
         }
 
-        if (this.field_145930_m > 1.0F)
-        {
+        if (this.field_145930_m > 1.0F) {
             this.field_145930_m = 1.0F;
         }
 
@@ -121,13 +104,11 @@ public class TileEntityDivineEnchantmentTable extends TileEntity
         float f = (this.field_145932_k - this.field_145933_i) * 0.4F;
         float f3 = 0.2F;
 
-        if (f < -f3)
-        {
+        if (f < -f3) {
             f = -f3;
         }
 
-        if (f > f3)
-        {
+        if (f > f3) {
             f = f3;
         }
 
@@ -135,18 +116,15 @@ public class TileEntityDivineEnchantmentTable extends TileEntity
         this.field_145933_i += this.field_145929_l;
     }
 
-    public String func_145919_a()
-    {
+    public String func_145919_a() {
         return this.func_145921_b() ? this.field_145922_s : "container.enchant";
     }
 
-    public boolean func_145921_b()
-    {
+    public boolean func_145921_b() {
         return this.field_145922_s != null && !this.field_145922_s.isEmpty();
     }
 
-    public void func_145920_a(String p_145920_1_)
-    {
-        this.field_145922_s = p_145920_1_;
+    public void func_145920_a(String string) {
+        this.field_145922_s = string;
     }
 }

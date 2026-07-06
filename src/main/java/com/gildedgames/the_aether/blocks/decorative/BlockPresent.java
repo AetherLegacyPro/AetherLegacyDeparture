@@ -9,11 +9,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
 import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.entities.block.EntityTNTPresent;
 import com.gildedgames.the_aether.items.ItemsAether;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -24,7 +22,6 @@ public class BlockPresent extends Block {
 
 	public BlockPresent() {
 		super(Material.grass);
-
 		this.setHardness(0.6F);
 		this.setStepSound(soundTypeGrass);
 		this.setBlockTextureName(Aether.find("present_side"));
@@ -34,7 +31,6 @@ public class BlockPresent extends Block {
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister registry) {
 		super.registerBlockIcons(registry);
-
 		this.blockIconTop = registry.registerIcon(Aether.find("present_top"));
 	}
 
@@ -50,7 +46,6 @@ public class BlockPresent extends Block {
 		if (side == 1 || side == 0) {
 			return this.blockIconTop;
 		}
-
 		return this.blockIcon;
 	}
 

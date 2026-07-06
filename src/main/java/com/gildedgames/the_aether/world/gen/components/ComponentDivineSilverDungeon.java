@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.world.gen.components;
 
 import java.util.Random;
-
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.entities.bosses.valkyrie_queen.EntityDivineValkyrieQueen;
 import com.gildedgames.the_aether.entities.util.AetherMoaTypes;
@@ -16,23 +15,17 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
 
 public class ComponentDivineSilverDungeon extends AetherStructure {
 
 	private static final Block LOCKED_ANGELIC_STONE = BlocksAether.locked_divine_angelic_stone;
-
 	private static final Block LOCKED_LIGHT_ANGELIC_STONE = BlocksAether.locked_divine_light_angelic_stone;
-
 	private int[][][] rooms = new int[3][3][3];
-
 	private int firstStaircaseZ, secondStaircaseZ, finalStaircaseZ;
-
 	private int xTendency, zTendency;
 
 	public ComponentDivineSilverDungeon() {
-
 	}
 
 	public ComponentDivineSilverDungeon(int chunkX, int chunkZ) {
@@ -62,11 +55,8 @@ public class ComponentDivineSilverDungeon extends AetherStructure {
 		}
 
 		this.setStructureOffset(31, 24, 30);
-
 		this.replaceSolid = true;
-
 		this.setBlocks(BlocksAether.holystone, BlocksAether.azure_holystone, 50);
-
 		this.addSolidBox(0, -5, 0, 55, 5, 30);
 
 		for (int x = 0; x < 55; x += 4) {

@@ -1,18 +1,15 @@
 package com.gildedgames.the_aether.world.dungeon;
 
 import java.util.Random;
-
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.items.ItemsAether;
 
 public class PalladiumDungeonTotem extends WorldGenerator {
 
 	public PalladiumDungeonTotem() {
-
 	}
 
 	public boolean generate(World world, Random random, int x, int y, int z) {
@@ -21,65 +18,63 @@ public class PalladiumDungeonTotem extends WorldGenerator {
 		world.setBlock(x, y + 1, z, BlocksAether.crystallized_genesis_stone);
 		world.setBlock(x, y + 2, z, BlocksAether.elysian_totem, 0, 0);
 		world.setBlock(x, y + 3, z, BlocksAether.elysian_totem, 1, 1);
-		
+
 		world.setBlock(x + 1, y, z + 1, BlocksAether.light_genesis_stone);
 		world.setBlock(x - 1, y, z - 1, BlocksAether.light_genesis_stone);
 		world.setBlock(x + 1, y, z - 1, BlocksAether.light_genesis_stone);
-		world.setBlock(x - 1, y, z + 1, BlocksAether.light_genesis_stone);		
+		world.setBlock(x - 1, y, z + 1, BlocksAether.light_genesis_stone);
 		world.setBlock(x + 1, y, z, BlocksAether.genesis_stone);
 		world.setBlock(x - 1, y, z, BlocksAether.genesis_stone);
 		world.setBlock(x, y, z + 1, BlocksAether.genesis_stone);
 		world.setBlock(x, y, z - 1, BlocksAether.genesis_stone);
-		
-		int rand = (int)(1 + Math.random() * 13);
-		switch (rand)
-        {
+
+		int chance = (int)(1 + Math.random() * 13);
+		switch (chance) {
 		case 1:
-		world.setBlock(x + 2, y, z, BlocksAether.reinforced_arkenium_block);
-		break;
+		    world.setBlock(x + 2, y, z, BlocksAether.reinforced_arkenium_block);
+		    break;
 		case 2:
-		world.setBlock(x + 2, y, z + 1, BlocksAether.reinforced_arkenium_block);
-		break;
+		    world.setBlock(x + 2, y, z + 1, BlocksAether.reinforced_arkenium_block);
+		    break;
 		case 3:
-		world.setBlock(x + 2, y, z - 1, BlocksAether.reinforced_arkenium_block);
-		break;
+		    world.setBlock(x + 2, y, z - 1, BlocksAether.reinforced_arkenium_block);
+		    break;
 		case 4:
-		world.setBlock(x - 2, y, z, BlocksAether.reinforced_arkenium_block);
-		break;
+		    world.setBlock(x - 2, y, z, BlocksAether.reinforced_arkenium_block);
+		    break;
 		case 5:
-		world.setBlock(x - 2, y, z + 1, BlocksAether.reinforced_arkenium_block);
-		break;
+		    world.setBlock(x - 2, y, z + 1, BlocksAether.reinforced_arkenium_block);
+		    break;
 		case 6:
-		world.setBlock(x - 2, y, z - 1, BlocksAether.reinforced_arkenium_block);
-		break;
-		case 7:		
-		world.setBlock(x, y, z + 2, BlocksAether.reinforced_arkenium_block);
-		break;
+		    world.setBlock(x - 2, y, z - 1, BlocksAether.reinforced_arkenium_block);
+		    break;
+		case 7:
+		    world.setBlock(x, y, z + 2, BlocksAether.reinforced_arkenium_block);
+		    break;
 		case 8:
-		world.setBlock(x + 1, y, z + 2, BlocksAether.reinforced_arkenium_block);
-		break;
+		    world.setBlock(x + 1, y, z + 2, BlocksAether.reinforced_arkenium_block);
+		    break;
 		case 10:
-		world.setBlock(x - 1, y, z + 2, BlocksAether.reinforced_arkenium_block);
-		break;
-		case 11:		
-		world.setBlock(x, y, z - 2, BlocksAether.reinforced_arkenium_block);
-		break;
+		    world.setBlock(x - 1, y, z + 2, BlocksAether.reinforced_arkenium_block);
+		    break;
+		case 11:
+		    world.setBlock(x, y, z - 2, BlocksAether.reinforced_arkenium_block);
+		    break;
 		case 12:
-		world.setBlock(x + 1, y, z - 2, BlocksAether.reinforced_arkenium_block);
-		break;
+		    world.setBlock(x + 1, y, z - 2, BlocksAether.reinforced_arkenium_block);
+		    break;
 		case 13:
-		world.setBlock(x - 1, y, z - 2, BlocksAether.reinforced_arkenium_block);
-		break;
+		    world.setBlock(x - 1, y, z - 2, BlocksAether.reinforced_arkenium_block);
+		    break;
         }
-		
-			
+
+
 		world.setBlock(x - 2, y + 1, z - 2, BlocksAether.crystallized_genesis_stone);
 		world.setBlock(x - 2, y + 2, z - 2, BlocksAether.crystallized_genesis_stone);
 		world.setBlock(x - 2, y + 3, z - 2, BlocksAether.crystallized_genesis_stone);
-		
-		int rand2 = (int)(1 + Math.random() * 4);
-		switch (rand2)
-        {
+
+		int chance2 = (int)(1 + Math.random() * 4);
+		switch (chance2) {
 		case 1:
 			world.setBlock(x - 2, y + 4, z - 2, BlocksAether.block_of_aceninum);
 			break;
@@ -93,24 +88,22 @@ public class PalladiumDungeonTotem extends WorldGenerator {
 			world.setBlock(x + 2, y + 4, z + 2, BlocksAether.block_of_aceninum);
 			break;
 		}
-		
+
 		world.setBlock(x + 2, y + 1, z - 2, BlocksAether.crystallized_genesis_stone);
 		world.setBlock(x + 2, y + 2, z - 2, BlocksAether.crystallized_genesis_stone);
 		world.setBlock(x + 2, y + 3, z - 2, BlocksAether.crystallized_genesis_stone);
-		
+
 		world.setBlock(x - 2, y + 1, z + 2, BlocksAether.crystallized_genesis_stone);
 		world.setBlock(x - 2, y + 2, z + 2, BlocksAether.crystallized_genesis_stone);
 		world.setBlock(x - 2, y + 3, z + 2, BlocksAether.crystallized_genesis_stone);
-		
+
 		world.setBlock(x + 2, y + 1, z + 2, BlocksAether.crystallized_genesis_stone);
 		world.setBlock(x + 2, y + 2, z + 2, BlocksAether.crystallized_genesis_stone);
 		world.setBlock(x + 2, y + 3, z + 2, BlocksAether.crystallized_genesis_stone);
-		
-		
 
 		return true;
 	}
-	
+
 	public static ItemStack getPalladiumLoot(Random random) {
 		int item = random.nextInt(25);
 
@@ -175,6 +168,7 @@ public class PalladiumDungeonTotem extends WorldGenerator {
 			case 19:
 				return new ItemStack(ItemsAether.dragon_bane);
 		}
+
 		return new ItemStack(ItemsAether.divineral_nugget, random.nextInt(7) + 4);
 	}
 

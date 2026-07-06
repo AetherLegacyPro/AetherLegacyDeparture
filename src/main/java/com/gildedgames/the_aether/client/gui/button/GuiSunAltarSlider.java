@@ -3,18 +3,14 @@ package com.gildedgames.the_aether.client.gui.button;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.world.World;
-
 import org.lwjgl.opengl.GL11;
-
 import com.gildedgames.the_aether.network.AetherNetwork;
 import com.gildedgames.the_aether.network.packets.PacketSetTime;
 
 public class GuiSunAltarSlider extends GuiButton {
 
 	public float sliderValue;
-
 	public boolean dragging = false;
-
 	private World world;
 
 	public GuiSunAltarSlider(World world, int par2, int par3, String par5Str) {
@@ -28,7 +24,7 @@ public class GuiSunAltarSlider extends GuiButton {
 	 * this button.
 	 */
 	public int getHoverState(boolean par1) {
-		return 0;
+        return 0;
 	}
 
 	@Override
@@ -89,7 +85,6 @@ public class GuiSunAltarSlider extends GuiButton {
 	@Override
 	public void mouseReleased(int mouseX, int mouseY) {
 		this.dragging = false;
-
 		AetherNetwork.sendToServer(new PacketSetTime(this.sliderValue, Minecraft.getMinecraft().thePlayer.dimension));
 	}
 

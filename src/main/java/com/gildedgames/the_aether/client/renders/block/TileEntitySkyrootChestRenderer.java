@@ -5,26 +5,23 @@ import cpw.mods.fml.relauncher.*;
 import net.minecraft.util.*;
 import net.minecraft.client.model.*;
 import org.lwjgl.opengl.*;
-
 import com.gildedgames.the_aether.blocks.container.BlockSkyrootChest;
 import com.gildedgames.the_aether.tileentity.TileEntitySkyrootChest;
-
 import net.minecraft.block.*;
 import net.minecraft.tileentity.*;
 
 @SideOnly(Side.CLIENT)
-public class TileEntitySkyrootChestRenderer extends TileEntitySpecialRenderer
-{
+public class TileEntitySkyrootChestRenderer extends TileEntitySpecialRenderer {
   private static final ResourceLocation TEXTURE_DOUBLE;
   private static final ResourceLocation TEXTURE_SINGLE;
   private final ModelChest chestModel;
   private final ModelChest largeChestModel;
-  
+
   public TileEntitySkyrootChestRenderer() {
       this.chestModel = new ModelChest();
       this.largeChestModel = new ModelLargeChest();
   }
-  
+
   public void renderTileEntityChestAt(final TileEntitySkyrootChest par1TileEntityChest, final double par2, final double par4, final double par6, final float par8) {
       int var9;
       if (!par1TileEntityChest.hasWorldObj()) {
@@ -95,11 +92,11 @@ public class TileEntitySkyrootChestRenderer extends TileEntitySpecialRenderer
           GL11.glPopMatrix();
       }
   }
-  
+
   public void renderTileEntityAt(final TileEntity par1TileEntity, final double par2, final double par4, final double par6, final float par8) {
       this.renderTileEntityChestAt((TileEntitySkyrootChest)par1TileEntity, par2, par4, par6, par8);
   }
-  
+
   static {
       TEXTURE_DOUBLE = new ResourceLocation("aetherii", "textures/tile_entities/skyrootLargeChest.png");
       TEXTURE_SINGLE = new ResourceLocation("aetherii", "textures/tile_entities/skyrootChest.png");

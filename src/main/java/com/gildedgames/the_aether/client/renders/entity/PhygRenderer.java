@@ -12,17 +12,13 @@ import net.minecraft.util.ResourceLocation;
 public class PhygRenderer extends RenderLiving {
 
 	private static final ResourceLocation TEXTURE = Aether.locate("textures/entities/phyg/phyg.png");
-
 	private static final ResourceLocation TEXTURE_WINGS = Aether.locate("textures/entities/phyg/wings.png");
-
 	private static final ResourceLocation TEXTURE_SADDLE = new ResourceLocation("textures/entity/pig/pig_saddle.png");
-
 	private final PhygWingModel wingModel = new PhygWingModel();
-
 	private final ModelPig saddleModel = new ModelPig(0.5F);
 
 	public PhygRenderer() {
-		super(new ModelPig(), 0.7F);
+        super(new ModelPig(), 0.7F);
 	}
 
 	protected int renderLayers(EntityPhyg entity, int pass, float particleTicks) {

@@ -5,26 +5,23 @@ import cpw.mods.fml.relauncher.*;
 import net.minecraft.util.*;
 import net.minecraft.client.model.*;
 import org.lwjgl.opengl.*;
-
 import com.gildedgames.the_aether.blocks.container.BlockElysianChest;
 import com.gildedgames.the_aether.tileentity.TileEntityElysianChest;
-
 import net.minecraft.block.*;
 import net.minecraft.tileentity.*;
 
 @SideOnly(Side.CLIENT)
-public class TileEntityElysianChestRenderer extends TileEntitySpecialRenderer
-{
+public class TileEntityElysianChestRenderer extends TileEntitySpecialRenderer {
   private static final ResourceLocation TEXTURE_DOUBLE;
   private static final ResourceLocation TEXTURE_SINGLE;
   private final ModelChest chestModel;
   private final ModelChest largeChestModel;
-  
+
   public TileEntityElysianChestRenderer() {
       this.chestModel = new ModelChest();
       this.largeChestModel = new ModelLargeChest();
   }
-  
+
   public void renderTileEntityChestAt(final TileEntityElysianChest par1TileEntityChest, final double par2, final double par4, final double par6, final float par8) {
       int var9;
       if (!par1TileEntityChest.hasWorldObj()) {
@@ -95,11 +92,11 @@ public class TileEntityElysianChestRenderer extends TileEntitySpecialRenderer
           GL11.glPopMatrix();
       }
   }
-  
+
   public void renderTileEntityAt(final TileEntity par1TileEntity, final double par2, final double par4, final double par6, final float par8) {
       this.renderTileEntityChestAt((TileEntityElysianChest)par1TileEntity, par2, par4, par6, par8);
   }
-  
+
   static {
       TEXTURE_DOUBLE = new ResourceLocation("aether_legacy", "textures/tile_entities/elysian_large_chest.png");
       TEXTURE_SINGLE = new ResourceLocation("aether_legacy", "textures/tile_entities/elysian_chest.png");

@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.api.accessories;
 
 import com.gildedgames.the_aether.api.RegistryEntry;
-
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -9,9 +8,7 @@ import net.minecraft.item.ItemStack;
 public class AetherAccessory extends RegistryEntry {
 
 	private ItemStack accessoryStack;
-
 	private AccessoryType accessoryType;
-
 	private AccessoryType extraType;
 
 	public AetherAccessory(Block item, AccessoryType type) {
@@ -19,7 +16,7 @@ public class AetherAccessory extends RegistryEntry {
 	}
 
 	public AetherAccessory(Item item, AccessoryType type) {
-		this(new ItemStack(item), type);
+        this(new ItemStack(item), type);
 	}
 
 	public AetherAccessory(ItemStack stack, AccessoryType type) {
@@ -31,14 +28,14 @@ public class AetherAccessory extends RegistryEntry {
 	}
 
 	public AccessoryType getAccessoryType() {
-		return this.accessoryType;
+        return this.accessoryType;
 	}
 
 	public AccessoryType getExtraType() {
-		return this.extraType;
+        return this.extraType;
 	}
 
 	public ItemStack getAccessoryStack() {
-		return this.accessoryStack;
+        return this.accessoryStack;
 	}
 }

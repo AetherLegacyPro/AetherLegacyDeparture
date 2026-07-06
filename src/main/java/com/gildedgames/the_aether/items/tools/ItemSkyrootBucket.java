@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.items.tools;
 
 import java.util.List;
-
 import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.entities.effects.EffectInebriation;
 import com.gildedgames.the_aether.entities.effects.PotionInebriation;
@@ -25,7 +24,6 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.FillBucketEvent;
-
 import cpw.mods.fml.common.eventhandler.Event;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -46,7 +44,6 @@ public class ItemSkyrootBucket extends Item {
 
 	public ItemSkyrootBucket() {
 		super();
-
 		this.setHasSubtypes(true);
 		this.setContainerItem(this);
 		this.setCreativeTab(AetherCreativeTabs.misc);
@@ -57,7 +54,6 @@ public class ItemSkyrootBucket extends Item {
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister registry) {
 		super.registerIcons(registry);
-
 		this.waterBucket = registry.registerIcon(Aether.find("misc/buckets/skyroot_water_bucket"));
 		this.poisonBucket = registry.registerIcon(Aether.find("misc/buckets/skyroot_poison_bucket"));
 		this.remedyBucket = registry.registerIcon(Aether.find("misc/buckets/skyroot_remedy_bucket"));
@@ -91,28 +87,21 @@ public class ItemSkyrootBucket extends Item {
 	@Override
 	public String getUnlocalizedName(ItemStack itemstack) {
 		int meta = itemstack.getItemDamage();
-
 		return this.getUnlocalizedName() + "_" + EnumSkyrootBucketType.getType(meta).toString();
 	}
 
 	@Override
-	public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ)
-	{
+	public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
 		MovingObjectPosition movingobjectposition = this.getMovingObjectPositionFromPlayer(world, player, true);
 		int meta = stack.getItemDamage();
 
-		if (world.getBlock(movingobjectposition.blockX, movingobjectposition.blockY, movingobjectposition.blockZ) == Blocks.cauldron && !world.isRemote)
-		{
+        if (world.getBlock(movingobjectposition.blockX, movingobjectposition.blockY, movingobjectposition.blockZ) == Blocks.cauldron && !world.isRemote) {
 			BlockCauldron cauldron = (BlockCauldron) world.getBlock(movingobjectposition.blockX, movingobjectposition.blockY, movingobjectposition.blockZ);
-
 			int waterLevel = BlockCauldron.func_150027_b(world.getBlockMetadata(movingobjectposition.blockX, movingobjectposition.blockY, movingobjectposition.blockZ));
 
-			if (EnumSkyrootBucketType.getType(meta) == EnumSkyrootBucketType.Water)
-			{
-				if (waterLevel < 3)
-				{
-					if (!player.capabilities.isCreativeMode)
-					{
+			if (EnumSkyrootBucketType.getType(meta) == EnumSkyrootBucketType.Water) {
+				if (waterLevel < 3) {
+					if (!player.capabilities.isCreativeMode) {
 						player.inventory.setInventorySlotContents(player.inventory.currentItem, new ItemStack(ItemsAether.skyroot_bucket, 1, EnumSkyrootBucketType.Empty.meta));
 					}
 
@@ -133,115 +122,93 @@ public class ItemSkyrootBucket extends Item {
 		/* Remedy and Poison Bucket checker */
 		if (EnumSkyrootBucketType.getType(meta) != EnumSkyrootBucketType.Water && EnumSkyrootBucketType.getType(meta) != EnumSkyrootBucketType.Empty) {
 			player.setItemInUse(heldItem, this.getMaxItemUseDuration(heldItem));
-
 			return heldItem;
 		}
 
 		boolean flag = EnumSkyrootBucketType.getType(meta) == EnumSkyrootBucketType.Empty;
 		MovingObjectPosition movingobjectposition = this.getMovingObjectPositionFromPlayer(world, player, flag);
 
-		if (movingobjectposition == null)
-		{
+		if (movingobjectposition == null) {
 			return heldItem;
 		}
-		else
-		{
+		else {
 			FillBucketEvent event = new FillBucketEvent(player, heldItem, world, movingobjectposition);
-			if (MinecraftForge.EVENT_BUS.post(event))
-			{
+			if (MinecraftForge.EVENT_BUS.post(event)) {
 				return heldItem;
 			}
 
-			if (event.getResult() == Event.Result.ALLOW)
-			{
-				if (player.capabilities.isCreativeMode)
-				{
+			if (event.getResult() == Event.Result.ALLOW) {
+				if (player.capabilities.isCreativeMode) {
 					return heldItem;
 				}
 
-				if (--heldItem.stackSize <= 0)
-				{
+				if (--heldItem.stackSize <= 0) {
 					return event.result;
 				}
 
-				if (!player.inventory.addItemStackToInventory(event.result))
-				{
+				if (!player.inventory.addItemStackToInventory(event.result)) {
 					player.dropPlayerItemWithRandomChoice(event.result, false);
 				}
 
 				return heldItem;
 			}
-			if (movingobjectposition.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK)
-			{
+
+			if (movingobjectposition.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK) {
 				int i = movingobjectposition.blockX;
 				int j = movingobjectposition.blockY;
 				int k = movingobjectposition.blockZ;
 
-				if (!world.canMineBlock(player, i, j, k))
-				{
+				if (!world.canMineBlock(player, i, j, k)) {
 					return heldItem;
 				}
 
-				if (flag)
-				{
-					if (!player.canPlayerEdit(i, j, k, movingobjectposition.sideHit, heldItem))
-					{
+				if (flag) {
+					if (!player.canPlayerEdit(i, j, k, movingobjectposition.sideHit, heldItem)) {
 						return heldItem;
 					}
 
 					Material material = world.getBlock(i, j, k).getMaterial();
 					int l = world.getBlockMetadata(i, j, k);
 
-					if (material == Material.water && l == 0)
-					{
+					if (material == Material.water && l == 0) {
 						world.setBlockToAir(i, j, k);
 						return this.fillBucket(heldItem, player, ItemsAether.skyroot_bucket);
 					}
 				}
-				else
-				{
-					if (EnumSkyrootBucketType.getType(meta) == EnumSkyrootBucketType.Empty)
-					{
+				else {
+					if (EnumSkyrootBucketType.getType(meta) == EnumSkyrootBucketType.Empty) {
 						return new ItemStack(ItemsAether.skyroot_bucket);
 					}
 
-					if (movingobjectposition.sideHit == 0)
-					{
+					if (movingobjectposition.sideHit == 0) {
 						--j;
 					}
 
-					if (movingobjectposition.sideHit == 1)
-					{
+					if (movingobjectposition.sideHit == 1) {
 						++j;
 					}
 
-					if (movingobjectposition.sideHit == 2)
-					{
+					if (movingobjectposition.sideHit == 2) {
 						--k;
 					}
 
-					if (movingobjectposition.sideHit == 3)
-					{
+					if (movingobjectposition.sideHit == 3) {
 						++k;
 					}
 
-					if (movingobjectposition.sideHit == 4)
-					{
+					if (movingobjectposition.sideHit == 4) {
 						--i;
 					}
 
-					if (movingobjectposition.sideHit == 5)
-					{
+					if (movingobjectposition.sideHit == 5) {
 						++i;
 					}
 
-					if (!player.canPlayerEdit(i, j, k, movingobjectposition.sideHit, heldItem))
-					{
+					if (!player.canPlayerEdit(i, j, k, movingobjectposition.sideHit, heldItem)) {
 						return heldItem;
 					}
 
-					if (this.tryPlaceContainedLiquid(player, world, heldItem, i, j, k) && !player.capabilities.isCreativeMode)
-					{
+					if (this.tryPlaceContainedLiquid(player, world, heldItem, i, j, k) && !player.capabilities.isCreativeMode) {
 						return new ItemStack(ItemsAether.skyroot_bucket);
 					}
 				}
@@ -291,7 +258,6 @@ public class ItemSkyrootBucket extends Item {
 					if (!world.isRemote && flag && !material.isLiquid()) {
 						world.func_147480_a(x, y, z, true);
 					}
-
 					world.setBlock(x, y, z, Blocks.flowing_water, 0, 11);
 				}
 

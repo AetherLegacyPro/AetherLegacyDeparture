@@ -7,46 +7,37 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-
 import com.gildedgames.the_aether.entities.projectile.crystals.EntityCrystal;
 import com.gildedgames.the_aether.entities.projectile.crystals.EnumCrystalType;
-
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 
 public class EntityMiniCloud extends EntityFlying implements IEntityAdditionalSpawnData {
 
 	public EntityPlayer owner;
-
 	public int shotTimer, lifeSpan;
-
 	public boolean direction;
-
 	public double targetX, targetY, targetZ;
 
 	public EntityMiniCloud(World worldObj) {
 		super(worldObj);
-
 		this.noClip = true;
 		this.lifeSpan = 3600;
 		this.entityCollisionReduction = 1.75F;
-
 		this.setSize(0.5F, 0.45F);
 	}
 
 	public EntityMiniCloud(World worldObj, EntityPlayer owner, int direction) {
 		this(worldObj);
-
 		this.owner = owner;
 		this.direction = direction == 0;
 		this.rotationYaw = this.owner.rotationYaw;
 		this.rotationPitch = this.owner.rotationPitch;
-
 		this.getTargetPos();
 		this.setPosition(this.targetX, this.targetY, this.targetZ);
 	}
 
 	public boolean isInRangeToRenderDist(double var1) {
-		return true;
+        return true;
 	}
 
 	public void getTargetPos() {
@@ -90,7 +81,6 @@ public class EntityMiniCloud extends EntityFlying implements IEntityAdditionalSp
 
 	public void writeEntityToNBT(NBTTagCompound var1) {
 		super.writeEntityToNBT(var1);
-
 		var1.setShort("LifeSpan", (short) this.lifeSpan);
 		var1.setShort("ShotTimer", (short) this.shotTimer);
 		var1.setBoolean("direction", this.direction);
@@ -98,7 +88,6 @@ public class EntityMiniCloud extends EntityFlying implements IEntityAdditionalSp
 
 	public void readEntityFromNBT(NBTTagCompound var1) {
 		super.readEntityFromNBT(var1);
-
 		this.lifeSpan = var1.getShort("LifeSpan");
 		this.shotTimer = var1.getShort("ShotTimer");
 		this.direction = var1.getBoolean("direction");

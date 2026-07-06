@@ -4,12 +4,9 @@ import com.gildedgames.the_aether.CommonProxy;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
-import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 
 public class BlockEnchantedAetherFlower extends BlockBush {
-
-	public AxisAlignedBB FLOWER_AABB = AxisAlignedBB.getBoundingBox(0.30000001192092896D, 0.0D, 0.30000001192092896D, 0.699999988079071D, 0.6000000238418579D, 0.699999988079071D);
 
 	public BlockEnchantedAetherFlower() {
 		this.setHardness(0.0F);

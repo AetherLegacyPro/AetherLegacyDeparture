@@ -1,30 +1,24 @@
 package com.gildedgames.the_aether.world.gen.components;
 
 import java.util.Random;
-
 import com.gildedgames.the_aether.world.gen.AetherStructure;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
 
 public class ComponentLargeColdAercloud extends AetherStructure {
 
 	private NBTTagCompound data = new NBTTagCompound();
-
 	private int xTendency, zTendency;
 
 	public ComponentLargeColdAercloud() {
-
 	}
 
 	public ComponentLargeColdAercloud(Random random, int chunkX, int chunkY, int chunkZ) {
 		this.coordBaseMode = 0;
-
 		this.xTendency = random.nextInt(3) - 1;
 		this.zTendency = random.nextInt(3) - 1;
-
 		this.boundingBox = new StructureBoundingBox(chunkX, 0, chunkZ, chunkX + 100, 255, chunkZ + 100);
 	}
 
@@ -104,12 +98,12 @@ public class ComponentLargeColdAercloud extends AetherStructure {
 
 	@Override
 	protected void func_143012_a(NBTTagCompound tagCompound) {
-		tagCompound.setTag("cloudData", this.data);
+        tagCompound.setTag("cloudData", this.data);
 	}
 
 	@Override
 	protected void func_143011_b(NBTTagCompound tagCompound) {
-		this.data = tagCompound.getCompoundTag("cloudData");
+        this.data = tagCompound.getCompoundTag("cloudData");
 	}
 
 }

@@ -4,23 +4,21 @@ import net.minecraft.world.gen.feature.*;
 import net.minecraft.block.*;
 import net.minecraft.world.*;
 import java.util.*;
-
 import com.gildedgames.the_aether.world.ChunkProviderAether;
 
-public class AetherCloudsGenNew extends WorldGenerator
-{
+public class AetherCloudsGenNew extends WorldGenerator {
     private Block cloudBlockId;
     private int meta;
     private int numberOfBlocks;
     private boolean flat;
-    
+
     public AetherCloudsGenNew(final Block i, final int meta, final int j, final boolean flag) {
         this.cloudBlockId = i;
         this.meta = meta;
         this.numberOfBlocks = j;
         this.flat = flag;
     }
-    
+
     public boolean generate(final World world, final Random random, final int i, final int j, final int k) {
         int x = i;
         int y = j;

@@ -6,7 +6,6 @@ import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
-
 import com.gildedgames.the_aether.entities.bosses.EntityValkyrie;
 
 public class ValkyrieRenderer extends RenderLiving {

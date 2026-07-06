@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.items.food;
 
 import java.util.List;
-
 import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -9,7 +8,6 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -20,7 +18,6 @@ public class ItemGummySwet extends ItemAetherFood {
 
 	public ItemGummySwet() {
 		super(20);
-		
 		this.setMaxStackSize(8);
 		this.setHasSubtypes(true);
 		this.setCreativeTab(AetherCreativeTabs.food);
@@ -30,7 +27,6 @@ public class ItemGummySwet extends ItemAetherFood {
 	@Override
 	public String getUnlocalizedName(ItemStack stack) {
 		String type = stack.getItemDamage() == 0 ? "blue" : "golden";
-
 		return "item.gummy_swet_" + type;
 	}
 
@@ -38,14 +34,13 @@ public class ItemGummySwet extends ItemAetherFood {
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister registry) {
 		super.registerIcons(registry);
-
 		this.alternativeIcon = registry.registerIcon(Aether.find("food/blue_gummy_swet"));
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIconFromDamage(int meta) {
-		return meta == 1 ? this.itemIcon : this.alternativeIcon;
+        return meta == 1 ? this.itemIcon : this.alternativeIcon;
 	}
 
 	@Override

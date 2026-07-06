@@ -2,14 +2,11 @@ package com.gildedgames.the_aether.blocks.natural;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-
 import java.util.List;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.items.block.IColoredBlock;
 import com.gildedgames.the_aether.items.block.INamedBlock;
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
@@ -23,12 +20,9 @@ import net.minecraft.util.Facing;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockAercloudLayer extends Block implements IColoredBlock, INamedBlock
-{
+public class BlockAercloudLayer extends Block implements IColoredBlock, INamedBlock {
 
-	
-    public BlockAercloudLayer()
-    {
+    public BlockAercloudLayer() {
         super(Material.cloth);
         this.setHardness(0.1F);
         this.setStepSound(soundTypeCloth);
@@ -37,9 +31,8 @@ public class BlockAercloudLayer extends Block implements IColoredBlock, INamedBl
         this.setBlockTextureName("aether:aercloud/cold_aercloud");
         this.func_150154_b(0);
     }
-    
-    protected void func_150154_b(int p_150154_1_)
-    {
+
+    protected void func_150154_b(int p_150154_1_) {
         int j = p_150154_1_ & 7;
         float f = (float)(2 * (1 + j)) / 16.0F;
         this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, f, 1.0F);
@@ -47,14 +40,14 @@ public class BlockAercloudLayer extends Block implements IColoredBlock, INamedBl
 
     @SideOnly(Side.CLIENT)
 	@SuppressWarnings({"unchecked", "rawtypes"})
-	public void getSubBlocks(Item p_149666_1_, CreativeTabs p_149666_2_, List p_149666_3_) {
-		p_149666_3_.add(new ItemStack(this, 1, 0));
-		p_149666_3_.add(new ItemStack(this, 1, 1));
-		p_149666_3_.add(new ItemStack(this, 1, 2));
-		p_149666_3_.add(new ItemStack(this, 1, 3));
-		p_149666_3_.add(new ItemStack(this, 1, 4));
+	public void getSubBlocks(Item item, CreativeTabs creativeTabs, List list) {
+        list.add(new ItemStack(this, 1, 0));
+        list.add(new ItemStack(this, 1, 1));
+        list.add(new ItemStack(this, 1, 2));
+        list.add(new ItemStack(this, 1, 3));
+        list.add(new ItemStack(this, 1, 4));
 	}
-    
+
     @Override
 	public boolean canPlaceBlockAt(World world, int x, int y, int z) {
 		Block soild = world.getBlock(x, y - 1, z);
@@ -70,7 +63,7 @@ public class BlockAercloudLayer extends Block implements IColoredBlock, INamedBl
 	@Override
 	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
 		entity.fallDistance = 0;
-		
+
 		//blue aercloud
 		if (world.getBlockMetadata(x, y, z) == 1) {
 			if (entity instanceof EntityPlayer player) {
@@ -92,12 +85,12 @@ public class BlockAercloudLayer extends Block implements IColoredBlock, INamedBl
 						entity.setDead();
 					}
 				}
-				
+
 				entity.motionY = 0.25D;
 			}
-			
+
 		}
-		
+
 		else if (world.getBlockMetadata(x, y, z) == 3) {
 			if (entity instanceof EntityPlayer player) {
 
@@ -118,12 +111,12 @@ public class BlockAercloudLayer extends Block implements IColoredBlock, INamedBl
 						entity.setDead();
 					}
 				}
-				
+
 				entity.motionZ = 0.5D;
 			}
-			
+
 		}
-		
+
 		else if (world.getBlockMetadata(x, y, z) == 4) {
 			if (entity instanceof EntityPlayer player) {
 
@@ -144,13 +137,13 @@ public class BlockAercloudLayer extends Block implements IColoredBlock, INamedBl
 						entity.setDead();
 					}
 				}
-				
+
 				entity.motionX = 0.5D;
 			}
-			
+
 		}
-		
-			//gold aercloud
+
+        //gold aercloud
 		else if (world.getBlockMetadata(x, y, z) == 2) {
 				if (entity instanceof EntityPlayer player) {
 
@@ -160,7 +153,7 @@ public class BlockAercloudLayer extends Block implements IColoredBlock, INamedBl
 						}
 
 						return;
-					}					
+					}
 							entity.motionY = -0.25D;
 				} else {
 					if (entity instanceof EntityArrow)
@@ -170,7 +163,7 @@ public class BlockAercloudLayer extends Block implements IColoredBlock, INamedBl
 							entity.setDead();
 						}
 					}
-					
+
 					entity.motionY = -0.25D;
 				}
 
@@ -187,18 +180,18 @@ public class BlockAercloudLayer extends Block implements IColoredBlock, INamedBl
 			}
 		} else if (entity.motionY < 0) {
 			entity.motionY *= 0.005D;
-			}	
-		}
+        }
+    }
 
 	@Override
 	public boolean renderAsNormalBlock() {
-		return false;
+        return false;
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public int getRenderBlockPass() {
-		return 1;
+        return 1;
 	}
 
 	@Override
@@ -208,13 +201,13 @@ public class BlockAercloudLayer extends Block implements IColoredBlock, INamedBl
 
 	@Override
 	public int damageDropped(int meta) {
-		return meta;
+        return meta;
 	}
-	
+
 	protected boolean canSilkHarvest() {
         return true;
     }
-	
+
 
 	@Override
 	@SideOnly(Side.CLIENT)
@@ -260,10 +253,10 @@ public class BlockAercloudLayer extends Block implements IColoredBlock, INamedBl
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public boolean shouldSideBeRendered(IBlockAccess p_149646_1_, int p_149646_2_, int p_149646_3_, int p_149646_4_, int p_149646_5_) {
-		Block block = p_149646_1_.getBlock(p_149646_2_, p_149646_3_, p_149646_4_);
+	public boolean shouldSideBeRendered(IBlockAccess iBlockAccess, int p_149646_2_, int p_149646_3_, int p_149646_4_, int p_149646_5_) {
+		Block block = iBlockAccess.getBlock(p_149646_2_, p_149646_3_, p_149646_4_);
 
-		if (p_149646_1_.getBlockMetadata(p_149646_2_, p_149646_3_, p_149646_4_) != p_149646_1_.getBlockMetadata(p_149646_2_ - Facing.offsetsXForSide[p_149646_5_], p_149646_3_ - Facing.offsetsYForSide[p_149646_5_], p_149646_4_ - Facing.offsetsZForSide[p_149646_5_])) {
+		if (iBlockAccess.getBlockMetadata(p_149646_2_, p_149646_3_, p_149646_4_) != iBlockAccess.getBlockMetadata(p_149646_2_ - Facing.offsetsXForSide[p_149646_5_], p_149646_3_ - Facing.offsetsYForSide[p_149646_5_], p_149646_4_ - Facing.offsetsZForSide[p_149646_5_])) {
 			return true;
 		}
 
@@ -271,13 +264,11 @@ public class BlockAercloudLayer extends Block implements IColoredBlock, INamedBl
 			return false;
 		}
 
-		return super.shouldSideBeRendered(p_149646_1_, p_149646_2_, p_149646_3_, p_149646_4_, p_149646_5_);
+		return super.shouldSideBeRendered(iBlockAccess, p_149646_2_, p_149646_3_, p_149646_4_, p_149646_5_);
 	}
 
 	@Override
 	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
 		return world.getBlockMetadata(x, y, z) != 1 ? AxisAlignedBB.getBoundingBox(x, y, z, x + 1.0D, y + 0.01D, z + 1.0D) : AxisAlignedBB.getBoundingBox(x, y, z, x, y, z);
 	}
-	
-
 }

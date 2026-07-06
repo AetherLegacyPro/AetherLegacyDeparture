@@ -12,7 +12,6 @@ import net.minecraft.util.*;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
-
 import com.gildedgames.the_aether.api.player.util.IAetherBoss;
 import com.gildedgames.the_aether.entities.bosses.EntityAncientFireMinion;
 import com.gildedgames.the_aether.entities.bosses.EntityDivineFireMinion;
@@ -20,34 +19,24 @@ import com.gildedgames.the_aether.entities.bosses.EntityFireMinion;
 import com.gildedgames.the_aether.entities.bosses.EntityMythicFireMinion;
 import com.gildedgames.the_aether.entities.hostile.EntityCinerarium;
 import com.gildedgames.the_aether.entities.hostile.EntityHellfireCinder;
-
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 
 public class EntityCrystal extends EntityFlying implements IEntityAdditionalSpawnData {
 
     public Entity shootingEntity;
-
     public float[] sinage = new float[3];
-
     public double smotionX;
-
     public double smotionY;
-
     public double smotionZ;
-
     public boolean wasHit;
-
     private EnumCrystalType type;
 
     public EntityCrystal(World world) {
         super(world);
-
         double base = 0.2F;
-
         this.smotionX = (base + (double) this.rand.nextFloat() * 0.15D) * (this.rand.nextInt(2) == 0 ? 1.0D : -1.0D);
         this.smotionY = (base + (double) this.rand.nextFloat() * 0.15D) * (this.rand.nextInt(2) == 0 ? 1.0D : -1.0D);
         this.smotionZ = (base + (double) this.rand.nextFloat() * 0.15D) * (this.rand.nextInt(2) == 0 ? 1.0D : -1.0D);
-
         this.isImmuneToFire = true;
         this.type = EnumCrystalType.get(this.rand.nextInt(2));
 
@@ -60,7 +49,6 @@ public class EntityCrystal extends EntityFlying implements IEntityAdditionalSpaw
 
     public EntityCrystal(World world, double x, double y, double z, EnumCrystalType type) {
         this(world);
-
         this.type = type;
 
         if (this.type == EnumCrystalType.ICE) {
@@ -74,14 +62,12 @@ public class EntityCrystal extends EntityFlying implements IEntityAdditionalSpaw
 
     public EntityCrystal(World world, double x, double y, double z, EntityLivingBase target) {
         this(world, x, y, z, EnumCrystalType.THUNDER);
-
         this.setAttackTarget(target);
     }
 
     @Override
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
-
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(20.0D);
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(1.0D);
     }
@@ -249,7 +235,6 @@ public class EntityCrystal extends EntityFlying implements IEntityAdditionalSpaw
 
             this.shootingEntity = source.getSourceOfDamage();
             this.wasHit = true;
-
             return true;
         }
 
@@ -262,10 +247,8 @@ public class EntityCrystal extends EntityFlying implements IEntityAdditionalSpaw
         }
 
         double angle1 = this.rotationYaw / (180F / Math.PI);
-
         this.motionX -= Math.sin(angle1) * speed;
         this.motionZ += Math.cos(angle1) * speed;
-
         double a = target.posY - 0.75F;
 
         if (a < this.boundingBox.minY - 0.5F) {

@@ -6,7 +6,6 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
@@ -14,7 +13,6 @@ public class JebHammerProjectileRenderer extends Render {
 
     public JebHammerProjectileRenderer() {
         super();
-
         this.shadowSize = 0.0F;
     }
 
@@ -46,8 +44,8 @@ public class JebHammerProjectileRenderer extends Render {
     }
 
     @Override
-    public void doRender(Entity par1Entity, double par2, double par4, double par6, float par8, float par9) {
-        this.doRenderNotchWave((EntityJebHammerProjectile) par1Entity, par2, par4, par6, par8, par9);
+    public void doRender(Entity entity, double par2, double par4, double par6, float par8, float par9) {
+        this.doRenderNotchWave((EntityJebHammerProjectile) entity, par2, par4, par6, par8, par9);
     }
 
     @Override

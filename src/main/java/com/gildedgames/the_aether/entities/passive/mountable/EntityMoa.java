@@ -4,7 +4,6 @@ import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.api.AetherAPI;
 import com.gildedgames.the_aether.api.moa.AetherMoaType;
 import com.gildedgames.the_aether.blocks.BlocksAether;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -20,7 +19,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-
 import com.gildedgames.the_aether.entities.util.EntitySaddleMount;
 import com.gildedgames.the_aether.items.ItemMoaEgg;
 import com.gildedgames.the_aether.items.ItemsAether;
@@ -29,22 +27,18 @@ public class EntityMoa extends EntitySaddleMount {
 
     public float wingRotation, destPos, prevDestPos, prevWingRotation;
 
-    protected int ticksOffGround, ticksUntilFlap, secsUntilFlying, secsUntilWalking, secsUntilHungry, secsUntilEgg;
+    protected int ticksUntilFlap, secsUntilHungry, secsUntilEgg;
 
     public EntityMoa(World world) {
         super(world);
-
         this.initAI();
-
         this.setSize(1.0F, 2.0F);
         this.stepHeight = 1.0F;
-
         this.secsUntilEgg = this.getRandomEggTime();
     }
 
     public EntityMoa(World world, AetherMoaType type) {
         this(world);
-
         this.setMoaType(type);
     }
 
@@ -94,11 +88,10 @@ public class EntityMoa extends EntitySaddleMount {
     @Override
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
-
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(1.0D);
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(35.0D);
-    } 
-    
+    }
+
     @Override
    	public boolean getCanSpawnHere() {
    	      final int i = MathHelper.floor_double(this.posX);
@@ -106,7 +99,7 @@ public class EntityMoa extends EntitySaddleMount {
    	      final int k = MathHelper.floor_double(this.posZ);
    	      final boolean canSpawn = this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
    	      return (this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_dirt || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.arctic_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.verdant_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.enchanted_aether_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.divine_grass) && this.worldObj.getBlockLightValue(i, j, k) > 7 && canSpawn && this.rand.nextInt(AetherConfig.getMoaSpawnrate()) == 0 && super.getCanSpawnHere();
-   	                       
+
    	}
 
     public boolean isSitting() {
@@ -135,7 +128,6 @@ public class EntityMoa extends EntitySaddleMount {
 
     public void increaseAmountFed(int amountFed) {
         int amount = this.getAmountFed();
-
         this.setAmountFed(amount + amountFed);
     }
 
@@ -166,7 +158,6 @@ public class EntityMoa extends EntitySaddleMount {
 
     public AetherMoaType getMoaType() {
         int id = this.dataWatcher.getWatchableObjectShort(20);
-
         return AetherAPI.instance().getMoaType(id);
     }
 
@@ -231,7 +222,6 @@ public class EntityMoa extends EntitySaddleMount {
 
         this.prevWingRotation = this.wingRotation;
         this.prevDestPos = this.destPos;
-
         this.destPos += 0.2D;
         this.destPos = minMax(0.01F, 1.0F, this.destPos);
 
@@ -288,13 +278,13 @@ public class EntityMoa extends EntitySaddleMount {
 
                     this.increaseAmountFed(1);
 
-                    if (this.getAmountFed() >= 6) { //3
+                    if (this.getAmountFed() >= 6) {
                         this.setToAdult();
                     } else {
                         this.resetHunger();
                     }
                 }
-                if (currentItem == ItemsAether.golden_aechor_petal) { 
+                if (currentItem == ItemsAether.golden_aechor_petal) {
                 	if (!player.capabilities.isCreativeMode) {
                         --stack.stackSize;
                     }
@@ -322,7 +312,6 @@ public class EntityMoa extends EntitySaddleMount {
     @Override
     public void writeEntityToNBT(NBTTagCompound nbt) {
         super.writeEntityToNBT(nbt);
-
         nbt.setBoolean("playerGrown", this.isPlayerGrown());
         nbt.setInteger("remainingJumps", this.getRemainingJumps());
         nbt.setInteger("moaTypeId", this.getMoaTypeId());
@@ -334,7 +323,6 @@ public class EntityMoa extends EntitySaddleMount {
     @Override
     public void readEntityFromNBT(NBTTagCompound nbt) {
         super.readEntityFromNBT(nbt);
-
         this.setPlayerGrown(nbt.getBoolean("playerGrown"));
         this.setRemainingJumps(nbt.getInteger("remainingJumps"));
         this.setMoaType(AetherAPI.instance().getMoaType(nbt.getInteger("moaTypeId")));
@@ -366,7 +354,6 @@ public class EntityMoa extends EntitySaddleMount {
     @Override
     protected void dropFewItems(boolean recentlyHit, int lootLevel) {
         super.dropFewItems(recentlyHit, lootLevel);
-
         this.dropItem(Items.feather, 3);
     }
 

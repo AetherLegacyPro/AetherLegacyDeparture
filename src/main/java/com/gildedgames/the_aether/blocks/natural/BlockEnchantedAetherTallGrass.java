@@ -2,22 +2,17 @@ package com.gildedgames.the_aether.blocks.natural;
 
 import java.util.ArrayList;
 import java.util.Random;
-
 import com.gildedgames.the_aether.CommonProxy;
 import com.gildedgames.the_aether.blocks.BlocksAether;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
 
 public class BlockEnchantedAetherTallGrass extends BlockBush implements IShearable {
-
-	public AxisAlignedBB FLOWER_AABB = AxisAlignedBB.getBoundingBox(0.30000001192092896D, 0.0D, 0.30000001192092896D, 0.699999988079071D, 0.6000000238418579D, 0.699999988079071D);
 
 	public BlockEnchantedAetherTallGrass() {
 		this.setHardness(0.0F);
@@ -40,24 +35,23 @@ public class BlockEnchantedAetherTallGrass extends BlockBush implements IShearab
 
 	@Override
 	public int getRenderType() {
-		return CommonProxy.aetherFlowerRenderID;
+        return CommonProxy.aetherFlowerRenderID;
 	}
-	
+
 	@Override
 	public Item getItemDropped(int meta, Random random, int fortune) {
-		return null;
+        return null;
 	}
-	
-	public boolean isShearable(ItemStack item, IBlockAccess world, int x, int y, int z)
-	{
-	   return true;
+
+	public boolean isShearable(ItemStack item, IBlockAccess world, int x, int y, int z) {
+        return true;
 	}
-	
+
 	@Override
 	public ArrayList<ItemStack> onSheared(ItemStack item, IBlockAccess world, int x, int y, int z, int fortune) {
 		 ArrayList<ItemStack> ret = new ArrayList<>();
-	            ret.add(new ItemStack(BlocksAether.enchanted_aether_tallgrass));
-	        return ret;
+         ret.add(new ItemStack(BlocksAether.enchanted_aether_tallgrass));
+         return ret;
 	}
-	
+
 }

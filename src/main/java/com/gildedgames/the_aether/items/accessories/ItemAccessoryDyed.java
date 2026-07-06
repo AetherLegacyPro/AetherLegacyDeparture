@@ -10,12 +10,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemAccessoryDyed extends ItemAccessory {
-
 	private IIcon overlayIcon;
 	private IIcon emptySlotIcon;
 
@@ -27,35 +25,19 @@ public class ItemAccessoryDyed extends ItemAccessory {
 	@Override
 	public boolean onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, int x, int y, int z, int facing, float hitX, float hitY, float hitZ) {
 		ItemStack heldItem = playerIn.getHeldItem();
-
 		if (worldIn.getBlock(x, y, z) == Blocks.cauldron) {
 			if (heldItem != null && heldItem.getItem() instanceof ItemAccessoryDyed) {
 				int j1 = BlockCauldron.func_150027_b(worldIn.getBlockMetadata(x, y, z));
 
 				if (j1 > 0) {
 					((ItemAccessoryDyed) heldItem.getItem()).removeColor(heldItem);
-
 					Blocks.cauldron.func_150024_a(worldIn, x, y, z, j1 - 1);
-
 					return true;
 				}
 			}
 		}
-
 		return super.onItemUse(stack, playerIn, worldIn, x, y, z, facing, hitX, hitY, hitZ);
 	}
-
-//	public int getStackColor(ItemStack stack, int meta) {
-//		NBTTagCompound nbttagcompound = stack.getTagCompound();
-//
-//		if (nbttagcompound == null) {
-//			return super.getColor();
-//		}
-//
-//		NBTTagCompound nbttagcompound1 = nbttagcompound.getCompoundTag("display");
-//
-//		return nbttagcompound1 == null ? super.getColor() : (nbttagcompound1.hasKey("color", 3) ? nbttagcompound1.getInteger("color") : super.getColor());
-//	}
 
 	@SideOnly(Side.CLIENT)
 	public int getColorFromItemStack(ItemStack stack, int meta) {
@@ -76,8 +58,8 @@ public class ItemAccessoryDyed extends ItemAccessory {
 		return (stack.hasTagCompound() && (stack.getTagCompound().hasKey("display", 10) && stack.getTagCompound().getCompoundTag("display").hasKey("color", 3)));
 	}
 
-	public int getColor(ItemStack p_82814_1_) {
-		NBTTagCompound nbttagcompound = p_82814_1_.getTagCompound();
+	public int getColor(ItemStack stack) {
+		NBTTagCompound nbttagcompound = stack.getTagCompound();
 
 		if (nbttagcompound == null) {
 			return 10511680;
@@ -97,20 +79,17 @@ public class ItemAccessoryDyed extends ItemAccessory {
 		}
 	}
 
-	public void setColorTag(ItemStack p_82813_1_, int p_82813_2_)
-	{
-		NBTTagCompound nbttagcompound = p_82813_1_.getTagCompound();
+	public void setColorTag(ItemStack stack, int p_82813_2_) {
+		NBTTagCompound nbttagcompound = stack.getTagCompound();
 
-		if (nbttagcompound == null)
-		{
+		if (nbttagcompound == null) {
 			nbttagcompound = new NBTTagCompound();
-			p_82813_1_.setTagCompound(nbttagcompound);
+            stack.setTagCompound(nbttagcompound);
 		}
 
 		NBTTagCompound nbttagcompound1 = nbttagcompound.getCompoundTag("display");
 
-		if (!nbttagcompound.hasKey("display", 10))
-		{
+		if (!nbttagcompound.hasKey("display", 10)) {
 			nbttagcompound.setTag("display", nbttagcompound1);
 		}
 
@@ -120,7 +99,6 @@ public class ItemAccessoryDyed extends ItemAccessory {
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister registry) {
 		super.registerIcons(registry);
-
 		overlayIcon = registry.registerIcon(Aether.find("accessories/leather_gloves_overlay"));
 		emptySlotIcon = registry.registerIcon(Aether.find("accessories/leather_gloves"));
 	}
@@ -132,7 +110,7 @@ public class ItemAccessoryDyed extends ItemAccessory {
 
 	@SideOnly(Side.CLIENT)
 	public boolean requiresMultipleRenderPasses() {
-		return true;
+        return true;
 	}
 
 }

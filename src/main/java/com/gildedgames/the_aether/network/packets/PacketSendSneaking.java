@@ -6,13 +6,10 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 
 public class PacketSendSneaking extends AetherPacket<PacketSendSneaking> {
-
 	private int entityId;
-
 	private boolean isSneaking;
 
 	public PacketSendSneaking() {
-
 	}
 
 	public PacketSendSneaking(int entityId, boolean isSneaking) {
@@ -34,14 +31,12 @@ public class PacketSendSneaking extends AetherPacket<PacketSendSneaking> {
 
 	@Override
 	public void handleClient(PacketSendSneaking message, EntityPlayer player) {
-
 	}
 
 	@Override
 	public void handleServer(PacketSendSneaking message, EntityPlayer player) {
 		if (player != null) {
 			Entity entity = player.worldObj.getEntityByID(message.entityId);
-
 			if (entity instanceof EntityPlayer) {
 				PlayerAether.get((EntityPlayer) entity).setMountSneaking(message.isSneaking);
 			}

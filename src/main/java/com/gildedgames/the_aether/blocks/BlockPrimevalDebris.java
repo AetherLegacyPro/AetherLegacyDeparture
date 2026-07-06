@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.blocks;
 
 import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
@@ -12,7 +11,6 @@ public class BlockPrimevalDebris extends Block {
 
 	public BlockPrimevalDebris() {
 		super(Material.iron);
-
 		this.setHardness(30F);
 		this.setResistance(600000F);
 		this.setStepSound(soundTypeMetal);
@@ -20,9 +18,9 @@ public class BlockPrimevalDebris extends Block {
 		this.setBlockTextureName("aether_legacy:primeval_artifact");
 		setBlockName("Primeval Artifact");
 	}
-	
+
 	@Override
-	public int getExpDrop(IBlockAccess p_149690_1_, int p_149690_5_, int p_149690_7_) {
+	public int getExpDrop(IBlockAccess iBlockAccess, int p_149690_5_, int p_149690_7_) {
 		Random random = new Random();
 
 		if (this.getItemDropped(p_149690_5_, random, p_149690_7_) != Item.getItemFromBlock(this)) {

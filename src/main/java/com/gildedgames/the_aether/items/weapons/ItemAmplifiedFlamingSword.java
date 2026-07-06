@@ -13,7 +13,6 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.world.World;
-
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 
@@ -35,7 +34,6 @@ public class ItemAmplifiedFlamingSword extends ItemSword {
 	@Override
 	public Multimap<String, AttributeModifier> getAttributeModifiers(ItemStack stack) {
 		Multimap<String, AttributeModifier> multimap = HashMultimap.create();
-
 		if (stack.getItem() instanceof ItemAmplifiedFlamingSword) {
 			multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(field_111210_e, "Weapon modifier", this.calculateIncrease(stack), 0));
 		}
@@ -60,27 +58,25 @@ public class ItemAmplifiedFlamingSword extends ItemSword {
 	}
 
 	private boolean isBetween(int max, int origin, int min) {
-		return origin <= max && origin >= min ? true : false;
+        return origin <= max && origin >= min ? true : false;
 	}
 
 	@Override
 	public boolean getIsRepairable(ItemStack repairingItem, ItemStack material) {
 		return material.getItem() == ItemsAether.divineral_ingot;
 	}
-	
+
 	@Override
 	public boolean hitEntity(ItemStack itemstack, EntityLivingBase entityliving, EntityLivingBase entityliving1) {
-	
 		if (this == ItemsAether.amplified_flaming_sword) {
 			int defaultTime = 40;
 			int fireAspectModifier = EnchantmentHelper.getFireAspectModifier(entityliving1);
-			if (fireAspectModifier > 0)
-			{
+			if (fireAspectModifier > 0) {
 				defaultTime += (fireAspectModifier * 10);
 			}
 			entityliving.setFire(defaultTime);
-		
-		} 
+
+		}
 		return super.hitEntity(itemstack, entityliving, entityliving1);
 	}
 
@@ -88,16 +84,16 @@ public class ItemAmplifiedFlamingSword extends ItemSword {
 	public float getDigSpeed(ItemStack itemstack, Block block, int meta) {
 		return super.getDigSpeed(itemstack, block, meta) * (2.0F * (float) itemstack.getItemDamage() / (float) itemstack.getMaxDamage() + 0.5F);
 	}
-	
+
 	@Override
 	public EnumRarity getRarity(ItemStack stack) {
-		return ItemsAether.divine_aether_loot;
+        return ItemsAether.divine_aether_loot;
 	}
-	
+
 	public boolean hasCustomEntity(final ItemStack stack) {
         return true;
     }
-    
+
     public Entity createEntity(final World world, final Entity location, final ItemStack itemstack) {
         return new EntityFireProofItemAether(world, location, itemstack);
     }

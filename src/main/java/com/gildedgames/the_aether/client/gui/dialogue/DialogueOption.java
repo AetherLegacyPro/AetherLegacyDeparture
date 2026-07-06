@@ -10,13 +10,9 @@ import net.minecraft.util.ResourceLocation;
 public class DialogueOption extends Gui {
 
 	private int dialogueId;
-
 	private String dialogueText;
-
 	private int xPosition, yPosition;
-
 	private int height, width;
-
 	private Minecraft mc = Minecraft.getMinecraft();
 
 	public DialogueOption(String dialogueText) {
@@ -38,37 +34,32 @@ public class DialogueOption extends Gui {
 		soundHandlerIn.playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0F));
 	}
 
-	public void setDialogueText(String dialogueText) {
-		this.dialogueText = "[" + dialogueText + "]";
-		this.width = this.mc.fontRenderer.getStringWidth(this.dialogueText) + 2;
-	}
-
 	public void setXPosition(int xPosition) {
-		this.xPosition = xPosition;
+        this.xPosition = xPosition;
 	}
 
 	public void setYPosition(int yPosition) {
-		this.yPosition = yPosition;
+        this.yPosition = yPosition;
 	}
 
 	public void setDialogueId(int id) {
-		this.dialogueId = id;
+        this.dialogueId = id;
 	}
 
 	public int getDialogueId() {
-		return this.dialogueId;
+        return this.dialogueId;
 	}
 
 	public int getHeight() {
-		return this.height;
+        return this.height;
 	}
 
 	public int getWidth() {
-		return this.width;
+        return this.width;
 	}
 
 	public String getDialogueText() {
-		return this.dialogueText;
+        return this.dialogueText;
 	}
 
 }

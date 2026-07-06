@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.items;
 
 import java.util.List;
-
 import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.api.AetherAPI;
 import com.gildedgames.the_aether.api.moa.AetherMoaType;
@@ -15,7 +14,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -33,7 +31,7 @@ public class ItemMoaEgg extends Item {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean requiresMultipleRenderPasses() {
-		return true;
+        return true;
 	}
 
 	@Override
@@ -46,20 +44,18 @@ public class ItemMoaEgg extends Item {
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister registry) {
 		super.registerIcons(registry);
-
 		this.spotIcon = registry.registerIcon(Aether.find("misc/egg/moa_egg_spot"));
 	}
 
 	@Override
 	public CreativeTabs[] getCreativeTabs() {
-		return CreativeTabs.creativeTabArray;
+        return CreativeTabs.creativeTabArray;
 	}
 
 	@Override
 	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int facing, float hitX, float hitY, float hitZ) {
 		if (player.capabilities.isCreativeMode) {
 			EntityMoa moa = new EntityMoa(world, AetherAPI.instance().getMoaType(stack.getTagCompound().getInteger("typeId")));
-
 			moa.setPositionAndRotation(x, y + 1, z, 1.0F, 1.0F);
 			moa.setPlayerGrown(true);
 
@@ -84,7 +80,6 @@ public class ItemMoaEgg extends Item {
 			if (moaType.getCreativeTab() == tab || tab == null || tab == CreativeTabs.tabAllSearch) {
 				compound.setInteger("typeId", moaTypeSize);
 				stack.setTagCompound(compound);
-
 				subItems.add(stack);
 			}
 		}
@@ -96,7 +91,6 @@ public class ItemMoaEgg extends Item {
 
 		if (tag != null) {
 			AetherMoaType moaType = AetherAPI.instance().getMoaType(tag.getInteger("typeId"));
-
 			return moaType.getMoaEggColor();
 		}
 
@@ -108,7 +102,6 @@ public class ItemMoaEgg extends Item {
 
 		if (tag != null) {
 			AetherMoaType moaType = AetherAPI.instance().getMoaType(tag.getInteger("typeId"));
-
 			return moaType;
 		}
 
@@ -121,7 +114,6 @@ public class ItemMoaEgg extends Item {
 
 		if (tag != null && stack.getTagCompound().hasKey("typeId")) {
 			AetherMoaType moaType = AetherAPI.instance().getMoaType(tag.getInteger("typeId"));
-
 			return "item." + moaType.getRegistryName().getResourcePath().replace(" ", "_").toLowerCase() + "_moa_egg.name";
 		}
 
@@ -135,13 +127,9 @@ public class ItemMoaEgg extends Item {
 
 	public static ItemStack getStackFromType(AetherMoaType type) {
 		ItemStack stack = new ItemStack(ItemsAether.moa_egg);
-
 		NBTTagCompound tag = new NBTTagCompound();
-
 		tag.setInteger("typeId", AetherAPI.instance().getMoaTypeId(type));
-
 		stack.setTagCompound(tag);
-
 		return stack;
 	}
 

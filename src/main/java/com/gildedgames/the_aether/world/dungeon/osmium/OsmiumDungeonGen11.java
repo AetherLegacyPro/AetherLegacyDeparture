@@ -1,20 +1,17 @@
 package com.gildedgames.the_aether.world.dungeon.osmium;
 
 import java.util.Random;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
-
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
 public class OsmiumDungeonGen11 extends WorldGenerator {
 
 	public OsmiumDungeonGen11() {
-
 	}
-	
+
 	public boolean generate(final World world, final Random random, final int i, final int j, final int k) {
-		
+
 		world.setBlock(i + 15, j + 33, k + 46, BlocksAether.caelestia_stone, 0, 2);
 		world.setBlock(i + 16, j + 33, k + 46, BlocksAether.caelestia_stone, 0, 2);
 		world.setBlock(i + 17, j + 33, k + 46, BlocksAether.caelestia_stone, 0, 2);
@@ -2553,7 +2550,7 @@ public class OsmiumDungeonGen11 extends WorldGenerator {
 		world.setBlock(i + 25, j + 34, k + 50, BlocksAether.caelestia_stone, 0, 2);
 		world.setBlock(i + 26, j + 34, k + 50, BlocksAether.caelestia_stone, 0, 2);
 		world.setBlock(i + 27, j + 34, k + 50, BlocksAether.caelestia_stone, 0, 2);
-		
+
 		return true;
 	}
 

@@ -6,9 +6,7 @@ import cpw.mods.fml.common.eventhandler.Event;
 public class DialogueClickedEvent extends Event {
 
 	private EntityPlayer player;
-
 	private String dialogueName;
-
 	private int dialogueId;
 
 	public DialogueClickedEvent(EntityPlayer player, String dialogueName, int dialogueId) {
@@ -18,15 +16,15 @@ public class DialogueClickedEvent extends Event {
 	}
 
 	public EntityPlayer getPlayer() {
-		return this.player;
+        return this.player;
 	}
 
 	public String getDialogueName() {
-		return this.dialogueName;
+        return this.dialogueName;
 	}
 
 	public int getDialogueId() {
-		return this.dialogueId;
+        return this.dialogueId;
 	}
 
 }

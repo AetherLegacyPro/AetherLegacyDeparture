@@ -34,12 +34,11 @@ public class ItemAmplifiedDragonSlayer extends ItemSword {
 	}
 
 	 public float damage() {
-	      return this.damageDealt;
-	   }
+        return this.damageDealt;
+    }
 
 	public boolean hitEntity(ItemStack stack, EntityLivingBase entity, EntityLivingBase player) {
 	      this.damageDealt = dragonMaterial.getDamageVsEntity();
-
 	      String s = EntityList.getEntityString(entity);
 
 	      if (entity instanceof EntityCrystalDragon || entity instanceof EntityDragon || s.contains("genesis_dragon") || s.contains("dragon") || s.contains("wyrmling")) {
@@ -57,7 +56,7 @@ public class ItemAmplifiedDragonSlayer extends ItemSword {
 
 	@Override
 	public EnumRarity getRarity(ItemStack stack) {
-		return ItemsAether.divine_aether_loot;
+        return ItemsAether.divine_aether_loot;
 	}
 
 	public boolean hasCustomEntity(final ItemStack stack) {

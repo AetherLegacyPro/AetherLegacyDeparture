@@ -10,7 +10,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.entities.hostile.swet.EnumAechorPlantType;
 import com.gildedgames.the_aether.entities.passive.EntityAetherAnimal;
@@ -21,17 +20,13 @@ import com.gildedgames.the_aether.items.util.EnumSkyrootBucketType;
 public class EntityAechorPlant extends EntityAetherAnimal {
 
 	public float sinage;
-
 	public int poisonRemaining;
-
 	private int reloadTime;
 
 	public EntityAechorPlant(World world) {
 		super(world);
-
 		this.sinage = this.rand.nextFloat() * 6F;
 		this.poisonRemaining = this.rand.nextInt(4) + 2;
-
 		this.setSize(this.rand.nextInt(4) + 1);
 		this.setPosition(this.posX, this.posY, this.posZ);
 		this.setSize(0.75F + ((float) this.getSize() * 0.125F), 0.5F + ((float) this.getSize() * 0.075F));
@@ -40,14 +35,12 @@ public class EntityAechorPlant extends EntityAetherAnimal {
 	@Override
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
-
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(20.0D);
 	}
 
 	@Override
 	public void entityInit() {
 		super.entityInit();
-
 		this.dataWatcher.addObject(20, (byte) 0);
 		this.dataWatcher.addObject(21, (byte) this.rand.nextInt(EnumAechorPlantType.values().length));
 	}
@@ -115,7 +108,6 @@ public class EntityAechorPlant extends EntityAetherAnimal {
 		z = z * distance;
 
 		EntityPoisonNeedle poisonNeedle = new EntityPoisonNeedle(this.worldObj, this, 0.5F);
-
 		poisonNeedle.posY = this.posY + 1D;
 
 		this.playSound("random.bow", 1.0F, 1.2F / (this.getRNG().nextFloat() * 0.2F + 0.9F));
@@ -151,23 +143,19 @@ public class EntityAechorPlant extends EntityAetherAnimal {
 
 		return false;
 	}
-	
-	public EnumAechorPlantType getType()
-    {
-        int id = this.dataWatcher.getWatchableObjectByte(21);
 
+	public EnumAechorPlantType getType() {
+        int id = this.dataWatcher.getWatchableObjectByte(21);
         return EnumAechorPlantType.get(id);
     }
 
-    public void setType(int id)
-    {
+    public void setType(int id) {
         this.dataWatcher.updateObject(21, (byte) id);
     }
 
 	@Override
 	public void writeEntityToNBT(NBTTagCompound compound) {
 		super.writeEntityToNBT(compound);
-
 		compound.setByte("size", this.getSize());
 		compound.setInteger("AechorType", this.getType().getId());
 	}
@@ -175,39 +163,34 @@ public class EntityAechorPlant extends EntityAetherAnimal {
 	@Override
 	public void readEntityFromNBT(NBTTagCompound compound) {
 		super.readEntityFromNBT(compound);
-
 		this.setSize(compound.getByte("size"));
 		this.setType(compound.getInteger("AechorType"));
 	}
 
 	public void setSize(int size) {
-		this.dataWatcher.updateObject(20, (byte) size);
+        this.dataWatcher.updateObject(20, (byte) size);
 	}
 
 	public byte getSize() {
-		return this.dataWatcher.getWatchableObjectByte(20);
+        return this.dataWatcher.getWatchableObjectByte(20);
 	}
 
 	@Override
 	protected void dropFewItems(boolean recentlyHit, int lootLevel) {
 		int count = this.rand.nextInt(2);
 
-        if (lootLevel > 0)
-        {
+        if (lootLevel > 0) {
             count += this.rand.nextInt(lootLevel + 1);
         }
-        
+
         {
-		if (this.getType() == EnumAechorPlantType.BLUE)
-        {
+		if (this.getType() == EnumAechorPlantType.BLUE) {
 		 this.dropItem(ItemsAether.blue_aechor_petal, 1 + count);
         }
-		else if (this.getType() == EnumAechorPlantType.DARKBLUE)
-        {
+		else if (this.getType() == EnumAechorPlantType.DARKBLUE) {
 			 this.dropItem(ItemsAether.blue_aechor_petal, 2 + count);
         }
-		else if (this.getType() == EnumAechorPlantType.GOLD)
-        {
+		else if (this.getType() == EnumAechorPlantType.GOLD) {
 			this.dropItem(ItemsAether.golden_aechor_petal, 1 + count);
         }
 		else {
@@ -218,37 +201,35 @@ public class EntityAechorPlant extends EntityAetherAnimal {
 
 	@Override
 	public void applyEntityCollision(Entity entity) {
-
 	}
 
 	@Override
 	public void addVelocity(double x, double y, double z) {
-
 	}
 
 	@Override
 	protected boolean isMovementBlocked() {
-		return true;
+        return true;
 	}
 
 	@Override
 	public EntityAgeable createChild(EntityAgeable baby) {
-		return null;
+        return null;
 	}
 
 	@Override
 	protected String getHurtSound() {
-		return "game.player.hurt";
+        return "game.player.hurt";
 	}
 
 	@Override
 	protected String getDeathSound() {
-		return "game.player.hurt.fall.big";
+        return "game.player.hurt.fall.big";
 	}
 
 	@Override
 	public boolean canBePushed() {
-		return false;
+        return false;
 	}
 
 	@Override
@@ -258,7 +239,7 @@ public class EntityAechorPlant extends EntityAetherAnimal {
         final int k = MathHelper.floor_double(this.posZ);
         final boolean canSpawn = this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
         return (this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_dirt|| this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.arctic_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.verdant_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.enchanted_aether_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.divine_grass) && this.worldObj.getBlockLightValue(i, j, k) > 7 && canSpawn && this.rand.nextInt(AetherConfig.getAechorPlantSpawnrate()) == 0 && super.getCanSpawnHere();
-                       
+
     }
 
 }

@@ -17,7 +17,6 @@ public abstract class EntityAetherMob extends EntityCreature implements IMob {
 
 	public EntityAetherMob(World world) {
 		super(world);
-
 		this.experienceValue = 5;
 	}
 
@@ -55,11 +54,11 @@ public abstract class EntityAetherMob extends EntityCreature implements IMob {
 	}
 
 	@Override
-	public boolean attackEntityFrom(DamageSource p_70097_1_, float p_70097_2_) {
+	public boolean attackEntityFrom(DamageSource source, float p_70097_2_) {
 		if (this.isEntityInvulnerable()) {
 			return false;
-		} else if (super.attackEntityFrom(p_70097_1_, p_70097_2_)) {
-			Entity entity = p_70097_1_.getEntity();
+		} else if (super.attackEntityFrom(source, p_70097_2_)) {
+			Entity entity = source.getEntity();
 
 			if (this.riddenByEntity != entity && this.ridingEntity != entity) {
 				if (entity != this) {
@@ -76,20 +75,20 @@ public abstract class EntityAetherMob extends EntityCreature implements IMob {
 	}
 
 	@Override
-	public boolean attackEntityAsMob(Entity p_70652_1_) {
+	public boolean attackEntityAsMob(Entity entity) {
 		float f = (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue();
 		int i = 0;
 
-		if (p_70652_1_ instanceof EntityLivingBase) {
-			f += EnchantmentHelper.getEnchantmentModifierLiving(this, (EntityLivingBase) p_70652_1_);
-			i += EnchantmentHelper.getKnockbackModifier(this, (EntityLivingBase) p_70652_1_);
+		if (entity instanceof EntityLivingBase) {
+			f += EnchantmentHelper.getEnchantmentModifierLiving(this, (EntityLivingBase) entity);
+			i += EnchantmentHelper.getKnockbackModifier(this, (EntityLivingBase) entity);
 		}
 
-		boolean flag = p_70652_1_.attackEntityFrom(DamageSource.causeMobDamage(this), f);
+		boolean flag = entity.attackEntityFrom(DamageSource.causeMobDamage(this), f);
 
 		if (flag) {
 			if (i > 0) {
-				p_70652_1_.addVelocity(-MathHelper.sin(this.rotationYaw * (float) Math.PI / 180.0F) * (float) i * 0.5F, 0.1D, MathHelper.cos(this.rotationYaw * (float) Math.PI / 180.0F) * (float) i * 0.5F);
+				entity.addVelocity(-MathHelper.sin(this.rotationYaw * (float) Math.PI / 180.0F) * (float) i * 0.5F, 0.1D, MathHelper.cos(this.rotationYaw * (float) Math.PI / 180.0F) * (float) i * 0.5F);
 				this.motionX *= 0.6D;
 				this.motionZ *= 0.6D;
 			}
@@ -97,24 +96,24 @@ public abstract class EntityAetherMob extends EntityCreature implements IMob {
 			int j = EnchantmentHelper.getFireAspectModifier(this);
 
 			if (j > 0) {
-				p_70652_1_.setFire(j * 4);
+				entity.setFire(j * 4);
 			}
 
-			if (p_70652_1_ instanceof EntityLivingBase) {
-				EnchantmentHelper.func_151384_a((EntityLivingBase) p_70652_1_, this);
+			if (entity instanceof EntityLivingBase) {
+				EnchantmentHelper.func_151384_a((EntityLivingBase) entity, this);
 			}
 
-			EnchantmentHelper.func_151385_b(this, p_70652_1_);
+			EnchantmentHelper.func_151385_b(this, entity);
 		}
 
 		return flag;
 	}
 
 	@Override
-	protected void attackEntity(Entity p_70785_1_, float p_70785_2_) {
-		if (this.attackTime <= 0 && p_70785_2_ < 2.0F && p_70785_1_.boundingBox.maxY > this.boundingBox.minY && p_70785_1_.boundingBox.minY < this.boundingBox.maxY) {
+	protected void attackEntity(Entity entity, float p_70785_2_) {
+		if (this.attackTime <= 0 && p_70785_2_ < 2.0F && entity.boundingBox.maxY > this.boundingBox.minY && entity.boundingBox.minY < this.boundingBox.maxY) {
 			this.attackTime = 20;
-			this.attackEntityAsMob(p_70785_1_);
+			this.attackEntityAsMob(entity);
 		}
 	}
 
@@ -145,17 +144,17 @@ public abstract class EntityAetherMob extends EntityCreature implements IMob {
 	}
 
 	public boolean willDespawnPeacefully() {
-		return false;
+        return false;
 	}
 
 	@Override
 	public boolean getCanSpawnHere() {
-		return this.isValidLightLevel() && super.getCanSpawnHere();
+        return this.isValidLightLevel() && super.getCanSpawnHere();
 	}
 
 	@Override
 	protected boolean func_146066_aG() {
-		return true;
+        return true;
 	}
 
 	@Override
@@ -165,22 +164,22 @@ public abstract class EntityAetherMob extends EntityCreature implements IMob {
 
 	@Override
 	protected String getSwimSound() {
-		return "game.hostile.swim";
+        return "game.hostile.swim";
 	}
 
 	@Override
 	protected String getSplashSound() {
-		return "game.hostile.swim.splash";
+        return "game.hostile.swim.splash";
 	}
 
 	@Override
 	protected String getHurtSound() {
-		return "game.hostile.hurt";
+        return "game.hostile.hurt";
 	}
 
 	@Override
 	protected String getDeathSound() {
-		return "game.hostile.die";
+        return "game.hostile.die";
 	}
 
 }

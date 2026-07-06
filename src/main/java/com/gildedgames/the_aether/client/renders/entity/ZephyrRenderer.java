@@ -1,20 +1,17 @@
 package com.gildedgames.the_aether.client.renders.entity;
 
 import com.gildedgames.the_aether.Aether;
-import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.client.models.entities.ZephyrModel;
 import com.gildedgames.the_aether.entities.hostile.EntityZephyr;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.opengl.GL11;
 
 public class ZephyrRenderer extends RenderLiving {
 
     private static final ResourceLocation TEXTURE = Aether.locate("textures/entities/zephyr/zephyr_main.png");
-
     private static final ResourceLocation TEXTURE_ADDON = Aether.locate("textures/entities/zephyr/zephyr_layer.png");
 
     public ZephyrRenderer() {
@@ -29,7 +26,6 @@ public class ZephyrRenderer extends RenderLiving {
         }
 
         f1 = 1.0F / (f1 * f1 * f1 * f1 * f1 * 2.0F + 1.0F);
-
         float f2 = (8.0F + f1) / 2.0F;
         float f3 = (8.0F + 1.0F / f1) / 2.0F;
         GL11.glScalef(f3, f2, f3);

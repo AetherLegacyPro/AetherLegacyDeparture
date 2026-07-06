@@ -5,8 +5,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.model.ModelBase;
 
-public class ElderZarnillysModel extends ModelBase
-{
+public class ElderZarnillysModel extends ModelBase {
     public final ModelRenderer body;
     public final ModelRenderer body_front;
     public final ModelRenderer body_back;
@@ -50,7 +49,7 @@ public class ElderZarnillysModel extends ModelBase
     public final ModelRenderer toe4;
     public final ModelRenderer toe5;
     public final ModelRenderer toe6;
-    
+
     public ElderZarnillysModel() {
         this.textureWidth = 128;
         this.textureHeight = 128;
@@ -244,19 +243,19 @@ public class ElderZarnillysModel extends ModelBase
         this.foot_front_left.addChild(this.toe3);
         this.head_bottom.addChild(this.teeth_bottom);
     }
-    
+
     public void render(final Entity entity, final float f, final float f1, final float f2, final float f3, final float f4, final float f5) {
     	super.render(entity, f, f1, f2, f3, f4, f5);
         this.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-    	this.body.render(f5);   
+    	this.body.render(f5);
     }
-    
+
     public void setRotateAngle(final ModelRenderer modelRenderer, final float x, final float y, final float z) {
         modelRenderer.rotateAngleX = x;
         modelRenderer.rotateAngleY = y;
         modelRenderer.rotateAngleZ = z;
     }
-    
+
     @Override
     public void setRotationAngles(final float limbSwing, final float limbSwingAmount, final float ageInTicks, final float netHeadYaw, final float headPitch, final float scaleFactor, final Entity entityIn) {
         super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entityIn);

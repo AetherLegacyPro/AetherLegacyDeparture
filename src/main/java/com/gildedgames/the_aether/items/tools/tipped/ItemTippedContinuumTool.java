@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.items.tools.tipped;
 
 import java.util.List;
-
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.entities.block.EntityFloatingBlock;
 import com.gildedgames.the_aether.items.ItemsAether;
@@ -29,10 +28,10 @@ public class ItemTippedContinuumTool extends ItemAetherTool {
 
 	@Override
 	public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
-		if (AetherConfig.RepairMaterialTipped() == true) {
+		if (AetherConfig.RepairMaterialTipped()) {
 			return repair.getItem() == ItemsAether.auralite_crystal;
-			}
-			else {
+        }
+        else {
 			return repair.getItem() == ItemsAether.continuum_gemstone;
 		}
 	}
@@ -41,7 +40,7 @@ public class ItemTippedContinuumTool extends ItemAetherTool {
 	public float getDigSpeed(ItemStack stack, Block block, int meta) {
 		return this.calculateIncrease(stack, this.toolType.getStrVsBlock(stack, block));
 	}
-	
+
 	@Override
 	public EnumRarity getRarity(ItemStack stack) {
 		return ItemsAether.scaled_aether_loot;
@@ -67,18 +66,17 @@ public class ItemTippedContinuumTool extends ItemAetherTool {
 			return 1.0F;
 		}
 	}
-	
+
 	@Override
 	public boolean onBlockDestroyed(ItemStack stack, World world, Block block, int x, int y, int z, EntityLivingBase entityLiving) {
 		if (!world.isRemote && world.rand.nextInt(100) <= 3) {
 			EntityItem entityItem = new EntityItem(world, x, y, z, new ItemStack(ItemsAether.ambrosium_shard, 1));
-
 			world.spawnEntityInWorld(entityItem);
 		}
 
 		return super.onBlockDestroyed(stack, world, block, x, y, z, entityLiving);
 	}
-	
+
 	@Override
 	public boolean onItemUse(ItemStack heldItem, EntityPlayer player, World world, int x, int y, int z, int facing, float hitX, float hitY, float hitZ) {
 		Block block = world.getBlock(x, y, z);
@@ -104,7 +102,7 @@ public class ItemTippedContinuumTool extends ItemAetherTool {
 	private boolean isBetween(int max, int origin, int min) {
 		return origin <= max && origin >= min ? true : false;
 	}
-	
+
 	public void addInformation(final ItemStack stack, final EntityPlayer player, final List tooltip, final boolean who) {
 		if(AetherConfig.enableTooltips())
         tooltip.add(EnumChatFormatting.AQUA + "" + StatCollector.translateToLocal("tooltip.continuum_tools.desc"));

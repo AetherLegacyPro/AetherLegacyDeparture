@@ -1,11 +1,9 @@
 package com.gildedgames.the_aether.client.models.entities;
 
 import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
-
 import com.gildedgames.the_aether.entities.passive.mountable.EntityPhyg;
 
 public class PhygWingModel extends ModelBase {
@@ -20,7 +18,6 @@ public class PhygWingModel extends ModelBase {
 		this.leftWingOuter.addBox(-1.0F, -8.0F, -4.0F, 2, 16, 8, 0.0F);
 		this.rightWingInner.addBox(-1.0F, -8.0F, -4.0F, 2, 16, 8, 0.0F);
 		this.rightWingOuter.addBox(-1.0F, -8.0F, -4.0F, 2, 16, 8, 0.0F);
-
 		this.rightWingOuter.rotateAngleY = (float) Math.PI;
 	}
 

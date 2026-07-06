@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.api.freezables;
 
 import com.gildedgames.the_aether.api.RegistryEntry;
-
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -53,15 +52,15 @@ public class AetherFreezable extends RegistryEntry {
 	}
 
 	public int getTimeRequired() {
-		return this.timeRequired;
+        return this.timeRequired;
 	}
 
 	public ItemStack getInput() {
-		return this.input;
+        return this.input;
 	}
 
 	public ItemStack getOutput() {
-		return this.output;
+        return this.output;
 	}
 
 	@Override

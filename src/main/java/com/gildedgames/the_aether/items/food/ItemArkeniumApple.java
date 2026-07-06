@@ -11,13 +11,12 @@ public class ItemArkeniumApple extends ItemAetherFood {
 
 	public ItemArkeniumApple() {
 		super(2);
-
 		this.setAlwaysEdible();
 	}
 
 	@Override
 	public EnumRarity getRarity(ItemStack stack) {
-		return EnumRarity.rare;
+        return EnumRarity.rare;
 	}
 
 	@Override

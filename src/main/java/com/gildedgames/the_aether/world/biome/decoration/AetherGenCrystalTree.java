@@ -1,26 +1,23 @@
 package com.gildedgames.the_aether.world.biome.decoration;
 
 import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
 
 public class AetherGenCrystalTree extends WorldGenAbstractTree {
 
 	public AetherGenCrystalTree(boolean p_i45448_1_) {
-		super(p_i45448_1_);
+        super(p_i45448_1_);
 	}
 
 	public boolean generate(World world, Random random, int j, int k, int l) {
 		boolean cangen = true;
 
 		if (k + 11 <= world.getHeight() && cangen) {
-
 			world.setBlock(j, k + 10, l, setRandomBlock(world, random));
-			
+
 			for (int z = -1; z < 2; ++z) {
 				if (z != 0)
 					world.setBlock(j, k + 5, l + z, BlocksAether.skyroot_log);
@@ -157,7 +154,7 @@ public class AetherGenCrystalTree extends WorldGenAbstractTree {
 			for (int y = k + 3; y <= k + 9; y++) {
 				world.setBlock(j, y, l, BlocksAether.skyroot_log);
 			}
-			
+
 			world.setBlock(j, k + 1, l, BlocksAether.skyroot_log);
 			world.setBlock(j, k + 2, l, BlocksAether.skyroot_log);
 

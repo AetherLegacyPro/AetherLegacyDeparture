@@ -3,21 +3,17 @@ package com.gildedgames.the_aether.client.gui.dialogue.entity;
 import com.gildedgames.the_aether.client.gui.dialogue.DialogueOption;
 import com.gildedgames.the_aether.client.gui.dialogue.GuiDialogue;
 import com.gildedgames.the_aether.entities.bosses.lurker.EntityLurker;
-
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.EnumDifficulty;
-
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.network.AetherNetwork;
 import com.gildedgames.the_aether.network.packets.PacketInitiateValkyrieFight;
 
 public class GuiLurkerDialogue extends GuiDialogue {
 
-    private EntityLurker urker;   
-
+    private EntityLurker urker;
     private String title;
-
     private int medalSlotId = -1;
 
     public GuiLurkerDialogue(EntityLurker urker) {

@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.client.renders.block;
 
 import com.gildedgames.the_aether.client.renders.RenderIDs;
-
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.EntityRenderer;
@@ -15,24 +14,20 @@ public class BlockAuraliteClusterRenderer implements ISimpleBlockRenderingHandle
 
 	@Override
 	public void renderInventoryBlock(Block block, int metadata, int modelId, RenderBlocks renderer) {
-
 	}
 
 	@Override
-	public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,
-			RenderBlocks renderer) {
-			renderBlockCrops(block, x, y, z, renderer);
-			return true;
-		}
+	public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
+        renderBlockCrops(block, x, y, z, renderer);
+        return true;
+    }
 
-	
-	private boolean renderBlockCrops(Block block, int x, int y, int z, RenderBlocks renderer)
-	{
+
+	private boolean renderBlockCrops(Block block, int x, int y, int z, RenderBlocks renderer) {
 		Tessellator tessellator = Tessellator.instance;
-		
-		IBlockAccess world = renderer.blockAccess;
+
+        IBlockAccess world = renderer.blockAccess;
 	      tessellator.setBrightness(block.getMixedBrightnessForBlock(world, x, y, z));
-//	      tessellator.setBrightness(200);
 	      float f = 1.0F;
 	      int l = block.colorMultiplier(world, x, y, z);
 	      float f1 = (float)(l >> 16 & 255) / 255.0F;
@@ -182,15 +177,15 @@ public class BlockAuraliteClusterRenderer implements ISimpleBlockRenderingHandle
 
 	      return true;
 	   }
-    
+
 
 	@Override
 	public boolean shouldRender3DInInventory(int modelId) {
-		return false;
+        return false;
 	}
 
 	@Override
 	public int getRenderId() {
-		return RenderIDs.AURALITE_CLUSTER;
+        return RenderIDs.AURALITE_CLUSTER;
 	}
 }

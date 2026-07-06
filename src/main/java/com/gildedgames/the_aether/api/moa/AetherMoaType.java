@@ -1,16 +1,13 @@
 package com.gildedgames.the_aether.api.moa;
 
 import com.gildedgames.the_aether.api.RegistryEntry;
-
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.util.ResourceLocation;
 
 public class AetherMoaType extends RegistryEntry {
 
 	private MoaProperties properties;
-
 	public int hexColor;
-
 	public CreativeTabs creativeTab;
 
 	public AetherMoaType(int hexColor, MoaProperties properties) {
@@ -35,15 +32,15 @@ public class AetherMoaType extends RegistryEntry {
 	}
 
 	public MoaProperties getMoaProperties() {
-		return this.properties;
+        return this.properties;
 	}
 
 	public CreativeTabs getCreativeTab() {
-		return this.creativeTab;
+        return this.creativeTab;
 	}
 
 	public int getMoaEggColor() {
-		return this.hexColor;
+        return this.hexColor;
 	}
 
 }

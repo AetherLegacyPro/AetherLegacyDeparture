@@ -2,7 +2,6 @@ package com.gildedgames.the_aether.blocks.natural;
 
 import java.util.List;
 import java.util.Random;
-
 import com.gildedgames.the_aether.entities.effects.EffectInebriation;
 import com.gildedgames.the_aether.entities.effects.PotionInebriation;
 import com.gildedgames.the_aether.items.block.IColoredBlock;
@@ -20,7 +19,6 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.Facing;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -28,7 +26,6 @@ public class BlockInebriationAercloud extends Block implements IColoredBlock, IN
 
 	public BlockInebriationAercloud() {
 		super(Material.ice);
-
 		this.setHardness(0.2F);
 		this.setStepSound(soundTypeCloth);
 		this.setBlockTextureName("aether:aercloud/cold_aercloud");
@@ -36,64 +33,54 @@ public class BlockInebriationAercloud extends Block implements IColoredBlock, IN
 
 	@SideOnly(Side.CLIENT)
 	@SuppressWarnings({"unchecked", "rawtypes"})
-	public void getSubBlocks(Item p_149666_1_, CreativeTabs p_149666_2_, List p_149666_3_) {
-		p_149666_3_.add(new ItemStack(this, 1, 0));
-		p_149666_3_.add(new ItemStack(this, 1, 1));
-		p_149666_3_.add(new ItemStack(this, 1, 2));
+	public void getSubBlocks(Item item, CreativeTabs creativeTabs, List list) {
+		list.add(new ItemStack(this, 1, 0));
+		list.add(new ItemStack(this, 1, 1));
+		list.add(new ItemStack(this, 1, 2));
 	}
 
 	@Override
 	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
 		entity.fallDistance = 0;
-		
-			//freezing aercloud
+
+        //freezing aercloud
 		if (world.getBlockMetadata(x, y, z) == 1) {
 			if (entity instanceof EntityPlayer player) {
 				((EntityLivingBase) entity).addPotionEffect(new PotionEffect(2, 60, 3));
-
-				
-
-			}		
+			}
 		}
-			//creeping aercloud
+
+        //creeping aercloud
 		else if (world.getBlockMetadata(x, y, z) == 2) {
-									
 			if (entity instanceof EntityPlayer player) {
 				player.addPotionEffect(new PotionEffect(7, 20, 1));
-
-				
 				}
-				
-		
-			
-		} 
-		    //inebriation aercloud
+		}
+
+        //inebriation aercloud
 		else if (world.getBlockMetadata(x, y, z) == 0) {
 			if (entity instanceof EntityPlayer player) {
 				player.addPotionEffect(new EffectInebriation(PotionInebriation.inebriation.id, 150, 0));
-
-				
 				}
-			}	
+			}
 		}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public int getRenderBlockPass() {
-		return 1;
+        return 1;
 	}
 
 	@Override
 	public boolean isOpaqueCube() {
-		return false;
+        return false;
 	}
-	
+
 	@Override
-	public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
-    {
+	public Item getItemDropped(int p_149650_1_, Random random, int p_149650_3_) {
         return null;
     }
-	
+
 	@Override
 	protected boolean canSilkHarvest() {
         return false;
@@ -125,7 +112,7 @@ public class BlockInebriationAercloud extends Block implements IColoredBlock, IN
 	}
 
 	@Override
-	public int getColorFromItemStack(ItemStack stack, int pass) {		
+	public int getColorFromItemStack(ItemStack stack, int pass) {
 		 if (stack.getItemDamage() == 1) {
 			return 0x4df2ff;
 		} else if (stack.getItemDamage() == 2) {
@@ -137,10 +124,10 @@ public class BlockInebriationAercloud extends Block implements IColoredBlock, IN
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public boolean shouldSideBeRendered(IBlockAccess p_149646_1_, int p_149646_2_, int p_149646_3_, int p_149646_4_, int p_149646_5_) {
-		Block block = p_149646_1_.getBlock(p_149646_2_, p_149646_3_, p_149646_4_);
+	public boolean shouldSideBeRendered(IBlockAccess iBlockAccess, int p_149646_2_, int p_149646_3_, int p_149646_4_, int p_149646_5_) {
+		Block block = iBlockAccess.getBlock(p_149646_2_, p_149646_3_, p_149646_4_);
 
-		if (p_149646_1_.getBlockMetadata(p_149646_2_, p_149646_3_, p_149646_4_) != p_149646_1_.getBlockMetadata(p_149646_2_ - Facing.offsetsXForSide[p_149646_5_], p_149646_3_ - Facing.offsetsYForSide[p_149646_5_], p_149646_4_ - Facing.offsetsZForSide[p_149646_5_])) {
+		if (iBlockAccess.getBlockMetadata(p_149646_2_, p_149646_3_, p_149646_4_) != iBlockAccess.getBlockMetadata(p_149646_2_ - Facing.offsetsXForSide[p_149646_5_], p_149646_3_ - Facing.offsetsYForSide[p_149646_5_], p_149646_4_ - Facing.offsetsZForSide[p_149646_5_])) {
 			return true;
 		}
 
@@ -148,7 +135,7 @@ public class BlockInebriationAercloud extends Block implements IColoredBlock, IN
 			return false;
 		}
 
-		return super.shouldSideBeRendered(p_149646_1_, p_149646_2_, p_149646_3_, p_149646_4_, p_149646_5_);
+		return super.shouldSideBeRendered(iBlockAccess, p_149646_2_, p_149646_3_, p_149646_4_, p_149646_5_);
 	}
 
 	@Override

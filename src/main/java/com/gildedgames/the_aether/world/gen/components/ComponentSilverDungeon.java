@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.world.gen.components;
 
 import java.util.Random;
-
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.entities.bosses.valkyrie_queen.EntityValkyrieQueen;
 import com.gildedgames.the_aether.entities.util.AetherMoaTypes;
@@ -16,23 +15,17 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
 
 public class ComponentSilverDungeon extends AetherStructure {
 
 	private static final Block LOCKED_ANGELIC_STONE = BlocksAether.locked_angelic_stone;
-
 	private static final Block LOCKED_LIGHT_ANGELIC_STONE = BlocksAether.locked_light_angelic_stone;
-
 	private int[][][] rooms = new int[3][3][3];
-
 	private int firstStaircaseZ, secondStaircaseZ, finalStaircaseZ;
-
 	private int xTendency, zTendency;
 
 	public ComponentSilverDungeon() {
-
 	}
 
 	public ComponentSilverDungeon(int chunkX, int chunkZ) {
@@ -54,7 +47,6 @@ public class ComponentSilverDungeon extends AetherStructure {
 	@Override
 	public boolean generate() {
 		this.replaceAir = true;
-
 		this.setStructureOffset(21, 17, 20);
 
 		for (int tries = 0; tries < 100; tries++) {
@@ -62,11 +54,8 @@ public class ComponentSilverDungeon extends AetherStructure {
 		}
 
 		this.setStructureOffset(31, 24, 30);
-
 		this.replaceSolid = true;
-
 		this.setBlocks(BlocksAether.holystone, BlocksAether.mossy_holystone, 30);
-
 		this.addSolidBox(0, -5, 0, 55, 5, 30);
 
 		for (int x = 0; x < 55; x += 4) {
@@ -407,7 +396,6 @@ public class ComponentSilverDungeon extends AetherStructure {
 		this.addSolidBox(x + 2, y, z + 2, 2, height + 4, 2);
 
 		Block slab = Blocks.stone_slab;
-
 		Block double_slab = Blocks.double_stone_slab;
 
 		this.setBlockWithOffset(x + 1, y, z + 1, slab, 0);

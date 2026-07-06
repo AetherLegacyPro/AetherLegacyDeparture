@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.client;
 
 import java.util.List;
-
 import com.gildedgames.the_aether.client.gui.GuiCustomizationScreen;
 import com.gildedgames.the_aether.client.gui.GuiEnterAether;
 import com.gildedgames.the_aether.client.gui.button.*;
@@ -11,7 +10,6 @@ import com.gildedgames.the_aether.client.gui.menu.GuiMenuToggleButton;
 import com.gildedgames.the_aether.network.packets.PacketCapeChanged;
 import com.gildedgames.the_aether.network.packets.PacketExtendedAttack;
 import com.gildedgames.the_aether.player.perks.AetherRankings;
-
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.gameevent.InputEvent;
 import net.minecraft.client.Minecraft;
@@ -35,7 +33,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.event.*;
 import net.minecraftforge.client.event.GuiScreenEvent.DrawScreenEvent;
 import net.minecraftforge.client.event.RenderPlayerEvent.SetArmorModel;
-
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.client.gui.AetherLoadingScreen;
 import com.gildedgames.the_aether.client.renders.entity.PlayerAetherRenderer;
@@ -47,7 +44,6 @@ import com.gildedgames.the_aether.network.AetherGuiHandler;
 import com.gildedgames.the_aether.network.AetherNetwork;
 import com.gildedgames.the_aether.network.packets.PacketOpenContainer;
 import com.gildedgames.the_aether.player.PlayerAether;
-
 import cpw.mods.fml.common.ObfuscationReflectionHelper;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
@@ -76,11 +72,11 @@ public class AetherClientEvents {
 				}
 
 				handleExtendedReach(mc);
-				
+
 			}
-			
+
 		}
-	
+
 
 		if (phase == TickEvent.Phase.START) {
 			if (type.equals(TickEvent.Type.CLIENT)) {
@@ -94,11 +90,11 @@ public class AetherClientEvents {
 			}
 		}
 	}
-	
+
 	private void handleExtendedReach(Minecraft mc)
 	{
 		EntityPlayer player = mc.thePlayer;
-		
+
 		if (player != null) {
 			if (Mouse.getEventButton() == 0) {
 				if (Mouse.getEventButtonState()) {
@@ -149,7 +145,7 @@ public class AetherClientEvents {
 								AetherNetwork.sendToServer(new PacketExtendedAttack(found.getEntityId()));
 							}
 						}
-						
+
 						else if (isAmplifiedValkyrieItem(stack.getItem())) {
 							Vec3 playerVisionn = player.getLookVec();
 							AxisAlignedBB reachDistancee = player.boundingBox.expand(10.0D, 10.0D, 10.0D);
@@ -190,11 +186,11 @@ public class AetherClientEvents {
 
 							if (foundd != null && player.ridingEntity != foundd) {
 								stack.damageItem(1, player);
-					
+
 								AetherNetwork.sendToServer(new PacketExtendedAttack(foundd.getEntityId()));
 							}
 						}
-						
+
 						else if (isArkeniumItem(stack.getItem())) {
 							Vec3 playerVisionn = player.getLookVec();
 							AxisAlignedBB reachDistancee = player.boundingBox.expand(6.0D, 6.0D, 6.0D);
@@ -239,7 +235,7 @@ public class AetherClientEvents {
 								AetherNetwork.sendToServer(new PacketExtendedAttack(foundd.getEntityId()));
 							}
 						}
-						
+
 						else if (isContinuumItem(stack.getItem())) {
 							Vec3 playerVisionn = player.getLookVec();
 							AxisAlignedBB reachDistancee = player.boundingBox.expand(5.0D, 5.0D, 5.0D);
@@ -284,7 +280,7 @@ public class AetherClientEvents {
 								AetherNetwork.sendToServer(new PacketExtendedAttack(foundd.getEntityId()));
 							}
 						}
-						
+
 						else if (isAmplifiedContinuumItem(stack.getItem())) {
 							Vec3 playerVisionn = player.getLookVec();
 							AxisAlignedBB reachDistancee = player.boundingBox.expand(6.0D, 6.0D, 6.0D);
@@ -333,39 +329,39 @@ public class AetherClientEvents {
 				}
 			}
 		}
-		
+
 	}
 
 	public boolean isValkyrieItem(Item item) {
 		return item == ItemsAether.valkyrie_shovel || item == ItemsAether.valkyrie_axe || item == ItemsAether.valkyrie_pickaxe || item == ItemsAether.valkyrie_lance || item == ItemsAether.tipped_valkyrie_lance || item == ItemsAether.tipped_valkyrie_pickaxe || item == ItemsAether.tipped_valkyrie_shovel || item == ItemsAether.tipped_valkyrie_axe;
 	}
-	
+
 	public boolean isAmplifiedValkyrieItem(Item stackIDD)
 	{
 		return stackIDD == ItemsAether.amplified_valkyrie_shovel || stackIDD == ItemsAether.amplified_valkyrie_axe || stackIDD == ItemsAether.amplified_valkyrie_pickaxe || stackIDD == ItemsAether.amplified_valkyrie_lance;
 	}
-	
+
 	public boolean isAscensiteItem(Item stackIDD)
 	{
 		return stackIDD == ItemsAether.ascensite_shovel || stackIDD == ItemsAether.ascensite_axe || stackIDD == ItemsAether.ascensite_pickaxe || stackIDD == ItemsAether.ascensite_sword;
 	}
-	
+
 	public boolean isArkeniumItem(Item stackIDDA)
 	{
 		return stackIDDA == ItemsAether.arkenium_shovel || stackIDDA == ItemsAether.arkenium_axe || stackIDDA == ItemsAether.arkenium_pickaxe || stackIDDA == ItemsAether.arkenium_sword || stackIDDA == ItemsAether.tipped_arkenium_sword || stackIDDA == ItemsAether.tipped_arkenium_pickaxe || stackIDDA == ItemsAether.tipped_arkenium_shovel || stackIDDA == ItemsAether.tipped_arkenium_axe;
 	}
-	
+
 	public boolean isContinuumItem(Item stackIDDA)
 	{
 		return stackIDDA == ItemsAether.continuum_shovel || stackIDDA == ItemsAether.continuum_axe || stackIDDA == ItemsAether.continuum_pickaxe || stackIDDA == ItemsAether.continuum_sword || stackIDDA == ItemsAether.tipped_continuum_sword || stackIDDA == ItemsAether.tipped_continuum_pickaxe || stackIDDA == ItemsAether.tipped_continuum_shovel || stackIDDA == ItemsAether.tipped_continuum_axe;
 	}
-	
+
 	public boolean isAmplifiedContinuumItem(Item stackIDDA)
 	{
 		return stackIDDA == ItemsAether.amplified_continuum_shovel || stackIDDA == ItemsAether.amplified_continuum_axe || stackIDDA == ItemsAether.amplified_continuum_pickaxe || stackIDDA == ItemsAether.amplified_continuum_sword;
 	}
-	
-	
+
+
 
 	@SubscribeEvent
 	public void onOpenGui(GuiOpenEvent event) {
@@ -472,13 +468,9 @@ public class AetherClientEvents {
 	}
 
 	private static final GuiAccessoryButton ACCESSORY_BUTTON = new GuiAccessoryButton(0, 0);
-
 	private static final GuiMenuToggleButton MAIN_MENU_BUTTON = new GuiMenuToggleButton(0, 0);
-
 	private static int previousSelectedTabIndex = -1;
-
 	private static boolean shouldRemoveButton = false;
-	
 	private boolean openedMenu = false;
 
 	@SubscribeEvent
@@ -501,7 +493,7 @@ public class AetherClientEvents {
 						}
 					}
 				} else if (event.gui instanceof GuiInventory) {
-					// We place the buttons where they would be if the inventory was its original size, for consistency with Baubles's button placement algorithm
+					//We place the buttons where they would be if the inventory was its original size, for consistency with Baubles's button placement algorithm
 					int xSizeOriginal = 176;
 					int ySizeOriginal = 166;
 					event.buttonList.add(ACCESSORY_BUTTON.setPosition((xSize - xSizeOriginal) / 2 + guiLeft + 26, (ySize - ySizeOriginal) / 2 + guiTop + 65));
@@ -521,19 +513,12 @@ public class AetherClientEvents {
 			event.buttonList.add(MAIN_MENU_BUTTON.setPosition(event.gui.width - 24, 4));
 		}
 
-		//Causing the Log to freak out if enabled
-		//if (AetherConfig.getMenuEnabled() && event.gui instanceof GuiMainMenu) {
-			//Minecraft.getMinecraft().displayGuiScreen(new AetherMainMenu());
-		//}
-		
 		if (!openedMenu && AetherConfig.getMenuEnabled() && event.gui instanceof GuiMainMenu) {
 	        openedMenu = true;
 	        Minecraft.getMinecraft().displayGuiScreen(new AetherMainMenu());
 	    }
 
-		//if (event.gui.getClass() == GuiOptions.class)
-		if (event.gui instanceof GuiOptions)
-		{
+		if (event.gui instanceof GuiOptions) {
 			if (Minecraft.getMinecraft().thePlayer != null)
 			{
 				if (AetherRankings.isRankedPlayer(Minecraft.getMinecraft().thePlayer.getUniqueID()))
@@ -543,11 +528,8 @@ public class AetherClientEvents {
 			}
 		}
 
-		//if (event.gui.getClass() == ScreenChatOptions.class)
-		if (event.gui instanceof ScreenChatOptions)
-		{
-			if (Minecraft.getMinecraft().thePlayer != null)
-			{
+		if (event.gui instanceof ScreenChatOptions) {
+			if (Minecraft.getMinecraft().thePlayer != null) {
 				int i = 13;
 				event.buttonList.add(new GuiCapeButton(event.gui.width / 2 - 155 + i % 2 * 160, event.gui.height / 6 + 24 * (i >> 1)));
 			}
@@ -608,7 +590,7 @@ public class AetherClientEvents {
 			if (playerAether.getAccessoryInventory().wearingAccessory(ItemsAether.invisibility_cape)) {
 				event.setCanceled(true);
 			}
-			
+
 		}
 
 		PlayerAetherRenderer.instance().setPartialTicks(event.partialRenderTick);

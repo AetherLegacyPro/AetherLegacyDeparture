@@ -1,13 +1,11 @@
 package com.gildedgames.the_aether.items.util;
 
 import java.util.Set;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemStack;
-
 import com.google.common.collect.Sets;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 
@@ -24,6 +22,7 @@ public enum EnumAetherToolType {
 			BlocksAether.icestone, BlocksAether.aerogel, BlocksAether.carved_stone, BlocksAether.angelic_stone,
 			BlocksAether.hellfire_stone, BlocksAether.sentry_stone, BlocksAether.light_angelic_stone,
 			BlocksAether.light_hellfire_stone)) {
+
 		@Override
 		public boolean canHarvestBlock(ToolMaterial toolMaterial, Block state) {
 			Block block = state;
@@ -51,19 +50,23 @@ public enum EnumAetherToolType {
 			return block != null && (block.getMaterial() == Material.iron || block.getMaterial() == Material.anvil || block.getMaterial() == Material.rock) ? this.efficiencyOnProperMaterial : super.getStrVsBlock(stack, block);
 		}
 	},
+
 	SHOVEL(Sets.newHashSet(Blocks.grass, Blocks.dirt, Blocks.sand, Blocks.gravel, Blocks.snow,
 			Blocks.snow_layer, Blocks.clay, Blocks.farmland, Blocks.soul_sand,
 			Blocks.mycelium, BlocksAether.aether_dirt, BlocksAether.aether_grass,
 			BlocksAether.aercloud, BlocksAether.enchanted_aether_grass, BlocksAether.quicksoil)) {
+
 		@Override
 		public boolean canHarvestBlock(ToolMaterial toolMaterial, Block block) {
 			return block == Blocks.snow ? true : block == Blocks.snow_layer;
 		}
 	},
+
 	AXE(Sets.newHashSet(Blocks.planks, Blocks.bookshelf, Blocks.log, Blocks.chest,
 			Blocks.double_stone_slab, Blocks.stone_slab, Blocks.pumpkin,
 			Blocks.lit_pumpkin, BlocksAether.skyroot_log, BlocksAether.golden_oak_log, BlocksAether.skyroot_planks,
 			BlocksAether.chest_mimic)) {
+
 		@Override
 		public float getStrVsBlock(ItemStack stack, Block block) {
 			return block != null && (block.getMaterial() == Material.wood || block.getMaterial() == Material.plants || block.getMaterial() == Material.vine) ? this.efficiencyOnProperMaterial : super.getStrVsBlock(stack, block);
@@ -75,15 +78,15 @@ public enum EnumAetherToolType {
 	public float efficiencyOnProperMaterial = 4.0F;
 
 	EnumAetherToolType(Set<Block> toolBlockSet) {
-		this.toolBlockSet = toolBlockSet;
+        this.toolBlockSet = toolBlockSet;
 	}
 
 	public Set<Block> getToolBlockSet() {
-		return this.toolBlockSet;
+        return this.toolBlockSet;
 	}
 
 	public boolean canHarvestBlock(ToolMaterial toolMaterial, Block block) {
-		return false;
+        return false;
 	}
 
 	public float getStrVsBlock(ItemStack stack, Block block) {

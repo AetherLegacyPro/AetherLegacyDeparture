@@ -8,7 +8,6 @@ import com.gildedgames.the_aether.entities.hostile.EntityBattleSentry;
 import com.gildedgames.the_aether.entities.hostile.EntityCockatrice;
 import com.gildedgames.the_aether.entities.hostile.EntitySentry;
 import com.gildedgames.the_aether.entities.hostile.EntityUro;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -21,10 +20,9 @@ public class BlockDungeonTrap extends Block {
 
 	public BlockDungeonTrap(Block pickBlock) {
 		super(Material.rock);
-
 		this.pickBlock = pickBlock;
 		this.setHardness(this.pickBlock != null ? -1F : -1F);
-		
+
 		if (pickBlock != null) {
 			this.pickBlock = pickBlock;
 			this.setResistance(6000000.0F);
@@ -47,8 +45,8 @@ public class BlockDungeonTrap extends Block {
 				battle_sentry.setPosition(x + 0.5D, y + 1D, z + 0.5D);
 
 					if (!world.isRemote) {
-						world.spawnEntityInWorld(battle_sentry);		
-				}			
+						world.spawnEntityInWorld(battle_sentry);
+				}
 			} else if (this == BlocksAether.angelic_trap) {
 				EntityValkyrie valkyrie = new EntityValkyrie(world);
 				valkyrie.setPosition(x + 0.5D, y + 1D, z + 0.5D);
@@ -70,7 +68,7 @@ public class BlockDungeonTrap extends Block {
 					if (!world.isRemote) {
 						world.spawnEntityInWorld(valkyrie);
 					}
-				
+
 			} else if (this == BlocksAether.hellfire_trap) {
 				EntityFireMinion minion = new EntityFireMinion(world);
 				minion.setPosition(x + 0.5D, y + 1D, z + 0.5D);
@@ -84,7 +82,7 @@ public class BlockDungeonTrap extends Block {
 
 				if (!world.isRemote) {
 					world.spawnEntityInWorld(minion);
-				}			
+				}
 			} else if (this == BlocksAether.fuse_trap) {
 				EntityUro minion = new EntityUro(world);
 				minion.setPosition(x + 0.5D, y + 1D, z + 0.5D);

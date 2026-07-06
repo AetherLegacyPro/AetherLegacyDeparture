@@ -2,7 +2,6 @@ package com.gildedgames.the_aether.entities.bosses;
 
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.entities.hostile.EntityAetherMob;
-
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
@@ -17,7 +16,6 @@ public class EntityMythicFireMinion extends EntityAetherMob {
 
 	public EntityMythicFireMinion(World world) {
 		super(world);
-
 		this.isImmuneToFire = true;
 		this.setSize(1.1F, 1.8F);
 		this.tasks.addTask(2, new EntityAIWander(this, 1.0D));
@@ -34,9 +32,8 @@ public class EntityMythicFireMinion extends EntityAetherMob {
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(20.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(100.0D);
 	}
-	
-	public int getTotalArmorValue()
-    {
+
+	public int getTotalArmorValue() {
         return 10;
     }
 
@@ -54,19 +51,16 @@ public class EntityMythicFireMinion extends EntityAetherMob {
 			this.worldObj.spawnParticle("flame", d3, d4, d5, 0.0D, -0.075000002980232239D, 0.0D);
 		}
 	}
-	
-	public void onLivingUpdate()
-    {
-	 if (!this.worldObj.isRemote && this.worldObj.difficultySetting == EnumDifficulty.PEACEFUL)
-	 {
+
+	public void onLivingUpdate() {
+	 if (!this.worldObj.isRemote && this.worldObj.difficultySetting == EnumDifficulty.PEACEFUL) {
 	  this.setDead();
 	 }
-			
-	  this.despawnEntity(); 
-	  
+
+	  this.despawnEntity();
 	  super.onLivingUpdate();
 	}
-	
+
 	@Override
 	protected void dropFewItems(boolean var1, int var2) {
 		this.dropItem(Item.getItemFromBlock(BlocksAether.divine_hellfire_stone), 3);

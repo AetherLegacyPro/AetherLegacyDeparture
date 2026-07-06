@@ -135,9 +135,7 @@ public class YoungZephyrModel extends ModelBase {
 	@Override
 	public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn) {
 		float motion = (float) (Math.sin(limbSwing * 20 / 57.2957795) * limbSwingAmount * .5F);
-		//final float boff = this.sinage2;
-		//final float yOffset = 5.5f;
-		
+
 		this.LeftFace.rotationPointY = motion + 8;
 		this.LeftFace.rotationPointX = motion * 0.5F;
 
@@ -162,19 +160,6 @@ public class YoungZephyrModel extends ModelBase {
 		this.Tail3.rotationPointX = (float) (Math.sin(limbSwing * 10 / 57.2957795) * limbSwingAmount * 0.95F);
 		this.Tail3.rotationPointY = -motion;
 		this.Tail3.rotateAngleY = this.Tail2.rotateAngleY + 0.35F;
-		
-		//this.LeftFace.rotationPointY = boff + yOffset + this.sinage * 2.0f;
-        //this.BodyRightSide2.rotationPointY = boff + yOffset + this.sinage * 2.0f;
-        //this.Mouth.rotationPointY = boff + yOffset + this.sinage * 2.0f;
-        //this.CloudButt.rotationPointY = boff + yOffset + this.sinage * 2.0f;
-        //this.Tail3.rotationPointY = boff + yOffset + this.sinage * 2.0f;
-        //this.RightFace.rotationPointY = boff + yOffset + this.sinage * 2.0f;
-        //this.BodyLeftSide1.rotationPointY = boff + yOffset + this.sinage * 2.0f;
-        //this.BodyLeftSide2.rotationPointY = boff + yOffset + this.sinage * 2.0f;
-        //this.Body.rotationPointY = boff + yOffset + this.sinage * 2.0f;
-        //this.BodyRightSide1.rotationPointY = boff + yOffset + this.sinage * 2.0f;
-        //this.Tail1.rotationPointY = boff + yOffset + this.sinage * 2.0f;
-        //this.Tail2.rotationPointY = boff + yOffset + this.sinage * 2.0f;
-       
+
 	}
 }

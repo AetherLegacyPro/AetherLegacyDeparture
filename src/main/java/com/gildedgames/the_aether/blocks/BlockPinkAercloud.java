@@ -1,11 +1,9 @@
 package com.gildedgames.the_aether.blocks;
 
 import java.util.List;
-
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.items.block.IColoredBlock;
 import com.gildedgames.the_aether.items.block.INamedBlock;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
@@ -19,7 +17,6 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.Facing;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -27,7 +24,6 @@ public class BlockPinkAercloud extends Block implements IColoredBlock, INamedBlo
 
 	public BlockPinkAercloud() {
 		super(Material.ice);
-
 		this.setHardness(0.2F);
 		this.setStepSound(soundTypeCloth);
 		this.setBlockTextureName("aether_legacy:pink_aercloud");
@@ -35,27 +31,27 @@ public class BlockPinkAercloud extends Block implements IColoredBlock, INamedBlo
 
 	@SideOnly(Side.CLIENT)
 	@SuppressWarnings({"unchecked", "rawtypes"})
-	public void getSubBlocks(Item p_149666_1_, CreativeTabs p_149666_2_, List p_149666_3_) {
-		p_149666_3_.add(new ItemStack(this, 1, 0));
-		p_149666_3_.add(new ItemStack(this, 1, 1));
-		p_149666_3_.add(new ItemStack(this, 1, 2));
+	public void getSubBlocks(Item item, CreativeTabs creativeTabs, List list) {
+        list.add(new ItemStack(this, 1, 0));
+        list.add(new ItemStack(this, 1, 1));
+        list.add(new ItemStack(this, 1, 2));
 	}
 
 	@Override
 	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
 		entity.fallDistance = 0;
-		
-		//pink aercloud
-	if (AetherConfig.shouldPinkAercloudRegen()) {	
+
+        //pink aercloud
+	if (AetherConfig.shouldPinkAercloudRegen()) {
 		if (world.getBlockMetadata(x, y, z) == 0) {
 			if (entity instanceof EntityPlayer player) {
 				((EntityLivingBase) entity).addPotionEffect(new PotionEffect(10, 20, 0));
 
 				}
-			}	
-			
-		
-			//magenta aercloud		
+			}
+
+
+			//magenta aercloud
 		else if (world.getBlockMetadata(x, y, z) == 1) {
 				if (entity instanceof EntityPlayer player) {
 					((EntityLivingBase) entity).addPotionEffect(new PotionEffect(10, 20, 0));
@@ -63,21 +59,17 @@ public class BlockPinkAercloud extends Block implements IColoredBlock, INamedBlo
 				}
 
 		}
-		
+
 		//orange aercloud
 		else if (world.getBlockMetadata(x, y, z) == 2) {
-				if (entity instanceof EntityPlayer player) {
-
-
-				}
 
 			}
-		}
+    }
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public int getRenderBlockPass() {
-		return 1;
+        return 1;
 	}
 
 	@Override
@@ -87,7 +79,7 @@ public class BlockPinkAercloud extends Block implements IColoredBlock, INamedBlo
 
 	@Override
 	public int damageDropped(int meta) {
-		return meta;
+        return meta;
 	}
 
 	@Override
@@ -128,10 +120,10 @@ public class BlockPinkAercloud extends Block implements IColoredBlock, INamedBlo
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public boolean shouldSideBeRendered(IBlockAccess p_149646_1_, int p_149646_2_, int p_149646_3_, int p_149646_4_, int p_149646_5_) {
-		Block block = p_149646_1_.getBlock(p_149646_2_, p_149646_3_, p_149646_4_);
+	public boolean shouldSideBeRendered(IBlockAccess iBlockAccess, int p_149646_2_, int p_149646_3_, int p_149646_4_, int p_149646_5_) {
+		Block block = iBlockAccess.getBlock(p_149646_2_, p_149646_3_, p_149646_4_);
 
-		if (p_149646_1_.getBlockMetadata(p_149646_2_, p_149646_3_, p_149646_4_) != p_149646_1_.getBlockMetadata(p_149646_2_ - Facing.offsetsXForSide[p_149646_5_], p_149646_3_ - Facing.offsetsYForSide[p_149646_5_], p_149646_4_ - Facing.offsetsZForSide[p_149646_5_])) {
+		if (iBlockAccess.getBlockMetadata(p_149646_2_, p_149646_3_, p_149646_4_) != iBlockAccess.getBlockMetadata(p_149646_2_ - Facing.offsetsXForSide[p_149646_5_], p_149646_3_ - Facing.offsetsYForSide[p_149646_5_], p_149646_4_ - Facing.offsetsZForSide[p_149646_5_])) {
 			return true;
 		}
 
@@ -139,7 +131,7 @@ public class BlockPinkAercloud extends Block implements IColoredBlock, INamedBlo
 			return false;
 		}
 
-		return super.shouldSideBeRendered(p_149646_1_, p_149646_2_, p_149646_3_, p_149646_4_, p_149646_5_);
+		return super.shouldSideBeRendered(iBlockAccess, p_149646_2_, p_149646_3_, p_149646_4_, p_149646_5_);
 	}
 
 	@Override

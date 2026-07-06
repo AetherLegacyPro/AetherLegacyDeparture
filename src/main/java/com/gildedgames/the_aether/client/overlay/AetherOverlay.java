@@ -12,15 +12,12 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.opengl.GL11;
-
 import com.gildedgames.the_aether.api.player.util.IAetherBoss;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.entities.passive.mountable.EntityMoa;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.player.PlayerAether;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -28,11 +25,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class AetherOverlay {
 
 	private static final ResourceLocation TEXTURE_JUMPS = Aether.locate("textures/gui/jumps.png");
-
 	private static final ResourceLocation TEXTURE_COOLDOWN_BAR = Aether.locate("textures/gui/cooldown_bar.png");
-
 	private static final ResourceLocation TEXTURE_POISON_VIGNETTE = Aether.locate("textures/blur/poison_vignette.png");
-
 	private static final ResourceLocation TEXTURE_CURE_VIGNETTE = Aether.locate("textures/blur/cure_vignette.png");
 
 	public static void renderPoison(Minecraft mc) {
@@ -167,25 +161,21 @@ public class AetherOverlay {
 			mc.fontRenderer.drawStringWithShadow(playerInfo.getHammerName() + " " + I18n.format("item.notch_hammer.cooldown"), (width / 2) - (mc.fontRenderer.getStringWidth(playerInfo.getHammerName() + " Cooldown") / 2), 32, 0xffffffff);
 
 			GL11.glPushMatrix();
-
 			GL11.glEnable(GL11.GL_BLEND);
 			GL11.glDisable(GL11.GL_DEPTH_TEST);
 			GL11.glDepthMask(false);
 			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 			GL11.glDisable(GL11.GL_ALPHA_TEST);
-
 			mc.renderEngine.bindTexture(TEXTURE_COOLDOWN_BAR);
 
 			drawTexturedModalRect(width / 2 - 64, 42, 0, 8, 128, 8);
-
 			drawTexturedModalRect(width / 2 - 64, 42, 0, 0, cooldownRemaining, 8);
 
 			GL11.glDepthMask(true);
 			GL11.glEnable(GL11.GL_DEPTH_TEST);
 			GL11.glEnable(GL11.GL_ALPHA_TEST);
 			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-
 			GL11.glPopMatrix();
 		}
 	}
@@ -198,15 +188,10 @@ public class AetherOverlay {
 		}
 
 		ScaledResolution scaledresolution = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
-
 		EntityMoa moa = (EntityMoa) (player.ridingEntity);
-
 		int width = scaledresolution.getScaledWidth();
-
 		GL11.glPushMatrix();
-
 		mc.renderEngine.bindTexture(TEXTURE_JUMPS);
-
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 
 		for (int jump = 0; jump < moa.getMaxJumps(); jump++) {
@@ -221,7 +206,6 @@ public class AetherOverlay {
 		}
 
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-
 		GL11.glPopMatrix();
 	}
 
@@ -266,7 +250,7 @@ public class AetherOverlay {
 				player.setFocusedBoss(null);
 				return;
 			}
-			//System.out.println(player.getFocusedBoss().getBossHealth());
+
 			String bossTitle = boss.getBossName();
 			ScaledResolution scaledresolution = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
 
@@ -276,24 +260,20 @@ public class AetherOverlay {
 			GL11.glPushMatrix();
 
 			mc.fontRenderer.drawStringWithShadow(bossTitle, width / 2 - (mc.fontRenderer.getStringWidth(bossTitle) / 2), 2, 0xffffffff);
-
 			mc.renderEngine.bindTexture(Aether.locate("textures/gui/boss_bar.png"));
 
 			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 
 			drawTexturedModalRect(width / 2 - 128, 12, 0, 16, 256, 32);
-
 			drawTexturedModalRect(width / 2 - 128, 12, 0, 0, healthRemaining, 16);
 
 			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-
 			GL11.glPopMatrix();
 		}
 	}
 
 	public static void drawTexturedModalRect(float x, float y, float u, float v, float width, float height) {
 		float zLevel = -90.0F;
-
 		float var7 = 0.00390625F;
 		float var8 = 0.00390625F;
 		Tessellator tessellator = Tessellator.instance;
@@ -306,11 +286,7 @@ public class AetherOverlay {
 	}
 
 	public static float getPoisonAlpha(float f) {
-		return (f * f) / 5.0F + 0.4F;
-	}
-
-	public static float getCureAlpha(float f) {
-		return (f * f) / 10.0F + 0.4F;
+        return (f * f) / 5.0F + 0.4F;
 	}
 
 }

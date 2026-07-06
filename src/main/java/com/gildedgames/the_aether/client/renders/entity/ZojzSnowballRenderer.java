@@ -2,12 +2,10 @@ package com.gildedgames.the_aether.client.renders.entity;
 
 import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.entities.projectile.EntityZojzSnowball;
-
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
@@ -15,7 +13,6 @@ public class ZojzSnowballRenderer extends Render {
 
     public ZojzSnowballRenderer() {
         super();
-
         this.shadowSize = 0.0F;
     }
 
@@ -25,7 +22,6 @@ public class ZojzSnowballRenderer extends Render {
         GL11.glTranslated(par2, par4, par6);
 
         this.bindTexture(this.getEntityTexture(notchwave));
-
         Tessellator tessellator = Tessellator.instance;
 
         GL11.glRotatef(180F - this.renderManager.playerViewY, 0.0F, 1.0F, 0.0F);
@@ -47,8 +43,8 @@ public class ZojzSnowballRenderer extends Render {
     }
 
     @Override
-    public void doRender(Entity par1Entity, double par2, double par4, double par6, float par8, float par9) {
-        this.doRenderNotchWave((EntityZojzSnowball) par1Entity, par2, par4, par6, par8, par9);
+    public void doRender(Entity entity, double par2, double par4, double par6, float par8, float par9) {
+        this.doRenderNotchWave((EntityZojzSnowball) entity, par2, par4, par6, par8, par9);
     }
 
     @Override

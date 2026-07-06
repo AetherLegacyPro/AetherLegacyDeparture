@@ -6,20 +6,19 @@ import net.minecraft.tileentity.*;
 import org.lwjgl.opengl.*;
 import net.minecraft.client.renderer.*;
 
-public class TileEntityElysianTotemRenderer extends TileEntitySpecialRenderer
-{
+public class TileEntityElysianTotemRenderer extends TileEntitySpecialRenderer {
     private static final ResourceLocation TEXTURE_TOTEM;
     private static final ResourceLocation TEXTURE_TOTEM_GLOW;
     private ElysianTotemModel totemModel;
-    
+
     public TileEntityElysianTotemRenderer() {
         this.totemModel = new ElysianTotemModel();
     }
-    
+
     public void renderTileEntityAt(final TileEntity tileentity, final double d, final double d1, final double d2, final float f) {
         this.renderTileEntityAltarAt((TileEntityElysianTotem)tileentity, d, d1, d2, f);
     }
-    
+
     public void renderTileEntityAltarAt(final TileEntityElysianTotem totem, final double d, final double d1, final double d2, final float f) {
         final ElysianTotemModel modelTotem = this.totemModel;
         modelTotem.Shape6.rotateAngleY = totem.getTotemRotation();
@@ -50,7 +49,7 @@ public class TileEntityElysianTotemRenderer extends TileEntitySpecialRenderer
         GL11.glDisable(3042);
         GL11.glPopMatrix();
     }
-    
+
     static {
         TEXTURE_TOTEM = new ResourceLocation("aether_legacy", "textures/tile_entities/elysian_totem.png");
         TEXTURE_TOTEM_GLOW = new ResourceLocation("aether_legacy", "textures/tile_entities/elysian_totem_glow.png");

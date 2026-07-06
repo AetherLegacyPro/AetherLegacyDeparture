@@ -1,13 +1,11 @@
 package com.gildedgames.the_aether.items.util;
 
 import java.util.Set;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemStack;
-
 import com.google.common.collect.Sets;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 
@@ -61,7 +59,7 @@ public enum EnumAetherMultiToolType {
 		public boolean canHarvestBlockk(ToolMaterial toolMaterial, Block block) {
 			return block == Blocks.snow ? true : block == Blocks.snow_layer;
 		}
-		
+
 	};
 
 	private Set<Block> toolBlockSet;
@@ -69,15 +67,15 @@ public enum EnumAetherMultiToolType {
 	public float efficiencyOnProperMaterial = 4.0F;
 
 	EnumAetherMultiToolType(Set<Block> toolBlockSet) {
-		this.toolBlockSet = toolBlockSet;
+        this.toolBlockSet = toolBlockSet;
 	}
 
 	public Set<Block> getToolBlockSet() {
-		return this.toolBlockSet;
+        return this.toolBlockSet;
 	}
 
 	public boolean canHarvestBlock(ToolMaterial toolMaterial, Block block) {
-		return false;
+        return false;
 	}
 
 	public float getStrVsBlock(ItemStack stack, Block block) {

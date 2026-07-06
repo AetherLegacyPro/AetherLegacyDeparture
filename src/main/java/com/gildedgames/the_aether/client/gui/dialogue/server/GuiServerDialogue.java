@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.client.gui.dialogue.server;
 
 import java.util.ArrayList;
-
 import com.gildedgames.the_aether.client.gui.dialogue.DialogueOption;
 import com.gildedgames.the_aether.client.gui.dialogue.GuiDialogue;
 import com.google.common.collect.Lists;
@@ -16,7 +15,6 @@ public class GuiServerDialogue extends GuiDialogue {
         super(dialogue);
 
         this.dialogueName = dialogueName;
-
         ArrayList<DialogueOption> dialogueOptions = Lists.newArrayList();
 
         for (String dialogueForOption : dialogueText) {

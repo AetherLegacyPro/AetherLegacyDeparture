@@ -4,20 +4,17 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
-
 import com.gildedgames.the_aether.client.models.entities.AercenturionModel;
 import com.gildedgames.the_aether.entities.projectile.EntityAercenturionProjectile;
 
 public class AercenturionProjectileRenderer extends RenderLiving {
 
 	private static final ResourceLocation soundwaveTexture = new ResourceLocation("aether_legacy", "textures/entities/projectile/valkyrie_wave.png");
-	
+
     public AercenturionProjectileRenderer() {
         super(new AercenturionModel(), 0.5f);
-
         this.shadowSize = 0.0F;
     }
 
@@ -49,8 +46,8 @@ public class AercenturionProjectileRenderer extends RenderLiving {
     }
 
     @Override
-    public void doRender(Entity par1Entity, double par2, double par4, double par6, float par8, float par9) {
-        this.doRenderNotchWave((EntityAercenturionProjectile) par1Entity, par2, par4, par6, par8, par9);
+    public void doRender(Entity entity, double par2, double par4, double par6, float par8, float par9) {
+        this.doRenderNotchWave((EntityAercenturionProjectile) entity, par2, par4, par6, par8, par9);
     }
 
     @Override

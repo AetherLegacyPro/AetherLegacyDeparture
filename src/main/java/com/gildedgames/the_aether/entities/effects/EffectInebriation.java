@@ -4,21 +4,17 @@ import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.items.util.EnumSkyrootBucketType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class EffectInebriation extends PotionEffect
-{
+public class EffectInebriation extends PotionEffect {
     private List<ItemStack> curativeItems;
 
-    public EffectInebriation(int potionID, int duration, int amplifier)
-    {
+    public EffectInebriation(int potionID, int duration, int amplifier) {
         this(potionID, duration, amplifier, false);
     }
 
-    public EffectInebriation(int potionID, int duration, int amplifier, boolean isAmbient)
-    {
+    public EffectInebriation(int potionID, int duration, int amplifier, boolean isAmbient) {
         super(potionID, duration, amplifier, isAmbient);
         this.curativeItems = new ArrayList<>();
         this.curativeItems.add(new ItemStack(ItemsAether.skyroot_bucket, EnumSkyrootBucketType.Remedy.meta));
@@ -26,8 +22,7 @@ public class EffectInebriation extends PotionEffect
     }
 
     @Override
-    public List<ItemStack> getCurativeItems()
-    {
+    public List<ItemStack> getCurativeItems() {
         return this.curativeItems;
     }
 
@@ -42,8 +37,7 @@ public class EffectInebriation extends PotionEffect
     }
 
     @Override
-    public void setCurativeItems(List<ItemStack> curativeItems)
-    {
+    public void setCurativeItems(List<ItemStack> curativeItems) {
         this.curativeItems = curativeItems;
     }
 }

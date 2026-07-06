@@ -1,9 +1,7 @@
 package com.gildedgames.the_aether.world.dungeon.osmium;
 
 import java.util.Random;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
-
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -11,11 +9,10 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 public class OsmiumDungeonGen20 extends WorldGenerator {
 
 	public OsmiumDungeonGen20() {
-
 	}
-	
+
 	public boolean generate(final World world, final Random random, final int i, final int j, final int k) {
-		
+
 		world.setBlock(i + 28, j + 57, k + 31, placeBuildingBlock(random), 0, 2);
 		world.setBlock(i + 32, j + 57, k + 31, placeBuildingBlock(random), 0, 2);
 		world.setBlock(i + 46, j + 57, k + 31, placeBuildingBlock(random), 0, 2);
@@ -901,10 +898,10 @@ public class OsmiumDungeonGen20 extends WorldGenerator {
 		world.setBlock(i + 40, j + 66, k + 38, placeBuildingBlock(random), 0, 2);
 		world.setBlock(i + 39, j + 66, k + 39, placeBuildingBlock(random), 0, 2);
 		world.setBlock(i + 39, j + 67, k + 38, placeBuildingBlock(random), 0, 2);
-		
+
 		return true;
 	}
-	
+
 	private Block placeBuildingBlock(Random random) {
         if (random.nextDouble() < 0.005) {
             return BlocksAether.fuse_trap;

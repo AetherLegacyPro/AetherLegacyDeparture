@@ -6,7 +6,6 @@ import com.gildedgames.the_aether.api.player.util.IAetherAbility;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 import com.gildedgames.the_aether.registry.achievements.AetherAchievement;
-
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
@@ -23,12 +22,10 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.AchievementEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent.BreakSpeed;
 import net.minecraftforge.event.entity.player.PlayerEvent.Clone;
-
 import com.gildedgames.the_aether.entities.util.EntityHook;
 import com.gildedgames.the_aether.network.AetherNetwork;
 import com.gildedgames.the_aether.network.packets.PacketAccessory;
 import com.gildedgames.the_aether.network.packets.PacketAchievement;
-
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerChangedDimensionEvent;
@@ -36,7 +33,7 @@ import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerRespawnEvent;
 
 public class PlayerAetherEvents {
-	
+
 	@SubscribeEvent
 	public void onPlayerAetherConstructing(EntityConstructing event) {
 		if (event.entity instanceof EntityPlayer) {
@@ -50,7 +47,6 @@ public class PlayerAetherEvents {
 	public void onPlayerAetherLoggedIn(PlayerLoggedInEvent event) {
 		if (!event.player.worldObj.isRemote) {
 			PlayerAether playerAether = PlayerAether.get(event.player);
-
 			AetherNetwork.sendTo(new PacketAccessory(playerAether), (EntityPlayerMP) event.player);
 			playerAether.updateShardCount(0);
 			playerAether.updatePowerShardCount(0);
@@ -61,7 +57,7 @@ public class PlayerAetherEvents {
 			} else {
 				playerAether.givePortalFrame();
 			}
-			if (event.player.worldObj.isRemote) { 
+			if (event.player.worldObj.isRemote) {
 				if (AetherConfig.enable_assets_message) {
 					EntityPlayer player = event.player;
 					if(System.getProperty("os.name").toLowerCase().contains("windows")) {
@@ -80,7 +76,6 @@ public class PlayerAetherEvents {
 	public void onPlayerAetherClone(Clone event) {
 		PlayerAether original = PlayerAether.get(event.original);
 		PlayerAether playerAether = PlayerAether.get(event.entityPlayer);
-
 		playerAether.shardCount = original.shardCount;
 		playerAether.powerCount = original.powerCount;
 		playerAether.dexCount = original.dexCount;
@@ -98,17 +93,16 @@ public class PlayerAetherEvents {
 	public void onPlayerAetherRespawn(PlayerRespawnEvent event) {
 		if (!event.player.worldObj.isRemote) {
 			PlayerAether playerAether = PlayerAether.get(event.player);
-
 			AetherNetwork.sendTo(new PacketAccessory(playerAether), (EntityPlayerMP) event.player);
-			
+
 			playerAether.updateShardCount(0);
 			event.player.setHealth(event.player.getMaxHealth());
-			
+
 			playerAether.updatePowerShardCount(0);
-			
+
 			playerAether.updateDexShardCount(0);
 			event.player.setAIMoveSpeed(event.player.getAIMoveSpeed());
-			
+
 			playerAether.isPoisoned = false;
 			playerAether.poisonTime = 0;
 			playerAether.isCured = false;
@@ -194,7 +188,6 @@ public class PlayerAetherEvents {
 		event.ammount = reducedDamage;
 	}
 
-
 	@SubscribeEvent
 	public void onLivingAttack(LivingAttackEvent event) {
 		if (!(event.entityLiving instanceof EntityPlayer player)) {
@@ -222,7 +215,6 @@ public class PlayerAetherEvents {
 		if (ability.shouldExecute() && ability.onPlayerAttacked(event.source)) {
 			event.setCanceled(true);
 		}
-
 	}
 
 	@SubscribeEvent
@@ -236,22 +228,24 @@ public class PlayerAetherEvents {
 		if (!(achievement instanceof AetherAchievement)) {
 			return;
 		}
-		EntityPlayer player = event.entityPlayer;
 
+		EntityPlayer player = event.entityPlayer;
 		int achievementType = achievement == AchievementsAether.defeat_bronze ? 1 : achievement == AchievementsAether.defeat_silver ? 2 : 0;
 
 		if (!player.worldObj.isRemote && ((EntityPlayerMP) player).func_147099_x().canUnlockAchievement(achievement) && !((EntityPlayerMP) player).func_147099_x().hasAchievementUnlocked(achievement)) {
 			if (event.achievement == AchievementsAether.enter_aether) {
 				ItemStack loreBookStack = new ItemStack(ItemsAether.lore_book);
+
 				if (!player.inventory.addItemStackToInventory(loreBookStack)) {
 					player.worldObj.spawnEntityInWorld(new EntityItem(player.worldObj, player.posX, player.posY, player.posZ, loreBookStack));
 				}
+
 				if (!AetherConfig.disableParachutes()) {
 					ItemStack goldenParachuteStack = new ItemStack(ItemsAether.golden_parachute);
 					if (!player.inventory.addItemStackToInventory(goldenParachuteStack)) {
 						player.worldObj.spawnEntityInWorld(new EntityItem(player.worldObj, player.posX, player.posY, player.posZ, goldenParachuteStack));
 					}
-				}	
+				}
 			}
 
 			AetherNetwork.sendTo(new PacketAchievement(achievementType), (EntityPlayerMP) player);

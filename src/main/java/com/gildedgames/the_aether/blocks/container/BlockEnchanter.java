@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.blocks.container;
 
 import java.util.Random;
-
 import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.network.AetherGuiHandler;
@@ -32,7 +31,6 @@ public class BlockEnchanter extends BlockAetherContainer {
 
 	public BlockEnchanter() {
 		super(Material.rock);
-
 		this.setHardness(2.0F);
 	}
 
@@ -64,7 +62,7 @@ public class BlockEnchanter extends BlockAetherContainer {
 
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
-		return new TileEntityEnchanter();
+        return new TileEntityEnchanter();
 	}
 
 	@Override

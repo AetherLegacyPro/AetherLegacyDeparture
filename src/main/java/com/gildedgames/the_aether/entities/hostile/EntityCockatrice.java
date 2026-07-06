@@ -16,7 +16,6 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
-
 import com.gildedgames.the_aether.entities.passive.EntityFlynx;
 import com.gildedgames.the_aether.entities.passive.mountable.EntityMoa;
 import com.gildedgames.the_aether.entities.projectile.EntityPoisonNeedle;
@@ -26,12 +25,10 @@ import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 public class EntityCockatrice extends EntityMob {
 
 	public float wingRotation, destPos, prevDestPos, prevWingRotation;
-
 	public int shootTime, ticksUntilFlap;
 
 	public EntityCockatrice(World world) {
 		super(world);
-
 		this.stepHeight = 1.0F;
 		this.setSize(1.0F, 2.0F);
 		this.tasks.addTask(0, new EntityAISwimming(this));
@@ -46,7 +43,6 @@ public class EntityCockatrice extends EntityMob {
 	@Override
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
-
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(1.2D);
 		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(35.0D);
 		this.setHealth(15);
@@ -66,9 +62,7 @@ public class EntityCockatrice extends EntityMob {
 	public void onUpdate() {
 		super.onUpdate();
 
-		if (this.entityToAttack instanceof EntityPlayer && this.shouldAttackPlayer((EntityPlayer)this.entityToAttack))
-        {
-			
+		if (this.entityToAttack instanceof EntityPlayer && this.shouldAttackPlayer((EntityPlayer)this.entityToAttack)) {
 		if (this.getEntityToAttack() != null) {
 			if (this.getAttackTarget() instanceof EntityPlayer && ((EntityPlayer) this.getAttackTarget()).capabilities.isCreativeMode) {
 				this.setAttackTarget(null);
@@ -99,25 +93,22 @@ public class EntityCockatrice extends EntityMob {
 			this.setDead();
 		}
 	}
-	
-	private boolean shouldAttackPlayer(EntityPlayer p_70821_1_)
-    {
-        ItemStack itemstack = p_70821_1_.inventory.armorInventory[3];
 
-        if ((itemstack != null && itemstack.getItem() == ItemsAether.arkenium_helmet)      	 
-        	 ||(itemstack != null && itemstack.getItem() == ItemsAether.amplified_arkenium_helmet))
-        {
-        p_70821_1_.triggerAchievement(AchievementsAether.arkenium_helmet);
+	private boolean shouldAttackPlayer(EntityPlayer entityPlayer) {
+        ItemStack itemstack = entityPlayer.inventory.armorInventory[3];
+
+        if ((itemstack != null && itemstack.getItem() == ItemsAether.arkenium_helmet)
+        	 ||(itemstack != null && itemstack.getItem() == ItemsAether.amplified_arkenium_helmet)) {
+        entityPlayer.triggerAchievement(AchievementsAether.arkenium_helmet);
             return false;
         }
-        else
-        {
-            Vec3 vec3 = p_70821_1_.getLook(1.0F).normalize();
-            Vec3 vec31 = Vec3.createVectorHelper(this.posX - p_70821_1_.posX, this.boundingBox.minY + (double)(this.height / 2.0F) - (p_70821_1_.posY + (double)p_70821_1_.getEyeHeight()), this.posZ - p_70821_1_.posZ);
+        else {
+            Vec3 vec3 = entityPlayer.getLook(1.0F).normalize();
+            Vec3 vec31 = Vec3.createVectorHelper(this.posX - entityPlayer.posX, this.boundingBox.minY + (double)(this.height / 2.0F) - (entityPlayer.posY + (double)entityPlayer.getEyeHeight()), this.posZ - entityPlayer.posZ);
             double d0 = vec31.lengthVector();
             vec31 = vec31.normalize();
             double d1 = vec3.dotProduct(vec31);
-            return d1 > 1.0D - 0.025D / d0 && p_70821_1_.canEntityBeSeen(this);
+            return d1 > 1.0D - 0.025D / d0 && entityPlayer.canEntityBeSeen(this);
         }
     }
 
@@ -153,7 +144,6 @@ public class EntityCockatrice extends EntityMob {
 
 		this.prevWingRotation = this.wingRotation;
 		this.prevDestPos = this.destPos;
-
 		this.destPos += 0.2D;
 		this.destPos = EntityMoa.minMax(0.01F, 1.0F, this.destPos);
 
@@ -169,50 +159,41 @@ public class EntityCockatrice extends EntityMob {
 	}
 
 	@Override
-	public boolean attackEntityFrom(DamageSource source, float amount)
-	{
-		if (source.getEntity() != null)
-		{
-			if (source.getEntity() instanceof EntityLivingBase)
-			{
+	public boolean attackEntityFrom(DamageSource source, float amount) {
+		if (source.getEntity() != null) {
+			if (source.getEntity() instanceof EntityLivingBase) {
 				this.setAttackTarget((EntityLivingBase) source.getEntity());
 			}
 		}
-
 		return super.attackEntityFrom(source, amount);
 	}
-	
-	public void onDeath(DamageSource p_70645_1_)
-    {
-        super.onDeath(p_70645_1_);
 
-        if (p_70645_1_.getEntity() instanceof EntityPlayer entityplayer)
-        {
+	public void onDeath(DamageSource source) {
+        super.onDeath(source);
 
+        if (source.getEntity() instanceof EntityPlayer entityplayer) {
 			entityplayer.triggerAchievement(AchievementsAether.aether_hunter);
-            
         }
-            
     }
 
 	@Override
 	public void writeEntityToNBT(NBTTagCompound nbttagcompound) {
-		super.writeEntityToNBT(nbttagcompound);
+        super.writeEntityToNBT(nbttagcompound);
 	}
 
 	@Override
 	public void readEntityFromNBT(NBTTagCompound nbttagcompound) {
-		super.readEntityFromNBT(nbttagcompound);
+        super.readEntityFromNBT(nbttagcompound);
 	}
 
 	@Override
 	protected String getLivingSound() {
-		return "aether_legacy:aemob.cockatrice.say";
+        return "aether_legacy:aemob.cockatrice.say";
 	}
 
 	@Override
 	protected String getHurtSound() {
-		return "aether_legacy:aemob.cockatrice.hurt";
+        return "aether_legacy:aemob.cockatrice.hurt";
 	}
 
 	@Override

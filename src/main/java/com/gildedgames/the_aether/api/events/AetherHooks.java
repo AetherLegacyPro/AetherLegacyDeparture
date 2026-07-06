@@ -4,7 +4,6 @@ import com.gildedgames.the_aether.api.moa.AetherMoaType;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.MinecraftForge;
-
 import com.gildedgames.the_aether.api.accessories.AetherAccessory;
 import com.gildedgames.the_aether.api.enchantments.AetherAmplifier;
 import com.gildedgames.the_aether.api.enchantments.AetherEnchantment;
@@ -37,7 +36,7 @@ public class AetherHooks {
 
 		MinecraftForge.EVENT_BUS.post(event);
 	}
-	
+
 	public static void onItemAmplify(TileEntity amplifier, AetherAmplifier amplify) {
 		AetherAmplifierEvent.AmplifyEvent event = new AmplifyEvent(amplifier, amplify);
 
@@ -57,7 +56,7 @@ public class AetherHooks {
 
 		return event.getNewTime();
 	}
-	
+
 	public static int onSetAmplifierTime(TileEntity amplifier, AetherAmplifier amplify, int original) {
 		AetherAmplifierEvent.SetTimeEvent event = new AetherAmplifierEvent.SetTimeEvent(amplifier, amplify, original);
 

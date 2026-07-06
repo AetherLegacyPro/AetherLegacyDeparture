@@ -1,10 +1,8 @@
 package com.gildedgames.the_aether.items.armor;
 
 import java.util.List;
-
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.items.armor.base.ItemArkeniumArmorBase;
-
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -89,19 +87,18 @@ public class ItemArkeniumArmor extends ItemArkeniumArmorBase implements ISpecial
 		}
 
 		return 0.0F;
-	}	
+	}
 
 	public boolean isBetween(ItemStack tool, int max, int min) {
 		int origin = tool.getItemDamage();
 		int maxDamage = tool.getMaxDamage();
-
 		return origin <= maxDamage - max && origin >= maxDamage - min ? true : false;
 	}
 
 	public int getDamageReductionAmount(int level) {
-		return this.damageReductionAmountArray[level][this.armorType];
+        return this.damageReductionAmountArray[level][this.armorType];
 	}
-	
+
 	public void addInformation(final ItemStack stack, final EntityPlayer player, final List tooltip, final boolean who) {
 		if(AetherConfig.enableTooltips())
         tooltip.add(EnumChatFormatting.GRAY + "" + StatCollector.translateToLocal("tooltip.arkenium_armor.desc"));

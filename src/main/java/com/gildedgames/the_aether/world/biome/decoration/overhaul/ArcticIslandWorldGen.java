@@ -1,11 +1,9 @@
 package com.gildedgames.the_aether.world.biome.decoration.overhaul;
 
 import java.util.Random;
-
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.world.AetherWorld;
-
 import cpw.mods.fml.common.IWorldGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.util.MathHelper;
@@ -14,19 +12,19 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.IChunkProvider;
 
 public class ArcticIslandWorldGen implements IWorldGenerator {
-	
+
 	@Override
 	public void generate(Random rand, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
 		if (world.provider.dimensionId == AetherConfig.getAetherDimensionID()) {
 	         this.generateAether(world, rand, chunkX * 16, chunkZ * 16);
 	      }
 	   }
-	
-	int aether_random = AetherConfig.arctic_island_rarity; 
-		
+
+	int aether_random = AetherConfig.arctic_island_rarity;
+
 	public void generateAether(World world, Random rand, int x, int z) {
 		if(Math.abs(x) < 500 && Math.abs(z) < 500) return;
-		
+
 		BiomeGenBase biome = world.getWorldChunkManager().getBiomeGenAt(x + 16, z + 16);
 	      if ((biome == AetherWorld.aether_biome) && AetherConfig.arctic_island_rarity != 0 && rand.nextInt(aether_random) == 0 && AetherConfig.arctic_island_enable) {
 	         byte byte0 = 20;
@@ -121,7 +119,7 @@ public class ArcticIslandWorldGen implements IWorldGenerator {
 	            System.out.println("Arctic island generated at (X:" + x1 + ", Z:" + z1 + ")");
 	            System.out.println("May take a moment be patient!");
 	            }
-	            
+
 	            Block genOre = BlocksAether.zanite_ore;
 	            int chance = (int)(1 + Math.random() * 3);
 	            if (chance == 1) {
@@ -146,8 +144,8 @@ public class ArcticIslandWorldGen implements IWorldGenerator {
 	    	         (new ArcticIsland(bumpsWide1, bumpsLong1, bumpHeightVarTop1, bumpHeightVarBottom1, bumpHeightMinTop1, bumpHeightMinBottom1, blocksPerBumpX1, blocksPerBumpZ1, blocksPerBumpTopY1, blocksPerBumpBottomY1, blurPassesTop1, blurPassesBottom1, spikeHeightVarTop1, spikeHeightVarBottom1, radialDistanceSamples1, radialDistanceMin1, radialDistanceVar1, radialDistanceScaling1, radialDistanceBlurPasses1, genOre)).generate(world, rand, x1 + 32, y1, z1 - 32);
 	    	      }
 	            }
-	         }
-	       }							
-		 }
-		    	   	   
+             }
+          }
+    }
+
 }

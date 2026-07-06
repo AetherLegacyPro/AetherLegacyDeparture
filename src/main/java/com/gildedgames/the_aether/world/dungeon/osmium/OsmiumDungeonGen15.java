@@ -1,13 +1,11 @@
 package com.gildedgames.the_aether.world.dungeon.osmium;
 
 import java.util.Random;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.entities.bosses.EntityElderZarnillys;
 import com.gildedgames.the_aether.entities.bosses.lurker.EntityLurker;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.tileentity.TileEntitySkyrootChest;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -18,11 +16,10 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 public class OsmiumDungeonGen15 extends WorldGenerator {
 
 	public OsmiumDungeonGen15() {
-
 	}
-	
+
 	public boolean generate(final World world, final Random random, final int i, final int j, final int k) {
-		
+
 		world.setBlock(i + 30, j + 37, k + 53, placeBuildingBlock(random), 0, 2);
 		world.setBlock(i + 31, j + 37, k + 53, placeBuildingBlock(random), 0, 2);
 		world.setBlock(i + 32, j + 37, k + 53, placeBuildingBlock(random), 0, 2);
@@ -2467,31 +2464,31 @@ public class OsmiumDungeonGen15 extends WorldGenerator {
 		world.setBlock(i + 61, j + 41, k + 28, placeBuildingBlock(random), 0, 2);
 		world.setBlock(i + 16, j + 41, k + 29, placeBuildingBlock(random), 0, 2);
 		world.setBlock(i + 17, j + 41, k + 29, placeBuildingBlock(random), 0, 2);
-		
+
 		EntityElderZarnillys zarnillys = new EntityElderZarnillys(world);
 		zarnillys.setPosition(i + 39, j + 38, k + 32);
 		if (!world.isRemote) {
 			world.spawnEntityInWorld(zarnillys);
 		}
-		
+
 		EntityElderZarnillys zarnillys2 = new EntityElderZarnillys(world);
 		zarnillys2.setPosition(i + 60, j + 38, k + 38);
 		if (!world.isRemote) {
 			world.spawnEntityInWorld(zarnillys2);
 		}
-		
+
 		EntityElderZarnillys zarnillys3 = new EntityElderZarnillys(world);
 		zarnillys3.setPosition(i + 39, j + 38, k + 44);
 		if (!world.isRemote) {
 			world.spawnEntityInWorld(zarnillys3);
 		}
-		
+
 		EntityElderZarnillys zarnillys4 = new EntityElderZarnillys(world);
 		zarnillys4.setPosition(i + 31, j + 38, k + 52);
 		if (!world.isRemote) {
 			world.spawnEntityInWorld(zarnillys4);
 		}
-		
+
 		EntityLurker urker = new EntityLurker(world);
 		urker.setPosition(i + 39, j + 38, k + 38);
 		urker.setDungeon(urker.posX, urker.posY, urker.posZ);
@@ -2499,80 +2496,80 @@ public class OsmiumDungeonGen15 extends WorldGenerator {
 		if (!world.isRemote) {
 			world.spawnEntityInWorld(urker);
 		}
-		
+
 		world.setBlock(i + 39, j + 39, k + 10, BlocksAether.skyroot_chest, 3, 2);
 		TileEntitySkyrootChest chest = (TileEntitySkyrootChest) world.getTileEntity(i + 39, j + 39, k + 10);
 		for (int slot = 0; slot < 3 + random.nextInt(25); slot++) {
 			chest.setInventorySlotContents(random.nextInt(chest.getSizeInventory()), this.getNormalLoot(random));
 		}
-		
+
 		world.setBlock(i + 30, j + 39, k + 18, BlocksAether.skyroot_chest, 3, 2);
 		TileEntitySkyrootChest chest2 = (TileEntitySkyrootChest) world.getTileEntity(i + 30, j + 39, k + 18);
 		for (int slot = 0; slot < 3 + random.nextInt(25); slot++) {
 			chest2.setInventorySlotContents(random.nextInt(chest2.getSizeInventory()), this.getNormalLoot(random));
 		}
-		
+
 		world.setBlock(i + 31, j + 39, k + 18, BlocksAether.skyroot_chest, 3, 2);
 		TileEntitySkyrootChest chest3 = (TileEntitySkyrootChest) world.getTileEntity(i + 31, j + 39, k + 18);
 		for (int slot = 0; slot < 3 + random.nextInt(25); slot++) {
 			chest3.setInventorySlotContents(random.nextInt(chest3.getSizeInventory()), this.getNormalLoot(random));
 		}
-		
+
 		world.setBlock(i + 54, j + 39, k + 25, BlocksAether.skyroot_chest, 3, 2);
 		TileEntitySkyrootChest chest4 = (TileEntitySkyrootChest) world.getTileEntity(i + 54, j + 39, k + 25);
 		for (int slot = 0; slot < 3 + random.nextInt(25); slot++) {
 			chest4.setInventorySlotContents(random.nextInt(chest4.getSizeInventory()), this.getNormalLoot(random));
 		}
-		
+
 		world.setBlock(i + 55, j + 39, k + 25, BlocksAether.skyroot_chest, 3, 2);
 		TileEntitySkyrootChest chest5 = (TileEntitySkyrootChest) world.getTileEntity(i + 55, j + 39, k + 25);
 		for (int slot = 0; slot < 3 + random.nextInt(25); slot++) {
 			chest5.setInventorySlotContents(random.nextInt(chest5.getSizeInventory()), this.getNormalLoot(random));
 		}
-		
+
 		world.setBlock(i + 11, j + 39, k + 38, BlocksAether.skyroot_chest, 5, 2);
 		TileEntitySkyrootChest chest6 = (TileEntitySkyrootChest) world.getTileEntity(i + 11, j + 39, k + 38);
 		for (int slot = 0; slot < 3 + random.nextInt(25); slot++) {
 			chest6.setInventorySlotContents(random.nextInt(chest6.getSizeInventory()), this.getNormalLoot(random));
 		}
-		
+
 		world.setBlock(i + 55, j + 39, k + 38, BlocksAether.skyroot_chest, 5, 2);
 		TileEntitySkyrootChest chest7 = (TileEntitySkyrootChest) world.getTileEntity(i + 55, j + 39, k + 38);
 		for (int slot = 0; slot < 3 + random.nextInt(25); slot++) {
 			chest7.setInventorySlotContents(random.nextInt(chest7.getSizeInventory()), this.getNormalLoot(random));
 		}
-		
+
 		world.setBlock(i + 41, j + 39, k + 51, BlocksAether.skyroot_chest, 5, 2);
 		TileEntitySkyrootChest chest8 = (TileEntitySkyrootChest) world.getTileEntity(i + 41, j + 39, k + 51);
 		for (int slot = 0; slot < 3 + random.nextInt(25); slot++) {
 			chest8.setInventorySlotContents(random.nextInt(chest8.getSizeInventory()), this.getNormalLoot(random));
 		}
-		
+
 		world.setBlock(i + 41, j + 39, k + 52, BlocksAether.skyroot_chest, 5, 2);
 		TileEntitySkyrootChest chest9 = (TileEntitySkyrootChest) world.getTileEntity(i + 41, j + 39, k + 52);
 		for (int slot = 0; slot < 3 + random.nextInt(25); slot++) {
 			chest9.setInventorySlotContents(random.nextInt(chest9.getSizeInventory()), this.getNormalLoot(random));
 		}
-		
+
 		world.setBlock(i + 38, j + 41, k + 17, Blocks.mob_spawner, 0, 2);
 		TileEntityMobSpawner tileentitymobspawner = (TileEntityMobSpawner)world.getTileEntity(i + 38, j + 41, k + 17);
-        
+
         if (tileentitymobspawner != null)
         {
         	tileentitymobspawner.func_145881_a().setEntityName("aether_legacy.uligo");
         }
-        
+
 		world.setBlock(i + 25, j + 41, k + 30, Blocks.mob_spawner, 0, 2);
 		TileEntityMobSpawner tileentitymobspawner2 = (TileEntityMobSpawner)world.getTileEntity(i + 25, j + 41, k + 30);
-        
+
         if (tileentitymobspawner2 != null)
         {
         	tileentitymobspawner2.func_145881_a().setEntityName("aether_legacy.uligo");
         }
-		
+
 		return true;
 	}
-	
+
 	private ItemStack getNormalLoot(Random random) {
 		int item = random.nextInt(16);
 		switch (item) {
@@ -2590,29 +2587,29 @@ public class OsmiumDungeonGen15 extends WorldGenerator {
 				return new ItemStack(ItemsAether.arkenium_sword);
 			case 6:
 				return new ItemStack(ItemsAether.arkenium_fragement, random.nextInt(3) + 2);
-			case 7: 
+			case 7:
 				if (random.nextInt(20) == 0)
 					return new ItemStack(ItemsAether.gravitite_pickaxe);
-			case 8: 
+			case 8:
 				return new ItemStack(BlocksAether.enchanted_holystone, random.nextInt(30) + 20);
-			case 9: 
+			case 9:
 				if (random.nextInt(10) == 0)
-					return new ItemStack(ItemsAether.ascending_dawn);							
-			case 10: 
+					return new ItemStack(ItemsAether.ascending_dawn);
+			case 10:
 				if (random.nextInt(4) == 0)
-					return new ItemStack(ItemsAether.gravitite_pendant);			
-			case 11: 
+					return new ItemStack(ItemsAether.gravitite_pendant);
+			case 11:
 				if (random.nextInt(10) == 0)
-					return new ItemStack(BlocksAether.enchanted_agiosite, random.nextInt(10) + 20);			
-			case 12: 
+					return new ItemStack(BlocksAether.enchanted_agiosite, random.nextInt(10) + 20);
+			case 12:
 				if (random.nextInt(10) == 0)
 					return new ItemStack(BlocksAether.aerogel, random.nextInt(2) + 1);
-			
-			default: 
+
+			default:
 				return new ItemStack(ItemsAether.arkenium_fragement, random.nextInt(3) + 2);
-		} 
+		}
 	}
-	
+
 	private Block placeBuildingBlock(Random random) {
         if (random.nextDouble() < 0.005) {
             return BlocksAether.fuse_trap;

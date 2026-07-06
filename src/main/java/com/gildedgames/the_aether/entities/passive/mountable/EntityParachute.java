@@ -1,9 +1,7 @@
 package com.gildedgames.the_aether.entities.passive.mountable;
 
 import io.netty.buffer.ByteBuf;
-
 import java.util.List;
-
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -15,31 +13,26 @@ import net.minecraft.world.World;
 public class EntityParachute extends Entity implements IEntityAdditionalSpawnData {
 
     private EntityPlayer ridingPlayer;
-
     public boolean isGoldenParachute;
 
     public EntityParachute(World world) {
         super(world);
-
         this.setSize(1.0F, 1.0F);
     }
 
     public EntityParachute(World world, EntityPlayer player, boolean isGolden) {
         this(world);
-
         this.prevPosX = this.posX;
         this.prevPosY = this.posY;
         this.prevPosZ = this.posZ;
         this.ridingPlayer = player;
         this.isGoldenParachute = isGolden;
-
         this.moveToEntityUsing();
         this.spawnExplosionParticle();
     }
 
     @Override
     protected void entityInit() {
-
     }
 
     public void spawnExplosionParticle() {
@@ -58,13 +51,11 @@ public class EntityParachute extends Entity implements IEntityAdditionalSpawnDat
     public void onUpdate() {
         if (this.isDead || this.ridingPlayer == null) {
             this.setDead();
-
             return;
         }
-        
+
         if (this.posY < 0) {
         	this.setDead();
-        	
         	return;
         }
 
@@ -74,7 +65,6 @@ public class EntityParachute extends Entity implements IEntityAdditionalSpawnDat
             }
 
             this.ridingPlayer.fallDistance = 0F;
-
             this.moveToEntityUsing();
             this.spawnExplosionParticle();
         }
@@ -82,7 +72,6 @@ public class EntityParachute extends Entity implements IEntityAdditionalSpawnDat
 
     private void moveToEntityUsing() {
         this.setPositionAndRotation(this.ridingPlayer.posX, this.ridingPlayer.boundingBox.minY - (this.height / 2) - 0.5D, this.ridingPlayer.posZ, this.ridingPlayer.rotationYaw, this.ridingPlayer.rotationPitch);
-
         this.motionX = this.ridingPlayer.motionX;
         this.motionY = this.ridingPlayer.motionY;
         this.motionZ = this.ridingPlayer.motionZ;
@@ -102,7 +91,6 @@ public class EntityParachute extends Entity implements IEntityAdditionalSpawnDat
             }
 
             AxisAlignedBB collision_list = (AxisAlignedBB) list.get(size);
-
             return collision_list != this.ridingPlayer.boundingBox;
         }
 
@@ -120,7 +108,6 @@ public class EntityParachute extends Entity implements IEntityAdditionalSpawnDat
 
     public static boolean entityHasRoomForCloud(World world, EntityPlayer player) {
         AxisAlignedBB boundingBox = player.boundingBox;
-
         return world.getCollidingBoundingBoxes(player, boundingBox).isEmpty() && !world.isAABBInMaterial(boundingBox, Material.water);
     }
 
@@ -140,12 +127,10 @@ public class EntityParachute extends Entity implements IEntityAdditionalSpawnDat
 
     @Override
     protected void readEntityFromNBT(NBTTagCompound compound) {
-
     }
 
     @Override
     protected void writeEntityToNBT(NBTTagCompound compound) {
-
     }
 
     @Override

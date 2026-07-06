@@ -6,10 +6,8 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Random;
-
 import com.gildedgames.the_aether.Aether;
 import net.minecraft.client.Minecraft;
-
 import com.google.common.collect.Lists;
 import net.minecraft.client.resources.I18n;
 
@@ -18,29 +16,24 @@ public class AetherTrivia {
 	private static Random random = new Random();
 
 	public AetherTrivia() {
-
 	}
 
 	public static String getNewTrivia() {
 
 		String localization = Minecraft.getMinecraft().getLanguageManager().getCurrentLanguage().getLanguageCode();
 
-		if (getEntriesForLocalization(localization) != null)
-		{
+		if (getEntriesForLocalization(localization) != null) {
 			return getEntriesForLocalization(localization);
 		}
-		else if (getEntriesForLocalization("en_US") != null)
-		{
+		else if (getEntriesForLocalization("en_US") != null) {
 			return getEntriesForLocalization("en_US");
 		}
-		else
-		{
+		else {
 			return "missingno";
 		}
 	}
 
-	public static String getEntriesForLocalization(String localization)
-	{
+	public static String getEntriesForLocalization(String localization) {
 		BufferedReader bufferedreader = null;
 
 		try {
@@ -59,7 +52,8 @@ public class AetherTrivia {
 			if (!list.isEmpty()) {
 				return I18n.format("gui.aether_trivia.pro_tip") + " " + list.get(random.nextInt(list.size()));
 			}
-		} catch (IOException ignore) { }
+		}
+        catch (IOException ignore) { }
 		finally {
 			if (bufferedreader != null) {
 				try {

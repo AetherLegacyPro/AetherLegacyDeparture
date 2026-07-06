@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.tileentity.util;
 
 import java.util.List;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
@@ -13,37 +12,36 @@ import net.minecraft.tileentity.TileEntity;
 public abstract class AetherTileEntity extends TileEntity implements ISidedInventory, IInventory {
 
 	private String name = "generic";
-
 	private String customTileName = null;
 
 	public AetherTileEntity(String name) {
-		this.name = name;
+        this.name = name;
 	}
 
 	public abstract List<ItemStack> getTileInventory();
 
 	@Override
 	public String getInventoryName() {
-		return this.hasCustomInventoryName() ? this.customTileName : this.name;
+        return this.hasCustomInventoryName() ? this.customTileName : this.name;
 	}
 
 	@Override
 	public boolean hasCustomInventoryName() {
-		return this.customTileName != null && !this.customTileName.isEmpty();
+        return this.customTileName != null && !this.customTileName.isEmpty();
 	}
 
 	public void setCustomName(String customTileName) {
-		this.customTileName = customTileName;
+        this.customTileName = customTileName;
 	}
 
 	@Override
 	public int getSizeInventory() {
-		return this.getTileInventory().size();
+        return this.getTileInventory().size();
 	}
 
 	@Override
 	public ItemStack getStackInSlot(int index) {
-		return this.getTileInventory().get(index);
+        return this.getTileInventory().get(index);
 	}
 
 	@Override
@@ -52,7 +50,6 @@ public abstract class AetherTileEntity extends TileEntity implements ISidedInven
 
 		if (stack.stackSize <= count) {
 			this.setInventorySlotContents(index, null);
-
 			return stack;
 		}
 
@@ -77,7 +74,6 @@ public abstract class AetherTileEntity extends TileEntity implements ISidedInven
 	@Override
 	public void setInventorySlotContents(int index, ItemStack stack) {
 		boolean flag = stack != null && this.getStackInSlot(index) != null && stack.isItemEqual(this.getStackInSlot(index)) && ItemStack.areItemStackTagsEqual(stack, this.getStackInSlot(index));
-
 		this.getTileInventory().set(index, stack);
 
 		if (stack != null && stack.stackSize > this.getInventoryStackLimit()) {
@@ -86,7 +82,6 @@ public abstract class AetherTileEntity extends TileEntity implements ISidedInven
 
 		if (!flag) {
 			this.onSlotChanged(index);
-
 			this.markDirty();
 		}
 	}
@@ -144,7 +139,7 @@ public abstract class AetherTileEntity extends TileEntity implements ISidedInven
 
 	@Override
 	public int getInventoryStackLimit() {
-		return 64;
+        return 64;
 	}
 
 	@Override
@@ -157,19 +152,19 @@ public abstract class AetherTileEntity extends TileEntity implements ISidedInven
 
 	@Override
 	public boolean isItemValidForSlot(int index, ItemStack stack) {
-		return this.isValidSlotItem(index, stack);
+        return this.isValidSlotItem(index, stack);
 	}
 
 	public abstract boolean isValidSlotItem(int slot, ItemStack stackInSlot);
 
 	@Override
 	public boolean canInsertItem(int index, ItemStack stack, int direction) {
-		return this.isValidSlotItem(index, stack);
+        return this.isValidSlotItem(index, stack);
 	}
 
 	@Override
 	public boolean canExtractItem(int index, ItemStack stack, int direction) {
-		return true;
+        return true;
 	}
 
 }

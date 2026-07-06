@@ -3,19 +3,17 @@ package com.gildedgames.the_aether.world.biome.decoration.plants;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.block.*;
 import net.minecraft.world.*;
-
 import java.util.*;
 
-public class WorldGenStrawberryBush extends WorldGenerator
-{
+public class WorldGenStrawberryBush extends WorldGenerator {
     private Block plantBlockId;
     private int placementChance;
-    
+
     public WorldGenStrawberryBush(final Block i, final int chance) {
         this.plantBlockId = i;
         this.placementChance = chance;
     }
-    
+
     public boolean generate(final World world, final Random random, final int i, final int j, final int k) {
         for (int l = 0; l < this.placementChance; ++l) {
             final int i2 = i + random.nextInt(8) - random.nextInt(8);

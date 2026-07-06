@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.blocks.natural;
 
 import java.util.Random;
-
 import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.CommonProxy;
 import com.gildedgames.the_aether.blocks.BlocksAether;
@@ -14,7 +13,6 @@ import net.minecraft.stats.StatList;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -30,9 +28,9 @@ public class BlockStrawberryBush extends BlockAetherFlower {
 
 	@Override
 	public Item getItemDropped(int meta, Random rand, int fortune) {
-		return null;
+        return null;
 	}
-	
+
 	@Override
 	protected boolean canSilkHarvest() {
         return true;
@@ -97,12 +95,12 @@ public class BlockStrawberryBush extends BlockAetherFlower {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean shouldSideBeRendered(IBlockAccess worldIn, int x, int y, int z, int side) {
-		return true;
+        return true;
 	}
 
 	@Override
 	public int getRenderType() {
-		return CommonProxy.berryBushRenderID;
+        return CommonProxy.berryBushRenderID;
 	}
 
 }

@@ -9,15 +9,11 @@ import net.minecraft.entity.player.EntityPlayer;
 public class PacketPerkChanged extends AetherPacket<PacketPerkChanged> {
 
 	public int entityID;
-
 	public boolean renderHalo, renderGlow;
-
 	public DonatorMoaSkin moaSkin;
-
 	public EnumAetherPerkType perkType;
 
 	public PacketPerkChanged() {
-
 	}
 
 	public PacketPerkChanged(int entityID, EnumAetherPerkType type, boolean info) {
@@ -73,7 +69,6 @@ public class PacketPerkChanged extends AetherPacket<PacketPerkChanged> {
 
 			if (parent != null) {
 				PlayerAether instance = PlayerAether.get(parent);
-
 				if (message.perkType == EnumAetherPerkType.Halo) {
 					instance.shouldRenderHalo = message.renderHalo;
 				} else if (message.perkType == EnumAetherPerkType.Moa) {
@@ -92,7 +87,6 @@ public class PacketPerkChanged extends AetherPacket<PacketPerkChanged> {
 
 			if (parent != null) {
 				PlayerAether instance = PlayerAether.get(parent);
-
 				if (message.perkType == EnumAetherPerkType.Halo) {
 					instance.shouldRenderHalo = message.renderHalo;
 				} else if (message.perkType == EnumAetherPerkType.Moa) {

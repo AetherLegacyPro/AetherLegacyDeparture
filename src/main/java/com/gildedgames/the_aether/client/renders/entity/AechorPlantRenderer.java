@@ -3,7 +3,6 @@ package com.gildedgames.the_aether.client.renders.entity;
 import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.client.models.entities.AechorPlantModel;
 import com.gildedgames.the_aether.entities.hostile.EntityAechorPlant;
-
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -68,7 +67,7 @@ public class AechorPlantRenderer extends RenderLiving {
     protected int shouldRenderPass(EntityLivingBase entityliving, int i, float f) {
         return this.doAechorPlantRender((EntityAechorPlant) entityliving, i, f);
     }
-    
+
     @Override
 	protected ResourceLocation getEntityTexture(final Entity entity) {
         return new ResourceLocation("aether_legacy", "textures/entities/aechor_plant/" + ((EntityAechorPlant)entity).getType() + ".png");

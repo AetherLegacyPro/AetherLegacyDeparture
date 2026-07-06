@@ -1,19 +1,16 @@
 package com.gildedgames.the_aether.world.biome.decoration;
 
 import java.util.Random;
-
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
 
 public class AetherGenLakes extends WorldGenerator {
 
 	public AetherGenLakes() {
-
 	}
 
 	@Override
@@ -26,25 +23,25 @@ public class AetherGenLakes extends WorldGenerator {
 				|| world.getBlock(x, y, z) == BlocksAether.locked_hellfire_stone
 				|| world.getBlock(x, y, z) == BlocksAether.locked_creeping_stone
 				|| world.getBlock(x, y, z) == BlocksAether.locked_fuse_stone
-				|| world.getBlock(x, y, z) == BlocksAether.oblitus_stone				
+				|| world.getBlock(x, y, z) == BlocksAether.oblitus_stone
 				|| world.getBlock(x, y, z) == BlocksAether.ancient_carved_stone
 				|| world.getBlock(x, y, z) == BlocksAether.locked_ancient_carved_stone
 				|| world.getBlock(x, y, z) == BlocksAether.ancient_angelic_stone
 				|| world.getBlock(x, y, z) == BlocksAether.locked_ancient_angelic_stone
 				|| world.getBlock(x, y, z) == BlocksAether.ancient_hellfire_stone
-				|| world.getBlock(x, y, z) == BlocksAether.locked_ancient_hellfire_stone				
+				|| world.getBlock(x, y, z) == BlocksAether.locked_ancient_hellfire_stone
 				|| world.getBlock(x, y, z) == BlocksAether.divine_carved_stone
 				|| world.getBlock(x, y, z) == BlocksAether.locked_divine_carved_stone
 				|| world.getBlock(x, y, z) == BlocksAether.divine_angelic_stone
 				|| world.getBlock(x, y, z) == BlocksAether.locked_divine_angelic_stone
 				|| world.getBlock(x, y, z) == BlocksAether.divine_hellfire_stone
-				|| world.getBlock(x, y, z) == BlocksAether.locked_divine_hellfire_stone				
+				|| world.getBlock(x, y, z) == BlocksAether.locked_divine_hellfire_stone
 				|| world.getBlock(x, y, z) == BlocksAether.mythic_carved_stone
 				|| world.getBlock(x, y, z) == BlocksAether.locked_mythic_carved_stone)
 		{
 			return false;
 		}
-		
+
 		x -= 8;
 
 		for (z -= 8; y > 5 && world.isAirBlock(x, y, z); --y) {

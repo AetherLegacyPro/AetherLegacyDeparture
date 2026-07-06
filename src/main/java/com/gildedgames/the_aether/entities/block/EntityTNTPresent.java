@@ -24,7 +24,6 @@ public class EntityTNTPresent extends Entity {
 
 	@Override
 	protected void entityInit() {
-
 	}
 
 	@Override
@@ -34,7 +33,7 @@ public class EntityTNTPresent extends Entity {
 
 	@Override
 	public boolean canBeCollidedWith() {
-		return !this.isDead;
+        return !this.isDead;
 	}
 
 	@Override
@@ -67,17 +66,17 @@ public class EntityTNTPresent extends Entity {
 
 	@Override
 	protected void writeEntityToNBT(NBTTagCompound compound) {
-		compound.setInteger("fuse", this.fuse);
+        compound.setInteger("fuse", this.fuse);
 	}
 
 	@Override
 	protected void readEntityFromNBT(NBTTagCompound compound) {
-		this.fuse = compound.getInteger("fuse");
+        this.fuse = compound.getInteger("fuse");
 	}
 
 	@Override
 	public float getShadowSize() {
-		return 0.0F;
+        return 0.0F;
 	}
 
 }

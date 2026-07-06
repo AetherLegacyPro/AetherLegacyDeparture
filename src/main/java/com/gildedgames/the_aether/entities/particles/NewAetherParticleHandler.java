@@ -10,114 +10,113 @@ import net.minecraft.client.particle.*;
 import net.minecraft.util.*;
 
 @SideOnly(Side.CLIENT)
-public enum NewAetherParticleHandler
-{
+public enum NewAetherParticleHandler {
 	CYRO(EntityCyroParticle.class, ParticleData.VX_VY_VZ, new Class[] { Integer.TYPE, Float.TYPE, Integer.TYPE, ResourceLocation.class, Integer.TYPE }) {
         private final ResourceLocation texture;
-        
+
         {
             this.texture = new ResourceLocation("aether_legacy:textures/particles/cyro_particle.png");
         }
-        
+
         @Override
         protected Object[] getAdditionalArgs(final World world, final Object... data) {
             return new Object[] { 0, 0.18f * world.rand.nextFloat(), -1, this.texture, 16 };
         }
 	},
-	
+
 	URKER_FLAME(EntityEtherealTorchFlame.class, ParticleData.VX_VY_VZ, new Class[] { Integer.TYPE, Float.TYPE, Integer.TYPE, ResourceLocation.class, Integer.TYPE }) {
         private final ResourceLocation texture;
-        
+
         {
             this.texture = new ResourceLocation("aether_legacy:textures/particles/urker_flame.png");
         }
-        
+
         @Override
         protected Object[] getAdditionalArgs(final World world, final Object... data) {
             return new Object[] { 0, 0.18f * world.rand.nextFloat(), -1, this.texture, 16 };
         }
 	},
-	
+
 	AMPLIFIER_FLAME(EntityAmplifierFlame.class, ParticleData.VX_VY_VZ, new Class[] { Integer.TYPE, Float.TYPE, Integer.TYPE, ResourceLocation.class, Integer.TYPE }) {
         private final ResourceLocation texture;
-        
+
         {
             this.texture = new ResourceLocation("aether_legacy:textures/particles/amplifier_flame.png");
         }
-        
+
         @Override
         protected Object[] getAdditionalArgs(final World world, final Object... data) {
             return new Object[] { 0, 0.26f * world.rand.nextFloat(), -1, this.texture, 1 };
         }
 	},
-	
+
 	DRAGON_FLAME(EntityAmplifierFlame.class, ParticleData.VX_VY_VZ, new Class[] { Integer.TYPE, Float.TYPE, Integer.TYPE, ResourceLocation.class, Integer.TYPE }) {
         private final ResourceLocation texture;
-        
+
         {
             this.texture = new ResourceLocation("aether_legacy:textures/particles/amplifier_flame.png");
         }
-        
+
         @Override
         protected Object[] getAdditionalArgs(final World world, final Object... data) {
             return new Object[] { 0, 0.64f * world.rand.nextFloat(), -1, this.texture, 1 };
         }
 	},
-	
+
 	AMBROSIUM_FLAME(EntityEtherealTorchFlame.class, ParticleData.VX_VY_VZ, new Class[] { Integer.TYPE, Float.TYPE, Integer.TYPE, ResourceLocation.class, Integer.TYPE }) {
         private final ResourceLocation texture;
-        
+
         {
             this.texture = new ResourceLocation("aether_legacy:textures/particles/ambrosium_flame.png");
         }
-        
+
         @Override
         protected Object[] getAdditionalArgs(final World world, final Object... data) {
             return new Object[] { 0, 0.18f * world.rand.nextFloat(), -1, this.texture, 1 };
         }
 	},
-	
+
 	HELLFIRE_FLAME(EntityEtherealTorchFlame.class, ParticleData.VX_VY_VZ, new Class[] { Integer.TYPE, Float.TYPE, Integer.TYPE, ResourceLocation.class, Integer.TYPE }) {
         private final ResourceLocation texture;
-        
+
         {
             this.texture = new ResourceLocation("aether_legacy:textures/particles/hellfire_flame.png");
         }
-        
+
         @Override
         protected Object[] getAdditionalArgs(final World world, final Object... data) {
             return new Object[] { 0, 0.18f * world.rand.nextFloat(), -1, this.texture, 1 };
         }
 	},
-	
+
 	ELYSIAN_TELEPORT(EntityEtherealTorchFlame.class, ParticleData.VX_VY_VZ, new Class[] { Integer.TYPE, Float.TYPE, Integer.TYPE, ResourceLocation.class, Integer.TYPE }) {
         private final ResourceLocation texture;
-        
+
         {
             this.texture = new ResourceLocation("aether_legacy:textures/particles/elysian_teleport.png");
         }
-        
+
         @Override
         protected Object[] getAdditionalArgs(final World world, final Object... data) {
             return new Object[] { 0, 0.18f * world.rand.nextFloat(), -1, this.texture, 1 };
         }
 	},
-	
+
 	ETHEREAL_FLAME(EntityEtherealTorchFlame.class, ParticleData.VX_VY_VZ, new Class[] { Integer.TYPE, Float.TYPE, Integer.TYPE, ResourceLocation.class, Integer.TYPE }) {
         private final ResourceLocation texture;
-        
+
         {
             this.texture = new ResourceLocation("aether_legacy:textures/particles/ethereal_flame.png");
         }
-        
+
         @Override
         protected Object[] getAdditionalArgs(final World world, final Object... data) {
             return new Object[] { 0, 0.18f * world.rand.nextFloat(), -1, this.texture, 1 };
         }
-    
-      
-    }; 
-	
+
+
+    };
+
 	 private static final int REGULAR_ARG_NUM = 4;
 	    private Constructor<? extends EntityFX> constructor;
 	    private ParticleData args;
@@ -126,19 +125,15 @@ public enum NewAetherParticleHandler
 	    private float r;
 	    private float g;
 	    private float b;
-	    
-	    private NewAetherParticleHandler(final Class<? extends EntityFX> fxClass) {
-	        this(fxClass, -1.0f, 57005.0f, 49374.0f);
-	    }
-	    
+
 	    private NewAetherParticleHandler(final Class<? extends EntityFX> fxClass, final float r, final float g, final float b) {
 	        this(fxClass, r, g, b, ParticleData.VX_VY_VZ, new Class[0]);
 	    }
-	    
+
 	    private NewAetherParticleHandler(final Class<? extends EntityFX> fxClass, final ParticleData args, final Class<?>[] additionalArgTypes) {
 	        this(fxClass, -1.0f, 57005.0f, 49374.0f, args, additionalArgTypes);
 	    }
-	    
+
 	    private NewAetherParticleHandler(final Class<? extends EntityFX> fxClass, final float r, final float g, final float b, final ParticleData args, final Class<?>[] additionalArgTypes) {
 	        this.shouldAssignColor = false;
 	        if (r != -1.0f) {
@@ -161,7 +156,7 @@ public enum NewAetherParticleHandler
 	        this.args = args;
 	        this.additionalArgTypes = additionalArgTypes;
 	    }
-	    
+
 	    private static Class<?>[] getArgumentTypes(final ParticleData args, final Class<?>[] additionalArgTypes) {
 	        final Class<?>[] argumentTypes = (Class<?>[])new Class[4 + args.getArgumentCount() + additionalArgTypes.length];
 	        argumentTypes[0] = World.class;
@@ -172,18 +167,18 @@ public enum NewAetherParticleHandler
 	        System.arraycopy(additionalArgTypes, 0, argumentTypes, 4 + args.getArgumentCount(), additionalArgTypes.length);
 	        return argumentTypes;
 	    }
-	    
+
 	    protected Object[] getAdditionalArgs(final World world, final Object... data) {
-	        return new Object[0];
+            return new Object[0];
 	    }
-	    
+
 	    protected void onSpawn(final EntityFX entityFX) {
 	    }
-	    
+
 	    public final void spawn(final World world, final double x, final double y, final double z) {
 	        this.spawn(world, x, y, z, 0.0, 0.0, 0.0, 1.0f);
 	    }
-	    
+
 	    public final void spawn(final World world, final double x, final double y, final double z, final double motionX, final double motionY, final double motionZ, final float scale, final Object... data) {
 	        final Object[] arguments = this.getArguments(world, x, y, z, motionX, motionY, motionZ, scale, data);
 	        try {
@@ -215,7 +210,7 @@ public enum NewAetherParticleHandler
 	            throw new ReportedException(crash);
 	        }
 	    }
-	    
+
 	    private Object[] getArguments(final World world, final double x, final double y, final double z, final double motionX, final double motionY, final double motionZ, final float scale, final Object... data) {
 	        final Object[] particleArgs = this.args.getArguments(motionX, motionY, motionZ, scale);
 	        final Object[] additionalArgs = this.getAdditionalArgs(world, data);
@@ -228,6 +223,6 @@ public enum NewAetherParticleHandler
 	        System.arraycopy(additionalArgs, 0, arguments, 4 + this.args.getArgumentCount(), additionalArgs.length);
 	        return arguments;
 	    }
-	
+
 }
 

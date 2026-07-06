@@ -14,7 +14,6 @@ public class ContainerLore extends Container {
 
 	public ContainerLore(InventoryPlayer inventory) {
 		this.loreSlot = new InventoryLore(inventory.player);
-
 		this.addSlotToContainer(new SlotLore(this.loreSlot, 0, 104, -4));
 
 		for (int j = 0; j < 3; ++j) {
@@ -81,13 +80,12 @@ public class ContainerLore extends Container {
 				entityplayer.entityDropItem(item, 1.0F);
 			}
 		}
-
 		super.onContainerClosed(entityplayer);
 	}
 
 	@Override
 	public boolean canInteractWith(EntityPlayer player) {
-		return !player.isDead;
+        return !player.isDead;
 	}
 
 }

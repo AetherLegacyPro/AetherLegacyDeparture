@@ -10,14 +10,13 @@ public class BlockCrystallizedGenesisStone extends BlockLog {
 
 	public BlockCrystallizedGenesisStone() {
 		super();
-
 		this.setHardness(6.5F);
 		this.setResistance(25.0F);
 		this.setLightLevel(0.3375F);
 		this.setStepSound(soundTypeStone);
 		this.setHarvestLevel("pickaxe", 3);
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister registry) {

@@ -6,12 +6,9 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.opengl.GL11;
-
 import com.gildedgames.the_aether.inventory.ContainerEnchanter;
 import com.gildedgames.the_aether.tileentity.TileEntityEnchanter;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -19,7 +16,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class GuiEnchanter extends GuiContainer {
 
 	private static final ResourceLocation TEXTURE = Aether.locate("textures/gui/new_altar.png");
-
 	private TileEntityEnchanter enchanter;
 
 	public GuiEnchanter(InventoryPlayer inventory, TileEntityEnchanter tileEntity) {
@@ -29,10 +25,7 @@ public class GuiEnchanter extends GuiContainer {
 
 	@Override
 	protected void drawGuiContainerForegroundLayer(int par1, int par2) {
-		String enchanterName = AetherConfig.legacyAltarName() ?
-				I18n.format("container.aether_legacy.enchanter")
-				: I18n.format("container.aether_legacy.altar");
-
+		String enchanterName = AetherConfig.legacyAltarName() ? I18n.format("container.aether_legacy.enchanter") : I18n.format("container.aether_legacy.altar");
 		this.fontRendererObj.drawString(enchanterName, this.xSize / 2 - this.fontRendererObj.getStringWidth(enchanterName) / 2, 6, 4210752);
 		this.fontRendererObj.drawString(I18n.format("container.inventory"), 8, this.ySize - 96 + 2, 4210752);
 	}

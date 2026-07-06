@@ -3,35 +3,32 @@ package com.gildedgames.the_aether.client.renders;
 import net.minecraft.client.renderer.tileentity.*;
 import net.minecraft.tileentity.*;
 import org.lwjgl.opengl.*;
-
 import com.gildedgames.the_aether.blocks.ancient.enchanter.AncientEnchanterModel;
 import com.gildedgames.the_aether.tileentity.TileEntityAncientEnchanter;
-
 import net.minecraft.client.renderer.texture.*;
 import net.minecraft.item.*;
 import net.minecraft.util.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.entity.*;
 
-public class TileEntityAncientEnchanterRenderer extends TileEntitySpecialRenderer
-{
+public class TileEntityAncientEnchanterRenderer extends TileEntitySpecialRenderer {
     private static final ResourceLocation TEXTURE_ANCIENT_ENCHANTER;
     private AncientEnchanterModel altarModel;
     private double radius;
     private double theta;
     private double alpha;
-    
+
     public TileEntityAncientEnchanterRenderer() {
         this.radius = 1.5;
         this.theta = 5.0;
         this.alpha = 0.0;
         this.altarModel = new AncientEnchanterModel();
     }
-    
+
     public void renderTileEntityAt(final TileEntity tileentity, final double d, final double d1, final double d2, final float f) {
         this.renderTileEntityAncientEnchanterAt((TileEntityAncientEnchanter)tileentity, d, d1, d2, f);
     }
-    
+
     public void renderTileEntityAncientEnchanterAt(final TileEntityAncientEnchanter enchanter, final double d, final double d1, final double d2, final float f) {
         GL11.glPushMatrix();
         GL11.glEnable(32826);
@@ -79,7 +76,7 @@ public class TileEntityAncientEnchanterRenderer extends TileEntitySpecialRendere
             GL11.glPopMatrix();
         }
     }
-    
+
     private void renderOrbitItem(final IIcon icon, final int amount, final double interval) {
         for (int i = 0; i < amount; ++i) {
             GL11.glPushMatrix();
@@ -110,7 +107,7 @@ public class TileEntityAncientEnchanterRenderer extends TileEntitySpecialRendere
             GL11.glPopMatrix();
         }
     }
-    
+
     static {
     	TEXTURE_ANCIENT_ENCHANTER = new ResourceLocation("aether_legacy", "textures/tile_entities/altar.png");
     }

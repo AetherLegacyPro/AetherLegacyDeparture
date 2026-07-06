@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.world.gen;
 
 import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -15,19 +14,12 @@ import net.minecraft.world.gen.structure.StructureComponent;
 public abstract class AetherStructure extends StructureComponent {
 
 	public int chance;
-
 	public Block airState = Blocks.air, blockState, extraBlockState;
-
 	public int meta, extraMeta;
-
 	public boolean replaceAir, replaceSolid;
-
 	public Random random;
-
 	public World worldObj;
-
 	public StructureBoundingBox dungeonBoundingBox;
-
 	private int startX, startY, startZ;
 
 	public void setBlocks(Block blockState, int meta) {
@@ -299,7 +291,7 @@ public abstract class AetherStructure extends StructureComponent {
 	}
 
 	public int getActualY(int structureY) {
-		return this.getYWithOffset(structureY + this.startY);
+        return this.getYWithOffset(structureY + this.startY);
 	}
 
 	public int getActualZ(int structureX, int structureZ) {
@@ -319,12 +311,10 @@ public abstract class AetherStructure extends StructureComponent {
 
 	@Override
 	protected void func_143012_a(NBTTagCompound tagCompound) {
-
 	}
 
 	@Override
 	protected void func_143011_b(NBTTagCompound tagCompound) {
-
 	}
 
 }

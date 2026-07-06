@@ -4,25 +4,22 @@ import net.minecraft.world.gen.feature.*;
 import net.minecraft.block.*;
 import net.minecraft.world.*;
 import java.util.*;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.world.ChunkProviderAether;
-
 import net.minecraft.init.*;
 
-public class AetherGenSkyrootTreeNew extends WorldGenAbstractTree
-{
+public class AetherGenSkyrootTreeNew extends WorldGenAbstractTree {
     private Block leafBlock;
     private Block logBlock;
     private int logMetadata;
-    
+
     public AetherGenSkyrootTreeNew(final Block leafID, final Block logID, final int logMeta) {
         super(true);
         this.leafBlock = leafID;
         this.logBlock = logID;
         this.logMetadata = logMeta;
     }
-    
+
     public boolean generate(final World world, final Random random, final int i, final int j, final int k) {
         final int l = random.nextInt(3) + 4;
         boolean flag = true;

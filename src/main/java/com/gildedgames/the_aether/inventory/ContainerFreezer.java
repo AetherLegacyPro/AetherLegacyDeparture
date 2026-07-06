@@ -7,22 +7,18 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-
 import com.gildedgames.the_aether.inventory.slots.SlotFreezer;
 import com.gildedgames.the_aether.tileentity.TileEntityFreezer;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class ContainerFreezer extends Container {
 
 	private TileEntityFreezer freezer;
-
 	public int progress, ticksRequired, powerRemaining;
 
 	public ContainerFreezer(InventoryPlayer par1InventoryPlayer, TileEntityFreezer tileEntityFreezer) {
 		this.freezer = tileEntityFreezer;
-
 		this.addSlotToContainer(new Slot(tileEntityFreezer, 0, 56, 17));
 		this.addSlotToContainer(new Slot(tileEntityFreezer, 1, 56, 53));
 		this.addSlotToContainer(new SlotFreezer(tileEntityFreezer, 2, 116, 35));
@@ -43,7 +39,6 @@ public class ContainerFreezer extends Container {
 	@Override
 	public void addCraftingToCrafters(ICrafting listener) {
 		super.addCraftingToCrafters(listener);
-
 		listener.sendProgressBarUpdate(this, 0, this.freezer.progress);
 		listener.sendProgressBarUpdate(this, 1, this.freezer.powerRemaining);
 		listener.sendProgressBarUpdate(this, 2, this.freezer.ticksRequired);

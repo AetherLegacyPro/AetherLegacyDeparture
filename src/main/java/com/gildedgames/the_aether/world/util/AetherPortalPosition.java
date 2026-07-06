@@ -8,7 +8,6 @@ public class AetherPortalPosition extends ChunkCoordinates {
 
 	public AetherPortalPosition(int x, int y, int z, long lastUpdateTime) {
 		super(x, y, z);
-
 		this.lastUpdateTime = lastUpdateTime;
 	}
 

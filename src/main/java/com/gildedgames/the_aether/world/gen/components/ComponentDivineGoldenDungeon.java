@@ -1,14 +1,12 @@
 package com.gildedgames.the_aether.world.gen.components;
 
 import java.util.Random;
-
 import com.gildedgames.the_aether.entities.bosses.sun_spirit.EntityDivineSunSpirit;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.world.gen.AetherStructure;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
 
 public class ComponentDivineGoldenDungeon extends AetherStructure {
@@ -16,7 +14,6 @@ public class ComponentDivineGoldenDungeon extends AetherStructure {
 	private int direction;
 
 	public ComponentDivineGoldenDungeon() {
-
 	}
 
 	public ComponentDivineGoldenDungeon(int chunkX, int chunkZ, int direction) {
@@ -68,55 +65,55 @@ public class ComponentDivineGoldenDungeon extends AetherStructure {
 						if ((i == (a - 2) || -i == (a - 2)) && (k == (a - 2) || -k == (a - 2))) {
 							this.setBlockWithOffset(i, j + 1, k, Blocks.netherrack, 0);
 							this.setBlockWithOffset(i, j + 2, k, BlocksAether.hellfire, 0);
-							
+
 							this.setBlockWithOffset(i + 1, j + 7, k, BlocksAether.divine_hellfire_stone_wall, 0);
 							this.setBlockWithOffset(i, j + 7, k + 1, BlocksAether.divine_hellfire_stone_wall, 0);
 							this.setBlockWithOffset(i, j + 7, k - 1, BlocksAether.divine_hellfire_stone_wall, 0);
 							this.setBlockWithOffset(i - 1, j + 7, k, BlocksAether.divine_hellfire_stone_wall, 0);
-							
+
 							this.setBlockWithOffset(i + 1, j + 6, k, BlocksAether.divine_hellfire_stone_wall, 0);
 							this.setBlockWithOffset(i, j + 6, k + 1, BlocksAether.divine_hellfire_stone_wall, 0);
 							this.setBlockWithOffset(i, j + 6, k - 1, BlocksAether.divine_hellfire_stone_wall, 0);
 							this.setBlockWithOffset(i - 1, j + 6, k, BlocksAether.divine_hellfire_stone_wall, 0);
-							
+
 							this.setBlockWithOffset(i + 1, j + 5, k, BlocksAether.divine_hellfire_stone_wall, 0);
 							this.setBlockWithOffset(i, j + 5, k + 1, BlocksAether.divine_hellfire_stone_wall, 0);
 							this.setBlockWithOffset(i, j + 5, k - 1, BlocksAether.divine_hellfire_stone_wall, 0);
 							this.setBlockWithOffset(i - 1, j + 5, k, BlocksAether.divine_hellfire_stone_wall, 0);
-							
-							this.setBlockWithOffset(i, j + 5, k, BlocksAether.locked_divine_hellfire_stone, 0);							
+
+							this.setBlockWithOffset(i, j + 5, k, BlocksAether.locked_divine_hellfire_stone, 0);
 							this.setBlockWithOffset(i, j + 7, k, BlocksAether.locked_divine_hellfire_stone, 0);
-							
+
 							int rand = (int)(1 + Math.random() * 8);
 							switch (rand)
 					        {
 					        case 1:
-					        	this.setBlockWithOffset(i, j + 6, k, BlocksAether.zanite_block, 0);							
+					        	this.setBlockWithOffset(i, j + 6, k, BlocksAether.zanite_block, 0);
 					        	break;
 					        case 2:
-								this.setBlockWithOffset(i, j + 6, k, BlocksAether.zanite_block, 0);							
+								this.setBlockWithOffset(i, j + 6, k, BlocksAether.zanite_block, 0);
 								break;
 					        case 3:
-								this.setBlockWithOffset(i, j + 6, k, BlocksAether.arkenium_block, 0);							
+								this.setBlockWithOffset(i, j + 6, k, BlocksAether.arkenium_block, 0);
 								break;
 					        case 4:
-								this.setBlockWithOffset(i, j + 6, k, BlocksAether.enchanted_gravitite, 0);							
+								this.setBlockWithOffset(i, j + 6, k, BlocksAether.enchanted_gravitite, 0);
 								break;
 					        case 5:
-								this.setBlockWithOffset(i, j + 6, k, BlocksAether.luminous_stone, 0);							
+								this.setBlockWithOffset(i, j + 6, k, BlocksAether.luminous_stone, 0);
 								break;
 					        case 6:
-								this.setBlockWithOffset(i, j + 6, k, BlocksAether.luminous_stone, 0);							
+								this.setBlockWithOffset(i, j + 6, k, BlocksAether.luminous_stone, 0);
 								break;
-					        case 7:						
+					        case 7:
 								break;
-					        case 8:						
+					        case 8:
 								break;
 					        }
-							
-							
-							
-							
+
+
+
+
 						}
 					}
 				}
@@ -207,16 +204,15 @@ public class ComponentDivineGoldenDungeon extends AetherStructure {
 						} else {
 							this.setBlockWithOffset(a, j, b);
 						}
-												
+
 					}
-					
+
 				}
 			}
 
 		}
 
 		EntityDivineSunSpirit boss = new EntityDivineSunSpirit(this.worldObj, this.getActualX(0, 0), this.getActualY(-1), this.getActualZ(0, 0), this.direction);
-
 		this.spawnEntity(boss, 0, -1, 0);
 
 		return true;
@@ -279,18 +275,18 @@ public class ComponentDivineGoldenDungeon extends AetherStructure {
 
 				return new ItemStack(ItemsAether.phoenix_cape);
 			}
-			
-			case 11: 
+
+			case 11:
 				return new ItemStack(ItemsAether.reinforced_regeneration_stone);
 
-			case 12: 
+			case 12:
 				return new ItemStack(ItemsAether.agility_boots);
-			case 13: 
+			case 13:
 				return new ItemStack(BlocksAether.ancient_enchanter);
-			case 14: 
+			case 14:
 				return new ItemStack(ItemsAether.notched_core);
-			
-			
+
+
 		}
 
 		return new ItemStack(ItemsAether.amplified_skyroot_pickaxe);

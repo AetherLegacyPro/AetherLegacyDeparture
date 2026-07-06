@@ -5,12 +5,9 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.opengl.GL11;
-
 import com.gildedgames.the_aether.inventory.ContainerFreezer;
 import com.gildedgames.the_aether.tileentity.TileEntityFreezer;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -18,7 +15,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class GuiFreezer extends GuiContainer {
 
 	private static final ResourceLocation TEXTURE = Aether.locate("textures/gui/altar.png");
-
 	private TileEntityFreezer freezer;
 
 	public GuiFreezer(InventoryPlayer inventory, TileEntityFreezer tileEntity) {
@@ -29,7 +25,6 @@ public class GuiFreezer extends GuiContainer {
 	@Override
 	protected void drawGuiContainerForegroundLayer(int par1, int par2) {
 		String freezerName = I18n.format("container.aether_legacy.freezer");
-
 		this.fontRendererObj.drawString(freezerName, this.xSize / 2 - this.fontRendererObj.getStringWidth(freezerName) / 2, 6, 4210752);
 		this.fontRendererObj.drawString(I18n.format("container.inventory"), 8, this.ySize - 96 + 2, 4210752);
 	}

@@ -1,16 +1,14 @@
 package com.gildedgames.the_aether.world.biome.decoration;
 
 import java.util.Random;
-
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
 
 public class AetherGenOakTree extends WorldGenAbstractTree {
 
 	public AetherGenOakTree() {
-		super(true);
+        super(true);
 	}
 
 	public boolean branch(World world, Random random, int x, int y, int z, int slant) {

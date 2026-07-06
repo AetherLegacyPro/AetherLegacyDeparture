@@ -4,7 +4,6 @@ public enum EnumSkyrootBucketType {
 	Empty(0, "empty"), Water(1, "water"), Poison(2, "poison"), Remedy(3, "remedy"), Milk(4, "milk");
 
 	public int meta;
-
 	public String name;
 
 	EnumSkyrootBucketType(int meta, String name) {
@@ -17,11 +16,11 @@ public enum EnumSkyrootBucketType {
 	}
 
 	public int getMeta() {
-		return this.meta;
+        return this.meta;
 	}
 
 	public String toString() {
-		return this.name;
+        return this.name;
 	}
 
 }

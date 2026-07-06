@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-import com.gildedgames.the_aether.entities.hostile.EntityCyroGuardian;
+import com.gildedgames.the_aether.entities.bosses.cyro_guardian.EntityCyroGuardian;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.tileentity.TileEntitySkyrootChest;
 import com.gildedgames.the_aether.world.util.RandomTracker;
@@ -43,7 +43,7 @@ public class CobaltDungeon extends AetherDungeon {
 	public boolean generateBossRoom(World world, Random random, int i, int j, int k)
 	{
 		if (!isBoxSolid(world, new PositionData(i, j - 3, k), new PositionData(16, 16, 16)) || !isBoxSolid(world, new PositionData(i + 20, j, k + 2), new PositionData(12, 10, 12))) {
-			return false;													
+			return false;
 		}
 
 		RandomTracker randomTracker = new RandomTracker();
@@ -57,7 +57,7 @@ public class CobaltDungeon extends AetherDungeon {
 		}
 
 		setBlocks(this.lockedBlock(), this.lockedLightBlock(), 20);
-		
+
 		addHollowBox(world, random, new PositionData(i - 1, j - 1, k - 1), new PositionData(17, 10, 17));
 		addHollowBox(world, random, new PositionData(i, j, k), new PositionData(17, 11, 17));
 		addHollowBox(world, random, new PositionData(i, j, k), new PositionData(16, 10, 16));
@@ -74,25 +74,25 @@ public class CobaltDungeon extends AetherDungeon {
 		world.setBlock(i + 14, j + 1, k + 7, BlocksAether.zanite_block);
 		world.setBlock(i + 7, j + 1, k + 14, BlocksAether.zanite_block);
 		world.setBlock(i + 14, j + 1, k + 14, BlocksAether.zanite_block);
-		
+
 		world.setBlock(i + 1, j + 8, k + 1, Blocks.mob_spawner);
         TileEntityMobSpawner tileentitymobspawner3 = (TileEntityMobSpawner)world.getTileEntity(i + 1, j + 8, k + 1);
-          
+
          if (tileentitymobspawner3 != null)
          {
           tileentitymobspawner3.func_145881_a().setEntityName("aether_legacy.cyro");
          }
-         
+
          world.setBlock(i + 9, j + 8, k + 9, Blocks.mob_spawner);
          TileEntityMobSpawner tileentitymobspawner4 = (TileEntityMobSpawner)world.getTileEntity(i + 9, j + 8, k + 9);
-           
+
           if (tileentitymobspawner4 != null)
           {
            tileentitymobspawner4.func_145881_a().setEntityName("aether_legacy.cyro");
           }
-		
+
 		world.setBlock(i, j, k, setRandomBlock(world, random));
-		
+
 		generateEmptyRoom(world, random, i, j, k);
 
 		return true;
@@ -159,7 +159,7 @@ public class CobaltDungeon extends AetherDungeon {
 						world.setBlock(p, j, q, BlocksAether.cracked_oblitus_stone);
 					}
 				}
-				
+
 				for (int p = x + 3; p < x + 7; p += 4) {
 					for (int q = z + 3; q < z + 9; q += 2)   {
 						world.setBlock(p, j, q, setRandomBlock(world, random));
@@ -692,7 +692,7 @@ public class CobaltDungeon extends AetherDungeon {
 
 					setBlocks(this.fillerBlock(), this.fillerBlock1(), 5);
 					addPlaneZ(world, random, new PositionData(x, y, z), new PositionData(6, 6, 0));
-					
+
 
 					setBlocks(Blocks.air, Blocks.air, 1);
 					addPlaneZ(world, random, new PositionData(x + 1, y + 1, z), new PositionData(4, 4, 0));
@@ -855,7 +855,7 @@ public class CobaltDungeon extends AetherDungeon {
 		}
 		return new ItemStack(ItemsAether.zanite_gemstone, random.nextInt(15) + 2);
 	}
-	
+
 	protected Block setRandomBlock(World world, Random random) {
 		int nextInt = random.nextInt(15);
 
@@ -865,12 +865,12 @@ public class CobaltDungeon extends AetherDungeon {
 
 		return BlocksAether.oblitus_stone;
 	}
-	
+
 
 	public Block lockedLightBlock() {
 		return BlocksAether.cracked_oblitus_stone;
 	}
-	
+
 	public Block TrapBlock() {
 		return BlocksAether.cracked_oblitus_stone;
 	}
@@ -894,6 +894,6 @@ public class CobaltDungeon extends AetherDungeon {
 	public Block fillerBlock1() {
 		return BlocksAether.quicksoil;
 	}
-	
+
 
 }

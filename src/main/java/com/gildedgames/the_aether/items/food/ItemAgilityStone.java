@@ -11,13 +11,12 @@ public class ItemAgilityStone extends ItemAetherFood {
 
 	public ItemAgilityStone() {
 		super(0);
-
 		this.setAlwaysEdible();
 	}
 
 	@Override
 	public EnumRarity getRarity(ItemStack stack) {
-		return EnumRarity.rare;
+        return EnumRarity.rare;
 	}
 
 	@Override

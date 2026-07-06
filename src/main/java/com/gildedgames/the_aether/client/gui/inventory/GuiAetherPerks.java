@@ -5,9 +5,7 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.client.gui.inventory.GuiInventory;
-
 import org.lwjgl.input.Keyboard;
-
 import com.gildedgames.the_aether.entities.passive.mountable.EntityMoa;
 import com.gildedgames.the_aether.entities.util.AetherMoaTypes;
 import com.gildedgames.the_aether.network.AetherNetwork;
@@ -20,21 +18,13 @@ import com.gildedgames.the_aether.player.perks.util.EnumAetherPerkType;
 public class GuiAetherPerks extends GuiScreen {
 
 	private boolean enableMoaEditor, enableHaloEditor;
-
 	private PlayerAether player;
-
 	private EntityMoa moa;
-
 	public GuiButton perkMoa, perkHalo;
-
 	private GuiButton defualtSkin, enableHalo, confirmPreference;
-
 	private GuiTextField moaWingMarking, moaWing, moaBody, moaBodyMarking, moaEye, moaOutside;
-
 	private DonatorMoaSkin moaSkin = new DonatorMoaSkin();
-
 	protected int guiLeft;
-
 	protected int guiTop;
 
 	public GuiAetherPerks() {
@@ -43,7 +33,6 @@ public class GuiAetherPerks extends GuiScreen {
 		this.mc = Minecraft.getMinecraft();
 		this.player = PlayerAether.get(this.mc.thePlayer);
 		this.moaSkin = this.player.donatorMoaSkin;
-
 		this.moa = this.player.getEntity().ridingEntity instanceof EntityMoa ? (EntityMoa) this.player.getEntity().ridingEntity : new EntityMoa(this.mc.theWorld, AetherMoaTypes.blue);
 	}
 
@@ -102,7 +91,6 @@ public class GuiAetherPerks extends GuiScreen {
 
 		this.buttonList.add(this.perkMoa = new GuiButton(1, 4, 17, 100, 20, "Moa Customizer"));
 		this.buttonList.add(this.perkHalo = new GuiButton(5, 110, 17, 100, 20, "Developer Perks"));
-
 		this.buttonList.add(this.enableHalo = new GuiButton(6, this.width / 2 - 50, this.height - 20, 100, 20, "Enable Halo: "));
 		this.buttonList.add(this.defualtSkin = new GuiButton(2, this.width / 2 - 100, this.height - 20, 100, 20, "Default skin: " + this.player.donatorMoaSkin.shouldUseDefualt()));
 		this.buttonList.add(this.confirmPreference = new GuiButton(4, this.width / 2, this.height - 20, 100, 20, "Confirm Skin"));
@@ -209,7 +197,6 @@ public class GuiAetherPerks extends GuiScreen {
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
 		this.drawDefaultBackground();
-
 		this.drawCenteredString(this.fontRendererObj, "Donator Options", 45, 4, 16777215);
 
 		if (this.enableMoaEditor) {
@@ -218,17 +205,13 @@ public class GuiAetherPerks extends GuiScreen {
 			/* Left Side*/
 
 			this.drawString(this.fontRendererObj, "Leg/Beak Color", (this.width / 2) - 170, 55, 16777215);
-
 			this.drawString(this.fontRendererObj, "Body Color", (this.width / 2) - 160, this.height / 2, 16777215);
-
 			this.drawString(this.fontRendererObj, "Body Marking Color", (this.width / 2) - 180, this.height - 55, 16777215);
 
 			/* Right Side */
 
 			this.drawString(this.fontRendererObj, "Eye Color", (this.width / 2) + 104, 55, 16777215);
-
 			this.drawString(this.fontRendererObj, "Wing Color", (this.width / 2) + 102, this.height / 2, 16777215);
-
 			this.drawString(this.fontRendererObj, "Wing Marking Color", (this.width / 2) + 82, this.height - 55, 16777215);
 
 			this.moaWingMarking.drawTextBox();

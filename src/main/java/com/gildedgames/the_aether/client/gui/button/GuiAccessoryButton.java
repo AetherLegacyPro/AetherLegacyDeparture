@@ -2,11 +2,9 @@ package com.gildedgames.the_aether.client.gui.button;
 
 import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.AetherConfig;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.opengl.GL11;
 
 public class GuiAccessoryButton extends GuiButton {
@@ -16,13 +14,12 @@ public class GuiAccessoryButton extends GuiButton {
 	protected static final ResourceLocation BUTTON_HOVERED_TEXTURE = Aether.locate("textures/gui/inventory/button/cloud_hover.png");
 
 	public GuiAccessoryButton(int x, int y) {
-		super(18067, x, y, 12, 12, "");
+        super(18067, x, y, 12, 12, "");
 	}
 
 	public GuiAccessoryButton setPosition(int x, int y) {
 		this.xPosition = x;
 		this.yPosition = y;
-
 		return this;
 	}
 
@@ -37,10 +34,10 @@ public class GuiAccessoryButton extends GuiButton {
 			mc.getTextureManager().bindTexture(i == 2 ? BUTTON_HOVERED_TEXTURE : BUTTON_TEXTURE);
 			GL11.glEnable(GL11.GL_BLEND);
 
-			if (AetherConfig.cloud_icon == false) {
+			if (!AetherConfig.cloud_icon) {
 			func_146110_a(this.xPosition - 1, this.yPosition, 0, 0, 14, 14, 14, 14);
 			}
-			else {
+            else {
 				GuiAccessoryButton.func_146110_a(this.xPosition - 1, this.yPosition, -2.0f, -2.0f, 20, 20, 16.0f, 16.0f);
 			}
 			GL11.glPopMatrix();

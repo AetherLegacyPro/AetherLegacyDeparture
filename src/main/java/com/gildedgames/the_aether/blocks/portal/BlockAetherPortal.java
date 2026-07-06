@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.blocks.portal;
 
 import java.util.Random;
-
 import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.entities.particles.ParticleAetherPortal;
 import com.gildedgames.the_aether.entities.util.EntityHook;
@@ -14,7 +13,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
-
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -23,7 +21,6 @@ public class BlockAetherPortal extends BlockPortal {
 
 	public BlockAetherPortal() {
 		super();
-
 		this.setHardness(-1);
 		this.setResistance(900000F);
 		this.setStepSound(soundTypeGlass);

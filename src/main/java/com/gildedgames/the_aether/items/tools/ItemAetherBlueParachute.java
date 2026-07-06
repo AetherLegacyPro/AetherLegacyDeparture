@@ -27,16 +27,14 @@ public class ItemAetherBlueParachute extends Item {
 			}
 
 			world.spawnEntityInWorld(new EntityParachute(world, entityplayer, this == ItemsAether.blue_parachute));
-
 			return heldItem;
 		}
 
 		return super.onItemRightClick(stack, world, entityplayer);
 	}
-	
+
 	public int getColorFromItemStack(ItemStack stack, int renderPass) {
 		if (this == ItemsAether.blue_parachute) return 0xCCCCFF;
-
 		return 0xCCCCFF;
 	}
 

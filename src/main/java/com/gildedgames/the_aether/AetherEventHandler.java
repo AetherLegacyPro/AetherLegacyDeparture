@@ -47,7 +47,6 @@ import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.player.*;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.blocks.portal.BlockAetherPortal;
 import com.gildedgames.the_aether.entities.EntitiesAether;
@@ -68,11 +67,9 @@ import com.gildedgames.the_aether.items.weapons.ItemAmplifiedSkyrootSword;
 import com.gildedgames.the_aether.items.weapons.ItemSkyrootSword;
 import com.gildedgames.the_aether.items.weapons.tipped.ItemTippedSkyrootSword;
 import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
-
 import cpw.mods.fml.common.eventhandler.Event;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent.ItemCraftedEvent;
-
 import java.util.Random;
 
 public class AetherEventHandler {
@@ -89,7 +86,6 @@ public class AetherEventHandler {
 					for (int i = 0; i < 10; ++i) {
 						event.world.spawnParticle("smoke", event.x, event.y, event.z, 0.0D, 0.0D, 0.0D);
 					}
-
 					event.setCanceled(true);
 				}
 			} else if (event.world.getBlock(event.x, event.y, event.z) == Blocks.bed) {
@@ -156,10 +152,8 @@ public class AetherEventHandler {
 		MovingObjectPosition target = event.target;
 		ItemStack stack = event.current;
 		EntityPlayer player = event.entityPlayer;
-
 		boolean isWater = (!AetherConfig.activateOnlyWithSkyroot() && stack.getItem() == Items.water_bucket) || (stack.getItem() == ItemsAether.skyroot_bucket && stack.getItemDamage() == 1);
 		boolean isLava = stack.getItem() == Items.lava_bucket;
-
 		boolean validDimension = (player.dimension == AetherConfig.getTravelDimensionID() || player.dimension == AetherConfig.getAetherDimensionID());
 
 		if (target != null && target.typeOfHit == MovingObjectType.BLOCK && validDimension) {
@@ -210,7 +204,6 @@ public class AetherEventHandler {
 
 				if (worldObj.isAirBlock(i, j, k)) {
 					worldObj.setBlock(i, j, k, BlocksAether.aerogel);
-
 					if (!player.capabilities.isCreativeMode) {
 						event.result = new ItemStack(Items.bucket);
 					}
@@ -319,7 +312,7 @@ public class AetherEventHandler {
 		} else if (craftedItem == ItemsAether.reinforced_valkyrie_ring) {
 			event.player.triggerAchievement(AchievementsAether.even_shinier);
 		}
-		
+
 	}
 
 	@SubscribeEvent
@@ -424,29 +417,29 @@ public class AetherEventHandler {
 					}
 				}
 			}
-		} 
+		}
 	}
 
 	public boolean isGravititeTool(Item item) {
 		return item instanceof ItemGravititeTool || item instanceof ItemGravititeHoe;
 	}
-	
+
 	public boolean isSkyrootTool(Item item) {
 		return item instanceof ItemSkyrootTool || item instanceof ItemSkyrootHoe;
 	}
-	
+
 	public boolean isHolystoneTool(Item item) {
 		return item instanceof ItemHolystoneTool || item instanceof ItemHolystoneHoe;
 	}
-	
+
 	public boolean isZaniteTool(Item item) {
 		return item instanceof ItemZaniteTool || item instanceof ItemZaniteHoe;
 	}
-	
+
 	public boolean isArkeniumTool(Item item) {
 		return item instanceof ItemArkeniumTool || item instanceof ItemArkeniumHoe;
 	}
-	
+
 	public boolean isContinuumTool(Item item) {
 		return item instanceof ItemContinuumTool || item instanceof ItemContinuumHoe;
 	}
@@ -455,7 +448,6 @@ public class AetherEventHandler {
 	public void onWorldTick(TickEvent.WorldTickEvent event) {
 		if (!event.world.isRemote) {
 			AetherData data = AetherData.getInstance(event.world);
-
 			WorldProvider provider = event.world.provider;
 
 			if (provider instanceof AetherWorldProvider providerAether) {
@@ -482,7 +474,6 @@ public class AetherEventHandler {
 
 		if (!world.isRemote && event.entityPlayer.dimension == AetherConfig.getAetherDimensionID()) {
 			final MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
-
 			final WorldServer worldServer = server.worldServerForDimension(0);
 
 			if (!worldServer.playerEntities.isEmpty()) {

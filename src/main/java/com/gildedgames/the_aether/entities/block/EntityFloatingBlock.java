@@ -1,11 +1,8 @@
 package com.gildedgames.the_aether.entities.block;
 
 import io.netty.buffer.ByteBuf;
-
 import java.util.List;
-
 import com.gildedgames.the_aether.blocks.util.BlockFloating;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
@@ -19,34 +16,26 @@ import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 public class EntityFloatingBlock extends Entity implements IEntityAdditionalSpawnData {
 
 	private Block block = Blocks.air;
-
 	private int meta = 0;
-
-	private int timeFloated = 0;
-
-	private boolean hasActivated = false;
+    private int timeFloated = 0;
 
 	public EntityFloatingBlock(World worldIn) {
 		super(worldIn);
-
 		this.setSize(0.98F, 0.98F);
 	}
 
 	public EntityFloatingBlock(World world, int x, int y, int z, Block block, int meta) {
 		super(world);
-
 		this.meta = meta;
 		this.block = block;
 		this.preventEntitySpawning = true;
 		this.motionX = this.motionY = this.motionZ = 0;
-
 		this.setSize(0.98F, 0.98F);
 		this.setPosition(x + 0.5D, y, z + 0.5D);
 	}
 
 	@Override
 	protected void entityInit() {
-
 	}
 
 	@Override
@@ -83,23 +72,17 @@ public class EntityFloatingBlock extends Entity implements IEntityAdditionalSpaw
 			}
 		}
 
-		if (this.ticksExisted > 200)
-		{
-			if (!this.worldObj.isRemote)
-			{
+		if (this.ticksExisted > 200) {
+			if (!this.worldObj.isRemote) {
 				this.entityDropItem(new ItemStack(Item.getItemFromBlock(this.getBlock())),0.0F);
 			}
 
 			this.setDead();
 		}
-		else
-		{
-			if (!BlockFloating.canContinue(this.worldObj, i, j + 1, k))
-			{
-				if (!this.worldObj.isRemote)
-				{
+		else {
+			if (!BlockFloating.canContinue(this.worldObj, i, j + 1, k)) {
+				if (!this.worldObj.isRemote) {
 					this.worldObj.setBlock(i, j, k, this.getBlock());
-
 					this.setDead();
 				}
 
@@ -108,10 +91,8 @@ public class EntityFloatingBlock extends Entity implements IEntityAdditionalSpaw
 				this.posZ = k + 0.5D;
 			}
 
-			if (this.posY > this.worldObj.getHeight())
-			{
-				if (!this.worldObj.isRemote)
-				{
+			if (this.posY > this.worldObj.getHeight()) {
+				if (!this.worldObj.isRemote) {
 					this.setDead();
 					this.entityDropItem(new ItemStack(Item.getItemFromBlock(this.getBlock())),0.0F);
 				}
@@ -120,24 +101,24 @@ public class EntityFloatingBlock extends Entity implements IEntityAdditionalSpaw
 	}
 
 	public void setBlock(Block block) {
-		this.block = block;
+        this.block = block;
 	}
 
 	public Block getBlock() {
-		return this.block;
+        return this.block;
 	}
 
 	public void setMetadata(int meta) {
-		this.meta = meta;
+        this.meta = meta;
 	}
 
 	public int getMetadata() {
-		return this.meta;
+        return this.meta;
 	}
 
 	@Override
 	protected boolean canTriggerWalking() {
-		return false;
+        return false;
 	}
 
 	@Override
@@ -147,7 +128,7 @@ public class EntityFloatingBlock extends Entity implements IEntityAdditionalSpaw
 
 	@Override
 	public boolean canBeCollidedWith() {
-		return !this.isDead;
+        return !this.isDead;
 	}
 
 	@Override

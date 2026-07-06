@@ -3,7 +3,6 @@ package com.gildedgames.the_aether.entities.projectile.darts;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-
 import com.gildedgames.the_aether.items.ItemsAether;
 
 public class EntityDartEnchanted extends EntityDartBase {

@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.blocks.dungeon;
 
 import java.util.List;
-
 import com.gildedgames.the_aether.items.block.IColoredBlock;
 import com.gildedgames.the_aether.items.block.INamedBlock;
 import net.minecraft.block.Block;
@@ -16,7 +15,6 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.Facing;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -24,7 +22,6 @@ public class BlockDiamondAercloud extends Block implements IColoredBlock, INamed
 
 	public BlockDiamondAercloud() {
 		super(Material.ice);
-
 		this.setHardness(2.2F);
 		this.setStepSound(soundTypeCloth);
 		this.setBlockTextureName("aether_legacy:aercloud");
@@ -32,36 +29,33 @@ public class BlockDiamondAercloud extends Block implements IColoredBlock, INamed
 
 	@SideOnly(Side.CLIENT)
 	@SuppressWarnings({"unchecked", "rawtypes"})
-	public void getSubBlocks(Item p_149666_1_, CreativeTabs p_149666_2_, List p_149666_3_) {
-		p_149666_3_.add(new ItemStack(this, 1, 0));
-		p_149666_3_.add(new ItemStack(this, 1, 1));
-		p_149666_3_.add(new ItemStack(this, 1, 2));
+	public void getSubBlocks(Item item, CreativeTabs creativeTabs, List list) {
+        list.add(new ItemStack(this, 1, 0));
+        list.add(new ItemStack(this, 1, 1));
+        list.add(new ItemStack(this, 1, 2));
 	}
 
 	@Override
 	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
 		entity.fallDistance = 0;
-		
-		//diamond aercloud
-			if (world.getBlockMetadata(x, y, z) == 0) {
-				if (entity instanceof EntityPlayer player) {
 
-					entity.motionY = 2.5D;
-				} else {
-					if (entity instanceof EntityArrow)
-					{
-						if (entity.ticksExisted >= 1200)
-						{
-							entity.setDead();
-						}
-					}
-						
-					entity.motionY = 2.5D;
-				}
-					
-			}		
-	
-		
+        //diamond aercloud
+        if (world.getBlockMetadata(x, y, z) == 0) {
+            if (entity instanceof EntityPlayer player) {
+
+                entity.motionY = 2.5D;
+            } else {
+                if (entity instanceof EntityArrow) {
+                    if (entity.ticksExisted >= 1200) {
+                        entity.setDead();}
+                }
+
+                entity.motionY = 2.5D;
+            }
+
+        }
+
+
 		//sapphire aercloud
 		if (world.getBlockMetadata(x, y, z) == 1) {
 			if (entity instanceof EntityPlayer player) {
@@ -76,11 +70,11 @@ public class BlockDiamondAercloud extends Block implements IColoredBlock, INamed
 						entity.setDead();
 					}
 				}
-				
+
 				entity.motionX = 2.5D;
 				entity.motionZ = 2.5D;
 			}
-			
+
 		}
 		//amethyst aercloud
 		else if (world.getBlockMetadata(x, y, z) == 2) {
@@ -96,7 +90,7 @@ public class BlockDiamondAercloud extends Block implements IColoredBlock, INamed
 							entity.setDead();
 						}
 					}
-					
+
 					entity.motionX = -2.5D;
 					entity.motionZ = -2.5D;
 				}
@@ -114,18 +108,18 @@ public class BlockDiamondAercloud extends Block implements IColoredBlock, INamed
 			}
 		} else if (entity.motionY < 0) {
 			entity.motionY *= 0.005D;
-			}	
+			}
 		}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public int getRenderBlockPass() {
-		return 1;
+        return 1;
 	}
 
 	@Override
 	public boolean isOpaqueCube() {
-		return false;
+        return false;
 	}
 
 	@Override
@@ -177,10 +171,10 @@ public class BlockDiamondAercloud extends Block implements IColoredBlock, INamed
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public boolean shouldSideBeRendered(IBlockAccess p_149646_1_, int p_149646_2_, int p_149646_3_, int p_149646_4_, int p_149646_5_) {
-		Block block = p_149646_1_.getBlock(p_149646_2_, p_149646_3_, p_149646_4_);
+	public boolean shouldSideBeRendered(IBlockAccess iBlockAccess, int p_149646_2_, int p_149646_3_, int p_149646_4_, int p_149646_5_) {
+		Block block = iBlockAccess.getBlock(p_149646_2_, p_149646_3_, p_149646_4_);
 
-		if (p_149646_1_.getBlockMetadata(p_149646_2_, p_149646_3_, p_149646_4_) != p_149646_1_.getBlockMetadata(p_149646_2_ - Facing.offsetsXForSide[p_149646_5_], p_149646_3_ - Facing.offsetsYForSide[p_149646_5_], p_149646_4_ - Facing.offsetsZForSide[p_149646_5_])) {
+		if (iBlockAccess.getBlockMetadata(p_149646_2_, p_149646_3_, p_149646_4_) != iBlockAccess.getBlockMetadata(p_149646_2_ - Facing.offsetsXForSide[p_149646_5_], p_149646_3_ - Facing.offsetsYForSide[p_149646_5_], p_149646_4_ - Facing.offsetsZForSide[p_149646_5_])) {
 			return true;
 		}
 
@@ -188,7 +182,7 @@ public class BlockDiamondAercloud extends Block implements IColoredBlock, INamed
 			return false;
 		}
 
-		return super.shouldSideBeRendered(p_149646_1_, p_149646_2_, p_149646_3_, p_149646_4_, p_149646_5_);
+		return super.shouldSideBeRendered(iBlockAccess, p_149646_2_, p_149646_3_, p_149646_4_, p_149646_5_);
 	}
 
 	@Override

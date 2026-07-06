@@ -1,9 +1,7 @@
 package com.gildedgames.the_aether.world.dungeon;
 
 import java.util.Random;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
@@ -314,15 +312,15 @@ public class PalladiumDungeon extends WorldGenerator {
       if (i == j) {
     	  int rand3 = (int)(1 + Math.random() * 3);
           if (rand3 == 1 ) {
-        	  return rand.nextInt(14) == 0 ? BlocksAether.light_genesis_stone : BlocksAether.genesis_stone; //put 3rd variant for this block here   
+        	  return rand.nextInt(14) == 0 ? BlocksAether.light_genesis_stone : BlocksAether.genesis_stone; //put 3rd variant for this block here
           }
           if (rand3 == 2 ) {
-        	  return rand.nextInt(30) == 1 ? BlocksAether.primeval_artifact : BlocksAether.genesis_stone;   
+        	  return rand.nextInt(30) == 1 ? BlocksAether.primeval_artifact : BlocksAether.genesis_stone;
           }
-        	  return rand.nextInt(10) == 0 ? BlocksAether.amethyst_glowstone : BlocksAether.genesis_stone;  
+        	  return rand.nextInt(10) == 0 ? BlocksAether.amethyst_glowstone : BlocksAether.genesis_stone;
         }
       if (i > j) {
-        	  return rand.nextInt(10) == 0 ? BlocksAether.light_genesis_stone : BlocksAether.genesis_stone; //put 3rd variant for this block here   
+        	  return rand.nextInt(10) == 0 ? BlocksAether.light_genesis_stone : BlocksAether.genesis_stone; //put 3rd variant for this block here
       }
       else {
          return flag ? BlocksAether.light_genesis_stone : BlocksAether.genesis_stone;
@@ -343,7 +341,7 @@ public class PalladiumDungeon extends WorldGenerator {
                if (world.getBlock(x1, yTest, z1).isReplaceable(world, x1, yTest, z1) && (world.getBlock(x1, yTest - 1, z1) == BlocksAether.genesis_stone || world.getBlock(x1, yTest - 1, z1) == BlocksAether.enchanted_holystone)) {
                   world.setBlock(x1, yTest, z1, BlocksAether.auralite_cluster_2, 7, 0);
                   break;
-               }             
+               }
             }
          }
       }
@@ -356,7 +354,7 @@ public class PalladiumDungeon extends WorldGenerator {
    private static PalladiumDungeonSpawner2 spawner2 = new PalladiumDungeonSpawner2(Blocks.air, 1, true);
    private static PalladiumDecorationChest chest = new PalladiumDecorationChest(Blocks.air, 1, true);
    private static PalladiumDecorationGemstonePiles gem = new PalladiumDecorationGemstonePiles(Blocks.air, 1, true);
-   
+
    private void generateTrees(World world, Random rand, int x, int y, int z) {
       int radius = this.bumpsLong1 > this.bumpsWide1 ? this.bumpsLong1 : this.bumpsWide1;
 
@@ -371,49 +369,49 @@ public class PalladiumDungeon extends WorldGenerator {
          if (l1 > 100) {
             if (rand.nextInt(200) == 2) {
             	ruins.generate(world, rand, j1, l1, k1);
-            } 
+            }
             else {
             }
          }
          else if (l1 > 100) {
              if (rand.nextInt(300) == 6) {
             	 hidden.generate(world, rand, j1, l1, k1);
-             } 
+             }
              else {
              }
           }
          else if (l1 > 100) {
              if (rand.nextInt(30) == 5) {
             	 spawner.generate(world, rand, j1, l1, k1);
-             } 
+             }
              else {
              }
           }
          else if (l1 > 100) {
              if (rand.nextInt(45) == 4) {
             	 spawner2.generate(world, rand, j1, l1, k1);
-             } 
+             }
              else {
              }
           }
          else if (l1 > 100) {
              if (rand.nextInt(50) == 1) {
             	 chest.generate(world, rand, j1, l1, k1);
-             } 
+             }
              else {
              }
           }
          else if (l1 > 100) {
              if (rand.nextInt(10) == 1) {
             	 gem.generate(world, rand, j1, l1, k1);
-             } 
+             }
              else {
              }
           }
          else if (l1 > 100) {
              if (rand.nextInt(12) == 1) {
             	 gem.generate(world, rand, j1, l1, k1);
-             } 
+             }
              else if (rand.nextInt(14) == 3) {
             	 gem.generate(world, rand, j1, l1, k1);
              }
@@ -421,7 +419,7 @@ public class PalladiumDungeon extends WorldGenerator {
              }
           }
       }
-      
+
       for(i6 = 0; i6 < 1 + rand.nextInt(1); ++i6) {
           j1 = x + this.centerX + rand.nextInt(this.width) - this.centerX;
           k1 = z + this.centerZ + rand.nextInt(this.length) - this.centerZ;
@@ -430,7 +428,7 @@ public class PalladiumDungeon extends WorldGenerator {
         	 ruins.generate(world, rand, j1, l1, k1);
          }
       }
-      
+
       int i7;
       int j2;
       int k2;
@@ -443,7 +441,7 @@ public class PalladiumDungeon extends WorldGenerator {
          	 spawner.generate(world, rand, j2, l2, k2);
           }
        }
-      
+
       //int i13;
       int j8;
       int k8;
@@ -454,7 +452,7 @@ public class PalladiumDungeon extends WorldGenerator {
           if (l8 > 100) {
          	 spawner2.generate(world, rand, j8, l8, k8);
           }
-      
+
       int i12;
       int j7;
       int k7;
@@ -467,7 +465,7 @@ public class PalladiumDungeon extends WorldGenerator {
          	 hidden.generate(world, rand, j7, l7, k7);
           }
        }
-      
+
       int i8;
       int j3;
       int k3;
@@ -480,7 +478,7 @@ public class PalladiumDungeon extends WorldGenerator {
          	 chest.generate(world, rand, j3, l3, k3);
           }
        }
-      
+
       int i9;
       int j4;
       int k4;
@@ -493,7 +491,7 @@ public class PalladiumDungeon extends WorldGenerator {
          	 gem.generate(world, rand, j4, l4, k4);
           }
        }
-      
+
       int i10;
       int j5;
       int k5;
@@ -506,7 +504,7 @@ public class PalladiumDungeon extends WorldGenerator {
          	 gem.generate(world, rand, j5, l5, k5);
           }
        }
-      
+
       int i11;
       int j6;
       int k6;
@@ -520,5 +518,5 @@ public class PalladiumDungeon extends WorldGenerator {
           }
        }
    }
-   
+
 }

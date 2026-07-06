@@ -5,16 +5,12 @@ import net.minecraft.world.World;
 
 public class AetherParticle extends EntityFX {
 
-	public AetherParticle(World worldIn, double posXIn, double posYIn, double posZIn) {
-		super(worldIn, posXIn, posYIn, posZIn);
-	}
-
 	public AetherParticle(World worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double zSpeedIn) {
 		super(worldIn, xCoordIn, yCoordIn, zCoordIn, xSpeedIn, ySpeedIn, zSpeedIn);
 	}
 
 	public void setMotionX(double motionX) {
-		this.motionX = motionX;
+        this.motionX = motionX;
 	}
 
 	public void setMotionY(double motionY) {
@@ -22,7 +18,7 @@ public class AetherParticle extends EntityFX {
 	}
 
 	public void setMotionZ(double motionZ) {
-		this.motionZ = motionZ;
+        this.motionZ = motionZ;
 	}
 
 	public double getX() {
@@ -30,15 +26,15 @@ public class AetherParticle extends EntityFX {
 	}
 
 	public double getY() {
-		return this.posY;
+        return this.posY;
 	}
 
 	public double getZ() {
-		return this.posZ;
+        return this.posZ;
 	}
 
 	public double getMotionX() {
-		return this.motionX;
+        return this.motionX;
 	}
 
 	public double getMotionY() {

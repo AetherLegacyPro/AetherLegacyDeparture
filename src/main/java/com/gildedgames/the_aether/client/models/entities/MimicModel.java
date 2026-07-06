@@ -8,7 +8,6 @@ import net.minecraft.entity.Entity;
 public class MimicModel extends ModelBase {
 
 	ModelRenderer box, boxLid;
-
 	ModelRenderer leftLeg, rightLeg;
 
 	public MimicModel() {

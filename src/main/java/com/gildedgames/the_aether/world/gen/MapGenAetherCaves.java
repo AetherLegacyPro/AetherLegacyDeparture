@@ -6,19 +6,16 @@ import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.util.MathHelper;
 import java.util.Random;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
-
 import net.minecraft.block.Block;
 import net.minecraft.world.gen.MapGenBase;
 
-public class MapGenAetherCaves extends MapGenBase
-{
-    
+public class MapGenAetherCaves extends MapGenBase {
+
     protected void func_151542_a(final long p_151542_1_, final int p_151542_3_, final int p_151542_4_, final Block[] p_151542_5_, final byte[] metadata, final double p_151542_6_, final double p_151542_8_, final double p_151542_10_) {
         this.func_151541_a(p_151542_1_, p_151542_3_, p_151542_4_, p_151542_5_, metadata, p_151542_6_, p_151542_8_, p_151542_10_, 1.0f + this.rand.nextFloat() * 6.0f, 0.0f, 0.0f, -1, -1, 0.5);
     }
-    
+
     protected void func_151541_a(final long p_151541_1_, final int p_151541_3_, final int p_151541_4_, final Block[] p_151541_5_, final byte[] metadata, double p_151541_6_, double p_151541_8_, double p_151541_10_, final float p_151541_12_, float p_151541_13_, float p_151541_14_, int p_151541_15_, int p_151541_16_, final double p_151541_17_) {
         final double d4 = p_151541_3_ * 16 + 8;
         final double d5 = p_151541_4_ * 16 + 8;
@@ -140,8 +137,8 @@ public class MapGenAetherCaves extends MapGenBase
             ++p_151541_15_;
         }
     }
-    
-    protected void func_151538_a(final World p_151538_1_, final int p_151538_2_, final int p_151538_3_, final int p_151538_4_, final int p_151538_5_, final Block[] p_151538_6_, final byte[] metadata) {
+
+    protected void func_151538_a(final World world, final int p_151538_2_, final int p_151538_3_, final int p_151538_4_, final int p_151538_5_, final Block[] p_151538_6_, final byte[] metadata) {
         int i1 = this.rand.nextInt(this.rand.nextInt(this.rand.nextInt(15) + 1) + 1);
         if (this.rand.nextInt(7) != 0) {
             i1 = 0;
@@ -166,16 +163,16 @@ public class MapGenAetherCaves extends MapGenBase
             }
         }
     }
-    
+
     protected boolean isOceanBlock(final Block[] data, final int index, final int x, final int y, final int z, final int chunkX, final int chunkZ) {
         return data[index] == Blocks.flowing_water || data[index] == Blocks.water;
     }
-    
+
     private boolean isTopBlock(final Block[] data, final int index, final int x, final int y, final int z, final int chunkX, final int chunkZ) {
         final BiomeGenBase biome = this.worldObj.getBiomeGenForCoords(x + chunkX * 16, z + chunkZ * 16);
         return data[index] == biome.topBlock;
     }
-    
+
     protected void digBlock(final Block[] data, final byte[] metadata, final int index, final int x, final int y, final int z, final int chunkX, final int chunkZ, final boolean foundTop) {
         final BiomeGenBase biome = this.worldObj.getBiomeGenForCoords(x + chunkX * 16, z + chunkZ * 16);
         final Block top = biome.topBlock;
@@ -195,23 +192,23 @@ public class MapGenAetherCaves extends MapGenBase
             }
         }
     }
-    
-    public void generate(final IChunkProvider p_151539_1_, final World p_151539_2_, final int p_151539_3_, final int p_151539_4_, final Block[] p_151539_5_, final byte[] metadata) {
+
+    public void generate(final IChunkProvider p_151539_1_, final World world, final int p_151539_3_, final int p_151539_4_, final Block[] p_151539_5_, final byte[] metadata) {
         final int k = this.range;
-        this.worldObj = p_151539_2_;
-        this.rand.setSeed(p_151539_2_.getSeed());
+        this.worldObj = world;
+        this.rand.setSeed(world.getSeed());
         final long l = this.rand.nextLong();
         final long i1 = this.rand.nextLong();
         for (int j1 = p_151539_3_ - k; j1 <= p_151539_3_ + k; ++j1) {
             for (int k2 = p_151539_4_ - k; k2 <= p_151539_4_ + k; ++k2) {
                 final long l2 = j1 * l;
                 final long i2 = k2 * i1;
-                this.rand.setSeed(l2 ^ i2 ^ p_151539_2_.getSeed());
-                this.func_151538_a(p_151539_2_, j1, k2, p_151539_3_, p_151539_4_, p_151539_5_, metadata);
+                this.rand.setSeed(l2 ^ i2 ^ world.getSeed());
+                this.func_151538_a(world, j1, k2, p_151539_3_, p_151539_4_, p_151539_5_, metadata);
             }
         }
     }
 }
-    
+
 
 

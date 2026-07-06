@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.blocks.natural;
 
 import java.util.Random;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.items.tools.ItemAetherTool;
@@ -23,7 +22,6 @@ public class BlockAetherOreNewAgiosite extends Block {
 
 	public BlockAetherOreNewAgiosite(int level) {
 		super(Material.rock);
-
 		this.setHardness(4.0F);
 		this.setResistance(6.0F);
 		this.setStepSound(soundTypeStone);
@@ -47,10 +45,10 @@ public class BlockAetherOreNewAgiosite extends Block {
 			for (int i = 0; i < 3; ++i) {
 				this.dropBlockAsItem(worldIn, x, y, z, meta, EnchantmentHelper.getEnchantmentLevel(Enchantment.fortune.effectId, stack));
 			}
-			
+
 		} else {
 			super.harvestBlock(worldIn, player, x, y, z, meta);
-			}	
+        }
 	}
 
 	@Override
@@ -74,7 +72,7 @@ public class BlockAetherOreNewAgiosite extends Block {
 	}
 
 	@Override
-	public int getExpDrop(IBlockAccess p_149690_1_, int p_149690_5_, int p_149690_7_) {
+	public int getExpDrop(IBlockAccess iBlockAccess, int p_149690_5_, int p_149690_7_) {
 		Random random = new Random();
 
 		if (this.getItemDropped(p_149690_5_, random, p_149690_7_) != Item.getItemFromBlock(this)) {
@@ -91,5 +89,4 @@ public class BlockAetherOreNewAgiosite extends Block {
 
 		return 0;
 	}
-
 }

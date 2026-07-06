@@ -11,7 +11,6 @@ import com.gildedgames.the_aether.tileentity.TileEntityTreasureChest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ContainerChest;
 import net.minecraft.world.World;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.blocks.container.DivineEnchantmentTableContainer;
 import com.gildedgames.the_aether.client.gui.GuiAetherEnchantmentTable;
@@ -31,7 +30,6 @@ import com.gildedgames.the_aether.inventory.ContainerFreezer;
 import com.gildedgames.the_aether.inventory.ContainerIncubator;
 import com.gildedgames.the_aether.inventory.ContainerLore;
 import com.gildedgames.the_aether.inventory.ContainerSkyrootWorkbench;
-
 import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

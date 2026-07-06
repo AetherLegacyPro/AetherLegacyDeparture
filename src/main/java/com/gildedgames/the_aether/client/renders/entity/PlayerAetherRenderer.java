@@ -18,10 +18,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
-
 import com.gildedgames.the_aether.api.accessories.AccessoryType;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.items.accessories.ItemAccessory;
@@ -33,15 +31,10 @@ import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 public class PlayerAetherRenderer {
 
     private static final ResourceLocation TEXTURE_VALKYRIE = Aether.locate("textures/other/wings.png");
-    
-    private static final ResourceLocation TEXTURE_VALKYRIE_RING = Aether.locate("textures/other/wings_ring.png");
-
     private static final ResourceLocation TEXTURE_HALO = Aether.locate("textures/other/halo.png");
-    
     private static final ResourceLocation TEXTURE_AGILITY_WINGS = Aether.locate("textures/other/agility_wings.png");
 
     private final Minecraft mc;
-
     private final ModelHalo modelHalo = new ModelHalo();
     public final ModelBiped modelMisc = new ModelBiped(1.0F);
     public final ModelBiped modelGlow = new ModelBiped(0.7F);
@@ -49,7 +42,6 @@ public class PlayerAetherRenderer {
     private final ModelAgilityBoots modelAgilityBoots = new ModelAgilityBoots();
 
     private float partialTicks;
-
     private boolean isCapeRendering;
 
     private static final PlayerAetherRenderer instance = new PlayerAetherRenderer();
@@ -130,7 +122,7 @@ public class PlayerAetherRenderer {
         this.modelMisc.aimedBow = this.modelWings.aimedBow = this.modelGlow.aimedBow = false;
         this.modelMisc.isSneak = this.modelWings.isSneak = this.modelGlow.isSneak = false;
         this.modelMisc.heldItemRight = this.modelWings.heldItemRight = this.modelGlow.heldItemRight = 0;
-        
+
         this.modelMisc.aimedBow = this.modelAgilityBoots.aimedBow = this.modelGlow.aimedBow = false;
         this.modelMisc.isSneak = this.modelAgilityBoots.isSneak = this.modelGlow.isSneak = false;
         this.modelMisc.heldItemRight = this.modelAgilityBoots.heldItemRight = this.modelGlow.heldItemRight = 0;
@@ -142,7 +134,7 @@ public class PlayerAetherRenderer {
         this.modelMisc.onGround = this.modelWings.onGround = this.modelGlow.onGround = playerAether.getEntity().getSwingProgress(partialTicks);
         this.modelMisc.isRiding = this.modelWings.isRiding = this.modelGlow.isRiding = playerAether.getEntity().isRiding();
         this.modelMisc.isChild = this.modelWings.isChild = this.modelGlow.isChild = playerAether.getEntity().isChild();
-        
+
         this.modelMisc.onGround = this.modelAgilityBoots.onGround = this.modelGlow.onGround = playerAether.getEntity().getSwingProgress(partialTicks);
         this.modelMisc.isRiding = this.modelAgilityBoots.isRiding = this.modelGlow.isRiding = playerAether.getEntity().isRiding();
         this.modelMisc.isChild = this.modelAgilityBoots.isChild = this.modelGlow.isChild = playerAether.getEntity().isChild();
@@ -250,8 +242,8 @@ public class PlayerAetherRenderer {
              GL11.glRotatef(prevRotationPitch, 1.0F, 0.0F, 0.0F);
              GL11.glTranslatef(0.0F, -0.121875F, 0.0F); //-0.65F
              GL11.glRotatef(-prevRotationPitch, 1.0F, 0.0F, 0.0F);
-             GL11.glRotatef(-f9, 0.0F, 1.0F, 0.0F); 
-             
+             GL11.glRotatef(-f9, 0.0F, 1.0F, 0.0F);
+
             this.mc.getTextureManager().bindTexture(TEXTURE_AGILITY_WINGS);
 
             this.modelAgilityBoots.renderWings(scale);

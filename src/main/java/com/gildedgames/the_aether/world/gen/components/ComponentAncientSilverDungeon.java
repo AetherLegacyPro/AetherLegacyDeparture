@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.world.gen.components;
 
 import java.util.Random;
-
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.entities.bosses.valkyrie_queen.EntityAncientValkyrieQueen;
 import com.gildedgames.the_aether.entities.util.AetherMoaTypes;
@@ -16,23 +15,17 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
 
 public class ComponentAncientSilverDungeon extends AetherStructure {
 
 	private static final Block LOCKED_ANGELIC_STONE = BlocksAether.locked_ancient_angelic_stone;
-
 	private static final Block LOCKED_LIGHT_ANGELIC_STONE = BlocksAether.locked_ancient_light_angelic_stone;
-
 	private int[][][] rooms = new int[3][3][3];
-
 	private int firstStaircaseZ, secondStaircaseZ, finalStaircaseZ;
-
 	private int xTendency, zTendency;
 
 	public ComponentAncientSilverDungeon() {
-
 	}
 
 	public ComponentAncientSilverDungeon(int chunkX, int chunkZ) {
@@ -54,7 +47,6 @@ public class ComponentAncientSilverDungeon extends AetherStructure {
 	@Override
 	public boolean generate() {
 		this.replaceAir = true;
-
 		this.setStructureOffset(21, 17, 20);
 
 		for (int tries = 0; tries < 100; tries++) {
@@ -62,11 +54,8 @@ public class ComponentAncientSilverDungeon extends AetherStructure {
 		}
 
 		this.setStructureOffset(31, 24, 30);
-
 		this.replaceSolid = true;
-
 		this.setBlocks(BlocksAether.holystone, BlocksAether.bloodmoss_stone, 30);
-
 		this.addSolidBox(0, -5, 0, 55, 5, 30);
 
 		for (int x = 0; x < 55; x += 4) {
@@ -295,7 +284,6 @@ public class ComponentAncientSilverDungeon extends AetherStructure {
 		this.addLineX(46, 4, 13, 4);
 		this.addLineX(46, 4, 16, 4);
 		this.addPlaneX(49, 4, 13, 4, 4);
-
 		this.setBlocks(Blocks.wool, 11, Blocks.wool, 11, 20);
 		this.addPlaneY(47, 3, 14, 2, 2);
 
@@ -574,6 +562,7 @@ public class ComponentAncientSilverDungeon extends AetherStructure {
 				if (AetherConfig.goldenFeatherEnabled())
 					return new ItemStack(ItemsAether.golden_feather);
 		}
+
 		return new ItemStack(ItemsAether.arkenium_fragement, random.nextInt(3) + 4);
 	}
 }

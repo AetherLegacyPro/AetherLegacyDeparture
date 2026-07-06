@@ -2,7 +2,6 @@ package com.gildedgames.the_aether.client.renders.items;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;
-
 import org.lwjgl.opengl.GL11;
 
 public class PhoenixBowRenderer implements IItemRenderer {
@@ -20,13 +19,11 @@ public class PhoenixBowRenderer implements IItemRenderer {
 
 	@Override
 	public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper) {
-
 		return false;
 	}
 
 	@Override
 	public void renderItem(ItemRenderType type, ItemStack item, Object... data) {
-
 	}
 
 }

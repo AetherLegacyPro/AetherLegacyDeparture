@@ -9,9 +9,7 @@ public class DivineValkyrieQueenAIWander extends EntityAIWander {
 
     public DivineValkyrieQueenAIWander(EntityDivineValkyrieQueen creatureIn, double speedIn) {
         super(creatureIn, speedIn);
-
         this.theQueen = creatureIn;
-       
     }
 
     @Override

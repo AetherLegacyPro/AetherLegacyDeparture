@@ -8,22 +8,18 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
-
 import com.gildedgames.the_aether.api.accessories.AccessoryType;
 import com.gildedgames.the_aether.api.accessories.AetherAccessory;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class SlotAccessory extends Slot {
 
 	private EntityPlayer instance;
-
 	private AccessoryType accessoryType;
 
 	public SlotAccessory(IInventory inventory, int slotID, AccessoryType accessoryType, int x, int y, EntityPlayer instance) {
 		super(inventory, slotID, x, y);
-
 		this.instance = instance;
 		this.accessoryType = accessoryType;
 	}
@@ -44,11 +40,11 @@ public class SlotAccessory extends Slot {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getBackgroundIconIndex() {
-		return ClientProxy.ACCESSORY_ICONS[this.getSlotIndex()];
+        return ClientProxy.ACCESSORY_ICONS[this.getSlotIndex()];
 	}
 
 	public AccessoryType getAccessoryType() {
-		return this.accessoryType;
+        return this.accessoryType;
 	}
 
 }

@@ -6,8 +6,7 @@ import net.minecraft.entity.player.*;
 import java.util.*;
 import net.minecraft.util.*;
 
-public class AIEntityFlyingMob extends EntityAIBase
-{
+public class AIEntityFlyingMob extends EntityAIBase {
     public EntityLiving flyingMob;
     public Entity targetedEntity;
     public double waypointX;
@@ -27,7 +26,7 @@ public class AIEntityFlyingMob extends EntityAIBase
     public int aggroCooldown;
     public int attackCounter;
     public float sinage;
-    
+
     public AIEntityFlyingMob(final Random rand, final EntityLiving flyingMob) {
         this.distReqForTarget = 15.0;
         this.divepointSet = false;
@@ -44,11 +43,11 @@ public class AIEntityFlyingMob extends EntityAIBase
         this.xpov = (this.rand.nextBoolean() ? -1 : 1);
         this.zpov = (this.rand.nextBoolean() ? -1 : 1);
     }
-    
+
     public boolean shouldExecute() {
         return this.flyingMob instanceof IFlyingMob && ((IFlyingMob)this.flyingMob).fly();
     }
-    
+
     public void updateTask() {
         if (this.targetedEntity instanceof EntityPlayer player) {
 			if (player.capabilities.isCreativeMode) {
@@ -77,7 +76,7 @@ public class AIEntityFlyingMob extends EntityAIBase
             final AxisAlignedBB bounds = AxisAlignedBB.getBoundingBox(this.flyingMob.posX, this.flyingMob.posY, this.flyingMob.posZ, this.flyingMob.posX, this.flyingMob.posY, this.flyingMob.posZ).expand(this.distReqForTarget, 200.0, this.distReqForTarget);
             final List list = this.flyingMob.worldObj.getEntitiesWithinAABB((Class)EntityPlayer.class, bounds);
             for (int i = 0; i < list.size(); ++i) {
-                if (!list.isEmpty()) { //&& !list.get(i).capabilities.isCreativeMode
+                if (!list.isEmpty()) {
                     this.targetedEntity = (Entity)list.get(i);
                 }
             }
@@ -97,7 +96,7 @@ public class AIEntityFlyingMob extends EntityAIBase
             }
         }
     }
-    
+
     private boolean isCourseTraversable(final double d, final double d1, final double d2, final double d3) {
         final double d4 = (this.waypointX - this.flyingMob.posX) / d3;
         final double d5 = (this.waypointY - this.flyingMob.posY) / d3;
@@ -111,7 +110,7 @@ public class AIEntityFlyingMob extends EntityAIBase
         }
         return true;
     }
-    
+
     private void randomMovement() {
         final double d = this.waypointX - this.flyingMob.posX;
         final double d2 = this.waypointY - this.flyingMob.posY;
@@ -134,7 +133,7 @@ public class AIEntityFlyingMob extends EntityAIBase
             this.waypointZ = this.flyingMob.posZ + (this.rand.nextFloat() * 2.0f - 1.0f) * 16.0f;
         }
     }
-    
+
     private void dive() {
         final float speed = ((IFlyingMob)this.flyingMob).getFlySpeed();
         if (!this.divepointSet) {
@@ -180,7 +179,7 @@ public class AIEntityFlyingMob extends EntityAIBase
             }
         }
     }
-    
+
     private void orbitPlayer() {
         final double d = this.waypointX - this.flyingMob.posX;
         final double d2 = this.waypointY - this.flyingMob.posY;

@@ -5,7 +5,6 @@ import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.entities.hostile.EntityAetherMob;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -19,24 +18,17 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
-
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 
 public class EntityValkyrie extends EntityAetherMob {
 
 	private int attackTime;
-
 	public int angerLevel;
-
 	public int timeLeft, chatTime;
-
 	public double safeX, safeY, safeZ;
-
 	public float sinage;
-
 	public double lastMotionY;
-
 	public int teleTimer;
 
 	public EntityValkyrie(World world) {
@@ -270,13 +262,12 @@ public class EntityValkyrie extends EntityAetherMob {
 
 	@Override
 	protected Entity findPlayerToAttack() {
-		return null;
+        return null;
 	}
 
 	@Override
 	public void writeEntityToNBT(NBTTagCompound compound) {
 		super.writeEntityToNBT(compound);
-
 		compound.setInteger("angerLevel", this.angerLevel);
 		compound.setInteger("teleTimer", this.teleTimer);
 		compound.setInteger("timeLeft", this.timeLeft);
@@ -288,7 +279,6 @@ public class EntityValkyrie extends EntityAetherMob {
 	@Override
 	public void readEntityFromNBT(NBTTagCompound compound) {
 		super.readEntityFromNBT(compound);
-
 		this.angerLevel = compound.getInteger("angerLevel");
 		this.teleTimer = compound.getInteger("teleTimer");
 		this.timeLeft = compound.getInteger("timeLeft");
@@ -332,10 +322,10 @@ public class EntityValkyrie extends EntityAetherMob {
 			spawnExplosionParticle();
 			this.setDead();
 		}
-		
+
 		EntityPlayer player = (EntityPlayer) ds.getEntity();
 		ItemStack stack = player.inventory.getCurrentItem();
-        
+
 		if (stack != null && stack.getItem() != null && stack.getItem() == ItemsAether.builder_slayer) {
 			player.triggerAchievement(AchievementsAether.builders_beware);
 		}
@@ -384,28 +374,28 @@ public class EntityValkyrie extends EntityAetherMob {
 
 	@Override
 	public boolean canDespawn() {
-		return true;
+        return true;
 	}
 
 	@Override
 	protected String getHurtSound() {
-		return "game.player.hurt";
+        return "game.player.hurt";
 	}
 
 	@Override
 	protected String getDeathSound() {
-		return "game.player.hurt.fall.big";
+        return "game.player.hurt.fall.big";
 	}
-    
+
 	public boolean getCanSpawnHere() {
         final int i = MathHelper.floor_double(this.posX);
         final int j = MathHelper.floor_double(this.boundingBox.minY);
         final int k = MathHelper.floor_double(this.posZ);
         final boolean canSpawn = this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
         return (this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_angelic_stone || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_light_angelic_stone || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_divine_angelic_stone || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_divine_light_angelic_stone || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_mythic_light_angelic_stone || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_mythic_angelic_stone || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_ancient_angelic_stone || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_ancient_light_angelic_stone) && this.worldObj.getBlockLightValue(i, j, k) < 14 && canSpawn;
-                       
+
     }
-    
+
     public int getMaxSpawnedInChunk() {
         return 1;
     }

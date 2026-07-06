@@ -10,18 +10,14 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.registry.IThrowableEntity;
-
 import java.util.List;
-
 import com.gildedgames.the_aether.entities.effects.EffectInebriation;
 import com.gildedgames.the_aether.entities.effects.PotionInebriation;
 
 public class EntityPoisonSnowball extends EntityArrow implements IThrowableEntity {
 
 	private int timeInGround;
-
 	private boolean hitGround;
-	
 	public int ticksInAir;
 
 	public EntityPoisonSnowball(World worldIn) {
@@ -35,7 +31,6 @@ public class EntityPoisonSnowball extends EntityArrow implements IThrowableEntit
 
 	@Override
 	public void onUpdate() {
-
 		if (this.arrowShake == 7) {
 			this.hitGround = false;
 		}
@@ -51,7 +46,7 @@ public class EntityPoisonSnowball extends EntityArrow implements IThrowableEntit
 				this.worldObj.spawnParticle("snowshovel", this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
 			}
 		}
-		
+
 		if (this.ticksInAir > 100) {
 			this.setDead();
 		} else {
@@ -64,8 +59,7 @@ public class EntityPoisonSnowball extends EntityArrow implements IThrowableEntit
 		vec31 = Vec3.createVectorHelper(this.posX, this.posY, this.posZ);
 		vec3 = Vec3.createVectorHelper(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
 
-		if (movingobjectposition != null)
-		{
+		if (movingobjectposition != null) {
 			vec3 = Vec3.createVectorHelper(movingobjectposition.hitVec.xCoord, movingobjectposition.hitVec.yCoord, movingobjectposition.hitVec.zCoord);
 		}
 
@@ -75,22 +69,16 @@ public class EntityPoisonSnowball extends EntityArrow implements IThrowableEntit
 		int i;
 		float f1;
 
-		for (i = 0; i < list.size(); ++i)
-		{
+		for (i = 0; i < list.size(); ++i) {
 			Entity entity1 = (Entity)list.get(i);
-
-			if (entity1.canBeCollidedWith() && (entity1 != this.shootingEntity))
-			{
+			if (entity1.canBeCollidedWith() && (entity1 != this.shootingEntity)) {
 				f1 = 0.3F;
 				AxisAlignedBB axisalignedbb1 = entity1.boundingBox.expand(f1, f1, f1);
 				MovingObjectPosition movingobjectposition1 = axisalignedbb1.calculateIntercept(vec31, vec3);
 
-				if (movingobjectposition1 != null)
-				{
+				if (movingobjectposition1 != null) {
 					double d1 = vec31.distanceTo(movingobjectposition1.hitVec);
-
-					if (d1 < d0 || d0 == 0.0D)
-					{
+					if (d1 < d0 || d0 == 0.0D) {
 						entity = entity1;
 						d0 = d1;
 					}
@@ -98,18 +86,15 @@ public class EntityPoisonSnowball extends EntityArrow implements IThrowableEntit
 			}
 		}
 
-		if (entity != null)
-		{
+		if (entity != null) {
 			movingobjectposition = new MovingObjectPosition(entity);
 		}
 
-		if (movingobjectposition != null && movingobjectposition.entityHit instanceof EntityPlayer entityplayer)
-		{
+		if (movingobjectposition != null && movingobjectposition.entityHit instanceof EntityPlayer entityplayer) {
 			((EntityLivingBase) movingobjectposition.entityHit).addPotionEffect(new EffectInebriation(Potion.poison.id, 150, 1));
 	        ((EntityLivingBase) movingobjectposition.entityHit).addPotionEffect(new EffectInebriation(PotionInebriation.inebriation.id, 150, 0));
-	        
-			if (entityplayer.capabilities.disableDamage || this.shootingEntity instanceof EntityPlayer && !((EntityPlayer)this.shootingEntity).canAttackPlayer(entityplayer))
-			{
+
+			if (entityplayer.capabilities.disableDamage || this.shootingEntity instanceof EntityPlayer && !((EntityPlayer)this.shootingEntity).canAttackPlayer(entityplayer)) {
 				movingobjectposition = null;
 			}
 		}
@@ -119,16 +104,16 @@ public class EntityPoisonSnowball extends EntityArrow implements IThrowableEntit
 
 	@Override
 	public void setThrower(Entity entity) {
-		this.shootingEntity = entity;
+        this.shootingEntity = entity;
 	}
 
 	@Override
 	public Entity getThrower() {
 		return this.shootingEntity;
 	}
-	
+
 	protected float getGravityVelocity() {
-		return 0.0F;
+        return 0.0F;
 	}
 
 }

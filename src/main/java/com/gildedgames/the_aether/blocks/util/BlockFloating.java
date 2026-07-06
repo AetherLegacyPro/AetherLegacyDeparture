@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.blocks.util;
 
 import java.util.Random;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.entities.block.EntityFloatingBlock;
 import net.minecraft.block.Block;
@@ -17,9 +16,7 @@ public class BlockFloating extends Block {
 
 	public BlockFloating(Material material, boolean leveled) {
 		super(material);
-
 		this.leveled = leveled;
-
 		this.setTickRandomly(true);
 		this.setHarvestLevel("pickaxe", 2);
 	}
@@ -31,7 +28,7 @@ public class BlockFloating extends Block {
 
 	@Override
 	public void onBlockAdded(World world, int x, int y, int z) {
-		world.scheduleBlockUpdate(x, y, z, this, 3);
+        world.scheduleBlockUpdate(x, y, z, this, 3);
 	}
 
 	@Override
@@ -49,30 +46,23 @@ public class BlockFloating extends Block {
 	private void floatBlock(World world, int x, int y, int z) {
 		boolean floatInstantly = BlockSand.fallInstantly;
 
-		if (canContinue(world, x, y + 1, z) && y >= 0)
-		{
-			if (!floatInstantly)
-			{
-				if (!world.isRemote)
-				{
+		if (canContinue(world, x, y + 1, z) && y >= 0) {
+			if (!floatInstantly) {
+				if (!world.isRemote) {
 					EntityFloatingBlock entity = new EntityFloatingBlock(world, x, y, z, world.getBlock(x, y, z), world.getBlockMetadata(x, y, z));
 					world.setBlockToAir(x, y, z);
 					world.spawnEntityInWorld(entity);
 				}
 			}
-			else
-			{
+			else {
 				world.setBlockToAir(x, y, z);
-
 				int bottomPos = y - 1;
 
-				while (canContinue(world, x, bottomPos, z) && bottomPos > 0)
-				{
+				while (canContinue(world, x, bottomPos, z) && bottomPos > 0) {
 					bottomPos = bottomPos - 1;
 				}
 
-				if (bottomPos > 0)
-				{
+				if (bottomPos > 0) {
 					world.setBlock(x, bottomPos + 1, z, this);
 				}
 			}

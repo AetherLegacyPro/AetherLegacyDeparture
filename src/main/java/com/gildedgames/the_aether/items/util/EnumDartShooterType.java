@@ -5,7 +5,6 @@ public enum EnumDartShooterType {
 	Golden(0, "golden"), Poison(1, "poison"), Enchanted(2, "enchanted"), Phoenix(3, "phoenix");
 
 	public int meta;
-
 	public String name;
 
 	EnumDartShooterType(int meta, String name) {
@@ -18,11 +17,11 @@ public enum EnumDartShooterType {
 	}
 
 	public int getMeta() {
-		return this.meta;
+        return this.meta;
 	}
 
 	public String toString() {
-		return this.name;
+        return this.name;
 	}
 
 }

@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.api.enchantments;
 
 import com.gildedgames.the_aether.api.RegistryEntry;
-
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -9,7 +8,6 @@ import net.minecraft.item.ItemStack;
 public class AetherEnchantment extends RegistryEntry {
 
 	public int timeRequired;
-
 	public ItemStack input, output;
 
 	public AetherEnchantment(ItemStack input, Block output, int timeRequired) {
@@ -57,15 +55,15 @@ public class AetherEnchantment extends RegistryEntry {
 	}
 
 	public int getTimeRequired() {
-		return this.timeRequired;
+        return this.timeRequired;
 	}
 
 	public ItemStack getInput() {
-		return this.input;
+        return this.input;
 	}
 
 	public ItemStack getOutput() {
-		return this.output;
+        return this.output;
 	}
 
 	@Override

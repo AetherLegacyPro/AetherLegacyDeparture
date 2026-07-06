@@ -18,7 +18,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.ArrowNockEvent;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -29,7 +28,6 @@ public class ItemTippedCyroBow extends ItemBow {
 
 	public ItemTippedCyroBow() {
 		super();
-
 		this.maxStackSize = 1;
 		this.setMaxDamage(584);
 		this.setFull3D();
@@ -40,7 +38,7 @@ public class ItemTippedCyroBow extends ItemBow {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getItemIconForUseDuration(int p_94599_1_) {
-		return this.iconArray[p_94599_1_];
+        return this.iconArray[p_94599_1_];
 	}
 
 	@Override
@@ -77,7 +75,7 @@ public class ItemTippedCyroBow extends ItemBow {
 
 	@Override
 	public EnumRarity getRarity(ItemStack stack) {
-		return ItemsAether.scaled_aether_loot;
+        return ItemsAether.scaled_aether_loot;
 	}
 
 	private ItemStack findAmmo(EntityPlayer player) {
@@ -93,7 +91,7 @@ public class ItemTippedCyroBow extends ItemBow {
 	}
 
 	protected boolean isArrow(ItemStack stack) {
-		return stack != null && stack.getItem() == Items.arrow;
+        return stack != null && stack.getItem() == Items.arrow;
 	}
 
 	@Override
@@ -175,7 +173,6 @@ public class ItemTippedCyroBow extends ItemBow {
 
 	public EntityCyroArrow createArrow(World worldIn, float distance, ItemStack stack, EntityLivingBase shooter) {
 		EntityCyroArrow entityCyroArrow = new EntityCyroArrow(worldIn, shooter, distance);
-
 		return entityCyroArrow;
 	}
 
@@ -193,7 +190,6 @@ public class ItemTippedCyroBow extends ItemBow {
 	@Override
 	public ItemStack onItemRightClick(ItemStack heldItem, World worldIn, EntityPlayer playerIn) {
 		boolean flag = this.findAmmo(playerIn) != null;
-
 		ArrowNockEvent event = new ArrowNockEvent(playerIn, heldItem);
 		MinecraftForge.EVENT_BUS.post(event);
 		if (event.isCanceled()) {

@@ -10,13 +10,12 @@ public class ItemBlockMetadata extends ItemBlock {
 
 	public ItemBlockMetadata(Block block) {
 		super(block);
-
 		this.setHasSubtypes(true);
 	}
 
 	@Override
 	public int getMetadata(int meta) {
-		return meta;
+        return meta;
 	}
 
 	@Override

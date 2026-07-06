@@ -3,7 +3,6 @@ package com.gildedgames.the_aether.entities.passive.mountable;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
-
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
@@ -16,33 +15,25 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-
 import com.gildedgames.the_aether.entities.util.EntityZephyrooSaddleMount;
 
 public class EntityAerwhaleMount extends EntityZephyrooSaddleMount {
 
     public float wingFold;
-
     public float wingAngle;
-
     private float aimingForFold;
-
     public int maxJumps;
-
     public int jumpsRemaining;
-
     private int ticks;
 
     public EntityAerwhaleMount(World world) {
         super(world);
-
         this.ticks = 0;
         this.maxJumps = 2;
         this.jumpsRemaining = 0;
         this.stepHeight = 2.0F;
         this.ignoreFrustumCheck = true;
         this.canJumpMidAir = true;
-
         this.setSize(2.0F, 2.0F);
         this.getNavigator().setAvoidsWater(true);
         this.tasks.addTask(0, new EntityAISwimming(this));
@@ -73,7 +64,7 @@ public class EntityAerwhaleMount extends EntityZephyrooSaddleMount {
         } else {
             this.aimingForFold = 1.0F;
         }
-        
+
         if (this.riddenByEntity instanceof EntityPlayer) {
             ((EntityPlayer) this.riddenByEntity).triggerAchievement(AchievementsAether.flying_aerwhale);
         }
@@ -85,22 +76,19 @@ public class EntityAerwhaleMount extends EntityZephyrooSaddleMount {
         this.fallDistance = 0;
         this.fall();
     }
-    
+
     public boolean attackEntityFrom(DamageSource ds, float i) {
-		if (ds == DamageSource.inWall)
-        {
+		if (ds == DamageSource.inWall) {
             return false;
         }
-		
-		boolean flag = super.attackEntityFrom(ds, i);
 
+		boolean flag = super.attackEntityFrom(ds, i);
 		return flag;
 	}
 
     @Override
     public void writeEntityToNBT(NBTTagCompound compound) {
         super.writeEntityToNBT(compound);
-
         compound.setInteger("maxJumps", (short) this.maxJumps);
         compound.setInteger("jumpsRemaining", (short) this.jumpsRemaining);
     }
@@ -108,7 +96,6 @@ public class EntityAerwhaleMount extends EntityZephyrooSaddleMount {
     @Override
     public void readEntityFromNBT(NBTTagCompound compound) {
         super.readEntityFromNBT(compound);
-
         this.maxJumps = compound.getInteger("maxJumps");
         this.jumpsRemaining = compound.getInteger("jumpsRemaining");
     }
@@ -173,12 +160,12 @@ public class EntityAerwhaleMount extends EntityZephyrooSaddleMount {
 
     @Override
 	public String getLivingSound() {
-		return "aether_legacy:aemob.aerwhale.call";
+        return "aether_legacy:aemob.aerwhale.call";
 	}
 
 	@Override
 	protected String getHurtSound() {
-		return "aether_legacy:aemob.aerwhale.death";
+        return "aether_legacy:aemob.aerwhale.death";
 	}
 
 	@Override
@@ -212,7 +199,7 @@ public class EntityAerwhaleMount extends EntityZephyrooSaddleMount {
 
         super.dropFewItems(recentlyHit, lootLevel);
     }
-    
+
     @Override
    	public boolean getCanSpawnHere() {
    	      final int i = MathHelper.floor_double(this.posX);
@@ -220,24 +207,21 @@ public class EntityAerwhaleMount extends EntityZephyrooSaddleMount {
    	      final int k = MathHelper.floor_double(this.posZ);
    	      final boolean canSpawn = this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
    	      return (this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_dirt || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.arctic_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.verdant_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.enchanted_aether_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.divine_grass) && this.worldObj.getBlockLightValue(i, j, k) > 7 && canSpawn;
-   	                       
+
    	}
 
     @Override
     protected double getMountJumpStrength() {
         return 14.0D;
     }
-    
-    public EntityAerwhaleMount createChild(EntityAgeable p_90011_1_)
-    {
-    	EntityAerwhaleMount entityaerwhale = new EntityAerwhaleMount(this.worldObj);
 
+    public EntityAerwhaleMount createChild(EntityAgeable entityAgeable) {
+    	EntityAerwhaleMount entityaerwhale = new EntityAerwhaleMount(this.worldObj);
         return entityaerwhale;
     }
-    
-    public boolean isBreedingItem(ItemStack p_70877_1_)
-    {
-        return p_70877_1_ != null && p_70877_1_.getItem() == ItemsAether.void_tomato;
+
+    public boolean isBreedingItem(ItemStack itemStack) {
+        return itemStack != null && itemStack.getItem() == ItemsAether.void_tomato;
     }
 
 }

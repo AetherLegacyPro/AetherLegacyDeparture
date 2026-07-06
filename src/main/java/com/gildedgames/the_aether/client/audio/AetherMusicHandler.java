@@ -10,9 +10,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiScreenWorking;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.sound.PlaySoundEvent17;
-
 import com.gildedgames.the_aether.client.audio.music.AetherMusicTicker;
-
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.relauncher.Side;
@@ -21,7 +19,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class AetherMusicHandler {
 
 	private Minecraft mc = Minecraft.getMinecraft();
-
 	private final AetherMusicTicker musicTicker = new AetherMusicTicker(this.mc);
 
 	@SubscribeEvent
@@ -40,25 +37,20 @@ public class AetherMusicHandler {
 			}
 		}
 
-		if (!(mc.getSoundHandler().isSoundPlaying(musicTicker.getRecord())))
-		{
+		if (!(mc.getSoundHandler().isSoundPlaying(musicTicker.getRecord()))) {
 			musicTicker.trackRecord(null);
 		}
 
-		if (AetherConfig.getMenuEnabled() && Minecraft.getMinecraft().theWorld == null && !(screen instanceof GuiScreenWorking))
-		{
-			if (!musicTicker.playingMenuMusic())
-			{
+		if (AetherConfig.getMenuEnabled() && Minecraft.getMinecraft().theWorld == null && !(screen instanceof GuiScreenWorking)) {
+			if (!musicTicker.playingMenuMusic()) {
 				musicTicker.playMenuMusic();
 			}
 
-			if (musicTicker.playingMinecraftMusic())
-			{
+			if (musicTicker.playingMinecraftMusic()) {
 				musicTicker.stopMinecraftMusic();
 			}
 		}
-		else
-		{
+		else {
 			musicTicker.stopMenuMusic();
 		}
 	}
@@ -82,12 +74,10 @@ public class AetherMusicHandler {
 					return;
 				}
 			}
-			if (sound.getPositionedSoundLocation().toString().equals("minecraft:music.menu"))
-			{
+			if (sound.getPositionedSoundLocation().toString().equals("minecraft:music.menu")) {
 				musicTicker.trackMinecraftMusic(sound);
 
-				if (AetherConfig.getMenuEnabled() && Minecraft.getMinecraft().theWorld == null && !(screen instanceof GuiScreenWorking))
-				{
+				if (AetherConfig.getMenuEnabled() && Minecraft.getMinecraft().theWorld == null && !(screen instanceof GuiScreenWorking)) {
 					event.result = null;
 				}
 			}
@@ -100,7 +90,6 @@ public class AetherMusicHandler {
 	@SideOnly(Side.CLIENT)
 	public static ISound getAchievementSound(int number) {
 		ResourceLocation sound = number == 1 ? Aether.locate("achievement_bronze") : number == 2 ? Aether.locate("achievement_silver") : Aether.locate("achievement");
-
 		return PositionedSoundRecord.func_147673_a(sound);
 	}
 

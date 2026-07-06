@@ -8,8 +8,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
 
 @SideOnly(Side.CLIENT)
-public class UroModel extends ModelBase
-{
+public class UroModel extends ModelBase {
     public ModelRenderer head;
     public ModelRenderer head2;
     public ModelRenderer head3;
@@ -21,24 +20,16 @@ public class UroModel extends ModelBase
     public ModelRenderer leg2;
     public ModelRenderer leg3;
     public ModelRenderer leg4;
-    
     public ModelRenderer leg5;
     public ModelRenderer leg6;
     public ModelRenderer leg7;
     public ModelRenderer leg8;
-    
-    public ModelRenderer leg9;
-    public ModelRenderer leg10;
-    public ModelRenderer leg11;
-    public ModelRenderer leg12;
 
-    public UroModel()
-    {
+    public UroModel() {
         this(0.0F);
     }
 
-    public UroModel(float p_i1147_1_)
-    {
+    public UroModel(float p_i1147_1_) {
         byte b0 = 4;
         this.head = new ModelRenderer(this, 0, 0);
         this.head.addBox(-4.0F, -8.0F, -4.0F, 8, 8, 8, p_i1147_1_);
@@ -49,7 +40,7 @@ public class UroModel extends ModelBase
         this.head3 = new ModelRenderer(this, 0, 0);
         this.head3.addBox(-4.0F, -8.0F, -4.0F, 8, 8, 8, p_i1147_1_);
         this.head3.setRotationPoint(-8.0F, (float)(b0 - 1), -4.0F);
-        
+
         this.field_78133_b = new ModelRenderer(this, 32, 0);
         this.field_78133_b.addBox(-4.0F, -8.0F, -4.0F, 8, 8, 8, p_i1147_1_ + 0.5F);
         this.field_78133_b.setRotationPoint(0.0F, b0, 0.0F);
@@ -62,7 +53,7 @@ public class UroModel extends ModelBase
         this.body3 = new ModelRenderer(this, 16, 16);
         this.body3.addBox(-4.0F, 0.0F, -2.0F, 8, 12, 4, p_i1147_1_);
         this.body3.setRotationPoint(-8.0F, (float)(b0 - 1), -4.0F);
-        
+
         this.leg1 = new ModelRenderer(this, 0, 16);
         this.leg1.addBox(-2.0F, 0.0F, -2.0F, 4, 6, 4, p_i1147_1_);
         this.leg1.setRotationPoint(-2.0F, (float)(12 + b0), 4.0F);
@@ -75,7 +66,7 @@ public class UroModel extends ModelBase
         this.leg4 = new ModelRenderer(this, 0, 16);
         this.leg4.addBox(-2.0F, 0.0F, -2.0F, 4, 6, 4, p_i1147_1_);
         this.leg4.setRotationPoint(2.0F, (float)(12 + b0), -4.0F);
-        
+
         this.leg5 = new ModelRenderer(this, 0, 16);
         this.leg5.addBox(-2.0F, 0.0F, -2.0F, 4, 6, 4, p_i1147_1_); //front right
         this.leg5.setRotationPoint(-8.0F, (float)(11 + b0), -6.0F);
@@ -90,12 +81,8 @@ public class UroModel extends ModelBase
         this.leg8.setRotationPoint(8.0F, (float)(11 + b0), 2.0F);
     }
 
-    /**
-     * Sets the models various rotation angles then renders the model.
-     */
-    public void render(Entity p_78088_1_, float p_78088_2_, float p_78088_3_, float p_78088_4_, float p_78088_5_, float p_78088_6_, float p_78088_7_)
-    {
-        this.setRotationAngles(p_78088_2_, p_78088_3_, p_78088_4_, p_78088_5_, p_78088_6_, p_78088_7_, p_78088_1_);
+    public void render(Entity entity, float p_78088_2_, float p_78088_3_, float p_78088_4_, float p_78088_5_, float p_78088_6_, float p_78088_7_) {
+        this.setRotationAngles(p_78088_2_, p_78088_3_, p_78088_4_, p_78088_5_, p_78088_6_, p_78088_7_, entity);
         this.head.render(p_78088_7_);
         this.head2.render(p_78088_7_);
         this.head3.render(p_78088_7_);
@@ -112,13 +99,7 @@ public class UroModel extends ModelBase
         this.leg8.render(p_78088_7_);
     }
 
-    /**
-     * Sets the model's various rotation angles. For bipeds, par1 and par2 are used for animating the movement of arms
-     * and legs, where par1 represents the time(so that arms and legs swing back and forth) and par2 represents how
-     * "far" arms and legs can swing at most.
-     */
-    public void setRotationAngles(float p_78087_1_, float p_78087_2_, float p_78087_3_, float p_78087_4_, float p_78087_5_, float p_78087_6_, Entity p_78087_7_)
-    {
+    public void setRotationAngles(float p_78087_1_, float p_78087_2_, float p_78087_3_, float p_78087_4_, float p_78087_5_, float p_78087_6_, Entity entity) {
         this.head.rotateAngleY = p_78087_4_ / (180F / (float)Math.PI);
         this.head.rotateAngleX = p_78087_5_ / (180F / (float)Math.PI);
         this.head2.rotateAngleY = p_78087_4_ / (180F / (float)Math.PI);

@@ -7,7 +7,6 @@ public class BlockEnchantedAetheralStone extends Block {
 
 	public BlockEnchantedAetheralStone() {
 		super(Material.rock);
-
 		this.setHardness(3F);
 		this.setResistance(5.0F);
 		this.setStepSound(soundTypeStone);

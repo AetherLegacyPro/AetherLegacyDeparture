@@ -5,17 +5,11 @@ import io.netty.buffer.ByteBuf;
 public class DonatorMoaSkin {
 
     private boolean shouldDefualt;
-
     private int wingColor;
-
     private int wingMarkingColor;
-
     private int bodyColor;
-
     private int markingColor;
-
     private int eyeColor;
-
     private int outsideColor;
 
     public DonatorMoaSkin() {
@@ -34,7 +28,6 @@ public class DonatorMoaSkin {
 
     public static DonatorMoaSkin readMoaSkin(ByteBuf buf) {
         DonatorMoaSkin skin = new DonatorMoaSkin();
-
         skin.shouldUseDefualt(buf.readBoolean());
         skin.setWingColor(buf.readInt());
         skin.setWingMarkingColor(buf.readInt());
@@ -42,7 +35,6 @@ public class DonatorMoaSkin {
         skin.setMarkingColor(buf.readInt());
         skin.setEyeColor(buf.readInt());
         skin.setOutsideColor(buf.readInt());
-
         return skin;
     }
 

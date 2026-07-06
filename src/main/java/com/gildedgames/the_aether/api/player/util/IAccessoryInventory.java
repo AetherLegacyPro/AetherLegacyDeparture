@@ -4,7 +4,6 @@ import com.gildedgames.the_aether.api.accessories.DegradationRate;
 import com.gildedgames.the_aether.items.ItemsAether;
 import cpw.mods.fml.common.Loader;
 import io.netty.buffer.ByteBuf;
-
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -109,8 +108,6 @@ public interface IAccessoryInventory {
 				&& (wearingArmor(ItemsAether.amplified_phoenix_boots) || wearingArmor(ItemsAether.amplified_agility_boots) || wearingArmor(ItemsAether.amplified_sentry_boots))
 				&& wearingAccessory(ItemsAether.amplified_phoenix_gloves);
 	}
-	
-	//boolean isWearingScaledPhoenixSet();
 
 	//---------------- Obsidian Armor
 	default boolean isWearingObsidianSet() {
@@ -136,9 +133,7 @@ public interface IAccessoryInventory {
 				&& (wearingArmor(ItemsAether.amplified_obsidian_boots) || wearingArmor(ItemsAether.amplified_agility_boots) || wearingArmor(ItemsAether.amplified_sentry_boots))
 				&& wearingAccessory(ItemsAether.amplified_obsidian_gloves);
 	}
-	
-	//boolean isWearingScaledObsidianSet();
-	
+
 	//--------------- Arkenium Armor
 	default boolean isWearingArkeniumSet() {
 		return (wearingArmor(ItemsAether.arkenium_helmet) || wearingArmor(ItemsAether.scaled_arkenium_helmet))
@@ -163,9 +158,7 @@ public interface IAccessoryInventory {
 				&& (wearingArmor(ItemsAether.amplified_arkenium_boots) || wearingArmor(ItemsAether.amplified_agility_boots) || wearingArmor(ItemsAether.amplified_sentry_boots))
 				&& wearingAccessory(ItemsAether.amplified_arkenium_gloves);
 	}
-	
-	//boolean isWearingScaledArkeniumSet();
-	
+
 	//--------------- Continuum Armor
 	default boolean isWearingContinuumSet() {
 		return (wearingArmor(ItemsAether.continuum_helmet) || wearingArmor(ItemsAether.scaled_continuum_helmet))
@@ -190,9 +183,7 @@ public interface IAccessoryInventory {
 				&& (wearingArmor(ItemsAether.amplified_continuum_boots) || wearingArmor(ItemsAether.amplified_agility_boots) || wearingArmor(ItemsAether.amplified_sentry_boots))
 				&& wearingAccessory(ItemsAether.amplified_continuum_gloves);
 	}
-	
-	//boolean isWearingScaledContinuumSet();
-	
+
 	//---------------- Gravitite & Divineral CDFS
 	default boolean isWearingGravititeSet() {
 		return ((wearingArmor(ItemsAether.gravitite_helmet) || wearingArmor(ItemsAether.scaled_gravitite_helmet))
@@ -217,9 +208,7 @@ public interface IAccessoryInventory {
 				&& (wearingArmor(ItemsAether.divineral_boots) || wearingArmor(ItemsAether.amplified_agility_boots) || wearingArmor(ItemsAether.amplified_sentry_boots))
 				&& wearingAccessory(ItemsAether.divineral_gloves);
 	}
-	
-	//boolean isWearingScaledGravititeSet();
-	
+
 	//---------------- Valkyrie Armor CDFS
 	default boolean isWearingValkyrieSet() {
 		return (wearingArmor(ItemsAether.valkyrie_helmet) || wearingArmor(ItemsAether.scaled_valkyrie_helmet))
@@ -244,7 +233,7 @@ public interface IAccessoryInventory {
 				&& (wearingArmor(ItemsAether.amplified_valkyrie_boots) || wearingArmor(ItemsAether.amplified_agility_boots) || wearingArmor(ItemsAether.amplified_sentry_boots))
 				&& wearingAccessory(ItemsAether.amplified_valkyrie_gloves);
 	}
-	
+
 	//---------------- Neptune Armor CDFS
 	default boolean isWearingNeptuneSet() {
 		return (wearingArmor(ItemsAether.scaled_neptune_helmet) || wearingArmor(ItemsAether.neptune_helmet))
@@ -269,7 +258,7 @@ public interface IAccessoryInventory {
 				&& (wearingArmor(ItemsAether.neptune_boots) || wearingArmor(ItemsAether.amplified_agility_boots) || wearingArmor(ItemsAether.amplified_neptune_boots) || wearingArmor(ItemsAether.amplified_sentry_boots) || wearingArmor(ItemsAether.scaled_neptune_boots))
 				&& (wearingAccessory(ItemsAether.neptune_gloves) || wearingAccessory(ItemsAether.amplified_neptune_gloves));
 	}
-	
+
 	//---------------- Elysian Armor CDFS
 	default boolean isWearingElysianSet() {
 		return (wearingArmor(ItemsAether.elysian_helmet) || wearingArmor(ItemsAether.elysian_helmet))
@@ -278,7 +267,7 @@ public interface IAccessoryInventory {
 				&& (wearingArmor(ItemsAether.elysian_boots) || wearingArmor(ItemsAether.elysian_boots) || wearingArmor(ItemsAether.amplified_sentry_boots) || wearingArmor(ItemsAether.scaled_valkyrie_boots))
 				&& wearingAccessory(ItemsAether.elysian_gloves);
 	}
-	
+
 	//---------------- Agility Boots CDFS
 	default boolean isWearingAgilityBootsAndCape() {
 		return (wearingArmor(ItemsAether.agility_boots) || wearingArmor(ItemsAether.scaled_agility_boots)) && wearingAccessory(ItemsAether.agility_cape);
@@ -289,9 +278,9 @@ public interface IAccessoryInventory {
 	}
 
 	default boolean isWearingAmplifiedAgilityBoots() {
-		return wearingArmor(ItemsAether.amplified_agility_boots);
+        return wearingArmor(ItemsAether.amplified_agility_boots);
 	}
-	
+
 	default boolean isWearingAmplifiedAgilityBootsAndCape() {
 		return wearingArmor(ItemsAether.amplified_agility_boots) && wearingAccessory(ItemsAether.agility_cape);
 	}
@@ -301,7 +290,7 @@ public interface IAccessoryInventory {
 				&& (wearingAccessory(ItemsAether.auralite_pendant) || wearingAccessory(ItemsAether.reinforced_auralite_pendant) || wearingAccessory(ItemsAether.amplified_auralite_pendant))
 				&& wearingAccessory(ItemsAether.auralite_ring);
 	}
-	
+
 	//---------------- Valkyrie Ring CDFS
 	default boolean isWearingValkyrieRing() {
 		return wearingAccessory(ItemsAether.valkyrie_ring) || wearingAccessory(ItemsAether.reinforced_valkyrie_ring) || wearingAccessory(ItemsAether.amplified_valkyrie_ring);
@@ -324,7 +313,7 @@ public interface IAccessoryInventory {
 				&& wearingAccessory(ItemsAether.amplified_valkyrie_ring)
 				&& wearingAccessory(ItemsAether.amplified_valkyrie_gloves);
 	}
-	
+
 	//---------------- Haste Ring CDFS
 	default boolean isWearingHasteRing() {
 		return (wearingAccessory(ItemsAether.haste_ring) || wearingAccessory(ItemsAether.reinforced_haste_ring) || wearingAccessory(ItemsAether.amplified_haste_ring));
@@ -338,7 +327,7 @@ public interface IAccessoryInventory {
 				&& wearingAccessory(ItemsAether.arkenium_gloves)
 				&& (wearingAccessory(ItemsAether.haste_ring) || wearingAccessory(ItemsAether.reinforced_haste_ring) || wearingAccessory(ItemsAether.amplified_haste_ring));
 	}
-	
+
 	default boolean isWearingHasteRingAndArkeniumCombo() {
 		return (wearingArmor(ItemsAether.arkenium_helmet) || wearingArmor(ItemsAether.amplified_arkenium_helmet))
 				&& (wearingArmor(ItemsAether.arkenium_chestplate) || wearingArmor(ItemsAether.amplified_arkenium_chestplate))
@@ -359,7 +348,7 @@ public interface IAccessoryInventory {
 
 	//--------------- Discharge Cape
 	default boolean isWearingDischargeCape(){
-		return wearingAccessory(ItemsAether.discharge_cape);
+        return wearingAccessory(ItemsAether.discharge_cape);
 	}
 
 	default boolean isWearingAscensiteSet() {

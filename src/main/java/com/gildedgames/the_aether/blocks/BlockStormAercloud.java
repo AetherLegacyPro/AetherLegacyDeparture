@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.blocks;
 
 import java.util.List;
-
 import com.gildedgames.the_aether.items.block.IColoredBlock;
 import com.gildedgames.the_aether.items.block.INamedBlock;
 import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
@@ -17,7 +16,6 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.Facing;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -25,7 +23,6 @@ public class BlockStormAercloud extends Block implements IColoredBlock, INamedBl
 
 	public BlockStormAercloud() {
 		super(Material.ice);
-
 		this.setHardness(0.2F);
 		this.setStepSound(soundTypeCloth);
 		this.setBlockTextureName("aether:aercloud/storm_aercloud");
@@ -33,8 +30,8 @@ public class BlockStormAercloud extends Block implements IColoredBlock, INamedBl
 
 	@SideOnly(Side.CLIENT)
 	@SuppressWarnings({"unchecked", "rawtypes"})
-	public void getSubBlocks(Item p_149666_1_, CreativeTabs p_149666_2_, List p_149666_3_) {
-		p_149666_3_.add(new ItemStack(this, 1, 0));	
+	public void getSubBlocks(Item item, CreativeTabs creativeTabs, List list) {
+        list.add(new ItemStack(this, 1, 0));
 	}
 
 	@Override
@@ -63,7 +60,7 @@ public class BlockStormAercloud extends Block implements IColoredBlock, INamedBl
 						entity.setDead();
 					}
 				}
-				
+
 				entity.motionY = 2.0D;
 			}
 
@@ -85,7 +82,7 @@ public class BlockStormAercloud extends Block implements IColoredBlock, INamedBl
 
 	@Override
 	public int damageDropped(int meta) {
-		return meta;
+        return meta;
 	}
 
 	@Override
@@ -104,7 +101,6 @@ public class BlockStormAercloud extends Block implements IColoredBlock, INamedBl
 	@SideOnly(Side.CLIENT)
 	public int colorMultiplier(IBlockAccess world, int x, int y, int z) {
 		int meta = world.getBlockMetadata(x, y, z);
-
 		return this.getRenderColor(meta);
 	}
 
@@ -126,10 +122,10 @@ public class BlockStormAercloud extends Block implements IColoredBlock, INamedBl
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public boolean shouldSideBeRendered(IBlockAccess p_149646_1_, int p_149646_2_, int p_149646_3_, int p_149646_4_, int p_149646_5_) {
-		Block block = p_149646_1_.getBlock(p_149646_2_, p_149646_3_, p_149646_4_);
+	public boolean shouldSideBeRendered(IBlockAccess iBlockAccess, int p_149646_2_, int p_149646_3_, int p_149646_4_, int p_149646_5_) {
+		Block block = iBlockAccess.getBlock(p_149646_2_, p_149646_3_, p_149646_4_);
 
-		if (p_149646_1_.getBlockMetadata(p_149646_2_, p_149646_3_, p_149646_4_) != p_149646_1_.getBlockMetadata(p_149646_2_ - Facing.offsetsXForSide[p_149646_5_], p_149646_3_ - Facing.offsetsYForSide[p_149646_5_], p_149646_4_ - Facing.offsetsZForSide[p_149646_5_])) {
+		if (iBlockAccess.getBlockMetadata(p_149646_2_, p_149646_3_, p_149646_4_) != iBlockAccess.getBlockMetadata(p_149646_2_ - Facing.offsetsXForSide[p_149646_5_], p_149646_3_ - Facing.offsetsYForSide[p_149646_5_], p_149646_4_ - Facing.offsetsZForSide[p_149646_5_])) {
 			return true;
 		}
 
@@ -137,7 +133,7 @@ public class BlockStormAercloud extends Block implements IColoredBlock, INamedBl
 			return false;
 		}
 
-		return super.shouldSideBeRendered(p_149646_1_, p_149646_2_, p_149646_3_, p_149646_4_, p_149646_5_);
+		return super.shouldSideBeRendered(iBlockAccess, p_149646_2_, p_149646_3_, p_149646_4_, p_149646_5_);
 	}
 
 	@Override

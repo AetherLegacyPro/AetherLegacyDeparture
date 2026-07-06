@@ -17,44 +17,35 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class AetherWorldProvider extends WorldProvider {
 
 	private float[] colorsSunriseSunset = new float[4];
-
 	private boolean eternalDay;
 	private boolean shouldCycleCatchup;
 	private long aetherTime = 6000;
 
 	public AetherWorldProvider() {
-		super();
+        super();
 	}
 
 	@Override
 	protected void registerWorldChunkManager() {
-		this.worldChunkMgr = new WorldChunkManagerAether();
+        this.worldChunkMgr = new WorldChunkManagerAether();
 	}
 
 	@Override
-	public float calculateCelestialAngle(long worldTime, float partialTicks)
-	{
-		if (!AetherConfig.eternalDayDisabled())
-		{
-			if (!this.worldObj.isRemote)
-			{
+	public float calculateCelestialAngle(long worldTime, float partialTicks) {
+		if (!AetherConfig.eternalDayDisabled()) {
+			if (!this.worldObj.isRemote) {
 				AetherData data = AetherData.getInstance(this.worldObj);
 
-				if (data.isEternalDay())
-				{
-					if (!data.isShouldCycleCatchup())
-					{
-						if (data.getAetherTime() != (worldTime % 24000L) && data.getAetherTime() != (worldTime + 1 % 24000L) && data.getAetherTime() != (worldTime - 1 % 24000L))
-						{
+				if (data.isEternalDay()) {
+					if (!data.isShouldCycleCatchup()) {
+						if (data.getAetherTime() != (worldTime % 24000L) && data.getAetherTime() != (worldTime + 1 % 24000L) && data.getAetherTime() != (worldTime - 1 % 24000L)) {
 							data.setAetherTime(Math.floorMod(data.getAetherTime() - 1, 24000L));
 						}
-						else
-						{
+						else {
 							data.setShouldCycleCatchup(true);
 						}
 					}
-					else
-					{
+					else {
 						data.setAetherTime(worldTime);
 					}
 
@@ -62,24 +53,20 @@ public class AetherWorldProvider extends WorldProvider {
 					AetherNetwork.sendToAll(new PacketSendTime(this.aetherTime));
 					data.setAetherTime(this.aetherTime);
 				}
-				else
-				{
+				else {
 					data.setAetherTime(6000);
 				}
 			}
 		}
 
 		int i = (int)(AetherConfig.eternalDayDisabled() ? worldTime : this.aetherTime % 24000L);
-
 		float f = ((float)i + partialTicks) / 24000.0F - 0.25F;
 
-		if (f < 0.0F)
-		{
+		if (f < 0.0F) {
 			++f;
 		}
 
-		if (f > 1.0F)
-		{
+		if (f > 1.0F) {
 			--f;
 		}
 
@@ -88,34 +75,28 @@ public class AetherWorldProvider extends WorldProvider {
 		return f;
 	}
 
-	public void setIsEternalDay(boolean set)
-	{
-		this.eternalDay = set;
+	public void setIsEternalDay(boolean set) {
+        this.eternalDay = set;
 	}
 
-	public boolean getIsEternalDay()
-	{
-		return this.eternalDay;
+	public boolean getIsEternalDay() {
+        return this.eternalDay;
 	}
 
-	public void setShouldCycleCatchup(boolean set)
-	{
-		this.shouldCycleCatchup = set;
+	public void setShouldCycleCatchup(boolean set) {
+        this.shouldCycleCatchup = set;
 	}
 
-	public boolean getShouldCycleCatchup()
-	{
-		return this.shouldCycleCatchup;
+	public boolean getShouldCycleCatchup() {
+        return this.shouldCycleCatchup;
 	}
 
-	public void setAetherTime(long time)
-	{
-		this.aetherTime = time;
+	public void setAetherTime(long time) {
+	  this.aetherTime = time;
 	}
 
-	public long getAetherTime()
-	{
-		return this.aetherTime;
+	public long getAetherTime() {
+        return this.aetherTime;
 	}
 
 	@Override
@@ -139,19 +120,18 @@ public class AetherWorldProvider extends WorldProvider {
 	}
 
 	@Override
-	public int getRespawnDimension(EntityPlayerMP player)
-	{
+	public int getRespawnDimension(EntityPlayerMP player) {
 		return PlayerAether.get(player).getBedLocation() == null ? 0 : AetherConfig.getAetherDimensionID();
 	}
 
 	@Override
 	public boolean canCoordinateBeSpawn(int i, int j) {
-		return false;
+        return false;
 	}
 
 	@Override
 	public boolean canRespawnHere() {
-		return true;
+        return true;
 	}
 
 	@Override
@@ -160,11 +140,11 @@ public class AetherWorldProvider extends WorldProvider {
 	}
 
 	public boolean canDoLightning(Chunk chunk) {
-		return false;
+        return false;
 	}
 
 	public boolean canDoRainSnowIce(Chunk chunk) {
-		return false;
+        return false;
 	}
 
 	@Override
@@ -190,43 +170,43 @@ public class AetherWorldProvider extends WorldProvider {
 
 	@Override
 	public String getSaveFolder() {
-		return "Dim-Aether";
+        return "Dim-Aether";
 	}
 
 	@Override
 	public double getVoidFogYFactor() {
-		return 100;
+        return 100;
 	}
 
 	@Override
 	public boolean doesXZShowFog(int x, int z) {
-		return false;
+        return false;
 	}
 
 	@Override
 	public boolean isSkyColored() {
-		return false;
+        return false;
 	}
 
 	@Override
 	public double getHorizon() {
-		return 0.0;
+        return 0.0;
 	}
 
 	@Override
 	public float getCloudHeight() {
-		return -5F;
+        return -5F;
 	}
 
 	@Override
 	public String getDimensionName() {
-		return "the_aether";
+        return "the_aether";
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean getWorldHasVoidParticles() {
-		return false;
+        return false;
 	}
 
 	@Override
@@ -235,7 +215,6 @@ public class AetherWorldProvider extends WorldProvider {
 		return new IRenderHandler() {
 			@Override
 			public void render(float partialTicks, net.minecraft.client.multiplayer.WorldClient world, net.minecraft.client.Minecraft mc) {
-
 			}
 		};
 	}

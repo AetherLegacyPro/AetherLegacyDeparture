@@ -2,43 +2,37 @@ package com.gildedgames.the_aether.tileentity;
 
 import java.util.List;
 import java.util.Map;
-
 import com.gildedgames.the_aether.api.AetherAPI;
 import com.gildedgames.the_aether.api.events.AetherHooks;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-
 import com.gildedgames.the_aether.api.enchantments.AetherAmplifier;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.blocks.container.BlockAetherContainer;
 import com.gildedgames.the_aether.tileentity.util.AetherTileEntity;
 import com.gildedgames.the_aether.util.FilledList;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class TileEntityAmplifier extends AetherTileEntity {
 
 	public int progress, ticksRequired, powerRemaining;
-
 	private final FilledList<ItemStack> amplifiedItemStacks = new FilledList<>(3, null);
-
 	private AetherAmplifier currentAmplifier;
 
 	public TileEntityAmplifier() {
-		super("Amplifier");
+        super("Amplifier");
 	}
 
 	@Override
 	public List<ItemStack> getTileInventory() {
-		return this.amplifiedItemStacks;
+        return this.amplifiedItemStacks;
 	}
 
 	@Override
 	public void onSlotChanged(int index) {
-
 	}
 
 	@Override
@@ -64,8 +58,7 @@ public class TileEntityAmplifier extends AetherTileEntity {
 
 					EnchantmentHelper.setEnchantments(EnchantmentHelper.getEnchantments(this.getStackInSlot(0)), result);
 
-					if (this.getStackInSlot(0).hasTagCompound())
-					{
+					if (this.getStackInSlot(0).hasTagCompound()) {
 						result.setTagCompound(this.getStackInSlot(0).getTagCompound());
 					}
 
@@ -147,7 +140,7 @@ public class TileEntityAmplifier extends AetherTileEntity {
 
 	@SideOnly(Side.CLIENT)
 	public int getEnchantmentTimeRemaining(int i) {
-		return (this.powerRemaining * i) / 500;
+        return (this.powerRemaining * i) / 500;
 	}
 
 	public boolean isAmplifing() {
@@ -157,7 +150,6 @@ public class TileEntityAmplifier extends AetherTileEntity {
 	@Override
 	public void readFromNBT(NBTTagCompound compound) {
 		super.readFromNBT(compound);
-
 		this.progress = compound.getInteger("progress");
 		this.powerRemaining = compound.getInteger("powerRemaining");
 		this.ticksRequired = compound.getInteger("ticksRequired");
@@ -166,7 +158,6 @@ public class TileEntityAmplifier extends AetherTileEntity {
 	@Override
 	public void writeToNBT(NBTTagCompound compound) {
 		super.writeToNBT(compound);
-
 		compound.setInteger("progress", this.progress);
 		compound.setInteger("powerRemaining", this.powerRemaining);
 		compound.setInteger("ticksRequired", this.ticksRequired);
@@ -181,13 +172,12 @@ public class TileEntityAmplifier extends AetherTileEntity {
 		} else if (slot == 0 && AetherAPI.instance().hasAmplifier(stackInSlot)) {
 			return true;
 		}
-
 		return false;
 	}
 
 	@Override
 	public int[] getAccessibleSlotsFromSide(int side) {
-		return side == 0 ? new int[]{2} : new int[]{0, 1};
+        return side == 0 ? new int[]{2} : new int[]{0, 1};
 	}
 
 }

@@ -6,7 +6,6 @@ import net.minecraft.entity.player.*;
 import net.minecraft.util.*;
 import net.minecraft.entity.*;
 import java.util.*;
-
 import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.blocks.BlocksAether;
@@ -14,19 +13,15 @@ import com.gildedgames.the_aether.entities.ai.zephyr.AIEntityFlyingMob;
 import com.gildedgames.the_aether.entities.ai.zephyr.EntityAetherIIMob;
 import com.gildedgames.the_aether.entities.ai.zephyr.IFlyingMob;
 import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
-
 import net.minecraft.init.*;
 import net.minecraft.block.*;
 
-public class EntityYoungZephyr extends EntityAetherIIMob implements IMob, IFlyingMob
-{
+public class EntityYoungZephyr extends EntityAetherIIMob implements IMob, IFlyingMob {
     boolean puffedUp;
     int attackCooldown;
     public AIEntityFlyingMob flyingAI;
     public float sinage;
-    public float faceYaw;
-    public float facePitch;
-    
+
     public EntityYoungZephyr(final World world) {
         super(world);
         this.puffedUp = false;
@@ -37,29 +32,29 @@ public class EntityYoungZephyr extends EntityAetherIIMob implements IMob, IFlyin
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(10.0);
         this.setHealth(10.0f);
     }
-    
+
     public void onUpdate() {
         super.onUpdate();
         if (!this.worldObj.isRemote && this.worldObj.difficultySetting.getDifficultyId() == 0) {
             this.setDead();
         }
     }
-    
+
     protected void entityInit() {
         super.entityInit();
         this.dataWatcher.addObject(16, 0);
         this.dataWatcher.addObject(17, 0);
         this.dataWatcher.addObject(18, 0.0f);
     }
-    
+
     public boolean isAttacking() {
         return (this.dataWatcher.getWatchableObjectInt(17) & 0x1) != 0x0; //& 0x1) != 0x0
     }
-    
+
     public int getAttackTimeSecs() {
         return this.dataWatcher.getWatchableObjectInt(16);
     }
-    
+
     public void setAttacking(final boolean attacking) {
         if (attacking) {
             this.dataWatcher.updateObject(17, 1);
@@ -68,15 +63,15 @@ public class EntityYoungZephyr extends EntityAetherIIMob implements IMob, IFlyin
             this.dataWatcher.updateObject(17, 0);
         }
     }
-    
+
     public void setAttackTimeSecs(final int time) {
         this.dataWatcher.updateObject(16, time);
     }
-    
+
     public boolean isAIEnabled() {
         return true;
     }
-    
+
     public void onLivingUpdate() {
         super.onLivingUpdate();
         if (this.entityToAttack instanceof EntityPlayer player) {
@@ -150,43 +145,21 @@ public class EntityYoungZephyr extends EntityAetherIIMob implements IMob, IFlyin
             this.puffedUp = false;
         }
     }
-    
-    public void facePosition(final double posX, final double posZ, final float prevFaceYaw, final float prevFacePitch) {
-        final double dx = posX - this.posX;
-        final double dz = posZ - this.posZ;
-        final double d2 = 1.0;
-        final double d3 = MathHelper.sqrt_double(dx * dx + dz * dz);
-        final float f2 = (float)(Math.atan2(dz, dx) * 180.0 / 3.141592653589793) - 90.0f;
-        final float f3 = (float)(-(Math.atan2(d2, d3) * 180.0 / 3.141592653589793));
-        this.facePitch = this.updateRotation(this.facePitch, f3, prevFacePitch);
-        this.setRotationYaw(this.faceYaw = this.updateRotation(this.faceYaw, f2, prevFaceYaw));
-    }
-    
-    private float updateRotation(final float par1, final float par2, final float par3) {
-        float f3 = MathHelper.wrapAngleTo180_float(par2 - par1);
-        if (f3 > par3) {
-            f3 = par3;
-        }
-        if (f3 < -par3) {
-            f3 = -par3;
-        }
-        return par1 + f3;
-    }
-    
+
     public float getRotationYaw() {
         return this.dataWatcher.getWatchableObjectFloat(18);
     }
-    
+
     public void setRotationYaw(final float yaw) {
         this.dataWatcher.updateObject(18, yaw);
     }
-    
+
     protected void updateEntityActionState() {
         if (this.posY < -2.0 || this.posY > 130.0) {
             this.despawnEntity();
         }
     }
-    
+
     @Override
     protected String getLivingSound() {
         return "aether_legacy:aemob.zephyr.call";
@@ -196,34 +169,33 @@ public class EntityYoungZephyr extends EntityAetherIIMob implements IMob, IFlyin
     protected String getHurtSound() {
         return "aether_legacy:aemob.zephyr.call";
     }
-    
+
     public boolean canDespawn() {
         return true;
     }
-    
+
     protected float getSoundVolume() {
         return 0.5f;
     }
-    
+
     @Override
     public boolean getCanSpawnHere() {
         int i = MathHelper.floor_double(this.posX);
         int j = MathHelper.floor_double(this.boundingBox.minY);
         int k = MathHelper.floor_double(this.posZ);
-
         return this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_grass && this.rand.nextInt(AetherConfig.getVulturnusSpawnrate()) == 0 && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox) && this.worldObj.getBlockLightValue(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.boundingBox.minY), MathHelper.floor_double(this.posZ)) > 7 && super.getCanSpawnHere();
     }
-    
+
     public int getMaxSpawnedInChunk() {
         return 1;
     }
-    
+
     protected void fall(final float par1) {
     }
-    
+
     protected void updateFallState(final double par1, final boolean par3) {
     }
-    
+
     public void moveEntityWithHeading(final float par1, final float par2) {
         if (this.isInWater()) {
             this.moveFlying(par1, par2, 0.02f);
@@ -273,38 +245,33 @@ public class EntityYoungZephyr extends EntityAetherIIMob implements IMob, IFlyin
         this.limbSwingAmount += (f4 - this.limbSwingAmount) * 0.4f;
         this.limbSwing += this.limbSwingAmount;
     }
-    
-    public void onDeath(DamageSource p_70645_1_)
-    {
-        super.onDeath(p_70645_1_);
 
-        if (p_70645_1_.getEntity() instanceof EntityPlayer entityplayer)
-        {
+    public void onDeath(DamageSource source) {
+        super.onDeath(source);
 
+        if (source.getEntity() instanceof EntityPlayer entityplayer) {
 			entityplayer.triggerAchievement(AchievementsAether.aether_hunter);
-            
         }
-            
     }
-    
+
     public boolean isOnLadder() {
         return false;
     }
-    
+
     public boolean fly() {
         return true;
     }
-    
+
     public float getFlySpeed() {
         return 0.35f;
     }
-    
+
     public boolean hostileMob() {
         return true;
     }
-    
+
     public void setSinage(final float sinage) {
         this.sinage = sinage;
     }
-    
+
 }

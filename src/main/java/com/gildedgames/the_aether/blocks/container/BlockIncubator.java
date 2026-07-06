@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.blocks.container;
 
 import java.util.Random;
-
 import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.network.AetherGuiHandler;
@@ -18,7 +17,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -32,7 +30,6 @@ public class BlockIncubator extends BlockAetherContainer {
 
 	public BlockIncubator() {
 		super(Material.rock);
-
 		this.setHardness(2.0F);
 	}
 
@@ -64,7 +61,7 @@ public class BlockIncubator extends BlockAetherContainer {
 
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
-		return new TileEntityIncubator();
+        return new TileEntityIncubator();
 	}
 
 	@Override

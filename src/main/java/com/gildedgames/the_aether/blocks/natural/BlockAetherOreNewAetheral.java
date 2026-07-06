@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.blocks.natural;
 
 import java.util.Random;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.items.tools.ItemAetherTool;
@@ -23,7 +22,6 @@ public class BlockAetherOreNewAetheral extends Block {
 
 	public BlockAetherOreNewAetheral(int level) {
 		super(Material.rock);
-
 		this.setHardness(3.0F);
 		this.setResistance(5.0F);
 		this.setStepSound(soundTypeStone);
@@ -34,7 +32,6 @@ public class BlockAetherOreNewAetheral extends Block {
 	public void harvestBlock(World worldIn, EntityPlayer player, int x, int y, int z, int meta) {
 		player.addStat(StatList.mineBlockStatArray[getIdFromBlock(this)], 1);
 		player.addExhaustion(0.025F);
-
 		ItemStack stack = player.getCurrentEquippedItem();
 
 		if (EnchantmentHelper.getEnchantmentLevel(Enchantment.silkTouch.effectId, stack) > 0) {
@@ -47,10 +44,10 @@ public class BlockAetherOreNewAetheral extends Block {
 			for (int i = 0; i < 3; ++i) {
 				this.dropBlockAsItem(worldIn, x, y, z, meta, EnchantmentHelper.getEnchantmentLevel(Enchantment.fortune.effectId, stack));
 			}
-			
+
 		} else {
 			super.harvestBlock(worldIn, player, x, y, z, meta);
-			}	
+        }
 	}
 
 	@Override
@@ -74,7 +71,7 @@ public class BlockAetherOreNewAetheral extends Block {
 	}
 
 	@Override
-	public int getExpDrop(IBlockAccess p_149690_1_, int p_149690_5_, int p_149690_7_) {
+	public int getExpDrop(IBlockAccess iBlockAccess, int p_149690_5_, int p_149690_7_) {
 		Random random = new Random();
 
 		if (this.getItemDropped(p_149690_5_, random, p_149690_7_) != Item.getItemFromBlock(this)) {
@@ -91,5 +88,4 @@ public class BlockAetherOreNewAetheral extends Block {
 
 		return 0;
 	}
-
 }

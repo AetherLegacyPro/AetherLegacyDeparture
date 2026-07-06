@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.blocks.natural;
 
 import java.util.List;
-
 import com.gildedgames.the_aether.items.block.IColoredBlock;
 import com.gildedgames.the_aether.items.block.INamedBlock;
 import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
@@ -17,7 +16,6 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.Facing;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -25,7 +23,6 @@ public class BlockAercloud extends Block implements IColoredBlock, INamedBlock {
 
 	public BlockAercloud() {
 		super(Material.ice);
-
 		this.setHardness(0.2F);
 		this.setStepSound(soundTypeCloth);
 		this.setBlockTextureName("aether_legacy:aercloud");
@@ -33,16 +30,16 @@ public class BlockAercloud extends Block implements IColoredBlock, INamedBlock {
 
 	@SideOnly(Side.CLIENT)
 	@SuppressWarnings({"unchecked", "rawtypes"})
-	public void getSubBlocks(Item p_149666_1_, CreativeTabs p_149666_2_, List p_149666_3_) {
-		p_149666_3_.add(new ItemStack(this, 1, 0));
-		p_149666_3_.add(new ItemStack(this, 1, 1));
-		p_149666_3_.add(new ItemStack(this, 1, 2));
+	public void getSubBlocks(Item item, CreativeTabs creativeTabs, List list) {
+        list.add(new ItemStack(this, 1, 0));
+        list.add(new ItemStack(this, 1, 1));
+        list.add(new ItemStack(this, 1, 2));
 	}
 
 	@Override
 	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
 		entity.fallDistance = 0;
-		
+
 		//blue aercloud
 		if (world.getBlockMetadata(x, y, z) == 1) {
 			if (entity instanceof EntityPlayer player) {
@@ -66,24 +63,25 @@ public class BlockAercloud extends Block implements IColoredBlock, INamedBlock {
 						entity.setDead();
 					}
 				}
-				
+
 				entity.motionY = 2.0D;
 			}
-			
+
 		}
-			//gold aercloud
+
+        //gold aercloud
 		else if (world.getBlockMetadata(x, y, z) == 2) {
 				if (entity instanceof EntityPlayer player) {
 
 					player.triggerAchievement(AchievementsAether.golden_cloud);
-					
+
 					if (player.isSneaking()) {
 						if (entity.motionY < 0) {
 							entity.motionY *= 0.005D;
 						}
 
 						return;
-					}					
+					}
 							entity.motionY = -2.0D;
 				} else {
 					if (entity instanceof EntityArrow)
@@ -93,7 +91,7 @@ public class BlockAercloud extends Block implements IColoredBlock, INamedBlock {
 							entity.setDead();
 						}
 					}
-					
+
 					entity.motionY = -2.0D;
 				}
 
@@ -110,8 +108,8 @@ public class BlockAercloud extends Block implements IColoredBlock, INamedBlock {
 			}
 		} else if (entity.motionY < 0) {
 			entity.motionY *= 0.005D;
-			}	
-		}
+        }
+    }
 
 	@Override
 	@SideOnly(Side.CLIENT)
@@ -121,12 +119,12 @@ public class BlockAercloud extends Block implements IColoredBlock, INamedBlock {
 
 	@Override
 	public boolean isOpaqueCube() {
-		return false;
+        return false;
 	}
 
 	@Override
 	public int damageDropped(int meta) {
-		return meta;
+        return meta;
 	}
 
 	@Override
@@ -167,10 +165,10 @@ public class BlockAercloud extends Block implements IColoredBlock, INamedBlock {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public boolean shouldSideBeRendered(IBlockAccess p_149646_1_, int p_149646_2_, int p_149646_3_, int p_149646_4_, int p_149646_5_) {
-		Block block = p_149646_1_.getBlock(p_149646_2_, p_149646_3_, p_149646_4_);
+	public boolean shouldSideBeRendered(IBlockAccess iBlockAccess, int p_149646_2_, int p_149646_3_, int p_149646_4_, int p_149646_5_) {
+		Block block = iBlockAccess.getBlock(p_149646_2_, p_149646_3_, p_149646_4_);
 
-		if (p_149646_1_.getBlockMetadata(p_149646_2_, p_149646_3_, p_149646_4_) != p_149646_1_.getBlockMetadata(p_149646_2_ - Facing.offsetsXForSide[p_149646_5_], p_149646_3_ - Facing.offsetsYForSide[p_149646_5_], p_149646_4_ - Facing.offsetsZForSide[p_149646_5_])) {
+		if (iBlockAccess.getBlockMetadata(p_149646_2_, p_149646_3_, p_149646_4_) != iBlockAccess.getBlockMetadata(p_149646_2_ - Facing.offsetsXForSide[p_149646_5_], p_149646_3_ - Facing.offsetsYForSide[p_149646_5_], p_149646_4_ - Facing.offsetsZForSide[p_149646_5_])) {
 			return true;
 		}
 
@@ -178,7 +176,7 @@ public class BlockAercloud extends Block implements IColoredBlock, INamedBlock {
 			return false;
 		}
 
-		return super.shouldSideBeRendered(p_149646_1_, p_149646_2_, p_149646_3_, p_149646_4_, p_149646_5_);
+		return super.shouldSideBeRendered(iBlockAccess, p_149646_2_, p_149646_3_, p_149646_4_, p_149646_5_);
 	}
 
 	@Override

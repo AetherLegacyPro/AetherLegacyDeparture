@@ -9,42 +9,29 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
-
 import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.client.models.entities.LurkerModel;
 import com.gildedgames.the_aether.entities.bosses.lurker.EntityLurker;
 
 @SideOnly(Side.CLIENT)
-public class LurkerRenderer extends RenderLiving
-{
+public class LurkerRenderer extends RenderLiving {
     private static final ResourceLocation armoredCreeperTextures = Aether.locate("textures/bosses/urker/power.png");
     private static final ResourceLocation creeperTextures = Aether.locate("textures/bosses/urker/urker.png");
-    /** The creeper model. */
     private ModelBase creeperModel = new LurkerModel(2.0F);
-    protected LurkerModel field_82437_k; //new
-	protected LurkerModel field_82435_l; //new
 
-    public LurkerRenderer()
-    {
+    public LurkerRenderer() {
         super(new LurkerModel(), 0.5F);
     }
 
-    /**
-     * Allows the render to do any OpenGL state modifications necessary before the model is rendered. Args:
-     * entityLiving, partialTickTime
-     */
-    protected void preRenderCallback(EntityLurker p_77041_1_, float p_77041_2_)
-    {
-        float f1 = p_77041_1_.getCreeperFlashIntensity(p_77041_2_);
+    protected void preRenderCallback(EntityLurker entityLurker, float p_77041_2_) {
+        float f1 = entityLurker.getCreeperFlashIntensity(p_77041_2_);
         float f2 = 1.0F + MathHelper.sin(f1 * 100.0F) * f1 * 0.01F;
 
-        if (f1 < 0.0F)
-        {
+        if (f1 < 0.0F) {
             f1 = 0.0F;
         }
 
-        if (f1 > 1.0F)
-        {
+        if (f1 > 1.0F) {
             f1 = 1.0F;
         }
 
@@ -55,19 +42,13 @@ public class LurkerRenderer extends RenderLiving
         GL11.glScalef(f3, f4, f3);
     }
 
-    /**
-     * Returns an ARGB int color back. Args: entityLiving, lightBrightness, partialTickTime
-     */
-    protected int getColorMultiplier(EntityLurker p_77030_1_, float p_77030_2_, float p_77030_3_)
-    {
-        float f2 = p_77030_1_.getCreeperFlashIntensity(p_77030_3_);
+    protected int getColorMultiplier(EntityLurker entityLurker, float p_77030_2_, float p_77030_3_) {
+        float f2 = entityLurker.getCreeperFlashIntensity(p_77030_3_);
 
-        if ((int)(f2 * 10.0F) % 2 == 0)
-        {
+        if ((int)(f2 * 10.0F) % 2 == 0) {
             return 0;
         }
-        else
-        {
+        else {
             int i = (int)(f2 * 0.2F * 255.0F);
 
             if (i < 0)
@@ -87,25 +68,17 @@ public class LurkerRenderer extends RenderLiving
         }
     }
 
-    /**
-     * Queries whether should render the specified pass or not.
-     */
-    protected int shouldRenderPass(EntityLurker p_77032_1_, int p_77032_2_, float p_77032_3_)
-    {
-        if (p_77032_1_.getPowered())
-        {
-            if (p_77032_1_.isInvisible())
-            {
+    protected int shouldRenderPass(EntityLurker entityLurker, int p_77032_2_, float p_77032_3_) {
+        if (entityLurker.getPowered()) {
+            if (entityLurker.isInvisible()) {
                 GL11.glDepthMask(false);
             }
-            else
-            {
+            else {
                 GL11.glDepthMask(true);
             }
 
-            if (p_77032_2_ == 1)
-            {
-                float f1 = (float)p_77032_1_.ticksExisted + p_77032_3_;
+            if (p_77032_2_ == 1) {
+                float f1 = (float)entityLurker.ticksExisted + p_77032_3_;
                 this.bindTexture(armoredCreeperTextures);
                 GL11.glMatrixMode(GL11.GL_TEXTURE);
                 GL11.glLoadIdentity();
@@ -122,8 +95,7 @@ public class LurkerRenderer extends RenderLiving
                 return 1;
             }
 
-            if (p_77032_2_ == 2)
-            {
+            if (p_77032_2_ == 2) {
                 GL11.glMatrixMode(GL11.GL_TEXTURE);
                 GL11.glLoadIdentity();
                 GL11.glMatrixMode(GL11.GL_MODELVIEW);
@@ -135,55 +107,32 @@ public class LurkerRenderer extends RenderLiving
         return -1;
     }
 
-    protected int inheritRenderPass(EntityLurker p_77035_1_, int p_77035_2_, float p_77035_3_)
-    {
+    protected int inheritRenderPass(EntityLurker entityLurker, int p_77035_2_, float p_77035_3_) {
         return -1;
     }
 
-    /**
-     * Returns the location of an entity's texture. Doesn't seem to be called unless you call Render.bindEntityTexture.
-     */
-    protected ResourceLocation getEntityTexture(EntityLurker p_110775_1_)
-    {
+    protected ResourceLocation getEntityTexture(EntityLurker entityLurker) {
         return creeperTextures;
     }
 
-    /**
-     * Allows the render to do any OpenGL state modifications necessary before the model is rendered. Args:
-     * entityLiving, partialTickTime
-     */
-    protected void preRenderCallback(EntityLivingBase p_77041_1_, float p_77041_2_)
-    {
-        this.preRenderCallback((EntityLurker)p_77041_1_, p_77041_2_);
+    protected void preRenderCallback(EntityLivingBase entityLivingBase, float p_77041_2_) {
+        this.preRenderCallback((EntityLurker)entityLivingBase, p_77041_2_);
     }
 
-    /**
-     * Returns an ARGB int color back. Args: entityLiving, lightBrightness, partialTickTime
-     */
-    protected int getColorMultiplier(EntityLivingBase p_77030_1_, float p_77030_2_, float p_77030_3_)
-    {
-        return this.getColorMultiplier((EntityLurker)p_77030_1_, p_77030_2_, p_77030_3_);
+    protected int getColorMultiplier(EntityLivingBase entityLivingBase, float p_77030_2_, float p_77030_3_) {
+        return this.getColorMultiplier((EntityLurker)entityLivingBase, p_77030_2_, p_77030_3_);
     }
 
-    /**
-     * Queries whether should render the specified pass or not.
-     */
-    protected int shouldRenderPass(EntityLivingBase p_77032_1_, int p_77032_2_, float p_77032_3_)
-    {
-        return this.shouldRenderPass((EntityLurker)p_77032_1_, p_77032_2_, p_77032_3_);
+    protected int shouldRenderPass(EntityLivingBase entityLivingBase, int p_77032_2_, float p_77032_3_) {
+        return this.shouldRenderPass((EntityLurker)entityLivingBase, p_77032_2_, p_77032_3_);
     }
 
-    protected int inheritRenderPass(EntityLivingBase p_77035_1_, int p_77035_2_, float p_77035_3_)
-    {
-        return this.inheritRenderPass((EntityLurker)p_77035_1_, p_77035_2_, p_77035_3_);
+    protected int inheritRenderPass(EntityLivingBase entityLivingBase, int p_77035_2_, float p_77035_3_) {
+        return this.inheritRenderPass((EntityLurker)entityLivingBase, p_77035_2_, p_77035_3_);
     }
 
-    /**
-     * Returns the location of an entity's texture. Doesn't seem to be called unless you call Render.bindEntityTexture.
-     */
-    protected ResourceLocation getEntityTexture(Entity p_110775_1_)
-    {
-        return this.getEntityTexture((EntityLurker)p_110775_1_);
+    protected ResourceLocation getEntityTexture(Entity entity) {
+        return this.getEntityTexture((EntityLurker)entity);
     }
 }
 

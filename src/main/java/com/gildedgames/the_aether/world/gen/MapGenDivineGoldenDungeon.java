@@ -1,15 +1,12 @@
 package com.gildedgames.the_aether.world.gen;
 
 import java.util.Random;
-
 import com.gildedgames.the_aether.world.util.RandomTracker;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.MapGenStructure;
 import net.minecraft.world.gen.structure.StructureStart;
-
-import com.gildedgames.the_aether.world.gen.AetherStructure;
 import com.gildedgames.the_aether.world.gen.components.ComponentDivineGoldenDungeon;
 import com.gildedgames.the_aether.world.gen.components.ComponentDivineGoldenDungeonIsland;
 import com.gildedgames.the_aether.world.gen.components.ComponentDivineGoldenIslandStub;
@@ -21,17 +18,15 @@ public class MapGenDivineGoldenDungeon extends MapGenStructure {
 
 	@Override
 	public String func_143025_a() {
-		return "aether_legacy:divine_golden_dungeon";
+        return "aether_legacy:divine_golden_dungeon";
 	}
 
 	@Override
 	protected boolean canSpawnStructureAtCoords(int chunkX, int chunkZ) {
 		RandomTracker randomTracker = new RandomTracker();
 
-		if (randomTracker.testRandom(this.rand, 400) != 0) //fix spawn rates in next snapshot?
-		{
-			if (randomTracker.testRandom(this.rand, 430) != 0)
-			{
+		if (randomTracker.testRandom(this.rand, 400) != 0) {
+			if (randomTracker.testRandom(this.rand, 430) != 0) {
 				return false;
 			}
 		}
@@ -89,12 +84,10 @@ public class MapGenDivineGoldenDungeon extends MapGenStructure {
 			this.updateBoundingBox();
 		}
 
-		private void customOffset(Random random)
-		{
+		private void customOffset(Random random) {
 			int offset = random.nextInt(64);
 
-			for (Object object : this.components)
-			{
+			for (Object object : this.components) {
 				AetherStructure component = (AetherStructure) object;
 
 				component.getBoundingBox().offset(0, offset, 0);
@@ -104,7 +97,6 @@ public class MapGenDivineGoldenDungeon extends MapGenStructure {
 		@Override
 		public void func_143022_a(NBTTagCompound tagCompound) {
 			super.func_143022_a(tagCompound);
-
 			tagCompound.setInteger("stubIslandCount", this.stubIslandCount);
 			tagCompound.setInteger("dungeonDirection", this.dungeonDirection);
 		}
@@ -112,11 +104,9 @@ public class MapGenDivineGoldenDungeon extends MapGenStructure {
 		@Override
 		public void func_143017_b(NBTTagCompound tagCompound) {
 			super.func_143017_b(tagCompound);
-
 			this.stubIslandCount = tagCompound.getInteger("stubIslandCount");
 			this.dungeonDirection = tagCompound.getInteger("dungeonDirection");
 		}
-
 	}
 
 }

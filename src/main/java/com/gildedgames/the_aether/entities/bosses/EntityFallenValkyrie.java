@@ -4,7 +4,6 @@ import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
@@ -21,24 +20,16 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
-
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 
 public class EntityFallenValkyrie extends EntityMob {
 
 	private int attackTime;
-
-	public int angerLevel;
-
 	public int timeLeft, chatTime;
-
 	public double safeX, safeY, safeZ;
-
 	public float sinage;
-
 	public double lastMotionY;
-
 	public int teleTimer;
 
 	public EntityFallenValkyrie(World world) {
@@ -236,7 +227,6 @@ public class EntityFallenValkyrie extends EntityMob {
 	@Override
 	public void writeEntityToNBT(NBTTagCompound compound) {
 		super.writeEntityToNBT(compound);
-
 		compound.setInteger("teleTimer", this.teleTimer);
 		compound.setInteger("timeLeft", this.timeLeft);
 		compound.setDouble("safePosX", this.safeX);
@@ -247,7 +237,6 @@ public class EntityFallenValkyrie extends EntityMob {
 	@Override
 	public void readEntityFromNBT(NBTTagCompound compound) {
 		super.readEntityFromNBT(compound);
-
 		this.teleTimer = compound.getInteger("teleTimer");
 		this.timeLeft = compound.getInteger("timeLeft");
 		this.safeX = compound.getInteger("safePosX");
@@ -270,7 +259,7 @@ public class EntityFallenValkyrie extends EntityMob {
 				}
 
 				this.setAttackTarget(player);
-			} 
+			}
 			 else {
 				this.teleTimer -= 10;
 			}
@@ -287,10 +276,10 @@ public class EntityFallenValkyrie extends EntityMob {
 			spawnExplosionParticle();
 			this.setDead();
 		}
-		
+
 		EntityPlayer player = (EntityPlayer) ds.getEntity();
 		ItemStack stack = player.inventory.getCurrentItem();
-        
+
 		if (stack != null && stack.getItem() != null && stack.getItem() == ItemsAether.builder_slayer) {
 			player.triggerAchievement(AchievementsAether.builders_beware);
 		}
@@ -305,7 +294,7 @@ public class EntityFallenValkyrie extends EntityMob {
 		if (this.attackTime <= 0 && entity.boundingBox.maxY > this.boundingBox.minY && entity.boundingBox.minY < this.boundingBox.maxY) {
 			this.attackTime = 20;
 			swingArm();
-			flag = entity.attackEntityFrom(DamageSource.causeMobDamage(this), 8);			
+			flag = entity.attackEntityFrom(DamageSource.causeMobDamage(this), 8);
 		}
 
 		return flag;
@@ -323,28 +312,28 @@ public class EntityFallenValkyrie extends EntityMob {
 
 	@Override
 	public boolean canDespawn() {
-		return true;
+        return true;
 	}
 
 	@Override
 	protected String getHurtSound() {
-		return "game.player.hurt";
+        return "game.player.hurt";
 	}
 
 	@Override
 	protected String getDeathSound() {
-		return "game.player.hurt.fall.big";
+        return "game.player.hurt.fall.big";
 	}
-    
+
 	public boolean getCanSpawnHere() {
         final int i = MathHelper.floor_double(this.posX);
         final int j = MathHelper.floor_double(this.boundingBox.minY);
         final int k = MathHelper.floor_double(this.posZ);
         final boolean canSpawn = this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
         return (this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_creeping_stone || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_fuse_stone) && this.worldObj.getBlockLightValue(i, j, k) < 14 && canSpawn;
-                       
+
     }
-    
+
     public int getMaxSpawnedInChunk() {
         return 1;
     }

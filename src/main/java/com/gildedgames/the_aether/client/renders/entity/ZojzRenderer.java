@@ -3,25 +3,22 @@ package com.gildedgames.the_aether.client.renders.entity;
 import net.minecraft.client.renderer.entity.*;
 import net.minecraft.util.*;
 import org.lwjgl.opengl.*;
-
 import com.gildedgames.the_aether.client.models.entities.ZojzModel;
 import com.gildedgames.the_aether.entities.hostile.EntityZojz;
-
 import net.minecraft.client.renderer.*;
 import net.minecraft.entity.*;
 
-public class ZojzRenderer extends RenderLiving
-{
+public class ZojzRenderer extends RenderLiving {
     private static final ResourceLocation TEXTURE;
     private static final ResourceLocation TEXTURE_GLOW;
     public ZojzModel zojzModel;
-    
+
     public ZojzRenderer(final ZojzModel model) {
         super(model, 0.5f);
         this.setRenderPassModel(model);
         this.zojzModel = model;
     }
-    
+
     protected void preRenderCallback(final EntityLivingBase entityliving, final float f) {
         final EntityZojz zojz = (EntityZojz)entityliving;
         float f2 = (float)Math.sin(zojz.sinage);
@@ -40,7 +37,7 @@ public class ZojzRenderer extends RenderLiving
         this.shadowSize = 0.75f;
         GL11.glScalef(1.55f, 1.55f, 1.55f);
     }
-    
+
     protected int setMarkingBrightness(final EntityZojz zojz, final int i, final float f) {
         if (i != 0) {
             return -1;
@@ -58,15 +55,15 @@ public class ZojzRenderer extends RenderLiving
         GL11.glColor4f(1.0f, 1.0f, 1.0f, var4);
         return 1;
     }
-    
+
     protected int shouldRenderPass(final EntityLivingBase entityliving, final int i, final float f) {
         return this.setMarkingBrightness((EntityZojz)entityliving, i, f);
     }
-    
+
     protected ResourceLocation getEntityTexture(final Entity entity) {
         return ZojzRenderer.TEXTURE;
     }
-    
+
     static {
         TEXTURE = new ResourceLocation("aether_legacy", "textures/entities/zojz/zojz.png");
         TEXTURE_GLOW = new ResourceLocation("aether_legacy", "textures/entities/zojz/zojz_overlay.png");

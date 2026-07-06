@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.items.armor;
 
 import java.util.List;
-
 import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.entities.block.EntityFireProofItemAether;
@@ -23,24 +22,19 @@ import net.minecraft.world.World;
 public class ItemAmplifiedPhoenixArmor extends ItemArmor {
 
 	private String[] defualt_location = new String[]{"textures/models/armor/iron_layer_1.png", "textures/models/armor/iron_layer_2.png"};
-
 	public boolean shouldDefualt = false;
-
 	private int colorization = -1;
-
 	private String armorName;
-
 	private Item source = null;
 
 	public ItemAmplifiedPhoenixArmor(int armorType, ArmorMaterial material, String name, Item repair) {
 		super(material, 0, armorType);
-
 		this.source = repair;
 		this.armorName = name;
 		this.setCreativeTab(AetherCreativeTabs.armor);
 		setMaxDamage(3477);
 	}
-	
+
 	public void onArmorTick(final World world, final EntityPlayer player, final ItemStack itemStack) {
 		boolean hasPhoenixHelmet = false;
         boolean hasPhoenixChest = false;
@@ -64,13 +58,11 @@ public class ItemAmplifiedPhoenixArmor extends ItemArmor {
         }
         if (hasPhoenixHelmet && hasPhoenixChest && hasPhoenixLegs && hasPhoenixBoots) {
         	player.addPotionEffect(new PotionEffect(Potion.nightVision.id, 220, 0));
-    		
+
     		if (world.provider.dimensionId == -1) {
-    		
-    		player.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 20, 1));
-    		player.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 20, 1));
-    		player.triggerAchievement(AchievementsAether.phoenix_set);
-    			
+    		    player.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 20, 1));
+    		    player.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 20, 1));
+    		    player.triggerAchievement(AchievementsAether.phoenix_set);
     		}
 
 		}
@@ -78,7 +70,6 @@ public class ItemAmplifiedPhoenixArmor extends ItemArmor {
 
 	public ItemAmplifiedPhoenixArmor(int armorType, ArmorMaterial material, String name, Item repair, int hex) {
 		this(armorType, material, name, repair);
-
 		this.source = repair;
 		this.armorName = name;
 		this.colorization = hex;
@@ -87,7 +78,7 @@ public class ItemAmplifiedPhoenixArmor extends ItemArmor {
 
 	@Override
 	public int getColor(ItemStack stack) {
-		return this.colorization;
+        return this.colorization;
 	}
 
 	@Override
@@ -107,20 +98,20 @@ public class ItemAmplifiedPhoenixArmor extends ItemArmor {
 	public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
 		return this.source == null ? false : repair.getItem() == this.source;
 	}
-	
+
 	@Override
 	public EnumRarity getRarity(ItemStack stack) {
-		return ItemsAether.divine_aether_loot;
+        return ItemsAether.divine_aether_loot;
 	}
-	
+
 	public boolean hasCustomEntity(final ItemStack stack) {
         return true;
     }
-    
+
     public Entity createEntity(final World world, final Entity location, final ItemStack itemstack) {
         return new EntityFireProofItemAether(world, location, itemstack);
     }
-    
+
     public void addInformation(final ItemStack stack, final EntityPlayer player, final List tooltip, final boolean who) {
 		if(AetherConfig.enableTooltips())
         tooltip.add(EnumChatFormatting.LIGHT_PURPLE + "" + StatCollector.translateToLocal("tooltip.amplified_phoenix_armor.desc"));

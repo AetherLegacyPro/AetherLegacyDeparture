@@ -9,9 +9,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-
 import org.lwjgl.opengl.GL11;
-
 import com.gildedgames.the_aether.entities.block.EntityFloatingBlock;
 
 public class FloatingBlockRenderer extends Render {

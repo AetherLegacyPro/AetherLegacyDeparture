@@ -17,16 +17,14 @@ import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.world.World;
-
 import java.util.List;
-
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 
-public class EntityThunderlo extends EntityAetherAnimal
-{
+public class EntityThunderlo extends EntityAetherAnimal {
+
     public EntityThunderlo(World world) {
         super(world);
         this.setSize(2.0f, 2.0f);
@@ -42,8 +40,8 @@ public class EntityThunderlo extends EntityAetherAnimal
         this.tasks.addTask(9, new EntityAIAttackOnCollide(this, 1.0, true));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
         this.setHealth(30);
-    }  
-    
+    }
+
     @Override
 	public boolean getCanSpawnHere() {
 	      final int i = MathHelper.floor_double(this.posX);
@@ -51,9 +49,9 @@ public class EntityThunderlo extends EntityAetherAnimal
 	      final int k = MathHelper.floor_double(this.posZ);
 	      final boolean canSpawn = this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
 	      return (this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_dirt || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.arctic_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.verdant_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.enchanted_aether_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.divine_grass) && this.worldObj.getBlockLightValue(i, j, k) > 7 && canSpawn && (AetherConfig.getThunderloSpawnrate()) == 0 && super.getCanSpawnHere();
-	                       
+
 	}
-       
+
     @Override
     protected void dropFewItems(boolean recentlyHit, int lootLevel) {
         int j = this.rand.nextInt(3) + this.rand.nextInt(1 + lootLevel);
@@ -77,32 +75,29 @@ public class EntityThunderlo extends EntityAetherAnimal
         }
         super.dropFewItems(recentlyHit, lootLevel);
     }
-    
-    protected void dropRareDrop(int p_70600_1_)
-    {
-    	this.dropItem(ItemsAether.thunderlo_horn, 1 + rand.nextInt(4));
+
+    protected void dropRareDrop(int p_70600_1_) {
+        this.dropItem(ItemsAether.thunderlo_horn, 1 + rand.nextInt(4));
     }
-    
+
     public boolean attackEntityFrom(DamageSource ds, float i) {
-		if (ds == DamageSource.inWall || ds == DamageSource.fall)
-        {
+		if (ds == DamageSource.inWall || ds == DamageSource.fall) {
             return false;
         }
-		
-		boolean flag = super.attackEntityFrom(ds, i);
 
+		boolean flag = super.attackEntityFrom(ds, i);
 		return flag;
 	}
-    
+
     @Override
 	public boolean interact(EntityPlayer player) {
 		ItemStack itemstack = player.inventory.getCurrentItem();
-		
-		return super.interact(player);
+        return super.interact(player);
     }
-    
-    protected void fall(float p_70069_1_) {}
-    
+
+    protected void fall(float p_70069_1_) {
+    }
+
     @Override
     public void onUpdate() {
     	super.onUpdate();
@@ -119,15 +114,14 @@ public class EntityThunderlo extends EntityAetherAnimal
         if (!foundPlayer) {
             this.entityToAttack = null;
         }
-        
+
         if (!this.onGround && this.motionY < 0.0D) {
 			this.motionY *= 0.59999999999999998D;
 		}
-		
+
         super.onLivingUpdate();
-        
     }
-    
+
     protected void attackEntity(final Entity par1Entity, final float par2) {
         if (par1Entity instanceof EntityPlayer) {
             if (par2 < 3.0f) {
@@ -143,31 +137,23 @@ public class EntityThunderlo extends EntityAetherAnimal
         }
     }
 
-    public EntityThunderlo createChild(EntityAgeable p_90011_1_)
-    {
+    public EntityThunderlo createChild(EntityAgeable ageable) {
     	EntityThunderlo entitythunderlo = new EntityThunderlo(this.worldObj);
-
         return entitythunderlo;
     }
-    
-    public boolean isBreedingItem(ItemStack p_70877_1_)
-    {
-        return p_70877_1_ != null && p_70877_1_.getItem() == ItemsAether.strawberry;
+
+    public boolean isBreedingItem(ItemStack itemStack) {
+        return itemStack != null && itemStack.getItem() == ItemsAether.strawberry;
     }
-    
-    public void onDeath(DamageSource p_70645_1_)
-    {
-        super.onDeath(p_70645_1_);
 
-        if (p_70645_1_.getEntity() instanceof EntityPlayer entityplayer)
-        {
+    public void onDeath(DamageSource source) {
+        super.onDeath(source);
 
+        if (source.getEntity() instanceof EntityPlayer entityplayer) {
 			entityplayer.triggerAchievement(AchievementsAether.kill_thunderlo);
-            
         }
-            
     }
-	
+
 	@Override
     protected String getLivingSound() {
         return "aether_legacy:aemob.thunderlo.say";
@@ -182,11 +168,11 @@ public class EntityThunderlo extends EntityAetherAnimal
     protected String getDeathSound() {
         return "aether_legacy:aemob.thunderlo.death";
     }
-    
+
     @Override
     public boolean canDespawn() {
         return false;
     }
-    
+
 }
 

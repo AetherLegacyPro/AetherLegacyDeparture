@@ -4,7 +4,6 @@ import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemFood;
-
 import net.minecraft.item.ItemStack;
 
 public class ItemAetherFood extends ItemFood {
@@ -20,7 +19,7 @@ public class ItemAetherFood extends ItemFood {
 	}
 
 	@Override
-	public EnumRarity getRarity(ItemStack p_77613_1_) {
-		return (p_77613_1_.getItem() == ItemsAether.enchanted_blueberry || p_77613_1_.getItem() == ItemsAether.enchanted_blackberry || p_77613_1_.getItem() == ItemsAether.enchanted_grapes || p_77613_1_.getItem() == ItemsAether.enchanted_orange || p_77613_1_.getItem() == ItemsAether.enchanted_raspberry || p_77613_1_.getItem() == ItemsAether.enchanted_strawberry) ? EnumRarity.rare : super.getRarity(p_77613_1_);
+	public EnumRarity getRarity(ItemStack stack) {
+		return (stack.getItem() == ItemsAether.enchanted_blueberry || stack.getItem() == ItemsAether.enchanted_blackberry || stack.getItem() == ItemsAether.enchanted_grapes || stack.getItem() == ItemsAether.enchanted_orange || stack.getItem() == ItemsAether.enchanted_raspberry || stack.getItem() == ItemsAether.enchanted_strawberry) ? EnumRarity.rare : super.getRarity(stack);
 	}
 }

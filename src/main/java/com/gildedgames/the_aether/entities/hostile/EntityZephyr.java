@@ -3,7 +3,6 @@ package com.gildedgames.the_aether.entities.hostile;
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.entities.projectile.EntityZephyrSnowball;
 import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
-
 import net.minecraft.entity.EntityFlying;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.IMob;
@@ -15,26 +14,20 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
 
 public class EntityZephyr extends EntityFlying implements IMob {
 
 	public int courseChangeCooldown;
-
 	public double waypointX, waypointY, waypointZ;
-
 	public int prevAttackCounter;
-
 	public int attackCounter;
-
 	private final float base;
 
 	public EntityZephyr(World world) {
 		super(world);
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(10.0);
 		this.setSize(4F, 4F);
-
 		this.attackCounter = 0;
 		this.base = (this.getRNG().nextFloat() - this.getRNG().nextFloat()) * 0.2F + 1.0F;
 	}
@@ -44,20 +37,17 @@ public class EntityZephyr extends EntityFlying implements IMob {
 		int i = MathHelper.floor_double(this.posX);
 		int j = MathHelper.floor_double(this.boundingBox.minY);
 		int k = MathHelper.floor_double(this.posZ);
-
 		return this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_grass && this.rand.nextInt(AetherConfig.getZephyrSpawnrate()) == 0 && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox) && this.worldObj.getBlockLightValue(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.boundingBox.minY), MathHelper.floor_double(this.posZ)) > 8 && super.getCanSpawnHere();
 	}
 
 	@Override
 	public int getMaxSpawnedInChunk() {
-		return 1;
+        return 1;
 	}
 
 	@Override
-	protected void updateEntityActionState()
-	{
-		if (!this.worldObj.isRemote && this.worldObj.difficultySetting == EnumDifficulty.PEACEFUL)
-		{
+	protected void updateEntityActionState() {
+		if (!this.worldObj.isRemote && this.worldObj.difficultySetting == EnumDifficulty.PEACEFUL) {
 			this.setDead();
 		}
 
@@ -68,26 +58,22 @@ public class EntityZephyr extends EntityFlying implements IMob {
 		double d2 = this.waypointZ - this.posZ;
 		double d3 = d0 * d0 + d1 * d1 + d2 * d2;
 
-		if (d3 < 1.0D || d3 > 3600.0D)
-		{
+		if (d3 < 1.0D || d3 > 3600.0D) {
 			this.waypointX = this.posX + (double)((this.rand.nextFloat() * 2.0F - 1.0F) * 16.0F);
 			this.waypointY = this.posY + (double)((this.rand.nextFloat() * 2.0F - 1.0F) * 16.0F);
 			this.waypointZ = this.posZ + (double)((this.rand.nextFloat() * 2.0F - 1.0F) * 16.0F);
 		}
 
-		if (this.courseChangeCooldown-- <= 0)
-		{
+		if (this.courseChangeCooldown-- <= 0) {
 			this.courseChangeCooldown += this.rand.nextInt(5) + 2;
 			d3 = MathHelper.sqrt_double(d3);
 
-			if (this.isCourseTraversable(this.waypointX, this.waypointY, this.waypointZ, d3))
-			{
+			if (this.isCourseTraversable(this.waypointX, this.waypointY, this.waypointZ, d3)) {
 				this.motionX += d0 / d3 * 0.1D;
 				this.motionY += d1 / d3 * 0.1D;
 				this.motionZ += d2 / d3 * 0.1D;
 			}
-			else
-			{
+			else {
 				this.waypointX = this.posX;
 				this.waypointY = this.posY;
 				this.waypointZ = this.posZ;
@@ -142,62 +128,54 @@ public class EntityZephyr extends EntityFlying implements IMob {
 		}
 	}
 
-	private boolean isCourseTraversable(double p_70790_1_, double p_70790_3_, double p_70790_5_, double p_70790_7_)
-	{
+	private boolean isCourseTraversable(double p_70790_1_, double p_70790_3_, double p_70790_5_, double p_70790_7_) {
 		double d4 = (this.waypointX - this.posX) / p_70790_7_;
 		double d5 = (this.waypointY - this.posY) / p_70790_7_;
 		double d6 = (this.waypointZ - this.posZ) / p_70790_7_;
 		AxisAlignedBB axisalignedbb = this.boundingBox.copy();
 
-		for (int i = 1; (double)i < p_70790_7_; ++i)
-		{
+		for (int i = 1; (double)i < p_70790_7_; ++i) {
 			axisalignedbb.offset(d4, d5, d6);
 
-			if (!this.worldObj.getCollidingBoundingBoxes(this, axisalignedbb).isEmpty())
-			{
+			if (!this.worldObj.getCollidingBoundingBoxes(this, axisalignedbb).isEmpty()) {
 				return false;
 			}
 		}
 
 		return true;
 	}
-	
-	public void onDeath(DamageSource p_70645_1_)
-    {
-        super.onDeath(p_70645_1_);
 
-        if (p_70645_1_.getEntity() instanceof EntityPlayer entityplayer)
-        {
+	public void onDeath(DamageSource source) {
+        super.onDeath(source);
 
+        if (source.getEntity() instanceof EntityPlayer entityplayer) {
 			entityplayer.triggerAchievement(AchievementsAether.aether_hunter);
-            
         }
-            
     }
 
 	@Override
 	protected String getLivingSound() {
-		return "aether_legacy:aemob.zephyr.call";
+        return "aether_legacy:aemob.zephyr.call";
 	}
 
 	@Override
 	protected String getHurtSound() {
-		return "aether_legacy:aemob.zephyr.call";
+        return "aether_legacy:aemob.zephyr.call";
 	}
 
 	@Override
 	protected String getDeathSound() {
-		return null;
+        return null;
 	}
 
 	@Override
 	protected void dropFewItems(boolean var1, int var2) {
-		this.dropItem(Item.getItemFromBlock(BlocksAether.aercloud), 1);
+        this.dropItem(Item.getItemFromBlock(BlocksAether.aercloud), 1);
 	}
 
 	@Override
 	public boolean canDespawn() {
-		return true;
+        return true;
 	}
 
 }

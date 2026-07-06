@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.items.weapons;
 
 import java.util.Random;
-
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
@@ -16,18 +15,16 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
+import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
-
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 
 public class ItemAmplifiedNetherSlayer extends ItemSword {
-	
+
 	public boolean newWorld;
 	public Random random;
-
 	public float[] level = new float[]{6.0F, 6.0F, 6.0F, 6.0F, 6.0F};
-	
 	public float[] level2 = new float[]{26.0F, 26.0F, 26.0F, 26.0F, 26.0F};
 
 	public ItemAmplifiedNetherSlayer() {
@@ -38,38 +35,36 @@ public class ItemAmplifiedNetherSlayer extends ItemSword {
 
 	@Override
 	public Multimap<String, AttributeModifier> getItemAttributeModifiers() {
-		return null;
+        return null;
 	}
 
 	@Override
 	public Multimap<String, AttributeModifier> getAttributeModifiers(ItemStack stack) {
 		Multimap<String, AttributeModifier> multimap = HashMultimap.create();
-
 		if (stack.getItem() instanceof ItemAmplifiedNetherSlayer) {
-			if (newWorld == true) {
+			if (newWorld) {
 				multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(field_111210_e, "Weapon modifier", this.calculateIncrease2(stack), 0));
-			}
-			else {
+			} else {
 				multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(field_111210_e, "Weapon modifier", this.calculateIncrease(stack), 0));
 			}
-		}		
+		}
 
 		return multimap;
 	}
-	
+
 	@Override
-	public void onUpdate(ItemStack p_77663_1_, World p_77663_2_, Entity p_77663_3_, int p_77663_4_, boolean p_77663_5_) {
-		super.onUpdate(p_77663_1_, p_77663_2_, p_77663_3_, p_77663_4_, p_77663_5_);
-		if (p_77663_2_.provider.dimensionId == -1) {
-			EntityPlayer player = (EntityPlayer) p_77663_3_;
+	public void onUpdate(ItemStack stack, World world, Entity entity, int p_77663_4_, boolean p_77663_5_) {
+		super.onUpdate(stack, world, entity, p_77663_4_, p_77663_5_);
+		if (world.provider.dimensionId == -1) {
+			EntityPlayer player = (EntityPlayer) entity;
 			player.triggerAchievement(AchievementsAether.realm_conquer);
-				newWorld = true;
-			}
-		else {
-				newWorld = false;
+            newWorld = true;
+        }
+        else {
+            newWorld = false;
 		}
 	}
-	
+
 	private float calculateIncrease2(ItemStack tool) {
 		int current = tool.getItemDamage();
 
@@ -85,7 +80,7 @@ public class ItemAmplifiedNetherSlayer extends ItemSword {
 			return level2[0];
 		}
 	}
-	
+
 	private float calculateIncrease(ItemStack tool) {
 		int current = tool.getItemDamage();
 
@@ -104,96 +99,90 @@ public class ItemAmplifiedNetherSlayer extends ItemSword {
 
 	@Override
 	public boolean hasEffect(ItemStack stack, int pass) {
-		if (newWorld == true) {
+		if (newWorld) {
 			return true;
-		}
-		else {
-			return false;	
+		} else {
+			return false;
 		}
 	}
 
 	private boolean isBetween(int max, int origin, int min) {
-		return origin <= max && origin >= min ? true : false;
+        return origin <= max && origin >= min ? true : false;
 	}
 
 	@Override
 	public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
-		return false;
+        return false;
 	}
-	
+
 	@Override
     public boolean hitEntity(ItemStack itemstack, EntityLivingBase entityliving, EntityLivingBase entityliving1) {
-    
-        if (this == ItemsAether.amplified_overworld_slayer && newWorld == true) {
+
+        if (this == ItemsAether.amplified_overworld_slayer && newWorld) {
 
             float damage = 20.0F;
-
             int level = EnchantmentHelper.getEnchantmentLevel(Enchantment.smite.effectId, itemstack);
 
-            if (level > 0)
-            {
-                damage += (level * 1.25);
+            if (level > 0) {
+                damage += (float) (level * 1.25);
+                entityliving.attackEntityFrom(DamageSource.magic, damage);
             }
-            
-            float damagee = 7.0F;
-            
+
+            float damage2 = 7.0F;
             int level1 = EnchantmentHelper.getEnchantmentLevel(Enchantment.sharpness.effectId, itemstack);
 
-            if (level1 > 0)
-            {
-                damagee += (level1 * 2);
+            if (level1 > 0) {
+                damage2 += (level1 * 2);
+                entityliving.attackEntityFrom(DamageSource.magic, damage2);
             }
-            
-            float damageee = 15F;
-            
+
+            float damage3 = 15F;
+
             int level2 = EnchantmentHelper.getEnchantmentLevel(Enchantment.baneOfArthropods.effectId, itemstack);
 
-            if (level2 > 0)
-            {
-                damageee += (level2 * 2);
+            if (level2 > 0) {
+                damage3 += (level2 * 2);
+                entityliving.attackEntityFrom(DamageSource.magic, damage3);
             }
         }
-        
+
         else {
 
             float damage = 20.0F;
-
             int level = EnchantmentHelper.getEnchantmentLevel(Enchantment.smite.effectId, itemstack);
 
-            if (level > 0)
-            {
-                damage += (level * 1.1);
+            if (level > 0) {
+                damage += (float) (level * 1.1);
+                entityliving.attackEntityFrom(DamageSource.magic, damage);
             }
-            
-            float damagee = 7.0F;
-            
+
+            float damage2 = 7.0F;
+
             int level1 = EnchantmentHelper.getEnchantmentLevel(Enchantment.sharpness.effectId, itemstack);
 
-            if (level1 > 0)
-            {
-                damagee += (level1 * 1.05);
+            if (level1 > 0) {
+                damage2 += (float) (level1 * 1.05);
+                entityliving.attackEntityFrom(DamageSource.magic, damage2);
             }
-            
-            float damageee = 15F;
-            
+
+            float damage3 = 15F;
             int level2 = EnchantmentHelper.getEnchantmentLevel(Enchantment.baneOfArthropods.effectId, itemstack);
 
-            if (level2 > 0)
-            {
-                damageee += (level2 * 1.25);
+            if (level2 > 0) {
+                damage3 += (float) (level2 * 1.25);
+                entityliving.attackEntityFrom(DamageSource.magic, damage3);
             }
         }
-        
+
         return super.hitEntity(itemstack, entityliving, entityliving1);
     }
-	
+
 	@Override
 	public EnumRarity getRarity(ItemStack stack) {
-		if (newWorld == true) {
+		if (newWorld) {
 			return ItemsAether.powered;
-		}
-		else {
-			return ItemsAether.divine_aether_loot;	
+		} else {
+			return ItemsAether.divine_aether_loot;
 		}
 	}
 
@@ -201,13 +190,8 @@ public class ItemAmplifiedNetherSlayer extends ItemSword {
 	public float getDigSpeed(ItemStack itemstack, Block block, int meta) {
 		return super.getDigSpeed(itemstack, block, meta) * (2.0F * (float) itemstack.getItemDamage() / (float) itemstack.getMaxDamage() + 0.5F);
 	}
-	
-	protected String getChargedHitSound() {
-        return "aether_legacy:projectile.charged_hit";
-    }
-	
-	protected float getSoundVolume()
-    {
+
+	protected float getSoundVolume() {
         return 0.8F;
     }
 

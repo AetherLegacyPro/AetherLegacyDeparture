@@ -1,9 +1,7 @@
 package com.gildedgames.the_aether.client.models.entities;
 
 import org.lwjgl.opengl.GL11;
-
 import com.gildedgames.the_aether.entities.passive.EntityAerwhale;
-
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
@@ -107,15 +105,13 @@ public class AerwhaleModel extends ModelBase {
 	}
 
 	@Override
-	public void render(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale) {    
-        EntityAerwhale aerwhale = ((EntityAerwhale) entityIn);		
+	public void render(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
+        EntityAerwhale aerwhale = ((EntityAerwhale) entityIn);
         if(aerwhale.isChild()) {
-        	
         	GL11.glScalef(1.0F / 2.0F, 1.0F / 2.0F, 1.0F / 2.0F);
 			GL11.glTranslatef(0.0F, 24.0F * scale, 0.0F);
-        	
         }
-			
+
 		super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entityIn);
 		this.FrontBody.render(scale);
 		this.RightFin.render(scale);

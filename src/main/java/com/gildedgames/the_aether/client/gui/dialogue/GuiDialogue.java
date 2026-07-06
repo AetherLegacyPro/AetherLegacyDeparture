@@ -3,7 +3,6 @@ package com.gildedgames.the_aether.client.gui.dialogue;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.util.ChatComponentText;
@@ -11,30 +10,26 @@ import net.minecraft.util.ChatComponentText;
 public class GuiDialogue extends GuiScreen {
 
 	private ArrayList<DialogueOption> dialogueOptions = new ArrayList<>();
-
 	private String dialogue;
 
 	public GuiDialogue(String dialogue) {
-		this.dialogue = dialogue;
+        this.dialogue = dialogue;
 	}
 
 	public GuiDialogue(String dialogue, DialogueOption... options) {
 		this(dialogue);
-
 		this.addDialogueOptions(options);
 	}
 
 	public void addDialogueWithOptions(String dialogue, DialogueOption... options) {
 		this.dialogue = dialogue;
-
 		this.dialogueOptions.clear();
-
 		this.addDialogueOptions(options);
 		this.positionDialogueOptions(this.getDialogueOptions());
 	}
 
 	public void initGui() {
-		this.positionDialogueOptions(this.getDialogueOptions());
+        this.positionDialogueOptions(this.getDialogueOptions());
 	}
 
 	private void positionDialogueOptions(ArrayList<DialogueOption> options) {
@@ -44,13 +39,12 @@ public class GuiDialogue extends GuiScreen {
 			option.setDialogueId(lineNumber);
 			option.setXPosition((this.width / 2) - (option.getWidth() / 2));
 			option.setYPosition((this.height / 2) + this.fontRendererObj.listFormattedStringToWidth(this.dialogue, 300).size() * 12 + 12 * lineNumber);
-
 			lineNumber++;
 		}
 	}
 
 	public void addDialogueOptions(DialogueOption... options) {
-		this.dialogueOptions.addAll(Arrays.asList(options));
+        this.dialogueOptions.addAll(Arrays.asList(options));
 	}
 
 	public void addDialogueMessage(String dialogueMessage) {
@@ -63,7 +57,7 @@ public class GuiDialogue extends GuiScreen {
 
 	@Override
 	public boolean doesGuiPauseGame() {
-		return false;
+        return false;
 	}
 
 	@Override
@@ -75,7 +69,6 @@ public class GuiDialogue extends GuiScreen {
 
 		for (String theDialogue : this.fontRendererObj.listFormattedStringToWidth(this.dialogue, 300)) {
 			int stringWidth = this.fontRendererObj.getStringWidth(theDialogue);
-
 			this.drawGradientRect(this.width / 2 - stringWidth / 2 - 2, this.height / 2 + optionWidth * 12 - 2, this.width / 2 + stringWidth / 2 + 2, this.height / 2 + optionWidth * 10 + 10, 0x66000000, 0x66000000);
 			this.drawString(this.fontRendererObj, theDialogue, this.width / 2 - stringWidth / 2, this.height / 2 + optionWidth * 10, 0xffffff);
 			++optionWidth;
@@ -106,15 +99,14 @@ public class GuiDialogue extends GuiScreen {
 	}
 
 	public void dialogueClicked(DialogueOption dialogue) throws IOException {
-
 	}
 
 	public ArrayList<DialogueOption> getDialogueOptions() {
-		return this.dialogueOptions;
+        return this.dialogueOptions;
 	}
 
 	public String getDialogue() {
-		return this.dialogue;
+        return this.dialogue;
 	}
 
 }

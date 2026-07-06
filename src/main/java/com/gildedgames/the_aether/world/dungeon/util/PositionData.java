@@ -11,15 +11,15 @@ public class PositionData {
 	}
 
 	public int getX() {
-		return this.x;
+        return this.x;
 	}
 
 	public int getY() {
-		return this.y;
+        return this.y;
 	}
 
 	public int getZ() {
-		return this.z;
+        return this.z;
 	}
 
 }

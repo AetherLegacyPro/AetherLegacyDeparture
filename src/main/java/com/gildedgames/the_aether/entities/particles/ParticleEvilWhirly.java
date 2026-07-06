@@ -8,10 +8,6 @@ public class ParticleEvilWhirly extends AetherParticle {
 
 	float smokeParticleScale;
 
-	public ParticleEvilWhirly(World worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double p_i46347_8_, double p_i46347_10_, double p_i46347_12_) {
-		this(worldIn, xCoordIn, yCoordIn, zCoordIn, p_i46347_8_, p_i46347_10_, p_i46347_12_, 1.0F);
-	}
-
 	public ParticleEvilWhirly(World worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double p_i46348_8_, double p_i46348_10_, double p_i46348_12_, float p_i46348_14_) {
 		super(worldIn, xCoordIn, yCoordIn, zCoordIn, 0.0D, 0.0D, 0.0D);
 		this.motionX *= 0.10000000149011612D;
@@ -31,9 +27,6 @@ public class ParticleEvilWhirly extends AetherParticle {
 		this.particleMaxAge = (int) ((float) this.particleMaxAge * p_i46348_14_);
 	}
 
-	/**
-	 * Renders the particle
-	 */
 	public void renderParticle(Tessellator worldRendererIn, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ) {
 		float f = ((float) this.particleAge + partialTicks) / (float) this.particleMaxAge * 32.0F;
 		f = MathHelper.clamp_float(f, 0.0F, 1.0F);

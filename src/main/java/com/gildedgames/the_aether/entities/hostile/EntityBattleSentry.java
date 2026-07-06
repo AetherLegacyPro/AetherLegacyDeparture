@@ -12,65 +12,47 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
 
 public class EntityBattleSentry extends EntityLiving implements IMob {
 
 	private int jumpCount;
-
 	public int searchTicks;
-
 	public int lostTicks;
 
 	public EntityBattleSentry(World world) {
 		super(world);
-
 		this.yOffset = 0.0F;
 		this.jumpCount = this.rand.nextInt(20) + 10;
-	}
-
-	public EntityBattleSentry(World world, double x, double y, double z) {
-		this(world);
-
-		this.rotationYaw = (float) this.rand.nextInt(4) * 1.570796F;
-
-		this.setPosition(x, y, z);
-		this.setSize(0.85F, 0.85F);
 	}
 
 	@Override
 	public void entityInit() {
 		super.entityInit();
-
 		this.dataWatcher.addObject(20, (byte) 0);
 	}
 
 	@Override
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
-
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(1.0D);
 	}
 
 	@Override
 	public void writeEntityToNBT(NBTTagCompound compound) {
 		super.writeEntityToNBT(compound);
-
 		compound.setBoolean("awake", this.isAwake());
 	}
 
 	@Override
 	public void readEntityFromNBT(NBTTagCompound compound) {
 		super.readEntityFromNBT(compound);
-
 		this.setAwake(compound.getBoolean("awake"));
 	}
 
 	@Override
 	public void onUpdate() {
 		boolean flag = this.onGround;
-
 		super.onUpdate();
 
 		if (this.onGround && !flag) {
@@ -95,7 +77,7 @@ public class EntityBattleSentry extends EntityLiving implements IMob {
 		}
 		return flag;
 	}
-	
+
 	@Override
 	public void fall(float distance) {
 	}
@@ -132,7 +114,7 @@ public class EntityBattleSentry extends EntityLiving implements IMob {
 				this.worldObj.spawnParticle("explode", d1, d3, d4, -Math.sin(f * f1) * 0.75D, 0.125D, Math.cos(f * f1) * 0.75D);
 			}
 
-			
+
 		}
 	}
 
@@ -205,16 +187,13 @@ public class EntityBattleSentry extends EntityLiving implements IMob {
 			}
 		}
 	}
-	
-	public void onLivingUpdate()
-    {
-	 if (!this.worldObj.isRemote && this.worldObj.difficultySetting == EnumDifficulty.PEACEFUL)
-	 {
+
+	public void onLivingUpdate() {
+	 if (!this.worldObj.isRemote && this.worldObj.difficultySetting == EnumDifficulty.PEACEFUL) {
 	  this.setDead();
 	 }
-			
-	  this.despawnEntity(); 
-	  
+
+	  this.despawnEntity();
 	  super.onLivingUpdate();
 	}
 
@@ -225,33 +204,33 @@ public class EntityBattleSentry extends EntityLiving implements IMob {
 	}
 
 	public void setAwake(boolean awake) {
-		this.dataWatcher.updateObject(20, (byte) (awake ? 1 : 0));
+        this.dataWatcher.updateObject(20, (byte) (awake ? 1 : 0));
 	}
 
 	public boolean isAwake() {
-		return this.dataWatcher.getWatchableObjectByte(20) == (byte) 1;
+        return this.dataWatcher.getWatchableObjectByte(20) == (byte) 1;
 	}
 
 	@Override
 	protected String getHurtSound() {
-		return "mob.slime.small";
+        return "mob.slime.small";
 	}
 
 	@Override
 	protected String getDeathSound() {
-		return "mob.slime.small";
+        return "mob.slime.small";
 	}
 
 	@Override
 	protected float getSoundVolume() {
-		return 0.6F;
+        return 0.6F;
 	}
 
 	@Override
 	protected Item getDropItem() {
 		return this.rand.nextInt(5) == 0 ? Item.getItemFromBlock(BlocksAether.divine_sentry_stone) : Item.getItemFromBlock(BlocksAether.divine_carved_stone);
 	}
-    
+
     @Override
     public boolean getCanSpawnHere() {
         final int i = MathHelper.floor_double(this.posX);
@@ -259,13 +238,13 @@ public class EntityBattleSentry extends EntityLiving implements IMob {
         final int k = MathHelper.floor_double(this.posZ);
         final boolean canSpawn = this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
         return (this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_divine_carved_stone || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_mythic_carved_stone || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_divine_sentry_stone || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.locked_mythic_sentry_stone) && this.worldObj.getBlockLightValue(i, j, k) < 14 && canSpawn;
-                       
+
     }
-    
+
     public int getMaxSpawnedInChunk() {
         return 1;
     }
-    
+
     public boolean canDespawn() {
         return true;
     }

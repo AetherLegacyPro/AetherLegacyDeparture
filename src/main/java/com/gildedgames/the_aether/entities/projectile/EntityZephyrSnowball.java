@@ -2,7 +2,6 @@ package com.gildedgames.the_aether.entities.projectile;
 
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.player.PlayerAether;
-
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -13,21 +12,19 @@ import net.minecraft.world.World;
 public class EntityZephyrSnowball extends EntityProjectileBase {
 
 	public EntityZephyrSnowball(World world) {
-		super(world);
+        super(world);
 	}
 
 	public EntityZephyrSnowball(World world, EntityLivingBase thrower, double x, double y, double z) {
 		super(world, thrower);
-
 		this.setPosition(x, y, z);
 	}
 
 	@Override
 	public void onUpdate() {
 		super.onUpdate();
-
 		this.worldObj.spawnParticle("smoke", this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
-		
+
 		if (this.ticksInAir > 150) {
 			this.setDead();
 		} else {
@@ -40,7 +37,6 @@ public class EntityZephyrSnowball extends EntityProjectileBase {
 		if (object.entityHit instanceof EntityLivingBase) {
 			if (object.entityHit instanceof EntityPlayer && (PlayerAether.get((EntityPlayer) object.entityHit).getAccessoryInventory().wearingArmor(ItemsAether.sentry_boots) || PlayerAether.get((EntityPlayer) object.entityHit).getAccessoryInventory().wearingArmor(ItemsAether.amplified_sentry_boots) || PlayerAether.get((EntityPlayer) object.entityHit).getAccessoryInventory().wearingArmor(ItemsAether.scaled_sentry_boots))) {
 				this.setDead();
-
 				return;
 			}
 
@@ -51,14 +47,13 @@ public class EntityZephyrSnowball extends EntityProjectileBase {
 			if (object.entityHit instanceof EntityPlayerMP) {
 				((EntityPlayerMP) object.entityHit).playerNetServerHandler.sendPacket(new S12PacketEntityVelocity(object.entityHit));
 			}
-
 			this.setDead();
 		}
 	}
 
 	@Override
 	protected float getGravityVelocity() {
-		return 0.0F;
+        return 0.0F;
 	}
 
 }

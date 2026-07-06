@@ -12,11 +12,11 @@ public class AetherFreezableFuel extends RegistryEntry {
 	public ItemStack fuelStack;
 
 	public AetherFreezableFuel(Block fuelBlock, int timeGiven) {
-		this(new ItemStack(fuelBlock), timeGiven);
+        this(new ItemStack(fuelBlock), timeGiven);
 	}
 
 	public AetherFreezableFuel(Item fuelItem, int timeGiven) {
-		this(new ItemStack(fuelItem), timeGiven);
+        this(new ItemStack(fuelItem), timeGiven);
 	}
 
 	public AetherFreezableFuel(ItemStack fuelStack, int timeGiven) {
@@ -31,7 +31,7 @@ public class AetherFreezableFuel extends RegistryEntry {
 	}
 
 	public ItemStack getFuelStack() {
-		return this.fuelStack;
+        return this.fuelStack;
 	}
 
 	@Override

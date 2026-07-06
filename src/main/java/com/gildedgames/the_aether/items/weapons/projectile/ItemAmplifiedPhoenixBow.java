@@ -20,7 +20,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.ArrowNockEvent;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -31,7 +30,6 @@ public class ItemAmplifiedPhoenixBow extends ItemBow {
 
 	public ItemAmplifiedPhoenixBow() {
 		super();
-
 		this.maxStackSize = 1;
 		this.setMaxDamage(1588);
 		this.setFull3D();
@@ -42,7 +40,7 @@ public class ItemAmplifiedPhoenixBow extends ItemBow {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getItemIconForUseDuration(int p_94599_1_) {
-		return this.iconArray[p_94599_1_];
+        return this.iconArray[p_94599_1_];
 	}
 
 	@Override
@@ -68,18 +66,18 @@ public class ItemAmplifiedPhoenixBow extends ItemBow {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IIconRegister p_94581_1_) {
-		this.itemIcon = p_94581_1_.registerIcon(Aether.find("weapons/amplified_phoenix_bow"));
+	public void registerIcons(IIconRegister iconRegister) {
+		this.itemIcon = iconRegister.registerIcon(Aether.find("weapons/amplified_phoenix_bow"));
 		this.iconArray = new IIcon[bowPullIconNameArray.length];
 
 		for (int i = 0; i < this.iconArray.length; ++i) {
-			this.iconArray[i] = p_94581_1_.registerIcon(this.getIconString() + "_" + bowPullIconNameArray[i]);
+			this.iconArray[i] = iconRegister.registerIcon(this.getIconString() + "_" + bowPullIconNameArray[i]);
 		}
 	}
 
 	@Override
 	public EnumRarity getRarity(ItemStack stack) {
-		return ItemsAether.divine_aether_loot;
+        return ItemsAether.divine_aether_loot;
 	}
 
 	private ItemStack findAmmo(EntityPlayer player) {
@@ -95,7 +93,7 @@ public class ItemAmplifiedPhoenixBow extends ItemBow {
 	}
 
 	protected boolean isArrow(ItemStack stack) {
-		return stack != null && stack.getItem() == Items.arrow;
+        return stack != null && stack.getItem() == Items.arrow;
 	}
 
 	@Override
@@ -177,7 +175,6 @@ public class ItemAmplifiedPhoenixBow extends ItemBow {
 
 	public EntityPhoenixArrow createArrow(World worldIn, float distance, ItemStack stack, EntityLivingBase shooter) {
 		EntityPhoenixArrow entityPhoenixArrow = new EntityPhoenixArrow(worldIn, shooter, distance);
-
 		return entityPhoenixArrow;
 	}
 
@@ -195,7 +192,6 @@ public class ItemAmplifiedPhoenixBow extends ItemBow {
 	@Override
 	public ItemStack onItemRightClick(ItemStack heldItem, World worldIn, EntityPlayer playerIn) {
 		boolean flag = this.findAmmo(playerIn) != null;
-
 		ArrowNockEvent event = new ArrowNockEvent(playerIn, heldItem);
 		MinecraftForge.EVENT_BUS.post(event);
 		if (event.isCanceled()) {
@@ -208,11 +204,11 @@ public class ItemAmplifiedPhoenixBow extends ItemBow {
 
 		return heldItem;
 	}
-	
+
 	public boolean hasCustomEntity(final ItemStack stack) {
         return true;
     }
-    
+
     public Entity createEntity(final World world, final Entity location, final ItemStack itemstack) {
         return new EntityFireProofItemAether(world, location, itemstack);
     }

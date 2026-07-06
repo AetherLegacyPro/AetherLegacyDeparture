@@ -16,35 +16,26 @@ import net.minecraftforge.event.entity.living.LivingEvent;
 public class AetherEntityEvents {
 
     @SubscribeEvent
-    public void onEntityUpdate(LivingEvent.LivingUpdateEvent event)
-    {
-        if (event.entity instanceof EntityLiving)
-        {
+    public void onEntityUpdate(LivingEvent.LivingUpdateEvent event) {
+        if (event.entity instanceof EntityLiving) {
             entityUpdateEvents(event.entity);
         }
     }
 
-    private void entityUpdateEvents(Entity entity)
-    {
-        if (entity.riddenByEntity != null)
-        {
-            if (entity.riddenByEntity.isRiding())
-            {
-                if (entity.dimension == AetherConfig.getAetherDimensionID() && !entity.worldObj.isRemote)
-                {
+    private void entityUpdateEvents(Entity entity) {
+        if (entity.riddenByEntity != null) {
+            if (entity.riddenByEntity.isRiding()) {
+                if (entity.dimension == AetherConfig.getAetherDimensionID() && !entity.worldObj.isRemote) {
                     MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
                     int previousDimension = entity.dimension;
                     int transferDimension = previousDimension == AetherConfig.getAetherDimensionID() ? 0 : AetherConfig.getAetherDimensionID();
 
-                    if (entity.posY <= 0)
-                    {
-                        if (entity.riddenByEntity instanceof EntityPlayer)
-                        {
+                    if (entity.posY <= 0) {
+                        if (entity.riddenByEntity instanceof EntityPlayer) {
                             ((PlayerAether) AetherAPI.get((EntityPlayer) entity.riddenByEntity)).riddenEntity = entity;
                         }
 
                         entity.riddenByEntity.ridingEntity = null;
-
                         entity.timeUntilPortal = 300;
                         transferEntity(false, entity, server.worldServerForDimension(previousDimension), server.worldServerForDimension(transferDimension));
                     }
@@ -53,14 +44,11 @@ public class AetherEntityEvents {
         }
     }
 
-    public static void transferEntity(boolean shouldSpawnPortal, Entity entity, WorldServer previousWorldIn, WorldServer newWorldIn)
-    {
+    public static void transferEntity(boolean shouldSpawnPortal, Entity entity, WorldServer previousWorldIn, WorldServer newWorldIn) {
         MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
-
         entity.dimension = newWorldIn.provider.dimensionId;
         previousWorldIn.removePlayerEntityDangerously(entity);
         entity.isDead = false;
-
         server.getConfigurationManager().transferEntityToWorld(entity, previousWorldIn.provider.dimensionId, previousWorldIn, newWorldIn, new TeleporterAether(shouldSpawnPortal, newWorldIn));
     }
 

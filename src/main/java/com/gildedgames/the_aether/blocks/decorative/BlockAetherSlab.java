@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.blocks.decorative;
 
 import java.util.Random;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -9,7 +8,6 @@ import net.minecraft.block.BlockSlab;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
 
 public class BlockAetherSlab extends BlockSlab {
@@ -25,7 +23,7 @@ public class BlockAetherSlab extends BlockSlab {
 	}
 
 	@Override
-	public Item getItem(World p_149694_1_, int p_149694_2_, int p_149694_3_, int p_149694_4_) {
+	public Item getItem(World world, int p_149694_2_, int p_149694_3_, int p_149694_4_) {
 		return Item.getItemFromBlock(this.getDroppedSlab());
 	}
 
@@ -115,17 +113,17 @@ public class BlockAetherSlab extends BlockSlab {
 
 	@Override
 	public Item getItemDropped(int meta, Random rand, int fortune) {
-		return Item.getItemFromBlock(this.getDroppedSlab());
+        return Item.getItemFromBlock(this.getDroppedSlab());
 	}
 
 	@Override
 	public int damageDropped(int meta) {
-		return 0;
+        return 0;
 	}
 
 	@Override
 	public String func_150002_b(int meta) {
-		return this.name;
+        return this.name;
 	}
 
 	@Override

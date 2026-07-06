@@ -2,7 +2,6 @@ package com.gildedgames.the_aether.world.gen;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-
 import com.gildedgames.the_aether.blocks.BlocksAether;
 
 public class AetherGenUtils {
@@ -22,7 +21,7 @@ public class AetherGenUtils {
 			}
 		}
 	}
-	
+
 	public static void generateGoldenFlower(AetherStructure structure, Block state, int meta, int offsetX, int offsetY, int offsetZ) {
 		int x = offsetX;
 		int y = offsetY;
@@ -38,23 +37,7 @@ public class AetherGenUtils {
 			}
 		}
 	}
-	
-	public static void generateArcticTallgrass(AetherStructure structure, Block state, int meta, int offsetX, int offsetY, int offsetZ) {
-		int x = offsetX;
-		int y = offsetY;
-		int z = offsetZ;
 
-		for (int i = 0; i < 64; ++i) {
-			x += structure.random.nextInt(8) - structure.random.nextInt(8);
-			y += structure.random.nextInt(4) - structure.random.nextInt(4);
-			z += structure.random.nextInt(8) - structure.random.nextInt(8);
-
-			if (structure.getBlockStateWithOffset(x, y, z).getMaterial() == Material.air && y < 255 && structure.getBlockStateWithOffset(x, y - 1, z) == BlocksAether.arctic_grass) {
-				structure.setBlockWithOffset(x, y, z, state, meta);
-			}
-		}
-	}
-	
 	public static void generateGoldenTulip(AetherStructure structure, Block state, int meta, int offsetX, int offsetY, int offsetZ) {
 		int x = offsetX;
 		int y = offsetY;
@@ -70,7 +53,7 @@ public class AetherGenUtils {
 			}
 		}
 	}
-	
+
 	public static void generateGoldenQuickshoot(AetherStructure structure, Block state, int meta, int offsetX, int offsetY, int offsetZ) {
 		int x = offsetX;
 		int y = offsetY;
@@ -163,38 +146,6 @@ public class AetherGenUtils {
 					for (int z1 = z; z1 < z + structure.random.nextInt(4) + 3 * (isFlat ? 3 : 1); ++z1) {
 						if (structure.getBlockState(x1, y1, z1).getMaterial() == Material.air) {
 							if (Math.abs(x1 - x) + Math.abs(y1 - y) + Math.abs(z1 - z) < 4 * (isFlat ? 3 : 1) + structure.random.nextInt(2)) {
-								structure.setBlockWithOffset(x1, y1, z1, block, meta);
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-	
-	public static void generateStormClouds(AetherStructure structure, Block block, int meta, boolean isFlat, int cloudSize, int offsetX, int offsetY, int offsetZ, int xTendency, int zTendency) {
-		int x = offsetX;
-		int y = offsetY;
-		int z = offsetZ;
-
-		if (block == null) {
-			return;
-		}
-
-		for (int n = 0; n < cloudSize; ++n) {
-			x += structure.random.nextInt(15) - 1 + xTendency;
-
-			if (structure.random.nextBoolean() && !isFlat || isFlat && structure.random.nextInt(10) == 0) {
-				y += structure.random.nextInt(3) - 1;
-			}
-
-			z += structure.random.nextInt(15) - 1 + zTendency;
-
-			for (int x1 = x; x1 < x + structure.random.nextInt(4) + 3 * (isFlat ? 3 : 1); ++x1) {
-				for (int y1 = y; y1 < y + structure.random.nextInt(1) + 2; ++y1) {
-					for (int z1 = z; z1 < z + structure.random.nextInt(4) + 3 * (isFlat ? 3 : 1); ++z1) {
-						if (structure.getBlockState(x1, y1, z1).getMaterial() == Material.air) {
-							if (Math.abs(x1 - x) + Math.abs(y1 - y) + Math.abs(z1 - z) < 4 * (isFlat ? 3 : 1) + structure.random.nextInt(6)) {
 								structure.setBlockWithOffset(x1, y1, z1, block, meta);
 							}
 						}

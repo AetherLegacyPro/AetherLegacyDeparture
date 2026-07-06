@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.items.food;
 
 import com.gildedgames.the_aether.items.ItemsAether;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
@@ -19,12 +18,12 @@ public class ItemElysianApple extends ItemAetherFood {
 
 	@Override
 	public EnumRarity getRarity(ItemStack stack) {
-		return ItemsAether.divine_aether_loot;
+        return ItemsAether.divine_aether_loot;
 	}
-	
+
 	@Override
 	public boolean hasEffect(ItemStack stack, int pass) {
-		return true;
+        return true;
 	}
 
 	@Override
@@ -35,7 +34,7 @@ public class ItemElysianApple extends ItemAetherFood {
 		player.addPotionEffect(new PotionEffect(Potion.resistance.id, 9600, 0));
 		if (!worldIn.isRemote) {
 			 player.addPotionEffect(new PotionEffect(Potion.field_76444_x.id, 9600, 10));
-	        }
+        }
 		player.heal(8);
 	}
 

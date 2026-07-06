@@ -1,12 +1,10 @@
 package com.gildedgames.the_aether.client.models.entities;
 
 import com.gildedgames.the_aether.entities.hostile.EntityAercenturion;
-
 import net.minecraft.client.model.*;
 import net.minecraft.entity.*;
 
-public class AercenturionModel extends ModelBiped
-{
+public class AercenturionModel extends ModelBiped {
     ModelRenderer LowerBody;
     ModelRenderer LeftArmHand;
     ModelRenderer RightArmHand;
@@ -15,7 +13,7 @@ public class AercenturionModel extends ModelBiped
     public boolean isDefault;
     public byte armState;
     float[] armsAngles;
-    
+
     public AercenturionModel() {
         this.LowerBody = new ModelRenderer(this);
         this.isDefault = false;
@@ -84,7 +82,7 @@ public class AercenturionModel extends ModelBiped
         this.SentryHead.mirror = true;
         this.setRotation(this.SentryHead, 0.0f, 0.0f, 0.0f);
     }
-    
+
     public void render(final Entity entity, final float f, final float f1, final float f2, final float f3, final float f4, final float f5) {
         super.render(entity, f, f1, f2, f3, f4, f5);
         this.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
@@ -102,36 +100,15 @@ public class AercenturionModel extends ModelBiped
         this.SentryHead.isHidden = true;
         this.SentryBody.isHidden = true;
     }
-    
+
     private void setRotation(final ModelRenderer model, final float x, final float y, final float z) {
         model.rotateAngleX = x;
         model.rotateAngleY = y;
         model.rotateAngleZ = z;
     }
-    
+
     public void setRotationAngles(final float f, final float f1, final float f2, final float f3, final float f4, final float f5, final Entity entity) {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-        if (entity instanceof EntityAercenturion entityS) {
-			//this.armState = entityS.getHandState();
-            //if (entityS.progress < this.armsAngles[this.armState]) {
-               // final EntityAercenturion entitySentryGolem = entityS;
-                //entitySentryGolem.progress += 0.02f;
-            //}
-            //if (entityS.progress > this.armsAngles[this.armState]) {
-               // final EntityAercenturion entitySentryGolem2 = entityS;
-               // entitySentryGolem2.progress -= 0.02f;
-           // }
-            //this.bipedRightArm.rotateAngleX = -3.0f;
-            //this.bipedLeftArm.rotateAngleX = -3.0f;
-            final ModelRenderer bipedRightArm = this.bipedRightArm;
-            //bipedRightArm.rotateAngleY -= 0.3f;
-            final ModelRenderer bipedLeftArm = this.bipedLeftArm;
-            //bipedLeftArm.rotateAngleY += 0.3f;
-            final ModelRenderer bipedRightArm2 = this.bipedRightArm;
-            //bipedRightArm2.rotateAngleZ += 0.3f;
-            final ModelRenderer bipedLeftArm2 = this.bipedLeftArm;
-            //bipedLeftArm2.rotateAngleZ -= 0.3f;
-        }
         this.RightArmHand.rotateAngleX = this.bipedRightArm.rotateAngleX;
         this.RightArmHand.rotateAngleY = this.bipedRightArm.rotateAngleY;
         this.RightArmHand.rotateAngleZ = this.bipedRightArm.rotateAngleZ;

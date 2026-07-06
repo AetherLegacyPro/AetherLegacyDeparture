@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether.client.models.entities;
 
 import org.lwjgl.opengl.GL11;
-
 import com.gildedgames.the_aether.entities.passive.mountable.EntityZephyroo;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
@@ -9,7 +8,7 @@ import net.minecraft.entity.Entity;
 
 //Credit goes to developers of Alex's Mobs for the Model
 public class ZephyrooModel extends ModelBase {
-	
+
 	public final ModelRenderer root;
 	public final ModelRenderer body;
 	public final ModelRenderer pouch;
@@ -33,7 +32,7 @@ public class ZephyrooModel extends ModelBase {
 	public ZephyrooModel() {
 		this.textureWidth = 128;
 		this.textureHeight = 128;
-		
+
 		this.root = new ModelRenderer(this, 0, 0);
 		this.root.setRotationPoint(0.0F, 24.0F, 0.0F);
 
@@ -81,7 +80,7 @@ public class ZephyrooModel extends ModelBase {
 		this.knee_right.addBox(-1.0F, 0.0F, 0.0F, 2, 9, 3);
 		this.knee_right.setRotationPoint(-0.25F, 3.25F, -3.5F);
 		this.leg_right.addChild(knee_right);
-		
+
 		this.foot_right = new ModelRenderer(this, 35, 13);
 		this.foot_right.addBox(-1.5F, 0.0F, -10.0F, 3, 2, 12);
 		this.foot_right.setRotationPoint(0.0F, 9.0F, 1.0F);
@@ -91,7 +90,7 @@ public class ZephyrooModel extends ModelBase {
 		this.chest.addBox(-4.0F, 0.0F, -9.0F, 8, 9, 9);
 		this.chest.setRotationPoint(0.0F, -6.0F, -6.0F);
 		this.body.addChild(chest);
-		
+
 		this.arm_left = new ModelRenderer(this, 71, 49);
 		this.arm_left.addBox(-1.0F, -1.0F, -2.0F, 2, 12, 3);
 		this.arm_left.setRotationPoint(4.0F, 6.0F, -6.0F);
@@ -125,32 +124,32 @@ public class ZephyrooModel extends ModelBase {
 		this.setRotation(ear_right, -0.1745F, 0.3491F, -0.4363F);
 		this.setRotation(chest, 0.1745F, 0F, 0F);
 		this.setRotation(tail1, -0.1745F, 0F, 0F);
-		
+
 		this.snout = new ModelRenderer(this, 0, 25);
 		this.snout.addBox(-1.5F, -1.5F, -4.0F, 3, 3, 4);
 		this.snout.setRotationPoint(0.0F, -1.5F, -3.5F);
 		this.head.addChild(snout);
 	}
-	
+
 	public void render(final Entity entity, final float f, final float f1, final float f2, final float f3, final float f4, final float f5) {
     	EntityZephyroo zephyroo = ((EntityZephyroo) entity);
+
         if(zephyroo.isChild()) {
-        	
         	GL11.glScalef(1.0F / 2.0F, 1.0F / 2.0F, 1.0F / 2.0F);
 			GL11.glTranslatef(0.0F, 24.0F * f5, 0.0F);
-        	
-        }    	
+        }
+
     	super.render(entity, f, f1, f2, f3, f4, f5);
         this.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
         this.root.render(f5);
     }
-	
+
 	 private void setRotation(final ModelRenderer model, final float x, final float y, final float z) {
 	        model.rotateAngleX = x;
 	        model.rotateAngleY = y;
 	        model.rotateAngleZ = z;
 	}
-	 
+
 	 public void setRotationAngles(final float f, final float f1, final float f2, final float f3, final float f4, final float f5, final Entity entity) {
 	        super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 	        if (entity.motionX != 0.0 && entity.motionZ != 0.0) {

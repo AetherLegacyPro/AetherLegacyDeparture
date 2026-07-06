@@ -7,9 +7,7 @@ import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
-
 import com.gildedgames.the_aether.blocks.natural.BlockAetherFlower;
-
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
 public class AetherFlowerRenderer implements ISimpleBlockRenderingHandler {
@@ -64,7 +62,7 @@ public class AetherFlowerRenderer implements ISimpleBlockRenderingHandler {
 
 	@Override
 	public boolean shouldRender3DInInventory(int modelId) {
-		return false;
+        return false;
 	}
 
 	@Override

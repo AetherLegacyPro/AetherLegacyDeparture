@@ -8,33 +8,28 @@ import net.minecraft.world.World;
 public class EntityLightningKnife extends EntityProjectileBase {
 
 	public EntityLightningKnife(World world) {
-		super(world);
+        super(world);
 	}
 
 	public EntityLightningKnife(World world, EntityLivingBase thrower) {
-		super(world, thrower);
+        super(world, thrower);
 	}
 
 	@Override
 	protected void onImpact(MovingObjectPosition object) {
-		if (!this.worldObj.isRemote)
-		{
-			if (object.typeOfHit == MovingObjectPosition.MovingObjectType.ENTITY)
-			{
+		if (!this.worldObj.isRemote) {
+			if (object.typeOfHit == MovingObjectPosition.MovingObjectType.ENTITY) {
 				summonLightning();
 			}
-			else if (object.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK)
-			{
-				if (this.worldObj.getBlock(object.blockX, object.blockY, object.blockZ).getCollisionBoundingBoxFromPool(this.worldObj, object.blockX, object.blockY, object.blockZ) != null)
-				{
+			else if (object.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK) {
+				if (this.worldObj.getBlock(object.blockX, object.blockY, object.blockZ).getCollisionBoundingBoxFromPool(this.worldObj, object.blockX, object.blockY, object.blockZ) != null) {
 					summonLightning();
 				}
 			}
 		}
 	}
 
-	private void summonLightning()
-	{
+	private void summonLightning() {
 		this.worldObj.addWeatherEffect(new EntityLightningBolt(this.worldObj, this.posX, this.posY, this.posZ));
 		this.setDead();
 	}

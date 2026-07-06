@@ -1,14 +1,12 @@
 package com.gildedgames.the_aether.blocks.natural;
 
 import java.util.Random;
-
 import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import net.minecraft.block.IGrowable;
 import net.minecraft.item.Item;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -21,12 +19,12 @@ public class BlockBlackberryBushStem extends BlockAetherFlower implements IGrowa
 		this.setCreativeTab(null);
 		this.setBlockBounds(0.5F - 0.4F, 0.0F, 0.5F - 0.4F, 0.5F + 0.4F, 0.4F * 2.0F, 0.5F + 0.4F);
 	}
-	
+
 	@Override
 	public Item getItemDropped(int meta, Random rand, int fortune) {
-		return null;
+        return null;
 	}
-	
+
 	@Override
 	protected boolean canSilkHarvest() {
         return false;
@@ -47,12 +45,12 @@ public class BlockBlackberryBushStem extends BlockAetherFlower implements IGrowa
 
 	@SideOnly(Side.CLIENT)
 	public boolean shouldSideBeRendered(IBlockAccess worldIn, int x, int y, int z, int side) {
-		return true;
+        return true;
 	}
 
 	@Override
 	public boolean func_149851_a(World world, int x, int y, int z, boolean isClient) {
-		return true;
+        return true;
 	}
 
 	@Override
