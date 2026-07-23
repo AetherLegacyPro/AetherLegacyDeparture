@@ -28,7 +28,7 @@ public class BlockInebriationAercloud extends Block implements IColoredBlock, IN
 		super(Material.ice);
 		this.setHardness(0.2F);
 		this.setStepSound(soundTypeCloth);
-		this.setBlockTextureName("aether:aercloud/cold_aercloud");
+		this.setBlockTextureName("aether_legacy:cold_aercloud");
 	}
 
 	@SideOnly(Side.CLIENT)

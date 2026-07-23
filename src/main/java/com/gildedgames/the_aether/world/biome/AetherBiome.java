@@ -75,7 +75,7 @@ public class AetherBiome extends BiomeGenBase {
 	}
 
 	public WorldGenAbstractTree getRandomTreeFeature(final Random random) {
-        final int ratio = random.nextInt(88);
+        final int ratio = random.nextInt(90);
         if (ratio <= 35) {
             return new AetherGenSkyrootTreeNew(BlocksAether.skyroot_leaves, BlocksAether.skyroot_log, 0);
         } else if (ratio <= 45) {
@@ -103,16 +103,11 @@ public class AetherBiome extends BiomeGenBase {
         } else if (ratio <= 77) {
             return new AetherGenMassiveTree(BlocksAether.blue_skyroot_leaves, 18, false);
         } else if (ratio <= 78) {
-        	return new AetherGenFruitTree(BlocksAether.blue_skyroot_leaves, BlocksAether.blue_skyroot_leaves, 35, 5, true);
+        	return new AetherGenFruitTree(BlocksAether.blue_skyroot_leaves, BlocksAether.blue_skyroot_leaves, 25, 5, true);
         } else if (ratio <= 86) {
             return new AetherGenSkyrootTreeNew(BlocksAether.skyroot_leaves, BlocksAether.skyroot_log, 0);
         } else if (ratio <= 87) {
-        	int random1 = (int)(1 + Math.random() * 8);
-        	if (random1 > 2) {
-        		return new AetherGenGreatrootTree(BlocksAether.green_light_skyroot_leaves, 40, true);
-        	} else {
-        		return new AetherGenMassiveTree(BlocksAether.dark_blue_skyroot_leaves, 35, true);
-        	}
+            return new AetherGenMassiveTree(BlocksAether.dark_blue_skyroot_leaves, 25, true);
         }
 
         return new AetherGenMassiveTree(BlocksAether.dark_blue_skyroot_leaves, 35, true);
@@ -128,14 +123,11 @@ public class AetherBiome extends BiomeGenBase {
 		list.add(new SpawnListEntry(EntityPhyg.class, 12, 4, 4));
 		list.add(new SpawnListEntry(EntityAechorPlant.class, 11, 2, 3));
 		list.add(new SpawnListEntry(EntityCarrionSprout.class, 7, 2, 3));
-		list.add(new SpawnListEntry(EntityZephyroo.class, 6, 1, 2));
 		list.add(new SpawnListEntry(EntitySheepuff.class, 10, 4, 4));
 		list.add(new SpawnListEntry(EntityFlyingCow.class, 8, 4, 4));
 		list.add(new SpawnListEntry(EntityAerbunny.class, 6, 2, 3));
 		list.add(new SpawnListEntry(EntityMoa.class, 5, 2, 3));
-		list.add(new SpawnListEntry(EntityThunderlo.class, 5, 3, 3));
 		list.add(new SpawnListEntry(EntitySwet.class, 5, 4, 4));
-		list.add(new SpawnListEntry(EntityFlynx.class, 4, 1, 4));
 	}
 
 	private void addMobEntry(ArrayList<SpawnListEntry> list) {
@@ -187,9 +179,6 @@ public class AetherBiome extends BiomeGenBase {
 		this.flowers.add(new FlowerEntry(BlocksAether.moonlit_bloom, 0, 9));
 		this.flowers.add(new FlowerEntry(BlocksAether.aether_tulips, 0, 7));
 		this.flowers.add(new FlowerEntry(BlocksAether.quickshoot, 0, 8));
-		this.flowers.add(new FlowerEntry(BlocksAether.arctic_tallgrass, 0, 7));
-		this.flowers.add(new FlowerEntry(BlocksAether.enchanted_aether_tulips, 0, 7));
-		this.flowers.add(new FlowerEntry(BlocksAether.enchanted_quickshoot, 0, 9));
 	}
 
 	@Override

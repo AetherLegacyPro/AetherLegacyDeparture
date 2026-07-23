@@ -76,7 +76,7 @@ public class AetherGenLargeTree extends WorldGenAbstractTree {
                 return false;
             }
         }
-        if (world.getBlock(i, j - 1, k) != BlocksAether.aether_grass && world.getBlock(i, j - 1, k) != BlocksAether.aether_dirt) {
+        if (world.getBlock(i, j - 1, k) != BlocksAether.aether_grass && world.getBlock(i, j - 1, k) != BlocksAether.aether_dirt && world.getBlock(i, j - 1, k) != BlocksAether.arctic_grass && world.getBlock(i, j - 1, k) != BlocksAether.enchanted_aether_grass && world.getBlock(i, j - 1, k) != BlocksAether.divine_grass) {
             return false;
         }
         for (int x = i - 3; x < i + 5; ++x) {

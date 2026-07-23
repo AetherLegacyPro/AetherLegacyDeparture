@@ -52,7 +52,7 @@ public class AetherGenSkyrootTreeNew extends WorldGenAbstractTree {
             return false;
         }
         final Block j3 = world.getBlock(i, j - 1, k);
-        if ((j3 != BlocksAether.aether_grass && j3 != BlocksAether.aether_dirt) || j >= 128 - l - 1) {
+        if ((j3 != BlocksAether.aether_grass && j3 != BlocksAether.arctic_grass && j3 != BlocksAether.enchanted_aether_grass && j3 != BlocksAether.aether_dirt && j3 != BlocksAether.divine_grass) || j >= 128 - l - 1) {
             return false;
         }
         world.setBlock(i, j - 1, k, BlocksAether.aether_dirt);

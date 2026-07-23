@@ -1,10 +1,10 @@
 package com.gildedgames.the_aether.world;
 
 import com.gildedgames.the_aether.AetherConfig;
+import com.gildedgames.the_aether.world.biome.*;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraftforge.common.DimensionManager;
-import com.gildedgames.the_aether.world.biome.AetherBiome;
 import com.gildedgames.the_aether.world.gen.MapGenAncientGoldenDungeon;
 import com.gildedgames.the_aether.world.gen.MapGenAncientSilverDungeon;
 import com.gildedgames.the_aether.world.gen.MapGenDivineGoldenDungeon;
@@ -29,6 +29,13 @@ import com.gildedgames.the_aether.world.gen.components.ComponentSilverDungeon;
 public class AetherWorld {
 
 	public static BiomeGenBase aether_biome = new AetherBiome();
+    public static BiomeGenBase arctic_biome = new AetherBiomeArctic();
+    public static BiomeGenBase enchanted_island = new AetherBiomeEnchantedIsland();
+    public static BiomeGenBase aether_peaks = new AetherBiomeAetherPeaks();
+    public static BiomeGenBase aether_forest = new AetherBiomeAetherForest();
+    public static BiomeGenBase aercloud_fields = new AetherBiomeCloudyFields();
+    public static BiomeGenBase divine_island = new AetherBiomeDivineIsland();
+    public static BiomeGenBase quicksoil_dunes = new AetherBiomeQuicksoilDunes();
 
 	public static void initialization() {
 		MapGenStructureIO.registerStructure(MapGenSilverDungeon.Start.class, "aether_legacy:silver_dungeon_start");

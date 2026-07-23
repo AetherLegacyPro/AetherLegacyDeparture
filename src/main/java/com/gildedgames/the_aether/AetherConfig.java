@@ -10,7 +10,8 @@ public class AetherConfig {
 	private static Configuration config;
 
 	//Important Options
-	private static int aether_biome_id, arctic_peaks_biome_id, divine_forest_biome_id, genesis_island_biome_id, golden_hills_biome_id, aether_dimension_id, inebriation_id;
+	private static int aether_biome_id, arctic_peaks_biome_id, aercloud_fields_biome_id, enchanted_island_biome_id, divine_island_biome_id, aether_peaks_biome_id, quicksoil_dunes_biome_id, aether_forest_biome_id;
+    private static int aether_dimension_id, inebriation_id;
 	private static boolean use_baubles_expanded_menu, disable_parachutes;
 	public static boolean enable_log_reporting_biomes, enable_assets_message;
 	public static boolean cloud_icon;
@@ -79,9 +80,12 @@ public class AetherConfig {
 		aether_dimension_id = config.get("World Identification", "Aether Dimension ID", 4).getInt(4);
 		aether_biome_id = config.get("World Identification", "Aether Biome ID", 127).getInt(127);
 		arctic_peaks_biome_id = config.get("World Identification", "Arctic Peaks Biome ID", 201).getInt(201);
-		divine_forest_biome_id = config.get("World Identification", "Divine Forest Biome ID", 202).getInt(202);
-		genesis_island_biome_id = config.get("World Identification", "Genesis Island Biome ID", 203).getInt(203);
-		golden_hills_biome_id = config.get("World Identification", "Golden Hills Biome ID", 204).getInt(204);
+        aercloud_fields_biome_id = config.get("World Identification", "Aercloud Fields Biome ID", 205).getInt(205);
+        enchanted_island_biome_id = config.get("World Identification", "Enchanted Island Biome ID", 206).getInt(206);
+        aether_peaks_biome_id = config.get("World Identification", "Aether Peaks Biome ID", 207).getInt(207);
+        divine_island_biome_id = config.get("World Identification", "Divine Island Biome ID", 202).getInt(202);
+        quicksoil_dunes_biome_id = config.get("World Identification", "Quicksoil Dunes Biome ID", 203).getInt(203);
+        aether_forest_biome_id = config.get("World Identification", "Aether Forest Biome ID", 204).getInt(204);
 
 		skyrootBucketOnly = config.get("Misc", "Activate portal with only Skyroot bucket", false).getBoolean(false);
 		valkyrie_cape = config.get("Misc", "Enables the Valkyrie Cape in dungeon loot", true).getBoolean(true);
@@ -324,24 +328,30 @@ public class AetherConfig {
 		return AetherConfig.aether_dimension_id;
 	}
 
-	public static int getAetherBiomeID() {
-		return AetherConfig.aether_biome_id;
-	}
+	public static int getAetherBiomeID() { return AetherConfig.aether_biome_id; }
 
-	public static int getArcticPeaksBiomeID() {
+    public static int getAetherForestBiomeID() { return AetherConfig.aether_forest_biome_id; }
+
+    public static int getArcticPeaksBiomeID() {
 		return AetherConfig.arctic_peaks_biome_id;
 	}
 
-	public static int getDivineForestBiomeID() {
-		return AetherConfig.divine_forest_biome_id;
+    public static int getAercloudFieldsBiomeID() {
+        return AetherConfig.aercloud_fields_biome_id;
+    }
+
+    public static int getEnchantedIslandBiomeID() {
+        return AetherConfig.enchanted_island_biome_id;
+    }
+
+    public static int getAetherPeaksBiomeID() {return AetherConfig.aether_peaks_biome_id;}
+
+	public static int getDivineIslandBiomeID() {
+		return AetherConfig.divine_island_biome_id;
 	}
 
-	public static int getGenesisIslandBiomeID() {
-		return AetherConfig.genesis_island_biome_id;
-	}
-
-	public static int getGoldenHillsBiomeID() {
-		return AetherConfig.golden_hills_biome_id;
+	public static int getQuicksoilDunesBiomeID() {
+		return AetherConfig.quicksoil_dunes_biome_id;
 	}
 
 	public static int getMaxLifeShards() {

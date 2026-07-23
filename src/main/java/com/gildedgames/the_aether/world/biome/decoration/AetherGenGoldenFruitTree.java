@@ -42,7 +42,7 @@ public class AetherGenGoldenFruitTree extends WorldGenAbstractTree {
         if (y3 != BlocksAether.aether_grass && y3 != BlocksAether.aether_dirt && y3 != BlocksAether.enchanted_aether_grass) {
             return false;
         }
-        world.setBlock(x, y - 1, z, BlocksAether.aether_dirt);
+        world.setBlock(x, y - 1, z, BlocksAether.enchanted_aether_grass);
         for (int y4 = y; y4 <= y + height; ++y4) {
             world.setBlock(x, y4, z, BlocksAether.golden_oak_log_wall);
         }

@@ -1,18 +1,12 @@
 package com.gildedgames.the_aether.world;
 
+import com.gildedgames.the_aether.world.biome.*;
+import com.gildedgames.the_aether.world.biome.decoration.*;
 import net.minecraft.world.gen.MapGenBase;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.blocks.BlocksAether;
-import com.gildedgames.the_aether.world.biome.AetherBiome;
-import com.gildedgames.the_aether.world.biome.decoration.AetherGenDungeonOakTree;
-import com.gildedgames.the_aether.world.biome.decoration.AetherGenFloatingIsland;
-import com.gildedgames.the_aether.world.biome.decoration.AetherGenFlowers;
-import com.gildedgames.the_aether.world.biome.decoration.AetherGenHolidayTree;
-import com.gildedgames.the_aether.world.biome.decoration.AetherGenLakes;
-import com.gildedgames.the_aether.world.biome.decoration.AetherGenLiquids;
-import com.gildedgames.the_aether.world.biome.decoration.AetherGenVoidFloatingIsland;
 import com.gildedgames.the_aether.world.biome.decoration.overhaul.AetherCloudsGenNew;
 import com.gildedgames.the_aether.world.biome.decoration.plants.WorldGenBerryBush;
 import com.gildedgames.the_aether.world.biome.decoration.plants.WorldGenBlackberryBush;
@@ -52,713 +46,1539 @@ import net.minecraft.world.chunk.IChunkProvider;
 
 public class ChunkProviderAether implements IChunkProvider {
 
-	private Random rand;
-	public static int placementFlagType;
-	private World worldObj;
-	private World aetherWorld;
-	private NoiseGeneratorOctaves noiseGen1, perlinNoise1;
-	private double[] buffer;
-	double[] pnr, ar, br;
-
-	int ancient_silver_chance = (int)(1 + Math.random() * 12);
-	int divine_silver_chance = (int)(1 + Math.random() * 10);
-	int ancient_gold_chance = (int)(1 + Math.random() * 12);
-	int divine_gold_chance = (int)(1 + Math.random() * 10);
-
-	private MapGenBase aetherCaveGenerator;
-
-	protected AetherDungeon dungeon_bronze = new BronzeDungeon();
-	protected AetherDungeon large_dungeon_bronze = new LargeBronzeDungeon();
-	protected AetherDungeon divine_dungeon_bronze = new DivineBronzeDungeon();
-	protected AetherDungeon mythic_dungeon_bronze = new MythicBronzeDungeon();
-
-	protected AetherDungeon cyro_dungeon = new CobaltDungeon();
-	protected AetherDungeon zarnillys_den = new ZarnillysDen();
-	private MapGenQuicksoil quicksoilGen = new MapGenQuicksoil();
-	private MapGenAetherCaves aether_caves = new MapGenAetherCaves();
-
-	private MapGenSilverDungeon silverDungeonStructure = new MapGenSilverDungeon();
-	private MapGenAncientSilverDungeon ancientsilverDungeonStructure = new MapGenAncientSilverDungeon();
-	private MapGenDivineSilverDungeon divinesilverDungeonStructure = new MapGenDivineSilverDungeon();
-
-	private MapGenGoldenDungeon goldenDungeonStructure = new MapGenGoldenDungeon();
-	private MapGenAncientGoldenDungeon ancientGoldenDungeonStructure = new MapGenAncientGoldenDungeon();
-	private MapGenDivineGoldenDungeon divineGoldenDungeonStructure = new MapGenDivineGoldenDungeon();
-
-	private MapGenLargeColdAercloud largeColdAercloudStructure = new MapGenLargeColdAercloud();
-	public AetherGenDungeonOakTree golden_oak_tree_dungeon = new AetherGenDungeonOakTree();
-	public AetherGenFloatingIsland crystal_island = new AetherGenFloatingIsland();
-	public AetherGenVoidFloatingIsland void_island = new AetherGenVoidFloatingIsland();
-	public AetherGenHolidayTree holiday_tree = new AetherGenHolidayTree();
-
-	public ChunkProviderAether(World world, long seed) {
-		this.worldObj = world;
-		this.aetherCaveGenerator = new MapGenAetherCaves();
-		this.rand = new Random(seed);
-		this.aetherWorld = world;
-		this.noiseGen1 = new NoiseGeneratorOctaves(this.rand, 16);
-		this.perlinNoise1 = new NoiseGeneratorOctaves(this.rand, 8);
-	}
-
-	public void setBlocksInChunk(int x, int z, Block[] blocks) {
-		this.buffer = this.setupNoiseGenerators(this.buffer, x * 2, z * 2);
-
-		for (int i1 = 0; i1 < 2; i1++) {
-			for (int j1 = 0; j1 < 2; j1++) {
-				for (int k1 = 0; k1 < 32; k1++) {
-					double d1 = this.buffer[(i1 * 3 + j1) * 33 + k1];
-					double d2 = this.buffer[(i1 * 3 + (j1 + 1)) * 33 + k1];
-					double d3 = this.buffer[((i1 + 1) * 3 + j1) * 33 + k1];
-					double d4 = this.buffer[((i1 + 1) * 3 + (j1 + 1)) * 33 + k1];
-
-					double d5 = (this.buffer[(i1 * 3 + j1) * 33 + (k1 + 1)] - d1) * 0.25D;
-					double d6 = (this.buffer[(i1 * 3 + (j1 + 1)) * 33 + (k1 + 1)] - d2) * 0.25D;
-					double d7 = (this.buffer[((i1 + 1) * 3 + j1) * 33 + (k1 + 1)] - d3) * 0.25D;
-					double d8 = (this.buffer[((i1 + 1) * 3 + (j1 + 1)) * 33 + (k1 + 1)] - d4) * 0.25D;
-
-					for (int l1 = 0; l1 < 4; l1++) {
-						double d10 = d1;
-						double d11 = d2;
-						double d12 = (d3 - d1) * 0.125D;
-						double d13 = (d4 - d2) * 0.125D;
-
-						for (int i2 = 0; i2 < 8; i2++) {
-							int j2 = i2 + i1 * 8 << 11 | j1 * 8 << 7 | k1 * 4 + l1;
-							char c = '\200';
-							double d15 = d10;
-							double d16 = (d11 - d10) * 0.125D;
-
-							for (int k2 = 0; k2 < 8; k2++) {
-								Block filler = Blocks.air;
-
-								if (d15 > 0.0D) {
-									filler = BlocksAether.holystone;
-								}
-
-								blocks[j2] = filler;
-								j2 += c;
-								d15 += d16;
-							}
-
-							d10 += d12;
-							d11 += d13;
-						}
-
-						d1 += d5;
-						d2 += d6;
-						d3 += d7;
-						d4 += d8;
-					}
-				}
-			}
-		}
-	}
-
-	public void buildSurfaces(int i, int j, Block[] blocks) {
-		this.rand.setSeed(this.worldObj.getSeed());
-		for (int k = 0; k < 16; k++) {
-			for (int l = 0; l < 16; l++) {
-				int j1 = -1;
-				int i1 = (int) (3.0D + this.rand.nextDouble() * 0.5D);
-
-				Block top = BlocksAether.aether_grass;
-				Block filler = BlocksAether.aether_dirt;
-
-				for (int k1 = 127; k1 >= 0; k1--) {
-					int l1 = (l * 16 + k) * 128 + k1;
-
-					Block block = blocks[l1];
-
-					if (block == Blocks.air) {
-						j1 = -1;
-					} else if (block == BlocksAether.holystone) {
-						if (j1 == -1) {
-							if (i1 <= 0) {
-								top = Blocks.air;
-								filler = BlocksAether.holystone;
-							}
-
-							j1 = i1;
-
-							if (k1 >= 0) {
-								blocks[l1] = top;
-							} else {
-								blocks[l1] = filler;
-							}
-						} else if (j1 > 0) {
-							--j1;
-							blocks[l1] = filler;
-						}
-					}
-				}
-			}
-		}
-	}
-
-	private double[] setupNoiseGenerators(double[] buffer, int x, int z) {
-		if (buffer == null) {
-			buffer = new double[3366];
-		}
-
-		double d = 1368.824D;
-		double d1 = 684.41200000000003D;
-
-		this.pnr = this.perlinNoise1.generateNoiseOctaves(this.pnr, x, 0, z, 3, 33, 3, d / 80D, d1 / 160D, d / 80D);
-		this.ar = this.noiseGen1.generateNoiseOctaves(this.ar, x, 0, z, 3, 33, 3, d, d1, d);
-		this.br = this.noiseGen1.generateNoiseOctaves(this.br, x, 0, z, 3, 33, 3, d, d1, d);
-
-		int id = 0;
-
-		for (int j2 = 0; j2 < 3; j2++) {
-			for (int l2 = 0; l2 < 3; l2++) {
-				for (int j3 = 0; j3 < 33; j3++) {
-					double d8;
-
-					double d10 = this.ar[id] / 512D;
-					double d11 = this.br[id] / 512D;
-					double d12 = (this.pnr[id] / 10D + 1.0D) / 2D;
-
-					if (d12 < 0.0D) {
-						d8 = d10;
-					} else if (d12 > 1.0D) {
-						d8 = d11;
-					} else {
-						d8 = d10 + (d11 - d10) * d12;
-					}
-
-					d8 -= 8D;
-
-					if (j3 > 33 - 32) {
-						double d13 = (float) (j3 - (33 - 32)) / ((float) 32 - 1.0F);
-						d8 = d8 * (1.0D - d13) + -30D * d13;
-					}
-
-					if (j3 < 8) {
-						double d14 = (float) (8 - j3) / ((float) 8 - 1.0F);
-						d8 = d8 * (1.0D - d14) + -30D * d14;
-					}
-
-					buffer[id] = d8;
-
-					id++;
-				}
-
-			}
-
-		}
-
-		int id2 = 0;
-
-		for (int j22 = 0; j22 < 3; j22++) {
-			for (int l22 = 0; l22 < 3; l22++) {
-				for (int j32 = 0; j32 < 33; j32++) {
-					double d82;
-
-					double d102 = this.ar[id2] / 768D;
-					double d112 = this.br[id2] / 768D;
-					double d122 = (this.pnr[id2] / 10D + 1.0D) / 2D;
-
-					if (d122 < 0.0D) {
-						d82 = d102;
-					} else if (d122 > 4.0D) {
-						d82 = d112;
-					} else {
-						d82 = d102 + (d112 - d102) * d122;
-					}
-
-					d82 -= 10D;
-
-					if (j32 > 24 - 23) {
-						double d132 = (float) (j32 - (24 - 23)) / ((float) 24 - 1.0F);
-						d82 = d82 * (2D - d132) + -22D * d132;
-					}
-
-					if (j32 < 8) {
-						double d142 = (float) (8 - j32) / ((float) 8 - 1.0F);
-						d82 = d82 * (2D - d142) + -22D * d142;
-					}
-
-					buffer[id2] = d82;
-
-					id2++;
-				}
-
-			}
-
-		}
-
-		return buffer;
-	}
-
-	@Override
-	public Chunk provideChunk(int x, int z) {
-		this.rand.setSeed((long) x * 341873128712L + (long) z * 132897987541L);
-		Block[] ablock = new Block[32768];
-		final byte[] metadata = new byte[32768];
-
-		this.setBlocksInChunk(x, z, ablock);
-		this.buildSurfaces(x, z, ablock);
-		((MapGenAetherCaves) this.aetherCaveGenerator).generate(this, this.aetherWorld, x, z, ablock, metadata);
-		this.quicksoilGen.func_151539_a(this, this.worldObj, x, z, ablock);
-
-		this.largeColdAercloudStructure.func_151539_a(this, this.worldObj, x, z, ablock);
-
-		if (AetherConfig.silver_dungeon_enable) {
-			this.silverDungeonStructure.func_151539_a(this, this.worldObj, x, z, ablock);
-		}
-		if (AetherConfig.tier2_silver_dungeon_enable && ancient_silver_chance > 2 && (Math.abs(x) > 1200 || Math.abs(z) > 1200)) {
-			this.ancientsilverDungeonStructure.func_151539_a(this, this.worldObj, x, z, ablock);
-		}
-		if (AetherConfig.tier3_silver_dungeon_enable && divine_silver_chance >= 4 && (Math.abs(x) > 3000 || Math.abs(z) > 3000)) {
-			this.divinesilverDungeonStructure.func_151539_a(this, this.worldObj, x, z, ablock);
-		}
-		if (AetherConfig.gold_dungeon_enable) {
-			this.goldenDungeonStructure.func_151539_a(this, this.worldObj, x, z, ablock);
-		}
-		if (AetherConfig.tier2_gold_dungeon_enable && ancient_gold_chance > 2 && (Math.abs(x) > 2000 || Math.abs(z) > 2000)) {
-			this.ancientGoldenDungeonStructure.func_151539_a(this, this.worldObj, x, z, ablock);
-		}
-		if (AetherConfig.tier3_gold_dungeon_enable && divine_gold_chance >= 4 && (Math.abs(x) > 5000 || Math.abs(z) > 5000)) {
-			this.divineGoldenDungeonStructure.func_151539_a(this, this.worldObj, x, z, ablock);
-		}
-
-		Chunk chunk = new Chunk(this.worldObj, ablock, x, z);
-		chunk.generateSkylightMap();
-
-		return chunk;
-	}
-
-	@Override
-	@SuppressWarnings("rawtypes")
-	public List getPossibleCreatures(EnumCreatureType creatureType, int x, int y, int z) {
-		return this.worldObj.getBiomeGenForCoords(x, z).getSpawnableList(creatureType);
-	}
-
-	@Override
-	public void recreateStructures(int x, int z) {
-		this.largeColdAercloudStructure.func_151539_a(this, this.worldObj, x, z, null);
-		this.aether_caves.func_151539_a(this, this.worldObj, x, z, null);
-
-		if (AetherConfig.silver_dungeon_enable) {
-			this.silverDungeonStructure.func_151539_a(this, this.worldObj, x, z, null);
-		}
-		if (AetherConfig.tier2_silver_dungeon_enable && (Math.abs(x) > 1200 || Math.abs(z) > 1200)) {
-			this.ancientsilverDungeonStructure.func_151539_a(this, this.worldObj, x, z, null);
-		}
-		if (AetherConfig.tier3_silver_dungeon_enable && (Math.abs(x) > 3000 || Math.abs(z) > 3000)) {
-			this.divinesilverDungeonStructure.func_151539_a(this, this.worldObj, x, z, null);
-		}
-		if (AetherConfig.gold_dungeon_enable) {
-			this.goldenDungeonStructure.func_151539_a(this, this.worldObj, x, z, null);
-		}
-		if (AetherConfig.tier2_gold_dungeon_enable && (Math.abs(x) > 2000 || Math.abs(z) > 2000)) {
-			this.ancientGoldenDungeonStructure.func_151539_a(this, this.worldObj, x, z, null);
-		}
-		if (AetherConfig.tier3_gold_dungeon_enable && (Math.abs(x) > 5000 || Math.abs(z) > 5000)) {
-			this.divineGoldenDungeonStructure.func_151539_a(this, this.worldObj, x, z, null);
-		}
-	}
-
-	@Override
-	public ChunkPosition func_147416_a(World worldIn, String structureName, int x, int y, int z) { //getNearestStructurePos
-		return null;
-	}
-
-	@Override
-	public void populate(IChunkProvider provider, int chunkX, int chunkZ) {
-		int x = chunkX * 16;
-		int z = chunkZ * 16;
-		BiomeGenBase biome = this.worldObj.getBiomeGenForCoords(x + 16, z + 16);
-
-		this.rand.setSeed(this.worldObj.getSeed());
-		long k = this.rand.nextLong() / 2L * 2L + 1L;
-		long l = this.rand.nextLong() / 2L * 2L + 1L;
-		this.rand.setSeed((long) x * k + (long) z * l ^ this.worldObj.getSeed());
-
-		this.largeColdAercloudStructure.generateStructuresInChunk(this.worldObj, this.rand, chunkX, chunkZ);
-
-		if (AetherConfig.silver_dungeon_enable) {
-			this.silverDungeonStructure.generateStructuresInChunk(this.worldObj, this.rand, chunkX, chunkZ);
-		}
-
-		if (AetherConfig.gold_dungeon_enable) {
-			this.goldenDungeonStructure.generateStructuresInChunk(this.worldObj, this.rand, chunkX, chunkZ);
-		}
-
-		if(AetherConfig.tier2_silver_dungeon_enable && (Math.abs(x) > 1200 || Math.abs(z) > 1200)) {
-			this.ancientsilverDungeonStructure.generateStructuresInChunk(this.worldObj, this.rand, chunkX, chunkZ);
-		}
-
-		if(AetherConfig.tier3_silver_dungeon_enable && (Math.abs(x) > 3000 || Math.abs(z) > 3000)) {
-			this.divinesilverDungeonStructure.generateStructuresInChunk(this.worldObj, this.rand, chunkX, chunkZ);
-		}
-
-		if(AetherConfig.tier2_gold_dungeon_enable && (Math.abs(x) > 2000 || Math.abs(z) > 2000)) {
-			this.ancientGoldenDungeonStructure.generateStructuresInChunk(this.worldObj, this.rand, chunkX, chunkZ);
-		}
-
-		if(AetherConfig.tier3_gold_dungeon_enable && (Math.abs(x) > 5000 || Math.abs(z) > 5000)) {
-			this.divineGoldenDungeonStructure.generateStructuresInChunk(this.worldObj, this.rand, chunkX, chunkZ);
-		}
-
-		biome.decorate(this.worldObj, this.rand, x, z);
-
-		int den_chance = (int)(1 + Math.random() * 5);
-		if(AetherConfig.zarnyllis_den_gen && den_chance == 1) {
-			this.zarnillys_den.generate(this.worldObj, this.rand, x, this.rand.nextInt(6) + 50, z);
-		}
-
-		if (AetherConfig.bronze_dungeon_enable) {
-			this.dungeon_bronze.generate(this.worldObj, this.rand, x, this.rand.nextInt(28) + 24, z);
-		}
-
-		if (AetherConfig.tier2_bronze_dungeon_enable && (Math.abs(x) > 750 || Math.abs(z) > 750)) {
-			this.large_dungeon_bronze.generate(this.worldObj, this.rand, x, this.rand.nextInt(18) + 26, z);
-		}
-
-		if (AetherConfig.tier3_bronze_dungeon_enable && (Math.abs(x) > 2000 || Math.abs(z) > 2000)) {
-			this.divine_dungeon_bronze.generate(this.worldObj, this.rand, x, this.rand.nextInt(12) + 24, z);
-		}
-
-		int mythic_bronze_chance = (int)(1 + Math.random() * 3);
-		if(AetherConfig.tier4_bronze_dungeon_enable && mythic_bronze_chance == 1 && (Math.abs(x) > 5000 || Math.abs(z) > 5000)) {
-			this.mythic_dungeon_bronze.generate(this.worldObj, this.rand, x, this.rand.nextInt(4) + 24, z);
-		} else {
-			if (AetherConfig.cobalt_dungeon_enable) {
-				this.cyro_dungeon.generate(this.worldObj, this.rand, x, this.rand.nextInt(14) + 22, z);
-			}
-		}
-
-		SpawnerAnimals.performWorldGenSpawning(this.worldObj, biome, x + 8, z + 8, 16, 16, this.rand);
-		final BiomeGenBase biomegenbase = AetherWorld.aether_biome;
-
-		//Standard 3 Aerclouds
-		 if (this.rand.nextInt(50) == 0) {
-	            final int x1 = x + this.rand.nextInt(16);
-	            final int y = this.rand.nextInt(64) + 32;
-	            final int z1 = z + this.rand.nextInt(16);
-	            new AetherCloudsGenNew(BlocksAether.aercloud, 0, 16, false).generate(this.worldObj, this.rand, x, y, z);
-         }
-
-		 if (this.rand.nextInt(6) == 0) {
-	            final int x1 = x + this.rand.nextInt(16);
-	            final int y = this.rand.nextInt(128);
-	            final int z1 = z + this.rand.nextInt(16);
-	            new AetherCloudsGenNew(BlocksAether.aercloud, 0, 64, false).generate(this.worldObj, this.rand, x, y, z);
-         }
-
-		 if (this.rand.nextInt(20) == 0) {
-	            final int x1 = x + this.rand.nextInt(16);
-	            final int y = this.rand.nextInt(64);
-	            final int z1 = z + this.rand.nextInt(16);
-	            new AetherCloudsGenNew(BlocksAether.aercloud, 1, 4, false).generate(this.worldObj, this.rand, x, y, z);
-         }
-
-		 if (this.rand.nextInt(12) == 0) {
-	            final int x1 = x + this.rand.nextInt(16);
-	            final int y = this.rand.nextInt(64)+ 64;
-	            final int z1 = z + this.rand.nextInt(16);
-	            new AetherCloudsGenNew(BlocksAether.aercloud, 1, 4, false).generate(this.worldObj, this.rand, x, y, z);
-         }
-
-		 if (this.rand.nextInt(30) == 0) {
-	            final int x1 = x + this.rand.nextInt(64);
-	            final int y = this.rand.nextInt(64) + 128;
-	            final int z1 = z + this.rand.nextInt(64);
-	            new AetherCloudsGenNew(BlocksAether.aercloud, 2, 4, false).generate(this.worldObj, this.rand, x, y, z);
-         }
-
-		 //Purple Aerclouds
-    if (AetherConfig.enablePurpleAercloud()) {
-		 if (this.rand.nextInt(60) == 0) {
-	            final int x1 = x + this.rand.nextInt(64);
-	            final int y = this.rand.nextInt(64) + 32;
-	            final int z1 = z + this.rand.nextInt(64);
-	            new AetherCloudsGenNew(BlocksAether.purple_aercloud, 0, 8, false).generate(this.worldObj, this.rand, x, y, z);
-	        }
-		 }
-	if (AetherConfig.enableVioletAercloud()) {
-		 if (this.rand.nextInt(14) == 0) {
-	            final int x1 = x + this.rand.nextInt(128);
-	            final int y = this.rand.nextInt(64);
-	            final int z1 = z + this.rand.nextInt(128);
-	            new AetherCloudsGenNew(BlocksAether.purple_aercloud, 1, 4, false).generate(this.worldObj, this.rand, x, y, z);
-	        }
-		}
-	if (AetherConfig.enableDarkPurpleAercloud()) {
-		 if (this.rand.nextInt(17) == 0) {
-	            final int x1 = x + this.rand.nextInt(256);
-	            final int y = this.rand.nextInt(64) + 64;
-	            final int z1 = z + this.rand.nextInt(256);
-	            new AetherCloudsGenNew(BlocksAether.purple_aercloud, 2, 4, false).generate(this.worldObj, this.rand, x, y, z);
-	        }
-		}
-		//Green Aerclouds
-	if (AetherConfig.enableLightGreenAercloud()) {
-		 if (this.rand.nextInt(70) == 0) {
-	            final int x1 = x + this.rand.nextInt(48);
-	            final int y = this.rand.nextInt(64) + 16;
-	            final int z1 = z + this.rand.nextInt(48);
-	            new AetherCloudsGenNew(BlocksAether.green_aercloud, 0, 9, false).generate(this.worldObj, this.rand, x, y, z);
-	        }
-		}
-	if (AetherConfig.enableGreenAercloud()) {
-		 if (this.rand.nextInt(14) == 0) {
-	            final int x1 = x + this.rand.nextInt(128);
-	            final int y = this.rand.nextInt(64) + 20;
-	            final int z1 = z + this.rand.nextInt(128);
-	            new AetherCloudsGenNew(BlocksAether.green_aercloud, 1, 4, false).generate(this.worldObj, this.rand, x, y, z);
-	        }
-		}
-	if (AetherConfig.enableLimeAercloud()) {
-		 if (this.rand.nextInt(17) == 0) {
-	            final int x1 = x + this.rand.nextInt(128);
-	            final int y = this.rand.nextInt(64) + 50;
-	            final int z1 = z + this.rand.nextInt(128);
-	            new AetherCloudsGenNew(BlocksAether.green_aercloud, 2, 4, false).generate(this.worldObj, this.rand, x, y, z);
-	        }
-		}
-		//Pink Aerclouds
-	if (AetherConfig.enablePinkAercloud()) {
-		 if (this.rand.nextInt(52) == 0) {
-	            final int x1 = x + this.rand.nextInt(1024);
-	            final int y = this.rand.nextInt(64) + 148;
-	            final int z1 = z + this.rand.nextInt(1024);
-	            new AetherCloudsGenNew(BlocksAether.pink_aercloud, 0, 9, false).generate(this.worldObj, this.rand, x, y, z);
-	        }
-		}
-	if (AetherConfig.enableMagentaAercloud()) {
-		 if (this.rand.nextInt(54) == 0) {
-	            final int x1 = x + this.rand.nextInt(1024);
-	            final int y = this.rand.nextInt(64) + 148;
-	            final int z1 = z + this.rand.nextInt(1024);
-	            new AetherCloudsGenNew(BlocksAether.pink_aercloud, 1, 4, false).generate(this.worldObj, this.rand, x, y, z);
-	        }
-		}
-	if (AetherConfig.enableOrangeAercloud()) {
-		 if (this.rand.nextInt(50) == 0) {
-	            final int x1 = x + this.rand.nextInt(512);
-	            final int y = this.rand.nextInt(64) + 148;
-	            final int z1 = z + this.rand.nextInt(512);
-	            new AetherCloudsGenNew(BlocksAether.pink_aercloud, 2, 4, false).generate(this.worldObj, this.rand, x, y, z);
-	        }
-		}
-
-	if (AetherConfig.enableStormAercloud()) {
-		if (this.rand.nextInt(1700) == 0) {
-			final int x1 = x + this.rand.nextInt(128);
-			final int y = this.rand.nextInt(16) + 232;
-			final int z1 = z + this.rand.nextInt(128);
-			new AetherCloudsGenNew(BlocksAether.storm_aercloud, 0, 4, false).generate(this.worldObj, this.rand, x, y, z);
-		}
-	}
-
-
-		for (int numberoftreegen = 3, i2 = 0; i2 < numberoftreegen; ++i2) {
-            final int k2 = x + this.rand.nextInt(16) + 8;
-            final int j2 = z + this.rand.nextInt(16) + 8;
-            final WorldGenerator worldgenerator = ((AetherBiome) biomegenbase).getRandomTreeFeature(this.rand);
-            worldgenerator.setScale(1.0, 1.0, 1.0);
-            worldgenerator.generate(this.worldObj, this.rand, k2, this.worldObj.getHeightValue(k2, j2), j2);
+    private static final int WORLD_HEIGHT = 256;
+    private static final int NORMAL_TERRAIN_LOW_Y = 92;
+    private static final int NORMAL_TERRAIN_COMMON_Y = 108;
+    private static final int NORMAL_TERRAIN_HIGH_Y = 120;
+    private static final int NORMAL_TERRAIN_RARE_Y = 128;
+
+    private static final int PEAKS_TERRAIN_MAX_Y = 240;
+
+    // Wider = smoother rise into Peaks.
+    private static final int PEAKS_EDGE_BLEND_DISTANCE = 128;
+
+    // Normal biomes near Peaks get a small foothill lift.
+    private static final int PEAKS_OUTER_FOOTHILL_DISTANCE = 64;
+
+    // Smaller = more accurate/smoother, but slower. 4 is a good balance.
+    private static final int PEAKS_EDGE_SAMPLE_STEP = 2;
+
+    // Lowest height allowed at the inside edge of Peaks.
+    private static final int PEAKS_EDGE_MIN_Y = 96;
+
+    // Max height normal biomes can be lifted to near Peaks.
+    private static final int PEAKS_FOOTHILL_MAX_Y = 112;
+
+    private static final int QUICKSOIL_DUNES_LOW_Y = 78;
+    private static final int QUICKSOIL_DUNES_COMMON_Y = 88;
+    private static final int QUICKSOIL_DUNES_HILL_Y = 102;
+    private static final int QUICKSOIL_DUNES_RARE_HILL_Y = 116;
+
+    private static final int NOISE_Y_SIZE = WORLD_HEIGHT / 4 + 1; // 65
+
+    private int getBlockIndex(int localX, int y, int localZ) {
+        return (localX * 16 + localZ) * WORLD_HEIGHT + y;
+    }
+
+    private Random rand;
+    public static int placementFlagType;
+    private World worldObj;
+    private World aetherWorld;
+    private BiomeGenBase[] biomesForGeneration;
+    private NoiseGeneratorOctaves noiseGen1, perlinNoise1;
+    private double[] buffer;
+    double[] pnr, ar, br;
+
+    int silver_dungeon_type = (int) (1 + Math.random() * 20);
+    int golden_dungeon_type = (int) (1 + Math.random() * 20);
+
+    private MapGenBase aetherCaveGenerator;
+
+    protected AetherDungeon dungeon_bronze = new BronzeDungeon();
+    protected AetherDungeon large_dungeon_bronze = new LargeBronzeDungeon();
+    protected AetherDungeon divine_dungeon_bronze = new DivineBronzeDungeon();
+    protected AetherDungeon mythic_dungeon_bronze = new MythicBronzeDungeon();
+
+    protected AetherDungeon cobalt_dungeon = new CobaltDungeon();
+    protected AetherDungeon zarnillys_den = new ZarnillysDen();
+    private MapGenQuicksoil quicksoilGen = new MapGenQuicksoil();
+    private MapGenAetherCaves aether_caves = new MapGenAetherCaves();
+
+    private MapGenSilverDungeon silverDungeonStructure = new MapGenSilverDungeon();
+    private MapGenAncientSilverDungeon ancientsilverDungeonStructure = new MapGenAncientSilverDungeon();
+    private MapGenDivineSilverDungeon divinesilverDungeonStructure = new MapGenDivineSilverDungeon();
+
+    private MapGenGoldenDungeon goldenDungeonStructure = new MapGenGoldenDungeon();
+    private MapGenAncientGoldenDungeon ancientGoldenDungeonStructure = new MapGenAncientGoldenDungeon();
+    private MapGenDivineGoldenDungeon divineGoldenDungeonStructure = new MapGenDivineGoldenDungeon();
+
+    private MapGenLargeColdAercloud largeColdAercloudStructure = new MapGenLargeColdAercloud();
+    public AetherGenDungeonOakTree golden_oak_tree_dungeon = new AetherGenDungeonOakTree();
+    public AetherGenFloatingIsland crystal_island = new AetherGenFloatingIsland();
+    public AetherGenVoidFloatingIsland void_island = new AetherGenVoidFloatingIsland();
+    public AetherGenHolidayTree holiday_tree = new AetherGenHolidayTree();
+
+    public ChunkProviderAether(World world, long seed) {
+        this.worldObj = world;
+        this.aetherCaveGenerator = new MapGenAetherCaves();
+        this.rand = new Random(seed);
+        this.aetherWorld = world;
+        this.noiseGen1 = new NoiseGeneratorOctaves(this.rand, 16);
+        this.perlinNoise1 = new NoiseGeneratorOctaves(this.rand, 8);
+    }
+
+    public void setBlocksInChunk(int x, int z, Block[] blocks, double[] terrainFactors, BiomeGenBase[] biomes, int[] maxTerrainYByColumn) {
+        this.buffer = this.setupNoiseGenerators(this.buffer, x * 2, z * 2);
+
+        for (int i1 = 0; i1 < 2; i1++) {
+            for (int j1 = 0; j1 < 2; j1++) {
+                for (int k1 = 0; k1 < WORLD_HEIGHT / 4; k1++) {
+                    double d1 = this.buffer[(i1 * 3 + j1) * NOISE_Y_SIZE + k1];
+                    double d2 = this.buffer[(i1 * 3 + (j1 + 1)) * NOISE_Y_SIZE + k1];
+                    double d3 = this.buffer[((i1 + 1) * 3 + j1) * NOISE_Y_SIZE + k1];
+                    double d4 = this.buffer[((i1 + 1) * 3 + (j1 + 1)) * NOISE_Y_SIZE + k1];
+
+                    double d5 = (this.buffer[(i1 * 3 + j1) * NOISE_Y_SIZE + (k1 + 1)] - d1) * 0.25D;
+                    double d6 = (this.buffer[(i1 * 3 + (j1 + 1)) * NOISE_Y_SIZE + (k1 + 1)] - d2) * 0.25D;
+                    double d7 = (this.buffer[((i1 + 1) * 3 + j1) * NOISE_Y_SIZE + (k1 + 1)] - d3) * 0.25D;
+                    double d8 = (this.buffer[((i1 + 1) * 3 + (j1 + 1)) * NOISE_Y_SIZE + (k1 + 1)] - d4) * 0.25D;
+
+                    for (int l1 = 0; l1 < 4; l1++) {
+                        double d10 = d1;
+                        double d11 = d2;
+                        double d12 = (d3 - d1) * 0.125D;
+                        double d13 = (d4 - d2) * 0.125D;
+
+                        for (int i2 = 0; i2 < 8; i2++) {
+                            int localXStart = i2 + i1 * 8;
+                            int localZStart = j1 * 8;
+                            int yStart = k1 * 4 + l1;
+
+                            int j2 = this.getBlockIndex(localXStart, yStart, localZStart);
+                            int c = WORLD_HEIGHT;
+
+                            double d15 = d10;
+                            double d16 = (d11 - d10) * 0.125D;
+
+                            for (int k2 = 0; k2 < 8; k2++) {
+                                int localX = i2 + i1 * 8;
+                                int localZ = j1 * 8 + k2;
+                                int y = k1 * 4 + l1;
+
+                                int columnIndex = localX + localZ * 16;
+
+                                BiomeGenBase biome = biomes[columnIndex];
+                                double terrainFactor = terrainFactors[columnIndex];
+                                int maxTerrainY = maxTerrainYByColumn[columnIndex];
+
+                                Block filler = Blocks.air;
+
+                                if (y <= maxTerrainY && terrainFactor > 0.02D) {
+                                    double density = d15;
+
+                                    double fadeAmount = 1.0D - terrainFactor;
+                                    fadeAmount = Math.pow(fadeAmount, 1.45D);
+                                    density -= fadeAmount * 10.0D;
+
+                                    int topFadeDistance;
+                                    double topFadeStrength;
+
+                                    if (this.isHighTerrainBiome(biome)) {
+                                        double peakT = (double)(maxTerrainY - PEAKS_EDGE_MIN_Y) / (double)(PEAKS_TERRAIN_MAX_Y - PEAKS_EDGE_MIN_Y);
+
+                                        if (peakT < 0.0D) {
+                                            peakT = 0.0D;
+                                        }
+
+                                        if (peakT > 1.0D) {
+                                            peakT = 1.0D;
+                                        }
+
+                                        peakT = this.smootherstep(peakT);
+
+                                        topFadeDistance = this.lerpInt(40, 72, peakT);
+                                        topFadeStrength = this.lerp(24.0D, 10.0D, peakT);
+                                    } else if (this.isQuicksoilDunesBiome(biome)) {
+                                        topFadeDistance = 36;
+                                        topFadeStrength = 34.0D;
+                                    } else {
+                                        if (maxTerrainY > NORMAL_TERRAIN_RARE_Y) {
+                                            topFadeDistance = 56;
+                                            topFadeStrength = 22.0D;
+                                        } else {
+                                            topFadeDistance = 48;
+                                            topFadeStrength = 30.0D;
+                                        }
+                                    }
+
+                                    int fadeTopStart = maxTerrainY - topFadeDistance;
+                                    if (y > fadeTopStart) {
+                                        double topFade = (double) (y - fadeTopStart) / (double) topFadeDistance;
+
+                                        if (topFade > 1.0D) {
+                                            topFade = 1.0D;
+                                        }
+
+                                        topFade = topFade * topFade * (3.0D - 2.0D * topFade);
+
+                                        density -= topFade * topFadeStrength;
+                                    }
+
+                                    if (density > 0.0D) {
+                                        filler = BlocksAether.holystone;
+                                    }
+                                }
+
+                                blocks[j2] = filler;
+                                j2 += c;
+                                d15 += d16;
+                            }
+
+                            d10 += d12;
+                            d11 += d13;
+                        }
+
+                        d1 += d5;
+                        d2 += d6;
+                        d3 += d7;
+                        d4 += d8;
+                    }
+                }
+            }
+        }
+    }
+
+    public void buildSurfaces(int chunkX, int chunkZ, Block[] blocks, BiomeGenBase[] biomes) {
+        this.rand.setSeed(this.worldObj.getSeed());
+
+        for (int localX = 0; localX < 16; localX++) {
+            for (int localZ = 0; localZ < 16; localZ++) {
+                int depth = -1;
+                int surfaceDepth = (int) (3.0D + this.rand.nextDouble() * 0.5D);
+
+                BiomeGenBase biome = biomes[localX + localZ * 16];
+
+                Block top = BlocksAether.aether_grass;
+                Block filler = BlocksAether.aether_dirt;
+
+                if (biome == AetherWorld.arctic_biome) {
+                    top = BlocksAether.arctic_grass;
+                    filler = BlocksAether.holystone;
+                } else if (biome == AetherWorld.aercloud_fields) {
+                    top = BlocksAether.aether_grass;
+                    filler = BlocksAether.holystone;
+                } else if (biome == AetherWorld.aether_biome || biome == AetherWorld.aether_peaks || biome == AetherWorld.aether_forest) {
+                    top = BlocksAether.aether_grass;
+                    filler = BlocksAether.aether_dirt;
+                } else if (biome == AetherWorld.enchanted_island) {
+                    top = BlocksAether.enchanted_aether_grass;
+                    filler = BlocksAether.aether_dirt;
+                } else if (biome == AetherWorld.divine_island) {
+                    top = BlocksAether.divine_grass;
+                    filler = BlocksAether.aether_dirt;
+                } else if (biome == AetherWorld.quicksoil_dunes) {
+                    top = BlocksAether.quicksoil;
+                    filler = BlocksAether.quicksoil;
+                }
+                if (biome != AetherWorld.aercloud_fields) {
+                    for (int y = WORLD_HEIGHT - 1; y >= 0; y--) {
+                        int index = this.getBlockIndex(localX, y, localZ);
+                        Block block = blocks[index];
+
+                        if (block == Blocks.air) {
+                            depth = -1;
+                        } else if (block == BlocksAether.holystone) {
+                            if (depth == -1) {
+                                depth = surfaceDepth;
+                                blocks[index] = top;
+                            } else if (depth > 0) {
+                                --depth;
+                                blocks[index] = filler;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private double[] setupNoiseGenerators(double[] buffer, int x, int z) {
+        int expectedSize = 3 * NOISE_Y_SIZE * 3;
+
+        if (buffer == null || buffer.length < expectedSize) {
+            buffer = new double[expectedSize];
         }
 
-		for (int n = 0; n < 6; ++n) {
-            if (this.rand.nextInt(2) == 0) {
-                final int x2 = x + this.rand.nextInt(16) + 8;
-                final int y2 = this.rand.nextInt(128);
-                final int z2 = z + this.rand.nextInt(16) + 8;
-                new AetherGenFlowers(BlocksAether.purple_flower, 64).generate(this.worldObj, this.rand, x2, y2, z2);
+        double d = 1368.824D;
+        double d1 = 684.41200000000003D;
+
+        this.pnr = this.perlinNoise1.generateNoiseOctaves(this.pnr, x, 0, z, 3, NOISE_Y_SIZE, 3, d / 80D, d1 / 160D, d / 80D);
+        this.ar = this.noiseGen1.generateNoiseOctaves(this.ar, x, 0, z, 3, NOISE_Y_SIZE, 3, d, d1, d);
+        this.br = this.noiseGen1.generateNoiseOctaves(this.br, x, 0, z, 3, NOISE_Y_SIZE, 3, d, d1, d);
+
+        int id = 0;
+
+        for (int noiseX = 0; noiseX < 3; noiseX++) {
+            for (int noiseZ = 0; noiseZ < 3; noiseZ++) {
+                for (int noiseY = 0; noiseY < NOISE_Y_SIZE; noiseY++) {
+                    double d8;
+
+                    double d10 = this.ar[id] / 768D;
+                    double d11 = this.br[id] / 768D;
+                    double d12 = (this.pnr[id] / 10D + 1.0D) / 2D;
+
+                    if (d12 < 0.0D) {
+                        d8 = d10;
+                    } else if (d12 > 1.0D) {
+                        d8 = d11;
+                    } else {
+                        d8 = d10 + (d11 - d10) * d12;
+                    }
+
+                    d8 -= 10D;
+
+                    int topFadeStart = NOISE_Y_SIZE - 24;
+                    if (noiseY > topFadeStart) {
+                        double fade = (double) (noiseY - topFadeStart) / 23.0D;
+
+                        if (fade > 1.0D) {
+                            fade = 1.0D;
+                        }
+
+                        d8 = d8 * (1.0D - fade) + -22D * fade;
+                    }
+
+                    if (noiseY < 8) {
+                        double bottomFade = (double) (8 - noiseY) / 7.0D;
+
+                        if (bottomFade > 1.0D) {
+                            bottomFade = 1.0D;
+                        }
+
+                        d8 = d8 * (1.0D - bottomFade) + -22D * bottomFade;
+                    }
+
+                    buffer[id] = d8;
+
+                    id++;
+                }
             }
         }
 
-		for (int n = 0; n < 6; ++n) {
-            if (this.rand.nextInt(2) == 0) {
-                final int x2 = x + this.rand.nextInt(16) + 8;
-                final int y2 = this.rand.nextInt(128);
-                final int z2 = z + this.rand.nextInt(16) + 8;
-                new AetherGenFlowers(BlocksAether.white_flower, 64).generate(this.worldObj, this.rand, x2, y2, z2);
+        return buffer;
+    }
+
+    private boolean isQuicksoilDunesBiome(BiomeGenBase biome) {
+        return biome != null
+            && AetherWorld.quicksoil_dunes != null
+            && biome.biomeID == AetherWorld.quicksoil_dunes.biomeID;
+    }
+
+    private int getQuicksoilDunesMaxTerrainY(int worldX, int worldZ) {
+        double broad = this.regionalNoise01(worldX, worldZ, 256, 8101L);
+        double medium = this.regionalNoise01(worldX + 44119, worldZ - 19231, 128, 8102L);
+        double small = this.regionalNoise01(worldX - 9917, worldZ + 55123, 64, 8103L);
+
+        double n = broad * 0.65D + medium * 0.25D + small * 0.10D;
+
+        n = this.smootherstep(n);
+
+        if (n < 0.72D) {
+            double t = n / 0.72D;
+            return this.lerpInt(QUICKSOIL_DUNES_LOW_Y, QUICKSOIL_DUNES_COMMON_Y, t);
+        }
+
+        if (n < 0.94D) {
+            double t = (n - 0.72D) / (0.94D - 0.72D);
+            return this.lerpInt(QUICKSOIL_DUNES_COMMON_Y, QUICKSOIL_DUNES_HILL_Y, t);
+        }
+
+        double t = (n - 0.94D) / (1.0D - 0.94D);
+        return this.lerpInt(QUICKSOIL_DUNES_HILL_Y, QUICKSOIL_DUNES_RARE_HILL_Y, t);
+    }
+
+    private boolean isAetherPeaksBiome(BiomeGenBase biome) {
+        return biome != null
+            && AetherWorld.aether_peaks != null
+            && biome.biomeID == AetherWorld.aether_peaks.biomeID;
+    }
+
+    private boolean isDivineIslandBiome(BiomeGenBase biome) {
+        return biome != null
+            && AetherWorld.divine_island != null
+            && biome.biomeID == AetherWorld.divine_island.biomeID;
+    }
+
+    private boolean isHighTerrainBiome(BiomeGenBase biome) {
+        return this.isAetherPeaksBiome(biome) || this.isDivineIslandBiome(biome);
+    }
+
+    private int getNormalMaxTerrainY(int worldX, int worldZ) {
+        double n = this.regionalHeightNoise01(worldX, worldZ);
+
+        if (n < 0.72D) {
+            double t = n / 0.72D;
+            return this.lerpInt(NORMAL_TERRAIN_LOW_Y, NORMAL_TERRAIN_COMMON_Y, t);
+        }
+
+        if (n < 0.94D) {
+            double t = (n - 0.72D) / (0.94D - 0.72D);
+            return this.lerpInt(NORMAL_TERRAIN_COMMON_Y, NORMAL_TERRAIN_HIGH_Y, t);
+        }
+
+        double t = (n - 0.94D) / (1.0D - 0.94D);
+        return this.lerpInt(NORMAL_TERRAIN_HIGH_Y, NORMAL_TERRAIN_RARE_Y, t);
+    }
+
+    private int lerpInt(int a, int b, double t) {
+        if (t < 0.0D) {
+            t = 0.0D;
+        }
+
+        if (t > 1.0D) {
+            t = 1.0D;
+        }
+
+        return (int) Math.round(a + (b - a) * t);
+    }
+
+    private double lerp(double a, double b, double t) {
+        return a + (b - a) * t;
+    }
+
+    private double smoothstep(double t) {
+        if (t < 0.0D) {
+            t = 0.0D;
+        }
+
+        if (t > 1.0D) {
+            t = 1.0D;
+        }
+
+        return t * t * (3.0D - 2.0D * t);
+    }
+
+    private int floorDivInt(int x, int y) {
+        int r = x / y;
+
+        if ((x ^ y) < 0 && r * y != x) {
+            r--;
+        }
+
+        return r;
+    }
+
+    private int floorModInt(int x, int y) {
+        return x - this.floorDivInt(x, y) * y;
+    }
+
+    private double hashCellNoise01(int cellX, int cellZ, long salt) {
+        long seed = this.worldObj.getSeed();
+
+        long value = seed;
+        value ^= (long) cellX * 341873128712L;
+        value ^= (long) cellZ * 132897987541L;
+        value ^= salt * 42317861L;
+        value ^= value >> 13;
+        value *= 1274126177L;
+        value ^= value >> 16;
+
+        return (double) (value & 16777215L) / 16777215.0D;
+    }
+
+    private double regionalNoise01(int worldX, int worldZ, int cellSize, long salt) {
+        int cellX = this.floorDivInt(worldX, cellSize);
+        int cellZ = this.floorDivInt(worldZ, cellSize);
+
+        double localX = (double) this.floorModInt(worldX, cellSize) / (double) cellSize;
+        double localZ = (double) this.floorModInt(worldZ, cellSize) / (double) cellSize;
+
+        double sx = this.smoothstep(localX);
+        double sz = this.smoothstep(localZ);
+
+        double v00 = this.hashCellNoise01(cellX, cellZ, salt);
+        double v10 = this.hashCellNoise01(cellX + 1, cellZ, salt);
+        double v01 = this.hashCellNoise01(cellX, cellZ + 1, salt);
+        double v11 = this.hashCellNoise01(cellX + 1, cellZ + 1, salt);
+
+        double x0 = this.lerp(v00, v10, sx);
+        double x1 = this.lerp(v01, v11, sx);
+
+        return this.lerp(x0, x1, sz);
+    }
+
+    private double regionalHeightNoise01(int worldX, int worldZ) {
+        double broad = this.regionalNoise01(worldX, worldZ, 192, 1001L);
+        double medium = this.regionalNoise01(worldX + 91423, worldZ - 43117, 96, 2002L);
+        double huge = this.regionalNoise01(worldX - 28177, worldZ + 77131, 384, 3003L);
+        double n = broad * 0.60D + medium * 0.25D + huge * 0.15D;
+
+        if (n < 0.0D) {
+            n = 0.0D;
+        }
+
+        if (n > 1.0D) {
+            n = 1.0D;
+        }
+
+        return n;
+    }
+
+
+    private boolean isAercloudFieldsBiome(BiomeGenBase biome) {
+        return biome != null && AetherWorld.aercloud_fields != null
+            && biome.biomeID == AetherWorld.aercloud_fields.biomeID;
+    }
+
+    private double[] makeAercloudTerrainFactorsForChunk(int chunkX, int chunkZ) {
+        double[] factors = new double[256];
+
+        int worldBaseX = chunkX * 16;
+        int worldBaseZ = chunkZ * 16;
+
+        for (int localX = 0; localX < 16; localX++) {
+            for (int localZ = 0; localZ < 16; localZ++) {
+                int worldX = worldBaseX + localX;
+                int worldZ = worldBaseZ + localZ;
+
+                BiomeGenBase biome = this.biomesForGeneration[localX + localZ * 16];
+
+                factors[localX + localZ * 16] = this.getAercloudTerrainFactor(worldX, worldZ, biome);
             }
         }
 
-		for (int n = 0; n < 6; ++n) {
-            if (this.rand.nextInt(2) == 0) {
-                final int x2 = x + this.rand.nextInt(16) + 8;
-                final int y2 = this.rand.nextInt(128);
-                final int z2 = z + this.rand.nextInt(16) + 8;
-                new AetherGenFlowers(BlocksAether.aercloud_layer, 64).generate(this.worldObj, this.rand, x2, y2, z2);
+        return factors;
+    }
+
+    private double smootherstep(double t) {
+        if (t < 0.0D) {
+            t = 0.0D;
+        }
+
+        if (t > 1.0D) {
+            t = 1.0D;
+        }
+
+        return t * t * t * (t * (t * 6.0D - 15.0D) + 10.0D);
+    }
+
+    private double getAercloudTerrainFactor(int worldX, int worldZ, BiomeGenBase biome) {
+        //Normal biomes always generate full terrain.
+        if (!this.isAercloudFieldsBiome(biome)) {
+            return 1.0D;
+        }
+
+        int keepFullTerrainDistance = 32;
+        int fullyEmptyDistance = 164;
+
+        int distance = this.getApproxDistanceToNonAercloudFieldsBiome(worldX, worldZ, fullyEmptyDistance, 2);
+
+        if (distance <= keepFullTerrainDistance) {
+            return 1.0D;
+        }
+
+        if (distance >= fullyEmptyDistance) {
+            return 0.0D;
+        }
+
+        double t = (double) (distance - keepFullTerrainDistance) / (double) (fullyEmptyDistance - keepFullTerrainDistance);
+
+        t = t * t * t * (t * (t * 6.0D - 15.0D) + 10.0D);
+
+        double factor = 1.0D - t;
+        factor = Math.pow(factor, 0.65D);
+
+        double noise = this.columnNoise01(worldX, worldZ);
+        factor += (noise - 0.5D) * 0.12D;
+
+        if (factor < 0.0D) {
+            factor = 0.0D;
+        }
+
+        if (factor > 1.0D) {
+            factor = 1.0D;
+        }
+
+        return factor;
+    }
+
+    private int getApproxDistanceToNonAercloudFieldsBiome(int worldX, int worldZ, int maxRadius, int step) {
+        int bestDistanceSq = maxRadius * maxRadius + 1;
+
+        for (int dz = -maxRadius; dz <= maxRadius; dz += step) {
+            for (int dx = -maxRadius; dx <= maxRadius; dx += step) {
+                int distanceSq = dx * dx + dz * dz;
+
+                if (distanceSq >= bestDistanceSq) {
+                    continue;
+                }
+
+                BiomeGenBase nearbyBiome = this.worldObj.getWorldChunkManager().getBiomeGenAt(worldX + dx, worldZ + dz);
+
+                if (!this.isAercloudFieldsBiome(nearbyBiome)) {
+                    bestDistanceSq = distanceSq;
+                }
             }
         }
 
-		for (int n = 0; n < 3; ++n) {
-            if (this.rand.nextInt(2) == 0) {
-                final int x2 = x + this.rand.nextInt(16) + 8;
-                final int y2 = this.rand.nextInt(128);
-                final int z2 = z + this.rand.nextInt(16) + 8;
-                new AetherGenFlowers(BlocksAether.white_rose, 64).generate(this.worldObj, this.rand, x2, y2, z2);
+        if (bestDistanceSq > maxRadius * maxRadius) {
+            return maxRadius + 1;
+        }
+
+        return (int) Math.sqrt((double) bestDistanceSq);
+    }
+
+    private double columnNoise01(int worldX, int worldZ) {
+        long seed = this.worldObj.getSeed();
+
+        long value = seed;
+        value ^= (long) worldX * 341873128712L;
+        value ^= (long) worldZ * 132897987541L;
+        value ^= value >> 13;
+        value *= 1274126177L;
+        value ^= value >> 16;
+
+        return (double) (value & 16777215L) / 16777215.0D;
+    }
+
+    private boolean chunkHasNonAercloudFieldsBiome(BiomeGenBase[] biomes) {
+        for (int localX = 0; localX < 16; localX++) {
+            for (int localZ = 0; localZ < 16; localZ++) {
+                BiomeGenBase biome = biomes[localX + localZ * 16];
+
+                if (!this.isAercloudFieldsBiome(biome)) {
+                    return true;
+                }
             }
         }
 
-		for (int n = 0; n < 6; ++n) {
-            if (this.rand.nextInt(2) == 0) {
-                final int x2 = x + this.rand.nextInt(16) + 8;
-                final int y2 = this.rand.nextInt(128);
-                final int z2 = z + this.rand.nextInt(16) + 8;
-                new AetherGenFlowers(BlocksAether.aechor_sprout, 64).generate(this.worldObj, this.rand, x2, y2, z2);
+        return false;
+    }
+
+    private int[] makeMaxTerrainYForChunk(int chunkX, int chunkZ, BiomeGenBase[] biomes) {
+        int[] result = new int[256];
+
+        int worldBaseX = chunkX * 16;
+        int worldBaseZ = chunkZ * 16;
+
+        int radius = Math.max(PEAKS_EDGE_BLEND_DISTANCE, PEAKS_OUTER_FOOTHILL_DISTANCE);
+        int sampleStep = PEAKS_EDGE_SAMPLE_STEP;
+
+        int sampleMinX = worldBaseX - radius;
+        int sampleMinZ = worldBaseZ - radius;
+        int sampleSize = 16 + radius * 2;
+
+        BiomeGenBase[] nearbyBiomes = this.worldObj.getWorldChunkManager().loadBlockGeneratorData(null, sampleMinX, sampleMinZ, sampleSize, sampleSize);
+
+        for (int localX = 0; localX < 16; localX++) {
+            for (int localZ = 0; localZ < 16; localZ++) {
+                int index = localX + localZ * 16;
+
+                int worldX = worldBaseX + localX;
+                int worldZ = worldBaseZ + localZ;
+
+                BiomeGenBase biome = biomes[index];
+
+                if (this.isQuicksoilDunesBiome(biome)) {
+                    result[index] = this.getQuicksoilDunesMaxTerrainY(worldX, worldZ);
+                    continue;
+                }
+
+                int normalHeight = this.getNormalMaxTerrainY(worldX, worldZ);
+
+                if (this.isHighTerrainBiome(biome)) {
+                    int distanceToNonHighTerrain = this.getApproxDistanceToHighTerrainBiomeTypeFromArray(worldX, worldZ, sampleMinX, sampleMinZ, sampleSize, nearbyBiomes, radius, sampleStep, false);
+                    result[index] = this.getHighTerrainMaxYFromDistance(worldX, worldZ, normalHeight, distanceToNonHighTerrain);
+                } else {
+                    int distanceToHighTerrain = this.getApproxDistanceToHighTerrainBiomeTypeFromArray(worldX, worldZ, sampleMinX, sampleMinZ, sampleSize, nearbyBiomes, radius, sampleStep, true);
+                    result[index] = this.getNormalMaxTerrainYNearHighTerrain(worldX, worldZ, normalHeight, distanceToHighTerrain);
+                }
             }
         }
 
-		for (int n = 0; n < 5; ++n) {
-            if (this.rand.nextInt(2) == 0) {
-                final int x2 = x + this.rand.nextInt(16) + 8;
-                final int y2 = this.rand.nextInt(128);
-                final int z2 = z + this.rand.nextInt(16) + 8;
-                new AetherGenFlowers(BlocksAether.blue_swingtip, 64).generate(this.worldObj, this.rand, x2, y2, z2);
+        return result;
+    }
+
+    private int getAetherPeaksMaxTerrainYFromDistance(int worldX, int worldZ, int normalHeight, int distanceToEdge) {
+        int peakInteriorHeight = this.getAetherPeaksInteriorHeight(worldX, worldZ);
+        double t = (double) distanceToEdge / (double) PEAKS_EDGE_BLEND_DISTANCE;
+
+        if (t < 0.0D) {
+            t = 0.0D;
+        }
+
+        if (t > 1.0D) {
+            t = 1.0D;
+        }
+
+        t = this.smootherstep(t);
+
+        int edgeStartY = Math.max(PEAKS_EDGE_MIN_Y, normalHeight + 8);
+        double edgeNoise = this.regionalNoise01(worldX + 33117, worldZ - 7713, 128, 9191L);
+        edgeStartY += (int) Math.round((edgeNoise - 0.5D) * 8.0D);
+
+        int y = this.lerpInt(edgeStartY, peakInteriorHeight, t);
+
+        if (y < edgeStartY) {
+            y = edgeStartY;
+        }
+
+        if (y > PEAKS_TERRAIN_MAX_Y) {
+            y = PEAKS_TERRAIN_MAX_Y;
+        }
+
+        return y;
+    }
+
+    private int getHighTerrainMaxYFromDistance(int worldX, int worldZ, int normalHeight, int distanceToEdge) {
+        return this.getAetherPeaksMaxTerrainYFromDistance(worldX, worldZ, normalHeight, distanceToEdge);
+    }
+
+    private int getApproxDistanceToHighTerrainBiomeTypeFromArray(int worldX, int worldZ, int sampleMinX, int sampleMinZ, int sampleSize, BiomeGenBase[] nearbyBiomes, int maxRadius, int step, boolean lookingForHighTerrain) {
+        int localCenterX = worldX - sampleMinX;
+        int localCenterZ = worldZ - sampleMinZ;
+        int bestDistanceSq = maxRadius * maxRadius + 1;
+
+        for (int dz = -maxRadius; dz <= maxRadius; dz += step) {
+            int sampleZ = localCenterZ + dz;
+
+            if (sampleZ < 0 || sampleZ >= sampleSize) {
+                continue;
+            }
+
+            for (int dx = -maxRadius; dx <= maxRadius; dx += step) {
+                int sampleX = localCenterX + dx;
+
+                if (sampleX < 0 || sampleX >= sampleSize) {
+                    continue;
+                }
+
+                int distanceSq = dx * dx + dz * dz;
+
+                if (distanceSq >= bestDistanceSq) {
+                    continue;
+                }
+
+                BiomeGenBase sampleBiome = nearbyBiomes[sampleX + sampleZ * sampleSize];
+                boolean sampleIsHighTerrain = this.isHighTerrainBiome(sampleBiome);
+
+                if (sampleIsHighTerrain == lookingForHighTerrain) {
+                    bestDistanceSq = distanceSq;
+                }
             }
         }
 
-		for (int n = 0; n < 4; ++n) {
-            if (this.rand.nextInt(2) == 0) {
-                final int x2 = x + this.rand.nextInt(16) + 8;
-                final int y2 = this.rand.nextInt(128);
-                final int z2 = z + this.rand.nextInt(16) + 8;
-                new AetherGenFlowers(BlocksAether.neverbloom, 64).generate(this.worldObj, this.rand, x2, y2, z2);
+        if (bestDistanceSq > maxRadius * maxRadius) {
+            return maxRadius + 1;
+        }
+
+        return (int)Math.sqrt((double)bestDistanceSq);
+    }
+
+    private int getNormalMaxTerrainYNearHighTerrain(int worldX, int worldZ, int normalHeight, int distanceToHighTerrain) {
+        return this.getNormalMaxTerrainYNearPeaks(worldX, worldZ, normalHeight, distanceToHighTerrain);
+    }
+
+    private int getAetherPeaksInteriorHeight(int worldX, int worldZ) {
+        double broad = this.regionalNoise01(worldX, worldZ, 192, 4411L);
+        double huge = this.regionalNoise01(worldX - 88231, worldZ + 19211, 384, 5512L);
+        double medium = this.regionalNoise01(worldX + 3319, worldZ - 7751, 96, 6613L);
+
+        double n = broad * 0.55D + huge * 0.30D + medium * 0.15D;
+        n = this.smootherstep(n);
+
+        return this.lerpInt(184, PEAKS_TERRAIN_MAX_Y, n);
+    }
+
+    private int getNormalMaxTerrainYNearPeaks(int worldX, int worldZ, int normalHeight, int distanceToPeaks) {
+        if (distanceToPeaks > PEAKS_OUTER_FOOTHILL_DISTANCE) {
+            return normalHeight;
+        }
+
+        double t = 1.0D - ((double) distanceToPeaks / (double) PEAKS_OUTER_FOOTHILL_DISTANCE);
+
+        if (t < 0.0D) {
+            t = 0.0D;
+        }
+
+        if (t > 1.0D) {
+            t = 1.0D;
+        }
+
+        t = this.smootherstep(t);
+
+        double n = this.regionalNoise01(worldX + 11913, worldZ - 44291, 96, 7717L);
+
+        int foothillTarget = PEAKS_FOOTHILL_MAX_Y + (int) Math.round((n - 0.5D) * 12.0D);
+        if (foothillTarget < normalHeight) {
+            foothillTarget = normalHeight;
+        }
+
+        return this.lerpInt(normalHeight, foothillTarget, t);
+    }
+
+    @Override
+    public Chunk provideChunk(int x, int z) {
+        this.rand.setSeed((long) x * 341873128712L + (long) z * 132897987541L);
+
+        Block[] ablock = new Block[16 * 16 * WORLD_HEIGHT];
+        final byte[] metadata = new byte[16 * 16 * WORLD_HEIGHT];
+
+        this.biomesForGeneration = this.worldObj.getWorldChunkManager().loadBlockGeneratorData(this.biomesForGeneration, x * 16, z * 16, 16, 16);
+
+        double[] terrainFactors = this.makeAercloudTerrainFactorsForChunk(x, z);
+        int[] maxTerrainYByColumn = this.makeMaxTerrainYForChunk(x, z, this.biomesForGeneration);
+        this.setBlocksInChunk(x, z, ablock, terrainFactors, this.biomesForGeneration, maxTerrainYByColumn);
+        this.buildSurfaces(x, z, ablock, this.biomesForGeneration);
+
+        if (this.chunkHasNonAercloudFieldsBiome(this.biomesForGeneration)) {
+            ((MapGenAetherCaves) this.aetherCaveGenerator).generate(this, this.aetherWorld, x, z, ablock, metadata);
+        }
+
+        this.quicksoilGen.func_151539_a(this, this.worldObj, x, z, ablock);
+        this.largeColdAercloudStructure.func_151539_a(this, this.worldObj, x, z, ablock);
+
+        if (AetherConfig.silver_dungeon_enable && silver_dungeon_type < 10) {
+            this.silverDungeonStructure.func_151539_a(this, this.worldObj, x, z, ablock);
+        } else if (AetherConfig.tier2_silver_dungeon_enable && silver_dungeon_type < 17) {
+            this.ancientsilverDungeonStructure.func_151539_a(this, this.worldObj, x, z, ablock);
+        } else if (AetherConfig.tier3_silver_dungeon_enable && silver_dungeon_type <= 20) {
+            this.divinesilverDungeonStructure.func_151539_a(this, this.worldObj, x, z, ablock);
+        }
+
+        if (AetherConfig.gold_dungeon_enable && golden_dungeon_type < 10) {
+            this.goldenDungeonStructure.func_151539_a(this, this.worldObj, x, z, ablock);
+        } else if (AetherConfig.tier2_gold_dungeon_enable && golden_dungeon_type < 17) {
+            this.ancientGoldenDungeonStructure.func_151539_a(this, this.worldObj, x, z, ablock);
+        } else if (AetherConfig.tier3_gold_dungeon_enable && golden_dungeon_type <= 20) {
+            this.divineGoldenDungeonStructure.func_151539_a(this, this.worldObj, x, z, ablock);
+        }
+
+        Chunk chunk = new Chunk(this.worldObj, ablock, metadata, x, z);
+
+        //Forces the chunk's biome array to match the biomes used for terrain.
+        byte[] biomeArray = chunk.getBiomeArray();
+
+        for (int localZ = 0; localZ < 16; localZ++) {
+            for (int localX = 0; localX < 16; localX++) {
+                BiomeGenBase biome = this.biomesForGeneration[localX + localZ * 16];
+                biomeArray[localZ * 16 + localX] = (byte) (biome.biomeID & 255);
             }
         }
 
-		for (int n = 0; n < 4; ++n) {
-            if (this.rand.nextInt(2) == 0) {
-                final int x2 = x + this.rand.nextInt(16) + 8;
-                final int y2 = this.rand.nextInt(128);
-                final int z2 = z + this.rand.nextInt(16) + 8;
-                new AetherGenFlowers(BlocksAether.burstblossom, 64).generate(this.worldObj, this.rand, x2, y2, z2);
+        chunk.generateSkylightMap();
+
+        return chunk;
+    }
+
+    @Override
+    @SuppressWarnings("rawtypes")
+    public List getPossibleCreatures(EnumCreatureType creatureType, int x, int y, int z) {
+        return this.worldObj.getBiomeGenForCoords(x, z).getSpawnableList(creatureType);
+    }
+
+    @Override
+    public void recreateStructures(int x, int z) {
+        this.largeColdAercloudStructure.func_151539_a(this, this.worldObj, x, z, null);
+
+        this.aether_caves.func_151539_a(this, this.worldObj, x, z, null);
+
+        if (AetherConfig.silver_dungeon_enable && silver_dungeon_type < 10) {
+            this.silverDungeonStructure.func_151539_a(this, this.worldObj, x, z, null);
+        } else if (AetherConfig.tier2_silver_dungeon_enable && silver_dungeon_type < 17) {
+            this.ancientsilverDungeonStructure.func_151539_a(this, this.worldObj, x, z, null);
+        } else if (AetherConfig.tier3_silver_dungeon_enable && silver_dungeon_type <= 20) {
+            this.divinesilverDungeonStructure.func_151539_a(this, this.worldObj, x, z, null);
+        }
+
+        if (AetherConfig.gold_dungeon_enable && golden_dungeon_type < 10) {
+            this.goldenDungeonStructure.func_151539_a(this, this.worldObj, x, z, null);
+        } else if (AetherConfig.tier2_gold_dungeon_enable && golden_dungeon_type < 17) {
+            this.ancientGoldenDungeonStructure.func_151539_a(this, this.worldObj, x, z, null);
+        } else if (AetherConfig.tier3_gold_dungeon_enable && golden_dungeon_type <= 20) {
+            this.divineGoldenDungeonStructure.func_151539_a(this, this.worldObj, x, z, null);
+        }
+
+    }
+
+    @Override
+    public ChunkPosition func_147416_a(World worldIn, String structureName, int x, int y, int z) { //getNearestStructurePos
+        return null;
+    }
+
+    @Override
+    public void populate(IChunkProvider provider, int chunkX, int chunkZ) {
+        int x = chunkX * 16;
+        int z = chunkZ * 16;
+        BiomeGenBase biome = this.worldObj.getBiomeGenForCoords(x + 16, z + 16);
+
+        this.rand.setSeed(this.worldObj.getSeed());
+        long k = this.rand.nextLong() / 2L * 2L + 1L;
+        long l = this.rand.nextLong() / 2L * 2L + 1L;
+        this.rand.setSeed((long) x * k + (long) z * l ^ this.worldObj.getSeed());
+
+        this.largeColdAercloudStructure.generateStructuresInChunk(this.worldObj, this.rand, chunkX, chunkZ);
+        biome.decorate(this.worldObj, this.rand, x, z);
+
+        SpawnerAnimals.performWorldGenSpawning(this.worldObj, biome, x + 8, z + 8, 16, 16, this.rand);
+        final BiomeGenBase biomegenbase = biome;
+
+        if (biomegenbase instanceof AetherBiome) {
+            for (int numberoftreegen = 3, i2 = 0; i2 < numberoftreegen; ++i2) {
+                final int k2 = x + this.rand.nextInt(8) + 8;
+                final int j2 = z + this.rand.nextInt(8) + 8;
+                final WorldGenerator worldgenerator = ((AetherBiome) biomegenbase).getRandomTreeFeature(this.rand);
+                worldgenerator.setScale(1.0, 1.0, 1.0);
+                worldgenerator.generate(this.worldObj, this.rand, k2, this.worldObj.getHeightValue(k2, j2), j2);
             }
         }
 
-		for (int n = 0; n < 3; ++n) {
-            if (this.rand.nextInt(2) == 0) {
-                final int x2 = x + this.rand.nextInt(16) + 8;
-                final int y2 = this.rand.nextInt(128);
-                final int z2 = z + this.rand.nextInt(16) + 8;
-                new AetherGenFlowers(BlocksAether.carrion_flower, 64).generate(this.worldObj, this.rand, x2, y2, z2);
+        if (biomegenbase instanceof AetherBiomeAetherForest) {
+            for (int numberoftreegen = 39, i2 = 0; i2 < numberoftreegen; ++i2) {
+                final int k2 = x + this.rand.nextInt(8) + 8;
+                final int j2 = z + this.rand.nextInt(8) + 8;
+                final WorldGenerator worldgenerator = ((AetherBiomeAetherForest) biomegenbase).getRandomTreeFeature(this.rand);
+                worldgenerator.setScale(1.0, 1.0, 1.0);
+                worldgenerator.generate(this.worldObj, this.rand, k2, this.worldObj.getHeightValue(k2, j2), j2);
             }
         }
 
-		for (int n = 0; n < 3; ++n) {
-            if (this.rand.nextInt(2) == 0) {
-                final int x2 = x + this.rand.nextInt(16) + 8;
-                final int y2 = this.rand.nextInt(128);
-                final int z2 = z + this.rand.nextInt(16) + 8;
-                new AetherGenFlowers(BlocksAether.blue_swingtip, 64).generate(this.worldObj, this.rand, x2, y2, z2);
+        if (biomegenbase instanceof AetherBiomeArctic) {
+            for (int numberoftreegen = 3, i2 = 0; i2 < numberoftreegen; ++i2) {
+                final int k2 = x + this.rand.nextInt(8) + 8;
+                final int j2 = z + this.rand.nextInt(8) + 8;
+                final WorldGenerator worldgenerator = ((AetherBiomeArctic) biomegenbase).getRandomTreeFeature(this.rand);
+                worldgenerator.setScale(1.0, 1.0, 1.0);
+                worldgenerator.generate(this.worldObj, this.rand, k2, this.worldObj.getHeightValue(k2, j2), j2);
             }
         }
 
-		for (int n = 0; n < 3; ++n) {
-            if (this.rand.nextInt(2) == 0) {
-            	final int x2 = x + this.rand.nextInt(16) + 8;
-                final int y2 = this.rand.nextInt(128);
-                final int z2 = z + this.rand.nextInt(16) + 8;
-                new AetherGenFlowers(BlocksAether.quickshoot, 64).generate(this.worldObj, this.rand, x2, y2, z2);
+        if (biomegenbase instanceof AetherBiomeEnchantedIsland) {
+            for (int numberoftreegen = 3, i2 = 0; i2 < numberoftreegen; ++i2) {
+                final int k2 = x + this.rand.nextInt(8) + 8;
+                final int j2 = z + this.rand.nextInt(8) + 8;
+                final WorldGenerator worldgenerator = ((AetherBiomeEnchantedIsland) biomegenbase).getRandomTreeFeature(this.rand);
+                worldgenerator.setScale(1.0, 1.0, 1.0);
+                worldgenerator.generate(this.worldObj, this.rand, k2, this.worldObj.getHeightValue(k2, j2), j2);
             }
         }
 
-		for (int n = 0; n < 3; ++n) {
-            if (this.rand.nextInt(2) == 0) {
-            	final int x2 = x + this.rand.nextInt(16) + 8;
-                final int y2 = this.rand.nextInt(128);
-                final int z2 = z + this.rand.nextInt(16) + 8;
-                new AetherGenFlowers(BlocksAether.aether_tulips, 64).generate(this.worldObj, this.rand, x2, y2, z2);
+        if (biomegenbase instanceof AetherBiomeAetherPeaks) {
+            for (int numberoftreegen = 3, i2 = 0; i2 < numberoftreegen; ++i2) {
+                final int k2 = x + this.rand.nextInt(8) + 8;
+                final int j2 = z + this.rand.nextInt(8) + 8;
+                final WorldGenerator worldgenerator = ((AetherBiomeAetherPeaks) biomegenbase).getRandomTreeFeature(this.rand);
+                worldgenerator.setScale(1.0, 1.0, 1.0);
+                worldgenerator.generate(this.worldObj, this.rand, k2, this.worldObj.getHeightValue(k2, j2), j2);
             }
         }
 
-		if (AetherConfig.tallgrassEnabled()) {
-		final int numberofgrassgen = 4;
-		for (int i2 = 0; i2 < numberofgrassgen; ++i2) {
-            final int k2 = x + this.rand.nextInt(16) + 8;
-            final int j2 = z + this.rand.nextInt(16) + 8;
-            final WorldGenerator worldgenerator = biomegenbase.getRandomWorldGenForGrass(this.rand);
-            worldgenerator.setScale(1.0, 1.0, 1.0);
-            worldgenerator.generate(this.worldObj, this.rand, k2, this.worldObj.getHeightValue(k2, j2), j2);
+        if (biomegenbase instanceof AetherBiomeDivineIsland) {
+            for (int numberoftreegen = 3, i2 = 0; i2 < numberoftreegen; ++i2) {
+                final int k2 = x + this.rand.nextInt(8) + 8;
+                final int j2 = z + this.rand.nextInt(8) + 8;
+                final WorldGenerator worldgenerator = ((AetherBiomeDivineIsland) biomegenbase).getRandomTreeFeature(this.rand);
+                worldgenerator.setScale(1.0, 1.0, 1.0);
+                worldgenerator.generate(this.worldObj, this.rand, k2, this.worldObj.getHeightValue(k2, j2), j2);
+            }
         }
-	  }
-		for (int n2 = 0; n2 < 2; ++n2) {
-            final int x2 = x + this.rand.nextInt(16) + 8;
+
+        if (AetherConfig.silver_dungeon_enable && silver_dungeon_type < 10) {
+            this.silverDungeonStructure.generateStructuresInChunk(this.worldObj, this.rand, chunkX, chunkZ);
+        } else if (AetherConfig.tier2_silver_dungeon_enable && silver_dungeon_type < 17) {
+            this.ancientsilverDungeonStructure.generateStructuresInChunk(this.worldObj, this.rand, chunkX, chunkZ);
+        } else if (AetherConfig.tier3_silver_dungeon_enable && silver_dungeon_type <= 20) {
+            this.divinesilverDungeonStructure.generateStructuresInChunk(this.worldObj, this.rand, chunkX, chunkZ);
+        }
+
+        if (AetherConfig.gold_dungeon_enable && golden_dungeon_type < 10) {
+            this.goldenDungeonStructure.generateStructuresInChunk(this.worldObj, this.rand, chunkX, chunkZ);
+        } else if (AetherConfig.tier2_gold_dungeon_enable && golden_dungeon_type < 17) {
+            this.ancientGoldenDungeonStructure.generateStructuresInChunk(this.worldObj, this.rand, chunkX, chunkZ);
+        } else if (AetherConfig.tier3_gold_dungeon_enable && golden_dungeon_type <= 20) {
+            this.divineGoldenDungeonStructure.generateStructuresInChunk(this.worldObj, this.rand, chunkX, chunkZ);
+        }
+
+        //Standard 3 Aerclouds
+        if (this.rand.nextInt(50) == 0) {
+            new AetherCloudsGenNew(BlocksAether.aercloud, 0, 16, false).generate(this.worldObj, this.rand, x, this.rand.nextInt(64) + 32, z);
+
+            if (biome == AetherWorld.aercloud_fields) {
+                new AetherCloudsGenNew(BlocksAether.aercloud, 0, 16, false).generate(this.worldObj, this.rand, x, this.rand.nextInt(64) + 32, z);
+            }
+
+            if (biome == AetherWorld.divine_island || biome == AetherWorld.aether_peaks) {
+                new AetherCloudsGenNew(BlocksAether.aercloud, 0, 16, false).generate(this.worldObj, this.rand, x, this.rand.nextInt(128) + 96, z);
+            }
+        }
+
+        if (this.rand.nextInt(6) == 0) {
+            new AetherCloudsGenNew(BlocksAether.aercloud, 0, 64, false).generate(this.worldObj, this.rand, x, this.rand.nextInt(128), z);
+
+            if (biome == AetherWorld.aercloud_fields) {
+                new AetherCloudsGenNew(BlocksAether.aercloud, 0, 64, false).generate(this.worldObj, this.rand, x, this.rand.nextInt(128), z);
+            }
+
+            if (biome == AetherWorld.divine_island || biome == AetherWorld.aether_peaks) {
+                new AetherCloudsGenNew(BlocksAether.aercloud, 0, 16, false).generate(this.worldObj, this.rand, x, this.rand.nextInt(110) + 128, z);
+            }
+        }
+
+        if (this.rand.nextInt(20) == 0) {
+            new AetherCloudsGenNew(BlocksAether.aercloud, 1, 4, false).generate(this.worldObj, this.rand, x, this.rand.nextInt(64), z);
+
+            if (biome == AetherWorld.aercloud_fields) {
+                new AetherCloudsGenNew(BlocksAether.aercloud, 1, 4, false).generate(this.worldObj, this.rand, x, this.rand.nextInt(64), z);
+            }
+
+            if (biome == AetherWorld.divine_island || biome == AetherWorld.aether_peaks) {
+                new AetherCloudsGenNew(BlocksAether.aercloud, 1, 4, false).generate(this.worldObj, this.rand, x, this.rand.nextInt(64) + 128, z);
+            }
+        }
+
+        if (this.rand.nextInt(12) == 0) {
+            new AetherCloudsGenNew(BlocksAether.aercloud, 1, 4, false).generate(this.worldObj, this.rand, x, this.rand.nextInt(64) + 64, z);
+
+            if (biome == AetherWorld.aercloud_fields) {
+                new AetherCloudsGenNew(BlocksAether.aercloud, 1, 4, false).generate(this.worldObj, this.rand, x, this.rand.nextInt(64) + 64, z);
+            }
+
+            if (biome == AetherWorld.divine_island || biome == AetherWorld.aether_peaks) {
+                new AetherCloudsGenNew(BlocksAether.aercloud, 1, 4, false).generate(this.worldObj, this.rand, x, this.rand.nextInt(64) + 128, z);
+            }
+        }
+
+        if (this.rand.nextInt(30) == 0) {
+            new AetherCloudsGenNew(BlocksAether.aercloud, 2, 4, false).generate(this.worldObj, this.rand, x, this.rand.nextInt(64) + 128, z);
+
+            if (biome == AetherWorld.aercloud_fields) {
+                new AetherCloudsGenNew(BlocksAether.aercloud, 2, 4, false).generate(this.worldObj, this.rand, x, this.rand.nextInt(64) + 128, z);
+            }
+
+            if (biome == AetherWorld.divine_island || biome == AetherWorld.aether_peaks) {
+                new AetherCloudsGenNew(BlocksAether.aercloud, 2, 4, false).generate(this.worldObj, this.rand, x, this.rand.nextInt(32) + 196, z);
+            }
+        }
+
+        if (this.rand.nextInt(48) == 0) {
+            if (biome == AetherWorld.aercloud_fields) {
+                for (int k3 = 0; k3 < 6; ++k3) {
+                    final int j3 = x + this.rand.nextInt(8) + 8;
+                    final int l4 = this.rand.nextInt(this.rand.nextInt(48) + 48);
+                    final int l5 = z + this.rand.nextInt(8) + 8;
+                    new AetherGenLakes().generate(this.worldObj, this.rand, j3, l4, l5);
+                }
+            } else {
+                for (int k3 = 0; k3 < 6; ++k3) {
+                    final int j3 = x + this.rand.nextInt(8) + 8;
+                    final int l4 = this.rand.nextInt(this.rand.nextInt(200) + 48);
+                    final int l5 = z + this.rand.nextInt(8) + 8;
+                    new AetherGenLakes().generate(this.worldObj, this.rand, j3, l4, l5);
+                }
+            }
+        }
+
+        //--------------------EXCLUSIVE GEN AETHER BIOME--------------------
+        if (biome == AetherWorld.aether_biome) {
+            if (AetherConfig.enableLightGreenAercloud() && this.rand.nextInt(70) == 0) {
+                final int y = this.rand.nextInt(64) + 16;
+                new AetherCloudsGenNew(BlocksAether.green_aercloud, 0, 9, false).generate(this.worldObj, this.rand, x, y, z);
+            }
+
+            if (AetherConfig.enableGreenAercloud() && this.rand.nextInt(14) == 0) {
+                final int y = this.rand.nextInt(64) + 20;
+                new AetherCloudsGenNew(BlocksAether.green_aercloud, 1, 4, false).generate(this.worldObj, this.rand, x, y, z);
+            }
+
+            for (int n = 0; n < 6; ++n) {
+                if (this.rand.nextInt(2) == 0) {
+                    final int x2 = x + this.rand.nextInt(8) + 8;
+                    final int y2 = this.rand.nextInt(128);
+                    final int z2 = z + this.rand.nextInt(8) + 8;
+                    new AetherGenFlowers(BlocksAether.purple_flower, 64).generate(this.worldObj, this.rand, x2, y2, z2);
+                }
+            }
+
+            for (int n = 0; n < 4; ++n) {
+                if (this.rand.nextInt(2) == 0) {
+                    final int x2 = x + this.rand.nextInt(8) + 8;
+                    final int y2 = this.rand.nextInt(128);
+                    final int z2 = z + this.rand.nextInt(8) + 8;
+                    new AetherGenFlowers(BlocksAether.burstblossom, 64).generate(this.worldObj, this.rand, x2, y2, z2);
+                }
+            }
+
+            for (int n = 0; n < 3; ++n) {
+                if (this.rand.nextInt(2) == 0) {
+                    final int x2 = x + this.rand.nextInt(8) + 8;
+                    final int y2 = this.rand.nextInt(128);
+                    final int z2 = z + this.rand.nextInt(8) + 8;
+                    new AetherGenFlowers(BlocksAether.quickshoot, 64).generate(this.worldObj, this.rand, x2, y2, z2);
+                }
+            }
+
+            for (int n = 0; n < 6; ++n) {
+                if (this.rand.nextInt(2) == 0) {
+                    final int x2 = x + this.rand.nextInt(8) + 8;
+                    final int y2 = this.rand.nextInt(128);
+                    final int z2 = z + this.rand.nextInt(8) + 8;
+                    new AetherGenFlowers(BlocksAether.white_flower, 64).generate(this.worldObj, this.rand, x2, y2, z2);
+                }
+            }
+
+            for (int n = 0; n < 6; ++n) {
+                if (this.rand.nextInt(2) == 0) {
+                    final int x2 = x + this.rand.nextInt(8) + 8;
+                    final int y2 = this.rand.nextInt(128);
+                    final int z2 = z + this.rand.nextInt(8) + 8;
+                    new AetherGenFlowers(BlocksAether.aercloud_layer, 32).generate(this.worldObj, this.rand, x2, y2, z2);
+                }
+            }
+
+            for (int n = 0; n < 3; ++n) {
+                if (this.rand.nextInt(2) == 0) {
+                    final int x2 = x + this.rand.nextInt(8) + 8;
+                    final int y2 = this.rand.nextInt(128);
+                    final int z2 = z + this.rand.nextInt(8) + 8;
+                    new AetherGenFlowers(BlocksAether.aether_tulips, 64).generate(this.worldObj, this.rand, x2, y2, z2);
+                }
+            }
+        }
+
+        //--------------------EXCLUSIVE GEN AETHER FOREST BIOME--------------------
+        if (biome == AetherWorld.aether_forest) {
+            if (AetherConfig.enableLimeAercloud() && this.rand.nextInt(17) == 0) {
+                final int y = this.rand.nextInt(64) + 50;
+                new AetherCloudsGenNew(BlocksAether.green_aercloud, 2, 4, false).generate(this.worldObj, this.rand, x, y, z);
+            }
+
+            for (int n3 = 0; n3 < 3; ++n3) {
+                final int x3 = x + this.rand.nextInt(8) + 8;
+                final int y3 = this.rand.nextInt(128);
+                final int z3 = z + this.rand.nextInt(8) + 8;
+                new WorldGenRaspberryBush(BlocksAether.raspberry_bush, 5).generate(this.worldObj, this.rand, x3, y3, z3);
+            }
+
+            for (int n = 0; n < 4; ++n) {
+                if (this.rand.nextInt(2) == 0) {
+                    final int x2 = x + this.rand.nextInt(8) + 8;
+                    final int y2 = this.rand.nextInt(128);
+                    final int z2 = z + this.rand.nextInt(8) + 8;
+                    new AetherGenFlowers(BlocksAether.burstblossom, 64).generate(this.worldObj, this.rand, x2, y2, z2);
+                }
+            }
+
+            for (int n = 0; n < 6; ++n) {
+                if (this.rand.nextInt(2) == 0) {
+                    final int x2 = x + this.rand.nextInt(8) + 8;
+                    final int y2 = this.rand.nextInt(128);
+                    final int z2 = z + this.rand.nextInt(8) + 8;
+                    new AetherGenFlowers(BlocksAether.purple_flower, 64).generate(this.worldObj, this.rand, x2, y2, z2);
+                }
+            }
+
+            for (int n = 0; n < 3; ++n) {
+                if (this.rand.nextInt(2) == 0) {
+                    final int x2 = x + this.rand.nextInt(8) + 8;
+                    final int y2 = this.rand.nextInt(128);
+                    final int z2 = z + this.rand.nextInt(8) + 8;
+                    new AetherGenFlowers(BlocksAether.quickshoot, 64).generate(this.worldObj, this.rand, x2, y2, z2);
+                }
+            }
+
+            for (int n = 0; n < 6; ++n) {
+                if (this.rand.nextInt(2) == 0) {
+                    final int x2 = x + this.rand.nextInt(8) + 8;
+                    final int y2 = this.rand.nextInt(128);
+                    final int z2 = z + this.rand.nextInt(8) + 8;
+                    new AetherGenFlowers(BlocksAether.white_flower, 64).generate(this.worldObj, this.rand, x2, y2, z2);
+                }
+            }
+
+            for (int n = 0; n < 6; ++n) {
+                if (this.rand.nextInt(2) == 0) {
+                    final int x2 = x + this.rand.nextInt(8) + 8;
+                    final int y2 = this.rand.nextInt(128);
+                    final int z2 = z + this.rand.nextInt(8) + 8;
+                    new AetherGenFlowers(BlocksAether.aercloud_layer, 32).generate(this.worldObj, this.rand, x2, y2, z2);
+                }
+            }
+
+            for (int n = 0; n < 3; ++n) {
+                if (this.rand.nextInt(2) == 0) {
+                    final int x2 = x + this.rand.nextInt(8) + 8;
+                    final int y2 = this.rand.nextInt(128);
+                    final int z2 = z + this.rand.nextInt(8) + 8;
+                    new AetherGenFlowers(BlocksAether.aether_tulips, 64).generate(this.worldObj, this.rand, x2, y2, z2);
+                }
+            }
+        }
+
+        //--------------------EXCLUSIVE GEN AETHER PEAKS BIOME--------------------
+        if (biome == AetherWorld.aether_peaks) {
+            if (AetherConfig.enablePinkAercloud()) {
+                if (this.rand.nextInt(52) == 0) {
+                    final int y = this.rand.nextInt(64) + 148;
+                    new AetherCloudsGenNew(BlocksAether.pink_aercloud, 0, 9, false).generate(this.worldObj, this.rand, x, y, z);
+                }
+            }
+            if (AetherConfig.enableMagentaAercloud()) {
+                if (this.rand.nextInt(54) == 0) {
+                    final int y = this.rand.nextInt(64) + 148;
+                    new AetherCloudsGenNew(BlocksAether.pink_aercloud, 1, 4, false).generate(this.worldObj, this.rand, x, y, z);
+                }
+            }
+
+            for (int n4 = 0; n4 < 2; ++n4) {
+                final int x4 = x + this.rand.nextInt(8) + 8;
+                final int y4 = this.rand.nextInt(256);
+                final int z4 = z + this.rand.nextInt(8) + 8;
+                new WorldGenBlackberryBush(BlocksAether.blackberry_bush, 3).generate(this.worldObj, this.rand, x4, y4, z4);
+            }
+
+            for (int n = 0; n < 6; ++n) {
+                if (this.rand.nextInt(2) == 0) {
+                    final int x2 = x + this.rand.nextInt(8) + 8;
+                    final int y2 = this.rand.nextInt(128);
+                    final int z2 = z + this.rand.nextInt(8) + 8;
+                    new AetherGenFlowers(BlocksAether.white_flower, 64).generate(this.worldObj, this.rand, x2, y2, z2);
+                }
+            }
+
+            for (int n = 0; n < 6; ++n) {
+                if (this.rand.nextInt(2) == 0) {
+                    final int x2 = x + this.rand.nextInt(8) + 8;
+                    final int y2 = this.rand.nextInt(128);
+                    final int z2 = z + this.rand.nextInt(8) + 8;
+                    new AetherGenFlowers(BlocksAether.aercloud_layer, 32).generate(this.worldObj, this.rand, x2, y2, z2);
+                }
+            }
+
+            for (int n = 0; n < 3; ++n) {
+                if (this.rand.nextInt(2) == 0) {
+                    final int x2 = x + this.rand.nextInt(8) + 8;
+                    final int y2 = this.rand.nextInt(128);
+                    final int z2 = z + this.rand.nextInt(8) + 8;
+                    new AetherGenFlowers(BlocksAether.aether_tulips, 64).generate(this.worldObj, this.rand, x2, y2, z2);
+                }
+            }
+        }
+
+        //--------------------EXCLUSIVE GEN QUICKSOIL DUNES BIOME--------------------
+        if (biome == AetherWorld.quicksoil_dunes) {
+            if (AetherConfig.enableOrangeAercloud()) {
+                if (this.rand.nextInt(79) == 0) {
+                    final int y = this.rand.nextInt(64) + 64;
+                    new AetherCloudsGenNew(BlocksAether.pink_aercloud, 2, 4, false).generate(this.worldObj, this.rand, x, y, z);
+                }
+            }
+
+            for (int m = 0; m < 5; m++) {
+                if (this.rand.nextInt(123) == 0) {
+                    final int j3 = x + this.rand.nextInt(8) + 8;
+                    final int l4 = z + this.rand.nextInt(8) + 8;
+                    final int l5 = this.worldObj.getHeightValue(j3, l4);
+                    new AetherGenHolystoneMounts().generate(this.worldObj, this.rand, j3, l5, l4);
+                }
+            }
+
+            for (int m = 0; m < 5; m++) {
+                if (this.rand.nextInt(47) == 0) {
+                    final int j3 = x + this.rand.nextInt(8) + 8;
+                    final int l4 = z + this.rand.nextInt(8) + 8;
+                    final int l5 = this.worldObj.getHeightValue(j3, l4);
+                    new AetherGenQuicksoilMounts().generate(this.worldObj, this.rand, j3, l5, l4);
+                }
+            }
+
+            for (int n = 0; n < 3; ++n) {
+                if (this.rand.nextInt(2) == 0) {
+                    final int x2 = x + this.rand.nextInt(8) + 8;
+                    final int y2 = this.rand.nextInt(128);
+                    final int z2 = z + this.rand.nextInt(8) + 8;
+                    new AetherGenFlowers(BlocksAether.carrion_flower, 64).generate(this.worldObj, this.rand, x2, y2, z2);
+                }
+            }
+
+            for (int m = 0; m < 5; m++) {
+                if (this.rand.nextInt(3) == 0) {
+                    final int j3 = x + this.rand.nextInt(8) + 8;
+                    final int l4 = z + this.rand.nextInt(8) + 8;
+                    final int l5 = this.worldObj.getHeightValue(j3, l4);
+                    new AetherGenCactus().generate(this.worldObj, this.rand, j3, l5, l4);
+                }
+            }
+        }
+
+
+        //--------------------EXCLUSIVE GEN ARCTIC HIGHLANDS BIOME--------------------
+        if (biome == AetherWorld.arctic_biome) {
+            for (int n = 0; n < 3; ++n) {
+                if (this.rand.nextInt(2) == 0) {
+                    final int x2 = x + this.rand.nextInt(16) + 8;
+                    final int y2 = this.rand.nextInt(128);
+                    final int z2 = z + this.rand.nextInt(16) + 8;
+                    new AetherGenFlowers(BlocksAether.white_rose, 64).generate(this.worldObj, this.rand, x2, y2, z2);
+                }
+            }
+
+            for (int n = 0; n < 2; ++n) {
+                if (this.rand.nextInt(2) == 0) {
+                    final int x2 = x + this.rand.nextInt(16) + 8;
+                    final int y2 = this.rand.nextInt(128);
+                    final int z2 = z + this.rand.nextInt(16) + 8;
+                    new AetherGenSnowLayer(Blocks.snow_layer, 64).generate(this.worldObj, this.rand, x2, y2, z2);
+                }
+            }
+
+            for (int n = 0; n < 5; ++n) {
+                if (this.rand.nextInt(2) == 0) {
+                    final int x2 = x + this.rand.nextInt(16) + 8;
+                    final int y2 = this.rand.nextInt(128);
+                    final int z2 = z + this.rand.nextInt(16) + 8;
+                    new AetherGenFlowers(BlocksAether.blue_swingtip, 64).generate(this.worldObj, this.rand, x2, y2, z2);
+                }
+            }
+
+            for (int m = 0; m < 3; m++) {
+                if (this.rand.nextInt(11) == 0) {
+                    final int j3 = x + this.rand.nextInt(8) + 8;
+                    final int l4 = z + this.rand.nextInt(8) + 8;
+                    final int l5 = this.rand.nextInt(20) + 4;
+                    new WorldGenArcticGlowstone().generate(this.worldObj, this.rand, j3, l5, l4);
+                }
+            }
+        }
+
+        //--------------------EXCLUSIVE GEN DIVINE ISLAND BIOME--------------------
+        if (biome == AetherWorld.divine_island) {
+            if (AetherConfig.enablePurpleAercloud()) {
+                if (this.rand.nextInt(60) == 0) {
+                    final int y = this.rand.nextInt(64) + 32;
+                    new AetherCloudsGenNew(BlocksAether.purple_aercloud, 0, 8, false).generate(this.worldObj, this.rand, x, y, z);
+                }
+            }
+
+            if (AetherConfig.enableVioletAercloud()) {
+                if (this.rand.nextInt(14) == 0) {
+                    final int y = this.rand.nextInt(64);
+                    new AetherCloudsGenNew(BlocksAether.purple_aercloud, 1, 4, false).generate(this.worldObj, this.rand, x, y, z);
+                }
+            }
+
+            if (AetherConfig.enableDarkPurpleAercloud()) {
+                if (this.rand.nextInt(17) == 0) {
+                    final int y = this.rand.nextInt(64) + 64;
+                    new AetherCloudsGenNew(BlocksAether.purple_aercloud, 2, 4, false).generate(this.worldObj, this.rand, x, y, z);
+                }
+            }
+
+            for (int n = 0; n < 3; ++n) {
+                if (this.rand.nextInt(2) == 0) {
+                    final int x2 = x + this.rand.nextInt(8) + 8;
+                    final int y2 = this.rand.nextInt(256);
+                    final int z2 = z + this.rand.nextInt(8) + 8;
+                    new AetherGenFlowers(BlocksAether.divine_bloom, 32).generate(this.worldObj, this.rand, x2, y2, z2);
+                }
+            }
+
+            for (int n = 0; n < 2; ++n) {
+                if (this.rand.nextInt(5) == 0) {
+                    final int x2 = x + this.rand.nextInt(8) + 8;
+                    final int y2 = this.rand.nextInt(256);
+                    final int z2 = z + this.rand.nextInt(8) + 8;
+                    new AetherGenFlowers(BlocksAether.divine_stalk, 32).generate(this.worldObj, this.rand, x2, y2, z2);
+                }
+            }
+
+            for (int n = 0; n < 3; ++n) {
+                if (this.rand.nextInt(7) == 0) {
+                    final int x2 = x + this.rand.nextInt(8) + 8;
+                    final int y2 = this.rand.nextInt(256);
+                    final int z2 = z + this.rand.nextInt(8) + 8;
+                    new AetherGenFlowers(BlocksAether.divine_lily, 32).generate(this.worldObj, this.rand, x2, y2, z2);
+                }
+            }
+
+            for (int n = 0; n < 6; ++n) {
+                if (this.rand.nextInt(2) == 0) {
+                    final int x2 = x + this.rand.nextInt(8) + 8;
+                    final int y2 = this.rand.nextInt(256);
+                    final int z2 = z + this.rand.nextInt(8) + 8;
+                    new AetherGenFlowers(BlocksAether.aechor_sprout, 64).generate(this.worldObj, this.rand, x2, y2, z2);
+                }
+            }
+
+            for (int n6 = 0; n6 < 2; ++n6) {
+                final int x6 = x + this.rand.nextInt(8) + 8;
+                final int y6 = this.rand.nextInt(128);
+                final int z6 = z + this.rand.nextInt(8) + 8;
+                new WorldGenGrapeVines(BlocksAether.grape_tree_mature, 3).generate(this.worldObj, this.rand, x6, y6, z6);
+            }
+
+            for (int m = 0; m < 5; m++) {
+                if (this.rand.nextInt(3) == 0) {
+                    final int j3 = x + this.rand.nextInt(8) + 8;
+                    final int l4 = z + this.rand.nextInt(8) + 8;
+                    final int l5 = this.rand.nextInt(128) + 8;
+                    new WorldGenAmethystGlowstone().generate(this.worldObj, this.rand, j3, l5, l4);
+                }
+            }
+        }
+
+        //--------------------EXCLUSIVE GEN ENCHANTED ISLAND BIOME--------------------
+        if (biome == AetherWorld.enchanted_island) {
+            for (int n = 0; n < 3; ++n) {
+                if (this.rand.nextInt(2) == 0) {
+                    final int x2 = x + this.rand.nextInt(8) + 8;
+                    final int y2 = this.rand.nextInt(128);
+                    final int z2 = z + this.rand.nextInt(8) + 8;
+                    new AetherGenFlowers(BlocksAether.enchanted_aether_tulips, 32).generate(this.worldObj, this.rand, x2, y2, z2);
+                }
+            }
+
+            for (int n = 0; n < 2; ++n) {
+                if (this.rand.nextInt(5) == 0) {
+                    final int x2 = x + this.rand.nextInt(8) + 8;
+                    final int y2 = this.rand.nextInt(128);
+                    final int z2 = z + this.rand.nextInt(8) + 8;
+                    new AetherGenFlowers(BlocksAether.enchanted_bloom, 32).generate(this.worldObj, this.rand, x2, y2, z2);
+                }
+            }
+
+            for (int n = 0; n < 3; ++n) {
+                if (this.rand.nextInt(7) == 0) {
+                    final int x2 = x + this.rand.nextInt(8) + 8;
+                    final int y2 = this.rand.nextInt(128);
+                    final int z2 = z + this.rand.nextInt(8) + 8;
+                    new AetherGenFlowers(BlocksAether.enchanted_quickshoot, 32).generate(this.worldObj, this.rand, x2, y2, z2);
+                }
+            }
+
+            for (int n5 = 0; n5 < 2; ++n5) {
+                final int x5 = x + this.rand.nextInt(8) + 8;
+                final int y5 = this.rand.nextInt(128);
+                final int z5 = z + this.rand.nextInt(8) + 8;
+                new WorldGenOrangeTree(BlocksAether.mature_orange_tree, 2).generate(this.worldObj, this.rand, x5, y5, z5);
+            }
+        }
+
+        //--------------------EXCLUSIVE GEN AERCLOUD FIELD BIOME--------------------
+        if (biome == AetherWorld.aercloud_fields) {
+            if (this.rand.nextInt(35) == 0) {
+                final int j3 = x + this.rand.nextInt(8) + 8;
+                final int l4 = this.rand.nextInt(this.rand.nextInt(64) + 32);
+                final int l5 = z + this.rand.nextInt(8) + 8;
+                this.crystal_island.generate(this.worldObj, this.rand, j3, l4, l5);
+            }
+
+            if (this.rand.nextInt(60) == 0) {
+                final int j3 = x + this.rand.nextInt(8) + 8;
+                final int l4 = this.rand.nextInt(this.rand.nextInt(8) + 16);
+                final int l5 = z + this.rand.nextInt(8) + 8;
+                this.void_island.generate(this.worldObj, this.rand, j3, l4, l5);
+            }
+        }
+
+        //All Biomes
+        for (int n2 = 0; n2 < 2; ++n2) {
+            final int x2 = x + this.rand.nextInt(8) + 8;
             final int y2 = this.rand.nextInt(128);
-            final int z2 = z + this.rand.nextInt(16) + 8;
+            final int z2 = z + this.rand.nextInt(8) + 8;
             new WorldGenBerryBush(BlocksAether.berry_bush, 3).generate(this.worldObj, this.rand, x2, y2, z2);
         }
-		for (int n3 = 0; n3 < 2; ++n3) {
-            final int x3 = x + this.rand.nextInt(18) + 8;
-            final int y3 = this.rand.nextInt(128);
-            final int z3 = z + this.rand.nextInt(18) + 8;
-            new WorldGenRaspberryBush(BlocksAether.raspberry_bush, 5).generate(this.worldObj, this.rand, x3, y3, z3);
-        }
-		for (int n4 = 0; n4 < 2; ++n4) {
-            final int x4 = x + this.rand.nextInt(15) + 8;
+        for (int n4 = 0; n4 < 3; ++n4) {
+            final int x4 = x + this.rand.nextInt(8) + 8;
             final int y4 = this.rand.nextInt(128);
-            final int z4 = z + this.rand.nextInt(15) + 8;
+            final int z4 = z + this.rand.nextInt(8) + 8;
             new WorldGenStrawberryBush(BlocksAether.strawberry_bush, 4).generate(this.worldObj, this.rand, x4, y4, z4);
         }
-		for (int n4 = 0; n4 < 2; ++n4) {
-            final int x4 = x + this.rand.nextInt(14) + 4;
-            final int y4 = this.rand.nextInt(128);
-            final int z4 = z + this.rand.nextInt(14) + 4;
-            new WorldGenBlackberryBush(BlocksAether.blackberry_bush, 3).generate(this.worldObj, this.rand, x4, y4, z4);
+
+        if (this.rand.nextInt(4) == 0) {
+            for (int k3 = 0; k3 < 10; ++k3) {
+                final int j3 = x + this.rand.nextInt(8) + 8;
+                final int l4 = this.rand.nextInt(this.rand.nextInt(120) + 8);
+                final int l5 = z + this.rand.nextInt(8) + 8;
+                new AetherGenLiquids(Blocks.water).generate(this.worldObj, this.rand, j3, l4, l5);
+            }
         }
-		for (int n5 = 0; n5 < 2; ++n5) {
-            final int x5 = x + this.rand.nextInt(10) + 6;
-            final int y5 = this.rand.nextInt(128);
-            final int z5 = z + this.rand.nextInt(10) + 6;
-            new WorldGenOrangeTree(BlocksAether.mature_orange_tree, 2).generate(this.worldObj, this.rand, x5, y5, z5);
+
+        if (biome != AetherWorld.enchanted_island) {
+            for (int n = 0; n < 4; ++n) {
+                if (this.rand.nextInt(2) == 0) {
+                    final int x2 = x + this.rand.nextInt(8) + 8;
+                    final int y2 = this.rand.nextInt(128);
+                    final int z2 = z + this.rand.nextInt(8) + 8;
+                    new AetherGenFlowers(BlocksAether.neverbloom, 64).generate(this.worldObj, this.rand, x2, y2, z2);
+                }
+            }
         }
-		for (int n6 = 0; n6 < 2; ++n6) {
-            final int x6 = x + this.rand.nextInt(12) + 5;
-            final int y6 = this.rand.nextInt(128);
-            final int z6 = z + this.rand.nextInt(12) + 5;
-            new WorldGenGrapeVines(BlocksAether.grape_tree_mature, 3).generate(this.worldObj, this.rand, x6, y6, z6);
+
+        //Structures
+        int den_chance = (int) (1 + Math.random() * 5);
+        if (AetherConfig.zarnyllis_den_gen && den_chance == 1) {
+            if (biome == AetherWorld.arctic_biome || biome == AetherWorld.quicksoil_dunes) {
+                this.zarnillys_den.generate(this.worldObj, this.rand, x, this.rand.nextInt(6) + 50, z);
+            }
+            if (biome == AetherWorld.aether_peaks || biome == AetherWorld.divine_island) {
+                this.zarnillys_den.generate(this.worldObj, this.rand, x, this.rand.nextInt(6) + 50, z);
+                this.zarnillys_den.generate(this.worldObj, this.rand, x, this.rand.nextInt(64) + 128, z);
+            }
         }
-		if (this.rand.nextInt(48) == 0) {
-		 for (int k3 = 0; k3 < 6; ++k3) {
-             final int j3 = x + this.rand.nextInt(8) + 8;
-             final int l4 = this.rand.nextInt(this.rand.nextInt(64) + 48);
-             final int l5 = z + this.rand.nextInt(8) + 8;
-             new AetherGenLakes().generate(this.worldObj, this.rand, j3, l4, l5);
-          }
-		}
-		if (this.rand.nextInt(4) == 0) {
-		 for (int k3 = 0; k3 < 10; ++k3) {
-             final int j3 = x + this.rand.nextInt(8) + 8;
-             final int l4 = this.rand.nextInt(this.rand.nextInt(120) + 8);
-             final int l5 = z + this.rand.nextInt(8) + 8;
-             new AetherGenLiquids(Blocks.water).generate(this.worldObj, this.rand, j3, l4, l5);
-          }
-		}
-		for (int k3 = 0; k3 < 25; k3++) {
-			final int j3 = x + this.rand.nextInt(8) + 8;
-			final int l5 = z + this.rand.nextInt(8) + 8;
-			final int l4 = this.worldObj.getHeightValue(j3, l5);
-			this.golden_oak_tree_dungeon.generate(this.worldObj, this.rand, j3, l4, l5);
-		}
-		if (this.rand.nextInt(50) == 0) {
-	        final int j3 = x + this.rand.nextInt(8) + 8;
-	        final int l4 = this.rand.nextInt(this.rand.nextInt(64) + 32);
-	        final int l5 = z + this.rand.nextInt(8) + 8;
-	        this.crystal_island.generate(this.worldObj, this.rand, j3, l4, l5);
-		}
-		if (this.rand.nextInt(70) == 0) {
-	        final int j3 = x + this.rand.nextInt(8) + 8;
-	        final int l4 = this.rand.nextInt(this.rand.nextInt(8) + 16);
-	        final int l5 = z + this.rand.nextInt(8) + 8;
-	        this.void_island.generate(this.worldObj, this.rand, j3, l4, l5);
-		}
-		if (this.rand.nextInt(30) == 0 ) {
-			if ((AetherConfig.shouldLoadHolidayContent()) || (AetherConfig.allowSeasonalChristmas() &&
-					(Calendar.getInstance().get(Calendar.MONTH) + 1 == 12 || Calendar.getInstance().get(Calendar.MONTH) + 1 == 1))) {
-				final int j3 = x + this.rand.nextInt(8) + 8;
-				final int l5 = z + this.rand.nextInt(8) + 8;
-				final int l4 = this.worldObj.getHeightValue(j3, l5);
-				this.holiday_tree.generate(this.worldObj, this.rand, j3, l4, l5);
-			}
-		}
+
+        if (biome == AetherWorld.divine_island) {
+            int bronze_type_divine = (int) (1 + Math.random() * 20);
+            if (AetherConfig.tier3_bronze_dungeon_enable && bronze_type_divine < 12) {
+                this.divine_dungeon_bronze.generate(this.worldObj, this.rand, x, this.rand.nextInt(12) + 24, z);
+                this.divine_dungeon_bronze.generate(this.worldObj, this.rand, x, this.rand.nextInt(50) + 128, z);
+            } else if (AetherConfig.tier4_bronze_dungeon_enable && bronze_type_divine >= 12) {
+                this.mythic_dungeon_bronze.generate(this.worldObj, this.rand, x, this.rand.nextInt(4) + 24, z);
+                this.mythic_dungeon_bronze.generate(this.worldObj, this.rand, x, this.rand.nextInt(34) + 128, z);
+            }
+        } else {
+            int bronze_type = (int) (1 + Math.random() * 20);
+            if (AetherConfig.bronze_dungeon_enable && bronze_type < 10) {
+                this.dungeon_bronze.generate(this.worldObj, this.rand, x, this.rand.nextInt(28) + 24, z);
+                if (biome == AetherWorld.aether_peaks) {
+                    this.dungeon_bronze.generate(this.worldObj, this.rand, x, this.rand.nextInt(50) + 128, z);
+                }
+            } else if (AetherConfig.tier2_bronze_dungeon_enable && bronze_type < 14) {
+                this.large_dungeon_bronze.generate(this.worldObj, this.rand, x, this.rand.nextInt(18) + 26, z);
+                if (biome == AetherWorld.aether_peaks) {
+                    this.large_dungeon_bronze.generate(this.worldObj, this.rand, x, this.rand.nextInt(50) + 128, z);
+                }
+            } else if (AetherConfig.tier3_bronze_dungeon_enable && bronze_type < 19) {
+                this.divine_dungeon_bronze.generate(this.worldObj, this.rand, x, this.rand.nextInt(12) + 24, z);
+                if (biome == AetherWorld.aether_peaks) {
+                    this.divine_dungeon_bronze.generate(this.worldObj, this.rand, x, this.rand.nextInt(50) + 128, z);
+                }
+            } else if (AetherConfig.tier4_bronze_dungeon_enable && bronze_type >= 19) {
+                this.mythic_dungeon_bronze.generate(this.worldObj, this.rand, x, this.rand.nextInt(4) + 24, z);
+                if (biome == AetherWorld.aether_peaks) {
+                    this.mythic_dungeon_bronze.generate(this.worldObj, this.rand, x, this.rand.nextInt(34) + 128, z);
+                }
+            }
+        }
+
+        if (AetherConfig.cobalt_dungeon_enable && (biome == AetherWorld.quicksoil_dunes || biome == AetherWorld.arctic_biome)) {
+            this.cobalt_dungeon.generate(this.worldObj, this.rand, x, this.rand.nextInt(14) + 22, z);
+        }
+
+        for (int k3 = 0; k3 < 25; k3++) {
+            final int j3 = x + this.rand.nextInt(8) + 8;
+            final int l5 = z + this.rand.nextInt(8) + 8;
+            final int l4 = this.worldObj.getHeightValue(j3, l5);
+            this.golden_oak_tree_dungeon.generate(this.worldObj, this.rand, j3, l4, l5);
+        }
+
+        if (this.rand.nextInt(30) == 0 ) {
+            if ((AetherConfig.shouldLoadHolidayContent()) || (AetherConfig.allowSeasonalChristmas() && (Calendar.getInstance().get(Calendar.MONTH) + 1 == 12 || Calendar.getInstance().get(Calendar.MONTH) + 1 == 1))) {
+                final int j3 = x + this.rand.nextInt(8) + 8;
+                final int l5 = z + this.rand.nextInt(8) + 8;
+                final int l4 = this.worldObj.getHeightValue(j3, l5);
+                this.holiday_tree.generate(this.worldObj, this.rand, j3, l4, l5);
+            }
+        }
 	}
 
 	@Override

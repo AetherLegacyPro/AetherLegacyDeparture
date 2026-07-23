@@ -25,10 +25,11 @@ public class AetherWorldProvider extends WorldProvider {
         super();
 	}
 
-	@Override
-	protected void registerWorldChunkManager() {
-        this.worldChunkMgr = new WorldChunkManagerAether();
-	}
+    @Override
+    public void registerWorldChunkManager() {
+        this.worldChunkMgr = new WorldChunkManagerAether(this.worldObj.getSeed());
+        this.hasNoSky = false;
+    }
 
 	@Override
 	public float calculateCelestialAngle(long worldTime, float partialTicks) {

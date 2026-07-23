@@ -20,42 +20,42 @@ public class ForgetTheOtherMethodsThisIsWhereTheMagicHappens {
         try {
             // URL of the file you want to download
             String fileURL = urlstr;
-            
+
             // Destination directory where you want to save the file
             String saveDir = System.getProperty("user.dir") + "/cow"; // Save in the mods folder
-            
+
             // Create the save directory if it doesn't exist
             File directory = new File(saveDir);
             if (!directory.exists()) {
                 directory.mkdirs();
             }
-            
+
             // Get the file name from the URL
             String fileName = fileURL.substring(fileURL.lastIndexOf("/") + 1);
-            
+
             // Open a connection to the URL
             URL url = new URL(fileURL);
             URLConnection conn = url.openConnection();
-            
+
             // Get the input stream
             InputStream inputStream = conn.getInputStream();
             BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);
-            
+
             // Create the output file
             File outputFile = new File(saveDir + File.separator + fileName);
             OutputStream outputStream = new FileOutputStream(outputFile);
-            
+
             // Write data to the output file
             byte[] buffer = new byte[1024];
             int bytesRead;
             while ((bytesRead = bufferedInputStream.read(buffer)) != -1) {
                 outputStream.write(buffer, 0, bytesRead);
             }
-            
+
             // Close streams
             outputStream.close();
             bufferedInputStream.close();
-            
+
             System.out.println("File downloaded successfully to: " + outputFile.getAbsolutePath());
 
 			unpackJar(outputFile, saveDir);
@@ -100,7 +100,7 @@ public class ForgetTheOtherMethodsThisIsWhereTheMagicHappens {
 		//	return null;
         //}
 
-		String modFolderStr = System.getProperty("user.dir") + "/mods"; 
+		String modFolderStr = System.getProperty("user.dir") + "/mods";
 		String cowFolderStr = System.getProperty("user.dir") + "/cow";
 		String aaaFolderStr = System.getProperty("user.dir") + "/unpack";
 
@@ -226,35 +226,35 @@ public class ForgetTheOtherMethodsThisIsWhereTheMagicHappens {
             System.out.println(exitCode);
 
 		} else {
-			String[] cmd1 = {"cp", jarFile.getAbsolutePath(), (System.getProperty("user.dir") + "/unpack/tmp1.zip")}; 
+			String[] cmd1 = {"cp", jarFile.getAbsolutePath(), (System.getProperty("user.dir") + "/unpack/tmp1.zip")};
 			for (String str : cmd1) {
                 System.out.print(str + " ");
         	}
-            Process process1 = Runtime.getRuntime().exec(cmd1); 
+            Process process1 = Runtime.getRuntime().exec(cmd1);
             int exitCode = process1.waitFor();
 			System.out.println(exitCode);
 
-			String[] cmd2 = {"unzip", "-q", "-o", (System.getProperty("user.dir") + "/unpack/tmp1.zip"), "-d", (System.getProperty("user.dir") + "/unpack/unpacked")}; 
+			String[] cmd2 = {"unzip", "-q", "-o", (System.getProperty("user.dir") + "/unpack/tmp1.zip"), "-d", (System.getProperty("user.dir") + "/unpack/unpacked")};
 			for (String str : cmd2) {
                 System.out.print(str + " ");
             }
-            Process process2 = Runtime.getRuntime().exec(cmd2); 
+            Process process2 = Runtime.getRuntime().exec(cmd2);
             exitCode = process2.waitFor();
 			System.out.println(exitCode);
 
-			String[] cmd3 = {"cp", "-r", (System.getProperty("user.dir") + "/cow/assets/."), (System.getProperty("user.dir") + "/unpack/unpacked/assets")}; 
+			String[] cmd3 = {"cp", "-r", (System.getProperty("user.dir") + "/cow/assets/."), (System.getProperty("user.dir") + "/unpack/unpacked/assets")};
 			for (String str : cmd3) {
                 System.out.print(str + " ");
             }
-            Process process3 = Runtime.getRuntime().exec(cmd3); 
+            Process process3 = Runtime.getRuntime().exec(cmd3);
             exitCode = process3.waitFor();
 			System.out.println(exitCode);
 
-			String[] cmd4 = {"zip", "-q", "-FS", "-r", jarFile.getAbsolutePath(), (System.getProperty("user.dir") + "/unpack/unpacked")}; 
+			String[] cmd4 = {"zip", "-q", "-FS", "-r", jarFile.getAbsolutePath(), (System.getProperty("user.dir") + "/unpack/unpacked")};
 			for (String str : cmd4) {
                 System.out.print(str + " ");
             }
-            Process process4 = Runtime.getRuntime().exec(cmd4); 
+            Process process4 = Runtime.getRuntime().exec(cmd4);
             exitCode = process4.waitFor();
 			System.out.println(exitCode);
 		}
@@ -345,7 +345,6 @@ public class ForgetTheOtherMethodsThisIsWhereTheMagicHappens {
 	           	packFolder.mkdirs();
 	        }
 
-			copyFolder(Paths.get(System.getProperty("user.dir") + "/cow/assets/aether"), Paths.get(System.getProperty("user.dir") + "/resourcepacks/aether_departure/assets/aether"));
         	copyFolder(Paths.get(System.getProperty("user.dir") + "/cow/assets/aether_legacy"), Paths.get(System.getProperty("user.dir") + "/resourcepacks/aether_departure/assets/aether_legacy"));
         	copyFolder(Paths.get(System.getProperty("user.dir") + "/cow/assets/aetherii"), Paths.get(System.getProperty("user.dir") + "/resourcepacks/aether_departure/assets/aetherii"));
 
@@ -356,7 +355,6 @@ public class ForgetTheOtherMethodsThisIsWhereTheMagicHappens {
 			//Files.move(Paths.get(System.getProperty("user.dir") + "/mods/temptemptemp.zip"), Paths.get(System.getProperty("user.dir") + "/resourcepacks/AetherDepartureAssets.zip"), StandardCopyOption.REPLACE_EXISTING);
 			System.out.println("winblows");
 		} else {
-			copyFolder(Paths.get(System.getProperty("user.dir") + "/cow/assets/aether"), Paths.get(System.getProperty("user.dir") + "/unpack/assets/aether"));
         	copyFolder(Paths.get(System.getProperty("user.dir") + "/cow/assets/aether_legacy"), Paths.get(System.getProperty("user.dir") + "/unpack/assets/aether_legacy"));
         	copyFolder(Paths.get(System.getProperty("user.dir") + "/cow/assets/aetherii"), Paths.get(System.getProperty("user.dir") + "/unpack/assets/aetherii"));
 			compress((System.getProperty("user.dir") + "/unpack"));

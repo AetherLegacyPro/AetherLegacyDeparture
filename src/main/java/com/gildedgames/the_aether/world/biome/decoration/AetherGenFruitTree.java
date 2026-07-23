@@ -39,7 +39,7 @@ public class AetherGenFruitTree extends WorldGenAbstractTree {
             return false;
         }
         final Block y3 = world.getBlock(x, y - 1, z);
-        if (y3 != BlocksAether.aether_grass && y3 != BlocksAether.aether_dirt) {
+        if (y3 != BlocksAether.aether_grass && y3 != BlocksAether.aether_dirt && y3 != BlocksAether.arctic_grass && y3 != BlocksAether.enchanted_aether_grass && y3 != BlocksAether.divine_grass) {
             return false;
         }
         world.setBlock(x, y - 1, z, BlocksAether.aether_dirt);

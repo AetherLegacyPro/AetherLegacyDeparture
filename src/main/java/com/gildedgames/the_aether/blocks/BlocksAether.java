@@ -1,6 +1,7 @@
 package com.gildedgames.the_aether.blocks;
 
 import com.gildedgames.the_aether.Aether;
+import com.gildedgames.the_aether.blocks.natural.*;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.items.block.ItemAetherSlab;
 import com.gildedgames.the_aether.items.block.ItemAuraliteCluster;
@@ -79,81 +80,6 @@ import com.gildedgames.the_aether.blocks.dungeon.BlockMimicElysian;
 import com.gildedgames.the_aether.blocks.dungeon.BlockPillar;
 import com.gildedgames.the_aether.blocks.dungeon.BlockTreasureChest;
 import com.gildedgames.the_aether.blocks.elysian_totem.BlockElysianTotem;
-import com.gildedgames.the_aether.blocks.natural.BlockAercloud;
-import com.gildedgames.the_aether.blocks.natural.BlockAercloudLayer;
-import com.gildedgames.the_aether.blocks.natural.BlockAercloudLayer2;
-import com.gildedgames.the_aether.blocks.natural.BlockAercloudLayer3;
-import com.gildedgames.the_aether.blocks.natural.BlockAercloudLayer4;
-import com.gildedgames.the_aether.blocks.natural.BlockAercloudLayer5;
-import com.gildedgames.the_aether.blocks.natural.BlockAercloudLayer6;
-import com.gildedgames.the_aether.blocks.natural.BlockAercloudLayer7;
-import com.gildedgames.the_aether.blocks.natural.BlockAetherDirt;
-import com.gildedgames.the_aether.blocks.natural.BlockAetherFlower;
-import com.gildedgames.the_aether.blocks.natural.BlockAetherGrass;
-import com.gildedgames.the_aether.blocks.natural.BlockAetherLeaves;
-import com.gildedgames.the_aether.blocks.natural.BlockAetherLog;
-import com.gildedgames.the_aether.blocks.natural.BlockAetherLogDivine;
-import com.gildedgames.the_aether.blocks.natural.BlockAetherLogGreatroot;
-import com.gildedgames.the_aether.blocks.natural.BlockAetherLogOld;
-import com.gildedgames.the_aether.blocks.natural.BlockAetherLogVoid;
-import com.gildedgames.the_aether.blocks.natural.BlockAetherLogWisproot;
-import com.gildedgames.the_aether.blocks.natural.BlockAetherOre;
-import com.gildedgames.the_aether.blocks.natural.BlockAetherOreAetheral;
-import com.gildedgames.the_aether.blocks.natural.BlockAetherOreAgiosite;
-import com.gildedgames.the_aether.blocks.natural.BlockAetherOreDeific;
-import com.gildedgames.the_aether.blocks.natural.BlockAetherOreNew;
-import com.gildedgames.the_aether.blocks.natural.BlockAetherOreNewAetheral;
-import com.gildedgames.the_aether.blocks.natural.BlockAetherOreNewAgiosite;
-import com.gildedgames.the_aether.blocks.natural.BlockAetherOreNewDeific;
-import com.gildedgames.the_aether.blocks.natural.BlockAetherTallGrass;
-import com.gildedgames.the_aether.blocks.natural.BlockArcticGrass;
-import com.gildedgames.the_aether.blocks.natural.BlockArcticTallGrass;
-import com.gildedgames.the_aether.blocks.natural.BlockArkeniumPile;
-import com.gildedgames.the_aether.blocks.natural.BlockAuralite;
-import com.gildedgames.the_aether.blocks.natural.BlockAuraliteCluster;
-import com.gildedgames.the_aether.blocks.natural.BlockBerryBush;
-import com.gildedgames.the_aether.blocks.natural.BlockBerryBushStem;
-import com.gildedgames.the_aether.blocks.natural.BlockBlackberryBush;
-import com.gildedgames.the_aether.blocks.natural.BlockBlackberryBushStem;
-import com.gildedgames.the_aether.blocks.natural.BlockBuddingAuralite;
-import com.gildedgames.the_aether.blocks.natural.BlockContinuumPile;
-import com.gildedgames.the_aether.blocks.natural.BlockDivineAetherFlower;
-import com.gildedgames.the_aether.blocks.natural.BlockDivineAetherTallGrass;
-import com.gildedgames.the_aether.blocks.natural.BlockDivineGrass;
-import com.gildedgames.the_aether.blocks.natural.BlockDivineralPile;
-import com.gildedgames.the_aether.blocks.natural.BlockEmpyreanOre;
-import com.gildedgames.the_aether.blocks.natural.BlockEnchantedAetherFlower;
-import com.gildedgames.the_aether.blocks.natural.BlockEnchantedAetherGrass;
-import com.gildedgames.the_aether.blocks.natural.BlockEnchantedAetherTallGrass;
-import com.gildedgames.the_aether.blocks.natural.BlockFrozenQuicksoil;
-import com.gildedgames.the_aether.blocks.natural.BlockGoldenOakNewLog;
-import com.gildedgames.the_aether.blocks.natural.BlockGrapeTreeMature;
-import com.gildedgames.the_aether.blocks.natural.BlockGrapeTreeStage1;
-import com.gildedgames.the_aether.blocks.natural.BlockGrapeTreeStage2;
-import com.gildedgames.the_aether.blocks.natural.BlockGravititePile;
-import com.gildedgames.the_aether.blocks.natural.BlockHolystone;
-import com.gildedgames.the_aether.blocks.natural.BlockInebriationAercloud;
-import com.gildedgames.the_aether.blocks.natural.BlockLargeOrangeTree;
-import com.gildedgames.the_aether.blocks.natural.BlockMatureOrangeTree;
-import com.gildedgames.the_aether.blocks.natural.BlockMediumBerryBushStem;
-import com.gildedgames.the_aether.blocks.natural.BlockMediumBlackberryBushStem;
-import com.gildedgames.the_aether.blocks.natural.BlockMediumOrangeTree;
-import com.gildedgames.the_aether.blocks.natural.BlockMediumRaspberryBush;
-import com.gildedgames.the_aether.blocks.natural.BlockMediumStrawberryBush;
-import com.gildedgames.the_aether.blocks.natural.BlockQuicksoil;
-import com.gildedgames.the_aether.blocks.natural.BlockRaspberryBush;
-import com.gildedgames.the_aether.blocks.natural.BlockRaspberryBushStem;
-import com.gildedgames.the_aether.blocks.natural.BlockSmallBerryBushStem;
-import com.gildedgames.the_aether.blocks.natural.BlockSmallBlackberryBushStem;
-import com.gildedgames.the_aether.blocks.natural.BlockSmallOrangeTree;
-import com.gildedgames.the_aether.blocks.natural.BlockSmallRaspberryBush;
-import com.gildedgames.the_aether.blocks.natural.BlockSmallStrawberryBush;
-import com.gildedgames.the_aether.blocks.natural.BlockSnowyTallGrass;
-import com.gildedgames.the_aether.blocks.natural.BlockStrawberryBush;
-import com.gildedgames.the_aether.blocks.natural.BlockStrawberryBushStem;
-import com.gildedgames.the_aether.blocks.natural.BlockVerdantGrass;
-import com.gildedgames.the_aether.blocks.natural.BlockVoidSapling;
-import com.gildedgames.the_aether.blocks.natural.BlockZanitePile;
 import com.gildedgames.the_aether.blocks.portal.BlockAetherPortal;
 import com.gildedgames.the_aether.blocks.util.BlockFloating;
 import com.gildedgames.the_aether.blocks.ancient.enchanter.BlockAncientEnchanter;
@@ -169,7 +95,7 @@ public class BlocksAether {
 	public static Block holystone, holystone_brick, aetheral_stone, agiosite, deific;
 	public static Block mossy_holystone, bloodmoss_stone, azure_holystone, notch_holystone;
 	public static Block glowing_icestone;
-	public static Block aercloud, pink_aercloud, green_aercloud, purple_aercloud;
+	public static Block aercloud, pink_aercloud, green_aercloud, purple_aercloud, stratos_aercloud;
 
 	//Decoration Blocks
 	public static Block enchanted_holystone, enchanted_aetheral_stone, enchanted_agiosite, enchanted_deific;
@@ -214,7 +140,7 @@ public class BlocksAether {
 	public static Block grape_tree_stage_one, grape_tree_stage_two, grape_tree_mature;
 
 	//Aether Flowers, Grasses, or Saplings
-	public static Block purple_flower, white_flower, white_rose, aechor_sprout, blue_swingtip, neverbloom;
+	public static Block purple_flower, white_flower, white_rose, aechor_sprout, blue_swingtip, neverbloom, aether_cactus;
 	public static Block quickshoot, enchanted_quickshoot, aether_tulips, enchanted_aether_tulips, enchanted_bloom;
 	public static Block aether_tallgrass, arctic_tallgrass, snowy_tallgrass, enchanted_aether_tallgrass, burstblossom, carrion_flower, moonlit_bloom;
 	public static Block divine_aether_tallgrass, divine_stalk, divine_lily, divine_bloom;
@@ -336,7 +262,7 @@ public class BlocksAether {
 
 		holystone = registerMeta("holystone", new BlockHolystone());
 		holystone_brick = register("holystone_brick", new BlockAether(Material.rock, Aether.find("holystone_brick")).setHardness(0.5F).setResistance(10.0F));
-		enchanted_holystone = registerMeta("enchanted_holystone", new BlockEnchantedAgiosite().setBlockTextureName(Aether.findHighlands("agiosite")));
+		enchanted_holystone = registerMeta("enchanted_holystone", new BlockEnchantedAgiosite().setBlockTextureName(Aether.find("enchanted_holystone")));
 		enchanted_holystone_bricks = register("enchanted_holystone_bricks", new BlockAether(Material.rock, Aether.find("enchanted_holystone_bricks")).setHardness(0.6F).setResistance(14.0F));
 		aetheral_stone = registerMeta("aetheral_stone", new BlockHolystone().setBlockTextureName(Aether.find("aetheral_stone")).setHardness(3.0F).setResistance(5.0F));
 		aetheral_stone_bricks = register("aetheral_stone_bricks", new BlockAether(Material.rock, Aether.find("aetheral_stone_brick")).setHardness(3.0F).setResistance(5.0F));
@@ -378,11 +304,11 @@ public class BlocksAether {
 		divineral_block = registerItemBlock("divineral_block", new BlockDivineral(), ItemBlockFireProof.class);
 
 		//Ores
-		ambrosium_ore = register("ambrosium_ore", new BlockAetherOre(0).setBlockTextureName(Aether.find("ambrosium_ore")));
-		zanite_ore = register("zanite_ore", new BlockAetherOre(1).setBlockTextureName(Aether.find("zanite_ore")));
+		ambrosium_ore = register("ambrosium_ore", new BlockAetherOre(0).setBlockTextureName(Aether.find("ambrosium_ore_new")));
+		zanite_ore = register("zanite_ore", new BlockAetherOre(1).setBlockTextureName(Aether.find("zanite_ore_new")));
 		gravitite_ore = register("gravitite_ore", new BlockFloating(Material.rock, false).setHardness(5.0F).setBlockTextureName(Aether.find("gravitite_ore")));
 		arkenium_ore = register("arkenium_ore", new BlockAetherOreNew(1).setBlockTextureName(Aether.find("arkenium_ore")));
-		continuum_ore = register("continuum_ore", new BlockAetherOreNew(1).setBlockTextureName(Aether.findII("continuumOre")));
+		continuum_ore = register("continuum_ore", new BlockAetherOreNew(1).setBlockTextureName(Aether.find("continuum_ore")));
 
 		aetheral_ambrosium_ore = register("aetheral_ambrosium_ore", new BlockAetherOreAetheral(0).setBlockTextureName(Aether.find("aetheral_ambrosium_ore")));
 		aetheral_zanite_ore = register("aetheral_zanite_ore", new BlockAetherOreAetheral(1).setBlockTextureName(Aether.find("aetheral_zanite_ore")));
@@ -419,19 +345,20 @@ public class BlocksAether {
 
 		//Aerclouds
 		aercloud = registerMeta("aercloud", new BlockAercloud());
-		aercloud_layer = registerMeta("aercloud_layer", new BlockAercloudLayer());
-		aercloud_layer_2 = registerMeta("aercloud_layer_2", new BlockAercloudLayer2());
-		aercloud_layer_3 = registerMeta("aercloud_layer_3", new BlockAercloudLayer3());
-		aercloud_layer_4 = registerMeta("aercloud_layer_4", new BlockAercloudLayer4());
-		aercloud_layer_5 = registerMeta("aercloud_layer_5", new BlockAercloudLayer5());
-		aercloud_layer_6 = registerMeta("aercloud_layer_6", new BlockAercloudLayer6());
-		aercloud_layer_7 = registerMeta("aercloud_layer_7", new BlockAercloudLayer7());
+        stratos_aercloud = register("stratos_aercloud", new BlockStratoAercloud().setBlockTextureName(Aether.find("stratos_aercloud")));
+		aercloud_layer = registerMeta("aercloud_layer", new BlockAercloudLayer().setBlockTextureName(Aether.find("aercloud")));
+		aercloud_layer_2 = registerMeta("aercloud_layer_2", new BlockAercloudLayer2().setBlockTextureName(Aether.find("aercloud")));
+		aercloud_layer_3 = registerMeta("aercloud_layer_3", new BlockAercloudLayer3().setBlockTextureName(Aether.find("aercloud")));
+		aercloud_layer_4 = registerMeta("aercloud_layer_4", new BlockAercloudLayer4().setBlockTextureName(Aether.find("aercloud")));
+		aercloud_layer_5 = registerMeta("aercloud_layer_5", new BlockAercloudLayer5().setBlockTextureName(Aether.find("aercloud")));
+		aercloud_layer_6 = registerMeta("aercloud_layer_6", new BlockAercloudLayer6().setBlockTextureName(Aether.find("aercloud")));
+		aercloud_layer_7 = registerMeta("aercloud_layer_7", new BlockAercloudLayer7().setBlockTextureName(Aether.find("aercloud")));
 		pink_aercloud = registerMeta("pink_aercloud", new BlockPinkAercloud());
-		storm_aercloud = register("storm_aercloud", new BlockStormAercloud());
-		green_aercloud = registerMeta("green_aercloud", new BlockGreenAercloud());
-		purple_aercloud = registerMeta("purple_aercloud", new BlockPurpleAercloud());
-		inebriation_aercloud = registerMeta("inebriation_aercloud", new BlockInebriationAercloud());
-		diamond_aercloud = registerMeta("diamond_aercloud", new BlockDiamondAercloud());
+		storm_aercloud = register("storm_aercloud", new BlockStormAercloud().setBlockTextureName(Aether.findII("aercloudStorm")));
+		green_aercloud = registerMeta("green_aercloud", new BlockGreenAercloud().setBlockTextureName(Aether.findII("aercloudGreen")));
+		purple_aercloud = registerMeta("purple_aercloud", new BlockPurpleAercloud().setBlockTextureName(Aether.findII("Purple Aercloud Front")));
+		inebriation_aercloud = registerMeta("inebriation_aercloud", new BlockInebriationAercloud().setBlockTextureName(Aether.find("aercloud")));
+		diamond_aercloud = registerMeta("diamond_aercloud", new BlockDiamondAercloud().setBlockTextureName(Aether.find("aercloud")));
 
 		//Plants or Leaves
 		skyroot_leaves = register("skyroot_leaves", new BlockAetherLeaves().setBlockTextureName(Aether.find("skyroot_leaves")));
@@ -454,8 +381,8 @@ public class BlocksAether {
 		skyroot_log = registerMeta("skyroot_log", new BlockAetherLog()).setBlockTextureName(Aether.find("skyroot_log"));
 		golden_oak_log = registerHidden("golden_oak_log", new BlockAetherLogOld().setBlockTextureName(Aether.find("golden_oak_log")));
 		golden_oak_new_log = registerMeta("golden_oak_new_log", new BlockGoldenOakNewLog());
-		greatroot_log = registerMeta("greatroot_log", new BlockAetherLogGreatroot().setBlockTextureName(Aether.findHighlands("logs/greatroot_log")));
-		wisproot_log = registerMeta("wisproot_log", new BlockAetherLogWisproot().setBlockTextureName(Aether.findHighlands("logs/wisproot_log")));
+		greatroot_log = registerMeta("greatroot_log", new BlockAetherLogGreatroot().setBlockTextureName(Aether.find("greatroot_log")));
+		wisproot_log = registerMeta("wisproot_log", new BlockAetherLogWisproot().setBlockTextureName(Aether.find("wisproot_log")));
 		void_log = registerMeta("void_log", new BlockAetherLogVoid().setBlockTextureName(Aether.find("void_log")));
 		divine_oak_log = registerMeta("divine_oak_log", new BlockAetherLogDivine().setBlockTextureName(Aether.find("divine_log")));
 		skyroot_planks = register("skyroot_planks", new BlockSkyrootPlanks());
@@ -509,12 +436,13 @@ public class BlocksAether {
 		divine_aether_tallgrass = register("divine_aether_tallgrass", new BlockDivineAetherTallGrass().setBlockTextureName(Aether.find("divine_grass")));
 		purple_flower = register("purple_flower", new BlockAetherFlower().setBlockTextureName(Aether.find("purple_flower")));
 		white_flower = register("white_flower", new BlockAetherFlower().setBlockTextureName(Aether.find("white_flower")));
-		white_rose = register("white_rose", new BlockAetherFlower().setBlockTextureName("aether:flowers/white_rose"));// could re-findII this
-		aechor_sprout = register("aechor_sprout", new BlockAetherFlower().setBlockTextureName(Aether.findHighlands("flowers/aechor_sprout")));
-		blue_swingtip = register("blue_swingtip", new BlockAetherFlower().setBlockTextureName(Aether.findHighlands("flowers/blue_swingtip")));
-		neverbloom = register("neverbloom", new BlockAetherFlower().setBlockTextureName(Aether.findHighlands("flowers/neverbloom")));
+		white_rose = register("white_rose", new BlockAetherFlower().setBlockTextureName(Aether.find("white_rose")));
+		aechor_sprout = register("aechor_sprout", new BlockAetherFlower().setBlockTextureName(Aether.find("aechor_plant")));
+		blue_swingtip = register("blue_swingtip", new BlockAetherFlower().setBlockTextureName(Aether.find("blue_swingtip")));
+		neverbloom = register("neverbloom", new BlockAetherFlower().setBlockTextureName(Aether.find("neverbloom")));
 		burstblossom = register("burstblossom", new BlockAetherFlower().setBlockTextureName(Aether.find("burstblossom")));
-		carrion_flower = register("carrion_flower", new BlockAetherFlower().setBlockTextureName(Aether.find("carrion_flower")));
+        aether_cactus = register("aether_cactus", new BlockAetherCactus());
+		carrion_flower = register("carrion_flower", new BlockAetherDesertFlower().setBlockTextureName(Aether.find("carrion_flower")));
 		moonlit_bloom = register("moonlit_bloom", new BlockAetherFlower().setBlockTextureName(Aether.find("moonlit_bloom")));
 		quickshoot = register("quickshoot", new BlockAetherFlower().setBlockTextureName(Aether.find("quickshoot")));
 		enchanted_quickshoot = register("enchanted_quickshoot", new BlockEnchantedAetherFlower().setBlockTextureName(Aether.find("enchanted_quickshoot")));
@@ -597,7 +525,6 @@ public class BlocksAether {
 
 		fuse_stone = register("fuse_stone", new BlockDungeonBase(false).setResistance(15.0F).setBlockTextureName(Aether.find("fuse_stone")));
 		creeping_stone = register("creeping_stone", new BlockDungeonBase(true).setResistance(15.0F).setBlockTextureName(Aether.find("creeping_stone")));
-
 
 		genesis_stone = registerHidden("genesis_stone", new BlockGenesisStone());
 		light_genesis_stone = registerHidden("light_genesis_stone", new BlockLightGenesisStone());
@@ -834,8 +761,8 @@ public class BlocksAether {
 		enchanted_deific_slab = registerSlab("enchanted_deific_slab", new BlockAetherSlab("enchanted_deific_slab", false, Material.rock).setBlockTextureName(Aether.find("enchanted_deific")).setHardness(5.5F).setResistance(7.0F), enchanted_deific_double_slab);
 		enchanted_deific_brick_double_slab = register("enchanted_deific_brick_double_slab", new BlockAetherSlab("enchanted_deific_brick_double_slab", true, Material.rock).setBlockTextureName(Aether.find("enchanted_deific_bricks")).setHardness(5.5F).setResistance(7.0F)).setCreativeTab(null);
 		enchanted_deific_brick_slab = registerSlab("enchanted_deific_brick_slab", new BlockAetherSlab("enchanted_deific_brick_slab", false, Material.rock).setBlockTextureName(Aether.find("enchanted_deific_bricks")).setHardness(5.5F).setResistance(7.0F), enchanted_deific_brick_double_slab);
-		enchanted_holystone_double_slab = register("enchanted_holystone_double_slab", new BlockAetherSlab("enchanted_holystone_double_slab", true, Material.rock).setBlockTextureName(Aether.findHighlands("agiosite")).setHardness(2.0F).setResistance(10.0F)).setCreativeTab(null);
-		enchanted_holystone_slab = registerSlab("enchanted_holystone_slab", new BlockAetherSlab("enchanted_holystone_slab", false, Material.rock).setBlockTextureName(Aether.findHighlands("agiosite")).setHardness(2.0F).setResistance(5.0F), enchanted_holystone_double_slab);
+		enchanted_holystone_double_slab = register("enchanted_holystone_double_slab", new BlockAetherSlab("enchanted_holystone_double_slab", true, Material.rock).setBlockTextureName(Aether.find("enchanted_holystone")).setHardness(2.0F).setResistance(10.0F)).setCreativeTab(null);
+		enchanted_holystone_slab = registerSlab("enchanted_holystone_slab", new BlockAetherSlab("enchanted_holystone_slab", false, Material.rock).setBlockTextureName(Aether.find("enchanted_holystone")).setHardness(2.0F).setResistance(5.0F), enchanted_holystone_double_slab);
 		enchanted_holystone_brick_double_slab = register("enchanted_holystone_brick_double_slab", new BlockAetherSlab("enchanted_holystone_brick_double_slab", true, Material.rock).setBlockTextureName(Aether.find("enchanted_holystone_bricks")).setHardness(2.0F).setResistance(10.0F)).setCreativeTab(null);
 		enchanted_holystone_brick_slab = registerSlab("enchanted_holystone_brick_slab", new BlockAetherSlab("enchanted_holystone_brick_slab", false, Material.rock).setBlockTextureName(Aether.find("enchanted_holystone_bricks")).setHardness(2.0F).setResistance(5.0F), enchanted_holystone_brick_double_slab);
 

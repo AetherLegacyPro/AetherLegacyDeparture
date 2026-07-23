@@ -54,7 +54,7 @@ public class EntityWhirlwind extends EntityMob {
 
 	@Override
 	public float getBlockPathWeight(int x, int y, int z) {
-		return this.worldObj.getBlock(x, y - 1, z) == BlocksAether.aether_grass ? 10.0F : this.worldObj.getLightBrightness(x, y, z) - 0.5F;
+		return (this.worldObj.getBlock(x, y - 1, z) == BlocksAether.aether_grass || this.worldObj.getBlock(x, y - 1, z) == BlocksAether.quicksoil || this.worldObj.getBlock(x, y - 1, z) == BlocksAether.frozen_quicksoil) ? 10.0F : this.worldObj.getLightBrightness(x, y, z) - 0.5F;
 	}
 
 	@Override
@@ -330,7 +330,7 @@ public class EntityWhirlwind extends EntityMob {
 		int i = MathHelper.floor_double(this.posX);
 		int j = MathHelper.floor_double(this.boundingBox.minY);
 		int k = MathHelper.floor_double(this.posZ);
-		return this.rand.nextInt(AetherConfig.getWhirlwindSpawnrate()) == 0 && this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_grass && this.worldObj.getBlockLightValue(i, j, k) > 8 && this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
+		return this.rand.nextInt(AetherConfig.getWhirlwindSpawnrate()) == 0 && (this.worldObj.getBlock(i, j - 1, k) == BlocksAether.aether_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.enchanted_aether_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.arctic_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.enchanted_aether_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.quicksoil || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.divine_grass || this.worldObj.getBlock(i, j - 1, k) == BlocksAether.frozen_quicksoil) && this.worldObj.getBlockLightValue(i, j, k) > 8 && this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
 	}
 
 	public EntityPlayer findClosestPlayer() {

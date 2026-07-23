@@ -710,7 +710,8 @@ public class AetherRegistries {
 	private static void initializeShapelessRecipes() {
 		registerShapeless(new ItemStack(ItemsAether.dart_shooter, 1, 1), new ItemStack(ItemsAether.dart_shooter, 1, 0), new ItemStack(ItemsAether.skyroot_bucket, 1, 2));
 		registerShapeless(new ItemStack(Items.dye, 2, 5), BlocksAether.purple_flower);
-		registerShapeless(new ItemStack(Items.dye, 2, 2), BlocksAether.carrion_flower);
+		registerShapeless(new ItemStack(Items.dye, 1, 11), BlocksAether.carrion_flower);
+        registerShapeless(new ItemStack(Items.dye, 2, 2), BlocksAether.aether_cactus);
 		registerShapeless(new ItemStack(Items.dye, 2, 10), BlocksAether.burstblossom);
 		registerShapeless(new ItemStack(ItemsAether.blue_dye), BlocksAether.blue_swingtip);
 		registerShapeless(new ItemStack(Items.dye, 2, 5), BlocksAether.aechor_sprout);

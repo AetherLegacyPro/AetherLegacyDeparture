@@ -1045,6 +1045,8 @@ tile.ancient_hellfire_stairs.name=Ancient Hellfire Stone Stairs
 tile.ancient_hellfire_stone_double_slab.name=Ancient Hellfire Stone Double Slab
 ancient_hellfire_stone_slab.name=Ancient Hellfire Stone Slab
 tile.elysian_scales_block.name=Elysian Dragon Scale Block
+tile.stratos_aercloud.name=Stratos Aercloud
+tile.aether_cactus.name=Aether Cactus
 
 # Entities
 entity.aechor_plant.name=Aechor Plant

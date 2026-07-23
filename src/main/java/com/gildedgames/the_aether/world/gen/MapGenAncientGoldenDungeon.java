@@ -31,7 +31,7 @@ public class MapGenAncientGoldenDungeon extends MapGenStructure {
 			}
 		}
 
-		return chunkX % 6 == 0 && chunkZ % 6 == 0;
+		return chunkX % 8 == 0 && chunkZ % 8 == 0;
 	}
 
 	@Override

@@ -52,8 +52,8 @@ public class BlockArcticGrass extends Block implements IGrowable {
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister registry) {
 		this.blockIcon = registry.registerIcon("aether_legacy:arctic_grass_side");
-		this.blockIconSnowy = registry.registerIcon("aether_legacy:aether_grass_side_snowy");
-		this.blockIconTop = registry.registerIcon(Aether.findHighlands("grass/arctic_grass_top"));
+		this.blockIconSnowy = registry.registerIcon("aether_legacy:arctic_grass_side_snowy");
+		this.blockIconTop = registry.registerIcon("aether_legacy:arctic_grass_top");
 	}
 
 	@Override
