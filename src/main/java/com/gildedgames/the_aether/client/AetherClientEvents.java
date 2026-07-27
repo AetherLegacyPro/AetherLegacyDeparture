@@ -581,20 +581,18 @@ public class AetherClientEvents {
 		}
 	}
 
-	@SubscribeEvent
-	public void onRenderInvisibility(RenderPlayerEvent.Pre event) {
-		EntityPlayer player = event.entityPlayer;
-		PlayerAether playerAether = PlayerAether.get(player);
+    @SubscribeEvent
+    public void onRenderInvisibility(RenderPlayerEvent.Pre event) {
+        EntityPlayer player = event.entityPlayer;
+        PlayerAether playerAether = PlayerAether.get(player);
 
-		if (playerAether != null) {
-			if (playerAether.getAccessoryInventory().wearingAccessory(ItemsAether.invisibility_cape)) {
-				event.setCanceled(true);
-			}
-
-		}
-
-		PlayerAetherRenderer.instance().setPartialTicks(event.partialRenderTick);
-	}
+        if (playerAether != null) {
+            if (playerAether.getAccessoryInventory()
+                .wearingAccessory(ItemsAether.invisibility_cape)) {
+                event.setCanceled(true);
+            }
+        }
+    }
 
 	@SubscribeEvent
 	public void onRenderAetherCape(RenderPlayerEvent.Specials.Pre event) {
@@ -608,17 +606,16 @@ public class AetherClientEvents {
 		}
 	}
 
-	@SubscribeEvent
-	public void onRenderAccessories(RenderLivingEvent.Post event) {
-		if (event.entity instanceof EntityPlayer) {
-			PlayerAether playerAether = PlayerAether.get((EntityPlayer) event.entity);
+    @SubscribeEvent
+    public void onRenderAccessories(RenderPlayerEvent.Specials.Pre event) {
+        EntityPlayer player = event.entityPlayer;
+        PlayerAether playerAether = PlayerAether.get(player);
 
-			if (event.renderer instanceof RenderPlayer)
-			{
-				PlayerAetherRenderer.instance().renderAccessories(playerAether, (RenderPlayer) event.renderer, event.x, event.y, event.z, PlayerAetherRenderer.instance().getPartialTicks());
-			}
-		}
-	}
+        if (playerAether != null && event.renderer instanceof RenderPlayer) {
+            PlayerAetherRenderer.instance()
+                .renderAccessories(playerAether, (RenderPlayer) event.renderer, event.partialRenderTick);
+        }
+    }
 
 	@SubscribeEvent
 	public void onKeyInputEvent(InputEvent.KeyInputEvent event) {
