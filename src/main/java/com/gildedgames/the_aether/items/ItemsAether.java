@@ -10,6 +10,7 @@ import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.api.accessories.AccessoryType;
 import com.gildedgames.the_aether.api.accessories.DegradationRate;
+import com.gildedgames.the_aether.blocks.BlockAetherDoor;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.items.accessories.ItemAccessory;
 import com.gildedgames.the_aether.items.accessories.ItemAccessoryDyed;
@@ -369,6 +370,8 @@ public class ItemsAether {
     public static Item iron_bubble, reinforced_iron_bubble, amplified_iron_bubble;
     public static Item life_shard, dexterity_shard, power_shard, flaming_stone;
     public static Item repulsion_shield, zanite_shield, gravitite_shield, jeb_shield, sentry_shield;
+
+    public static Item skyroot_door_item;
 
     public static void initialization() {
         skyroot_stick = register(
@@ -2446,6 +2449,8 @@ public class ItemsAether {
         aether_portal_frame = register(
             "aether_portal_frame",
             new ItemAetherPortalFrame().setTextureName(Aether.find("aether_portal_frame")));
+
+        skyroot_door_item = register("skyroot_door_item", new ItemBlockAetherDoor().setTextureName(Aether.find("skyroot_door")));
     }
 
     public static Item register(String name, Item item) {

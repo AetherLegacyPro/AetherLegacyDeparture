@@ -369,6 +369,7 @@ public class BlocksAether {
     public static int TreasureChestBreakbleRenderId;
     public static int AuraliteClusterRenderId;
     public static int ElysianTotemRenderId;
+    public static Block skyroot_door;
 
     public static void initialization() {
 
@@ -716,6 +717,9 @@ public class BlocksAether {
         skyroot_trapdoor = registerMeta(
             "skyroot_trapdoor",
             new BlockAetherTrapdoor(Material.wood).setBlockTextureName(Aether.findII("skyrootTrapDoor")));
+        skyroot_door = registerHidden(
+            "skyroot_door",
+            new BlockAetherDoor().setBlockTextureName(Aether.find("skyrootDoor")));
         golden_oak_trapdoor = registerMeta(
             "golden_oak_trapdoor",
             new BlockAetherTrapdoor(Material.wood).setBlockTextureName(Aether.find("golden_oak_trapdoor")));
@@ -1920,6 +1924,7 @@ public class BlocksAether {
         BlocksAether.void_planks.setHarvestLevel("axe", 0);
         BlocksAether.skyroot_planks.setHarvestLevel("axe", 0);
         BlocksAether.skyroot_trapdoor.setHarvestLevel("axe", 0);
+        BlocksAether.skyroot_door.setHarvestLevel("axe", 0);
         BlocksAether.aerogel.setHarvestLevel("pickaxe", 3);
         BlocksAether.enchanted_gravitite.setHarvestLevel("pickaxe", 2);
         BlocksAether.zanite_block.setHarvestLevel("pickaxe", 1);

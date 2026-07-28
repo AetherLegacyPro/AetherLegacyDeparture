@@ -3283,7 +3283,7 @@ public class AetherRegistries {
             BlocksAether.skyroot_planks,
             'Y',
             BlocksAether.enchanted_gravitite);
-        register(new ItemStack(Items.wooden_door, 3), "XX", "XX", "XX", 'X', BlocksAether.skyroot_planks);
+        register(new ItemStack(ItemsAether.skyroot_door_item, 3), "XX", "XX", "XX", 'X', BlocksAether.skyroot_planks);
         register(
             new ItemStack(Items.sign, 3),
             "XXX",
