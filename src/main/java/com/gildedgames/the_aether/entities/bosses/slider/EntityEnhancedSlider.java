@@ -721,8 +721,8 @@ public class EntityEnhancedSlider extends EntityFlying implements IAetherBoss {
 
                 List<?> dungeonPlayers = this.getPlayersInDungeon(player);
 
-                for (int i = 0; i < dungeonPlayers.size(); ++i) {
-                    Entity entity = (Entity) dungeonPlayers.get(i);
+                for (Object dungeonPlayer : dungeonPlayers) {
+                    Entity entity = (Entity) dungeonPlayer;
 
                     if (entity instanceof EntityPlayer) {
                         ((EntityPlayer) entity).triggerAchievement(AchievementsAether.defeat_bronze);

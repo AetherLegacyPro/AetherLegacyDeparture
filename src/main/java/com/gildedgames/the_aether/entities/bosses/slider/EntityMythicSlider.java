@@ -714,15 +714,21 @@ public class EntityMythicSlider extends EntityFlying implements IAetherBoss {
 
                 List<?> dungeonPlayers = this.getPlayersInDungeon(player);
 
-                for (int i = 0; i < dungeonPlayers.size(); ++i) {
-                    Entity entity = (Entity) dungeonPlayers.get(i);
+                for (Object dungeonPlayer : dungeonPlayers) {
+                    Entity entity = (Entity) dungeonPlayer;
 
                     if (entity instanceof EntityPlayer) {
                         ((EntityPlayer) entity).triggerAchievement(AchievementsAether.defeat_bronze);
+                        ((EntityPlayer) entity).triggerAchievement(AchievementsAether.ancient_defeat_bronze);
+                        ((EntityPlayer) entity).triggerAchievement(AchievementsAether.divine_defeat_bronze);
+                        ((EntityPlayer) entity).triggerAchievement(AchievementsAether.mythic_defeat_bronze);
                     }
                 }
 
                 player.triggerAchievement(AchievementsAether.defeat_bronze);
+                player.triggerAchievement(AchievementsAether.ancient_defeat_bronze);
+                player.triggerAchievement(AchievementsAether.divine_defeat_bronze);
+                player.triggerAchievement(AchievementsAether.mythic_defeat_bronze);
 
                 this.worldObj.playSoundEffect(
                     this.posX,

@@ -2217,7 +2217,7 @@ lore.aether_legacy.charged_empyrean_block=由充能超界宝石制成的方块�
 lore.aether_legacy.divine_aether_tallgrass=神佑岛屿上生长的高草。
 lore.aether_legacy.light_genesis_stone_2=构成钯地牢的主要方块。
 lore.aether_legacy.divine_lily=神佑岛屿上生长着的花朵。
-lore.aether_legacy.arctic_tallgrass=极地岛屿上生长着的高草
+lore.aether_legacy.arctic_tallgrass=极地岛屿上生长着的高草。
 lore.aether_legacy.divine_oak_leaves=神佑橡木树叶，可掉落神佑橡木树苗。
 lore.aether_legacy.ancient_angelic_stone=构成远古银地牢的主要方块。
 lore.aether_legacy.divine_oak_planks=由神佑橡木制成的浅蓝色木板。
@@ -2318,7 +2318,8 @@ lore.aether_legacy.raw_gravitite=放入神能炉（祭坛）或远古祭坛中�
 lore.aether_legacy.icestone_crystal=挖掘冰石掉落，冰冻器的主要能源。
 lore.aether_legacy.crystal_dragon_scales=由水晶龙掉落，重要的合成材料。
 
-lore.aether_legacy.confractus_staff=一个具有粉碎维系事物本身魔法能量的法杖，可以粉碎锁定的雕纹石、雕纹陷阱石、神佑天灵石、神佑天灵陷阱石、狱炎陷阱石、熔融陷阱石、锁定的熔融石和锁定的爬行石。注意：有些方块比其他方块更难破坏，需要多用几次法杖。gui.treasure_chest.platinum=Platinum Treasure Chest
+lore.aether_legacy.confractus_staff=一个具有粉碎维系事物本身魔法能量的法杖，可以粉碎锁定的雕纹石、雕纹陷阱石、神佑天灵石、神佑天灵陷阱石、狱炎陷阱石、熔融陷阱石、锁定的熔融石和锁定的爬行石。注意：有些方块比其他方块更难破坏，需要多用几次法杖。
+gui.treasure_chest.platinum=铂金藏宝箱
 tile.skyroot_door.name=天根木门
 item.skyroot_door_item.name=天根木门
-lore.aether_legacy.cyro_bow=钴地牢中的战利品，像一把普通的弓但会对击中的生物施加缓慢效果.
+lore.aether_legacy.cyro_bow=钴地牢中的战利品，工作方式和普通弓类似，但是被击中的生物会减速。
