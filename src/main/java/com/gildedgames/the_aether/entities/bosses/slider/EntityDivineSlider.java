@@ -352,7 +352,8 @@ public class EntityDivineSlider extends EntityFlying implements IAetherBoss {
             || block == BlocksAether.locked_divine_sentry_stone
             || block == BlocksAether.divine_carved_trap
             || block == BlocksAether.locked_mythic_carved_stone
-            || block == BlocksAether.locked_mythic_sentry_stone) {
+            || block == BlocksAether.locked_mythic_sentry_stone
+            || block.getBlockHardness(this.worldObj, (int) x, (int) y, (int) z) < 0.0F) {
             return;
         }
 
@@ -529,12 +530,12 @@ public class EntityDivineSlider extends EntityFlying implements IAetherBoss {
         this.dropItem(Item.getItemFromBlock(BlocksAether.divine_carved_stone), 21 + rand.nextInt(30));
         this.entityDropItem(new ItemStack(ItemsAether.dungeon_key, 1, 4), 0.5F);
         this.entityDropItem(new ItemStack(ItemsAether.dungeon_key), 0.5F);
-        this.entityDropItem(new ItemStack(BlocksAether.primeval_artifact), 1 + rand.nextInt(2));
+        this.entityDropItem(new ItemStack(BlocksAether.primeval_artifact, 1 + rand.nextInt(2)), 0.5F);
 
         int rand2 = (int) (1 + Math.random() * 2);
         switch (rand2) {
             case 1:
-                this.dropItem(ItemsAether.divine_essence, 1 + rand.nextInt(1));
+                this.dropItem(ItemsAether.divine_essence, 1 + rand.nextInt(2));
                 break;
             case 2:
                 break;
@@ -614,7 +615,7 @@ public class EntityDivineSlider extends EntityFlying implements IAetherBoss {
 
             if (!stack.getItem()
                 .canHarvestBlock(Blocks.obsidian, stack) && !isTCPickaxe) {
-                this.sendMessage(player, StatCollector.translateToLocal("gui.slider.notpickaxe"));
+                this.sendMessage(player, StatCollector.translateToLocal("gui.slider.divine"));
 
                 return false;
             }

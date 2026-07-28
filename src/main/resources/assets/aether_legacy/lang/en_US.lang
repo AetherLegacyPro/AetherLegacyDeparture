@@ -1455,7 +1455,8 @@ gui.item.developer_stick.notdev=You aren't skilled enough to use this item!
 gui.slider.notpickaxe=Hmm. Perhaps I need to attack it with a Pickaxe?
 gui.slider.apple=This message is only here because KingPhygieBoo asked Kino a random item and he said apple.
 gui.slider.far=It seems I'm too far away to wake it.
-gui.slider.mythic=It seems this weapon is not strong enough to break though the magic surrounding this Slider...
+gui.slider.divine=It seems I need to use a weapon strong enough to break through it.
+gui.slider.mythic=It seems this weapon is not strong enough to break though the magic surrounding this Slider without amplifying it...
 
 gui.valkyrie.dialog.1=What's that? You want to fight? Aww, what a cute little human.
 gui.valkyrie.dialog.2=You're not thinking of fighting a big, strong Valkyrie are you?

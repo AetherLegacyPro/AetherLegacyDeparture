@@ -492,9 +492,7 @@ public class EntityValkyrieQueen extends EntityBossMob implements IAetherBoss {
             case 1:
                 this.dropItem(ItemsAether.divine_essence, 1);
                 break;
-            case 2:
-                break;
-            case 3:
+            case 2, 3:
                 break;
         }
     }

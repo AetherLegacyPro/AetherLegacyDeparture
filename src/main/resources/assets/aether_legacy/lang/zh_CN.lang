@@ -1455,7 +1455,8 @@ gui.item.developer_stick.notdev=您没有足够的技能来使用此物品！
 gui.slider.notpickaxe=嗯，也许我需要用镐来攻击它？
 gui.slider.apple=这条消息之所以出现在这里，是因为KingPhygieBoo向Kino随机询问了一个项目，他说是苹果。
 gui.slider.far=看来我离得太远了，无法唤醒它。
-gui.slider.mythic=这把武器强度不够，未能击破敌方护甲...
+gui.slider.divine=看来我需要使用一把足够强大的武器来击破它。
+gui.slider.mythic=这把武器未经增幅强度不够，未能击破敌方护甲...
 
 gui.valkyrie.dialog.1=那是什么？你想打架吗？哇，真是个可爱的小家伙。
 gui.valkyrie.dialog.2=你不会是想和一个又大又壮的女武神战斗吧？

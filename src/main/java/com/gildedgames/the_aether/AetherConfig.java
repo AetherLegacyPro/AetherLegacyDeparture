@@ -370,7 +370,7 @@ public class AetherConfig {
             .getBoolean(false);
 
         repeat_sun_spirit_dialog = config
-            .get("Misc", "If disabed, the Sun Spirit's dialog will only show once per world.", true)
+            .get("Misc", "If disabled, the Sun Spirit's dialog will only show once per world.", true)
             .getBoolean(true);
 
         disable_eternal_day = config.get(

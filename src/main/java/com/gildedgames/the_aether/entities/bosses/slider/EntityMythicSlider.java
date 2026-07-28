@@ -352,7 +352,8 @@ public class EntityMythicSlider extends EntityFlying implements IAetherBoss {
             || block == BlocksAether.locked_divine_sentry_stone
             || block == BlocksAether.divine_carved_trap
             || block == BlocksAether.locked_mythic_carved_stone
-            || block == BlocksAether.locked_mythic_sentry_stone) {
+            || block == BlocksAether.locked_mythic_sentry_stone
+            || block.getBlockHardness(this.worldObj, (int) x, (int) y, (int) z) < 0.0F) {
             return;
         }
 
@@ -529,8 +530,8 @@ public class EntityMythicSlider extends EntityFlying implements IAetherBoss {
         this.dropItem(Item.getItemFromBlock(BlocksAether.mythic_carved_stone), 21 + rand.nextInt(30));
         this.entityDropItem(new ItemStack(ItemsAether.dungeon_key, 1, 9), 0.5F);
         this.entityDropItem(new ItemStack(ItemsAether.dungeon_key, 1, 4), 0.5F);
-        this.entityDropItem(new ItemStack(BlocksAether.primeval_artifact), 6 + rand.nextInt(4));
-        this.entityDropItem(new ItemStack(ItemsAether.divine_essence), 1 + rand.nextInt(5));
+        this.entityDropItem(new ItemStack(BlocksAether.primeval_artifact, 6 + rand.nextInt(4)), 0.5F);
+        this.entityDropItem(new ItemStack(ItemsAether.divine_essence, 1 + rand.nextInt(5)), 0.5F);
 
     }
 
@@ -599,10 +600,6 @@ public class EntityMythicSlider extends EntityFlying implements IAetherBoss {
             this.sendMessage(player, StatCollector.translateToLocal("gui.slider.far"));
             return false;
         } else {
-            boolean isTCPickaxe = stack.getItem()
-                .getClass()
-                .getName()
-                .equals("tconstruct.items.tools.Pickaxe");
 
             if (!((stack.getItem() == ItemsAether.divineral_pickaxe)
                 || (stack.getItem() == ItemsAether.amplified_continuum_pickaxe)
@@ -610,7 +607,8 @@ public class EntityMythicSlider extends EntityFlying implements IAetherBoss {
                 || (stack.getItem() == ItemsAether.amplified_skyroot_pickaxe)
                 || (stack.getItem() == ItemsAether.amplified_valkyrie_pickaxe)
                 || (stack.getItem() == ItemsAether.amplified_zanite_pickaxe)
-                || (stack.getItem() == ItemsAether.amplified_battle_sentry_hammer))) {
+                || (stack.getItem() == ItemsAether.amplified_battle_sentry_hammer)
+                || (stack.getItem() == ItemsAether.amplified_notched_pickaxe))) {
                 this.sendMessage(player, StatCollector.translateToLocal("gui.slider.mythic"));
 
                 return false;
