@@ -489,7 +489,8 @@ public class ChunkProviderAether implements IChunkProvider {
                 final int x1 = x + this.rand.nextInt(64);
                 final int y = this.rand.nextInt(64) + 32;
                 final int z1 = z + this.rand.nextInt(64);
-                new AetherCloudsGenNew(BlocksAether.purple_aercloud, 0, 8, false)
+                final int meta = rand.nextInt(8);
+                new AetherCloudsGenNew(BlocksAether.purple_aercloud, meta, 8, false)
                     .generate(this.worldObj, this.rand, x, y, z);
             }
         }
@@ -498,7 +499,8 @@ public class ChunkProviderAether implements IChunkProvider {
                 final int x1 = x + this.rand.nextInt(128);
                 final int y = this.rand.nextInt(64);
                 final int z1 = z + this.rand.nextInt(128);
-                new AetherCloudsGenNew(BlocksAether.purple_aercloud, 1, 4, false)
+                final int meta = rand.nextInt(8);
+                new AetherCloudsGenNew(BlocksAether.violet_aercloud, meta, 4, false)
                     .generate(this.worldObj, this.rand, x, y, z);
             }
         }
@@ -507,7 +509,8 @@ public class ChunkProviderAether implements IChunkProvider {
                 final int x1 = x + this.rand.nextInt(256);
                 final int y = this.rand.nextInt(64) + 64;
                 final int z1 = z + this.rand.nextInt(256);
-                new AetherCloudsGenNew(BlocksAether.purple_aercloud, 2, 4, false)
+                final int meta = rand.nextInt(8);
+                new AetherCloudsGenNew(BlocksAether.dark_purple_aercloud, meta, 4, false)
                     .generate(this.worldObj, this.rand, x, y, z);
             }
         }

@@ -168,7 +168,7 @@ public class BlocksAether {
     public static Block holystone, holystone_brick, aetheral_stone, agiosite, deific;
     public static Block mossy_holystone, bloodmoss_stone, azure_holystone, notch_holystone;
     public static Block glowing_icestone;
-    public static Block aercloud, pink_aercloud, green_aercloud, purple_aercloud;
+    public static Block aercloud, pink_aercloud, green_aercloud, purple_aercloud, violet_aercloud, dark_purple_aercloud;
 
     // Decoration Blocks
     public static Block enchanted_holystone, enchanted_aetheral_stone, enchanted_agiosite, enchanted_deific;
@@ -640,7 +640,9 @@ public class BlocksAether {
         pink_aercloud = registerMeta("pink_aercloud", new BlockPinkAercloud());
         storm_aercloud = register("storm_aercloud", new BlockStormAercloud());
         green_aercloud = registerMeta("green_aercloud", new BlockGreenAercloud());
-        purple_aercloud = registerMeta("purple_aercloud", new BlockPurpleAercloud());
+        purple_aercloud = register("purple_aercloud", new BlockPurpleAercloud());
+        violet_aercloud = register("violet_aercloud", new BlockVioletAercloud());
+        dark_purple_aercloud = register("dark_purple_aercloud", new BlockDarkPurpleAercloud());
         inebriation_aercloud = registerMeta("inebriation_aercloud", new BlockInebriationAercloud());
         diamond_aercloud = registerMeta("diamond_aercloud", new BlockDiamondAercloud());
 
@@ -2083,6 +2085,8 @@ public class BlocksAether {
         BlocksAether.storm_aercloud.setHarvestLevel("pickaxe", 0);
         BlocksAether.green_aercloud.setHarvestLevel("pickaxe", 0);
         BlocksAether.purple_aercloud.setHarvestLevel("pickaxe", 0);
+        BlocksAether.violet_aercloud.setHarvestLevel("pickaxe", 0);
+        BlocksAether.dark_purple_aercloud.setHarvestLevel("pickaxe", 0);
     }
 
     public static boolean isGood(Block block) {

@@ -36,8 +36,6 @@ public class ItemAetherBlueParachute extends Item {
     }
 
     public int getColorFromItemStack(ItemStack stack, int renderPass) {
-        if (this == ItemsAether.blue_parachute) return 0xCCCCFF;
-
         return 0xCCCCFF;
     }
 

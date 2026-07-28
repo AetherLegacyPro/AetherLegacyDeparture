@@ -1,7 +1,8 @@
 package com.gildedgames.the_aether.blocks;
 
-import java.util.Random;
-
+import com.gildedgames.the_aether.items.block.IColoredBlock;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
@@ -14,14 +15,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.util.Random;
 
-public class BlockPurpleAercloud extends Block{
+public class BlockDarkPurpleAercloud extends Block implements IColoredBlock {
 
-    public BlockPurpleAercloud() {
+    public BlockDarkPurpleAercloud() {
         super(Material.ice);
 
         this.setHardness(0.2F);
@@ -39,42 +40,25 @@ public class BlockPurpleAercloud extends Block{
         return false;
     }
 
-//    @Override
-//    @SideOnly(Side.CLIENT)
-//    public int getRenderColor(int meta) {
-//        if (meta == 1) {
-//            return 0xCCFFFF; // 0xCCFFFF
-//        } else if (meta == 2) {
-//            return 0xbf93ff; // 0xFFFF80
-//        }
-//
-//        return this.getBlockColor();
-//    }
-//
-//    @Override
-//    @SideOnly(Side.CLIENT)
-//    public int colorMultiplier(IBlockAccess world, int x, int y, int z) {
-//        int meta = world.getBlockMetadata(x, y, z);
-//
-//        return this.getRenderColor(meta);
-//    }
-//
-//    @Override
-//    public String getUnlocalizedName(ItemStack stack) {
-//        return stack.getItemDamage() == 1 ? "violet_aercloud"
-//            : stack.getItemDamage() == 2 ? "dark_purple_aercloud" : "purple_aercloud";
-//    }
-//
-//    @Override
-//    public int getColorFromItemStack(ItemStack stack, int pass) {
-//        if (stack.getItemDamage() == 1) {
-//            return 0xCCFFFF;
-//        } else if (stack.getItemDamage() == 2) {
-//            return 0xFFFF80;
-//        }
-//
-//        return 0;
-//    }
+    @Override
+    @SideOnly(Side.CLIENT)
+    public int getRenderColor(int meta) {
+            return 0xbf93ff; // 0xFFFF80
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public int colorMultiplier(IBlockAccess world, int x, int y, int z) {
+        int meta = world.getBlockMetadata(x, y, z);
+
+        return this.getRenderColor(meta);
+    }
+
+    @Override
+    public int getColorFromItemStack(ItemStack stack, int pass) {
+            return 0xFFFF80;
+    }
+
     private IIcon backTexture;
     private IIcon frontTexture;
     private IIcon leftArrow;
@@ -278,3 +262,4 @@ public class BlockPurpleAercloud extends Block{
 
     }
 }
+
