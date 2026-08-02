@@ -31,7 +31,8 @@ public class WorldChunkManagerAether extends WorldChunkManager {
             AetherWorld.enchanted_island,
             AetherWorld.aether_peaks,
             AetherWorld.aether_forest,
-            AetherWorld.divine_island
+            AetherWorld.divine_island,
+            AetherWorld.stormy_skies,
         });
 
         GenLayer[] layers = GenLayerAether.initializeAllBiomeGenerators(seed);
@@ -218,6 +219,10 @@ public class WorldChunkManagerAether extends WorldChunkManager {
 
         if (AetherWorld.aether_forest != null && id == AetherWorld.aether_forest.biomeID) {
             return AetherWorld.aether_forest;
+        }
+
+        if (AetherWorld.stormy_skies != null && id == AetherWorld.stormy_skies.biomeID) {
+            return AetherWorld.stormy_skies;
         }
 
         if (AetherWorld.aercloud_fields != null && id == AetherWorld.aercloud_fields.biomeID) {

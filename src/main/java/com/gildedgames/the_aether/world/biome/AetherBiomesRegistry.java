@@ -30,18 +30,16 @@ public final class AetherBiomesRegistry {
      * {@link com.gildedgames.the_aether.world.AetherBiomeNoise}.
      * Index 0 occupies the lowest noise-value band, the last index the highest.
      */
-    public static final BiomeGenBase[] BIOMES = new BiomeGenBase[5];
+    public static final BiomeGenBase[] BIOMES = new BiomeGenBase[9];
 
-    /** The standard grassy highlands biome — noise band 0. */
     public static BiomeGenBase AETHER_HIGHLANDS;
-
-    /** The arctic highlands biome — noise band 1. */
     public static BiomeGenBase AETHER_ARCTIC;
-
     public static BiomeGenBase AETHER_ENCHANTED_ISLAND;
-
     public static BiomeGenBase AETHER_PEAKS;
-
+    public static BiomeGenBase AETHER_FOREST;
+    public static BiomeGenBase DIVINE_ISLAND;
+    public static BiomeGenBase QUICKSOIL_DUNES;
+    public static BiomeGenBase STORMY_SKIES;
     public static BiomeGenBase AETHER_AERCLOUD_FIELDS;
 
     /**
@@ -68,12 +66,20 @@ public final class AetherBiomesRegistry {
         AETHER_ARCTIC = new AetherBiomeArctic();
         AETHER_ENCHANTED_ISLAND = new AetherBiomeEnchantedIsland();
         AETHER_PEAKS = new AetherBiomeAetherPeaks();
+        AETHER_FOREST = new AetherBiomeAetherForest();
+        DIVINE_ISLAND = new AetherBiomeDivineIsland();
+        QUICKSOIL_DUNES = new AetherBiomeQuicksoilDunes();
+        STORMY_SKIES = new AetherBiomeStormySkies();
         AETHER_AERCLOUD_FIELDS = new AetherBiomeCloudyFields();
 
         BIOMES[0] = AETHER_HIGHLANDS;
         BIOMES[1] = AETHER_ARCTIC;
         BIOMES[2] = AETHER_ENCHANTED_ISLAND;
         BIOMES[3] = AETHER_PEAKS;
-        BIOMES[4] = AETHER_AERCLOUD_FIELDS;
+        BIOMES[4] = AETHER_FOREST;
+        BIOMES[5] = DIVINE_ISLAND;
+        BIOMES[6] = QUICKSOIL_DUNES;
+        BIOMES[8] = STORMY_SKIES;
+        BIOMES[7] = AETHER_AERCLOUD_FIELDS;
     }
 }

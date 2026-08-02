@@ -26,7 +26,7 @@ public class ItemAetherBlueParachute extends Item {
 				--heldItem.stackSize;
 			}
 
-			world.spawnEntityInWorld(new EntityParachute(world, entityplayer, this == ItemsAether.blue_parachute));
+			world.spawnEntityInWorld(new EntityParachute(world, entityplayer, this == ItemsAether.blue_parachute, this == ItemsAether.blue_parachute));
 			return heldItem;
 		}
 

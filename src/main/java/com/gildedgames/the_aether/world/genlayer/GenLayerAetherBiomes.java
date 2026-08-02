@@ -15,6 +15,7 @@ public class GenLayerAetherBiomes extends GenLayer {
         AetherWorld.arctic_biome,
         AetherWorld.aether_peaks,
         AetherWorld.divine_island,
+        AetherWorld.stormy_skies,
         AetherWorld.quicksoil_dunes
     };
 

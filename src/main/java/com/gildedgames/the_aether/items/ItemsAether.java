@@ -199,6 +199,8 @@ public class ItemsAether {
 
 	public static Item black_dye, white_dye, blue_dye;
 
+    public static Item skyroot_door_item;
+
 	//Mob Drops
 	public static Item aechor_petal, blue_aechor_petal, golden_aechor_petal, cockatrice_feather, tempest_core, zarnillys_scales, thunderlo_horn, divine_essence;
 	public static Item cyro_rod, cinerarium_rod, zephyroo_leather, zephyroo_saddle, thunderlo_leather;
@@ -338,6 +340,7 @@ public class ItemsAether {
 
 	public static void initialization() {
 		skyroot_stick = register("skyroot_stick", new ItemAether(AetherCreativeTabs.material).setTextureName(Aether.find("skyroot_stick")));
+        skyroot_door_item = register("skyroot_door_item", new ItemBlockAetherDoor().setTextureName(Aether.findII("skyroot Door")));
 		zanite_gemstone = register("zanite_gemstone", new ItemAether(AetherCreativeTabs.material).setTextureName(Aether.find("misc/zanite_gemstone")));
 		zanite_nugget = register("zanite_nugget", new ItemAether(AetherCreativeTabs.material).setTextureName(Aether.find("misc/zanite_nugget")));
 		ambrosium_shard = register("ambrosium_shard", new ItemAmbrosiumShard().setTextureName(Aether.find("misc/ambrosium_shard")));
@@ -691,7 +694,7 @@ public class ItemsAether {
 		dungeon_key = register("dungeon_key", new ItemDungeonKey());
 		skyroot_bucket = register("skyroot_bucket", new ItemSkyrootBucket());
 		cloud_parachute = register("cold_parachute", new ItemAetherParachute().setTextureName(Aether.find("misc/parachutes/cold_parachute")));
-		blue_parachute = register("blue_parachute", new ItemAetherBlueParachute().setTextureName(Aether.find("misc/parachutes/blue_parachute")));
+		blue_parachute = register("blue_parachute", new ItemAetherParachute().setTextureName(Aether.find("misc/parachutes/blue_parachute")));
 		golden_parachute = register("golden_parachute", new ItemAetherParachute().setTextureName(Aether.find("misc/parachutes/golden_parachute")));
 
 		moa_egg = register("moa_egg", new ItemMoaEgg());

@@ -464,6 +464,7 @@ public class EntityDivineSunSpirit extends EntityFlying implements IMob, IAether
                 } else if (this.getChatLine() == 8) {
                     this.chatLine(entityPlayer, "\u00a7c" + StatCollector.translateToLocal("gui.spirit.line8"));
                     this.setChatLine(9);
+                    ((PlayerAether) AetherAPI.get(entityPlayer)).seenSpiritDialog = true;
                 } else {
                     if (this.getChatLine() == 9) {
                         this.chatLine(entityPlayer, "\u00a76" + StatCollector.translateToLocal("gui.spirit.line9"));

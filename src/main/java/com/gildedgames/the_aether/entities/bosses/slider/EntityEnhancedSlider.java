@@ -307,7 +307,7 @@ public class EntityEnhancedSlider extends EntityFlying implements IAetherBoss {
         Block block = this.worldObj.getBlock((int) x, (int) y, (int) z);
         int metadata = this.worldObj.getBlockMetadata((int) x, (int) y, (int) z);
 
-        if (block == Blocks.air || block == BlocksAether.locked_carved_stone || block == BlocksAether.locked_ancient_carved_stone || block == BlocksAether.locked_divine_carved_stone || block == BlocksAether.locked_sentry_stone || block == BlocksAether.locked_ancient_sentry_stone || block == BlocksAether.carved_trap || block == BlocksAether.divine_carved_trap || block == BlocksAether.locked_mythic_carved_stone || block == BlocksAether.locked_mythic_sentry_stone) {
+        if (block == Blocks.air || block == BlocksAether.locked_carved_stone || block == BlocksAether.locked_ancient_carved_stone || block == BlocksAether.locked_divine_carved_stone || block == BlocksAether.locked_sentry_stone || block == BlocksAether.locked_ancient_sentry_stone || block == BlocksAether.carved_trap || block == BlocksAether.divine_carved_trap || block == BlocksAether.locked_mythic_carved_stone || block == BlocksAether.locked_mythic_sentry_stone || block.getBlockHardness(this.worldObj, (int) x, (int) y, (int) z) < 0.0F) {
             return;
         }
 
@@ -513,8 +513,7 @@ public class EntityEnhancedSlider extends EntityFlying implements IAetherBoss {
             boolean isTCPickaxe = stack.getItem().getClass().getName().equals("tconstruct.items.tools.Pickaxe");
 
             if (!stack.getItem().canHarvestBlock(Blocks.stone, stack) && !isTCPickaxe) {
-                this.sendMessage(player, StatCollector.translateToLocal("gui.slider.notpickaxe"));
-
+                this.dropItem(ItemsAether.divine_essence, 1 + rand.nextInt(3));
                 return false;
             }
         }

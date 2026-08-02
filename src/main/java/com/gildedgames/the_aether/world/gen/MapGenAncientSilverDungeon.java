@@ -12,13 +12,14 @@ import net.minecraft.world.gen.structure.StructureStart;
 
 public class MapGenAncientSilverDungeon extends MapGenStructure {
 
+    private final int requiredDungeonType;
     private static final int MIN_SILVER_DUNGEON_Y = 136;
     private static final int MAX_SILVER_DUNGEON_Y = 184;
-
     private static final int MIN_HIGH_TERRAIN_SILVER_DUNGEON_Y = 200;
     private static final int MAX_HIGH_TERRAIN_SILVER_DUNGEON_Y = 221;
 
     public MapGenAncientSilverDungeon() {
+        this.requiredDungeonType = AetherDungeonTypeHelper.TYPE_ANCIENT;
     }
 
     @Override
@@ -28,21 +29,15 @@ public class MapGenAncientSilverDungeon extends MapGenStructure {
 
     @Override
     protected boolean canSpawnStructureAtCoords(int chunkX, int chunkZ) {
-        RandomTracker randomTracker = new RandomTracker();
+        long seed = this.worldObj.getSeed();
 
-        //Changes the rarity of the structure
-        if (randomTracker.testRandom(this.rand, 60) != 0) {
-            if (randomTracker.testRandom(this.rand, 100) != 0) {
-                return false;
-            }
-        }
-
-        //Changes the heights/placement
-        if (chunkX % 8 != 0 || chunkZ % 8 != 0) {
+        if (!AetherDungeonTypeHelper.canSilverDungeonSpawnAt(seed, chunkX, chunkZ)) {
             return false;
         }
 
-        if (!this.isValidSilverDungeonArea(chunkX, chunkZ)) {
+        int type = AetherDungeonTypeHelper.getSilverDungeonType(seed, chunkX, chunkZ);
+
+        if (type != this.requiredDungeonType) {
             return false;
         }
 

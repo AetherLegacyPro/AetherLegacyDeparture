@@ -1029,6 +1029,7 @@ public class AetherRegistries {
 		register(new ItemStack(BlocksAether.ambrosium_torch, 3), "Z", "Y", 'Z', ItemsAether.ambrosium_shard, 'Y', ItemsAether.skyroot_stick);
 		register(new ItemStack(Items.lead, 2), "YY ", "YX ", "  Y", 'Y', Items.string, 'X', ItemsAether.swet_ball);
 		register(new ItemStack(ItemsAether.arkenium_apple), "XXX", "XYX", "XXX", 'X', ItemsAether.arkenium_ingot, 'Y', ItemsAether.white_apple);
+        register(new ItemStack(ItemsAether.skyroot_door_item, 3), "XX", "XX", "XX", 'X', BlocksAether.skyroot_planks);
 
 		register(new ItemStack(ItemsAether.arkenium_nugget, 9), "X", 'X', ItemsAether.arkenium_ingot);
 		register(new ItemStack(ItemsAether.continuum_nugget, 9), "X", 'X', ItemsAether.continuum_gemstone);

@@ -25,21 +25,15 @@ public class OsmiumDungeon implements IWorldGenerator  {
 	int aether_random = AetherConfig.osmium_dungeon_rarity;
 
 	public void generateAether(World world, Random rand, int x, int z) {
-		if(Math.abs(x) < 2000 && Math.abs(z) < 2000) return;
+		if(Math.abs(x) < 1200 && Math.abs(z) < 1200) return;
 
-		int chunkX;
-		int chunkZ;
 		BiomeGenBase biome;
-		Type[] biomeList;
-		chunkX = x * 16 + rand.nextInt(16) + 8;
-		chunkZ = z * 16 + rand.nextInt(16) + 8;
 		biome = world.getBiomeGenForCoords(x, z);
-		biomeList = BiomeDictionary.getTypesForBiome(biome);
-		if ((biome == AetherWorld.aether_biome) && AetherConfig.osmium_dungeon_rarity != 0 && rand.nextInt(aether_random) == 0 && AetherConfig.osmium_dungeon_enable) {
+		if ((biome == AetherWorld.stormy_skies) && AetherConfig.osmium_dungeon_rarity != 0 && rand.nextInt(aether_random) == 0 && AetherConfig.osmium_dungeon_enable) {
 
-		int x1 = x + rand.nextInt(16) + 8;
+		int x1 = x + rand.nextInt(8) + 8;
 	  	int y1 = 128;
-	  	int z1 = z + rand.nextInt(16) + 8;
+	  	int z1 = z + rand.nextInt(8) + 8;
 
 	  	if (AetherConfig.enableLogReporting()) {
             System.out.println("Osmium Dungeon generated at (X:" + x1 + ", Z:" + z1 + ")");
@@ -94,7 +88,7 @@ public class OsmiumDungeon implements IWorldGenerator  {
 				}
 			}
 			case 3:
-				return new ItemStack(ItemsAether.dart_shooter, 0, 3);
+				return new ItemStack(ItemsAether.dart_shooter, 1, 3);
 			case 4:
 				return new ItemStack(ItemsAether.bone_ring);
 			case 5:

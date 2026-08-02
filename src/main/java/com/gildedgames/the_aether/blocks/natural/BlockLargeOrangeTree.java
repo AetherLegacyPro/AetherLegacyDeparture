@@ -2,6 +2,7 @@ package com.gildedgames.the_aether.blocks.natural;
 
 import java.util.Random;
 import com.gildedgames.the_aether.blocks.BlocksAether;
+import com.gildedgames.the_aether.items.ItemsAether;
 import net.minecraft.block.IGrowable;
 import net.minecraft.item.Item;
 import net.minecraft.world.IBlockAccess;
@@ -20,7 +21,7 @@ public class BlockLargeOrangeTree extends BlockAetherFlower implements IGrowable
 
 	@Override
 	public Item getItemDropped(int meta, Random rand, int fortune) {
-        return null;
+        return ItemsAether.orange_seeds;
 	}
 
 	@Override

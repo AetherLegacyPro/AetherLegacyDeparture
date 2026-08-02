@@ -2,6 +2,7 @@ package com.gildedgames.the_aether.world;
 
 import com.gildedgames.the_aether.world.biome.*;
 import com.gildedgames.the_aether.world.biome.decoration.*;
+import cpw.mods.fml.common.Loader;
 import net.minecraft.world.gen.MapGenBase;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -54,19 +55,10 @@ public class ChunkProviderAether implements IChunkProvider {
 
     private static final int PEAKS_TERRAIN_MAX_Y = 240;
 
-    // Wider = smoother rise into Peaks.
     private static final int PEAKS_EDGE_BLEND_DISTANCE = 128;
-
-    // Normal biomes near Peaks get a small foothill lift.
     private static final int PEAKS_OUTER_FOOTHILL_DISTANCE = 64;
-
-    // Smaller = more accurate/smoother, but slower. 4 is a good balance.
     private static final int PEAKS_EDGE_SAMPLE_STEP = 2;
-
-    // Lowest height allowed at the inside edge of Peaks.
     private static final int PEAKS_EDGE_MIN_Y = 96;
-
-    // Max height normal biomes can be lifted to near Peaks.
     private static final int PEAKS_FOOTHILL_MAX_Y = 112;
 
     private static final int QUICKSOIL_DUNES_LOW_Y = 78;
@@ -74,7 +66,21 @@ public class ChunkProviderAether implements IChunkProvider {
     private static final int QUICKSOIL_DUNES_HILL_Y = 102;
     private static final int QUICKSOIL_DUNES_RARE_HILL_Y = 116;
 
-    private static final int NOISE_Y_SIZE = WORLD_HEIGHT / 4 + 1; // 65
+    private static final int AERCLOUD_FIELDS_LOW_Y = 72;
+    private static final int AERCLOUD_FIELDS_COMMON_Y = 82;
+    private static final int AERCLOUD_FIELDS_HILL_Y = 92;
+    private static final int AERCLOUD_FIELDS_RARE_HILL_Y = 102;
+
+    private static final int AERCLOUD_FIELDS_PULL_DISTANCE = 96;
+    private static final int AERCLOUD_FIELDS_PULL_SAMPLE_STEP = 2;
+    private static final int AERCLOUD_FIELDS_PULL_EXTRA_Y = 4;
+
+    private static final int STORMY_SKIES_LOW_Y = 82;
+    private static final int STORMY_SKIES_COMMON_Y = 96;
+    private static final int STORMY_SKIES_HILL_Y = 112;
+    private static final int STORMY_SKIES_RARE_HILL_Y = 124;
+
+    private static final int NOISE_Y_SIZE = WORLD_HEIGHT / 4 + 1;
 
     private int getBlockIndex(int localX, int y, int localZ) {
         return (localX * 16 + localZ) * WORLD_HEIGHT + y;
@@ -88,9 +94,6 @@ public class ChunkProviderAether implements IChunkProvider {
     private NoiseGeneratorOctaves noiseGen1, perlinNoise1;
     private double[] buffer;
     double[] pnr, ar, br;
-
-    int silver_dungeon_type = (int) (1 + Math.random() * 20);
-    int golden_dungeon_type = (int) (1 + Math.random() * 20);
 
     private MapGenBase aetherCaveGenerator;
 
@@ -117,6 +120,35 @@ public class ChunkProviderAether implements IChunkProvider {
     public AetherGenFloatingIsland crystal_island = new AetherGenFloatingIsland();
     public AetherGenVoidFloatingIsland void_island = new AetherGenVoidFloatingIsland();
     public AetherGenHolidayTree holiday_tree = new AetherGenHolidayTree();
+
+    private boolean isEndlessIdsLoaded() {
+        return Loader.isModLoaded("endlessids") || Loader.isModLoaded("EndlessIDs") || Loader.isModLoaded("endlessIds");
+    }
+
+    //Endless IDS compat
+    private void populateChunkBiomeDataSafely(Chunk chunk) {
+        if (this.isEndlessIdsLoaded()) {
+            for (int localZ = 0; localZ < 16; localZ++) {
+                for (int localX = 0; localX < 16; localX++) {
+                    chunk.getBiomeGenForWorldCoords(localX, localZ, this.worldObj.getWorldChunkManager());
+                }
+            }
+
+            return;
+        }
+
+        byte[] biomeArray = chunk.getBiomeArray();
+        for (int localZ = 0; localZ < 16; localZ++) {
+            for (int localX = 0; localX < 16; localX++) {
+                int index = localX + localZ * 16;
+
+                BiomeGenBase biome = this.biomesForGeneration[index];
+                if (biome != null) {
+                    biomeArray[index] = (byte)(biome.biomeID & 255);
+                }
+            }
+        }
+    }
 
     public ChunkProviderAether(World world, long seed) {
         this.worldObj = world;
@@ -198,6 +230,12 @@ public class ChunkProviderAether implements IChunkProvider {
 
                                         topFadeDistance = this.lerpInt(40, 72, peakT);
                                         topFadeStrength = this.lerp(24.0D, 10.0D, peakT);
+                                    } else if (this.isAercloudFieldsBiome(biome)) {
+                                        topFadeDistance = 40;
+                                        topFadeStrength = 36.0D;
+                                    } else if (this.isStormySkiesBiome(biome)) {
+                                        topFadeDistance = 44;
+                                        topFadeStrength = 30.0D;
                                     } else if (this.isQuicksoilDunesBiome(biome)) {
                                         topFadeDistance = 36;
                                         topFadeStrength = 34.0D;
@@ -225,7 +263,7 @@ public class ChunkProviderAether implements IChunkProvider {
                                     }
 
                                     if (density > 0.0D) {
-                                        filler = BlocksAether.holystone;
+                                        filler = this.getBaseTerrainBlockForBiome(biome);
                                     }
                                 }
 
@@ -265,8 +303,8 @@ public class ChunkProviderAether implements IChunkProvider {
                     top = BlocksAether.arctic_grass;
                     filler = BlocksAether.holystone;
                 } else if (biome == AetherWorld.aercloud_fields) {
-                    top = BlocksAether.aether_grass;
-                    filler = BlocksAether.holystone;
+                    top = BlocksAether.aercloud;
+                    filler = BlocksAether.aercloud;
                 } else if (biome == AetherWorld.aether_biome || biome == AetherWorld.aether_peaks || biome == AetherWorld.aether_forest) {
                     top = BlocksAether.aether_grass;
                     filler = BlocksAether.aether_dirt;
@@ -279,15 +317,18 @@ public class ChunkProviderAether implements IChunkProvider {
                 } else if (biome == AetherWorld.quicksoil_dunes) {
                     top = BlocksAether.quicksoil;
                     filler = BlocksAether.quicksoil;
+                } else if (biome == AetherWorld.stormy_skies) {
+                    top = BlocksAether.aether_grass;
+                    filler = BlocksAether.aether_dirt;
                 }
-                if (biome != AetherWorld.aercloud_fields) {
+               // if (biome != AetherWorld.aercloud_fields) {
                     for (int y = WORLD_HEIGHT - 1; y >= 0; y--) {
                         int index = this.getBlockIndex(localX, y, localZ);
                         Block block = blocks[index];
 
                         if (block == Blocks.air) {
                             depth = -1;
-                        } else if (block == BlocksAether.holystone) {
+                        } else if (block == BlocksAether.holystone || block == BlocksAether.stratos_aercloud) {
                             if (depth == -1) {
                                 depth = surfaceDepth;
                                 blocks[index] = top;
@@ -297,9 +338,17 @@ public class ChunkProviderAether implements IChunkProvider {
                             }
                         }
                     }
-                }
+               //}
             }
         }
+    }
+
+    private Block getBaseTerrainBlockForBiome(BiomeGenBase biome) {
+        if (this.isAercloudFieldsBiome(biome)) {
+            return BlocksAether.stratos_aercloud;
+        }
+
+        return BlocksAether.holystone;
     }
 
     private double[] setupNoiseGenerators(double[] buffer, int x, int z) {
@@ -368,6 +417,12 @@ public class ChunkProviderAether implements IChunkProvider {
         return buffer;
     }
 
+    private boolean isStormySkiesBiome(BiomeGenBase biome) {
+        return biome != null
+            && AetherWorld.stormy_skies != null
+            && biome.biomeID == AetherWorld.stormy_skies.biomeID;
+    }
+
     private boolean isQuicksoilDunesBiome(BiomeGenBase biome) {
         return biome != null
             && AetherWorld.quicksoil_dunes != null
@@ -395,6 +450,56 @@ public class ChunkProviderAether implements IChunkProvider {
 
         double t = (n - 0.94D) / (1.0D - 0.94D);
         return this.lerpInt(QUICKSOIL_DUNES_HILL_Y, QUICKSOIL_DUNES_RARE_HILL_Y, t);
+    }
+
+    private int getStormySkiesMaxTerrainY(int worldX, int worldZ) {
+        /*
+         * Hybrid between regular Aether and Aercloud Fields.
+         * Lower and smoother than normal terrain, but not totally flat.
+         */
+        double broad = this.regionalNoise01(worldX, worldZ, 256, 10101L);
+        double medium = this.regionalNoise01(worldX + 33119, worldZ - 17731, 128, 10102L);
+        double small = this.regionalNoise01(worldX - 12117, worldZ + 44123, 80, 10103L);
+
+        double n = broad * 0.68D + medium * 0.24D + small * 0.08D;
+
+        n = this.smootherstep(n);
+
+        if (n < 0.72D) {
+            double t = n / 0.72D;
+            return this.lerpInt(STORMY_SKIES_LOW_Y, STORMY_SKIES_COMMON_Y, t);
+        }
+
+        if (n < 0.94D) {
+            double t = (n - 0.72D) / (0.94D - 0.72D);
+            return this.lerpInt(STORMY_SKIES_COMMON_Y, STORMY_SKIES_HILL_Y, t);
+        }
+
+        double t = (n - 0.94D) / (1.0D - 0.94D);
+        return this.lerpInt(STORMY_SKIES_HILL_Y, STORMY_SKIES_RARE_HILL_Y, t);
+    }
+
+    private int getAercloudFieldsMaxTerrainY(int worldX, int worldZ) {
+        double broad = this.regionalNoise01(worldX, worldZ, 288, 9101L);
+        double medium = this.regionalNoise01(worldX + 55119, worldZ - 28231, 144, 9102L);
+        double small = this.regionalNoise01(worldX - 19917, worldZ + 65123, 80, 9103L);
+
+        double n = broad * 0.70D + medium * 0.22D + small * 0.08D;
+
+        n = this.smootherstep(n);
+
+        if (n < 0.76D) {
+            double t = n / 0.76D;
+            return this.lerpInt(AERCLOUD_FIELDS_LOW_Y, AERCLOUD_FIELDS_COMMON_Y, t);
+        }
+
+        if (n < 0.95D) {
+            double t = (n - 0.76D) / (0.95D - 0.76D);
+            return this.lerpInt(AERCLOUD_FIELDS_COMMON_Y, AERCLOUD_FIELDS_HILL_Y, t);
+        }
+
+        double t = (n - 0.95D) / (1.0D - 0.95D);
+        return this.lerpInt(AERCLOUD_FIELDS_HILL_Y, AERCLOUD_FIELDS_RARE_HILL_Y, t);
     }
 
     private boolean isAetherPeaksBiome(BiomeGenBase biome) {
@@ -533,18 +638,8 @@ public class ChunkProviderAether implements IChunkProvider {
     private double[] makeAercloudTerrainFactorsForChunk(int chunkX, int chunkZ) {
         double[] factors = new double[256];
 
-        int worldBaseX = chunkX * 16;
-        int worldBaseZ = chunkZ * 16;
-
-        for (int localX = 0; localX < 16; localX++) {
-            for (int localZ = 0; localZ < 16; localZ++) {
-                int worldX = worldBaseX + localX;
-                int worldZ = worldBaseZ + localZ;
-
-                BiomeGenBase biome = this.biomesForGeneration[localX + localZ * 16];
-
-                factors[localX + localZ * 16] = this.getAercloudTerrainFactor(worldX, worldZ, biome);
-            }
+        for (int i = 0; i < factors.length; i++) {
+            factors[i] = 1.0D;
         }
 
         return factors;
@@ -560,85 +655,6 @@ public class ChunkProviderAether implements IChunkProvider {
         }
 
         return t * t * t * (t * (t * 6.0D - 15.0D) + 10.0D);
-    }
-
-    private double getAercloudTerrainFactor(int worldX, int worldZ, BiomeGenBase biome) {
-        //Normal biomes always generate full terrain.
-        if (!this.isAercloudFieldsBiome(biome)) {
-            return 1.0D;
-        }
-
-        int keepFullTerrainDistance = 32;
-        int fullyEmptyDistance = 164;
-
-        int distance = this.getApproxDistanceToNonAercloudFieldsBiome(worldX, worldZ, fullyEmptyDistance, 2);
-
-        if (distance <= keepFullTerrainDistance) {
-            return 1.0D;
-        }
-
-        if (distance >= fullyEmptyDistance) {
-            return 0.0D;
-        }
-
-        double t = (double) (distance - keepFullTerrainDistance) / (double) (fullyEmptyDistance - keepFullTerrainDistance);
-
-        t = t * t * t * (t * (t * 6.0D - 15.0D) + 10.0D);
-
-        double factor = 1.0D - t;
-        factor = Math.pow(factor, 0.65D);
-
-        double noise = this.columnNoise01(worldX, worldZ);
-        factor += (noise - 0.5D) * 0.12D;
-
-        if (factor < 0.0D) {
-            factor = 0.0D;
-        }
-
-        if (factor > 1.0D) {
-            factor = 1.0D;
-        }
-
-        return factor;
-    }
-
-    private int getApproxDistanceToNonAercloudFieldsBiome(int worldX, int worldZ, int maxRadius, int step) {
-        int bestDistanceSq = maxRadius * maxRadius + 1;
-
-        for (int dz = -maxRadius; dz <= maxRadius; dz += step) {
-            for (int dx = -maxRadius; dx <= maxRadius; dx += step) {
-                int distanceSq = dx * dx + dz * dz;
-
-                if (distanceSq >= bestDistanceSq) {
-                    continue;
-                }
-
-                BiomeGenBase nearbyBiome = this.worldObj.getWorldChunkManager().getBiomeGenAt(worldX + dx, worldZ + dz);
-
-                if (!this.isAercloudFieldsBiome(nearbyBiome)) {
-                    bestDistanceSq = distanceSq;
-                }
-            }
-        }
-
-        if (bestDistanceSq > maxRadius * maxRadius) {
-            return maxRadius + 1;
-        }
-
-        return (int) Math.sqrt((double) bestDistanceSq);
-    }
-
-    private double columnNoise01(int worldX, int worldZ) {
-        long seed = this.worldObj.getSeed();
-
-        long value = seed;
-        value ^= (long) worldX * 341873128712L;
-        value ^= (long) worldZ * 132897987541L;
-        value ^= value >> 13;
-        value *= 1274126177L;
-        value ^= value >> 16;
-
-        return (double) (value & 16777215L) / 16777215.0D;
     }
 
     private boolean chunkHasNonAercloudFieldsBiome(BiomeGenBase[] biomes) {
@@ -661,7 +677,7 @@ public class ChunkProviderAether implements IChunkProvider {
         int worldBaseX = chunkX * 16;
         int worldBaseZ = chunkZ * 16;
 
-        int radius = Math.max(PEAKS_EDGE_BLEND_DISTANCE, PEAKS_OUTER_FOOTHILL_DISTANCE);
+        int radius = Math.max(Math.max(PEAKS_EDGE_BLEND_DISTANCE, PEAKS_OUTER_FOOTHILL_DISTANCE), AERCLOUD_FIELDS_PULL_DISTANCE);
         int sampleStep = PEAKS_EDGE_SAMPLE_STEP;
 
         int sampleMinX = worldBaseX - radius;
@@ -678,25 +694,189 @@ public class ChunkProviderAether implements IChunkProvider {
                 int worldZ = worldBaseZ + localZ;
 
                 BiomeGenBase biome = biomes[index];
+                int height;
 
-                if (this.isQuicksoilDunesBiome(biome)) {
-                    result[index] = this.getQuicksoilDunesMaxTerrainY(worldX, worldZ);
+                if (this.isAercloudFieldsBiome(biome)) {
+                    result[index] = this.getAercloudFieldsMaxTerrainY(worldX, worldZ);
                     continue;
                 }
 
-                int normalHeight = this.getNormalMaxTerrainY(worldX, worldZ);
-
-                if (this.isHighTerrainBiome(biome)) {
-                    int distanceToNonHighTerrain = this.getApproxDistanceToHighTerrainBiomeTypeFromArray(worldX, worldZ, sampleMinX, sampleMinZ, sampleSize, nearbyBiomes, radius, sampleStep, false);
-                    result[index] = this.getHighTerrainMaxYFromDistance(worldX, worldZ, normalHeight, distanceToNonHighTerrain);
+                if (this.isStormySkiesBiome(biome)) {
+                    height = this.getStormySkiesMaxTerrainY(worldX, worldZ);
+                } else if (this.isQuicksoilDunesBiome(biome)) {
+                    height = this.getQuicksoilDunesMaxTerrainY(worldX, worldZ);
                 } else {
-                    int distanceToHighTerrain = this.getApproxDistanceToHighTerrainBiomeTypeFromArray(worldX, worldZ, sampleMinX, sampleMinZ, sampleSize, nearbyBiomes, radius, sampleStep, true);
-                    result[index] = this.getNormalMaxTerrainYNearHighTerrain(worldX, worldZ, normalHeight, distanceToHighTerrain);
+                    int normalHeight = this.getNormalMaxTerrainY(worldX, worldZ);
+
+                    if (this.isHighTerrainBiome(biome)) {
+                        int distanceToNonHighTerrain = this.getApproxDistanceToHighTerrainBiomeTypeFromArray(
+                            worldX,
+                            worldZ,
+                            sampleMinX,
+                            sampleMinZ,
+                            sampleSize,
+                            nearbyBiomes,
+                            radius,
+                            sampleStep,
+                            false
+                        );
+
+                        height = this.getHighTerrainMaxYFromDistance(
+                            worldX,
+                            worldZ,
+                            normalHeight,
+                            distanceToNonHighTerrain
+                        );
+                    } else {
+                        int distanceToHighTerrain = this.getApproxDistanceToHighTerrainBiomeTypeFromArray(
+                            worldX,
+                            worldZ,
+                            sampleMinX,
+                            sampleMinZ,
+                            sampleSize,
+                            nearbyBiomes,
+                            radius,
+                            sampleStep,
+                            true
+                        );
+
+                        height = this.getNormalMaxTerrainYNearHighTerrain(
+                            worldX,
+                            worldZ,
+                            normalHeight,
+                            distanceToHighTerrain
+                        );
+                    }
                 }
+
+                /*
+                 * Pull non-Aercloud terrain down near Aercloud Fields.
+                 */
+                int distanceToAercloudFields = this.getApproxDistanceToAercloudFieldsFromArray(
+                    worldX,
+                    worldZ,
+                    sampleMinX,
+                    sampleMinZ,
+                    sampleSize,
+                    nearbyBiomes,
+                    AERCLOUD_FIELDS_PULL_DISTANCE,
+                    AERCLOUD_FIELDS_PULL_SAMPLE_STEP
+                );
+
+                height = this.applyAercloudFieldsPullDown(
+                    worldX,
+                    worldZ,
+                    height,
+                    distanceToAercloudFields
+                );
+
+                result[index] = height;
             }
         }
 
         return result;
+    }
+
+    private int getApproxDistanceToAercloudFieldsFromArray(
+        int worldX,
+        int worldZ,
+        int sampleMinX,
+        int sampleMinZ,
+        int sampleSize,
+        BiomeGenBase[] nearbyBiomes,
+        int maxRadius,
+        int step
+    ) {
+        int localCenterX = worldX - sampleMinX;
+        int localCenterZ = worldZ - sampleMinZ;
+
+        int bestDistanceSq = maxRadius * maxRadius + 1;
+
+        for (int dz = -maxRadius; dz <= maxRadius; dz += step) {
+            int sampleZ = localCenterZ + dz;
+
+            if (sampleZ < 0 || sampleZ >= sampleSize) {
+                continue;
+            }
+
+            for (int dx = -maxRadius; dx <= maxRadius; dx += step) {
+                int sampleX = localCenterX + dx;
+
+                if (sampleX < 0 || sampleX >= sampleSize) {
+                    continue;
+                }
+
+                int distanceSq = dx * dx + dz * dz;
+
+                if (distanceSq >= bestDistanceSq) {
+                    continue;
+                }
+
+                BiomeGenBase sampleBiome = nearbyBiomes[sampleX + sampleZ * sampleSize];
+
+                if (this.isAercloudFieldsBiome(sampleBiome)) {
+                    bestDistanceSq = distanceSq;
+                }
+            }
+        }
+
+        if (bestDistanceSq > maxRadius * maxRadius) {
+            return maxRadius + 1;
+        }
+
+        return (int)Math.sqrt((double)bestDistanceSq);
+    }
+
+    private int applyAercloudFieldsPullDown(
+        int worldX,
+        int worldZ,
+        int currentHeight,
+        int distanceToAercloudFields
+    ) {
+        if (distanceToAercloudFields > AERCLOUD_FIELDS_PULL_DISTANCE) {
+            return currentHeight;
+        }
+
+        /*
+         * t = 1 near Aercloud Fields
+         * t = 0 far away
+         */
+        double t = 1.0D - ((double)distanceToAercloudFields / (double)AERCLOUD_FIELDS_PULL_DISTANCE);
+
+        if (t < 0.0D) {
+            t = 0.0D;
+        }
+
+        if (t > 1.0D) {
+            t = 1.0D;
+        }
+
+        t = this.smootherstep(t);
+
+        /*
+         * Target height near Aercloud Fields.
+         * Uses the Aercloud Fields height profile so the transition matches.
+         */
+        int aercloudHeight = this.getAercloudFieldsMaxTerrainY(worldX, worldZ);
+        int targetHeight = aercloudHeight + AERCLOUD_FIELDS_PULL_EXTRA_Y;
+
+        /*
+         * Never raise terrain here; only pull down.
+         */
+        if (currentHeight <= targetHeight) {
+            return currentHeight;
+        }
+
+        /*
+         * Pull most strongly near Aercloud Fields.
+         */
+        int pulledHeight = this.lerpInt(currentHeight, targetHeight, t);
+
+        if (pulledHeight > currentHeight) {
+            pulledHeight = currentHeight;
+        }
+
+        return pulledHeight;
     }
 
     private int getAetherPeaksMaxTerrainYFromDistance(int worldX, int worldZ, int normalHeight, int distanceToEdge) {
@@ -838,33 +1018,32 @@ public class ChunkProviderAether implements IChunkProvider {
         this.quicksoilGen.func_151539_a(this, this.worldObj, x, z, ablock);
         this.largeColdAercloudStructure.func_151539_a(this, this.worldObj, x, z, ablock);
 
-        if (AetherConfig.silver_dungeon_enable && silver_dungeon_type < 10) {
+        if (AetherConfig.silver_dungeon_enable) {
             this.silverDungeonStructure.func_151539_a(this, this.worldObj, x, z, ablock);
-        } else if (AetherConfig.tier2_silver_dungeon_enable && silver_dungeon_type < 17) {
+        }
+
+        if (AetherConfig.tier2_silver_dungeon_enable) {
             this.ancientsilverDungeonStructure.func_151539_a(this, this.worldObj, x, z, ablock);
-        } else if (AetherConfig.tier3_silver_dungeon_enable && silver_dungeon_type <= 20) {
+        }
+
+        if (AetherConfig.tier3_silver_dungeon_enable) {
             this.divinesilverDungeonStructure.func_151539_a(this, this.worldObj, x, z, ablock);
         }
 
-        if (AetherConfig.gold_dungeon_enable && golden_dungeon_type < 10) {
+        if (AetherConfig.gold_dungeon_enable) {
             this.goldenDungeonStructure.func_151539_a(this, this.worldObj, x, z, ablock);
-        } else if (AetherConfig.tier2_gold_dungeon_enable && golden_dungeon_type < 17) {
+        }
+
+        if (AetherConfig.tier2_gold_dungeon_enable) {
             this.ancientGoldenDungeonStructure.func_151539_a(this, this.worldObj, x, z, ablock);
-        } else if (AetherConfig.tier3_gold_dungeon_enable && golden_dungeon_type <= 20) {
+        }
+
+        if (AetherConfig.tier3_gold_dungeon_enable) {
             this.divineGoldenDungeonStructure.func_151539_a(this, this.worldObj, x, z, ablock);
         }
 
         Chunk chunk = new Chunk(this.worldObj, ablock, metadata, x, z);
-
-        //Forces the chunk's biome array to match the biomes used for terrain.
-        byte[] biomeArray = chunk.getBiomeArray();
-
-        for (int localZ = 0; localZ < 16; localZ++) {
-            for (int localX = 0; localX < 16; localX++) {
-                BiomeGenBase biome = this.biomesForGeneration[localX + localZ * 16];
-                biomeArray[localZ * 16 + localX] = (byte) (biome.biomeID & 255);
-            }
-        }
+        this.populateChunkBiomeDataSafely(chunk);
 
         chunk.generateSkylightMap();
 
@@ -883,26 +1062,34 @@ public class ChunkProviderAether implements IChunkProvider {
 
         this.aether_caves.func_151539_a(this, this.worldObj, x, z, null);
 
-        if (AetherConfig.silver_dungeon_enable && silver_dungeon_type < 10) {
+        if (AetherConfig.silver_dungeon_enable) {
             this.silverDungeonStructure.func_151539_a(this, this.worldObj, x, z, null);
-        } else if (AetherConfig.tier2_silver_dungeon_enable && silver_dungeon_type < 17) {
+        }
+
+        if (AetherConfig.tier2_silver_dungeon_enable) {
             this.ancientsilverDungeonStructure.func_151539_a(this, this.worldObj, x, z, null);
-        } else if (AetherConfig.tier3_silver_dungeon_enable && silver_dungeon_type <= 20) {
+        }
+
+        if (AetherConfig.tier3_silver_dungeon_enable) {
             this.divinesilverDungeonStructure.func_151539_a(this, this.worldObj, x, z, null);
         }
 
-        if (AetherConfig.gold_dungeon_enable && golden_dungeon_type < 10) {
+        if (AetherConfig.gold_dungeon_enable) {
             this.goldenDungeonStructure.func_151539_a(this, this.worldObj, x, z, null);
-        } else if (AetherConfig.tier2_gold_dungeon_enable && golden_dungeon_type < 17) {
+        }
+
+        if (AetherConfig.tier2_gold_dungeon_enable) {
             this.ancientGoldenDungeonStructure.func_151539_a(this, this.worldObj, x, z, null);
-        } else if (AetherConfig.tier3_gold_dungeon_enable && golden_dungeon_type <= 20) {
+        }
+
+        if (AetherConfig.tier3_gold_dungeon_enable) {
             this.divineGoldenDungeonStructure.func_151539_a(this, this.worldObj, x, z, null);
         }
 
     }
 
     @Override
-    public ChunkPosition func_147416_a(World worldIn, String structureName, int x, int y, int z) { //getNearestStructurePos
+    public ChunkPosition func_147416_a(World worldIn, String structureName, int x, int y, int z) {
         return null;
     }
 
@@ -910,7 +1097,7 @@ public class ChunkProviderAether implements IChunkProvider {
     public void populate(IChunkProvider provider, int chunkX, int chunkZ) {
         int x = chunkX * 16;
         int z = chunkZ * 16;
-        BiomeGenBase biome = this.worldObj.getBiomeGenForCoords(x + 16, z + 16);
+        BiomeGenBase biome = this.worldObj.getBiomeGenForCoords(x + 8, z + 8);
 
         this.rand.setSeed(this.worldObj.getSeed());
         long k = this.rand.nextLong() / 2L * 2L + 1L;
@@ -983,80 +1170,109 @@ public class ChunkProviderAether implements IChunkProvider {
             }
         }
 
-        if (AetherConfig.silver_dungeon_enable && silver_dungeon_type < 10) {
+        if (biomegenbase instanceof AetherBiomeStormySkies) {
+            for (int numberoftreegen = 4, i2 = 0; i2 < numberoftreegen; ++i2) {
+                final int k2 = x + this.rand.nextInt(8) + 8;
+                final int j2 = z + this.rand.nextInt(8) + 8;
+                final WorldGenerator worldgenerator = ((AetherBiomeStormySkies) biomegenbase).getRandomTreeFeature(this.rand);
+                worldgenerator.setScale(1.0, 1.0, 1.0);
+                worldgenerator.generate(this.worldObj, this.rand, k2, this.worldObj.getHeightValue(k2, j2), j2);
+            }
+        }
+
+        if (AetherConfig.silver_dungeon_enable) {
             this.silverDungeonStructure.generateStructuresInChunk(this.worldObj, this.rand, chunkX, chunkZ);
-        } else if (AetherConfig.tier2_silver_dungeon_enable && silver_dungeon_type < 17) {
+        }
+
+        if (AetherConfig.tier2_silver_dungeon_enable) {
             this.ancientsilverDungeonStructure.generateStructuresInChunk(this.worldObj, this.rand, chunkX, chunkZ);
-        } else if (AetherConfig.tier3_silver_dungeon_enable && silver_dungeon_type <= 20) {
+        }
+
+        if (AetherConfig.tier3_silver_dungeon_enable) {
             this.divinesilverDungeonStructure.generateStructuresInChunk(this.worldObj, this.rand, chunkX, chunkZ);
         }
 
-        if (AetherConfig.gold_dungeon_enable && golden_dungeon_type < 10) {
+        if (AetherConfig.gold_dungeon_enable) {
             this.goldenDungeonStructure.generateStructuresInChunk(this.worldObj, this.rand, chunkX, chunkZ);
-        } else if (AetherConfig.tier2_gold_dungeon_enable && golden_dungeon_type < 17) {
+        }
+
+        if (AetherConfig.tier2_gold_dungeon_enable) {
             this.ancientGoldenDungeonStructure.generateStructuresInChunk(this.worldObj, this.rand, chunkX, chunkZ);
-        } else if (AetherConfig.tier3_gold_dungeon_enable && golden_dungeon_type <= 20) {
+        }
+
+        if (AetherConfig.tier3_gold_dungeon_enable) {
             this.divineGoldenDungeonStructure.generateStructuresInChunk(this.worldObj, this.rand, chunkX, chunkZ);
         }
 
         //Standard 3 Aerclouds
-        if (this.rand.nextInt(50) == 0) {
-            new AetherCloudsGenNew(BlocksAether.aercloud, 0, 16, false).generate(this.worldObj, this.rand, x, this.rand.nextInt(64) + 32, z);
-
-            if (biome == AetherWorld.aercloud_fields) {
+        if (biome != AetherWorld.stormy_skies) {
+            if (this.rand.nextInt(50) == 0) {
                 new AetherCloudsGenNew(BlocksAether.aercloud, 0, 16, false).generate(this.worldObj, this.rand, x, this.rand.nextInt(64) + 32, z);
+
+                if (biome == AetherWorld.aercloud_fields && this.rand.nextInt(14) == 0) {
+                    new AetherCloudsGenNew(BlocksAether.aercloud, 0, 16, false).generate(this.worldObj, this.rand, x, this.rand.nextInt(64) + 32, z);
+                }
+
+                if (biome == AetherWorld.divine_island || biome == AetherWorld.aether_peaks) {
+                    new AetherCloudsGenNew(BlocksAether.aercloud, 0, 16, false).generate(this.worldObj, this.rand, x, this.rand.nextInt(128) + 96, z);
+                }
             }
 
-            if (biome == AetherWorld.divine_island || biome == AetherWorld.aether_peaks) {
-                new AetherCloudsGenNew(BlocksAether.aercloud, 0, 16, false).generate(this.worldObj, this.rand, x, this.rand.nextInt(128) + 96, z);
-            }
-        }
-
-        if (this.rand.nextInt(6) == 0) {
-            new AetherCloudsGenNew(BlocksAether.aercloud, 0, 64, false).generate(this.worldObj, this.rand, x, this.rand.nextInt(128), z);
-
-            if (biome == AetherWorld.aercloud_fields) {
+            if (this.rand.nextInt(6) == 0) {
                 new AetherCloudsGenNew(BlocksAether.aercloud, 0, 64, false).generate(this.worldObj, this.rand, x, this.rand.nextInt(128), z);
+
+                if (biome == AetherWorld.aercloud_fields && this.rand.nextInt(14) == 0) {
+                    new AetherCloudsGenNew(BlocksAether.aercloud, 0, 64, false).generate(this.worldObj, this.rand, x, this.rand.nextInt(128), z);
+                }
+
+                if (biome == AetherWorld.divine_island || biome == AetherWorld.aether_peaks) {
+                    new AetherCloudsGenNew(BlocksAether.aercloud, 0, 16, false).generate(this.worldObj, this.rand, x, this.rand.nextInt(110) + 128, z);
+                }
             }
 
-            if (biome == AetherWorld.divine_island || biome == AetherWorld.aether_peaks) {
-                new AetherCloudsGenNew(BlocksAether.aercloud, 0, 16, false).generate(this.worldObj, this.rand, x, this.rand.nextInt(110) + 128, z);
-            }
-        }
-
-        if (this.rand.nextInt(20) == 0) {
-            new AetherCloudsGenNew(BlocksAether.aercloud, 1, 4, false).generate(this.worldObj, this.rand, x, this.rand.nextInt(64), z);
-
-            if (biome == AetherWorld.aercloud_fields) {
+            if (this.rand.nextInt(20) == 0) {
                 new AetherCloudsGenNew(BlocksAether.aercloud, 1, 4, false).generate(this.worldObj, this.rand, x, this.rand.nextInt(64), z);
+
+                if (biome == AetherWorld.aercloud_fields && this.rand.nextInt(14) == 0) {
+                    new AetherCloudsGenNew(BlocksAether.aercloud, 1, 4, false).generate(this.worldObj, this.rand, x, this.rand.nextInt(64), z);
+                }
+
+                if (biome == AetherWorld.divine_island || biome == AetherWorld.aether_peaks) {
+                    new AetherCloudsGenNew(BlocksAether.aercloud, 1, 4, false).generate(this.worldObj, this.rand, x, this.rand.nextInt(64) + 128, z);
+                }
             }
 
-            if (biome == AetherWorld.divine_island || biome == AetherWorld.aether_peaks) {
-                new AetherCloudsGenNew(BlocksAether.aercloud, 1, 4, false).generate(this.worldObj, this.rand, x, this.rand.nextInt(64) + 128, z);
-            }
-        }
-
-        if (this.rand.nextInt(12) == 0) {
-            new AetherCloudsGenNew(BlocksAether.aercloud, 1, 4, false).generate(this.worldObj, this.rand, x, this.rand.nextInt(64) + 64, z);
-
-            if (biome == AetherWorld.aercloud_fields) {
+            if (this.rand.nextInt(12) == 0) {
                 new AetherCloudsGenNew(BlocksAether.aercloud, 1, 4, false).generate(this.worldObj, this.rand, x, this.rand.nextInt(64) + 64, z);
+
+                if (biome == AetherWorld.aercloud_fields && this.rand.nextInt(14) == 0) {
+                    new AetherCloudsGenNew(BlocksAether.aercloud, 1, 4, false).generate(this.worldObj, this.rand, x, this.rand.nextInt(64) + 64, z);
+                }
+
+                if (biome == AetherWorld.divine_island || biome == AetherWorld.aether_peaks) {
+                    new AetherCloudsGenNew(BlocksAether.aercloud, 1, 4, false).generate(this.worldObj, this.rand, x, this.rand.nextInt(64) + 128, z);
+                }
             }
 
-            if (biome == AetherWorld.divine_island || biome == AetherWorld.aether_peaks) {
-                new AetherCloudsGenNew(BlocksAether.aercloud, 1, 4, false).generate(this.worldObj, this.rand, x, this.rand.nextInt(64) + 128, z);
-            }
-        }
-
-        if (this.rand.nextInt(30) == 0) {
-            new AetherCloudsGenNew(BlocksAether.aercloud, 2, 4, false).generate(this.worldObj, this.rand, x, this.rand.nextInt(64) + 128, z);
-
-            if (biome == AetherWorld.aercloud_fields) {
+            if (this.rand.nextInt(30) == 0) {
                 new AetherCloudsGenNew(BlocksAether.aercloud, 2, 4, false).generate(this.worldObj, this.rand, x, this.rand.nextInt(64) + 128, z);
+
+                if (biome == AetherWorld.aercloud_fields && this.rand.nextInt(14) == 0) {
+                    new AetherCloudsGenNew(BlocksAether.aercloud, 2, 4, false).generate(this.worldObj, this.rand, x, this.rand.nextInt(64) + 128, z);
+                }
+
+                if (biome == AetherWorld.divine_island || biome == AetherWorld.aether_peaks) {
+                    new AetherCloudsGenNew(BlocksAether.aercloud, 2, 4, false).generate(this.worldObj, this.rand, x, this.rand.nextInt(32) + 196, z);
+                }
             }
 
-            if (biome == AetherWorld.divine_island || biome == AetherWorld.aether_peaks) {
-                new AetherCloudsGenNew(BlocksAether.aercloud, 2, 4, false).generate(this.worldObj, this.rand, x, this.rand.nextInt(32) + 196, z);
+        } else {
+            if (this.rand.nextInt(30) == 0) {
+                new AetherCloudsGenNew(BlocksAether.storm_aercloud, 0, 16, false).generate(this.worldObj, this.rand, x, this.rand.nextInt(64) + 32, z);
+            }
+
+            if (this.rand.nextInt(27) == 0) {
+                new AetherCloudsGenNew(BlocksAether.storm_aercloud, 0, 64, false).generate(this.worldObj, this.rand, x, this.rand.nextInt(128), z);
             }
         }
 
@@ -1088,6 +1304,13 @@ public class ChunkProviderAether implements IChunkProvider {
             if (AetherConfig.enableGreenAercloud() && this.rand.nextInt(14) == 0) {
                 final int y = this.rand.nextInt(64) + 20;
                 new AetherCloudsGenNew(BlocksAether.green_aercloud, 1, 4, false).generate(this.worldObj, this.rand, x, y, z);
+            }
+
+            for (int n4 = 0; n4 < 3; ++n4) {
+                final int x4 = x + this.rand.nextInt(8) + 8;
+                final int y4 = this.rand.nextInt(128);
+                final int z4 = z + this.rand.nextInt(8) + 8;
+                new WorldGenStrawberryBush(BlocksAether.strawberry_bush, 4).generate(this.worldObj, this.rand, x4, y4, z4);
             }
 
             for (int n = 0; n < 6; ++n) {
@@ -1315,27 +1538,27 @@ public class ChunkProviderAether implements IChunkProvider {
         if (biome == AetherWorld.arctic_biome) {
             for (int n = 0; n < 3; ++n) {
                 if (this.rand.nextInt(2) == 0) {
-                    final int x2 = x + this.rand.nextInt(16) + 8;
+                    final int x2 = x + this.rand.nextInt(8) + 8;
                     final int y2 = this.rand.nextInt(128);
-                    final int z2 = z + this.rand.nextInt(16) + 8;
+                    final int z2 = z + this.rand.nextInt(8) + 8;
                     new AetherGenFlowers(BlocksAether.white_rose, 64).generate(this.worldObj, this.rand, x2, y2, z2);
                 }
             }
 
             for (int n = 0; n < 2; ++n) {
                 if (this.rand.nextInt(2) == 0) {
-                    final int x2 = x + this.rand.nextInt(16) + 8;
+                    final int x2 = x + this.rand.nextInt(8) + 8;
                     final int y2 = this.rand.nextInt(128);
-                    final int z2 = z + this.rand.nextInt(16) + 8;
+                    final int z2 = z + this.rand.nextInt(8) + 8;
                     new AetherGenSnowLayer(Blocks.snow_layer, 64).generate(this.worldObj, this.rand, x2, y2, z2);
                 }
             }
 
             for (int n = 0; n < 5; ++n) {
                 if (this.rand.nextInt(2) == 0) {
-                    final int x2 = x + this.rand.nextInt(16) + 8;
+                    final int x2 = x + this.rand.nextInt(8) + 8;
                     final int y2 = this.rand.nextInt(128);
-                    final int z2 = z + this.rand.nextInt(16) + 8;
+                    final int z2 = z + this.rand.nextInt(8) + 8;
                     new AetherGenFlowers(BlocksAether.blue_swingtip, 64).generate(this.worldObj, this.rand, x2, y2, z2);
                 }
             }
@@ -1463,6 +1686,54 @@ public class ChunkProviderAether implements IChunkProvider {
             }
         }
 
+        //--------------------EXCLUSIVE GEN AETHER BIOME--------------------
+        if (biome == AetherWorld.stormy_skies) {
+            for (int n = 0; n < 3; ++n) {
+                if (this.rand.nextInt(2) == 0) {
+                    final int x2 = x + this.rand.nextInt(8) + 8;
+                    final int y2 = this.rand.nextInt(96);
+                    final int z2 = z + this.rand.nextInt(8) + 8;
+                    new AetherGenFlowers(BlocksAether.aether_tulips, 64).generate(this.worldObj, this.rand, x2, y2, z2);
+                }
+            }
+
+            for (int n = 0; n < 3; ++n) {
+                if (this.rand.nextInt(3) == 0) {
+                    final int x2 = x + this.rand.nextInt(8) + 8;
+                    final int y2 = this.rand.nextInt(96);
+                    final int z2 = z + this.rand.nextInt(8) + 8;
+                    new AetherGenFlowers(BlocksAether.white_flower, 64).generate(this.worldObj, this.rand, x2, y2, z2);
+                }
+            }
+
+            for (int n = 0; n < 3; ++n) {
+                if (this.rand.nextInt(3) == 0) {
+                    final int x2 = x + this.rand.nextInt(8) + 8;
+                    final int y2 = this.rand.nextInt(96);
+                    final int z2 = z + this.rand.nextInt(8) + 8;
+                    new AetherGenFlowers(BlocksAether.purple_flower, 64).generate(this.worldObj, this.rand, x2, y2, z2);
+                }
+            }
+
+            for (int n = 0; n < 3; ++n) {
+                if (this.rand.nextInt(3) == 0) {
+                    final int x2 = x + this.rand.nextInt(8) + 8;
+                    final int y2 = this.rand.nextInt(96);
+                    final int z2 = z + this.rand.nextInt(8) + 8;
+                    new AetherGenFlowers(BlocksAether.quickshoot, 64).generate(this.worldObj, this.rand, x2, y2, z2);
+                }
+            }
+
+            for (int n = 0; n < 3; ++n) {
+                if (this.rand.nextInt(2) == 0) {
+                    final int x2 = x + this.rand.nextInt(8) + 8;
+                    final int y2 = this.rand.nextInt(96);
+                    final int z2 = z + this.rand.nextInt(8) + 8;
+                    new AetherGenFlowers(BlocksAether.aether_tallgrass, 64).generate(this.worldObj, this.rand, x2, y2, z2);
+                }
+            }
+        }
+
         //--------------------EXCLUSIVE GEN AERCLOUD FIELD BIOME--------------------
         if (biome == AetherWorld.aercloud_fields) {
             if (this.rand.nextInt(35) == 0) {
@@ -1487,12 +1758,6 @@ public class ChunkProviderAether implements IChunkProvider {
             final int z2 = z + this.rand.nextInt(8) + 8;
             new WorldGenBerryBush(BlocksAether.berry_bush, 3).generate(this.worldObj, this.rand, x2, y2, z2);
         }
-        for (int n4 = 0; n4 < 3; ++n4) {
-            final int x4 = x + this.rand.nextInt(8) + 8;
-            final int y4 = this.rand.nextInt(128);
-            final int z4 = z + this.rand.nextInt(8) + 8;
-            new WorldGenStrawberryBush(BlocksAether.strawberry_bush, 4).generate(this.worldObj, this.rand, x4, y4, z4);
-        }
 
         if (this.rand.nextInt(4) == 0) {
             for (int k3 = 0; k3 < 10; ++k3) {
@@ -1503,7 +1768,7 @@ public class ChunkProviderAether implements IChunkProvider {
             }
         }
 
-        if (biome != AetherWorld.enchanted_island) {
+        if (biome != AetherWorld.enchanted_island && biome != AetherWorld.stormy_skies) {
             for (int n = 0; n < 4; ++n) {
                 if (this.rand.nextInt(2) == 0) {
                     final int x2 = x + this.rand.nextInt(8) + 8;
@@ -1537,25 +1802,27 @@ public class ChunkProviderAether implements IChunkProvider {
             }
         } else {
             int bronze_type = (int) (1 + Math.random() * 20);
-            if (AetherConfig.bronze_dungeon_enable && bronze_type < 10) {
-                this.dungeon_bronze.generate(this.worldObj, this.rand, x, this.rand.nextInt(28) + 24, z);
-                if (biome == AetherWorld.aether_peaks) {
-                    this.dungeon_bronze.generate(this.worldObj, this.rand, x, this.rand.nextInt(50) + 128, z);
-                }
-            } else if (AetherConfig.tier2_bronze_dungeon_enable && bronze_type < 14) {
-                this.large_dungeon_bronze.generate(this.worldObj, this.rand, x, this.rand.nextInt(18) + 26, z);
-                if (biome == AetherWorld.aether_peaks) {
-                    this.large_dungeon_bronze.generate(this.worldObj, this.rand, x, this.rand.nextInt(50) + 128, z);
-                }
-            } else if (AetherConfig.tier3_bronze_dungeon_enable && bronze_type < 19) {
-                this.divine_dungeon_bronze.generate(this.worldObj, this.rand, x, this.rand.nextInt(12) + 24, z);
-                if (biome == AetherWorld.aether_peaks) {
-                    this.divine_dungeon_bronze.generate(this.worldObj, this.rand, x, this.rand.nextInt(50) + 128, z);
-                }
-            } else if (AetherConfig.tier4_bronze_dungeon_enable && bronze_type >= 19) {
-                this.mythic_dungeon_bronze.generate(this.worldObj, this.rand, x, this.rand.nextInt(4) + 24, z);
-                if (biome == AetherWorld.aether_peaks) {
-                    this.mythic_dungeon_bronze.generate(this.worldObj, this.rand, x, this.rand.nextInt(34) + 128, z);
+            if (biome != AetherWorld.aercloud_fields) {
+                if (AetherConfig.bronze_dungeon_enable && bronze_type < 10) {
+                    this.dungeon_bronze.generate(this.worldObj, this.rand, x, this.rand.nextInt(28) + 24, z);
+                    if (biome == AetherWorld.aether_peaks) {
+                        this.dungeon_bronze.generate(this.worldObj, this.rand, x, this.rand.nextInt(50) + 128, z);
+                    }
+                } else if (AetherConfig.tier2_bronze_dungeon_enable && bronze_type < 14) {
+                    this.large_dungeon_bronze.generate(this.worldObj, this.rand, x, this.rand.nextInt(18) + 26, z);
+                    if (biome == AetherWorld.aether_peaks) {
+                        this.large_dungeon_bronze.generate(this.worldObj, this.rand, x, this.rand.nextInt(50) + 128, z);
+                    }
+                } else if (AetherConfig.tier3_bronze_dungeon_enable && bronze_type < 19) {
+                    this.divine_dungeon_bronze.generate(this.worldObj, this.rand, x, this.rand.nextInt(12) + 24, z);
+                    if (biome == AetherWorld.aether_peaks) {
+                        this.divine_dungeon_bronze.generate(this.worldObj, this.rand, x, this.rand.nextInt(50) + 128, z);
+                    }
+                } else if (AetherConfig.tier4_bronze_dungeon_enable && bronze_type >= 19) {
+                    this.mythic_dungeon_bronze.generate(this.worldObj, this.rand, x, this.rand.nextInt(4) + 24, z);
+                    if (biome == AetherWorld.aether_peaks) {
+                        this.mythic_dungeon_bronze.generate(this.worldObj, this.rand, x, this.rand.nextInt(34) + 128, z);
+                    }
                 }
             }
         }

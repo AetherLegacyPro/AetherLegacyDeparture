@@ -28,7 +28,7 @@ public class BlockBlackberryBush extends BlockAetherFlower {
 
 	@Override
 	public Item getItemDropped(int meta, Random rand, int fortune) {
-        return null;
+        return ItemsAether.blackberry_seeds;
 	}
 
 	@Override
@@ -58,10 +58,7 @@ public class BlockBlackberryBush extends BlockAetherFlower {
 		entityplayer.addExhaustion(0.025F);
 
 		world.setBlock(x, y, z, BlocksAether.small_blackberry_bush);
-
-		if (randomNum != 0) {
-			this.dropBlockAsItem(world, x, y, z, new ItemStack(ItemsAether.blackberry, randomNum, 0));
-		}
+        this.dropBlockAsItem(world, x, y, z, new ItemStack(ItemsAether.blackberry, randomNum, 0));
 	}
 
 	@Override

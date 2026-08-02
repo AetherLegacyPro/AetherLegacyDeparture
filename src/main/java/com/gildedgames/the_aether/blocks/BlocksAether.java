@@ -1,6 +1,7 @@
 package com.gildedgames.the_aether.blocks;
 
 import com.gildedgames.the_aether.Aether;
+import com.gildedgames.the_aether.blocks.decorative.*;
 import com.gildedgames.the_aether.blocks.natural.*;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.items.block.ItemAetherSlab;
@@ -37,37 +38,6 @@ import com.gildedgames.the_aether.blocks.container.BlockSkyrootChest;
 import com.gildedgames.the_aether.blocks.container.BlockSkyrootWorkbench;
 import com.gildedgames.the_aether.blocks.container.BlockSunAltar;
 import com.gildedgames.the_aether.blocks.container.BlockTreasureChestBreakable;
-import com.gildedgames.the_aether.blocks.decorative.BlockAerogel;
-import com.gildedgames.the_aether.blocks.decorative.BlockAetherFence;
-import com.gildedgames.the_aether.blocks.decorative.BlockAetherFenceGate;
-import com.gildedgames.the_aether.blocks.decorative.BlockAetherFenceGateDivineOak;
-import com.gildedgames.the_aether.blocks.decorative.BlockAetherFenceGateGoldenOak;
-import com.gildedgames.the_aether.blocks.decorative.BlockAetherFenceGateGreatroot;
-import com.gildedgames.the_aether.blocks.decorative.BlockAetherFenceGateVoid;
-import com.gildedgames.the_aether.blocks.decorative.BlockAetherFenceGateWisproot;
-import com.gildedgames.the_aether.blocks.decorative.BlockAetherFenceGreatroot;
-import com.gildedgames.the_aether.blocks.decorative.BlockAetherFenceVoid;
-import com.gildedgames.the_aether.blocks.decorative.BlockAetherFenceWisproot;
-import com.gildedgames.the_aether.blocks.decorative.BlockAetherLadder;
-import com.gildedgames.the_aether.blocks.decorative.BlockAetherLever;
-import com.gildedgames.the_aether.blocks.decorative.BlockAetherSlab;
-import com.gildedgames.the_aether.blocks.decorative.BlockAetherStairs;
-import com.gildedgames.the_aether.blocks.decorative.BlockAetherTrapdoor;
-import com.gildedgames.the_aether.blocks.decorative.BlockAetherWall;
-import com.gildedgames.the_aether.blocks.decorative.BlockAmbrosiumTorch;
-import com.gildedgames.the_aether.blocks.decorative.BlockAuralitePillar;
-import com.gildedgames.the_aether.blocks.decorative.BlockCrystallizedGenesisStone;
-import com.gildedgames.the_aether.blocks.decorative.BlockDivineOakFence;
-import com.gildedgames.the_aether.blocks.decorative.BlockFrozenQuicksoilGlass;
-import com.gildedgames.the_aether.blocks.decorative.BlockGoldenOakBookshelf;
-import com.gildedgames.the_aether.blocks.decorative.BlockGoldenOakFence;
-import com.gildedgames.the_aether.blocks.decorative.BlockInfernoTorch;
-import com.gildedgames.the_aether.blocks.decorative.BlockPresent;
-import com.gildedgames.the_aether.blocks.decorative.BlockQuicksoilGlass;
-import com.gildedgames.the_aether.blocks.decorative.BlockSkyrootBookshelf;
-import com.gildedgames.the_aether.blocks.decorative.BlockSkyrootPlanks;
-import com.gildedgames.the_aether.blocks.decorative.BlockZanite;
-import com.gildedgames.the_aether.blocks.decorative.BlockAceninum;
 import com.gildedgames.the_aether.blocks.dungeon.BlockAceninumCluster;
 import com.gildedgames.the_aether.blocks.dungeon.BlockDiamondAercloud;
 import com.gildedgames.the_aether.blocks.dungeon.BlockDungeonBase;
@@ -128,7 +98,7 @@ public class BlocksAether {
 	public static Block skyroot_fence, golden_oak_fence, greatroot_fence, wisproot_fence, void_fence, divine_oak_fence;
 	public static Block skyroot_fence_gate, golden_oak_gate, greatroot_fence_gate, wisproot_fence_gate, void_fence_gate, divine_oak_gate;
 	public static Block skyroot_trapdoor, golden_oak_trapdoor, wisproot_trapdoor, greatroot_trapdoor, void_trapdoor;
-	public static Block skyroot_ladder;
+	public static Block skyroot_ladder, skyroot_door;
 
 	//Aether Crops
 	public static Block aether_farmland, enchanted_aether_farmland;
@@ -393,7 +363,8 @@ public class BlocksAether {
 		divine_oak_planks = register("divine_oak_planks", new BlockDivinePlanks());
 
 		skyroot_trapdoor = registerMeta("skyroot_trapdoor", new BlockAetherTrapdoor(Material.wood).setBlockTextureName(Aether.findII("skyrootTrapDoor")));
-		golden_oak_trapdoor = registerMeta("golden_oak_trapdoor", new BlockAetherTrapdoor(Material.wood).setBlockTextureName(Aether.find("golden_oak_trapdoor")));
+        skyroot_door = registerHidden("skyroot_door", new BlockAetherDoor().setBlockTextureName(Aether.findII("skyrootDoor")));
+        golden_oak_trapdoor = registerMeta("golden_oak_trapdoor", new BlockAetherTrapdoor(Material.wood).setBlockTextureName(Aether.find("golden_oak_trapdoor")));
 		wisproot_trapdoor = registerMeta("wisproot_trapdoor", new BlockAetherTrapdoor(Material.wood).setBlockTextureName(Aether.find("wisproot_trapdoor")));
 		greatroot_trapdoor = registerMeta("greatroot_trapdoor", new BlockAetherTrapdoor(Material.wood).setBlockTextureName(Aether.find("greatroot_trapdoor")));
 		void_trapdoor = registerMeta("void_trapdoor", new BlockAetherTrapdoor(Material.wood).setBlockTextureName(Aether.find("void_trapdoor")));

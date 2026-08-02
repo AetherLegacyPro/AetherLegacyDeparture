@@ -453,6 +453,7 @@ public class EntitySunSpirit extends EntityFlying implements IMob, IAetherBoss, 
                     if (this.getChatLine() == 10 && this.getAttackTarget() == null) {
                         this.chatLine(entityPlayer, "\u00a7c" + StatCollector.translateToLocal("gui.spirit.line10"));
                         this.setChatLine(9);
+                        ((PlayerAether) AetherAPI.get(entityPlayer)).seenSpiritDialog = true;
                     }
                 }
             }

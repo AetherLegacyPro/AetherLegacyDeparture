@@ -16,26 +16,41 @@ public class ItemAetherParachute extends Item {
 		this.setCreativeTab(AetherCreativeTabs.misc);
 	}
 
-	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer entityplayer) {
-		ItemStack heldItem = entityplayer.getHeldItem();
+    public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer entityplayer) {
+        ItemStack heldItem = entityplayer.getHeldItem();
 
-		if (EntityParachute.entityHasRoomForCloud(world, entityplayer)) {
-			if (this == ItemsAether.golden_parachute) {
-				heldItem.damageItem(1, entityplayer);
-			} else {
-				--heldItem.stackSize;
-			}
+        if (EntityParachute.entityHasRoomForCloud(world, entityplayer)) {
+            boolean isGolden = this == ItemsAether.golden_parachute;
+            boolean isBlue = this == ItemsAether.blue_parachute;
 
-			world.spawnEntityInWorld(new EntityParachute(world, entityplayer, this == ItemsAether.golden_parachute));
-			return heldItem;
-		}
+            if (isGolden) {
+                heldItem.damageItem(1, entityplayer);
+            } else if (isBlue) {
+                heldItem.damageItem(2, entityplayer);
+            } else {
+                --heldItem.stackSize;
+            }
 
-		return super.onItemRightClick(stack, world, entityplayer);
-	}
+            if (!world.isRemote) {
+                world.spawnEntityInWorld(new EntityParachute(world, entityplayer, isGolden, isBlue));
+            }
+
+            return heldItem;
+        }
+
+        return super.onItemRightClick(stack, world, entityplayer);
+    }
 
 	public int getColorFromItemStack(ItemStack stack, int renderPass) {
-		if (this == ItemsAether.golden_parachute) return 0xffff7f;
-		return 0xffffff;
+		if (this == ItemsAether.golden_parachute) {
+            return 0xffff7f;
+        }
+        else if (this == ItemsAether.blue_parachute) {
+            return 0xCCCCFF;
+        }
+        else {
+            return 0xffffff;
+        }
 	}
 
 }

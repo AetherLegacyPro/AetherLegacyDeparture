@@ -12,33 +12,32 @@ import net.minecraft.world.gen.structure.StructureStart;
 
 public class MapGenSilverDungeon extends MapGenStructure {
 
+    private final int requiredDungeonType;
     private static final int MIN_SILVER_DUNGEON_Y = 136;
     private static final int MAX_SILVER_DUNGEON_Y = 184;
-
     private static final int MIN_HIGH_TERRAIN_SILVER_DUNGEON_Y = 200;
     private static final int MAX_HIGH_TERRAIN_SILVER_DUNGEON_Y = 221;
 
     public MapGenSilverDungeon() {
+        this.requiredDungeonType = AetherDungeonTypeHelper.TYPE_REGULAR;
     }
 
     @Override
     public String func_143025_a() {
-        return "aether_legacy:silver_dungeon";
+        return "AetherSilverDungeon";
     }
 
     @Override
     protected boolean canSpawnStructureAtCoords(int chunkX, int chunkZ) {
-        RandomTracker randomTracker = new RandomTracker();
+        long seed = this.worldObj.getSeed();
 
-        //Changes the rarity of the structure
-        if (randomTracker.testRandom(this.rand, 60) != 0) {
-            if (randomTracker.testRandom(this.rand, 100) != 0) {
-                return false;
-            }
+        if (!AetherDungeonTypeHelper.canSilverDungeonSpawnAt(seed, chunkX, chunkZ)) {
+            return false;
         }
 
-        //Changes the heights/placement
-        if (chunkX % 8 != 0 || chunkZ % 8 != 0) {
+        int type = AetherDungeonTypeHelper.getSilverDungeonType(seed, chunkX, chunkZ);
+
+        if (type != this.requiredDungeonType) {
             return false;
         }
 

@@ -36,6 +36,7 @@ public class AetherWorld {
     public static BiomeGenBase aercloud_fields = new AetherBiomeCloudyFields();
     public static BiomeGenBase divine_island = new AetherBiomeDivineIsland();
     public static BiomeGenBase quicksoil_dunes = new AetherBiomeQuicksoilDunes();
+    public static BiomeGenBase stormy_skies = new AetherBiomeStormySkies();
 
 	public static void initialization() {
 		MapGenStructureIO.registerStructure(MapGenSilverDungeon.Start.class, "aether_legacy:silver_dungeon_start");

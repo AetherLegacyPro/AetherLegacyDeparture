@@ -10,7 +10,7 @@ public class AetherConfig {
 	private static Configuration config;
 
 	//Important Options
-	private static int aether_biome_id, arctic_peaks_biome_id, aercloud_fields_biome_id, enchanted_island_biome_id, divine_island_biome_id, aether_peaks_biome_id, quicksoil_dunes_biome_id, aether_forest_biome_id;
+	private static int aether_biome_id, arctic_peaks_biome_id, aercloud_fields_biome_id, enchanted_island_biome_id, divine_island_biome_id, aether_peaks_biome_id, quicksoil_dunes_biome_id, aether_forest_biome_id, stormy_skies_biome_id;
     private static int aether_dimension_id, inebriation_id;
 	private static boolean use_baubles_expanded_menu, disable_parachutes;
 	public static boolean enable_log_reporting_biomes, enable_assets_message;
@@ -83,6 +83,7 @@ public class AetherConfig {
         aercloud_fields_biome_id = config.get("World Identification", "Aercloud Fields Biome ID", 205).getInt(205);
         enchanted_island_biome_id = config.get("World Identification", "Enchanted Island Biome ID", 206).getInt(206);
         aether_peaks_biome_id = config.get("World Identification", "Aether Peaks Biome ID", 207).getInt(207);
+        stormy_skies_biome_id = config.get("World Identification", "Stormy Skies Biome ID", 208).getInt(208);
         divine_island_biome_id = config.get("World Identification", "Divine Island Biome ID", 202).getInt(202);
         quicksoil_dunes_biome_id = config.get("World Identification", "Quicksoil Dunes Biome ID", 203).getInt(203);
         aether_forest_biome_id = config.get("World Identification", "Aether Forest Biome ID", 204).getInt(204);
@@ -187,7 +188,7 @@ public class AetherConfig {
 
 		sun_altar_multiplayer = config.get("Gameplay", "Removes the requirement for a player to be an operator to use the Sun Altar in multiplayer.", false).getBoolean(false);
 
-		repeat_sun_spirit_dialog = config.get("Misc", "If disabed, the Sun Spirit's dialog will only show once per world.", true).getBoolean(true);
+		repeat_sun_spirit_dialog = config.get("Misc", "If disabled, the Sun Spirit's dialog will only show once per world.", true).getBoolean(true);
 
 		disable_eternal_day = config.get("Misc", "Enables eternal day making time cycle in the Aether base on if having killed the Sun Spirit. This is mainly intended for use in modpacks.", false).getBoolean(false);
 
@@ -336,9 +337,9 @@ public class AetherConfig {
 		return AetherConfig.arctic_peaks_biome_id;
 	}
 
-    public static int getAercloudFieldsBiomeID() {
-        return AetherConfig.aercloud_fields_biome_id;
-    }
+    public static int getAercloudFieldsBiomeID() { return AetherConfig.aercloud_fields_biome_id;}
+
+    public static int getStormySkiesBiomeID() {return AetherConfig.stormy_skies_biome_id;}
 
     public static int getEnchantedIslandBiomeID() {
         return AetherConfig.enchanted_island_biome_id;

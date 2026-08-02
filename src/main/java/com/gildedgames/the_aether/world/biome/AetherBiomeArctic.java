@@ -2,12 +2,10 @@ package com.gildedgames.the_aether.world.biome;
 
 import java.util.ArrayList;
 import java.util.Random;
-
 import com.gildedgames.the_aether.world.biome.decoration.*;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenerator;
-
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.entities.bosses.EntityAncientFireMinion;
@@ -35,24 +33,14 @@ import com.gildedgames.the_aether.entities.passive.EntityAerwhale;
 import com.gildedgames.the_aether.entities.passive.EntityCarrionSprout;
 import com.gildedgames.the_aether.entities.passive.EntityFlynx;
 import com.gildedgames.the_aether.entities.passive.EntitySheepuff;
-import com.gildedgames.the_aether.entities.passive.EntityThunderlo;
 import com.gildedgames.the_aether.entities.passive.mountable.EntityAerbunny;
 import com.gildedgames.the_aether.entities.passive.mountable.EntityAerwhaleMount;
 import com.gildedgames.the_aether.entities.passive.mountable.EntityFlyingCow;
 import com.gildedgames.the_aether.entities.passive.mountable.EntityMoa;
 import com.gildedgames.the_aether.entities.passive.mountable.EntityPhyg;
 import com.gildedgames.the_aether.entities.passive.mountable.EntitySwet;
-import com.gildedgames.the_aether.entities.passive.mountable.EntityZephyroo;
 import com.gildedgames.the_aether.world.biome.decoration.plants.WorldGenAetherGrass;
 
-/**
- * Placeholder arctic highlands biome for the Aether.
- *
- * Uses {@link BlocksAether#arctic_grass} as the top block, giving islands in
- * this biome a visually distinct icy surface compared to the standard highlands.
- * All mob spawning is shared with the standard biome for now and should be
- * tailored as the biome is developed further.
- */
 public class AetherBiomeArctic extends BiomeGenBase {
 
     @SuppressWarnings("unchecked")

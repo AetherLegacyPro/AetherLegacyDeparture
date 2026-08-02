@@ -1,5 +1,6 @@
 package com.gildedgames.the_aether.entities.hostile;
 
+import com.gildedgames.the_aether.world.AetherWorld;
 import net.minecraft.entity.monster.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -12,6 +13,7 @@ import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 import cpw.mods.fml.relauncher.*;
 import net.minecraft.entity.*;
 import net.minecraft.util.*;
+import net.minecraft.world.biome.BiomeGenBase;
 
 public class EntityTempest extends EntityAetherMob implements IMob {
 
@@ -58,10 +60,77 @@ public class EntityTempest extends EntityAetherMob implements IMob {
         }
     }
 
+    private boolean isStormySkiesBiome(BiomeGenBase biome) {
+        return biome != null && AetherWorld.stormy_skies != null && biome.biomeID == AetherWorld.stormy_skies.biomeID;
+    }
+
+    private BiomeGenBase getEntityBiome() {
+        if (this.worldObj == null) {
+            return null;
+        }
+
+        int x = MathHelper.floor_double(this.posX);
+        int z = MathHelper.floor_double(this.posZ);
+
+        return this.worldObj.getBiomeGenForCoords(x, z);
+    }
+
+    private boolean isEntityInStormySkiesBiome() {
+        return this.isStormySkiesBiome(this.getEntityBiome());
+    }
+
+    private int getEntityBlockLightLevel() {
+        if (this.worldObj == null) {
+            return 15;
+        }
+
+        int x = MathHelper.floor_double(this.posX);
+        int y = MathHelper.floor_double(this.boundingBox.minY);
+        int z = MathHelper.floor_double(this.posZ);
+
+        if (y < 0) {
+            y = 0;
+        }
+
+        if (y > 255) {
+            y = 255;
+        }
+
+        return this.worldObj.getBlockLightValue(x, y, z);
+    }
+
     @Override
-   	public boolean getCanSpawnHere() {
-   		return this.rand.nextInt(AetherConfig.getTempestSpawnrate()) == 0 && super.getCanSpawnHere();
-   	}
+    public boolean getCanSpawnHere() {
+        if (this.rand.nextInt(AetherConfig.getTempestSpawnrate()) != 0) {
+            return false;
+        }
+
+        /*
+         * Special Stormy Skies spawning:
+         *
+         * In Stormy Skies, Tempests can spawn as long as the local light level
+         * is below 11. This bypasses the usual hostile-mob light restriction,
+         * but still keeps normal collision/liquid/peaceful checks.
+         */
+        if (this.isEntityInStormySkiesBiome()) {
+            if (this.worldObj.difficultySetting == EnumDifficulty.PEACEFUL) {
+                return false;
+            }
+
+            if (this.getEntityBlockLightLevel() >= 11) {
+                return false;
+            }
+
+            return this.worldObj.checkNoEntityCollision(this.boundingBox)
+                && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty()
+                && !this.worldObj.isAnyLiquid(this.boundingBox);
+        }
+
+        /*
+         * Outside Stormy Skies, use old logic.
+         */
+        return super.getCanSpawnHere();
+    }
 
     @Override
 	protected void updateEntityActionState() {
@@ -166,7 +235,7 @@ public class EntityTempest extends EntityAetherMob implements IMob {
 	}
 
     public void onLivingUpdate() {
-    	if (this.worldObj.isDaytime() && !this.worldObj.isRemote && this.worldObj.canBlockSeeTheSky(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY), MathHelper.floor_double(this.posZ))) {
+        if (this.worldObj.isDaytime() && !this.worldObj.isRemote && !this.isEntityInStormySkiesBiome() && this.worldObj.canBlockSeeTheSky(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY), MathHelper.floor_double(this.posZ))) {
             this.damageEntity(DamageSource.drown, 1.0f);
         }
         if (this.attackTimer > 0) {

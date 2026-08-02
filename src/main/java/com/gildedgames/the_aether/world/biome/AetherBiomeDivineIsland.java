@@ -26,7 +26,6 @@ import com.gildedgames.the_aether.entities.hostile.EntityZephyr;
 import com.gildedgames.the_aether.entities.hostile.EntityZojz;
 import com.gildedgames.the_aether.entities.passive.EntityAerwhale;
 import com.gildedgames.the_aether.entities.passive.EntityCarrionSprout;
-import com.gildedgames.the_aether.entities.passive.EntityFlynx;
 import com.gildedgames.the_aether.entities.passive.EntitySheepuff;
 import com.gildedgames.the_aether.entities.passive.EntityThunderlo;
 import com.gildedgames.the_aether.world.biome.decoration.*;
@@ -40,7 +39,6 @@ import com.gildedgames.the_aether.entities.passive.mountable.EntityFlyingCow;
 import com.gildedgames.the_aether.entities.passive.mountable.EntityMoa;
 import com.gildedgames.the_aether.entities.passive.mountable.EntityPhyg;
 import com.gildedgames.the_aether.entities.passive.mountable.EntitySwet;
-import com.gildedgames.the_aether.entities.passive.mountable.EntityZephyroo;
 import com.gildedgames.the_aether.world.biome.decoration.plants.WorldGenAetherGrass;
 
 public class AetherBiomeDivineIsland extends BiomeGenBase {

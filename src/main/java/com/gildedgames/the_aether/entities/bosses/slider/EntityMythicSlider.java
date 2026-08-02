@@ -510,7 +510,8 @@ public class EntityMythicSlider extends EntityFlying implements IAetherBoss {
 
             if (!((stack.getItem() == ItemsAether.divineral_pickaxe) || (stack.getItem() == ItemsAether.amplified_continuum_pickaxe) || (stack.getItem() == ItemsAether.amplified_holystone_pickaxe)
             	|| (stack.getItem() == ItemsAether.amplified_skyroot_pickaxe) || (stack.getItem() == ItemsAether.amplified_valkyrie_pickaxe)
-            	|| (stack.getItem() == ItemsAether.amplified_zanite_pickaxe) || (stack.getItem() == ItemsAether.amplified_battle_sentry_hammer))) {
+            	|| (stack.getItem() == ItemsAether.amplified_zanite_pickaxe) || (stack.getItem() == ItemsAether.amplified_battle_sentry_hammer)
+                || (stack.getItem() == ItemsAether.amplified_notched_pickaxe))) {
                 this.sendMessage(player, StatCollector.translateToLocal("gui.slider.mythic"));
 
                 return false;
@@ -566,25 +567,28 @@ public class EntityMythicSlider extends EntityFlying implements IAetherBoss {
                         for (int z = this.dungeonZ - 6; z < this.dungeonZ + 26; z++) {
                             Block block = this.worldObj.getBlock(x, y, z);
 
-                            if (block == BlocksAether.locked_mythic_carved_stone || block == BlocksAether.locked_mythic_sentry_stone) {
+                            if (block == BlocksAether.locked_mythic_carved_stone || block == BlocksAether.locked_mythic_sentry_stone || block.getBlockHardness(this.worldObj, (int) x, (int) y, (int) z) < 0.0F) {
                                 this.worldObj.setBlock(x, y, z, ((BlockDungeonBase) block).getUnlockedBlock());
                             }
                         }
                     }
                 }
-
-                PlayerAether.get(player).setFocusedBoss(null);
                 List<?> dungeonPlayers = this.getPlayersInDungeon(player);
-
-                for (int i = 0; i < dungeonPlayers.size(); ++i) {
-                    Entity entity = (Entity) dungeonPlayers.get(i);
+                for (Object dungeonPlayer : dungeonPlayers) {
+                    Entity entity = (Entity) dungeonPlayer;
 
                     if (entity instanceof EntityPlayer) {
                         ((EntityPlayer) entity).triggerAchievement(AchievementsAether.defeat_bronze);
+                        ((EntityPlayer) entity).triggerAchievement(AchievementsAether.ancient_defeat_bronze);
+                        ((EntityPlayer) entity).triggerAchievement(AchievementsAether.divine_defeat_bronze);
+                        ((EntityPlayer) entity).triggerAchievement(AchievementsAether.mythic_defeat_bronze);
                     }
                 }
 
                 player.triggerAchievement(AchievementsAether.defeat_bronze);
+                player.triggerAchievement(AchievementsAether.ancient_defeat_bronze);
+                player.triggerAchievement(AchievementsAether.divine_defeat_bronze);
+                player.triggerAchievement(AchievementsAether.mythic_defeat_bronze);
 
                 this.worldObj.playSoundEffect(this.posX, this.posY, this.posZ, "aether_legacy:aeboss.slider.death", 2.5F, 1.0F / (this.rand.nextFloat() * 0.2F + 0.9F));
                 this.setDead();

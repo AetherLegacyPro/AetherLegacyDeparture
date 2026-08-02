@@ -3,7 +3,9 @@ package com.gildedgames.the_aether.blocks.natural;
 import java.util.Random;
 import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.blocks.BlocksAether;
+import com.gildedgames.the_aether.items.ItemsAether;
 import net.minecraft.block.IGrowable;
+import net.minecraft.item.Item;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
@@ -18,6 +20,11 @@ public class BlockStrawberryBushStem extends BlockAetherFlower implements IGrowa
 		this.setBlockTextureName(Aether.find("berry_bush_stem"));
 		this.setBlockBounds(0.5F - 0.4F, 0.0F, 0.5F - 0.4F, 0.5F + 0.4F, 0.4F * 2.0F, 0.5F + 0.4F);
 	}
+
+    @Override
+    public Item getItemDropped(int meta, Random rand, int fortune) {
+        return ItemsAether.strawberry_seeds;
+    }
 
 	@Override
 	public void updateTick(World world, int x, int y, int z, Random random) {

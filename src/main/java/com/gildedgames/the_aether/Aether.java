@@ -18,9 +18,6 @@ import com.gildedgames.the_aether.tileentity.AetherTileEntities;
 import com.gildedgames.the_aether.world.AetherWorld;
 import com.gildedgames.the_aether.world.biome.decoration.AetherGenOverhaulLate;
 import com.gildedgames.the_aether.world.biome.decoration.AetherGenStoneOverhaul;
-import com.gildedgames.the_aether.world.biome.decoration.overhaul.ArcticIslandWorldGen;
-import com.gildedgames.the_aether.world.biome.decoration.overhaul.DivineIslandWorldGen;
-import com.gildedgames.the_aether.world.biome.decoration.overhaul.GoldenIslandWorldGen;
 import com.gildedgames.the_aether.world.biome.decoration.overhaul.PalladiumDungeonWorldGen;
 import com.gildedgames.the_aether.world.dungeon.osmium.OsmiumDungeon;
 import cpw.mods.fml.common.IWorldGenerator;
@@ -32,6 +29,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraftforge.common.MinecraftForge;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -104,10 +102,6 @@ public class Aether {
         return new ResourceLocation("aetherii", location);
 	}
 
-	public static ResourceLocation locateHighlands(String location) {
-        return new ResourceLocation("aether", location);
-	}
-
 	public static boolean isGamePaused() {
         final Minecraft mc = Minecraft.getMinecraft();
         return mc.isSingleplayer() && mc.currentScreen != null && mc.currentScreen.doesGuiPauseGame() && !mc.getIntegratedServer().getPublic();
@@ -119,10 +113,6 @@ public class Aether {
 
 	public static String findII(String location) {
         return "aetherii:" + location;
-	}
-
-	public static String findHighlands(String location) {
-        return "aether:" + location;
 	}
 
 	public static String modAddress() {

@@ -36,8 +36,8 @@ public class AbilityRepulsion implements IAetherAbility {
 
 		List<?> entities = this.player.getEntity().worldObj.getEntitiesWithinAABBExcludingEntity(this.player.getEntity(), this.player.getEntity().boundingBox.expand(3.0D, 3.0D, 3.0D));
 
-		for (int size = 0; size < entities.size(); ++size) {
-			Entity projectile = (Entity) entities.get(size);
+        for (Object entity : entities) {
+            Entity projectile = (Entity) entity;
 			if (isProjectile(projectile) && this.getShooter(projectile) != this.player.getEntity()) {
 				double x, y, z;
 				Entity shooter = this.getShooter(projectile);

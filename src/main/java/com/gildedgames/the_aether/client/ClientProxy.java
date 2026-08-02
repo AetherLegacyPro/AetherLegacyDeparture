@@ -2,6 +2,8 @@ package com.gildedgames.the_aether.client;
 
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.client.nei.NEIIntegration;
+import com.gildedgames.the_aether.world.biome.StormySkiesWeatherClientHandler;
+import cpw.mods.fml.common.FMLCommonHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityFX;
 import net.minecraft.entity.player.EntityPlayer;
@@ -36,6 +38,8 @@ import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.Loader;
+import net.minecraftforge.common.MinecraftForge;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -79,6 +83,10 @@ public class ClientProxy extends CommonProxy {
 
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAncientEnchanter.class, new TileEntityAncientEnchanterRenderer());
 		RendersAether.initialization();
+
+        StormySkiesWeatherClientHandler stormHandler = new StormySkiesWeatherClientHandler();
+        MinecraftForge.EVENT_BUS.register(stormHandler);
+        FMLCommonHandler.instance().bus().register(stormHandler);
 
 		if(!AetherConfig.UseBaublesExpandedMenu()) {
 			AetherKeybinds.initialization();

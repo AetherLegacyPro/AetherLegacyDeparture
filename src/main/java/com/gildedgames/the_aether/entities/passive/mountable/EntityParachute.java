@@ -14,19 +14,21 @@ public class EntityParachute extends Entity implements IEntityAdditionalSpawnDat
 
     private EntityPlayer ridingPlayer;
     public boolean isGoldenParachute;
+    public boolean isBlueParachute;
 
     public EntityParachute(World world) {
         super(world);
         this.setSize(1.0F, 1.0F);
     }
 
-    public EntityParachute(World world, EntityPlayer player, boolean isGolden) {
+    public EntityParachute(World world, EntityPlayer player, boolean isGolden, boolean isBlue) {
         this(world);
         this.prevPosX = this.posX;
         this.prevPosY = this.posY;
         this.prevPosZ = this.posZ;
         this.ridingPlayer = player;
         this.isGoldenParachute = isGolden;
+        this.isBlueParachute = isBlue;
         this.moveToEntityUsing();
         this.spawnExplosionParticle();
     }
@@ -136,13 +138,21 @@ public class EntityParachute extends Entity implements IEntityAdditionalSpawnDat
     @Override
     public void writeSpawnData(ByteBuf buffer) {
         buffer.writeBoolean(this.isGoldenParachute);
-        buffer.writeInt(this.ridingPlayer.getEntityId());
+        buffer.writeBoolean(this.isBlueParachute);
+        buffer.writeInt(this.ridingPlayer != null ? this.ridingPlayer.getEntityId() : -1);
     }
 
     @Override
     public void readSpawnData(ByteBuf buffer) {
         this.isGoldenParachute = buffer.readBoolean();
-        this.ridingPlayer = (EntityPlayer) this.worldObj.getEntityByID(buffer.readInt());
+        this.isBlueParachute = buffer.readBoolean();
+
+        int playerId = buffer.readInt();
+        Entity entity = this.worldObj.getEntityByID(playerId);
+
+        if (entity instanceof EntityPlayer) {
+            this.ridingPlayer = (EntityPlayer) entity;
+        }
     }
 
 }

@@ -36,7 +36,7 @@ public class IMCSenderGTNH {
         aNBT.setInteger("handlerHeight", 65);
         aNBT.setInteger("handlerWidth", 166);
         aNBT.setInteger("maxRecipesPerPage", maxRecipesPerPage);
-        aNBT.setInteger("yShift", 6);
+        aNBT.setInteger("yShift", 0);
         FMLInterModComms.sendMessage("NotEnoughItems", "registerHandlerInfo", aNBT);
     }
 

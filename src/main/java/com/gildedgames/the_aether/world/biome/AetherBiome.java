@@ -26,9 +26,7 @@ import com.gildedgames.the_aether.entities.hostile.EntityZephyr;
 import com.gildedgames.the_aether.entities.hostile.EntityZojz;
 import com.gildedgames.the_aether.entities.passive.EntityAerwhale;
 import com.gildedgames.the_aether.entities.passive.EntityCarrionSprout;
-import com.gildedgames.the_aether.entities.passive.EntityFlynx;
 import com.gildedgames.the_aether.entities.passive.EntitySheepuff;
-import com.gildedgames.the_aether.entities.passive.EntityThunderlo;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -39,11 +37,9 @@ import com.gildedgames.the_aether.entities.passive.mountable.EntityFlyingCow;
 import com.gildedgames.the_aether.entities.passive.mountable.EntityMoa;
 import com.gildedgames.the_aether.entities.passive.mountable.EntityPhyg;
 import com.gildedgames.the_aether.entities.passive.mountable.EntitySwet;
-import com.gildedgames.the_aether.entities.passive.mountable.EntityZephyroo;
 import com.gildedgames.the_aether.world.biome.decoration.plants.WorldGenAetherGrass;
 import com.gildedgames.the_aether.world.biome.decoration.AetherGenSkyrootTreeNew;
 import com.gildedgames.the_aether.world.biome.decoration.AetherGenFruitTree;
-import com.gildedgames.the_aether.world.biome.decoration.AetherGenGreatrootTree;
 import com.gildedgames.the_aether.world.biome.decoration.AetherGenLargeTree;
 import com.gildedgames.the_aether.world.biome.decoration.AetherGenMassiveTree;
 
@@ -183,12 +179,12 @@ public class AetherBiome extends BiomeGenBase {
 
 	@Override
 	public int getWaterColorMultiplier() {
-        return 16777215;
+        return 0x00ff8c;
 	}
 
 	@Override
 	public int getSkyColorByTemp(float currentTemperature) {
-        return 0xBCBCFA; // Lavender Blue
+        return 0xc4c4ff;
 	}
 
 	@Override

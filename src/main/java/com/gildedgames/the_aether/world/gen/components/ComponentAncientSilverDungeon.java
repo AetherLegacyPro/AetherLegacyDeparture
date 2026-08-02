@@ -451,11 +451,11 @@ public class ComponentAncientSilverDungeon extends AetherStructure {
 			case 1:
 				return new ItemStack(ItemsAether.aerca_tooth);
 			case 2:
-				return new ItemStack(ItemsAether.arkenium_fragement, random.nextInt(3));
+                return new ItemStack(ItemsAether.arkenium_fragement, random.nextInt(3) + 1);
 			case 3:
-				return new ItemStack(ItemsAether.aechor_petal, random.nextInt(2));
+                return new ItemStack(ItemsAether.aechor_petal, random.nextInt(2) + 1);
 			case 4:
-				return new ItemStack(ItemsAether.healing_stone, random.nextInt(2));
+                return new ItemStack(ItemsAether.healing_stone, random.nextInt(2) + 1);
 			case 5:
 				return new ItemStack(ItemsAether.ambrosium_shard, random.nextInt(13) + 2);
 			case 6:
@@ -498,7 +498,7 @@ public class ComponentAncientSilverDungeon extends AetherStructure {
 			}
 			case 15: {
 				if (random.nextInt(15) == 0)
-					return new ItemStack(ItemsAether.arkenium_chunk, random.nextInt(1) + 1);
+                    if (random.nextInt(15) == 0) return new ItemStack(ItemsAether.arkenium_chunk, random.nextInt(2) + 1);
 			}
 			case 16:
 				return ItemMoaEgg.getStackFromType(AetherMoaTypes.pink);

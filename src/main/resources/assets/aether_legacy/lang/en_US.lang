@@ -843,6 +843,7 @@ tile.amethyst_aercloud.name=Amethyst Aercloud
 tile.sapphire_aercloud.name=Sapphire Aercloud
 tile.diamond_aercloud.name=Diamond Aercloud
 tile.treasure_chest_breakable.name=Treasure Chest
+item.skyroot_door_item.name=Skyroot Door
 
 tile.block_of_auralite.name=Block Of Auralite
 tile.budding_auralite.name=Budding Auralite
@@ -1047,6 +1048,7 @@ ancient_hellfire_stone_slab.name=Ancient Hellfire Stone Slab
 tile.elysian_scales_block.name=Elysian Dragon Scale Block
 tile.stratos_aercloud.name=Stratos Aercloud
 tile.aether_cactus.name=Aether Cactus
+tile.skyroot_door.name=Skyroot Door
 
 # Entities
 entity.aechor_plant.name=Aechor Plant

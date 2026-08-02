@@ -25,8 +25,8 @@ public class PalladiumDungeonWorldGen implements IWorldGenerator {
 
 	public void generateAether(World world, Random rand, int x, int z) {
 		if(Math.abs(x) < 5000 && Math.abs(z) < 5000) return;
-		BiomeGenBase biome = world.getWorldChunkManager().getBiomeGenAt(x + 16, z + 16);
-	      if ((biome == AetherWorld.aether_biome) && AetherConfig.palladium_dungeon_rarity != 0 && rand.nextInt(aether_random) == 0 && AetherConfig.palladium_dungeon_enable == true) {
+		BiomeGenBase biome = world.getWorldChunkManager().getBiomeGenAt(x + 8, z + 8);
+	      if ((biome == AetherWorld.divine_island) && AetherConfig.palladium_dungeon_rarity != 0 && rand.nextInt(aether_random) == 0 && AetherConfig.palladium_dungeon_enable) {
 	         byte byte0 = 20;
 	         byte byte1 = 20;
 	         byte byte2 = 35;

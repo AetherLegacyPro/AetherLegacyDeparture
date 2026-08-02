@@ -2,7 +2,6 @@ package com.gildedgames.the_aether.blocks.natural;
 
 import java.util.Random;
 import com.gildedgames.the_aether.blocks.BlocksAether;
-import com.gildedgames.the_aether.entities.particles.ParticleDivineGrass;
 import com.gildedgames.the_aether.items.util.DoubleDropHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
@@ -13,7 +12,6 @@ import net.minecraft.item.Item;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -75,35 +73,6 @@ public class BlockDivineGrass extends Block implements IGrowable {
 			Material material = world.getBlock(x, y + 1, z).getMaterial();
 			return material != Material.snow && material != Material.craftedSnow ? this.blockIcon : this.blockIconSnowy;
 		}
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void randomDisplayTick(World world, int x, int y, int z, Random rand) {
-		super.randomDisplayTick(world, x, y, z, rand);
-
-		if (!world.isRemote) {
-			return;
-		}
-
-		if (net.minecraft.client.Minecraft.getMinecraft().gameSettings.particleSetting == 2) {
-			return;
-		}
-
-		if (this == BlocksAether.divine_grass) {
-			for (int ammount = 0; ammount < 6; ammount++) {
-				double d = x + (rand.nextFloat() - 0.5D) * 10;
-				double d1 = y + (rand.nextFloat() - 0.5D) * 10;
-				double d2 = z + (rand.nextFloat() - 0.5D) * 10;
-				double d3 = (rand.nextFloat() - 0.5D) * 0.5D;
-				double d4 = (rand.nextFloat() - 0.5D) * 0.5D;
-				double d5 = (rand.nextFloat() - 0.5D) * 0.5D;
-
-				ParticleDivineGrass obj = new ParticleDivineGrass(world, d, d1, d2, d3, d4, d5);
-				FMLClientHandler.instance().getClient().effectRenderer.addEffect(obj);
-			}
-		}
-
 	}
 
 	@Override

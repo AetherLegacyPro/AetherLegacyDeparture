@@ -437,7 +437,7 @@ public class EntityDivineValkyrieQueen extends EntityBossMob implements IAetherB
     protected void dropFewItems(boolean var1, int var2) {
         this.entityDropItem(new ItemStack(ItemsAether.dungeon_key, 1, 6), 0.5F);
         this.entityDropItem(new ItemStack(ItemsAether.dungeon_key, 1, 5), 0.5F);
-        this.entityDropItem(new ItemStack(BlocksAether.primeval_artifact), 3 + rand.nextInt(2));
+        this.entityDropItem(new ItemStack(BlocksAether.primeval_artifact, 3 + rand.nextInt(2)), 0.5F);
         this.dropItem(Items.golden_sword, 1);
 
         int chance_special = (int)(1 + Math.random() * 3);
