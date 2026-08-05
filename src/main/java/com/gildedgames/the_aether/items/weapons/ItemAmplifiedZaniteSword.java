@@ -1,10 +1,7 @@
 package com.gildedgames.the_aether.items.weapons;
 
 import java.util.List;
-import com.gildedgames.the_aether.AetherConfig;
-import com.gildedgames.the_aether.entities.block.EntityFireProofItemAether;
-import com.gildedgames.the_aether.items.ItemsAether;
-import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -16,70 +13,93 @@ import net.minecraft.item.ItemSword;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
+
+import com.gildedgames.the_aether.AetherConfig;
+import com.gildedgames.the_aether.entities.block.EntityFireProofItemAether;
+import com.gildedgames.the_aether.items.ItemsAether;
+import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 
 public class ItemAmplifiedZaniteSword extends ItemSword {
 
-	public float[] level = new float[]{4.0F, 8.0F, 10.0F, 12.0F, 16.0F};
+    public float[] level = new float[] { 4.0F, 8.0F, 10.0F, 12.0F, 16.0F };
 
-	public ItemAmplifiedZaniteSword() {
-		super(ToolMaterial.EMERALD);
-		this.setCreativeTab(AetherCreativeTabs.weapons);
-		setMaxDamage(3561);
-	}
+    public ItemAmplifiedZaniteSword() {
+        super(ToolMaterial.EMERALD);
+        this.setCreativeTab(AetherCreativeTabs.weapons);
+        setMaxDamage(3561);
+    }
 
-	@Override
-	public Multimap<String, AttributeModifier> getItemAttributeModifiers() {
-        return null;
-	}
+    // @Override
+    // public Multimap<String, AttributeModifier> getItemAttributeModifiers() {
+    // return null;
+    // }
 
-	@Override
-	public EnumRarity getRarity(ItemStack stack) {
+    @Override
+    public EnumRarity getRarity(ItemStack stack) {
         return ItemsAether.divine_aether_loot;
-	}
+    }
 
-	@Override
-	public Multimap<String, AttributeModifier> getAttributeModifiers(ItemStack stack) {
-		Multimap<String, AttributeModifier> multimap = HashMultimap.create();
-		if (stack.getItem() instanceof ItemAmplifiedZaniteSword) {
-			multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(field_111210_e, "Weapon modifier", this.calculateIncrease(stack), 0));
-		}
+    @Override
+    public Multimap<String, AttributeModifier> getAttributeModifiers(ItemStack stack) {
+        Multimap<String, AttributeModifier> multimap = HashMultimap.create();
 
-		return multimap;
-	}
+        if (stack.getItem() instanceof ItemAmplifiedZaniteSword) {
+            double baseDamage = 0;
+            Multimap<String, AttributeModifier> baseModifiers = getItemAttributeModifiers();
+            if (baseModifiers != null) {
+                for (AttributeModifier mod : baseModifiers
+                    .get(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName())) {
+                    baseDamage = mod.getAmount();
+                    break;
+                }
+            }
 
-	private float calculateIncrease(ItemStack tool) {
-		int current = tool.getItemDamage();
+            multimap.put(
+                SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(),
+                new AttributeModifier(
+                    field_111210_e,
+                    "Weapon modifier",
+                    this.calculateIncrease(stack) / level[0] * baseDamage,
+                    0));
+        }
 
-		if (isBetween(tool.getMaxDamage(), current, tool.getMaxDamage() - 999)) {
-			return level[4];
-		} else if (isBetween(tool.getMaxDamage() - 1000, current, tool.getMaxDamage() - 1999)) {
-			return level[3];
-		} else if (isBetween(tool.getMaxDamage() - 2000, current, tool.getMaxDamage() - 3260)) {
-			return level[2];
-		} else if (isBetween(tool.getMaxDamage() - 3261, current, tool.getMaxDamage() - 3561)) {
-			return level[1];
-		} else {
-			return level[0];
-		}
-	}
+        return multimap;
+    }
 
-	private boolean isBetween(int max, int origin, int min) {
+    private float calculateIncrease(ItemStack tool) {
+        int current = tool.getItemDamage();
+
+        if (isBetween(tool.getMaxDamage(), current, tool.getMaxDamage() - 999)) {
+            return level[4];
+        } else if (isBetween(tool.getMaxDamage() - 1000, current, tool.getMaxDamage() - 1999)) {
+            return level[3];
+        } else if (isBetween(tool.getMaxDamage() - 2000, current, tool.getMaxDamage() - 3260)) {
+            return level[2];
+        } else if (isBetween(tool.getMaxDamage() - 3261, current, tool.getMaxDamage() - 3561)) {
+            return level[1];
+        } else {
+            return level[0];
+        }
+    }
+
+    private boolean isBetween(int max, int origin, int min) {
         return origin <= max && origin >= min ? true : false;
-	}
+    }
 
-	@Override
-	public boolean getIsRepairable(ItemStack repairingItem, ItemStack material) {
-		return material.getItem() == ItemsAether.divineral_ingot;
-	}
+    @Override
+    public boolean getIsRepairable(ItemStack repairingItem, ItemStack material) {
+        return material.getItem() == ItemsAether.divineral_ingot;
+    }
 
-	@Override
-	public float getDigSpeed(ItemStack itemstack, Block block, int meta) {
-		return super.getDigSpeed(itemstack, block, meta) * (2.0F * (float) itemstack.getItemDamage() / (float) itemstack.getMaxDamage() + 0.5F);
-	}
+    @Override
+    public float getDigSpeed(ItemStack itemstack, Block block, int meta) {
+        return super.getDigSpeed(itemstack, block, meta)
+            * (2.0F * (float) itemstack.getItemDamage() / (float) itemstack.getMaxDamage() + 0.5F);
+    }
 
-	public boolean hasCustomEntity(final ItemStack stack) {
+    public boolean hasCustomEntity(final ItemStack stack) {
         return true;
     }
 
@@ -87,9 +107,11 @@ public class ItemAmplifiedZaniteSword extends ItemSword {
         return new EntityFireProofItemAether(world, location, itemstack);
     }
 
-    public void addInformation(final ItemStack stack, final EntityPlayer player, final List tooltip, final boolean who) {
-		if(AetherConfig.enableTooltips())
-        tooltip.add(EnumChatFormatting.LIGHT_PURPLE + "" + StatCollector.translateToLocal("tooltip.amplified_zanite_sword.desc"));
+    public void addInformation(final ItemStack stack, final EntityPlayer player, final List tooltip,
+        final boolean who) {
+        if (AetherConfig.enableTooltips()) tooltip.add(
+            EnumChatFormatting.LIGHT_PURPLE + ""
+                + StatCollector.translateToLocal("tooltip.amplified_zanite_sword.desc"));
     }
 
 }
