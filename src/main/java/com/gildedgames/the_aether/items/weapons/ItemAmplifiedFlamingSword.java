@@ -1,8 +1,5 @@
 package com.gildedgames.the_aether.items.weapons;
 
-import com.gildedgames.the_aether.entities.block.EntityFireProofItemAether;
-import com.gildedgames.the_aether.items.ItemsAether;
-import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
@@ -13,84 +10,107 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.world.World;
+
+import com.gildedgames.the_aether.entities.block.EntityFireProofItemAether;
+import com.gildedgames.the_aether.items.ItemsAether;
+import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 
 public class ItemAmplifiedFlamingSword extends ItemSword {
 
-	public float[] level = new float[]{9.0F, 9.0F, 9.0F, 9.0F, 9.0F};
+    public float[] level = new float[] { 9.0F, 9.0F, 9.0F, 9.0F, 9.0F };
 
-	public ItemAmplifiedFlamingSword() {
-		super(ToolMaterial.EMERALD);
-		this.setCreativeTab(AetherCreativeTabs.weapons);
-		this.setMaxDamage(4791);
-	}
+    public ItemAmplifiedFlamingSword() {
+        super(ToolMaterial.EMERALD);
+        this.setCreativeTab(AetherCreativeTabs.weapons);
+        this.setMaxDamage(4791);
+    }
 
-	@Override
-	public Multimap<String, AttributeModifier> getItemAttributeModifiers() {
-		return null;
-	}
+    // @Override
+    // public Multimap<String, AttributeModifier> getItemAttributeModifiers() {
+    // return null;
+    // }
 
-	@Override
-	public Multimap<String, AttributeModifier> getAttributeModifiers(ItemStack stack) {
-		Multimap<String, AttributeModifier> multimap = HashMultimap.create();
-		if (stack.getItem() instanceof ItemAmplifiedFlamingSword) {
-			multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(field_111210_e, "Weapon modifier", this.calculateIncrease(stack), 0));
-		}
+    @Override
+    public Multimap<String, AttributeModifier> getAttributeModifiers(ItemStack stack) {
+        Multimap<String, AttributeModifier> multimap = HashMultimap.create();
 
-		return multimap;
-	}
+        if (stack.getItem() instanceof ItemAmplifiedFlamingSword) {
+            double baseDamage = 0;
+            Multimap<String, AttributeModifier> baseModifiers = getItemAttributeModifiers();
+            if (baseModifiers != null) {
+                for (AttributeModifier mod : baseModifiers
+                    .get(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName())) {
+                    baseDamage = mod.getAmount();
+                    break;
+                }
+            }
 
-	private float calculateIncrease(ItemStack tool) {
-		int current = tool.getItemDamage();
+            multimap.put(
+                SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(),
+                new AttributeModifier(
+                    field_111210_e,
+                    "Weapon modifier",
+                    this.calculateIncrease(stack) / level[0] * baseDamage,
+                    0));
+        }
 
-		if (isBetween(tool.getMaxDamage(), current, tool.getMaxDamage() - 50)) {
-			return level[4];
-		} else if (isBetween(tool.getMaxDamage() - 51, current, tool.getMaxDamage() - 789)) {
-			return level[3];
-		} else if (isBetween(tool.getMaxDamage() - 790, current, tool.getMaxDamage() - 2790)) {
-			return level[2];
-		} else if (isBetween(tool.getMaxDamage() - 2791, current, tool.getMaxDamage() - 4791)) {
-			return level[1];
-		} else {
-			return level[0];
-		}
-	}
+        return multimap;
+    }
 
-	private boolean isBetween(int max, int origin, int min) {
+    private float calculateIncrease(ItemStack tool) {
+        int current = tool.getItemDamage();
+
+        if (isBetween(tool.getMaxDamage(), current, tool.getMaxDamage() - 50)) {
+            return level[4];
+        } else if (isBetween(tool.getMaxDamage() - 51, current, tool.getMaxDamage() - 789)) {
+            return level[3];
+        } else if (isBetween(tool.getMaxDamage() - 790, current, tool.getMaxDamage() - 2790)) {
+            return level[2];
+        } else if (isBetween(tool.getMaxDamage() - 2791, current, tool.getMaxDamage() - 4791)) {
+            return level[1];
+        } else {
+            return level[0];
+        }
+    }
+
+    private boolean isBetween(int max, int origin, int min) {
         return origin <= max && origin >= min ? true : false;
-	}
+    }
 
-	@Override
-	public boolean getIsRepairable(ItemStack repairingItem, ItemStack material) {
-		return material.getItem() == ItemsAether.divineral_ingot;
-	}
+    @Override
+    public boolean getIsRepairable(ItemStack repairingItem, ItemStack material) {
+        return material.getItem() == ItemsAether.divineral_ingot;
+    }
 
-	@Override
-	public boolean hitEntity(ItemStack itemstack, EntityLivingBase entityliving, EntityLivingBase entityliving1) {
-		if (this == ItemsAether.amplified_flaming_sword) {
-			int defaultTime = 40;
-			int fireAspectModifier = EnchantmentHelper.getFireAspectModifier(entityliving1);
-			if (fireAspectModifier > 0) {
-				defaultTime += (fireAspectModifier * 10);
-			}
-			entityliving.setFire(defaultTime);
+    @Override
+    public boolean hitEntity(ItemStack itemstack, EntityLivingBase entityliving, EntityLivingBase entityliving1) {
 
-		}
-		return super.hitEntity(itemstack, entityliving, entityliving1);
-	}
+        if (this == ItemsAether.amplified_flaming_sword) {
+            int defaultTime = 40;
+            int fireAspectModifier = EnchantmentHelper.getFireAspectModifier(entityliving1);
+            if (fireAspectModifier > 0) {
+                defaultTime += (fireAspectModifier * 10);
+            }
+            entityliving.setFire(defaultTime);
 
-	@Override
-	public float getDigSpeed(ItemStack itemstack, Block block, int meta) {
-		return super.getDigSpeed(itemstack, block, meta) * (2.0F * (float) itemstack.getItemDamage() / (float) itemstack.getMaxDamage() + 0.5F);
-	}
+        }
+        return super.hitEntity(itemstack, entityliving, entityliving1);
+    }
 
-	@Override
-	public EnumRarity getRarity(ItemStack stack) {
+    @Override
+    public float getDigSpeed(ItemStack itemstack, Block block, int meta) {
+        return super.getDigSpeed(itemstack, block, meta)
+            * (2.0F * (float) itemstack.getItemDamage() / (float) itemstack.getMaxDamage() + 0.5F);
+    }
+
+    @Override
+    public EnumRarity getRarity(ItemStack stack) {
         return ItemsAether.divine_aether_loot;
-	}
+    }
 
-	public boolean hasCustomEntity(final ItemStack stack) {
+    public boolean hasCustomEntity(final ItemStack stack) {
         return true;
     }
 

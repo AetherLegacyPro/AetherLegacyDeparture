@@ -1,12 +1,7 @@
 package com.gildedgames.the_aether.items.weapons;
 
 import java.util.List;
-import com.gildedgames.the_aether.AetherConfig;
-import com.gildedgames.the_aether.entities.block.EntityFireProofItemAether;
-import com.gildedgames.the_aether.items.ItemsAether;
-import com.gildedgames.the_aether.items.tools.ItemAetherMultiTool;
-import com.gildedgames.the_aether.items.util.EnumAetherMultiToolType;
-import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,57 +11,64 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
+import com.gildedgames.the_aether.AetherConfig;
+import com.gildedgames.the_aether.entities.block.EntityFireProofItemAether;
+import com.gildedgames.the_aether.items.ItemsAether;
+import com.gildedgames.the_aether.items.tools.ItemAetherMultiTool;
+import com.gildedgames.the_aether.items.util.EnumAetherMultiToolType;
+import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
+
 public class ItemAmplifiedBattleSentryHammer extends ItemAetherMultiTool {
 
-	public float[] level = new float[]{13F, 13F, 13F, 13F, 13F};
+    public float[] level = new float[] { 13F, 13F, 13F, 13F, 13F };
 
-	public ItemAmplifiedBattleSentryHammer(float damage, EnumAetherMultiToolType toolType) {
-		super(damage, ToolMaterial.EMERALD, toolType);
-		this.setCreativeTab(AetherCreativeTabs.tools);
-		setMaxDamage(5291);
-	}
+    public ItemAmplifiedBattleSentryHammer(float damage, EnumAetherMultiToolType toolType) {
+        super(damage, ToolMaterial.EMERALD, toolType);
+        this.setCreativeTab(AetherCreativeTabs.tools);
+        setMaxDamage(5291);
+    }
 
-	@Override
-	public boolean getIsRepairable(ItemStack repairingItem, ItemStack material) {
-		return material.getItem() == ItemsAether.divineral_ingot;
-	}
+    @Override
+    public boolean getIsRepairable(ItemStack repairingItem, ItemStack material) {
+        return material.getItem() == ItemsAether.divineral_ingot;
+    }
 
-	@Override
-	public EnumRarity getRarity(ItemStack stack) {
+    @Override
+    public EnumRarity getRarity(ItemStack stack) {
         return ItemsAether.divine_aether_loot;
-	}
+    }
 
-	@Override
-	public float getDigSpeed(ItemStack stack, Block block, int meta) {
-		return this.calculateIncrease(stack, this.toolType.getStrVsBlock(stack, block));
-	}
+    @Override
+    public float getDigSpeed(ItemStack stack, Block block, int meta) {
+        return this.calculateIncrease(stack, this.toolType.getStrVsBlock(stack, block));
+    }
 
-	private float calculateIncrease(ItemStack tool, float original) {
-		boolean AllowedCalculations = original != 4.0F ? false : true;
-		int current = tool.getItemDamage();
+    private float calculateIncrease(ItemStack tool, float original) {
+        boolean AllowedCalculations = original != 4.0F ? false : true;
+        int current = tool.getItemDamage();
 
-		if (AllowedCalculations) {
-			if (isBetween(tool.getMaxDamage(), current, tool.getMaxDamage() - 590)) {
-				return level[4];
-			} else if (isBetween(tool.getMaxDamage() - 591, current, tool.getMaxDamage() - 1790)) {
-				return level[3];
-			} else if (isBetween(tool.getMaxDamage() - 1791, current, tool.getMaxDamage() - 3790)) {
-				return level[2];
-			} else if (isBetween(tool.getMaxDamage() - 3791, current, tool.getMaxDamage() - 5791)) {
-				return level[1];
-			} else {
-				return level[0];
-			}
-		} else {
-			return 1.0F;
-		}
-	}
+        if (AllowedCalculations) {
+            if (isBetween(tool.getMaxDamage(), current, tool.getMaxDamage() - 590)) {
+                return level[4];
+            } else if (isBetween(tool.getMaxDamage() - 591, current, tool.getMaxDamage() - 1790)) {
+                return level[3];
+            } else if (isBetween(tool.getMaxDamage() - 1791, current, tool.getMaxDamage() - 3790)) {
+                return level[2];
+            } else if (isBetween(tool.getMaxDamage() - 3791, current, tool.getMaxDamage() - 5791)) {
+                return level[1];
+            } else {
+                return level[0];
+            }
+        } else {
+            return 1.0F;
+        }
+    }
 
-	private boolean isBetween(int max, int origin, int min) {
+    private boolean isBetween(int max, int origin, int min) {
         return origin <= max && origin >= min ? true : false;
-	}
+    }
 
-	public boolean hasCustomEntity(final ItemStack stack) {
+    public boolean hasCustomEntity(final ItemStack stack) {
         return true;
     }
 
@@ -74,9 +76,10 @@ public class ItemAmplifiedBattleSentryHammer extends ItemAetherMultiTool {
         return new EntityFireProofItemAether(world, location, itemstack);
     }
 
-    public void addInformation(final ItemStack stack, final EntityPlayer player, final List tooltip, final boolean who) {
-		if(AetherConfig.enableTooltips())
-        tooltip.add(EnumChatFormatting.LIGHT_PURPLE + "" + StatCollector.translateToLocal("tooltip.battle_sentry_hammer.desc"));
+    public void addInformation(final ItemStack stack, final EntityPlayer player, final List tooltip,
+        final boolean who) {
+        if (AetherConfig.enableTooltips()) tooltip.add(
+            EnumChatFormatting.LIGHT_PURPLE + "" + StatCollector.translateToLocal("tooltip.battle_sentry_hammer.desc"));
     }
 
 }
