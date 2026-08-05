@@ -14,7 +14,7 @@ public class CyroModel extends ModelBase {
 
     public CyroModel() {
         for (int i = 0; i < this.blazeSticks.length; ++i) {
-            this.blazeSticks[i] = new ModelRenderer(this, 0, 8);
+            this.blazeSticks[i] = new ModelRenderer(this, 0, 16);
             this.blazeSticks[i].addBox(0.0F, 0.0F, 0.0F, 1, 4, 1);
         }
 
