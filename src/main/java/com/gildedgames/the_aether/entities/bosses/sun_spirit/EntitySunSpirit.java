@@ -657,7 +657,6 @@ public class EntitySunSpirit extends EntityFlying implements IMob, IAetherBoss, 
                 return false;
             }
             } else {
-
             return super.attackEntityFrom(source, amount);
             }
         }

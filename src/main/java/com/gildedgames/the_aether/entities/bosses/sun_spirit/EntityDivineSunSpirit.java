@@ -100,8 +100,13 @@ public class EntityDivineSunSpirit extends EntityFlying implements IMob, IAether
 
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed)
             .setBaseValue(1.6D);
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth)
-            .setBaseValue(70.0D);
+        if (AetherConfig.ChangeSunSpirit()) {
+            this.getEntityAttribute(SharedMonsterAttributes.maxHealth)
+                .setBaseValue(700.0D);
+        } else {
+            this.getEntityAttribute(SharedMonsterAttributes.maxHealth)
+                .setBaseValue(70.0D);
+        }
     }
 
     public boolean isPotionApplicable(PotionEffect par1PotionEffect) {
@@ -224,7 +229,7 @@ public class EntityDivineSunSpirit extends EntityFlying implements IMob, IAether
                 this.motionX = this.motionY = this.motionZ = 0.0D;
 
                 this.chatLine(dungeonTarget, "\u00a7c" + StatCollector.translateToLocal("gui.spirit.playerdied"));
-                this.chatCount = 100;
+                this.chatCount = 0;
 
                 this.setPosition(
                     (double) this.originPointX + 0.5D,
@@ -241,23 +246,6 @@ public class EntityDivineSunSpirit extends EntityFlying implements IMob, IAether
 
             if (this.isDead()) {
                 this.setFreezing(true);
-                this.chatLine(dungeonTarget, "\u00a7b" + StatCollector.translateToLocal("gui.spirit.dead"));
-                this.chatCount = 100;
-
-                for (Object dungeonPlayer : dungeonPlayers) {
-                    Entity entity = (Entity) dungeonPlayer;
-
-                    if (entity instanceof EntityPlayer) {
-                        ((EntityPlayer) entity).triggerAchievement(AchievementsAether.defeat_gold);
-                        ((EntityPlayer) entity).triggerAchievement(AchievementsAether.ancient_defeat_gold);
-                        ((EntityPlayer) entity).triggerAchievement(AchievementsAether.divine_defeat_gold);
-                    }
-                }
-
-                dungeonTarget.triggerAchievement(AchievementsAether.defeat_gold);
-                dungeonTarget.triggerAchievement(AchievementsAether.ancient_defeat_gold);
-                dungeonTarget.triggerAchievement(AchievementsAether.divine_defeat_gold);
-
                 if (!AetherConfig.eternalDayDisabled()) {
                     if (!this.worldObj.isRemote) {
                         if (!AetherData.getInstance(this.worldObj)
@@ -291,64 +279,106 @@ public class EntityDivineSunSpirit extends EntityFlying implements IMob, IAether
         }
     }
 
+    private void bossDeath(EntityPlayer dungeonTarget, List<?> dungeonPlayers) {
+        if (this.isDead()) {
+            this.chatLine(dungeonTarget, "\u00a7b" + StatCollector.translateToLocal("gui.spirit.dead"));
+
+            for (Object dungeonPlayer : dungeonPlayers) {
+                Entity entity = (Entity) dungeonPlayer;
+
+                if (entity instanceof EntityPlayer) {
+                    ((EntityPlayer) entity).triggerAchievement(AchievementsAether.defeat_gold);
+                    ((EntityPlayer) entity).triggerAchievement(AchievementsAether.ancient_defeat_gold);
+                    ((EntityPlayer) entity).triggerAchievement(AchievementsAether.divine_defeat_gold);
+                }
+            }
+
+            dungeonTarget.triggerAchievement(AchievementsAether.defeat_gold);
+            dungeonTarget.triggerAchievement(AchievementsAether.ancient_defeat_gold);
+            dungeonTarget.triggerAchievement(AchievementsAether.divine_defeat_gold);
+        }
+    }
+
+    @Override
+    public void onDeath(DamageSource source) {
+        super.onDeath(source);
+        List<?> dungeonPlayers = this.getPlayersInDungeon();
+        EntityPlayer dungeonTarget = null;
+        if (this.getAttackTarget() instanceof EntityPlayer) {
+            dungeonTarget = (EntityPlayer) this.getAttackTarget();
+        } else {
+            for (Object obj : dungeonPlayers) {
+                if (obj instanceof EntityPlayer) {
+                    dungeonTarget = (EntityPlayer) obj;
+                    break;
+                }
+            }
+        }
+        if (dungeonTarget != null) {
+            bossDeath(dungeonTarget, dungeonPlayers);
+        }
+    }
+
     @Override
     protected void updateEntityActionState() {
         super.updateEntityActionState();
 
-        if (this.getAttackTarget() != null) {
-            this.motionY = 0.0D;
-            this.renderYawOffset = this.rotationYaw;
+        if (!AetherConfig.ChangeSunSpirit()) {
+            if (this.getAttackTarget() != null) {
+                this.motionY = 0.0D;
+                this.renderYawOffset = this.rotationYaw;
 
-            this.setPosition(this.posX, this.originPointY, this.posZ);
+                this.setPosition(this.posX, this.originPointY, this.posZ);
 
-            boolean changedCourse = false;
+                boolean changedCourse = false;
 
-            if (this.motionX >= 0.0D && this.posX > (double) this.originPointX + 8.5D) {
-                this.rotary = 360.0D - this.rotary;
-                changedCourse = true;
-            } else if (this.motionX <= 0.0D && this.posX < (double) this.originPointX - 10D) {
-                this.rotary = 360.0D - this.rotary;
-                changedCourse = true;
-            }
-
-            if (this.motionZ >= 0.0D && this.posZ > (double) this.originPointZ + 10.0D) {
-                this.rotary = 180.0D - this.rotary;
-                changedCourse = true;
-            } else if (this.motionZ <= 0.0D && this.posZ < (double) this.originPointZ - 9.0D) {
-                this.rotary = 180.0D - this.rotary;
-                changedCourse = true;
-            }
-
-            if (this.rotary > 360.0D) {
-                this.rotary -= 360.0D;
-            } else if (this.rotary < 0.0D) {
-                this.rotary += 360.0D;
-            }
-
-            this.faceEntity(this.getAttackTarget(), 20.0F, 20.0F);
-
-            double angle = this.rotary / (180D / Math.PI);
-
-            this.motionX = Math.sin(angle) * this.velocity;
-            this.motionZ = Math.cos(angle) * this.velocity;
-
-            ++this.motionTimer;
-
-            if (this.motionTimer >= 20 || changedCourse) {
-                if (this.rand.nextInt(3) == 0) {
-                    this.rotary += (double) (this.rand.nextFloat() - this.rand.nextFloat()) * 60.0D;
+                if (this.motionX >= 0.0D && this.posX > (double) this.originPointX + 8.5D) {
+                    this.rotary = 360.0D - this.rotary;
+                    changedCourse = true;
+                } else if (this.motionX <= 0.0D && this.posX < (double) this.originPointX - 10D) {
+                    this.rotary = 360.0D - this.rotary;
+                    changedCourse = true;
                 }
 
-                this.motionTimer = 0;
-            }
+                if (this.motionZ >= 0.0D && this.posZ > (double) this.originPointZ + 10.0D) {
+                    this.rotary = 180.0D - this.rotary;
+                    changedCourse = true;
+                } else if (this.motionZ <= 0.0D && this.posZ < (double) this.originPointZ - 9.0D) {
+                    this.rotary = 180.0D - this.rotary;
+                    changedCourse = true;
+                }
 
-            ++this.flameCount;
+                if (this.rotary > 360.0D) {
+                    this.rotary -= 360.0D;
+                } else if (this.rotary < 0.0D) {
+                    this.rotary += 360.0D;
+                }
 
-            if (this.flameCount == 40) {
-                this.summonFire();
-            } else if (this.flameCount >= 55 + this.getHealth() / 2) {
-                this.makeFireBall(1);
-                this.flameCount = 0;
+                this.faceEntity(this.getAttackTarget(), 20.0F, 20.0F);
+
+                double angle = this.rotary / (180D / Math.PI);
+
+                this.motionX = Math.sin(angle) * this.velocity;
+                this.motionZ = Math.cos(angle) * this.velocity;
+
+                ++this.motionTimer;
+
+                if (this.motionTimer >= 20 || changedCourse) {
+                    if (this.rand.nextInt(3) == 0) {
+                        this.rotary += (double) (this.rand.nextFloat() - this.rand.nextFloat()) * 60.0D;
+                    }
+
+                    this.motionTimer = 0;
+                }
+
+                ++this.flameCount;
+
+                if (this.flameCount == 40) {
+                    this.summonFire();
+                } else if (this.flameCount >= 55 + this.getHealth() / 2) {
+                    this.makeFireBall(1);
+                    this.flameCount = 0;
+                }
             }
         }
     }
@@ -362,8 +392,8 @@ public class EntityDivineSunSpirit extends EntityFlying implements IMob, IAether
         List<?> entityList = this.worldObj
             .getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(0.0D, 4.0D, 0.0D));
 
-        for (int ammount = 0; ammount < entityList.size(); ++ammount) {
-            Entity entity = (Entity) entityList.get(ammount);
+        for (Object o : entityList) {
+            Entity entity = (Entity) o;
 
             if (entity instanceof EntityLivingBase && !entity.isImmuneToFire()) {
                 entity.attackEntityFrom(new EntityDamageSource("incineration_firo", this), 28);
@@ -498,9 +528,19 @@ public class EntityDivineSunSpirit extends EntityFlying implements IMob, IAether
     private void chatLine(EntityPlayer player, String s) {
         Side side = FMLCommonHandler.instance()
             .getEffectiveSide();
-
-        if (this.chatCount <= 0
-            || (!AetherConfig.repeatSunSpiritDialogue() && ((PlayerAether) AetherAPI.get(player)).seenSpiritDialog)) {
+        List<?> dungeonPlayers = this.getPlayersInDungeon();
+        EntityPlayer dungeonTarget = null;
+        if (this.getAttackTarget() instanceof EntityPlayer) {
+            dungeonTarget = (EntityPlayer) this.getAttackTarget();
+        } else {
+            for (Object obj : dungeonPlayers) {
+                if (obj instanceof EntityPlayer) {
+                    dungeonTarget = (EntityPlayer) obj;
+                    break;
+                }
+            }
+        }
+        if (AetherConfig.repeatSunSpiritDialogue() || (!AetherConfig.repeatSunSpiritDialogue() && !((PlayerAether) AetherAPI.get(player)).seenSpiritDialog) || this.isDead() || (dungeonTarget!=null && dungeonTarget.isDead) || this.getChatLine() == 9 || this.getChatLine() == 10) {
             if (side == Side.CLIENT) {
                 Aether.proxy.sendMessage(player, s);
             }
@@ -598,84 +638,88 @@ public class EntityDivineSunSpirit extends EntityFlying implements IMob, IAether
 
     @Override
     public boolean attackEntityFrom(DamageSource source, float amount) {
-        if (source.getSourceOfDamage() instanceof EntityCrystal) {
-            if (((EntityCrystal) source.getSourceOfDamage()).getCrystalType() == EnumCrystalType.ICE) {
-                this.velocity = 0.5D - (double) this.getHealth() / 70.0D * 0.6D;
-                boolean flag = super.attackEntityFrom(source, amount);
+        if (!AetherConfig.ChangeSunSpirit()) {
+            if (source.getSourceOfDamage() instanceof EntityCrystal) {
+                if (((EntityCrystal) source.getSourceOfDamage()).getCrystalType() == EnumCrystalType.ICE) {
+                    this.velocity = 0.5D - (double) this.getHealth() / 70.0D * 0.6D;
+                    boolean flag = super.attackEntityFrom(source, amount);
 
-                if (flag) {
-                    EntityDivineFireMinion minion = new EntityDivineFireMinion(this.worldObj);
-                    minion.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
-                    minion.setAttackTarget(this.getAttackTarget());
+                    if (flag) {
+                        EntityDivineFireMinion minion = new EntityDivineFireMinion(this.worldObj);
+                        minion.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
+                        minion.setAttackTarget(this.getAttackTarget());
 
-                    if (!this.worldObj.isRemote) {
-                        this.worldObj.spawnEntityInWorld(minion);
+                        if (!this.worldObj.isRemote) {
+                            this.worldObj.spawnEntityInWorld(minion);
+                        }
+
                     }
 
+                    {
+                        EntityCinerarium cinerarium = new EntityCinerarium(this.worldObj);
+                        cinerarium.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
+                        cinerarium.setAttackTarget(this.getAttackTarget());
+
+                        if (!this.worldObj.isRemote) {
+                            this.worldObj.spawnEntityInWorld(cinerarium);
+                        }
+
+                        EntityCinerarium cinerarium2 = new EntityCinerarium(this.worldObj);
+                        cinerarium2.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
+                        cinerarium2.setAttackTarget(this.getAttackTarget());
+
+                        if (!this.worldObj.isRemote) {
+                            this.worldObj.spawnEntityInWorld(cinerarium2);
+                        }
+
+                    }
+
+                    {
+                        EntityHellfireCinder hellfire_cinder = new EntityHellfireCinder(this.worldObj);
+                        hellfire_cinder.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
+                        hellfire_cinder.setAttackTarget(this.getAttackTarget());
+
+                        if (!this.worldObj.isRemote) {
+                            this.worldObj.spawnEntityInWorld(hellfire_cinder);
+                        }
+
+                        EntityHellfireCinder hellfire_cinder2 = new EntityHellfireCinder(this.worldObj);
+                        hellfire_cinder2.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
+                        hellfire_cinder2.setAttackTarget(this.getAttackTarget());
+
+                        if (!this.worldObj.isRemote) {
+                            this.worldObj.spawnEntityInWorld(hellfire_cinder2);
+                        }
+
+                    }
+
+                    {
+                        EntityHellfireCinder hellfire_cinder3 = new EntityHellfireCinder(this.worldObj);
+                        hellfire_cinder3.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
+                        hellfire_cinder3.setAttackTarget(this.getAttackTarget());
+
+                        if (!this.worldObj.isRemote) {
+                            this.worldObj.spawnEntityInWorld(hellfire_cinder3);
+                        }
+
+                        EntityHellfireCinder hellfire_cinder4 = new EntityHellfireCinder(this.worldObj);
+                        hellfire_cinder4.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
+                        hellfire_cinder4.setAttackTarget(this.getAttackTarget());
+
+                        if (!this.worldObj.isRemote) {
+                            this.worldObj.spawnEntityInWorld(hellfire_cinder4);
+                        }
+
+                    }
+                    return flag;
+                } else {
+                    return false;
                 }
-
-                {
-                    EntityCinerarium cinerarium = new EntityCinerarium(this.worldObj);
-                    cinerarium.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
-                    cinerarium.setAttackTarget(this.getAttackTarget());
-
-                    if (!this.worldObj.isRemote) {
-                        this.worldObj.spawnEntityInWorld(cinerarium);
-                    }
-
-                    EntityCinerarium cinerarium2 = new EntityCinerarium(this.worldObj);
-                    cinerarium2.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
-                    cinerarium2.setAttackTarget(this.getAttackTarget());
-
-                    if (!this.worldObj.isRemote) {
-                        this.worldObj.spawnEntityInWorld(cinerarium2);
-                    }
-
-                }
-
-                {
-                    EntityHellfireCinder hellfire_cinder = new EntityHellfireCinder(this.worldObj);
-                    hellfire_cinder.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
-                    hellfire_cinder.setAttackTarget(this.getAttackTarget());
-
-                    if (!this.worldObj.isRemote) {
-                        this.worldObj.spawnEntityInWorld(hellfire_cinder);
-                    }
-
-                    EntityHellfireCinder hellfire_cinder2 = new EntityHellfireCinder(this.worldObj);
-                    hellfire_cinder2.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
-                    hellfire_cinder2.setAttackTarget(this.getAttackTarget());
-
-                    if (!this.worldObj.isRemote) {
-                        this.worldObj.spawnEntityInWorld(hellfire_cinder2);
-                    }
-
-                }
-
-                {
-                    EntityHellfireCinder hellfire_cinder3 = new EntityHellfireCinder(this.worldObj);
-                    hellfire_cinder3.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
-                    hellfire_cinder3.setAttackTarget(this.getAttackTarget());
-
-                    if (!this.worldObj.isRemote) {
-                        this.worldObj.spawnEntityInWorld(hellfire_cinder3);
-                    }
-
-                    EntityHellfireCinder hellfire_cinder4 = new EntityHellfireCinder(this.worldObj);
-                    hellfire_cinder4.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
-                    hellfire_cinder4.setAttackTarget(this.getAttackTarget());
-
-                    if (!this.worldObj.isRemote) {
-                        this.worldObj.spawnEntityInWorld(hellfire_cinder4);
-                    }
-
-                }
-                return flag;
             } else {
                 return false;
             }
         } else {
-            return false;
+            return super.attackEntityFrom(source, amount);
         }
     }
 
@@ -797,7 +841,7 @@ public class EntityDivineSunSpirit extends EntityFlying implements IMob, IAether
     }
 
     public void setChatLine(int lineNumber) {
-        this.chatCount = 100;
+        this.chatCount = 0;
         this.dataWatcher.updateObject(18, (byte) lineNumber);
     }
 
