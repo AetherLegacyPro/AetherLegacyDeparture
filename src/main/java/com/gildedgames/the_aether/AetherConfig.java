@@ -16,7 +16,7 @@ public class AetherConfig {
     private static boolean use_baubles_expanded_menu, disable_parachutes;
     public static boolean enable_log_reporting_biomes, enable_assets_message, disable_1stperson_glove_renderer;
     public static boolean cloud_icon, enable_battlegear2_compatibility;
-    private static boolean sun_altar_multiplayer, repeat_sun_spirit_dialog, aether_start;
+    private static boolean sun_altar_multiplayer, repeat_sun_spirit_dialog, change_sun_spirit, aether_start;
     private static boolean redownloadFiles, enable_tooltips;
 
     // World Generation
@@ -370,7 +370,11 @@ public class AetherConfig {
             .getBoolean(false);
 
         repeat_sun_spirit_dialog = config
-            .get("Misc", "If disabled, the Sun Spirit's dialog will only show once per world.", true)
+            .get("Misc", "If false, the Sun Spirit's dialog will only show once per world.", true)
+            .getBoolean(true);
+
+        change_sun_spirit = config
+            .get("Misc", "If true, the Sun Spirit will have a revamped appearance and behavior.", true)
             .getBoolean(true);
 
         disable_eternal_day = config.get(
@@ -706,6 +710,10 @@ public class AetherConfig {
 
     public static boolean repeatSunSpiritDialogue() {
         return repeat_sun_spirit_dialog;
+    }
+
+    public static boolean ChangeSunSpirit() {
+        return change_sun_spirit;
     }
 
     public static boolean shouldAetherStart() {

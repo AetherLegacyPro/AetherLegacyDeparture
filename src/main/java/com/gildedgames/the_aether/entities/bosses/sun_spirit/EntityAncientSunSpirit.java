@@ -184,15 +184,15 @@ public class EntityAncientSunSpirit extends EntityFlying implements IMob, IAethe
     public void onUpdate() {
         super.onUpdate();
 
-        this.velocity = 0.5D - (double) this.getHealth() / 70.0D * 0.2D;
+        this.velocity = 0.6D - (double) this.getHealth() / 70.0D * 0.2D;
         this.width = this.height = 2.0F;
 
         if (this.getAttackTarget() instanceof EntityPlayer dungeonTarget) {
             List<?> dungeonPlayers = this.getPlayersInDungeon();
             PlayerAether playerAether = PlayerAether.get(dungeonTarget);
 
-            for (int i = 0; i < dungeonPlayers.size(); ++i) {
-                Entity entity = (Entity) dungeonPlayers.get(i);
+            for (Object player : dungeonPlayers) {
+                Entity entity = (Entity) player;
 
                 if (entity instanceof EntityPlayer) {
                     PlayerAether dungeonPA = PlayerAether.get((EntityPlayer) entity);
@@ -204,8 +204,8 @@ public class EntityAncientSunSpirit extends EntityFlying implements IMob, IAethe
             }
 
             if (dungeonTarget.isDead) {
-                for (int i = 0; i < dungeonPlayers.size(); ++i) {
-                    Entity entity = (Entity) dungeonPlayers.get(i);
+                for (Object dungeonPlayer : dungeonPlayers) {
+                    Entity entity = (Entity) dungeonPlayer;
 
                     if (entity instanceof EntityPlayer) {
                         PlayerAether dungeonPA = PlayerAether.get((EntityPlayer) entity);
@@ -224,7 +224,7 @@ public class EntityAncientSunSpirit extends EntityFlying implements IMob, IAethe
                 this.motionX = this.motionY = this.motionZ = 0.0D;
 
                 this.chatLine(dungeonTarget, "\u00a7c" + StatCollector.translateToLocal("gui.spirit.playerdied"));
-                this.chatCount = 100;
+                this.chatCount = 0;
 
                 this.setPosition(
                     (double) this.originPointX + 0.5D,
@@ -244,8 +244,8 @@ public class EntityAncientSunSpirit extends EntityFlying implements IMob, IAethe
                 this.chatLine(dungeonTarget, "\u00a7b" + StatCollector.translateToLocal("gui.spirit.dead"));
                 this.chatCount = 100;
 
-                for (int i = 0; i < dungeonPlayers.size(); ++i) {
-                    Entity entity = (Entity) dungeonPlayers.get(i);
+                for (Object dungeonPlayer : dungeonPlayers) {
+                    Entity entity = (Entity) dungeonPlayer;
 
                     if (entity instanceof EntityPlayer) {
                         ((EntityPlayer) entity).triggerAchievement(AchievementsAether.defeat_gold);

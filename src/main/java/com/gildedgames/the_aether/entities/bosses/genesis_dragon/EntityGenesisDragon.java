@@ -528,8 +528,8 @@ public class EntityGenesisDragon extends EntityFlying implements IAetherBoss, GI
     }
 
     private void attackEntitiesInList(List p_70971_1_) {
-        for (int i = 0; i < p_70971_1_.size(); ++i) {
-            Entity entity = (Entity) p_70971_1_.get(i);
+        for (Object o : p_70971_1_) {
+            Entity entity = (Entity) o;
             if (!((entity instanceof EntityCrystalDragon))) {
 
                 if (entity instanceof EntityLivingBase) {

@@ -249,7 +249,7 @@ public class BlockPurpleAercloud extends Block{
     }
 
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
-        return AxisAlignedBB.getBoundingBox((double)x, (double)y, (double)z, (double)x, (double)y, (double)z);
+        return AxisAlignedBB.getBoundingBox(x, y, z, x + 1.0D, y + 0.01D, z + 1.0D);
     }
 
     @SideOnly(Side.CLIENT)

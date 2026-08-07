@@ -184,15 +184,15 @@ public class EntityDivineSunSpirit extends EntityFlying implements IMob, IAether
     public void onUpdate() {
         super.onUpdate();
 
-        this.velocity = 0.5D - (double) this.getHealth() / 70.0D * 0.2D;
+        this.velocity = 0.8D - (double) this.getHealth() / 70.0D * 0.2D;
         this.width = this.height = 2.0F;
 
         if (this.getAttackTarget() instanceof EntityPlayer dungeonTarget) {
             List<?> dungeonPlayers = this.getPlayersInDungeon();
             PlayerAether playerAether = PlayerAether.get(dungeonTarget);
 
-            for (int i = 0; i < dungeonPlayers.size(); ++i) {
-                Entity entity = (Entity) dungeonPlayers.get(i);
+            for (Object player : dungeonPlayers) {
+                Entity entity = (Entity) player;
 
                 if (entity instanceof EntityPlayer) {
                     PlayerAether dungeonPA = PlayerAether.get((EntityPlayer) entity);
@@ -204,8 +204,8 @@ public class EntityDivineSunSpirit extends EntityFlying implements IMob, IAether
             }
 
             if (dungeonTarget.isDead) {
-                for (int i = 0; i < dungeonPlayers.size(); ++i) {
-                    Entity entity = (Entity) dungeonPlayers.get(i);
+                for (Object dungeonPlayer : dungeonPlayers) {
+                    Entity entity = (Entity) dungeonPlayer;
 
                     if (entity instanceof EntityPlayer) {
                         PlayerAether dungeonPA = PlayerAether.get((EntityPlayer) entity);
@@ -244,8 +244,8 @@ public class EntityDivineSunSpirit extends EntityFlying implements IMob, IAether
                 this.chatLine(dungeonTarget, "\u00a7b" + StatCollector.translateToLocal("gui.spirit.dead"));
                 this.chatCount = 100;
 
-                for (int i = 0; i < dungeonPlayers.size(); ++i) {
-                    Entity entity = (Entity) dungeonPlayers.get(i);
+                for (Object dungeonPlayer : dungeonPlayers) {
+                    Entity entity = (Entity) dungeonPlayer;
 
                     if (entity instanceof EntityPlayer) {
                         ((EntityPlayer) entity).triggerAchievement(AchievementsAether.defeat_gold);
