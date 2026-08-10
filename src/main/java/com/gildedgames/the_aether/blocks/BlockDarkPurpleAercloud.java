@@ -1,11 +1,9 @@
 package com.gildedgames.the_aether.blocks;
 
-import com.gildedgames.the_aether.items.block.IColoredBlock;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.util.Random;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -13,12 +11,16 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.Facing;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import java.util.Random;
+import com.gildedgames.the_aether.items.block.IColoredBlock;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockDarkPurpleAercloud extends Block implements IColoredBlock {
 
@@ -43,7 +45,7 @@ public class BlockDarkPurpleAercloud extends Block implements IColoredBlock {
     @Override
     @SideOnly(Side.CLIENT)
     public int getRenderColor(int meta) {
-            return 0xbf93ff; // 0xFFFF80
+        return 0xbf93ff; // 0xFFFF80
     }
 
     @Override
@@ -56,7 +58,7 @@ public class BlockDarkPurpleAercloud extends Block implements IColoredBlock {
 
     @Override
     public int getColorFromItemStack(ItemStack stack, int pass) {
-            return 0xFFFF80;
+        return 0xFFFF80;
     }
 
     private IIcon backTexture;
@@ -65,12 +67,6 @@ public class BlockDarkPurpleAercloud extends Block implements IColoredBlock {
     private IIcon rightArrow;
     private IIcon upArrow;
     private IIcon downArrow;
-    private IIcon backTextureOpaque;
-    private IIcon frontTextureOpaque;
-    private IIcon leftArrowOpaque;
-    private IIcon rightArrowOpaque;
-    private IIcon upArrowOpaque;
-    private IIcon downArrowOpaque;
 
     public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
         if (!(entity instanceof EntityPlayer) || !((EntityPlayer)entity).capabilities.isFlying) {
@@ -100,20 +96,11 @@ public class BlockDarkPurpleAercloud extends Block implements IColoredBlock {
                     entity.motionY = 0.1;
                 }
 
-                if (meta != 0 && meta != 4) {
-                    if (meta != 1 && meta != 5) {
-                        if (meta != 2 && meta != 6) {
-                            if (meta == 3 || meta == 7) {
-                                entity.motionX = (double)-2.5F;
-                            }
-                        } else {
-                            entity.motionZ = (double)2.5F;
-                        }
-                    } else {
-                        entity.motionX = (double)2.5F;
-                    }
-                } else {
-                    entity.motionZ = (double)-2.5F;
+                switch(meta){
+                    case 3, 7: entity.motionX = (double)-2.5F;break;
+                    case 2, 6: entity.motionZ = (double)2.5F;break;
+                    case 1, 5: entity.motionX = (double)2.5F;break;
+                    case 0, 4: entity.motionZ = (double)-2.5F;break;
                 }
 
                 if (!(entity instanceof EntityPlayer)) {
@@ -145,75 +132,56 @@ public class BlockDarkPurpleAercloud extends Block implements IColoredBlock {
 
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta) {
-        boolean isFancy = Minecraft.getMinecraft().gameSettings.fancyGraphics;
-        if (meta != 0 && meta != 4) {
-            if (meta != 1 && meta != 5) {
-                if (meta != 2 && meta != 6) {
-                    if (meta == 3 || meta == 7) {
-                        switch (side) {
-                            case 0:
-                                return isFancy ? this.leftArrow : this.leftArrowOpaque;
-                            case 1:
-                                return isFancy ? this.leftArrow : this.leftArrowOpaque;
-                            case 2:
-                                return isFancy ? this.rightArrow : this.rightArrowOpaque;
-                            case 3:
-                                return isFancy ? this.leftArrow : this.leftArrowOpaque;
-                            case 4:
-                                return isFancy ? this.frontTexture : this.frontTextureOpaque;
-                            case 5:
-                                return isFancy ? this.backTexture : this.backTextureOpaque;
-                        }
-                    }
-                } else {
-                    switch (side) {
-                        case 0:
-                            return isFancy ? this.downArrow : this.downArrowOpaque;
-                        case 1:
-                            return isFancy ? this.downArrow : this.downArrowOpaque;
-                        case 2:
-                            return isFancy ? this.backTexture : this.backTextureOpaque;
-                        case 3:
-                            return isFancy ? this.frontTexture : this.frontTextureOpaque;
-                        case 4:
-                            return isFancy ? this.rightArrow : this.rightArrowOpaque;
-                        case 5:
-                            return isFancy ? this.leftArrow : this.leftArrowOpaque;
-                    }
-                }
-            } else {
+        switch(meta){
+            case 3,7:
                 switch (side) {
-                    case 0:
-                        return isFancy ? this.rightArrow : this.rightArrowOpaque;
-                    case 1:
-                        return isFancy ? this.rightArrow : this.rightArrowOpaque;
+                    case 0, 1, 3:
+                        return this.leftArrow;
                     case 2:
-                        return isFancy ? this.leftArrow : this.leftArrowOpaque;
-                    case 3:
-                        return isFancy ? this.rightArrow : this.rightArrowOpaque;
+                        return this.rightArrow;
                     case 4:
-                        return isFancy ? this.backTexture : this.backTextureOpaque;
+                        return this.frontTexture;
                     case 5:
-                        return isFancy ? this.frontTexture : this.frontTextureOpaque;
+                        return this.backTexture;
                 }
-            }
-        } else {
-            switch (side) {
-                case 0:
-                    return isFancy ? this.upArrow : this.upArrowOpaque;
-                case 1:
-                    return isFancy ? this.upArrow : this.upArrowOpaque;
-                case 2:
-                    return isFancy ? this.frontTexture : this.frontTextureOpaque;
-                case 3:
-                    return isFancy ? this.backTexture : this.backTextureOpaque;
-                case 4:
-                    return isFancy ? this.leftArrow : this.leftArrowOpaque;
-                case 5:
-                    return isFancy ? this.rightArrow : this.rightArrowOpaque;
-            }
+            case 2,6:
+                switch (side) {
+                    case 0, 1:
+                        return this.downArrow;
+                    case 2:
+                        return this.backTexture;
+                    case 3:
+                        return this.frontTexture;
+                    case 4:
+                        return this.rightArrow;
+                    case 5:
+                        return this.leftArrow;
+                }
+            case 1,5:
+                switch (side) {
+                    case 0, 1, 3:
+                        return this.rightArrow;
+                    case 2:
+                        return this.leftArrow;
+                    case 4:
+                        return this.backTexture;
+                    case 5:
+                        return this.frontTexture;
+                }
+            case 0,4:
+                switch (side) {
+                    case 0, 1:
+                        return this.upArrow;
+                    case 2:
+                        return this.frontTexture;
+                    case 3:
+                        return this.backTexture;
+                    case 4:
+                        return this.leftArrow;
+                    case 5:
+                        return this.rightArrow;
+                }
         }
-
         return null;
     }
 
@@ -224,12 +192,24 @@ public class BlockDarkPurpleAercloud extends Block implements IColoredBlock {
         this.downArrow = iconRegister.registerIcon("aether:aercloud/purple_aercloud_down");
         this.leftArrow = iconRegister.registerIcon("aether:aercloud/purple_aercloud_left");
         this.rightArrow = iconRegister.registerIcon("aether:aercloud/purple_aercloud_right");
-        this.frontTextureOpaque = iconRegister.registerIcon("aetherii:Purple Aercloud Front_Opaque");
-        this.backTextureOpaque = iconRegister.registerIcon("aetherii:Purple Aercloud Back_Opaque");
-        this.upArrowOpaque = iconRegister.registerIcon("aetherii:Purple Aercloud Up_Opaque");
-        this.downArrowOpaque = iconRegister.registerIcon("aetherii:Purple Aercloud Down_Opaque");
-        this.leftArrowOpaque = iconRegister.registerIcon("aetherii:Purple Aercloud Left_Opaque");
-        this.rightArrowOpaque = iconRegister.registerIcon("aetherii:Purple Aercloud Right_Opaque");
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public boolean shouldSideBeRendered(IBlockAccess world, int x, int y, int z, int side) {
+        Block block = world.getBlock(x, y, z);
+        int metadata = world.getBlockMetadata(x, y, z);
+        int neighborMetadata = world.getBlockMetadata(x - Facing.offsetsXForSide[side], y - Facing.offsetsYForSide[side], z - Facing.offsetsZForSide[side]);
+
+        if (metadata != neighborMetadata) {
+            return true;
+        }
+
+        if (block == this) {
+            return false;
+        }
+
+        return super.shouldSideBeRendered(world, x, y, z, side);
     }
 
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
