@@ -73,7 +73,7 @@ public class ComponentAncientGoldenDungeon extends AetherStructure {
 							this.setBlockWithOffset(i + 1, j, k, BlocksAether.hellfire_trap, 0);
 							this.setBlockWithOffset(i - 1, j, k, BlocksAether.hellfire_trap, 0);
 
-							this.setBlockWithOffset(i, j + 1, k, Blocks.netherrack, 0);
+							this.setBlockWithOffset(i, j + 1, k, BlocksAether.luminous_stone, 0);
 							this.setBlockWithOffset(i, j + 2, k, BlocksAether.hellfire, 0);
 
 							this.setBlockWithOffset(i + 1, j + 7, k, BlocksAether.ancient_hellfire_wall, 0);

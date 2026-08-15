@@ -129,7 +129,7 @@ public class EntitiesAether {
 		register(EntityRaptor.class, "raptor", 41, 0x0000FF, 0x0047AB);
 		register(EntityCyro.class, "cyro", 45, 0x1fdfdf, 0x19cfe8);
 		register(EntityUro.class, "uro", 58, 0xc1c1c1, 0xffd311);
-		register(EntityCinerarium.class, "cinerarium", 59, 0xe4903d, 0x7e1a00);
+		register(EntityCinerarium.class, "cinerarium", 59, 0xc50c01, 0x6c0013);
 		register(EntityCarrionSprout.class, "carrion_sprout", 60, 0xc7d7e7, 0x57769b);
 		register(EntityZephyroo.class, "zephyroo", 61, 0x86a4c8, 0x6184b0);
 		register(EntityThunderlo.class, "thunderlo", 65, 0x9199ac, 0x99ca8f);

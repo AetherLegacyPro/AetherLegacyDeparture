@@ -1,6 +1,7 @@
 package com.gildedgames.the_aether.entities.hostile;
 
 import com.gildedgames.the_aether.blocks.BlocksAether;
+import com.gildedgames.the_aether.entities.particles.NewAetherParticleHandler;
 import com.gildedgames.the_aether.entities.projectile.EntityCinerariumProjectile;
 import com.gildedgames.the_aether.items.ItemsAether;
 import cpw.mods.fml.relauncher.Side;
@@ -84,56 +85,60 @@ public class EntityCinerarium extends EntityMob {
 
         for (int i = 0; i < 4; ++i) {
             this.worldObj.spawnParticle("largesmoke", this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width, this.posY + this.rand.nextDouble() * (double)this.height, this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width, 0.0D, 0.0D, 0.0D);
-            this.worldObj.spawnParticle("flame", this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width, this.posY + this.rand.nextDouble() * (double)this.height, this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width, 0.0D, 0.0D, 0.0D);
+            NewAetherParticleHandler.HELLFIRE_FLAME.spawn(worldObj, this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width, this.posY + this.rand.nextDouble() * (double)this.height - 0.25D, this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width);
         }
 
         super.onLivingUpdate();
     }
 
-    protected void attackEntity(Entity entity, float p_70785_2_) {
-        if (this.attackTime <= 0 && p_70785_2_ < 2.0F && entity.boundingBox.maxY > this.boundingBox.minY && entity.boundingBox.minY < this.boundingBox.maxY) {
+    protected void attackEntity(Entity target, float distance) {
+        if (this.attackTime <= 0 && distance < 2.0F && target.boundingBox.maxY > this.boundingBox.minY && target.boundingBox.minY < this.boundingBox.maxY) {
             this.attackTime = 10;
-            this.attackEntityAsMob(entity);
+            this.attackEntityAsMob(target);
         }
-        else if (p_70785_2_ < 30.0F) {
-            double d0 = entity.posX - this.posX;
-            double d1 = entity.boundingBox.minY + (double)(entity.height / 2.0F) - (this.posY + (double)(this.height / 2.0F));
-            double d2 = entity.posZ - this.posZ;
+        else if (distance < 30.0F) {
+            double dx = target.posX - this.posX;
+            double dy = target.boundingBox.minY + target.height / 2.0F - (this.posY + this.height / 2.0F);
+            double dz = target.posZ - this.posZ;
 
             if (this.attackTime == 0) {
                 ++this.field_70846_g;
 
                 if (this.field_70846_g == 1) {
-                    this.attackTime = 30;
+                    this.attackTime = 10;
                     this.func_70844_e(true);
-                }
-                else if (this.field_70846_g <= 4) {
+                } else if (this.field_70846_g <= 4) {
                     this.attackTime = 6;
-                }
-                else {
-                    this.attackTime = 40;
+                } else {
+                    this.attackTime = 20;
                     this.field_70846_g = 0;
                     this.func_70844_e(false);
                 }
 
                 if (this.field_70846_g > 1) {
-                    float f1 = MathHelper.sqrt_float(p_70785_2_) * 0.5F;
+                    float spread = MathHelper.sqrt_float(distance) * 0.5F;
                     this.worldObj.playAuxSFXAtEntity(null, 1009, (int)this.posX, (int)this.posY, (int)this.posZ, 0);
 
-                    for (int i = 0; i < 3; ++i) {
-                    	EntityCinerariumProjectile entitysmallfireball = new EntityCinerariumProjectile(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
-                        entitysmallfireball.posY = this.posY + (double)(this.height / 3.0F) + 0.5D;
-                        this.worldObj.spawnEntityInWorld(entitysmallfireball);
+                    for (int i = 0; i < 4; ++i) {
+                        EntityCinerariumProjectile projectile = new EntityCinerariumProjectile(this.worldObj, this, dx + this.rand.nextGaussian() * spread, dy, dz + this.rand.nextGaussian() * spread);
+                        double distanceToTarget = MathHelper.sqrt_double(dx*dx + dy*dy + dz*dz);
+                        double speed = 1.0D;
+                        projectile.motionX = dx / distanceToTarget * speed;
+                        projectile.motionY = dy / distanceToTarget * speed;
+                        projectile.motionZ = dz / distanceToTarget * speed;
 
-                        EntityCinerariumProjectile entitysmallfireball2 = new EntityCinerariumProjectile(this.worldObj, this, d0 + this.rand.nextGaussian() * (double)f1, d1, d2 + this.rand.nextGaussian() * (double)f1);
-                        entitysmallfireball2.posY = this.posY + (double)(this.height / 3.0F) + 0.5D;
-                        this.worldObj.spawnEntityInWorld(entitysmallfireball2);
+                        double offset = 0.5D;
+                        projectile.posX = this.posX + projectile.motionX * offset;
+                        projectile.posY = this.posY + this.height / 3.0D + 0.5D + projectile.motionY * offset;
+                        projectile.posZ = this.posZ + projectile.motionZ * offset;
+                        projectile.setPosition(projectile.posX, projectile.posY, projectile.posZ);
 
+                        this.worldObj.spawnEntityInWorld(projectile);
                     }
                 }
             }
 
-            this.rotationYaw = (float)(Math.atan2(d2, d0) * 180.0D / Math.PI) - 90.0F;
+            this.rotationYaw = (float)(Math.atan2(dz, dx) * 180.0D / Math.PI) - 90.0F;
             this.hasAttacked = true;
         }
     }

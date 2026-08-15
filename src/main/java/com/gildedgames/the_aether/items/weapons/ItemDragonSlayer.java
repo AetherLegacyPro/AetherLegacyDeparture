@@ -2,11 +2,14 @@ package com.gildedgames.the_aether.items.weapons;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityList;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
+import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
 import com.gildedgames.the_aether.entities.block.EntityFireProofItemAether;
@@ -25,11 +28,6 @@ public class ItemDragonSlayer extends ItemSword {
         this.setMaxDamage(2791);
     }
 
-    // @Override
-    // public Multimap<String, AttributeModifier> getItemAttributeModifiers() {
-    // return null;
-    // }
-
     @Override
     public Multimap<String, AttributeModifier> getAttributeModifiers(ItemStack stack) {
         Multimap<String, AttributeModifier> multimap = HashMultimap.create();
@@ -38,23 +36,33 @@ public class ItemDragonSlayer extends ItemSword {
             double baseDamage = 0;
             Multimap<String, AttributeModifier> baseModifiers = getItemAttributeModifiers();
             if (baseModifiers != null) {
-                for (AttributeModifier mod : baseModifiers
-                    .get(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName())) {
+                for (AttributeModifier mod : baseModifiers.get(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName())) {
                     baseDamage = mod.getAmount();
                     break;
                 }
             }
 
-            multimap.put(
-                SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(),
-                new AttributeModifier(
-                    field_111210_e,
-                    "Weapon modifier",
-                    this.calculateIncrease(stack) / level[0] * baseDamage,
-                    0));
+            multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(field_111210_e, "Weapon modifier", this.calculateIncrease(stack) / level[0] * baseDamage, 0));
         }
 
         return multimap;
+    }
+
+    @Override
+    public boolean hitEntity(ItemStack itemstack, EntityLivingBase entityliving, EntityLivingBase entityliving1) {
+        if (entityliving == null || entityliving1 == null) {
+            return false;
+        }
+
+        String s = EntityList.getEntityString(entityliving).toLowerCase();
+
+        if (s.contains("dragon") || s.contains("wyrmling")) {
+            if (entityliving.getHealth() > 0) {
+                entityliving.attackEntityFrom(DamageSource.causeMobDamage(entityliving1), 30);
+            }
+        }
+
+        return super.hitEntity(itemstack, entityliving, entityliving1);
     }
 
     private float calculateIncrease(ItemStack tool) {
@@ -84,8 +92,7 @@ public class ItemDragonSlayer extends ItemSword {
 
     @Override
     public float getDigSpeed(ItemStack itemstack, Block block, int meta) {
-        return super.getDigSpeed(itemstack, block, meta)
-            * (2.0F * (float) itemstack.getItemDamage() / (float) itemstack.getMaxDamage() + 0.5F);
+        return super.getDigSpeed(itemstack, block, meta) * (2.0F * (float) itemstack.getItemDamage() / (float) itemstack.getMaxDamage() + 0.5F);
     }
 
     @Override

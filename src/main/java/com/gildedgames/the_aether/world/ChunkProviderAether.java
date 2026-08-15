@@ -1284,7 +1284,7 @@ public class ChunkProviderAether implements IChunkProvider {
                     final int l5 = z + this.rand.nextInt(8) + 8;
                     new AetherGenLakes().generate(this.worldObj, this.rand, j3, l4, l5);
                 }
-            } else {
+            } else if (biome != AetherWorld.quicksoil_dunes)  {
                 for (int k3 = 0; k3 < 6; ++k3) {
                     final int j3 = x + this.rand.nextInt(8) + 8;
                     final int l4 = this.rand.nextInt(this.rand.nextInt(200) + 48);
@@ -1828,7 +1828,7 @@ public class ChunkProviderAether implements IChunkProvider {
         }
 
         if (AetherConfig.cobalt_dungeon_enable && (biome == AetherWorld.quicksoil_dunes || biome == AetherWorld.arctic_biome)) {
-            this.cobalt_dungeon.generate(this.worldObj, this.rand, x, this.rand.nextInt(14) + 22, z);
+            this.cobalt_dungeon.generate(this.worldObj, this.rand, x, this.rand.nextInt(12) + 24, z);
         }
 
         for (int k3 = 0; k3 < 25; k3++) {

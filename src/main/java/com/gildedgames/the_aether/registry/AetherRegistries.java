@@ -908,6 +908,8 @@ public class AetherRegistries {
 		register(new ItemStack(ItemsAether.charged_tempest_core), " Z ", "YXY", " Z ", 'X', new ItemStack(ItemsAether.golden_swet_ball), 'Y', new ItemStack(ItemsAether.aerca_powder), 'Z', new ItemStack(ItemsAether.tempest_core));
 		register(new ItemStack(ItemsAether.charged_tempest_core), " Z ", "YXY", " Z ", 'X', new ItemStack(ItemsAether.purple_swet_ball), 'Y', new ItemStack(ItemsAether.aerca_powder), 'Z', new ItemStack(ItemsAether.tempest_core));
 
+        register(new ItemStack(BlocksAether.stratos_aercloud_bricks, 4), "XXX", "XXX", "XXX", 'X', BlocksAether.stratos_aercloud);
+
 		register(new ItemStack(Items.gunpowder), "XXX", "XXX", "XXX", 'X', ItemsAether.uligo_swet_ball);
 		register(new ItemStack(ItemsAether.cracked_empyrean_gemstone), " X ", "XYX", " Z ", 'X', ItemsAether.auralite_crystal, 'Y', ItemsAether.empyrean_gemstone, 'Z', ItemsAether.tempest_core);
 

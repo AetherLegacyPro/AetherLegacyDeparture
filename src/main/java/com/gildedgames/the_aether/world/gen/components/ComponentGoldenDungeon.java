@@ -63,7 +63,7 @@ public class ComponentGoldenDungeon extends AetherStructure {
 						this.setBlockWithOffset(i, j, k);
 
 						if ((i == (a - 2) || -i == (a - 2)) && (k == (a - 2) || -k == (a - 2))) {
-							this.setBlockWithOffset(i, j + 1, k, Blocks.netherrack, 0);
+							this.setBlockWithOffset(i, j + 1, k, BlocksAether.luminous_stone, 0);
 							this.setBlockWithOffset(i, j + 2, k, BlocksAether.hellfire, 0);
 
 							this.setBlockWithOffset(i + 1, j + 7, k, BlocksAether.hellfire_wall, 0);

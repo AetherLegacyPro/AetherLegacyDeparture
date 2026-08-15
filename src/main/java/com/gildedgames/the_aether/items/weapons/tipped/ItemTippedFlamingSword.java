@@ -24,11 +24,6 @@ public class ItemTippedFlamingSword extends ItemSword {
         this.setMaxDamage(1891);
     }
 
-    // @Override
-    // public Multimap<String, AttributeModifier> getItemAttributeModifiers() {
-    // return null;
-    // }
-
     @Override
     public Multimap<String, AttributeModifier> getAttributeModifiers(ItemStack stack) {
         Multimap<String, AttributeModifier> multimap = HashMultimap.create();
@@ -37,20 +32,13 @@ public class ItemTippedFlamingSword extends ItemSword {
             double baseDamage = 0;
             Multimap<String, AttributeModifier> baseModifiers = getItemAttributeModifiers();
             if (baseModifiers != null) {
-                for (AttributeModifier mod : baseModifiers
-                    .get(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName())) {
+                for (AttributeModifier mod : baseModifiers.get(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName())) {
                     baseDamage = mod.getAmount();
                     break;
                 }
             }
 
-            multimap.put(
-                SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(),
-                new AttributeModifier(
-                    field_111210_e,
-                    "Weapon modifier",
-                    this.calculateIncrease(stack) / level[0] * baseDamage,
-                    0));
+            multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(field_111210_e, "Weapon modifier", this.calculateIncrease(stack) / level[0] * baseDamage, 0));
         }
 
         return multimap;

@@ -345,7 +345,7 @@ public class ItemsAether {
 		zanite_nugget = register("zanite_nugget", new ItemAether(AetherCreativeTabs.material).setTextureName(Aether.find("misc/zanite_nugget")));
 		ambrosium_shard = register("ambrosium_shard", new ItemAmbrosiumShard().setTextureName(Aether.find("misc/ambrosium_shard")));
 		mimicry_ambrosium_shard = register("mimicry_ambrosium_shard", new ItemAmbrosiumShard().setTextureName(Aether.find("misc/mimicry_ambrosium_shard")));
-		golden_amber = register("golden_amber", new ItemAether(AetherCreativeTabs.material).setTextureName(Aether.find("misc/golden_amber")));
+		golden_amber = register("golden_amber", new ItemAether(AetherCreativeTabs.material).setTextureName(Aether.find("misc/golden_amber_new")));
 		aechor_petal = register("aechor_petal", new ItemAether(AetherCreativeTabs.material).setTextureName(Aether.find("misc/aechor_petal")));
 		blue_aechor_petal = register("blue_aechor_petal", new ItemAether(AetherCreativeTabs.material).setTextureName(Aether.find("misc/blue_aechor_petal")));
 		golden_aechor_petal = register("golden_aechor_petal", new ItemAether(AetherCreativeTabs.material).setTextureName(Aether.find("misc/golden_aechor_petal")));
@@ -552,74 +552,74 @@ public class ItemsAether {
 		scaled_gravitite_leggings = register("scaled_gravitite_leggings", new ItemScaledGravititeArmor(2, ArmorMaterial.DIAMOND, "scaled_gravitite", Item.getItemFromBlock(BlocksAether.enchanted_gravitite)).setMaxDamage(743).setTextureName(Aether.find("armor/scaled_gravitite_leggings")));
 		scaled_gravitite_boots = register("scaled_gravitite_boots", new ItemScaledGravititeArmor(3, ArmorMaterial.DIAMOND, "scaled_gravitite", Item.getItemFromBlock(BlocksAether.enchanted_gravitite)).setMaxDamage(644).setTextureName(Aether.find("armor/scaled_gravitite_boots")));
 
-		divineral_helmet = register("divineral_helmet", new ItemDivineralArmor(0, ArmorMaterial.DIAMOND, "divineral", null).setTextureName(Aether.find("armor/divineral_helmet")));
-		divineral_chestplate = register("divineral_chestplate", new ItemDivineralArmor(1, ArmorMaterial.DIAMOND, "divineral", null).setTextureName(Aether.find("armor/divineral_chestplate")));
-		divineral_leggings = register("divineral_leggings", new ItemDivineralArmor(2, ArmorMaterial.DIAMOND, "divineral", null).setTextureName(Aether.find("armor/divineral_leggings")));
-		divineral_boots = register("divineral_boots", new ItemDivineralArmor(3, ArmorMaterial.DIAMOND, "divineral", null).setTextureName(Aether.find("armor/divineral_boots")));
+		divineral_helmet = register("divineral_helmet", new ItemDivineralArmor(0, ArmorMaterial.DIAMOND, "divineral", null).setMaxDamage(4477).setTextureName(Aether.find("armor/divineral_helmet")));
+		divineral_chestplate = register("divineral_chestplate", new ItemDivineralArmor(1, ArmorMaterial.DIAMOND, "divineral", null).setMaxDamage(6512).setTextureName(Aether.find("armor/divineral_chestplate")));
+		divineral_leggings = register("divineral_leggings", new ItemDivineralArmor(2, ArmorMaterial.DIAMOND, "divineral", null).setMaxDamage(6105).setTextureName(Aether.find("armor/divineral_leggings")));
+		divineral_boots = register("divineral_boots", new ItemDivineralArmor(3, ArmorMaterial.DIAMOND, "divineral", null).setMaxDamage(5291).setTextureName(Aether.find("armor/divineral_boots")));
 
-		neptune_helmet = register("neptune_helmet", new ItemAetherDungeonArmor(0, ArmorMaterial.DIAMOND, "neptune_new", null).setTextureName(Aether.find("armor/neptune_helmet_new")));
-		neptune_chestplate = register("neptune_chestplate", new ItemAetherDungeonArmor(1, ArmorMaterial.DIAMOND, "neptune_new", null).setTextureName(Aether.find("armor/neptune_chestplate_new")));
-		neptune_leggings = register("neptune_leggings", new ItemAetherDungeonArmor(2, ArmorMaterial.DIAMOND, "neptune_new", null).setTextureName(Aether.find("armor/neptune_leggings_new")));
-		neptune_boots = register("neptune_boots", new ItemAetherDungeonArmor(3, ArmorMaterial.DIAMOND, "neptune_new", null).setTextureName(Aether.find("armor/neptune_boots_new")));
+		neptune_helmet = register("neptune_helmet", new ItemAetherDungeonArmor(0, ArmorMaterial.DIAMOND, "neptune_new", null).setMaxDamage(1595).setTextureName(Aether.find("armor/neptune_helmet_new")));
+		neptune_chestplate = register("neptune_chestplate", new ItemAetherDungeonArmor(1, ArmorMaterial.DIAMOND, "neptune_new", null).setMaxDamage(2320).setTextureName(Aether.find("armor/neptune_chestplate_new")));
+		neptune_leggings = register("neptune_leggings", new ItemAetherDungeonArmor(2, ArmorMaterial.DIAMOND, "neptune_new", null).setMaxDamage(2175).setTextureName(Aether.find("armor/neptune_leggings_new")));
+		neptune_boots = register("neptune_boots", new ItemAetherDungeonArmor(3, ArmorMaterial.DIAMOND, "neptune_new", null).setMaxDamage(1885).setTextureName(Aether.find("armor/neptune_boots_new")));
 
-		scaled_neptune_helmet = register("scaled_neptune_helmet", new ItemScaledDungeonArmor(0, ArmorMaterial.DIAMOND, "scaled_neptune", null).setTextureName(Aether.find("armor/scaled_neptune_helmet")));
-		scaled_neptune_chestplate = register("scaled_neptune_chestplate", new ItemScaledDungeonArmor(1, ArmorMaterial.DIAMOND, "scaled_neptune", null).setTextureName(Aether.find("armor/scaled_neptune_chestplate")));
-		scaled_neptune_leggings = register("scaled_neptune_leggings", new ItemScaledDungeonArmor(2, ArmorMaterial.DIAMOND, "scaled_neptune", null).setTextureName(Aether.find("armor/scaled_neptune_leggings")));
-		scaled_neptune_boots = register("scaled_neptune_boots", new ItemScaledDungeonArmor(3, ArmorMaterial.DIAMOND, "scaled_neptune", null).setTextureName(Aether.find("armor/scaled_neptune_boots")));
+		scaled_neptune_helmet = register("scaled_neptune_helmet", new ItemScaledDungeonArmor(0, ArmorMaterial.DIAMOND, "scaled_neptune", null).setMaxDamage(1298).setTextureName(Aether.find("armor/scaled_neptune_helmet")));
+		scaled_neptune_chestplate = register("scaled_neptune_chestplate", new ItemScaledDungeonArmor(1, ArmorMaterial.DIAMOND, "scaled_neptune", null).setMaxDamage(1888).setTextureName(Aether.find("armor/scaled_neptune_chestplate")));
+		scaled_neptune_leggings = register("scaled_neptune_leggings", new ItemScaledDungeonArmor(2, ArmorMaterial.DIAMOND, "scaled_neptune", null).setMaxDamage(1770).setTextureName(Aether.find("armor/scaled_neptune_leggings")));
+		scaled_neptune_boots = register("scaled_neptune_boots", new ItemScaledDungeonArmor(3, ArmorMaterial.DIAMOND, "scaled_neptune", null).setMaxDamage(1534).setTextureName(Aether.find("armor/scaled_neptune_boots")));
 
-		amplified_neptune_helmet = register("amplified_neptune_helmet", new ItemDivineralArmor(0, ArmorMaterial.DIAMOND, "amplified_neptune", null).setTextureName(Aether.find("armor/amplified_neptune_helmet")));
-		amplified_neptune_chestplate = register("amplified_neptune_chestplate", new ItemDivineralArmor(1, ArmorMaterial.DIAMOND, "amplified_neptune", null).setTextureName(Aether.find("armor/amplified_neptune_chestplate")));
-		amplified_neptune_leggings = register("amplified_neptune_leggings", new ItemDivineralArmor(2, ArmorMaterial.DIAMOND, "amplified_neptune", null).setTextureName(Aether.find("armor/amplified_neptune_leggings")));
-		amplified_neptune_boots = register("amplified_neptune_boots", new ItemDivineralArmor(3, ArmorMaterial.DIAMOND, "amplified_neptune", null).setTextureName(Aether.find("armor/amplified_neptune_boots")));
+		amplified_neptune_helmet = register("amplified_neptune_helmet", new ItemDivineralArmor(0, ArmorMaterial.DIAMOND, "amplified_neptune", null).setMaxDamage(4477).setTextureName(Aether.find("armor/amplified_neptune_helmet")));
+		amplified_neptune_chestplate = register("amplified_neptune_chestplate", new ItemDivineralArmor(1, ArmorMaterial.DIAMOND, "amplified_neptune", null).setMaxDamage(6512).setTextureName(Aether.find("armor/amplified_neptune_chestplate")));
+		amplified_neptune_leggings = register("amplified_neptune_leggings", new ItemDivineralArmor(2, ArmorMaterial.DIAMOND, "amplified_neptune", null).setMaxDamage(6105).setTextureName(Aether.find("armor/amplified_neptune_leggings")));
+		amplified_neptune_boots = register("amplified_neptune_boots", new ItemDivineralArmor(3, ArmorMaterial.DIAMOND, "amplified_neptune", null).setMaxDamage(5291).setTextureName(Aether.find("armor/amplified_neptune_boots")));
 
-		agility_boots = register("agility_boots", new ItemAetherDungeonArmor(3, ArmorMaterial.DIAMOND, "agility", agility_boots).setTextureName(Aether.find("armor/agility_boots")));
-		scaled_agility_boots = register("scaled_agility_boots", new ItemScaledDungeonArmor(3, ArmorMaterial.DIAMOND, "scaled_agility", scaled_agility_boots).setTextureName(Aether.find("armor/scaled_agility_boots")));
-		amplified_agility_boots = register("amplified_agility_boots", new ItemDivineralArmor(3, ArmorMaterial.DIAMOND, "amplified_agility", amplified_agility_boots).setTextureName(Aether.find("armor/amplified_agility_boots")));
+		agility_boots = register("agility_boots", new ItemAetherDungeonArmor(3, ArmorMaterial.DIAMOND, "agility", agility_boots).setMaxDamage(1885).setTextureName(Aether.find("armor/agility_boots")));
+		scaled_agility_boots = register("scaled_agility_boots", new ItemScaledDungeonArmor(3, ArmorMaterial.DIAMOND, "scaled_agility", scaled_agility_boots).setMaxDamage(1534).setTextureName(Aether.find("armor/scaled_agility_boots")));
+		amplified_agility_boots = register("amplified_agility_boots", new ItemDivineralArmor(3, ArmorMaterial.DIAMOND, "amplified_agility", amplified_agility_boots).setMaxDamage(5291).setTextureName(Aether.find("armor/amplified_agility_boots")));
 
-		phoenix_helmet = register("phoenix_helmet", new ItemPhoenixArmor(0, ArmorMaterial.DIAMOND, "phoenix", null).setTextureName(Aether.find("armor/phoenix_helmet")));
-		phoenix_chestplate = register("phoenix_chestplate", new ItemPhoenixArmor(1, ArmorMaterial.DIAMOND, "phoenix", null).setTextureName(Aether.find("armor/phoenix_chestplate")));
-		phoenix_leggings = register("phoenix_leggings", new ItemPhoenixArmor(2, ArmorMaterial.DIAMOND, "phoenix", null).setTextureName(Aether.find("armor/phoenix_leggings")));
-		phoenix_boots = register("phoenix_boots", new ItemPhoenixArmor(3, ArmorMaterial.DIAMOND, "phoenix", null).setTextureName(Aether.find("armor/phoenix_boots")));
+		phoenix_helmet = register("phoenix_helmet", new ItemPhoenixArmor(0, ArmorMaterial.DIAMOND, "phoenix", null).setMaxDamage(1298).setTextureName(Aether.find("armor/phoenix_helmet")));
+		phoenix_chestplate = register("phoenix_chestplate", new ItemPhoenixArmor(1, ArmorMaterial.DIAMOND, "phoenix", null).setMaxDamage(1888).setTextureName(Aether.find("armor/phoenix_chestplate")));
+		phoenix_leggings = register("phoenix_leggings", new ItemPhoenixArmor(2, ArmorMaterial.DIAMOND, "phoenix", null).setMaxDamage(1770).setTextureName(Aether.find("armor/phoenix_leggings")));
+		phoenix_boots = register("phoenix_boots", new ItemPhoenixArmor(3, ArmorMaterial.DIAMOND, "phoenix", null).setMaxDamage(1534).setTextureName(Aether.find("armor/phoenix_boots")));
 
-		scaled_phoenix_helmet = register("scaled_phoenix_helmet", new ItemScaledPhoenixArmor(0, ArmorMaterial.DIAMOND, "scaled_phoenix", null).setTextureName(Aether.find("armor/scaled_phoenix_helmet")));
-		scaled_phoenix_chestplate = register("scaled_phoenix_chestplate", new ItemScaledPhoenixArmor(1, ArmorMaterial.DIAMOND, "scaled_phoenix", null).setTextureName(Aether.find("armor/scaled_phoenix_chestplate")));
-		scaled_phoenix_leggings = register("scaled_phoenix_leggings", new ItemScaledPhoenixArmor(2, ArmorMaterial.DIAMOND, "scaled_phoenix", null).setTextureName(Aether.find("armor/scaled_phoenix_leggings")));
-		scaled_phoenix_boots = register("scaled_phoenix_boots", new ItemScaledPhoenixArmor(3, ArmorMaterial.DIAMOND, "scaled_phoenix", null).setTextureName(Aether.find("armor/scaled_phoenix_boots")));
+		scaled_phoenix_helmet = register("scaled_phoenix_helmet", new ItemScaledPhoenixArmor(0, ArmorMaterial.DIAMOND, "scaled_phoenix", null).setMaxDamage(1595).setTextureName(Aether.find("armor/scaled_phoenix_helmet")));
+		scaled_phoenix_chestplate = register("scaled_phoenix_chestplate", new ItemScaledPhoenixArmor(1, ArmorMaterial.DIAMOND, "scaled_phoenix", null).setMaxDamage(2320).setTextureName(Aether.find("armor/scaled_phoenix_chestplate")));
+		scaled_phoenix_leggings = register("scaled_phoenix_leggings", new ItemScaledPhoenixArmor(2, ArmorMaterial.DIAMOND, "scaled_phoenix", null).setMaxDamage(2175).setTextureName(Aether.find("armor/scaled_phoenix_leggings")));
+		scaled_phoenix_boots = register("scaled_phoenix_boots", new ItemScaledPhoenixArmor(3, ArmorMaterial.DIAMOND, "scaled_phoenix", null).setMaxDamage(1885).setTextureName(Aether.find("armor/scaled_phoenix_boots")));
 
-		amplified_phoenix_helmet = register("amplified_phoenix_helmet", new ItemAmplifiedPhoenixArmor(0, ArmorMaterial.DIAMOND, "amplified_phoenix", null).setTextureName(Aether.find("armor/amplified_phoenix_helmet")));
-		amplified_phoenix_chestplate = register("amplified_phoenix_chestplate", new ItemAmplifiedPhoenixArmor(1, ArmorMaterial.DIAMOND, "amplified_phoenix", null).setTextureName(Aether.find("armor/amplified_phoenix_chestplate")));
-		amplified_phoenix_leggings = register("amplified_phoenix_leggings", new ItemAmplifiedPhoenixArmor(2, ArmorMaterial.DIAMOND, "amplified_phoenix", null).setTextureName(Aether.find("armor/amplified_phoenix_leggings")));
-		amplified_phoenix_boots = register("amplified_phoenix_boots", new ItemAmplifiedPhoenixArmor(3, ArmorMaterial.DIAMOND, "amplified_phoenix", null).setTextureName(Aether.find("armor/amplified_phoenix_boots")));
+		amplified_phoenix_helmet = register("amplified_phoenix_helmet", new ItemAmplifiedPhoenixArmor(0, ArmorMaterial.DIAMOND, "amplified_phoenix", null).setMaxDamage(3487).setTextureName(Aether.find("armor/amplified_phoenix_helmet")));
+		amplified_phoenix_chestplate = register("amplified_phoenix_chestplate", new ItemAmplifiedPhoenixArmor(1, ArmorMaterial.DIAMOND, "amplified_phoenix", null).setMaxDamage(5072).setTextureName(Aether.find("armor/amplified_phoenix_chestplate")));
+		amplified_phoenix_leggings = register("amplified_phoenix_leggings", new ItemAmplifiedPhoenixArmor(2, ArmorMaterial.DIAMOND, "amplified_phoenix", null).setMaxDamage(4755).setTextureName(Aether.find("armor/amplified_phoenix_leggings")));
+		amplified_phoenix_boots = register("amplified_phoenix_boots", new ItemAmplifiedPhoenixArmor(3, ArmorMaterial.DIAMOND, "amplified_phoenix", null).setMaxDamage(4121).setTextureName(Aether.find("armor/amplified_phoenix_boots")));
 
-		obsidian_helmet = register("obsidian_helmet", new ItemAetherDungeonArmor(0, ArmorMaterial.DIAMOND, "obsidian_new", null).setTextureName(Aether.find("armor/obsidian_helmet_new")));
-		obsidian_chestplate = register("obsidian_chestplate", new ItemAetherDungeonArmor(1, ArmorMaterial.DIAMOND, "obsidian_new", null).setTextureName(Aether.find("armor/obsidian_chestplate_new")));
-		obsidian_leggings = register("obsidian_leggings", new ItemAetherDungeonArmor(2, ArmorMaterial.DIAMOND, "obsidian_new", null).setTextureName(Aether.find("armor/obsidian_leggings_new")));
-		obsidian_boots = register("obsidian_boots", new ItemAetherDungeonArmor(3, ArmorMaterial.DIAMOND, "obsidian_new", null).setTextureName(Aether.find("armor/obsidian_boots_new")));
+		obsidian_helmet = register("obsidian_helmet", new ItemAetherDungeonArmor(0, ArmorMaterial.DIAMOND, "obsidian_new", null).setMaxDamage(1298).setTextureName(Aether.find("armor/obsidian_helmet_new")));
+		obsidian_chestplate = register("obsidian_chestplate", new ItemAetherDungeonArmor(1, ArmorMaterial.DIAMOND, "obsidian_new", null).setMaxDamage(1888).setTextureName(Aether.find("armor/obsidian_chestplate_new")));
+		obsidian_leggings = register("obsidian_leggings", new ItemAetherDungeonArmor(2, ArmorMaterial.DIAMOND, "obsidian_new", null).setMaxDamage(1770).setTextureName(Aether.find("armor/obsidian_leggings_new")));
+		obsidian_boots = register("obsidian_boots", new ItemAetherDungeonArmor(3, ArmorMaterial.DIAMOND, "obsidian_new", null).setMaxDamage(1534).setTextureName(Aether.find("armor/obsidian_boots_new")));
 
-		scaled_obsidian_helmet = register("scaled_obsidian_helmet", new ItemScaledDungeonArmor(0, ArmorMaterial.DIAMOND, "scaled_obsidian", null).setTextureName(Aether.find("armor/scaled_obsidian_helmet")));
-		scaled_obsidian_chestplate = register("scaled_obsidian_chestplate", new ItemScaledDungeonArmor(1, ArmorMaterial.DIAMOND, "scaled_obsidian", null).setTextureName(Aether.find("armor/scaled_obsidian_chestplate")));
-		scaled_obsidian_leggings = register("scaled_obsidian_leggings", new ItemScaledDungeonArmor(2, ArmorMaterial.DIAMOND, "scaled_obsidian", null).setTextureName(Aether.find("armor/scaled_obsidian_leggings")));
-		scaled_obsidian_boots = register("scaled_obsidian_boots", new ItemScaledDungeonArmor(3, ArmorMaterial.DIAMOND, "scaled_obsidian", null).setTextureName(Aether.find("armor/scaled_obsidian_boots")));
+		scaled_obsidian_helmet = register("scaled_obsidian_helmet", new ItemScaledDungeonArmor(0, ArmorMaterial.DIAMOND, "scaled_obsidian", null).setMaxDamage(1595).setTextureName(Aether.find("armor/scaled_obsidian_helmet")));
+		scaled_obsidian_chestplate = register("scaled_obsidian_chestplate", new ItemScaledDungeonArmor(1, ArmorMaterial.DIAMOND, "scaled_obsidian", null).setMaxDamage(2320).setTextureName(Aether.find("armor/scaled_obsidian_chestplate")));
+		scaled_obsidian_leggings = register("scaled_obsidian_leggings", new ItemScaledDungeonArmor(2, ArmorMaterial.DIAMOND, "scaled_obsidian", null).setMaxDamage(2175).setTextureName(Aether.find("armor/scaled_obsidian_leggings")));
+		scaled_obsidian_boots = register("scaled_obsidian_boots", new ItemScaledDungeonArmor(3, ArmorMaterial.DIAMOND, "scaled_obsidian", null).setMaxDamage(1885).setTextureName(Aether.find("armor/scaled_obsidian_boots")));
 
-		amplified_obsidian_helmet = register("amplified_obsidian_helmet", new ItemDivineralArmor(0, ArmorMaterial.DIAMOND, "amplified_obsidian", null).setTextureName(Aether.find("armor/amplified_obsidian_helmet")));
-		amplified_obsidian_chestplate = register("amplified_obsidian_chestplate", new ItemDivineralArmor(1, ArmorMaterial.DIAMOND, "amplified_obsidian", null).setTextureName(Aether.find("armor/amplified_obsidian_chestplate")));
-		amplified_obsidian_leggings = register("amplified_obsidian_leggings", new ItemDivineralArmor(2, ArmorMaterial.DIAMOND, "amplified_obsidian", null).setTextureName(Aether.find("armor/amplified_obsidian_leggings")));
-		amplified_obsidian_boots = register("amplified_obsidian_boots", new ItemDivineralArmor(3, ArmorMaterial.DIAMOND, "amplified_obsidian", null).setTextureName(Aether.find("armor/amplified_obsidian_boots")));
+		amplified_obsidian_helmet = register("amplified_obsidian_helmet", new ItemDivineralArmor(0, ArmorMaterial.DIAMOND, "amplified_obsidian", null).setMaxDamage(4477).setTextureName(Aether.find("armor/amplified_obsidian_helmet")));
+		amplified_obsidian_chestplate = register("amplified_obsidian_chestplate", new ItemDivineralArmor(1, ArmorMaterial.DIAMOND, "amplified_obsidian", null).setMaxDamage(6512).setTextureName(Aether.find("armor/amplified_obsidian_chestplate")));
+		amplified_obsidian_leggings = register("amplified_obsidian_leggings", new ItemDivineralArmor(2, ArmorMaterial.DIAMOND, "amplified_obsidian", null).setMaxDamage(6105).setTextureName(Aether.find("armor/amplified_obsidian_leggings")));
+		amplified_obsidian_boots = register("amplified_obsidian_boots", new ItemDivineralArmor(3, ArmorMaterial.DIAMOND, "amplified_obsidian", null).setMaxDamage(5291).setTextureName(Aether.find("armor/amplified_obsidian_boots")));
 
-		valkyrie_helmet = register("valkyrie_helmet", new ItemAetherDungeonArmor(0, ArmorMaterial.DIAMOND, "valkyrie", null).setTextureName(Aether.find("armor/valkyrie_helmet")));
-		valkyrie_chestplate = register("valkyrie_chestplate", new ItemAetherDungeonArmor(1, ArmorMaterial.DIAMOND, "valkyrie", null).setTextureName(Aether.find("armor/valkyrie_chestplate")));
-		valkyrie_leggings = register("valkyrie_leggings", new ItemAetherDungeonArmor(2, ArmorMaterial.DIAMOND, "valkyrie", null).setTextureName(Aether.find("armor/valkyrie_leggings")));
-		valkyrie_boots = register("valkyrie_boots", new ItemAetherDungeonArmor(3, ArmorMaterial.DIAMOND, "valkyrie", null).setTextureName(Aether.find("armor/valkyrie_boots")));
+		valkyrie_helmet = register("valkyrie_helmet", new ItemAetherDungeonArmor(0, ArmorMaterial.DIAMOND, "valkyrie", null).setMaxDamage(1298).setTextureName(Aether.find("armor/valkyrie_helmet")));
+		valkyrie_chestplate = register("valkyrie_chestplate", new ItemAetherDungeonArmor(1, ArmorMaterial.DIAMOND, "valkyrie", null).setMaxDamage(1888).setTextureName(Aether.find("armor/valkyrie_chestplate")));
+		valkyrie_leggings = register("valkyrie_leggings", new ItemAetherDungeonArmor(2, ArmorMaterial.DIAMOND, "valkyrie", null).setMaxDamage(1770).setTextureName(Aether.find("armor/valkyrie_leggings")));
+		valkyrie_boots = register("valkyrie_boots", new ItemAetherDungeonArmor(3, ArmorMaterial.DIAMOND, "valkyrie", null).setMaxDamage(1885).setTextureName(Aether.find("armor/valkyrie_boots")));
 
-		scaled_valkyrie_helmet = register("scaled_valkyrie_helmet", new ItemScaledDungeonArmor(0, ArmorMaterial.DIAMOND, "scaled_valkyrie", null).setTextureName(Aether.find("armor/scaled_valkyrie_helmet")));
-		scaled_valkyrie_chestplate = register("scaled_valkyrie_chestplate", new ItemScaledDungeonArmor(1, ArmorMaterial.DIAMOND, "scaled_valkyrie", null).setTextureName(Aether.find("armor/scaled_valkyrie_chestplate")));
-		scaled_valkyrie_leggings = register("scaled_valkyrie_leggings", new ItemScaledDungeonArmor(2, ArmorMaterial.DIAMOND, "scaled_valkyrie", null).setTextureName(Aether.find("armor/scaled_valkyrie_leggings")));
+		scaled_valkyrie_helmet = register("scaled_valkyrie_helmet", new ItemScaledDungeonArmor(0, ArmorMaterial.DIAMOND, "scaled_valkyrie", null).setMaxDamage(1595).setTextureName(Aether.find("armor/scaled_valkyrie_helmet")));
+		scaled_valkyrie_chestplate = register("scaled_valkyrie_chestplate", new ItemScaledDungeonArmor(1, ArmorMaterial.DIAMOND, "scaled_valkyrie", null).setMaxDamage(2320).setTextureName(Aether.find("armor/scaled_valkyrie_chestplate")));
+		scaled_valkyrie_leggings = register("scaled_valkyrie_leggings", new ItemScaledDungeonArmor(2, ArmorMaterial.DIAMOND, "scaled_valkyrie", null).setMaxDamage(2175).setTextureName(Aether.find("armor/scaled_valkyrie_leggings")));
 		scaled_valkyrie_boots = register("scaled_valkyrie_boots", new ItemScaledDungeonArmor(3, ArmorMaterial.DIAMOND, "scaled_valkyrie", null).setTextureName(Aether.find("armor/scaled_valkyrie_boots")));
 
-		amplified_valkyrie_helmet = register("amplified_valkyrie_helmet", new ItemDivineralArmor(0, ArmorMaterial.DIAMOND, "amplified_valkyrie", null).setTextureName(Aether.find("armor/amplified_valkyrie_helmet")));
-		amplified_valkyrie_chestplate = register("amplified_valkyrie_chestplate", new ItemDivineralArmor(1, ArmorMaterial.DIAMOND, "amplified_valkyrie", null).setTextureName(Aether.find("armor/amplified_valkyrie_chestplate")));
-		amplified_valkyrie_leggings = register("amplified_valkyrie_leggings", new ItemDivineralArmor(2, ArmorMaterial.DIAMOND, "amplified_valkyrie", null).setTextureName(Aether.find("armor/amplified_valkyrie_leggings")));
-		amplified_valkyrie_boots = register("amplified_valkyrie_boots", new ItemDivineralArmor(3, ArmorMaterial.DIAMOND, "amplified_valkyrie", null).setTextureName(Aether.find("armor/amplified_valkyrie_boots")));
+		amplified_valkyrie_helmet = register("amplified_valkyrie_helmet", new ItemDivineralArmor(0, ArmorMaterial.DIAMOND, "amplified_valkyrie", null).setMaxDamage(4477).setTextureName(Aether.find("armor/amplified_valkyrie_helmet")));
+		amplified_valkyrie_chestplate = register("amplified_valkyrie_chestplate", new ItemDivineralArmor(1, ArmorMaterial.DIAMOND, "amplified_valkyrie", null).setMaxDamage(6512).setTextureName(Aether.find("armor/amplified_valkyrie_chestplate")));
+		amplified_valkyrie_leggings = register("amplified_valkyrie_leggings", new ItemDivineralArmor(2, ArmorMaterial.DIAMOND, "amplified_valkyrie", null).setMaxDamage(6105).setTextureName(Aether.find("armor/amplified_valkyrie_leggings")));
+		amplified_valkyrie_boots = register("amplified_valkyrie_boots", new ItemDivineralArmor(3, ArmorMaterial.DIAMOND, "amplified_valkyrie", null).setMaxDamage(5291).setTextureName(Aether.find("armor/amplified_valkyrie_boots")));
 
 		elysian_helmet = register("elysian_helmet", new ItemElysianArmor(0, ArmorMaterial.DIAMOND, "elysian", null).setMaxDamage(745).setTextureName(Aether.find("armor/elysian_helmet")));
 		elysian_chestplate = register("elysian_chestplate", new ItemElysianArmor(1, ArmorMaterial.DIAMOND, "elysian", null).setMaxDamage(992).setTextureName(Aether.find("armor/elysian_chestplate")));

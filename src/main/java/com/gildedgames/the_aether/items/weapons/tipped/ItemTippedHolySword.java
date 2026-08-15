@@ -14,6 +14,7 @@ import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
+import net.minecraft.util.DamageSource;
 
 public class ItemTippedHolySword extends ItemSword {
 
@@ -25,11 +26,6 @@ public class ItemTippedHolySword extends ItemSword {
         this.setMaxDamage(1891);
     }
 
-    // @Override
-    // public Multimap<String, AttributeModifier> getItemAttributeModifiers() {
-    // return null;
-    // }
-
     @Override
     public Multimap<String, AttributeModifier> getAttributeModifiers(ItemStack stack) {
         Multimap<String, AttributeModifier> multimap = HashMultimap.create();
@@ -38,20 +34,12 @@ public class ItemTippedHolySword extends ItemSword {
             double baseDamage = 0;
             Multimap<String, AttributeModifier> baseModifiers = getItemAttributeModifiers();
             if (baseModifiers != null) {
-                for (AttributeModifier mod : baseModifiers
-                    .get(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName())) {
-                    baseDamage = mod.getAmount();
+                for (AttributeModifier mod : baseModifiers.get(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName())) {baseDamage = mod.getAmount();
                     break;
                 }
             }
 
-            multimap.put(
-                SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(),
-                new AttributeModifier(
-                    field_111210_e,
-                    "Weapon modifier",
-                    this.calculateIncrease(stack) / level[0] * baseDamage,
-                    0));
+            multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(field_111210_e, "Weapon modifier", this.calculateIncrease(stack) / level[0] * baseDamage, 0));
         }
 
         return multimap;
@@ -98,24 +86,8 @@ public class ItemTippedHolySword extends ItemSword {
                 damage += (level * 2.5);
             }
 
-            float damagee = 7.0F;
-
-            int level1 = EnchantmentHelper.getEnchantmentLevel(Enchantment.sharpness.effectId, itemstack);
-
-            if (level1 > 0) {
-                damagee += (level1 * 1.2);
-            }
-
-            float damageee = 15F;
-
-            int level2 = EnchantmentHelper.getEnchantmentLevel(Enchantment.baneOfArthropods.effectId, itemstack);
-
-            if (level2 > 0) {
-                damageee += (level2 * 4);
-            }
-
-            // entityliving.attackEntityFrom(DamageSource.drown, damage);
-            // itemstack.damageItem(10, entityliving1);
+            entityliving.attackEntityFrom(DamageSource.drown, damage);
+            itemstack.damageItem(10, entityliving1);
         }
 
         return super.hitEntity(itemstack, entityliving, entityliving1);

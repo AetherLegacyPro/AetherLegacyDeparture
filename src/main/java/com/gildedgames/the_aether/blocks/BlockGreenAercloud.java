@@ -1,6 +1,8 @@
 package com.gildedgames.the_aether.blocks;
 
 import java.util.List;
+import java.util.Random;
+
 import com.gildedgames.the_aether.items.block.IColoredBlock;
 import com.gildedgames.the_aether.items.block.INamedBlock;
 import net.minecraft.block.Block;
@@ -38,6 +40,8 @@ public class BlockGreenAercloud extends Block implements IColoredBlock, INamedBl
 	@Override
 	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
 		entity.fallDistance = 0;
+        Random rand = new Random();
+        double i = 0.5 * Math.PI * rand.nextInt(4);
 
 		//green
 		if (world.getBlockMetadata(x, y, z) == 0) {
@@ -47,23 +51,17 @@ public class BlockGreenAercloud extends Block implements IColoredBlock, INamedBl
 					if (entity.motionX < 0) {
 						entity.motionX *= 0.005D;
 					}
-
-					return;
 				}
 
-				entity.motionX = 4.0D;
 			} else {
-				if (entity instanceof EntityArrow)
-				{
-					if (entity.ticksExisted >= 1200)
-					{
+				if (entity instanceof EntityArrow) {
+					if (entity.ticksExisted >= 1200) {
 						entity.setDead();
 					}
 				}
-
-				entity.motionX = 4.0D;
 			}
-
+            entity.motionX = 4.0D * Math.cos(i);
+            entity.motionZ = 4.0D * Math.sin(i);
 		}
         //gold aercloud
 		else if (world.getBlockMetadata(x, y, z) == 1) {
@@ -73,44 +71,33 @@ public class BlockGreenAercloud extends Block implements IColoredBlock, INamedBl
 						if (entity.motionX < 0) {
 							entity.motionX *= 0.005D;
 						}
-
-						return;
 					}
-							entity.motionX = 4.0D;
 				} else {
-					if (entity instanceof EntityArrow)
-					{
-						if (entity.ticksExisted >= 1200)
-						{
+					if (entity instanceof EntityArrow) {
+						if (entity.ticksExisted >= 1200) {
 							entity.setDead();
 						}
 					}
-
-					entity.motionX = 4.0D;
 				}
+            entity.motionX = 4.0D * Math.cos(i);
+            entity.motionZ = 4.0D * Math.sin(i);
 		}
 
 		else if (world.getBlockMetadata(x, y, z) == 2) {
 			if (entity instanceof EntityPlayer player) {
-
 				if (player.isSneaking()) {
 					if (entity.motionX < 0) {
 						entity.motionX *= 0.005D;
 					}
-
-					return;
 				}
-						entity.motionX = 4.0D;
 			} else {
-				if (entity instanceof EntityArrow)
-				{
-					if (entity.ticksExisted >= 1200)
-					{
+				if (entity instanceof EntityArrow) {
+                    if (entity.ticksExisted >= 1200) {
 						entity.setDead();
 					}
 				}
-
-				entity.motionX = 4.0D;
+                entity.motionX = 4.0D * Math.cos(i);
+                entity.motionZ = 4.0D * Math.sin(i);
 			}
 
 			if (world.isRemote) {

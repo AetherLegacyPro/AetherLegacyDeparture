@@ -1,5 +1,7 @@
 package com.gildedgames.the_aether.items.util;
 
+import com.gildedgames.the_aether.items.tools.ItemAmplifiedSkyrootTool;
+import com.gildedgames.the_aether.items.tools.tipped.ItemTippedSkyrootTool;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -20,11 +22,7 @@ public class DoubleDropHelper {
 		player.addExhaustion(0.025F);
 		int size = meta == 0 ? 2 : 1;
 		ItemStack stack = player.inventory.getCurrentItem();
-		boolean flag = true;
-
-		if (stack == null || !(stack.getItem() instanceof ItemSkyrootTool)) {
-			flag = false;
-		}
+        boolean flag = stack != null && (stack.getItem() instanceof ItemSkyrootTool || stack.getItem() instanceof ItemTippedSkyrootTool || stack.getItem() instanceof ItemAmplifiedSkyrootTool);
 
 		if (block.canSilkHarvest(player.worldObj, player, x, y, z, meta) && EnchantmentHelper.getEnchantmentLevel(Enchantment.silkTouch.effectId, stack) > 0) {
 			ArrayList<ItemStack> items = new ArrayList<>();
@@ -44,9 +42,7 @@ public class DoubleDropHelper {
 			return;
 		}
 
-		ItemSkyrootTool skyrootTool = (ItemSkyrootTool) stack.getItem();
-
-		if (skyrootTool.getDigSpeed(stack, block, meta) == skyrootTool.getEffectiveSpeed()) {
+        if (stack.getItem().getDigSpeed(stack, block, meta) > 1) {
 			for (int i = 0; i < size; ++i) {
 				block.dropBlockAsItem(player.worldObj, x, y, z, meta, EnchantmentHelper.getEnchantmentLevel(Enchantment.fortune.effectId, stack));
 			}

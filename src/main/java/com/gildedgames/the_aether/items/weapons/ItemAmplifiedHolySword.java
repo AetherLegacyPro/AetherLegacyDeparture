@@ -10,6 +10,7 @@ import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
+import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
 import com.gildedgames.the_aether.entities.block.EntityFireProofItemAether;
@@ -89,9 +90,7 @@ public class ItemAmplifiedHolySword extends ItemSword {
     public boolean hitEntity(ItemStack itemstack, EntityLivingBase entityliving, EntityLivingBase entityliving1) {
 
         if (this == ItemsAether.amplified_holy_sword
-            && (entityliving.isEntityUndead() || entityliving.getCreatureAttribute() == EnumCreatureAttribute.UNDEAD)
-            || (entityliving.getCreatureAttribute() == EnumCreatureAttribute.UNDEFINED)
-            || (entityliving.getCreatureAttribute() == EnumCreatureAttribute.ARTHROPOD)) {
+            && (entityliving.isEntityUndead() || entityliving.getCreatureAttribute() == EnumCreatureAttribute.UNDEAD)) {
 
             float damage = 20.0F;
 
@@ -101,6 +100,11 @@ public class ItemAmplifiedHolySword extends ItemSword {
                 damage += (level * 2.5);
             }
 
+            entityliving.attackEntityFrom(DamageSource.drown, damage);
+            itemstack.damageItem(1, entityliving1);
+        }
+
+        else if (this == ItemsAether.amplified_holy_sword && (entityliving.getCreatureAttribute() == EnumCreatureAttribute.UNDEFINED)) {
             float damagee = 7.0F;
 
             int level1 = EnchantmentHelper.getEnchantmentLevel(Enchantment.sharpness.effectId, itemstack);
@@ -109,6 +113,11 @@ public class ItemAmplifiedHolySword extends ItemSword {
                 damagee += (level1 * 1.2);
             }
 
+            entityliving.attackEntityFrom(DamageSource.drown, damagee);
+            itemstack.damageItem(1, entityliving1);
+        }
+
+        else if (this == ItemsAether.amplified_holy_sword && (entityliving.getCreatureAttribute() == EnumCreatureAttribute.ARTHROPOD)) {
             float damageee = 15F;
 
             int level2 = EnchantmentHelper.getEnchantmentLevel(Enchantment.baneOfArthropods.effectId, itemstack);
@@ -117,8 +126,8 @@ public class ItemAmplifiedHolySword extends ItemSword {
                 damageee += (level2 * 4);
             }
 
-            // entityliving.attackEntityFrom(DamageSource.drown, damage);
-            // itemstack.damageItem(1, entityliving1);
+            entityliving.attackEntityFrom(DamageSource.drown, damageee);
+            itemstack.damageItem(1, entityliving1);
         }
 
         return super.hitEntity(itemstack, entityliving, entityliving1);

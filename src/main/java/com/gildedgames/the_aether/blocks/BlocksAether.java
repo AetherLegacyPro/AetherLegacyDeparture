@@ -65,7 +65,7 @@ public class BlocksAether {
 	public static Block holystone, holystone_brick, aetheral_stone, agiosite, deific;
 	public static Block mossy_holystone, bloodmoss_stone, azure_holystone, notch_holystone;
 	public static Block glowing_icestone;
-	public static Block aercloud, pink_aercloud, green_aercloud, purple_aercloud, stratos_aercloud;
+	public static Block aercloud, pink_aercloud, green_aercloud, purple_aercloud, stratos_aercloud, stratos_aercloud_bricks;
 
 	//Decoration Blocks
 	public static Block enchanted_holystone, enchanted_aetheral_stone, enchanted_agiosite, enchanted_deific;
@@ -316,6 +316,7 @@ public class BlocksAether {
 		//Aerclouds
 		aercloud = registerMeta("aercloud", new BlockAercloud());
         stratos_aercloud = register("stratos_aercloud", new BlockStratoAercloud().setBlockTextureName(Aether.find("stratos_aercloud")));
+        stratos_aercloud_bricks = register("stratos_aercloud_bricks", new BlockStratoAercloud().setBlockTextureName(Aether.find("stratos_aercloud_bricks")));
 		aercloud_layer = registerMeta("aercloud_layer", new BlockAercloudLayer().setBlockTextureName(Aether.find("aercloud")));
 		aercloud_layer_2 = registerMeta("aercloud_layer_2", new BlockAercloudLayer2().setBlockTextureName(Aether.find("aercloud")));
 		aercloud_layer_3 = registerMeta("aercloud_layer_3", new BlockAercloudLayer3().setBlockTextureName(Aether.find("aercloud")));
@@ -473,10 +474,11 @@ public class BlocksAether {
 		mythic_carved_stone = register("mythic_carved_stone", new BlockDungeonBase(false).setBlockTextureName(Aether.find("mythic_carved_stone")));
 		mythic_sentry_stone = register("mythic_sentry_stone", new BlockDungeonBase(true).setBlockTextureName(Aether.find("mythic_sentry_stone")));
 
-		oblitus_stone = registerHidden("oblitus_stone", new BlockOblitusStone().setResistance(20.0F).setBlockTextureName(Aether.find("oblitus_stone")).setCreativeTab(null));
-		oblitus_stone_2 = register("oblitus_stone_2", new BlockOblitusStone2().setResistance(20.0F).setBlockTextureName(Aether.find("oblitus_stone")));
-		cracked_oblitus_stone = registerHidden("cracked_oblitus_stone", new BlockCrackedOblitusStone().setBlockTextureName(Aether.find("cracked_oblitus_stone")).setCreativeTab(null));
-		cracked_oblitus_stone_2 = register("cracked_oblitus_stone_2", new BlockCrackedOblitusStone2().setBlockTextureName(Aether.find("cracked_oblitus_stone")));
+        oblitus_stone_2 = register("oblitus_stone_2", new BlockDungeonBase(false).setBlockTextureName(Aether.find("oblitus_stone")));
+        cracked_oblitus_stone_2 = register("cracked_oblitus_stone_2", new BlockDungeonBase(true).setBlockTextureName(Aether.find("cracked_oblitus_stone")));
+
+		oblitus_stone = registerHidden("oblitus_stone", new BlockDungeonBase(oblitus_stone_2, false).setBlockTextureName(Aether.find("oblitus_stone")).setCreativeTab(null));
+		cracked_oblitus_stone = registerHidden("cracked_oblitus_stone", new BlockDungeonBase(cracked_oblitus_stone_2, false).setBlockTextureName(Aether.find("cracked_oblitus_stone")).setCreativeTab(null));
 
 		angelic_stone = register("angelic_stone", new BlockDungeonBase(false).setBlockTextureName(Aether.find("angelic_stone")));
 		light_angelic_stone = register("light_angelic_stone", new BlockDungeonBase(true).setBlockTextureName(Aether.find("light_angelic_stone")));

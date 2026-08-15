@@ -15,8 +15,8 @@ public class MapGenAncientSilverDungeon extends MapGenStructure {
     private final int requiredDungeonType;
     private static final int MIN_SILVER_DUNGEON_Y = 136;
     private static final int MAX_SILVER_DUNGEON_Y = 184;
-    private static final int MIN_HIGH_TERRAIN_SILVER_DUNGEON_Y = 200;
-    private static final int MAX_HIGH_TERRAIN_SILVER_DUNGEON_Y = 221;
+    private static final int MIN_HIGH_TERRAIN_SILVER_DUNGEON_Y = 190;
+    private static final int MAX_HIGH_TERRAIN_SILVER_DUNGEON_Y = 211;
 
     public MapGenAncientSilverDungeon() {
         this.requiredDungeonType = AetherDungeonTypeHelper.TYPE_ANCIENT;

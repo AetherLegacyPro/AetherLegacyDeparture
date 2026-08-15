@@ -29,7 +29,6 @@ public class ItemAetherDungeonArmor extends ItemArmor {
 		this.source = repair;
 		this.armorName = name;
 		this.setCreativeTab(AetherCreativeTabs.armor);
-		setMaxDamage(1591);
 	}
 
 	public ItemAetherDungeonArmor(int armorType, ArmorMaterial material, String name, Item repair, int hex) {

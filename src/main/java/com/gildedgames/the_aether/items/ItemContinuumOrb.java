@@ -1,6 +1,5 @@
 package com.gildedgames.the_aether.items;
 
-import com.gildedgames.the_aether.player.PlayerAether;
 import com.gildedgames.the_aether.registry.achievements.AchievementsAether;
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
 import com.gildedgames.the_aether.blocks.BlocksAether;
@@ -50,15 +49,12 @@ public class ItemContinuumOrb extends Item {
             }
         }
 
-        // Client side returns the original stack.
-        // The server will sync the real replacement afterward.
         return stack;
     }
 
     private static List<ItemStack> getContinuumLoot() {
         if (continuumLoot == null) {
             continuumLoot = new ArrayList<ItemStack>();
-
             addItemsFromClass(continuumLoot, ItemsAether.class);
             addBlocksFromClass(continuumLoot, BlocksAether.class);
             addItemsFromClass(continuumLoot, Items.class);
@@ -141,15 +137,8 @@ public class ItemContinuumOrb extends Item {
             }
         }
 
-        return item == ItemsAether.continuum_orb
-            || item == Items.command_block_minecart
-            || item == Items.spawn_egg
-            || item == Items.potionitem
-            || item == Items.filled_map
-            || item == Items.written_book
-            || item == Items.writable_book
-            || item == Items.fireworks
-            || item == Items.firework_charge;
+        return item == ItemsAether.continuum_orb || item == Items.command_block_minecart || item == Items.spawn_egg || item == Items.potionitem
+            || item == Items.filled_map || item == Items.written_book || item == Items.writable_book || item == Items.fireworks || item == Items.firework_charge;
     }
 
     private static boolean isBlacklistedBlock(Block block) {
@@ -208,7 +197,6 @@ public class ItemContinuumOrb extends Item {
 
             || block == BlocksAether.oblitus_stone
             || block == BlocksAether.cracked_oblitus_stone
-
 
             //Fluids or Flames
             || block == Blocks.fire

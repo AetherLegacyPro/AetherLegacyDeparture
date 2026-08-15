@@ -364,7 +364,6 @@ public class AetherEventHandler {
 		    if (accessoryInventory.isWearingDischargeCape()) {
 				player.triggerAchievement(AchievementsAether.discharged);
 				event.setCanceled(true);
-				return;
 			}
 		} else if (event.entity instanceof EntityZojz || event.entity instanceof EntityTempest || event.entity instanceof EntityEliteValkyrie
 			|| event.entity instanceof EntityDivineValkyrieQueen || event.entity instanceof EntityElysianGuardian

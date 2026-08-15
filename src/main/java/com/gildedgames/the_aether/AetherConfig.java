@@ -42,11 +42,11 @@ public class AetherConfig {
 
 	//Passive/Neutral Mob Spawning
 	private static int phyg_spawnrate, flyingcow_spawnrate, sheepuff_spawnrate, aerbunny_spawnrate, aerwhale_spawnrate, flynx_spawnrate;
-	private static int moa_spawnrate, raptor_spawnrate, carrion_sprout_spawnrate, zephyroo_spawnrate, thunderlo_spawnrate;
+	private static int moa_spawnrate, carrion_sprout_spawnrate, zephyroo_spawnrate, thunderlo_spawnrate;
 
 	//Hostile Mob Spawning
 	private static int cockatrice_spawnrate, swet_spawnrate, zephyr_spawnrate, aechorplant_spawnrate, whirlwind_spawnrate;
-	private static int cyro_spawnrate, tempest_spawnrate, vulturnus_spawnrate, uro_spawnrate, aerca_spawnrate;
+	private static int cyro_spawnrate, anzu_spawnrate, tempest_spawnrate, vulturnus_spawnrate, uro_spawnrate, aerca_spawnrate;
 
 	//Compact
 	public static boolean enable_copper_recipes, enable_netherite_recipes, netherite_required_divineral_ingot, enable_ascensite;
@@ -190,7 +190,7 @@ public class AetherConfig {
 
 		repeat_sun_spirit_dialog = config.get("Misc", "If disabled, the Sun Spirit's dialog will only show once per world.", true).getBoolean(true);
 
-		disable_eternal_day = config.get("Misc", "Enables eternal day making time cycle in the Aether base on if having killed the Sun Spirit. This is mainly intended for use in modpacks.", false).getBoolean(false);
+		disable_eternal_day = config.get("Misc", "Disables eternal day making time cycle in the Aether based on if having killed the Sun Spirit. This is mainly intended for use in modpacks.", false).getBoolean(false);
 
 		enable_copper_recipes = config.getBoolean("enable_copper_recipes", catEtFuturum, false, "Enables Recipes with copper ingots from Et Futurum Requiem.");
 		enable_netherite_recipes = config.getBoolean("enable_netherite_recipes", catEtFuturum, false, "Enables Recipes with netherite ingots from Et Futurum Requiem.");
@@ -213,7 +213,7 @@ public class AetherConfig {
 		tempest_spawnrate = config.get(catSpawnrates, "Tempest Spawnrate. 1 is always, higher numbers decrease chances.", 85).getInt(65);
 		vulturnus_spawnrate = config.get(catSpawnrates, "Vulturnus Spawnrate. 1 is always, higher numbers decrease chances.", 85).getInt(65);
 		cockatrice_spawnrate = config.get(catSpawnrates, "Cockatrice Spawnrate. 1 is always, higher numbers decrease chances.", 45).getInt(45);
-		raptor_spawnrate = config.get(catSpawnrates, "Anzu Spawnrate. 1 is always, higher numbers decrease chances.", 45).getInt(45);
+		anzu_spawnrate = config.get(catSpawnrates, "Anzu Spawnrate. 1 is always, higher numbers decrease chances.", 45).getInt(45);
 		cyro_spawnrate = config.get(catSpawnrates, "Cyro Spawnrate. 1 is always, higher numbers decrease chances.", 45).getInt(45);
 		uro_spawnrate = config.get(catSpawnrates, "Uro Spawnrate. 1 is always, higher numbers decrease chances.", 45).getInt(45);
 		aerca_spawnrate = config.get(catSpawnrates, "Aerca Spawnrate. 1 is always, higher numbers decrease chances.", 75).getInt(75);
@@ -251,10 +251,6 @@ public class AetherConfig {
 
 	public static boolean enableLogReporting() {
 		return AetherConfig.enable_log_reporting_biomes;
-	}
-
-	public static boolean enablecloudIcon() {
-		return AetherConfig.cloud_icon;
 	}
 
 	public static boolean enableAetherIIDungeon() {
@@ -550,9 +546,7 @@ public class AetherConfig {
 	public static int getThunderloSpawnrate() {
 		return thunderlo_spawnrate;
 	}
-	public static int getRaptorSpawnrate() {
-		return cockatrice_spawnrate;
-	}
+	public static int getRaptorSpawnrate() {return anzu_spawnrate;}
 	public static int getCarrionSproutSpawnrate() {
 		return carrion_sprout_spawnrate;
 	}

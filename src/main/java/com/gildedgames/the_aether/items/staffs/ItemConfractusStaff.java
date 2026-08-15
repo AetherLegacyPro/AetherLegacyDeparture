@@ -107,6 +107,22 @@ public class ItemConfractusStaff extends Item {
 			player.triggerAchievement(AchievementsAether.confractus_staff);
 		}
 
+        else if ((world.getBlock(x, y, z) == BlocksAether.oblitus_stone)) {
+            world.setBlock(x, y, z, BlocksAether.oblitus_stone_2);
+            world.playSoundEffect(x, y, z, "random.explode", 2.0F, world.rand.nextFloat() - world.rand.nextFloat() * 0.2F + 1.2F);
+            world.spawnParticle("smoke", x, y + 0.5, z, 0.0, 0.0, 0.0);
+            heldItem.damageItem(1, player);
+            player.triggerAchievement(AchievementsAether.confractus_staff);
+        }
+
+        else if ((world.getBlock(x, y, z) == BlocksAether.cracked_oblitus_stone)) {
+            world.setBlock(x, y, z, BlocksAether.cracked_oblitus_stone_2);
+            world.playSoundEffect(x, y, z, "random.explode", 2.0F, world.rand.nextFloat() - world.rand.nextFloat() * 0.2F + 1.2F);
+            world.spawnParticle("smoke", x, y + 0.5, z, 0.0, 0.0, 0.0);
+            heldItem.damageItem(1, player);
+            player.triggerAchievement(AchievementsAether.confractus_staff);
+        }
+
 		else if ((world.getBlock(x, y, z) == BlocksAether.treasure_chest)) {
 			world.setBlock(x, y, z, BlocksAether.treasure_chest_breakable);
 			world.playSoundEffect(x, y, z, "random.explode", 2.0F, world.rand.nextFloat() - world.rand.nextFloat() * 0.2F + 1.2F);

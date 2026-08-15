@@ -42,11 +42,8 @@ public class ItemAmplifiedSkyrootSword extends ItemSword {
         return new EntityFireProofItemAether(world, location, itemstack);
     }
 
-    public void addInformation(final ItemStack stack, final EntityPlayer player, final List tooltip,
-        final boolean who) {
-        if (AetherConfig.enableTooltips()) tooltip.add(
-            EnumChatFormatting.LIGHT_PURPLE + ""
-                + StatCollector.translateToLocal("tooltip.amplified_skyroot_sword.desc"));
+    public void addInformation(final ItemStack stack, final EntityPlayer player, final List tooltip, final boolean who) {
+        if (AetherConfig.enableTooltips()) tooltip.add(EnumChatFormatting.LIGHT_PURPLE + "" + StatCollector.translateToLocal("tooltip.amplified_skyroot_sword.desc"));
     }
 
 }

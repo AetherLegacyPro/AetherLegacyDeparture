@@ -121,19 +121,19 @@ public class BlockAetherCactus extends BlockCactus implements IPlantable {
     }
 
     public void onEntityCollidedWithBlock(World world, int p_149670_2_, int p_149670_3_, int p_149670_4_, Entity entity) {
-        entity.attackEntityFrom(DamageSource.cactus, 1.0F);
-
-        if (entity instanceof EntityPlayer) {
-            EntityPlayer player = (EntityPlayer) entity;
-            player.addPotionEffect(new EffectInebriation(PotionInebriation.inebriation.id, 180, 0));
-        }
         if (entity instanceof EntityAerwhale) {
             EntityAerwhale aerwhale = (EntityAerwhale) entity;
             aerwhale.addPotionEffect(new EffectInebriation(Potion.moveSpeed.id, 1200, 2));
+            aerwhale.motionY = 2.0D;
         }
         if (entity instanceof EntityAerwhaleMount) {
             EntityAerwhaleMount aerwhale_mount = (EntityAerwhaleMount) entity;
             aerwhale_mount.addPotionEffect(new EffectInebriation(Potion.moveSpeed.id, 1200, 2));
+            aerwhale_mount.motionY = 2.0D;
+        }
+        if (entity instanceof EntityPlayer) {
+            EntityPlayer player = (EntityPlayer) entity;
+            player.addPotionEffect(new EffectInebriation(PotionInebriation.inebriation.id, 180, 0));
         }
     }
 

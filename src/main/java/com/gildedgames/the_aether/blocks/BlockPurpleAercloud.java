@@ -47,11 +47,7 @@ public class BlockPurpleAercloud extends Block implements IColoredBlock, INamedB
 					if (entity.motionZ < 0) {
 						entity.motionZ *= 0.005D;
 					}
-
-					return;
 				}
-
-				entity.motionZ = 4.0D;
 			} else {
 				if (entity instanceof EntityArrow)
 				{
@@ -60,10 +56,8 @@ public class BlockPurpleAercloud extends Block implements IColoredBlock, INamedB
 						entity.setDead();
 					}
 				}
-
-				entity.motionZ = 4.0D;
 			}
-
+            entity.motionZ = 4.0D;
 		}
 
         //violet
@@ -74,19 +68,15 @@ public class BlockPurpleAercloud extends Block implements IColoredBlock, INamedB
 						if (entity.motionZ < 0) {
 							entity.motionZ *= 0.005D;
 						}
-
-						return;
 					}
-							entity.motionZ = 4.0D;
 				} else {
 					if (entity instanceof EntityArrow) {
 						if (entity.ticksExisted >= 1200) {
 							entity.setDead();
 						}
 					}
-
-					entity.motionZ = 4.0D;
 				}
+            entity.motionZ = 4.0D;
 		}
 
         //light purple
@@ -97,19 +87,17 @@ public class BlockPurpleAercloud extends Block implements IColoredBlock, INamedB
                     if (entity.motionZ < 0) {
                         entity.motionZ *= 0.005D;
                     }
-
-                    return;
                 }
-                entity.motionZ = 4.0D;
             }
             else {
                 if (entity instanceof EntityArrow) {
                     if (entity.ticksExisted >= 1200) {
                         entity.setDead();
                     }
-                }
+              }
                 entity.motionZ = 4.0D;
             }
+
 
 			if (world.isRemote) {
 				if (!(entity instanceof net.minecraft.client.particle.EntityFX)) {
