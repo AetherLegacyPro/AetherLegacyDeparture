@@ -504,7 +504,7 @@ public class ComponentDivineSilverDungeon extends AetherStructure {
 	}
 
 	public static ItemStack getDivineSilverLoot(Random random) {
-		int item = random.nextInt(18);
+		int item = random.nextInt(19);
 
 		switch (item) {
 			case 0:
@@ -563,6 +563,8 @@ public class ComponentDivineSilverDungeon extends AetherStructure {
 				return new ItemStack(ItemsAether.aer_cape);
 			case 16:
 				return new ItemStack(BlocksAether.ancient_enchanter);
+            case 17:
+                return new ItemStack(ItemsAether.palladium_eye, random.nextInt(3) + 1);
 		}
 		return new ItemStack(BlocksAether.enchanted_gravitite, random.nextInt(2) + 2);
 	}

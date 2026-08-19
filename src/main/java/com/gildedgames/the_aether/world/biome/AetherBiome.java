@@ -32,7 +32,6 @@ import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.entities.passive.mountable.EntityAerbunny;
-import com.gildedgames.the_aether.entities.passive.mountable.EntityAerwhaleMount;
 import com.gildedgames.the_aether.entities.passive.mountable.EntityFlyingCow;
 import com.gildedgames.the_aether.entities.passive.mountable.EntityMoa;
 import com.gildedgames.the_aether.entities.passive.mountable.EntityPhyg;
@@ -78,12 +77,8 @@ public class AetherBiome extends BiomeGenBase {
             return new AetherGenSkyrootTreeNew(BlocksAether.blue_skyroot_leaves, BlocksAether.skyroot_log, 0);
         } else if (ratio <= 50) {
             return new AetherGenSkyrootTreeNew(BlocksAether.purple_skyroot_leaves, BlocksAether.skyroot_log, 0);
-        } else if (ratio <= 52) {
-            return new AetherGenSkyrootTreeNew(BlocksAether.dark_blue_skyroot_leaves, BlocksAether.skyroot_log, 0);
         } else if (ratio <= 57) {
             return new AetherGenMassiveTree(BlocksAether.skyroot_leaves, 8, false);
-        } else if (ratio <= 63) {
-            return new AetherGenMassiveTree(BlocksAether.dark_blue_skyroot_leaves, 8, false);
         } else if (ratio <= 68) {
             return new AetherGenMassiveTree(BlocksAether.purple_skyroot_leaves, 8, false);
         } else if (ratio <= 69) {
@@ -92,10 +87,8 @@ public class AetherBiome extends BiomeGenBase {
             return new AetherGenLargeTree(BlocksAether.skyroot_leaves, BlocksAether.skyroot_log, 0);
         } else if (ratio <= 71) {
             return new AetherGenLargeTree(BlocksAether.skyroot_leaves, BlocksAether.skyroot_log, 0);
-        } else if (ratio <= 73) {
-        	return new AetherGenFruitTree(BlocksAether.dark_blue_skyroot_leaves, BlocksAether.dark_blue_skyroot_leaves, 50, 5, true);
         } else if (ratio <= 75) {
-        	return new AetherGenFruitTree(BlocksAether.purple_skyroot_leaves, BlocksAether.purple_skyroot_fruit_leaves, 50, 5, true);
+        	return new AetherGenFruitTree(BlocksAether.purple_skyroot_leaves, BlocksAether.purple_skyroot_fruit_leaves, 35, 5, true);
         } else if (ratio <= 77) {
             return new AetherGenMassiveTree(BlocksAether.blue_skyroot_leaves, 18, false);
         } else if (ratio <= 78) {
@@ -103,10 +96,10 @@ public class AetherBiome extends BiomeGenBase {
         } else if (ratio <= 86) {
             return new AetherGenSkyrootTreeNew(BlocksAether.skyroot_leaves, BlocksAether.skyroot_log, 0);
         } else if (ratio <= 87) {
-            return new AetherGenMassiveTree(BlocksAether.dark_blue_skyroot_leaves, 25, true);
+            return new AetherGenMassiveTree(BlocksAether.skyroot_leaves, 14, true);
         }
 
-        return new AetherGenMassiveTree(BlocksAether.dark_blue_skyroot_leaves, 35, true);
+        return new AetherGenMassiveTree(BlocksAether.skyroot_leaves, 20, true);
     }
 
 	public WorldGenerator getRandomWorldGenForGrass(final Random par1Random) {
@@ -114,8 +107,7 @@ public class AetherBiome extends BiomeGenBase {
     }
 
 	private void addCreatureEntry(ArrayList<SpawnListEntry> list) {
-		list.add(new SpawnListEntry(EntityAerwhale.class, 6, 4, 4));
-		list.add(new SpawnListEntry(EntityAerwhaleMount.class, 4, 1, 2));
+		list.add(new SpawnListEntry(EntityAerwhale.class, 4, 1, 2));
 		list.add(new SpawnListEntry(EntityPhyg.class, 12, 4, 4));
 		list.add(new SpawnListEntry(EntityAechorPlant.class, 11, 2, 3));
 		list.add(new SpawnListEntry(EntityCarrionSprout.class, 7, 2, 3));
@@ -127,7 +119,7 @@ public class AetherBiome extends BiomeGenBase {
 	}
 
 	private void addMobEntry(ArrayList<SpawnListEntry> list) {
-		list.add(new SpawnListEntry(EntityAerwhale.class, 1, 1, 2));
+		list.add(new SpawnListEntry(EntityAerwhale.class, 4, 1, 2));
 		list.add(new SpawnListEntry(EntityCockatrice.class, 80, 1, 4));
 		list.add(new SpawnListEntry(EntityRaptor.class, 60, 1, 4));
 		list.add(new SpawnListEntry(EntityWhirlwind.class, 10, 1, 2));

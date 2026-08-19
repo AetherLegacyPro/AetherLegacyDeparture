@@ -70,7 +70,7 @@ public class OsmiumDungeon implements IWorldGenerator  {
 	}
 
 	public static ItemStack getOsmiumLoot(Random random) {
-		int item = random.nextInt(17);
+		int item = random.nextInt(19);
 
 		switch (item) {
 			case 0:
@@ -113,8 +113,10 @@ public class OsmiumDungeon implements IWorldGenerator  {
 				return new ItemStack(ItemsAether.dexterity_shard);
 			case 15:
 				return new ItemStack(ItemsAether.discharge_cape);
+            case 16:
+                return new ItemStack(ItemsAether.arkenium_fragement, random.nextInt(15) + 15);
 			default:
-				return new ItemStack(ItemsAether.arkenium_chunk, random.nextInt(12) + 10);
+				return new ItemStack(ItemsAether.palladium_eye, random.nextInt(2) + 1);
 		}
 	}
 

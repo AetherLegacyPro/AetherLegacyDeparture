@@ -6,9 +6,9 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
-public abstract class EntityZephyrooSaddleMount extends EntityMountable {
+public abstract class EntityAetherSaddleMount extends EntityMountable {
 
-	public EntityZephyrooSaddleMount(World world) {
+	public EntityAetherSaddleMount(World world) {
         super(world);
 	}
 

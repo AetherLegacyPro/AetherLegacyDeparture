@@ -6,6 +6,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
 
 public class ElysianGuardianModel extends ModelBase {
+    //Credit to Craftland for the model
 	public final ModelRenderer head;
     public final ModelRenderer neck;
     public final ModelRenderer upper_body;

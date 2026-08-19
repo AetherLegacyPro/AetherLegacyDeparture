@@ -45,7 +45,7 @@ public class AchievementsAether {
 
 		aether_sword = new AetherAchievement("advancement.aether_legacy.aether_sword", "aether_sword", -2, 1, ItemsAether.skyroot_sword, skyroot_crafting).registerStat();
 		kill_thunderlo = new AetherAchievement("advancement.aether_legacy.kill_thunderlo", "kill_thunderlo", -2, -1, ItemsAether.thunderlo_leather, aether_sword).registerStat();
-		kill_zephyroo = new AetherAchievement("advancement.aether_legacy.kill_zephyroo", "kill_zephyroo", -2, 3, ItemsAether.zephyroo_leather, aether_sword).registerStat();
+		//kill_zephyroo = new AetherAchievement("advancement.aether_legacy.kill_zephyroo", "kill_zephyroo", -2, 3, ItemsAether.zephyroo_leather, aether_sword).registerStat();
 		aether_hunter = new AetherAchievement("advancement.aether_legacy.aether_hunter", "aether_hunter", -4, 1, ItemsAether.zanite_sword, aether_sword).registerStat();
 
 		kill_elysian_guardian = new AetherAchievement("advancement.aether_legacy.kill_elysian_guardian", "kill_elysian_guardian", -6, 1, new ItemStack(ItemsAether.elysian_core), aether_hunter).registerStat();
@@ -157,13 +157,13 @@ public class AchievementsAether {
 		continuum_gemstone, continuum_tools, grav_tools, aether_enchantment_table, artifact, divineral, ancient_enchanter,
 		enchanter, freezer, continuum_orb, defeat_bronze, defeat_silver, defeat_gold, defeat_cobalt, defeat_osmium, ancient_defeat_bronze,
 		divine_defeat_bronze, mythic_defeat_bronze, ancient_defeat_silver, divine_defeat_silver, ancient_defeat_gold, divine_defeat_gold,
-		electrified, confractus_staff, sun_altar, agility_boots, incubator, aether_sword, kill_thunderlo, kill_zephyroo, fruit_stew, loreception,
+		electrified, confractus_staff, sun_altar, agility_boots, incubator, aether_sword, kill_thunderlo, fruit_stew, loreception,
 		flying_aerwhale, flying_pig, zarnillys_scales, auralite, aether_hunter, blue_cloud, golden_cloud, kill_elysian_guardian, kill_aercenturion,
 		shrine_mender, aether_florist, arctic_island, golden_island, divine_island, getting_scaled, getting_tipped, divineral_block, amplifier,
 		amplifier_structure, divineral_set, phoenix_set, obsidian_set, valkyrie_set, neptune_set, amplified_agility_boots, amplified_sentry_boots,
 		bringing_out_colors, discharged, true_thorns, defeat_palladium, powering_up, iron_skin, strengthened_levitation, godly_reach, builders_beware,
 		notch_restored, realm_conquer, lucky, newnew_ore, charging_the_gemstone, even_shinier, balanced_flight, not_balanced_flight, next_level_enchantments);
-
+//kill_zephyroo
 		AchievementPage.registerAchievementPage(ACpage);
 		FMLCommonHandler.instance().bus().register(new PickUpAchievement());
 	}

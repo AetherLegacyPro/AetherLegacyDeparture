@@ -26,7 +26,6 @@ import com.gildedgames.the_aether.entities.passive.EntityAerwhale;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import com.gildedgames.the_aether.blocks.BlocksAether;
-import com.gildedgames.the_aether.entities.passive.mountable.EntityAerwhaleMount;
 import com.gildedgames.the_aether.world.biome.decoration.plants.WorldGenAetherGrass;
 
 public class AetherBiomeQuicksoilDunes extends BiomeGenBase {
@@ -61,12 +60,11 @@ public class AetherBiomeQuicksoilDunes extends BiomeGenBase {
     }
 
     private void addCreatureEntry(ArrayList<SpawnListEntry> list) {
-        list.add(new SpawnListEntry(EntityAerwhale.class, 6, 4, 4));
-        list.add(new SpawnListEntry(EntityAerwhaleMount.class, 4, 1, 2));
+        list.add(new SpawnListEntry(EntityAerwhale.class, 4, 1, 2));
     }
 
     private void addMobEntry(ArrayList<SpawnListEntry> list) {
-        list.add(new SpawnListEntry(EntityAerwhale.class, 1, 1, 2));
+        list.add(new SpawnListEntry(EntityAerwhale.class, 4, 1, 2));
         list.add(new SpawnListEntry(EntityCockatrice.class, 50, 1, 4));
         list.add(new SpawnListEntry(EntityWhirlwind.class, 100, 1, 4));
         list.add(new SpawnListEntry(EntityZephyr.class, 95, 1, 4));

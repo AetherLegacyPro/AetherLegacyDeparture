@@ -947,7 +947,7 @@ public class MythicBronzeDungeon extends AetherDungeon {
 	}
 
 	public static ItemStack getMythicBronzeLoot(Random random) {
-		int item = random.nextInt(17);
+		int item = random.nextInt(18);
 		switch (item) {
 			case 0:
 				return new ItemStack(ItemsAether.gummy_swet, random.nextInt(4) + 1, 1);
@@ -980,6 +980,8 @@ public class MythicBronzeDungeon extends AetherDungeon {
 				return new ItemStack(ItemsAether.continuum_gemstone, random.nextInt(10) + 5);
 			case 15:
 				return new ItemStack(BlocksAether.primeval_artifact, random.nextInt(8) + 2);
+            case 16:
+                return new ItemStack(ItemsAether.palladium_eye, random.nextInt(2) + 1);
 		}
 
 		return new ItemStack(BlocksAether.primeval_artifact, random.nextInt(15) + 4);

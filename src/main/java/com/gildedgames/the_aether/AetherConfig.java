@@ -53,7 +53,7 @@ public class AetherConfig {
 
 	//Misc
 	private static int max_life_shards, max_power_shards, max_dex_shards, travel_dimension;
-	private static boolean disable_trivia, floating_block_collision, legacy_altar_name;
+	private static boolean disable_trivia, floating_block_collision, legacy_altar_name, stormy_skies_weather;
 	private static boolean skyrootBucketOnly, valkyrie_cape, golden_feather, menu_enabled, menu_button;
 	private static boolean disable_pink_aercloud_regen, enable_coldfire_notInAether, enable_hellfire_notInAether;
 	private static boolean disable_eternal_day, divineral_recipe_hardmore, enable_boss_spawneggs;
@@ -93,6 +93,7 @@ public class AetherConfig {
 		golden_feather = config.get("Misc", "Enables the Golden Feather in dungeon loot", false).getBoolean(false);
 		travel_dimension = config.get("Misc", "Dimension below aether", 0).getInt(0);
 		floating_block_collision = config.get("Misc", "Floating block collision", true).getBoolean(true);
+        stormy_skies_weather = config.get("Misc", "Enables the Stormy Skies fog, darkness, and rain.", true).getBoolean(true);
 
 		disable_pink_aercloud_regen = config.getBoolean("enablePinkAercloudRegen", catMisc, true, "Should Pink Aerclouds heal the player if walked through?");
 		enable_coldfire_notInAether = config.getBoolean("enableColdfireExistNotInAether", catMisc, false, "Should Coldfire be able to exist in dimensions other than the Aether?");
@@ -165,7 +166,7 @@ public class AetherConfig {
 		golden_island_rarity = config.get("Aether World Generation", "How rare should the Enchanted Islands be in World Generation? Larger the Number the rarer it will be", 1053).getInt();
 		divine_island_rarity = config.get("Aether World Generation", "How rare should the Divine Islands be in World Generation? Larger the Number the rarer it will be", 1537).getInt();
 		osmium_dungeon_rarity = config.get("Aether World Generation", "How rare should the Osmium Dungeons be in World Generation? Larger the Number the rarer it will be", 12000).getInt();
-		palladium_dungeon_rarity = config.get("Aether World Generation", "How rare should the Palladium Dungeons be in World Generation? Larger the Number the rarer it will be", 2135).getInt();
+		palladium_dungeon_rarity = config.get("Aether World Generation", "How rare should the Palladium Dungeons be in World Generation? Larger the Number the rarer it will be", 1700).getInt();
 
 		enable_boss_spawneggs = config.get("Misc", "Enable Boss Spawn Eggs", false).getBoolean(false);
 		enable_tooltips = config.get("Misc", "Enables Tooltips", true).getBoolean(true);
@@ -228,6 +229,7 @@ public class AetherConfig {
 
 		config.save();
 	}
+    public static boolean enableStormySkiesWeather() {return AetherConfig.stormy_skies_weather;}
 
 	public static boolean enableBossSpawnEggs() {
 		return AetherConfig.enable_boss_spawneggs;

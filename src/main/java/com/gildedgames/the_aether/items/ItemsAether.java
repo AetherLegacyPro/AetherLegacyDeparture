@@ -4,6 +4,7 @@ import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.api.accessories.AccessoryType;
 import com.gildedgames.the_aether.api.accessories.DegradationRate;
+import com.gildedgames.the_aether.items.dungeon.*;
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
@@ -39,10 +40,6 @@ import com.gildedgames.the_aether.items.armor.scaled.ItemScaledContinuumArmor;
 import com.gildedgames.the_aether.items.armor.scaled.ItemScaledDungeonArmor;
 import com.gildedgames.the_aether.items.armor.scaled.ItemScaledGravititeArmor;
 import com.gildedgames.the_aether.items.armor.scaled.ItemScaledZaniteArmor;
-import com.gildedgames.the_aether.items.dungeon.ItemDungeonKey;
-import com.gildedgames.the_aether.items.dungeon.ItemElysianCore;
-import com.gildedgames.the_aether.items.dungeon.ItemElysianOffering;
-import com.gildedgames.the_aether.items.dungeon.ItemVictoryMedal;
 import com.gildedgames.the_aether.items.food.ItemAetherFood;
 import com.gildedgames.the_aether.items.food.ItemAgilityStone;
 import com.gildedgames.the_aether.items.food.ItemAmbrosiumShard;
@@ -196,6 +193,7 @@ public class ItemsAether {
 	public static Item lore_book, skyroot_bed_item, aether_portal_frame, developer_stick;
 	public static Item aether_tune, ascending_dawn, welcoming_skies, legacy;
 	public static Item moa_egg, aether_spawn_egg;
+    public static Item palladium_eye;
 
 	public static Item black_dye, white_dye, blue_dye;
 
@@ -203,7 +201,7 @@ public class ItemsAether {
 
 	//Mob Drops
 	public static Item aechor_petal, blue_aechor_petal, golden_aechor_petal, cockatrice_feather, tempest_core, zarnillys_scales, thunderlo_horn, divine_essence;
-	public static Item cyro_rod, cinerarium_rod, zephyroo_leather, zephyroo_saddle, thunderlo_leather;
+	public static Item cyro_rod, cinerarium_rod, zephyroo_saddle, thunderlo_leather;
 	public static Item aerca_tooth, aerca_powder, charged_tempest_core;
 	public static Item victory_medal, osmium_insignia;
 	public static Item aceninum_shard, elysian_core, crystal_dragon_scales, notched_core, elysian_offering;
@@ -370,8 +368,7 @@ public class ItemsAether {
 		enchanted_divineral = register("enchanted_divineral", new ItemDivineItem().setTextureName(Aether.find("misc/enchanted_divineral")));
 		cyro_rod = register("cyro_rod", new ItemAether(AetherCreativeTabs.material).setTextureName(Aether.find("misc/cyro_rod")));
 		cinerarium_rod = register("cinerarium_rod", new ItemAether(AetherCreativeTabs.material).setTextureName(Aether.find("misc/cinerarium_rod")));
-		zephyroo_leather = register("zephyroo_leather", new ItemAether(AetherCreativeTabs.material).setTextureName(Aether.find("misc/zephyroo_leather")));
-		zephyroo_saddle = register("zephyroo_saddle", new ItemAetherSaddle().setTextureName(Aether.find("misc/zephyroo_saddle")));
+		zephyroo_saddle = register("zephyroo_saddle", new ItemAetherSaddle().setTextureName(Aether.find("misc/aerwhale_saddle")));
 		thunderlo_leather = register("thunderlo_leather", new ItemAether(AetherCreativeTabs.material).setTextureName(Aether.find("misc/thunderlo_leather")));
 		thunderlo_horn = register("thunderlo_horn", new ItemAether(AetherCreativeTabs.material).setTextureName(Aether.find("misc/thunderlo_horn")));
 		cockatrice_feather = register("cockatrice_feather", new ItemAether(AetherCreativeTabs.material).setTextureName(Aether.find("misc/cockatrice_feather")));
@@ -386,6 +383,7 @@ public class ItemsAether {
 		aerca_powder = register("aerca_powder", new ItemAether(AetherCreativeTabs.material).setTextureName(Aether.find("misc/aerca_powder")));
 		charged_tempest_core = register("charged_tempest_core", new ItemChargedTempestCore().setTextureName(Aether.find("misc/charged_tempest_core")));
 		aceninum_shard = register("aceninum_shard", new ItemAceninumShard().setTextureName(Aether.find("misc/aceninum_shard")));
+        palladium_eye = register("palladium_eye", new ItemPalladiumEye().setTextureName(Aether.find("misc/palladium_eye")));
 		crystal_dragon_scales = register("crystal_dragon_scales", new ItemAether(AetherCreativeTabs.material).setTextureName(Aether.find("misc/crystal_dragon_scales")));
 		elysian_dragon_scales = register("elysian_dragon_scales", new ItemAceninumShard().setTextureName(Aether.find("misc/elysian_dragon_scales")));
 

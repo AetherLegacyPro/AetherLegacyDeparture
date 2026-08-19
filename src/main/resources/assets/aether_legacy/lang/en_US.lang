@@ -497,8 +497,7 @@ item.amplified_continuum_chestplate.name=Continuum Chestplate
 item.amplified_continuum_leggings.name=Continuum Leggings
 item.amplified_continuum_boots.name=Continuum Boots
 item.amplified_continuum_gloves.name=Continuum Gloves
-item.zephyroo_leather.name=Zephyroo Leather
-item.zephyroo_saddle.name=Aether Saddle
+item.zephyroo_saddle.name=Aerwhale Saddle
 item.zanite_and_cinerarium.name=Zanite And Cinerarium
 item.zanite_and_cyro.name=Zanite And Cryo
 item.charged_tempest_core.name=Charged Tempest Core
@@ -524,6 +523,7 @@ item.scaled_elysian_leggings.name=Elysian Leggings
 item.scaled_elysian_boots.name=Elysian Boots
 item.elysian_offering.name=Elysian Offering
 item.discharge_cape.name=Discharge Cape
+item.palladium_eye.name=Palladium Eye
 
 item.ascensite_helmet.name=Ascenstyl Helmet
 item.ascensite_chestplate.name=Ascenstyl Chestplate
@@ -1450,6 +1450,7 @@ tooltip.obsidian_armor.desc=Full Set Grants High Protection
 tooltip.valkyrie_armor.desc=Full Set Grants Flight
 tooltip.phoenix_armor.desc=Full Set Negates Fire Damage
 tooltip.amplified_phoenix_armor.desc=Full Set Grants Buffs in Nether
+tooltip.palladium_eye.desc=Used to locate Palladium Dungeons
 
 # Gui messages
 gui.item.life_shard.maxshards=You can only use a total of %s life shards.
@@ -2186,7 +2187,6 @@ lore.aether_legacy.divineral_ingot=This ingot contains a very high concentration
 lore.aether_legacy.enchanted_divineral=Created by placing a Primeval Artifact in the enchanter. Requires alot of ambrosium to enchant though. Used in the recipe to craft divineral ingots.
 lore.aether_legacy.cyro_rod=Dropped by Cryos. Can be used as fuel in the Freezer or crafted into ethereal torches/zanite and cyro.
 lore.aether_legacy.cinerarium_rod=Dropped by Cinerariums. Can be frozen in the freezer to create blaze/cyro rods or crafted into hellfire torches/zanite and cinerarium. Also required in the recipe for golden oak bookshelves.
-lore.aether_legacy.zephyroo_leather=Dropped by Zephyroos. Used in the recipe to craft the various scaled armors and the aether saddle or books.
 lore.aether_legacy.zephyroo_saddle=A strong saddle made out of zephyroo leather. Required saddle type to ride Aerwhales.
 lore.aether_legacy.thunderlo_leather=A magical leather dropped by Thunderlos. Used in the recipe to craft the various scaled armors or books.
 lore.aether_legacy.thunderlo_horn=An uncommon drop from Thunderlos. Used in the recipe to craft the golden bookshelf.

@@ -1,6 +1,8 @@
 package com.gildedgames.the_aether.world.biome;
 
 import java.util.Random;
+
+import com.gildedgames.the_aether.AetherConfig;
 import org.lwjgl.opengl.GL11;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.world.AetherWorld;
@@ -77,6 +79,19 @@ public class StormySkiesWeatherClientHandler {
         return mc.thePlayer.posY + mc.thePlayer.getEyeHeight();
     }
 
+    private boolean isInAetherDimension() {
+        Minecraft mc = Minecraft.getMinecraft();
+        return mc != null && mc.theWorld != null && mc.theWorld.provider != null && mc.theWorld.provider.dimensionId == AetherConfig.getAetherDimensionID();
+    }
+
+    private void resetStormState() {
+        this.previousStormStrength = 0.0F;
+        this.currentStormStrength = 0.0F;
+        this.previousCloudBankStrength = 0.0F;
+        this.currentCloudBankStrength = 0.0F;
+        this.lastRainImpactSoundTick = -100L;
+    }
+
     private boolean isCameraHighAltitude() {
         return this.getCameraY() >= HIGH_ALTITUDE_CAMERA_CUTOFF_Y;
     }
@@ -118,6 +133,10 @@ public class StormySkiesWeatherClientHandler {
     }
 
     private BiomeGenBase getPlayerBiome() {
+        if (!this.isInAetherDimension()) {
+            return null;
+        }
+
         Minecraft mc = Minecraft.getMinecraft();
         if (mc == null || mc.theWorld == null || mc.thePlayer == null) {
             return null;
@@ -135,6 +154,10 @@ public class StormySkiesWeatherClientHandler {
 
     //Controls the rain lines, strength and hiding the sun and moon
     private float getTargetStormStrength() {
+        if (!this.isInAetherDimension()) {
+            return 0.0F;
+        }
+
         Minecraft mc = Minecraft.getMinecraft();
         if (mc == null || mc.theWorld == null || mc.thePlayer == null) {
             return 0.0F;
@@ -201,6 +224,10 @@ public class StormySkiesWeatherClientHandler {
 
     //Controls the fog surrounding the biome while standing in another biome
     private float getTargetCloudBankStrength() {
+        if (!this.isInAetherDimension()) {
+            return 0.0F;
+        }
+
         Minecraft mc = Minecraft.getMinecraft();
 
         if (mc == null || mc.theWorld == null || mc.thePlayer == null) {
@@ -352,6 +379,10 @@ public class StormySkiesWeatherClientHandler {
 
     @SubscribeEvent
     public void onFogColors(EntityViewRenderEvent.FogColors event) {
+        if (!this.isInAetherDimension()) {
+            return;
+        }
+
         if (this.isCameraHighAltitude()) {
             return;
         }
@@ -375,6 +406,10 @@ public class StormySkiesWeatherClientHandler {
 
     @SubscribeEvent
     public void onFogDensity(EntityViewRenderEvent.FogDensity event) {
+        if (!this.isInAetherDimension()) {
+            return;
+        }
+
         if (this.isCameraHighAltitude()) {
             event.density = 0.0F;
             event.setCanceled(true);
@@ -399,6 +434,10 @@ public class StormySkiesWeatherClientHandler {
 
     @SubscribeEvent
     public void onRenderFog(EntityViewRenderEvent.RenderFogEvent event) {
+        if (!this.isInAetherDimension()) {
+            return;
+        }
+
         if (this.isCameraHighAltitude()) {
             this.applyNoStormFogGL();
             return;
@@ -440,15 +479,15 @@ public class StormySkiesWeatherClientHandler {
 
     @SubscribeEvent
     public void onRenderWorldLast(RenderWorldLastEvent event) {
+        Minecraft mc = Minecraft.getMinecraft();
+
+        if (mc == null || mc.theWorld == null || mc.thePlayer == null || !this.isInAetherDimension()) {
+            return;
+        }
+
         float strength = this.getStormStrength(event.partialTicks);
         if (this.isPlayerDirectlyInStormySkies()) {
             strength = 1.0F;
-        }
-
-        Minecraft mc = Minecraft.getMinecraft();
-
-        if (mc == null || mc.theWorld == null || mc.thePlayer == null) {
-            return;
         }
 
         if (strength > 0.02F) {
@@ -660,16 +699,18 @@ public class StormySkiesWeatherClientHandler {
 
         Minecraft mc = Minecraft.getMinecraft();
         if (mc == null || mc.theWorld == null || mc.thePlayer == null) {
-            this.previousStormStrength = 0.0F;
-            this.currentStormStrength = 0.0F;
-            this.previousCloudBankStrength = 0.0F;
-            this.currentCloudBankStrength = 0.0F;
+            this.resetStormState();
+            return;
+        }
+
+        if (!this.isInAetherDimension()) {
+            this.resetStormState();
             return;
         }
 
         this.updateStormStrength();
-        float strength = this.getStormStrength();
 
+        float strength = this.getStormStrength();
         if (this.isPlayerDirectlyInStormySkies()) {
             strength = 1.0F;
             this.currentStormStrength = Math.max(this.currentStormStrength, 0.85F);
@@ -677,8 +718,8 @@ public class StormySkiesWeatherClientHandler {
 
         mc.theWorld.setRainStrength(strength);
         mc.theWorld.setThunderStrength(strength * 0.75F);
-        this.playStormyRainSound(mc, strength);
 
+        this.playStormyRainSound(mc, strength);
         if (strength <= 0.05F) {
             return;
         }
@@ -1027,6 +1068,10 @@ public class StormySkiesWeatherClientHandler {
 
     @SubscribeEvent
     public void onRenderOverlay(RenderGameOverlayEvent.Pre event) {
+        if (!this.isInAetherDimension()) {
+            return;
+        }
+
         if (event.type != RenderGameOverlayEvent.ElementType.ALL) {
             return;
         }
@@ -1049,6 +1094,10 @@ public class StormySkiesWeatherClientHandler {
     }
 
     private void renderStormSkyVeil(Minecraft mc, float strength) {
+        if (!this.isInAetherDimension()) {
+            return;
+        }
+
         if (this.isCameraHighAltitude()) {
             return;
         }

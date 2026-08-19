@@ -13,6 +13,8 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.effect.EntityLightningBolt;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
@@ -22,7 +24,7 @@ import net.minecraft.world.biome.BiomeGenBase;
 
 public class BlockStormAercloud extends Block implements IColoredBlock, INamedBlock {
 
-    private static final int LIGHTNING_CHANCE = 180;
+    private static final int LIGHTNING_CHANCE = 80;
 
     public BlockStormAercloud() {
         super(Material.cloth);
@@ -45,7 +47,12 @@ public class BlockStormAercloud extends Block implements IColoredBlock, INamedBl
             return;
         }
 
-        if (!this.isStormySkiesBiome(world, x, z)) {
+        if (random.nextInt(LIGHTNING_CHANCE) != 0) {
+            return;
+        }
+
+        EntityPlayer nearbyPlayer = world.getClosestPlayer(x + 0.5D, y + 0.5D, z + 0.5D, 128.0D);
+        if (nearbyPlayer == null) {
             return;
         }
 
@@ -53,31 +60,32 @@ public class BlockStormAercloud extends Block implements IColoredBlock, INamedBl
             return;
         }
 
-        if (random.nextInt(LIGHTNING_CHANCE) != 0) {
+        if (!this.isStormySkiesBiome(world, x, z)) {
             return;
         }
 
         int targetY = this.findLightningTargetY(world, x, y - 1, z);
-
-        if (targetY > 0) {
-            EntityLightningBolt lightning = new EntityLightningBolt(world, x + 0.5D, targetY + 1.0D, z + 0.5D);
-            world.addWeatherEffect(lightning);
+        if (targetY <= 0) {
+            return;
         }
+
+        EntityLightningBolt lightning = new EntityLightningBolt(world, x + 0.5D, targetY + 1.0D, z + 0.5D);
+        world.addWeatherEffect(lightning);
     }
 
     private int findLightningTargetY(World world, int x, int startY, int z) {
-        for (int y = startY; y > 0; y--) {
-            Block block = world.getBlock(x, y, z);
+        if (startY > 255) {
+            startY = 255;
+        }
 
-            if (block == null) {
+        for (int scanY = startY; scanY > 0; scanY--) {
+
+            Block block = world.getBlock(x, scanY, z);
+            if (block == Blocks.air || this.isAercloudBlock(block)) {
                 continue;
             }
 
-            if (block == net.minecraft.init.Blocks.air || this.isAercloudBlock(block)) {
-                continue;
-            }
-
-            return y;
+            return scanY;
         }
 
         return -1;
@@ -91,7 +99,6 @@ public class BlockStormAercloud extends Block implements IColoredBlock, INamedBl
     @Override
     public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
         entity.fallDistance = 0.0F;
-
         if (entity.motionY < 0.0D) {
             entity.motionY *= 0.005D;
         }
@@ -128,7 +135,6 @@ public class BlockStormAercloud extends Block implements IColoredBlock, INamedBl
     @SideOnly(Side.CLIENT)
     public boolean shouldSideBeRendered(IBlockAccess world, int x, int y, int z, int side) {
         Block block = world.getBlock(x, y, z);
-
         if (block == this) {
             return false;
         }
@@ -143,7 +149,6 @@ public class BlockStormAercloud extends Block implements IColoredBlock, INamedBl
 
     private boolean isStormySkiesBiome(World world, int x, int z) {
         BiomeGenBase biome = world.getBiomeGenForCoords(x, z);
-
         return biome != null && AetherWorld.stormy_skies != null && biome.biomeID == AetherWorld.stormy_skies.biomeID;
     }
 

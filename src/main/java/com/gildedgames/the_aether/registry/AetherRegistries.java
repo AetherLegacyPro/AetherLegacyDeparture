@@ -834,7 +834,7 @@ public class AetherRegistries {
 		registerShapeless(new ItemStack(ItemsAether.green_aercloud_globule, 7), new ItemStack(BlocksAether.aercloud_layer_7, 1, 4));
 		registerShapeless(new ItemStack(BlocksAether.aercloud_layer, 1, 4), ItemsAether.green_aercloud_globule);
 
-		registerShapeless(new ItemStack(Items.book, 1), new ItemStack(Items.paper), new ItemStack(Items.paper), new ItemStack(Items.paper), new ItemStack(ItemsAether.zephyroo_leather));
+		registerShapeless(new ItemStack(Items.book, 1), new ItemStack(Items.paper), new ItemStack(Items.paper), new ItemStack(Items.paper), new ItemStack(ItemsAether.thunderlo_leather));
 	}
 
 	private static void initializeRecipes() {
@@ -1018,7 +1018,7 @@ public class AetherRegistries {
 		register(new ItemStack(ItemsAether.dart, 8, 1), "XXX", "XYX", "XXX", 'X', new ItemStack(ItemsAether.dart, 1), 'Y', new ItemStack(ItemsAether.skyroot_bucket, 1, 2));
 		register(new ItemStack(BlocksAether.incubator), "XXX", "XZX", "XXX", 'X', BlocksAether.holystone, 'Z', BlocksAether.ambrosium_torch);
 		register(new ItemStack(BlocksAether.freezer), "XXX", "XYX", "ZZZ", 'X', BlocksAether.holystone, 'Y', BlocksAether.icestone, 'Z', BlocksAether.skyroot_planks);
-		register(new ItemStack(ItemsAether.zephyroo_saddle), "XXX", "XYX", "ZZZ", 'X', ItemsAether.zephyroo_leather, 'Y', Items.saddle, 'Z', ItemsAether.zanite_gemstone);
+		register(new ItemStack(ItemsAether.zephyroo_saddle), "XXX", "XYX", "ZZZ", 'X', ItemsAether.thunderlo_leather, 'Y', Items.saddle, 'Z', ItemsAether.zanite_gemstone);
 		register(new ItemStack(BlocksAether.enchanter), "XXX", "XYX", "XXX", 'X', BlocksAether.holystone, 'Y', ItemsAether.zanite_gemstone);
 		register(new ItemStack(BlocksAether.amplifier), "XVX", "UYU", "XZX", 'X', BlocksAether.enchanted_gravitite, 'Y', ItemsAether.elysian_core, 'Z', BlocksAether.enchanted_holystone, 'V', BlocksAether.hellfire_stone, 'U', BlocksAether.zanite_block);
 		register(new ItemStack(BlocksAether.amplifier), "XVX", "UYU", "XZX", 'X', BlocksAether.enchanted_gravitite, 'Y', ItemsAether.elysian_core, 'Z', BlocksAether.enchanted_holystone, 'V', BlocksAether.ancient_hellfire_stone, 'U', BlocksAether.zanite_block);

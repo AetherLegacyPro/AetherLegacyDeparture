@@ -23,7 +23,6 @@ import com.gildedgames.the_aether.entities.hostile.EntityYoungZephyr;
 import com.gildedgames.the_aether.entities.hostile.EntityZephyr;
 import com.gildedgames.the_aether.entities.hostile.EntityZojz;
 import com.gildedgames.the_aether.entities.passive.EntityAerwhale;
-import com.gildedgames.the_aether.entities.passive.mountable.EntityAerwhaleMount;
 import com.gildedgames.the_aether.world.biome.decoration.plants.WorldGenAetherGrass;
 
 public class AetherBiomeCloudyFields extends BiomeGenBase {
@@ -86,12 +85,11 @@ public class AetherBiomeCloudyFields extends BiomeGenBase {
     }
 
     private void addCreatureEntry(ArrayList<SpawnListEntry> list) {
-        list.add(new SpawnListEntry(EntityAerwhale.class, 6, 4, 4));
-        list.add(new SpawnListEntry(EntityAerwhaleMount.class, 4, 1, 2));
+        list.add(new SpawnListEntry(EntityAerwhale.class, 4, 1, 2));
     }
 
     private void addMobEntry(ArrayList<SpawnListEntry> list) {
-        list.add(new SpawnListEntry(EntityAerwhale.class, 1, 1, 2));
+        list.add(new SpawnListEntry(EntityAerwhale.class, 4, 1, 2));
         list.add(new SpawnListEntry(EntityZephyr.class, 100, 1, 4));
         list.add(new SpawnListEntry(EntityTempest.class, 75, 1, 4));
         list.add(new SpawnListEntry(EntityAerca.class, 100, 1, 2));

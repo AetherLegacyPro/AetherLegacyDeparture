@@ -61,9 +61,6 @@ public class Aether {
 		}
 
 		GameRegistry.registerWorldGenerator(new AetherGenStoneOverhaul(), Integer.MAX_VALUE);
-		//GameRegistry.registerWorldGenerator((IWorldGenerator)new ArcticIslandWorldGen(), Integer.MAX_VALUE);
-		//GameRegistry.registerWorldGenerator((IWorldGenerator)new GoldenIslandWorldGen(), Integer.MAX_VALUE);
-		//GameRegistry.registerWorldGenerator((IWorldGenerator)new DivineIslandWorldGen(), Integer.MAX_VALUE);
 		GameRegistry.registerWorldGenerator((IWorldGenerator)new OsmiumDungeon(), Integer.MAX_VALUE);
 		GameRegistry.registerWorldGenerator((IWorldGenerator)new PalladiumDungeonWorldGen(), Integer.MAX_VALUE);
 	}

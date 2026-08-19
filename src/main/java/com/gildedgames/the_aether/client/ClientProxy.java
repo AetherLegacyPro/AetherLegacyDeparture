@@ -84,9 +84,11 @@ public class ClientProxy extends CommonProxy {
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAncientEnchanter.class, new TileEntityAncientEnchanterRenderer());
 		RendersAether.initialization();
 
-        StormySkiesWeatherClientHandler stormHandler = new StormySkiesWeatherClientHandler();
-        MinecraftForge.EVENT_BUS.register(stormHandler);
-        FMLCommonHandler.instance().bus().register(stormHandler);
+        if(AetherConfig.enableStormySkiesWeather()) {
+            StormySkiesWeatherClientHandler stormHandler = new StormySkiesWeatherClientHandler();
+            MinecraftForge.EVENT_BUS.register(stormHandler);
+            FMLCommonHandler.instance().bus().register(stormHandler);
+        }
 
 		if(!AetherConfig.UseBaublesExpandedMenu()) {
 			AetherKeybinds.initialization();

@@ -219,13 +219,13 @@ public class ComponentDivineGoldenDungeon extends AetherStructure {
 	}
 
 	public static ItemStack getDivineGoldLoot(Random random) {
-		int item = random.nextInt(16);
+		int item = random.nextInt(17);
 
 		switch (item) {
 			case 0:
 				return new ItemStack(ItemsAether.iron_bubble);
 			case 1:
-				return new ItemStack(ItemsAether.vampire_blade);
+				return new ItemStack(ItemsAether.tipped_vampire_blade);
 			case 2:
 				return new ItemStack(ItemsAether.pig_slayer);
 			case 3:
@@ -234,13 +234,13 @@ public class ComponentDivineGoldenDungeon extends AetherStructure {
 			case 5:
 				switch (random.nextInt(5)) {
 					case 0:
-						return new ItemStack(ItemsAether.phoenix_helmet);
+						return new ItemStack(ItemsAether.scaled_phoenix_helmet);
 					case 1:
-						return new ItemStack(ItemsAether.phoenix_leggings);
+						return new ItemStack(ItemsAether.scaled_phoenix_leggings);
 					case 2:
-						return new ItemStack(ItemsAether.phoenix_chestplate);
+						return new ItemStack(ItemsAether.scaled_phoenix_chestplate);
 					case 3:
-						return new ItemStack(ItemsAether.phoenix_boots);
+						return new ItemStack(ItemsAether.scaled_phoenix_boots);
 					case 4:
 						return new ItemStack(ItemsAether.phoenix_gloves);
 				}
@@ -251,26 +251,26 @@ public class ComponentDivineGoldenDungeon extends AetherStructure {
 			case 8:
 				switch (random.nextInt(5)) {
 					case 0:
-						return new ItemStack(ItemsAether.gravitite_helmet);
+						return new ItemStack(ItemsAether.scaled_gravitite_helmet);
 					case 1:
-						return new ItemStack(ItemsAether.gravitite_leggings);
+						return new ItemStack(ItemsAether.scaled_gravitite_leggings);
 					case 2:
-						return new ItemStack(ItemsAether.gravitite_chestplate);
+						return new ItemStack(ItemsAether.scaled_gravitite_chestplate);
 					case 3:
-						return new ItemStack(ItemsAether.gravitite_boots);
+						return new ItemStack(ItemsAether.scaled_gravitite_boots);
 					case 4:
 						return new ItemStack(ItemsAether.gravitite_gloves);
 				}
 			case 9: {
 				if (random.nextBoolean()) {
-					return new ItemStack(ItemsAether.notch_hammer);
+					return new ItemStack(ItemsAether.tipped_notch_hammer);
 				}
 
 				return new ItemStack(ItemsAether.flaming_stone);
 			}
 			case 10: {
 				if (random.nextBoolean()) {
-					return new ItemStack(ItemsAether.battle_sentry_hammer);
+					return new ItemStack(ItemsAether.tipped_battle_sentry_hammer);
 				}
 
 				return new ItemStack(ItemsAether.phoenix_cape);
@@ -278,14 +278,14 @@ public class ComponentDivineGoldenDungeon extends AetherStructure {
 
 			case 11:
 				return new ItemStack(ItemsAether.reinforced_regeneration_stone);
-
 			case 12:
 				return new ItemStack(ItemsAether.agility_boots);
 			case 13:
 				return new ItemStack(BlocksAether.ancient_enchanter);
 			case 14:
 				return new ItemStack(ItemsAether.notched_core);
-
+            case 15:
+                return new ItemStack(ItemsAether.palladium_eye, random.nextInt(3) + 1);
 
 		}
 

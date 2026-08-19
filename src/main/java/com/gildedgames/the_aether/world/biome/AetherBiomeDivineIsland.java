@@ -34,7 +34,6 @@ import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.entities.passive.mountable.EntityAerbunny;
-import com.gildedgames.the_aether.entities.passive.mountable.EntityAerwhaleMount;
 import com.gildedgames.the_aether.entities.passive.mountable.EntityFlyingCow;
 import com.gildedgames.the_aether.entities.passive.mountable.EntityMoa;
 import com.gildedgames.the_aether.entities.passive.mountable.EntityPhyg;
@@ -86,8 +85,7 @@ public class AetherBiomeDivineIsland extends BiomeGenBase {
     }
 
     private void addCreatureEntry(ArrayList<SpawnListEntry> list) {
-        list.add(new SpawnListEntry(EntityAerwhale.class, 6, 4, 4));
-        list.add(new SpawnListEntry(EntityAerwhaleMount.class, 4, 1, 2));
+        list.add(new SpawnListEntry(EntityAerwhale.class, 4, 1, 2));
         list.add(new SpawnListEntry(EntityPhyg.class, 12, 4, 4));
         list.add(new SpawnListEntry(EntityAechorPlant.class, 11, 2, 3));
         list.add(new SpawnListEntry(EntityCarrionSprout.class, 7, 2, 3));
@@ -100,7 +98,7 @@ public class AetherBiomeDivineIsland extends BiomeGenBase {
     }
 
     private void addMobEntry(ArrayList<SpawnListEntry> list) {
-        list.add(new SpawnListEntry(EntityAerwhale.class, 1, 1, 2));
+        list.add(new SpawnListEntry(EntityAerwhale.class, 4, 1, 2));
         list.add(new SpawnListEntry(EntityCockatrice.class, 80, 1, 4));
         list.add(new SpawnListEntry(EntityRaptor.class, 60, 1, 4));
         list.add(new SpawnListEntry(EntityWhirlwind.class, 10, 1, 2));

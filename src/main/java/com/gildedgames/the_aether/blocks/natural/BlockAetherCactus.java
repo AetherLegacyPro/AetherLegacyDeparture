@@ -4,7 +4,6 @@ import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.entities.effects.EffectInebriation;
 import com.gildedgames.the_aether.entities.effects.PotionInebriation;
 import com.gildedgames.the_aether.entities.passive.EntityAerwhale;
-import com.gildedgames.the_aether.entities.passive.mountable.EntityAerwhaleMount;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import java.util.Random;
@@ -13,18 +12,12 @@ import net.minecraft.block.BlockCactus;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.common.EnumPlantType;
-import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.common.IPlantable;
 
 public class BlockAetherCactus extends BlockCactus implements IPlantable {
@@ -125,11 +118,6 @@ public class BlockAetherCactus extends BlockCactus implements IPlantable {
             EntityAerwhale aerwhale = (EntityAerwhale) entity;
             aerwhale.addPotionEffect(new EffectInebriation(Potion.moveSpeed.id, 1200, 2));
             aerwhale.motionY = 2.0D;
-        }
-        if (entity instanceof EntityAerwhaleMount) {
-            EntityAerwhaleMount aerwhale_mount = (EntityAerwhaleMount) entity;
-            aerwhale_mount.addPotionEffect(new EffectInebriation(Potion.moveSpeed.id, 1200, 2));
-            aerwhale_mount.motionY = 2.0D;
         }
         if (entity instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer) entity;
