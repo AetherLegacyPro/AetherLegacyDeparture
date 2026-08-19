@@ -69,7 +69,7 @@ public class BlockDarkPurpleAercloud extends Block implements IColoredBlock {
     private IIcon downArrow;
 
     public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
-        if (!(entity instanceof EntityPlayer) || !((EntityPlayer)entity).capabilities.isFlying) {
+        if (!(entity instanceof EntityPlayer) || !((EntityPlayer) entity).capabilities.isFlying) {
             entity.fallDistance = 0.0F;
             int meta = world.getBlockMetadata(x, y, z);
             if (!entity.isRiding()) {
@@ -92,15 +92,23 @@ public class BlockDarkPurpleAercloud extends Block implements IColoredBlock {
 
                 }
 
-                if (meta >= 0 && entity.posY <= (double)y + 1.6 && entity.posY >= (double)y - 0.2) {
+                if (meta >= 0 && entity.posY <= (double) y + 1.6 && entity.posY >= (double) y - 0.2) {
                     entity.motionY = 0.1;
                 }
 
-                switch(meta){
-                    case 3, 7: entity.motionX = (double)-2.5F;break;
-                    case 2, 6: entity.motionZ = (double)2.5F;break;
-                    case 1, 5: entity.motionX = (double)2.5F;break;
-                    case 0, 4: entity.motionZ = (double)-2.5F;break;
+                switch (meta) {
+                    case 3, 7:
+                        entity.motionX = (double) -2.5F;
+                        break;
+                    case 2, 6:
+                        entity.motionZ = (double) 2.5F;
+                        break;
+                    case 1, 5:
+                        entity.motionX = (double) 2.5F;
+                        break;
+                    case 0, 4:
+                        entity.motionZ = (double) -2.5F;
+                        break;
                 }
 
                 if (!(entity instanceof EntityPlayer)) {
@@ -113,7 +121,7 @@ public class BlockDarkPurpleAercloud extends Block implements IColoredBlock {
 
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entityLiving, ItemStack itemStack) {
         super.onBlockPlacedBy(world, x, y, z, entityLiving, itemStack);
-        int facing = MathHelper.floor_double((double)(entityLiving.rotationYaw * 4.0F / 360.0F) + (double)0.5F) & 3;
+        int facing = MathHelper.floor_double((double) (entityLiving.rotationYaw * 4.0F / 360.0F) + (double) 0.5F) & 3;
         switch (facing) {
             case 0:
                 world.setBlockMetadataWithNotify(x, y, z, 4, 16);
@@ -132,8 +140,8 @@ public class BlockDarkPurpleAercloud extends Block implements IColoredBlock {
 
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta) {
-        switch(meta){
-            case 3,7:
+        switch (meta) {
+            case 3, 7:
                 switch (side) {
                     case 0, 1, 3:
                         return this.leftArrow;
@@ -144,7 +152,7 @@ public class BlockDarkPurpleAercloud extends Block implements IColoredBlock {
                     case 5:
                         return this.backTexture;
                 }
-            case 2,6:
+            case 2, 6:
                 switch (side) {
                     case 0, 1:
                         return this.downArrow;
@@ -157,7 +165,7 @@ public class BlockDarkPurpleAercloud extends Block implements IColoredBlock {
                     case 5:
                         return this.leftArrow;
                 }
-            case 1,5:
+            case 1, 5:
                 switch (side) {
                     case 0, 1, 3:
                         return this.rightArrow;
@@ -168,7 +176,7 @@ public class BlockDarkPurpleAercloud extends Block implements IColoredBlock {
                     case 5:
                         return this.frontTexture;
                 }
-            case 0,4:
+            case 0, 4:
                 switch (side) {
                     case 0, 1:
                         return this.upArrow;
@@ -199,7 +207,10 @@ public class BlockDarkPurpleAercloud extends Block implements IColoredBlock {
     public boolean shouldSideBeRendered(IBlockAccess world, int x, int y, int z, int side) {
         Block block = world.getBlock(x, y, z);
         int metadata = world.getBlockMetadata(x, y, z);
-        int neighborMetadata = world.getBlockMetadata(x - Facing.offsetsXForSide[side], y - Facing.offsetsYForSide[side], z - Facing.offsetsZForSide[side]);
+        int neighborMetadata = world.getBlockMetadata(
+            x - Facing.offsetsXForSide[side],
+            y - Facing.offsetsYForSide[side],
+            z - Facing.offsetsZForSide[side]);
 
         if (metadata != neighborMetadata) {
             return true;
@@ -218,28 +229,83 @@ public class BlockDarkPurpleAercloud extends Block implements IColoredBlock {
 
     @SideOnly(Side.CLIENT)
     public void randomDisplayTick(World world, int x, int y, int z, Random random) {
-        float x1 = (float)x + 0.5F;
-        float y1 = (float)y + 0.0F + random.nextFloat() * 10.0F / 16.0F;
-        float z1 = (float)z + 0.5F;
+        float x1 = (float) x + 0.5F;
+        float y1 = (float) y + 0.0F + random.nextFloat() * 10.0F / 16.0F;
+        float z1 = (float) z + 0.5F;
         int meta = world.getBlockMetadata(x, y, z);
         float i = random.nextFloat() * 0.9F;
         float j = random.nextFloat() * 0.2F;
         if (meta != 0 && meta != 4) {
             if (meta == 5) {
-                world.spawnParticle("reddust", (double)(x1 + i), (double)y1, (double)(z1 + j), (double)1.0F, (double)1.0F, (double)1.0F);
-                world.spawnParticle("reddust", (double)(x1 + i * random.nextFloat() / 0.4F), (double)y1, (double)(z1 + j), (double)1.0F, (double)1.0F, (double)1.0F);
+                world.spawnParticle(
+                    "reddust",
+                    (double) (x1 + i),
+                    (double) y1,
+                    (double) (z1 + j),
+                    (double) 1.0F,
+                    (double) 1.0F,
+                    (double) 1.0F);
+                world.spawnParticle(
+                    "reddust",
+                    (double) (x1 + i * random.nextFloat() / 0.4F),
+                    (double) y1,
+                    (double) (z1 + j),
+                    (double) 1.0F,
+                    (double) 1.0F,
+                    (double) 1.0F);
             } else if (meta == 6) {
-                world.spawnParticle("reddust", (double)(x1 + j), (double)y1, (double)(z1 + i), (double)1.0F, (double)1.0F, (double)1.0F);
-                world.spawnParticle("reddust", (double)(x1 + j * random.nextFloat() / 0.4F), (double)y1, (double)(z1 + i), (double)1.0F, (double)1.0F, (double)1.0F);
+                world.spawnParticle(
+                    "reddust",
+                    (double) (x1 + j),
+                    (double) y1,
+                    (double) (z1 + i),
+                    (double) 1.0F,
+                    (double) 1.0F,
+                    (double) 1.0F);
+                world.spawnParticle(
+                    "reddust",
+                    (double) (x1 + j * random.nextFloat() / 0.4F),
+                    (double) y1,
+                    (double) (z1 + i),
+                    (double) 1.0F,
+                    (double) 1.0F,
+                    (double) 1.0F);
             } else if (meta == 7) {
-                world.spawnParticle("reddust", (double)(x1 - i), (double)y1, (double)(z1 + j), (double)1.0F, (double)1.0F, (double)1.0F);
-                world.spawnParticle("reddust", (double)(x1 - i * random.nextFloat() / 0.4F), (double)y1, (double)(z1 + j), (double)1.0F, (double)1.0F, (double)1.0F);
+                world.spawnParticle(
+                    "reddust",
+                    (double) (x1 - i),
+                    (double) y1,
+                    (double) (z1 + j),
+                    (double) 1.0F,
+                    (double) 1.0F,
+                    (double) 1.0F);
+                world.spawnParticle(
+                    "reddust",
+                    (double) (x1 - i * random.nextFloat() / 0.4F),
+                    (double) y1,
+                    (double) (z1 + j),
+                    (double) 1.0F,
+                    (double) 1.0F,
+                    (double) 1.0F);
             }
         } else {
-            world.spawnParticle("reddust", (double)(x1 + j), (double)y1, (double)(z1 - i), (double)1.0F, (double)1.0F, (double)1.0F);
-            world.spawnParticle("reddust", (double)(x1 + j * random.nextFloat() / 0.4F), (double)y1, (double)(z1 - i), (double)1.0F, (double)1.0F, (double)1.0F);
+            world.spawnParticle(
+                "reddust",
+                (double) (x1 + j),
+                (double) y1,
+                (double) (z1 - i),
+                (double) 1.0F,
+                (double) 1.0F,
+                (double) 1.0F);
+            world.spawnParticle(
+                "reddust",
+                (double) (x1 + j * random.nextFloat() / 0.4F),
+                (double) y1,
+                (double) (z1 - i),
+                (double) 1.0F,
+                (double) 1.0F,
+                (double) 1.0F);
         }
 
     }
 }
-

@@ -357,6 +357,7 @@ public class EntitySunSpirit extends EntityFlying implements IMob, IAetherBoss, 
             }
         }
     }
+
     @Override
     public void onDeath(DamageSource source) {
         super.onDeath(source);
@@ -507,7 +508,12 @@ public class EntitySunSpirit extends EntityFlying implements IMob, IAetherBoss, 
                 }
             }
         }
-        if (AetherConfig.repeatSunSpiritDialogue() || (!AetherConfig.repeatSunSpiritDialogue() && !((PlayerAether) AetherAPI.get(player)).seenSpiritDialog) || this.isDead() || (dungeonTarget!=null && dungeonTarget.isDead) || this.getChatLine() == 9 || this.getChatLine() == 10) {
+        if (AetherConfig.repeatSunSpiritDialogue()
+            || (!AetherConfig.repeatSunSpiritDialogue() && !((PlayerAether) AetherAPI.get(player)).seenSpiritDialog)
+            || this.isDead()
+            || (dungeonTarget != null && dungeonTarget.isDead)
+            || this.getChatLine() == 9
+            || this.getChatLine() == 10) {
             if (side == Side.CLIENT) {
                 Aether.proxy.sendMessage(player, s);
             }
@@ -656,10 +662,10 @@ public class EntitySunSpirit extends EntityFlying implements IMob, IAetherBoss, 
             } else {
                 return false;
             }
-            } else {
+        } else {
             return super.attackEntityFrom(source, amount);
-            }
         }
+    }
 
     @Override
     public boolean attackEntityFromPart(EntityDragonPart part, DamageSource magicDamage, float damage) {

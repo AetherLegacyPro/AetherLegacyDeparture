@@ -540,7 +540,12 @@ public class EntityDivineSunSpirit extends EntityFlying implements IMob, IAether
                 }
             }
         }
-        if (AetherConfig.repeatSunSpiritDialogue() || (!AetherConfig.repeatSunSpiritDialogue() && !((PlayerAether) AetherAPI.get(player)).seenSpiritDialog) || this.isDead() || (dungeonTarget!=null && dungeonTarget.isDead) || this.getChatLine() == 9 || this.getChatLine() == 10) {
+        if (AetherConfig.repeatSunSpiritDialogue()
+            || (!AetherConfig.repeatSunSpiritDialogue() && !((PlayerAether) AetherAPI.get(player)).seenSpiritDialog)
+            || this.isDead()
+            || (dungeonTarget != null && dungeonTarget.isDead)
+            || this.getChatLine() == 9
+            || this.getChatLine() == 10) {
             if (side == Side.CLIENT) {
                 Aether.proxy.sendMessage(player, s);
             }

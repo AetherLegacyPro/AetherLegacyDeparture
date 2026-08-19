@@ -1,6 +1,5 @@
 package com.gildedgames.the_aether.items;
 
-import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -9,6 +8,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 import com.gildedgames.the_aether.blocks.BlocksAether;
+import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
 
 public class ItemBlockAetherDoor extends Item {
 

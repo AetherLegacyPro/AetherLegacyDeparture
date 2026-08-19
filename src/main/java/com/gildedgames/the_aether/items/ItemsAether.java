@@ -10,7 +10,6 @@ import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.api.accessories.AccessoryType;
 import com.gildedgames.the_aether.api.accessories.DegradationRate;
-import com.gildedgames.the_aether.blocks.BlockAetherDoor;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.items.accessories.ItemAccessory;
 import com.gildedgames.the_aether.items.accessories.ItemAccessoryDyed;
@@ -2450,7 +2449,9 @@ public class ItemsAether {
             "aether_portal_frame",
             new ItemAetherPortalFrame().setTextureName(Aether.find("aether_portal_frame")));
 
-        skyroot_door_item = register("skyroot_door_item", new ItemBlockAetherDoor().setTextureName(Aether.find("skyroot_door")));
+        skyroot_door_item = register(
+            "skyroot_door_item",
+            new ItemBlockAetherDoor().setTextureName(Aether.find("skyroot_door")));
     }
 
     public static Item register(String name, Item item) {
