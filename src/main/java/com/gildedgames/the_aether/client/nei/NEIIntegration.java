@@ -24,6 +24,7 @@ public class NEIIntegration implements IConfigureNEI {
             API.registerRecipeHandler(new AmplifierRecipeHandler());
             API.registerUsageHandler(new AmplifierRecipeHandler());
             API.addRecipeCatalyst(new ItemStack(BlocksAether.amplifier), new AmplifierRecipeHandler());
+            IMCSenderGTNH.IMCSender();
         }
     }
 
