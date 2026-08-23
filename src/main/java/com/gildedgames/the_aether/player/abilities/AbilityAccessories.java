@@ -105,11 +105,15 @@ public class AbilityAccessories implements IAetherAbility {
                 }
             }
 
-        if (accessoryInventory.wearingAccessory(ItemsAether.regeneration_stone)
-            || accessoryInventory.wearingAccessory(ItemsAether.reinforced_regeneration_stone)) {
-            if (playerEntity.getHealth() < playerEntity.getMaxHealth()
-                && playerEntity.getActivePotionEffect(Potion.regeneration) == null) {
-                playerEntity.addPotionEffect(new PotionEffect(Potion.regeneration.id, 80, 0));
+        int regenerationStoneCount = accessoryInventory.getAccessoryCount(ItemsAether.regeneration_stone)
+            + accessoryInventory.getAccessoryCount(ItemsAether.reinforced_regeneration_stone);
+        if (regenerationStoneCount > 0 && playerEntity.getHealth() < playerEntity.getMaxHealth()
+            && ticksExisted % 20 == 0) {
+            float regenAmount = regenerationStoneCount >= 2 ? 1.5F : 0.75F;
+            float maxHealth = playerEntity.getMaxHealth();
+            float missingHealth = maxHealth - playerEntity.getHealth();
+            if (missingHealth > 0.0F) {
+                playerEntity.heal(Math.min(regenAmount, missingHealth));
             }
         }
 

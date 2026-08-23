@@ -1,5 +1,6 @@
 package com.gildedgames.the_aether.client.nei;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,15 +23,23 @@ public class FreezerRecipeHandler extends TemplateRecipeHandler {
         public PositionedStack result;
 
         public CachedFreezerRecipe(ItemStack inputStack, ItemStack resultStack) {
+            this(inputStack, resultStack, null);
+        }
+
+        public CachedFreezerRecipe(ItemStack inputStack, ItemStack resultStack, ItemStack fuelStack) {
             this.input = new PositionedStack(inputStack, 51, 6);
-            java.util.List<ItemStack> fuels = new java.util.ArrayList<>();
-            for (AetherFreezableFuel f : AetherAPI.instance()
-                .getFreezableFuelValues()) {
-                fuels.add(
-                    f.getFuelStack()
-                        .copy());
+            if (fuelStack != null) {
+                this.fuel = new PositionedStack(fuelStack, 51, 42);
+            } else {
+                java.util.List<ItemStack> fuels = new java.util.ArrayList<>();
+                for (AetherFreezableFuel f : AetherAPI.instance()
+                    .getFreezableFuelValues()) {
+                    fuels.add(
+                        f.getFuelStack()
+                            .copy());
+                }
+                this.fuel = new PositionedStack(fuels, 51, 42);
             }
-            this.fuel = new PositionedStack(fuels, 51, 42);
             this.result = new PositionedStack(resultStack, 111, 24);
         }
 
@@ -55,11 +64,23 @@ public class FreezerRecipeHandler extends TemplateRecipeHandler {
 
     @Override
     public String getGuiTexture() {
-        return "textures/gui/altar.png";
+        return "aether_legacy:textures/gui/altar.png";
     }
 
     @Override
     public void loadCraftingRecipes(String outputId, Object... results) {
+
+        if ("all".equals(outputId) || "*".equals(outputId) || "freezer".equals(outputId)) {
+            for (AetherFreezable freezable : AetherAPI.instance().getFreezableValues()) {
+                ItemStack in = freezable.getInput();
+                ItemStack out = freezable.getOutput();
+                if (in != null && out != null) {
+                    this.arecipes.add(new CachedFreezerRecipe(in.copy(), out.copy()));
+                }
+            }
+            return;
+        }
+
         if ("item".equals(outputId)) {
             if (results != null && results.length > 0 && results[0] instanceof ItemStack) {
                 loadCraftingRecipes((ItemStack) results[0]);
@@ -77,18 +98,22 @@ public class FreezerRecipeHandler extends TemplateRecipeHandler {
             ItemStack in = freezable.getInput();
             ItemStack out = freezable.getOutput();
 
-            if (in != null && ItemStack.areItemStacksEqual(ingredient, in)) {
+            if (in != null && ingredient.isItemEqual(in)) {
                 this.arecipes.add(new CachedFreezerRecipe(in.copy(), out.copy()));
             }
         }
 
-        // // If the ingredient is a freezer fuel, show its fuel time
-        // if (AetherAPI.instance().isFreezableFuel(ingredient)) {
-        // AetherFreezableFuel fuel = AetherAPI.instance().getFreezableFuel(ingredient);
-        // if (fuel != null) {
-        // this.arecipes.add(new CachedFreezerFuelRecipe(ingredient.copy(), fuel.getTimeGiven()));
-        // }
-        // }
+        if (AetherAPI.instance()
+            .isFreezableFuel(ingredient)) {
+            for (AetherFreezable freezable : AetherAPI.instance()
+                .getFreezableValues()) {
+                ItemStack in = freezable.getInput();
+                ItemStack out = freezable.getOutput();
+                if (in != null && out != null) {
+                    this.arecipes.add(new CachedFreezerRecipe(in.copy(), out.copy(), ingredient.copy()));
+                }
+            }
+        }
     }
 
     @Override
@@ -97,51 +122,51 @@ public class FreezerRecipeHandler extends TemplateRecipeHandler {
             .getFreezableValues()) {
             ItemStack out = ench.getOutput();
             ItemStack in = ench.getInput();
-            if (ItemStack.areItemStacksEqual(result, out)) {
+            if (in != null && out != null && result.isItemEqual(out)) {
                 this.arecipes.add(new CachedFreezerRecipe(in.copy(), out.copy()));
             }
         }
     }
 
-    // public class CachedFreezerFuelRecipe extends CachedRecipe {
-    // public PositionedStack fuel;
-    // public int timeGiven;
-    //
-    // public CachedFreezerFuelRecipe(ItemStack fuelStack, int timeGiven) {
-    // this.fuel = new PositionedStack(fuelStack, 51, 42);
-    // this.timeGiven = timeGiven;
-    // }
-    //
-    // @Override
-    // public List<PositionedStack> getIngredients() {
-    // List<PositionedStack> ing = new ArrayList<>();
-    // ing.add(this.fuel);
-    // return ing;
-    // }
-    //
-    // @Override
-    // public PositionedStack getResult() {
-    // return null;
-    // }
-    // }
-
     @Override
     public void drawExtras(int recipe) {
+        this.drawProgressBar(51, 25, 176, 0, 14, 14, 48, 7);
+        this.drawProgressBar(74, 24, 176, 14, 24, 16, 48, 0);
         Object rec = this.arecipes.get(recipe);
         Minecraft mc = Minecraft.getMinecraft();
         int x = 0;
         int y = 64;
+        int progressTicks = 48;
 
         if (rec instanceof CachedFreezerRecipe r) {
             AetherFreezable fz = AetherAPI.instance()
                 .getFreezable(r.input.item);
             if (fz != null) {
-                int ticks = fz.getTimeRequired();
-                String s = "Time required: " + ticks + " ticks (" + (ticks / 20) + "s)";
-                mc.fontRenderer.drawString(s, x, y, 0x404040);
+                progressTicks = fz.getTimeRequired();
+                String s = "Time required: " + progressTicks + " ticks (" + (progressTicks / 20) + "s)";
+                mc.fontRenderer.drawString(s, x + 6 , y, 0x404040);
             }
+
+            if (r.fuel != null && r.fuel.item != null && AetherAPI.instance()
+                .isFreezableFuel(r.fuel.item)) {
+                    AetherFreezableFuel fuel = AetherAPI.instance()
+                        .getFreezableFuel(r.fuel.item);
+                    if (fuel != null) {
+                        int fuelBurnTime = fuel.getTimeGiven();
+                        int fuelRequired = (progressTicks + fuelBurnTime - 1) / Math.max(1, fuelBurnTime);
+                        String fuelBurnString = "Fuel burn: " + fuelBurnTime + " ticks (" + (fuelBurnTime / 20) + "s)";
+                        String fuelCountString = "Fuel required: " + fuelRequired;
+                        mc.fontRenderer.drawString(fuelBurnString, x + 6, y + 10, 0x404040);
+                        mc.fontRenderer.drawString(fuelCountString, x + 6, y + 20, 0x404040);
+                    }
+                }
         }
-        // drawProgressBar(52, 30, 176, 14, 64, 3, 48, 0);
+    }
+
+    @Override
+    public void loadTransferRects() {
+        transferRects.add(new RecipeTransferRect(new Rectangle(51, 25, 14, 14), "freezer"));
+        transferRects.add(new RecipeTransferRect(new Rectangle(74, 24, 24, 16), "freezer"));
     }
 
     @Override

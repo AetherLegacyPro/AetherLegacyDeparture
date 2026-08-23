@@ -1,5 +1,6 @@
 package com.gildedgames.the_aether;
 
+import com.gildedgames.the_aether.client.nei.IMCSenderGTNH;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
 
@@ -8,7 +9,6 @@ import org.apache.logging.log4j.Logger;
 
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.blocks.ancient.enchanter.AetherEnchantmentsAncientEnchanter;
-import com.gildedgames.the_aether.client.nei.IMCSenderGTNH;
 import com.gildedgames.the_aether.client.nei.NEIIntegration;
 import com.gildedgames.the_aether.entities.EntitiesAether;
 import com.gildedgames.the_aether.events.AetherEntityEvents;
