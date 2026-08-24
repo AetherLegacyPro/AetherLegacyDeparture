@@ -17,6 +17,15 @@ public class IMCSenderGTNH {
 
         sendHandler("com.gildedgames.the_aether.client.nei.FreezerRecipeHandler", "aether_legacy:freezer");
         sendCatalyst(Aether.MOD_ID + ".freezer", "aether_legacy:freezer");
+
+        sendHandler("com.gildedgames.the_aether.client.nei.AmplifierFuelHandler", "aether_legacy:divineral_block");
+        sendCatalyst(Aether.MOD_ID + ".amplifier", "aether_legacy:amplifier");
+
+        sendHandler("com.gildedgames.the_aether.client.nei.EnchanterFuelHandler", "aether_legacy:ambrosium_block");
+        sendCatalyst(Aether.MOD_ID + ".enchanter", "aether_legacy:enchanter");
+
+        sendHandler("com.gildedgames.the_aether.client.nei.FreezerFuelHandler", "aether_legacy:icestone");
+        sendCatalyst(Aether.MOD_ID + ".freezer", "aether_legacy:freezer");
     }
 
     /*

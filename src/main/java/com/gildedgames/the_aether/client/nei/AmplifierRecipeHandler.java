@@ -102,18 +102,6 @@ public class AmplifierRecipeHandler extends TemplateRecipeHandler {
                 this.arecipes.add(new CachedAmplifierRecipe(in.copy(), out.copy()));
             }
         }
-
-        if (AetherAPI.instance()
-            .isAmplifierFuel(ingredient)) {
-            for (AetherAmplifier amplifier : AetherAPI.instance()
-                .getAmplifierValues()) {
-                ItemStack in = amplifier.getInput();
-                ItemStack out = amplifier.getOutput();
-                if (in != null && out != null) {
-                    this.arecipes.add(new CachedAmplifierRecipe(in.copy(), out.copy(), ingredient.copy()));
-                }
-            }
-        }
     }
 
     @Override

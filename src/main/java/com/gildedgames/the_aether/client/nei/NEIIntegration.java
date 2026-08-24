@@ -12,19 +12,27 @@ public class NEIIntegration implements IConfigureNEI {
 
     @Override
     public void loadConfig() {
-        if (FMLCommonHandler.instance()
-            .getSide()
-            .isClient()) {
+        if (FMLCommonHandler.instance().getSide().isClient()) {
+            // Enchanter
             API.registerRecipeHandler(new EnchanterRecipeHandler());
             API.registerUsageHandler(new EnchanterRecipeHandler());
+            API.registerUsageHandler(new EnchanterFuelHandler());
             API.addRecipeCatalyst(new ItemStack(BlocksAether.enchanter), new EnchanterRecipeHandler());
+            API.addRecipeCatalyst(new ItemStack(BlocksAether.enchanter), new EnchanterFuelHandler());
+
+            // Freezer
             API.registerRecipeHandler(new FreezerRecipeHandler());
             API.registerUsageHandler(new FreezerRecipeHandler());
+            API.registerUsageHandler(new FreezerFuelHandler());
             API.addRecipeCatalyst(new ItemStack(BlocksAether.freezer), new FreezerRecipeHandler());
+            API.addRecipeCatalyst(new ItemStack(BlocksAether.freezer), new FreezerFuelHandler());
+
+            // Amplifier
             API.registerRecipeHandler(new AmplifierRecipeHandler());
             API.registerUsageHandler(new AmplifierRecipeHandler());
+            API.registerUsageHandler(new AmplifierFuelHandler());
             API.addRecipeCatalyst(new ItemStack(BlocksAether.amplifier), new AmplifierRecipeHandler());
-            IMCSenderGTNH.IMCSender();
+            API.addRecipeCatalyst(new ItemStack(BlocksAether.amplifier), new AmplifierFuelHandler());
         }
     }
 

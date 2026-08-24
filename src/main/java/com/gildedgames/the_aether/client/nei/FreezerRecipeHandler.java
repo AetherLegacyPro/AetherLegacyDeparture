@@ -102,18 +102,6 @@ public class FreezerRecipeHandler extends TemplateRecipeHandler {
                 this.arecipes.add(new CachedFreezerRecipe(in.copy(), out.copy()));
             }
         }
-
-        if (AetherAPI.instance()
-            .isFreezableFuel(ingredient)) {
-            for (AetherFreezable freezable : AetherAPI.instance()
-                .getFreezableValues()) {
-                ItemStack in = freezable.getInput();
-                ItemStack out = freezable.getOutput();
-                if (in != null && out != null) {
-                    this.arecipes.add(new CachedFreezerRecipe(in.copy(), out.copy(), ingredient.copy()));
-                }
-            }
-        }
     }
 
     @Override

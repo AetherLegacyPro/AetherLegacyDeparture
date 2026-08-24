@@ -103,18 +103,6 @@ public class EnchanterRecipeHandler extends TemplateRecipeHandler {
                 this.arecipes.add(new CachedEnchanterRecipe(in.copy(), out.copy()));
             }
         }
-
-        if (AetherAPI.instance()
-            .isEnchantmentFuel(ingredient)) {
-            for (AetherEnchantment ench : AetherAPI.instance()
-                .getEnchantmentValues()) {
-                ItemStack in = ench.getInput();
-                ItemStack out = ench.getOutput();
-                if (in != null && out != null) {
-                    this.arecipes.add(new CachedEnchanterRecipe(in.copy(), out.copy(), ingredient.copy()));
-                }
-            }
-        }
     }
 
     @Override
