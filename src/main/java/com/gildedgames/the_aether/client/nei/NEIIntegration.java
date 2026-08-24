@@ -12,7 +12,9 @@ public class NEIIntegration implements IConfigureNEI {
 
     @Override
     public void loadConfig() {
-        if (FMLCommonHandler.instance().getSide().isClient()) {
+        if (FMLCommonHandler.instance()
+            .getSide()
+            .isClient()) {
             // Enchanter
             API.registerRecipeHandler(new EnchanterRecipeHandler());
             API.registerUsageHandler(new EnchanterRecipeHandler());
@@ -36,6 +38,62 @@ public class NEIIntegration implements IConfigureNEI {
             API.registerUsageHandler(new AmplifierFuelHandler());
             API.addRecipeCatalyst(new ItemStack(BlocksAether.amplifier), new AmplifierRecipeHandler());
             API.addRecipeCatalyst(new ItemStack(BlocksAether.amplifier), new AmplifierFuelHandler());
+
+            // Hide items
+            API.hideItem(new ItemStack(BlocksAether.skyroot_door));
+            API.hideItem(new ItemStack(BlocksAether.skyroot_bed));
+
+            API.hideItem(new ItemStack(BlocksAether.aerogel_double_slab));
+
+            API.hideItem(new ItemStack(BlocksAether.skyroot_double_slab));
+            API.hideItem(new ItemStack(BlocksAether.wisproot_double_slab));
+            API.hideItem(new ItemStack(BlocksAether.greatroot_double_slab));
+            API.hideItem(new ItemStack(BlocksAether.void_double_slab));
+            API.hideItem(new ItemStack(BlocksAether.golden_oak_double_slab));
+            API.hideItem(new ItemStack(BlocksAether.divine_oak_double_slab));
+
+            API.hideItem(new ItemStack(BlocksAether.aetheral_stone_double_slab));
+            API.hideItem(new ItemStack(BlocksAether.aetheral_stone_brick_double_slab));
+            API.hideItem(new ItemStack(BlocksAether.enchanted_aetheral_stone_double_slab));
+            API.hideItem(new ItemStack(BlocksAether.enchanted_aetheral_stone_brick_double_slab));
+
+            API.hideItem(new ItemStack(BlocksAether.deific_brick_double_slab));
+            API.hideItem(new ItemStack(BlocksAether.deific_double_slab));
+            API.hideItem(new ItemStack(BlocksAether.enchanted_deific_brick_double_slab));
+            API.hideItem(new ItemStack(BlocksAether.enchanted_deific_double_slab));
+
+            API.hideItem(new ItemStack(BlocksAether.divine_angelic_stone_double_slab));
+            API.hideItem(new ItemStack(BlocksAether.divine_carved_stone_double_slab));
+            API.hideItem(new ItemStack(BlocksAether.divine_hellfire_stone_double_slab));
+
+            API.hideItem(new ItemStack(BlocksAether.ancient_angelic_stone_double_slab));
+            API.hideItem(new ItemStack(BlocksAether.ancient_carved_stone_double_slab));
+            API.hideItem(new ItemStack(BlocksAether.ancient_hellfire_stone_double_slab));
+
+            API.hideItem(new ItemStack(BlocksAether.angelic_double_slab));
+            API.hideItem(new ItemStack(BlocksAether.carved_double_slab));
+            API.hideItem(new ItemStack(BlocksAether.hellfire_double_slab));
+
+            API.hideItem(new ItemStack(BlocksAether.agiosite_double_slab));
+            API.hideItem(new ItemStack(BlocksAether.agiosite_brick_double_slab));
+            API.hideItem(new ItemStack(BlocksAether.enchanted_agiosite_double_slab));
+            API.hideItem(new ItemStack(BlocksAether.enchanted_agiosite_brick_double_slab));
+
+            API.hideItem(new ItemStack(BlocksAether.caelestia_stone_double_slab));
+            API.hideItem(new ItemStack(BlocksAether.carved_caelestia_stone_double_slab));
+
+            API.hideItem(new ItemStack(BlocksAether.holystone_double_slab));
+            API.hideItem(new ItemStack(BlocksAether.mossy_holystone_double_slab));
+            API.hideItem(new ItemStack(BlocksAether.holystone_brick_double_slab));
+            API.hideItem(new ItemStack(BlocksAether.enchanted_holystone_double_slab));
+            API.hideItem(new ItemStack(BlocksAether.enchanted_holystone_brick_double_slab));
+
+            API.hideItem(new ItemStack(BlocksAether.oblitus_stone_double_slab));
+            API.hideItem(new ItemStack(BlocksAether.fuse_double_slab));
+            API.hideItem(new ItemStack(BlocksAether.genesis_double_slab));
+
+            API.hideItem(new ItemStack(BlocksAether.mythic_angelic_stone_double_slab));
+            API.hideItem(new ItemStack(BlocksAether.mythic_carved_stone_double_slab));
         }
     }
 

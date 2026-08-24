@@ -6,6 +6,7 @@ import java.util.List;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 
 import com.gildedgames.the_aether.api.AetherAPI;
 import com.gildedgames.the_aether.api.enchantments.AetherAmplifier;
@@ -13,11 +14,11 @@ import com.gildedgames.the_aether.api.enchantments.AetherAmplifierFuel;
 
 import codechicken.nei.PositionedStack;
 import codechicken.nei.recipe.TemplateRecipeHandler;
-import net.minecraft.util.ResourceLocation;
 
 public class AmplifierFuelHandler extends TemplateRecipeHandler {
 
     public class CachedFuelRecipe extends CachedRecipe {
+
         public PositionedStack fuel;
         public List<ItemStack> allInputs;
         public List<ItemStack> allOutputs;
@@ -35,7 +36,8 @@ public class AmplifierFuelHandler extends TemplateRecipeHandler {
             int size = allInputs.size();
             if (size > 0) {
                 int index = (cycleticks / 20) % size;
-                ItemStack in = allInputs.get(index).copy();
+                ItemStack in = allInputs.get(index)
+                    .copy();
                 in.stackSize = 1;
                 PositionedStack inputStack = new PositionedStack(in, 51, 6);
                 List<PositionedStack> ing = new ArrayList<>();
@@ -51,7 +53,8 @@ public class AmplifierFuelHandler extends TemplateRecipeHandler {
             int size = allOutputs.size();
             if (size > 0) {
                 int index = (cycleticks / 20) % size;
-                ItemStack out = allOutputs.get(index).copy();
+                ItemStack out = allOutputs.get(index)
+                    .copy();
                 out.stackSize = 1;
                 return new PositionedStack(out, 111, 24);
             }
@@ -74,7 +77,8 @@ public class AmplifierFuelHandler extends TemplateRecipeHandler {
         if ("all".equals(outputId) || "*".equals(outputId) || "amplifier".equals(outputId)) {
             List<ItemStack> allInputs = new ArrayList<>();
             List<ItemStack> allOutputs = new ArrayList<>();
-            for (AetherAmplifier amp : AetherAPI.instance().getAmplifierValues()) {
+            for (AetherAmplifier amp : AetherAPI.instance()
+                .getAmplifierValues()) {
                 ItemStack in = amp.getInput();
                 ItemStack out = amp.getOutput();
                 if (in != null && out != null) {
@@ -84,7 +88,8 @@ public class AmplifierFuelHandler extends TemplateRecipeHandler {
             }
             if (allInputs.isEmpty()) return;
 
-            for (AetherAmplifierFuel fuel : AetherAPI.instance().getAmplifierFuelValues()) {
+            for (AetherAmplifierFuel fuel : AetherAPI.instance()
+                .getAmplifierFuelValues()) {
                 ItemStack fuelStack = fuel.getFuelStack();
                 if (fuelStack == null) continue;
                 this.arecipes.add(new CachedFuelRecipe(fuelStack, allInputs, allOutputs));
@@ -95,11 +100,13 @@ public class AmplifierFuelHandler extends TemplateRecipeHandler {
     @Override
     public void loadUsageRecipes(ItemStack ingredient) {
         if (ingredient == null) return;
-        if (!AetherAPI.instance().isAmplifierFuel(ingredient)) return;
+        if (!AetherAPI.instance()
+            .isAmplifierFuel(ingredient)) return;
 
         List<ItemStack> allInputs = new ArrayList<>();
         List<ItemStack> allOutputs = new ArrayList<>();
-        for (AetherAmplifier amp : AetherAPI.instance().getAmplifierValues()) {
+        for (AetherAmplifier amp : AetherAPI.instance()
+            .getAmplifierValues()) {
             ItemStack in = amp.getInput();
             ItemStack out = amp.getOutput();
             if (in != null && out != null) {
@@ -124,7 +131,8 @@ public class AmplifierFuelHandler extends TemplateRecipeHandler {
         if (rec instanceof CachedFuelRecipe cached) {
             ItemStack fuelStack = cached.fuel.item;
             if (fuelStack != null) {
-                AetherAmplifierFuel fuel = AetherAPI.instance().getAmplifierFuel(fuelStack);
+                AetherAmplifierFuel fuel = AetherAPI.instance()
+                    .getAmplifierFuel(fuelStack);
                 if (fuel != null) {
                     int burn = fuel.getTimeGiven();
                     mc.fontRenderer.drawString("Fuel burn: " + burn + " ticks (" + (burn / 20) + "s)", 6, 70, 0x404040);

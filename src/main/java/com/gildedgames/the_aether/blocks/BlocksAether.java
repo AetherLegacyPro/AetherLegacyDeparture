@@ -1047,7 +1047,7 @@ public class BlocksAether {
         light_genesis_stone_2 = register("light_genesis_stone_2", new BlockLightGenesisStone2());
         crystallized_genesis_stone = register(
             "crystallized_genesis_stone",
-            new BlockCrystallizedGenesisStone().setBlockTextureName(Aether.find("crystallized_genesis_stone")));
+            new BlockCrystallizedGenesisStone("crystallized_genesis_stone_top", "crystallized_genesis_stone_side"));
 
         zanite_pile = registerMeta("zanite_pile", new BlockZanitePile());
         arkenium_pile = registerMeta("arkenium_pile", new BlockArkeniumPile());

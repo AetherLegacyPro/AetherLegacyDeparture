@@ -4,7 +4,6 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.gildedgames.the_aether.api.enchantments.AetherEnchantmentFuel;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -19,6 +18,7 @@ import codechicken.nei.recipe.TemplateRecipeHandler;
 public class FreezerFuelHandler extends TemplateRecipeHandler {
 
     public class CachedFuelRecipe extends CachedRecipe {
+
         public PositionedStack fuel;
         public List<ItemStack> allInputs;
         public List<ItemStack> allOutputs;
@@ -36,7 +36,8 @@ public class FreezerFuelHandler extends TemplateRecipeHandler {
             int size = allInputs.size();
             if (size > 0) {
                 int index = (cycleticks / 20) % size;
-                ItemStack in = allInputs.get(index).copy();
+                ItemStack in = allInputs.get(index)
+                    .copy();
                 in.stackSize = 1;
                 PositionedStack inputStack = new PositionedStack(in, 51, 6);
                 List<PositionedStack> ing = new ArrayList<>();
@@ -52,7 +53,8 @@ public class FreezerFuelHandler extends TemplateRecipeHandler {
             int size = allOutputs.size();
             if (size > 0) {
                 int index = (cycleticks / 20) % size;
-                ItemStack out = allOutputs.get(index).copy();
+                ItemStack out = allOutputs.get(index)
+                    .copy();
                 out.stackSize = 1;
                 return new PositionedStack(out, 111, 24);
             }
@@ -75,7 +77,8 @@ public class FreezerFuelHandler extends TemplateRecipeHandler {
         if ("all".equals(outputId) || "*".equals(outputId) || "freezer".equals(outputId)) {
             List<ItemStack> allInputs = new ArrayList<>();
             List<ItemStack> allOutputs = new ArrayList<>();
-            for (AetherFreezable fz : AetherAPI.instance().getFreezableValues()) {
+            for (AetherFreezable fz : AetherAPI.instance()
+                .getFreezableValues()) {
                 ItemStack in = fz.getInput();
                 ItemStack out = fz.getOutput();
                 if (in != null && out != null) {
@@ -85,7 +88,8 @@ public class FreezerFuelHandler extends TemplateRecipeHandler {
             }
             if (allInputs.isEmpty()) return;
 
-            for (AetherFreezableFuel fuel : AetherAPI.instance().getFreezableFuelValues()) {
+            for (AetherFreezableFuel fuel : AetherAPI.instance()
+                .getFreezableFuelValues()) {
                 ItemStack fuelStack = fuel.getFuelStack();
                 if (fuelStack == null) continue;
                 this.arecipes.add(new CachedFuelRecipe(fuelStack, allInputs, allOutputs));
@@ -96,11 +100,13 @@ public class FreezerFuelHandler extends TemplateRecipeHandler {
     @Override
     public void loadUsageRecipes(ItemStack ingredient) {
         if (ingredient == null) return;
-        if (!AetherAPI.instance().isFreezableFuel(ingredient)) return;
+        if (!AetherAPI.instance()
+            .isFreezableFuel(ingredient)) return;
 
         List<ItemStack> allInputs = new ArrayList<>();
         List<ItemStack> allOutputs = new ArrayList<>();
-        for (AetherFreezable fz : AetherAPI.instance().getFreezableValues()) {
+        for (AetherFreezable fz : AetherAPI.instance()
+            .getFreezableValues()) {
             ItemStack in = fz.getInput();
             ItemStack out = fz.getOutput();
             if (in != null && out != null) {
@@ -125,7 +131,8 @@ public class FreezerFuelHandler extends TemplateRecipeHandler {
         if (rec instanceof FreezerFuelHandler.CachedFuelRecipe cached) {
             ItemStack fuelStack = cached.fuel.item;
             if (fuelStack != null) {
-                AetherFreezableFuel fuel = AetherAPI.instance().getFreezableFuel(fuelStack);
+                AetherFreezableFuel fuel = AetherAPI.instance()
+                    .getFreezableFuel(fuelStack);
                 if (fuel != null) {
                     int burn = fuel.getTimeGiven();
                     mc.fontRenderer.drawString("Fuel burn: " + burn + " ticks (" + (burn / 20) + "s)", 6, 70, 0x404040);

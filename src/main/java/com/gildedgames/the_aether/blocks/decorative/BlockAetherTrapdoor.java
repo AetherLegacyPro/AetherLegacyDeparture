@@ -6,7 +6,7 @@ import net.minecraft.block.material.Material;
 public class BlockAetherTrapdoor extends BlockTrapDoor {
 
     public BlockAetherTrapdoor(Material p_i45434_1_) {
-        super(Material.wood);
+        super(p_i45434_1_);
 
         this.setLightOpacity(0);
     }

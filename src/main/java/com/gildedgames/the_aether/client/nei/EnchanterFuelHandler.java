@@ -4,9 +4,9 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.gildedgames.the_aether.api.enchantments.AetherAmplifierFuel;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 
 import com.gildedgames.the_aether.api.AetherAPI;
 import com.gildedgames.the_aether.api.enchantments.AetherEnchantment;
@@ -14,11 +14,11 @@ import com.gildedgames.the_aether.api.enchantments.AetherEnchantmentFuel;
 
 import codechicken.nei.PositionedStack;
 import codechicken.nei.recipe.TemplateRecipeHandler;
-import net.minecraft.util.ResourceLocation;
 
 public class EnchanterFuelHandler extends TemplateRecipeHandler {
 
     public class CachedFuelRecipe extends CachedRecipe {
+
         public PositionedStack fuel;
         public List<ItemStack> allInputs;
         public List<ItemStack> allOutputs;
@@ -40,7 +40,8 @@ public class EnchanterFuelHandler extends TemplateRecipeHandler {
             int size = allInputs.size();
             if (size > 0) {
                 int index = (cycleticks / 20) % size;
-                ItemStack in = allInputs.get(index).copy();
+                ItemStack in = allInputs.get(index)
+                    .copy();
                 in.stackSize = 1;
                 PositionedStack inputStack = new PositionedStack(in, 51, 6);
                 List<PositionedStack> ing = new ArrayList<>();
@@ -56,7 +57,8 @@ public class EnchanterFuelHandler extends TemplateRecipeHandler {
             int size = allOutputs.size();
             if (size > 0) {
                 int index = (cycleticks / 20) % size;
-                ItemStack out = allOutputs.get(index).copy();
+                ItemStack out = allOutputs.get(index)
+                    .copy();
                 out.stackSize = 1;
                 return new PositionedStack(out, 111, 24);
             }
@@ -80,7 +82,8 @@ public class EnchanterFuelHandler extends TemplateRecipeHandler {
             // 收集所有配方（输入和输出）
             List<ItemStack> allInputs = new ArrayList<>();
             List<ItemStack> allOutputs = new ArrayList<>();
-            for (AetherEnchantment ench : AetherAPI.instance().getEnchantmentValues()) {
+            for (AetherEnchantment ench : AetherAPI.instance()
+                .getEnchantmentValues()) {
                 ItemStack in = ench.getInput();
                 ItemStack out = ench.getOutput();
                 if (in != null && out != null) {
@@ -91,7 +94,8 @@ public class EnchanterFuelHandler extends TemplateRecipeHandler {
             if (allInputs.isEmpty()) return;
 
             // 遍历每个燃料，每个燃料生成一个配方条目
-            for (AetherEnchantmentFuel fuel : AetherAPI.instance().getEnchantmentFuelValues()) {
+            for (AetherEnchantmentFuel fuel : AetherAPI.instance()
+                .getEnchantmentFuelValues()) {
                 ItemStack fuelStack = fuel.getFuelStack();
                 if (fuelStack == null) continue;
                 this.arecipes.add(new CachedFuelRecipe(fuelStack, allInputs, allOutputs));
@@ -102,12 +106,14 @@ public class EnchanterFuelHandler extends TemplateRecipeHandler {
     @Override
     public void loadUsageRecipes(ItemStack ingredient) {
         if (ingredient == null) return;
-        if (!AetherAPI.instance().isEnchantmentFuel(ingredient)) return;
+        if (!AetherAPI.instance()
+            .isEnchantmentFuel(ingredient)) return;
 
         // 收集所有配方
         List<ItemStack> allInputs = new ArrayList<>();
         List<ItemStack> allOutputs = new ArrayList<>();
-        for (AetherEnchantment ench : AetherAPI.instance().getEnchantmentValues()) {
+        for (AetherEnchantment ench : AetherAPI.instance()
+            .getEnchantmentValues()) {
             ItemStack in = ench.getInput();
             ItemStack out = ench.getOutput();
             if (in != null && out != null) {
@@ -133,7 +139,8 @@ public class EnchanterFuelHandler extends TemplateRecipeHandler {
         if (rec instanceof EnchanterFuelHandler.CachedFuelRecipe cached) {
             ItemStack fuelStack = cached.fuel.item;
             if (fuelStack != null) {
-                AetherEnchantmentFuel fuel = AetherAPI.instance().getEnchantmentFuel(fuelStack);
+                AetherEnchantmentFuel fuel = AetherAPI.instance()
+                    .getEnchantmentFuel(fuelStack);
                 if (fuel != null) {
                     int burn = fuel.getTimeGiven();
                     mc.fontRenderer.drawString("Fuel burn: " + burn + " ticks (" + (burn / 20) + "s)", 6, 70, 0x404040);
@@ -141,7 +148,6 @@ public class EnchanterFuelHandler extends TemplateRecipeHandler {
             }
         }
     }
-
 
     @Override
     public void loadTransferRects() {

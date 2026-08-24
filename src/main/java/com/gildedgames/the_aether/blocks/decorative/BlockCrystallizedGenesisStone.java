@@ -1,16 +1,29 @@
 package com.gildedgames.the_aether.blocks.decorative;
 
-import net.minecraft.block.BlockLog;
+import net.minecraft.block.BlockRotatedPillar;
+import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.util.IIcon;
+
+import com.gildedgames.the_aether.Aether;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockCrystallizedGenesisStone extends BlockLog {
+public class BlockCrystallizedGenesisStone extends BlockRotatedPillar {
 
-    public BlockCrystallizedGenesisStone() {
-        super();
+    private String topTexture;
+
+    private String sideTexture;
+
+    @SideOnly(Side.CLIENT)
+    protected IIcon sideIcon;
+
+    public BlockCrystallizedGenesisStone(String topIcon, String sideTexture) {
+        super(Material.rock);
+
+        this.topTexture = topIcon;
+        this.sideTexture = sideTexture;
 
         this.setHardness(6.5F);
         this.setResistance(25.0F);
@@ -21,14 +34,15 @@ public class BlockCrystallizedGenesisStone extends BlockLog {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerBlockIcons(IIconRegister registry) {
-        this.field_150167_a = new IIcon[1];
-        this.field_150166_b = new IIcon[1];
+    protected IIcon getSideIcon(int meta) {
+        return this.sideIcon;
+    }
 
-        for (int i = 0; i < this.field_150167_a.length; ++i) {
-            this.field_150167_a[i] = registry.registerIcon(this.getTextureName() + "_side");
-            this.field_150166_b[i] = registry.registerIcon(this.getTextureName() + "_top");
-        }
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void registerBlockIcons(IIconRegister registry) {
+        this.field_150164_N = registry.registerIcon(Aether.find(this.topTexture));
+        this.sideIcon = registry.registerIcon(Aether.find(this.sideTexture));
     }
 
 }
