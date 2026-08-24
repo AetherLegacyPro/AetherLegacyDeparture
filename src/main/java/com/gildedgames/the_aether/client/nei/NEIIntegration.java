@@ -16,6 +16,7 @@ public class NEIIntegration implements IConfigureNEI {
             // Enchanter
             API.registerRecipeHandler(new EnchanterRecipeHandler());
             API.registerUsageHandler(new EnchanterRecipeHandler());
+            API.registerRecipeHandler(new EnchanterFuelHandler());
             API.registerUsageHandler(new EnchanterFuelHandler());
             API.addRecipeCatalyst(new ItemStack(BlocksAether.enchanter), new EnchanterRecipeHandler());
             API.addRecipeCatalyst(new ItemStack(BlocksAether.enchanter), new EnchanterFuelHandler());
@@ -23,6 +24,7 @@ public class NEIIntegration implements IConfigureNEI {
             // Freezer
             API.registerRecipeHandler(new FreezerRecipeHandler());
             API.registerUsageHandler(new FreezerRecipeHandler());
+            API.registerRecipeHandler(new FreezerFuelHandler());
             API.registerUsageHandler(new FreezerFuelHandler());
             API.addRecipeCatalyst(new ItemStack(BlocksAether.freezer), new FreezerRecipeHandler());
             API.addRecipeCatalyst(new ItemStack(BlocksAether.freezer), new FreezerFuelHandler());
@@ -30,6 +32,7 @@ public class NEIIntegration implements IConfigureNEI {
             // Amplifier
             API.registerRecipeHandler(new AmplifierRecipeHandler());
             API.registerUsageHandler(new AmplifierRecipeHandler());
+            API.registerRecipeHandler(new AmplifierFuelHandler());
             API.registerUsageHandler(new AmplifierFuelHandler());
             API.addRecipeCatalyst(new ItemStack(BlocksAether.amplifier), new AmplifierRecipeHandler());
             API.addRecipeCatalyst(new ItemStack(BlocksAether.amplifier), new AmplifierFuelHandler());
