@@ -179,6 +179,7 @@ item.ascensite_sword.name=Ascensyl Sword
 item.ascensite_pickaxe.name=Ascensyl Pickaxe
 item.ascensite_axe.name=Ascenstyl Axe
 item.ascensite_shovel.name=Ascenstyl Axe
+item.tempest_insignia.name=Tempest Insignia
 
 item.white_dye.name=White Dye
 item.black_dye.name=Black Dye
@@ -1027,7 +1028,7 @@ tile.genesis_stone_2.name=Genesis Stone
 tile.light_genesis_stone_2.name=Elysian Stone
 tile.elysian_chest.name=Elysian Chest
 tile.elysian_mimic.name=Elysian Mimic
-tile.elysian_totem.name=Elysian Totem
+tile.elysian_totem.name=Elysian Totem Bottom
 tile.ancient_angelic_trap.name=Ancient Angelic Stone
 tile.locked_ancient_angelic_stone.name=Ancient Angelic Stone
 tile.locked_ancient_light_angelic_stone.name=Ancient Elite Stone
@@ -1050,6 +1051,7 @@ tile.stratos_aercloud.name=Cumulus Aercloud
 tile.aether_cactus.name=Aether Cactus
 tile.skyroot_door.name=Skyroot Door
 tile.stratos_aercloud_bricks.name=Cumulus Aercloud Bricks
+tile.elysian_totem_top.name=Elysian Totem Top
 
 # Entities
 entity.aechor_plant.name=Aechor Plant
@@ -1201,7 +1203,9 @@ death.attack.aether_legacy.poison=%s was poisoned
 # Containers
 container.aether_legacy.incubator=Incubator
 container.aether_legacy.enchanter=Enchanter
+container.aether_legacy.ancient_enchanter=Ancient Enchanter
 container.aether_legacy.altar=Altar
+container.aether_legacy.ancient_altar=Ancient Altar
 container.aether_legacy.freezer=Freezer
 container.aether_legacy.amplifier=Amplifier
 
@@ -1451,6 +1455,7 @@ tooltip.valkyrie_armor.desc=Full Set Grants Flight
 tooltip.phoenix_armor.desc=Full Set Negates Fire Damage
 tooltip.amplified_phoenix_armor.desc=Full Set Grants Buffs in Nether
 tooltip.palladium_eye.desc=Used to locate Palladium Dungeons
+tooltip.osmium_eye.desc=Used to locate Osmium Dungeons
 
 # Gui messages
 gui.item.life_shard.maxshards=You can only use a total of %s life shards.
@@ -1462,6 +1467,7 @@ gui.slider.notpickaxe=Hmm. Perhaps I need to attack it with a Pickaxe?
 gui.slider.apple=This message is only here because KingPhygieBoo asked Kino a random item and he said apple.
 gui.slider.far=It seems I'm too far away to wake it.
 gui.slider.mythic=It seems this weapon is not strong enough to break though the magic surrounding this Slider...
+gui.slider.divine=Hmm. Perhaps I need to attack it with a Pickaxe? This may be a bad idea... 
 
 gui.valkyrie.dialog.1=What's that? You want to fight? Aww, what a cute little human.
 gui.valkyrie.dialog.2=You're not thinking of fighting a big, strong Valkyrie are you?

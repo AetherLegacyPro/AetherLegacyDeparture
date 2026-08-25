@@ -1,5 +1,6 @@
 package com.gildedgames.the_aether.client.nei;
 
+import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
 import net.minecraft.client.Minecraft;
@@ -15,27 +16,39 @@ public class AmplifierRecipeHandler extends TemplateRecipeHandler {
     public class CachedAmplifierRecipe extends CachedRecipe {
 
         public PositionedStack input;
-        public PositionedStack fuel;
         public PositionedStack result;
 
         public CachedAmplifierRecipe(ItemStack inputStack, ItemStack resultStack) {
+            this(inputStack, resultStack, null);
+        }
+
+        public CachedAmplifierRecipe(ItemStack inputStack, ItemStack resultStack, ItemStack fuelStack) {
             this.input = new PositionedStack(inputStack, 51, 6);
-            java.util.List<ItemStack> fuels = new java.util.ArrayList<>();
-
-            for (AetherAmplifierFuel f : AetherAPI.instance().getAmplifierFuelValues()) {
-                fuels.add(f.getFuelStack().copy());
-            }
-
-            this.fuel = new PositionedStack(fuels, 51, 42);
             this.result = new PositionedStack(resultStack, 111, 24);
         }
 
         @Override
-        public List<PositionedStack> getIngredients() {
-            List<PositionedStack> ing = new ArrayList<>();
-            ing.add(this.input);
-            if (this.fuel != null) ing.add(this.fuel);
-            return getCycledIngredients(cycleticks / 20, ing);
+        public PositionedStack getIngredient() {
+            return this.input;
+        }
+
+        @Override
+        public List<PositionedStack> getOtherStacks() {
+            List<ItemStack> others = new ArrayList<>();
+            for (AetherAmplifierFuel f : AetherAPI.instance().getAmplifierFuelValues()) {
+                others.add(f.getFuelStack().copy());
+            }
+            int size = others.size();
+            if (size > 0) {
+                int index = (cycleticks / 20) % size;
+                ItemStack fuel = others.get(index).copy();
+                fuel.stackSize = 1;
+                PositionedStack fuelStack = new PositionedStack(fuel, 51, 42);
+                List<PositionedStack> fuels = new ArrayList<>();
+                fuels.add(fuelStack);
+                return fuels;
+            }
+            return new ArrayList<>();
         }
 
         @Override
@@ -56,6 +69,18 @@ public class AmplifierRecipeHandler extends TemplateRecipeHandler {
 
     @Override
     public void loadCraftingRecipes(String outputId, Object... results) {
+
+        if ("all".equals(outputId) || "*".equals(outputId) || "amplifier".equals(outputId)) {
+            for (AetherAmplifier amp : AetherAPI.instance().getAmplifierValues()) {
+                ItemStack in = amp.getInput();
+                ItemStack out = amp.getOutput();
+                if (in != null && out != null) {
+                    this.arecipes.add(new CachedAmplifierRecipe(in.copy(), out.copy()));
+                }
+            }
+            return;
+        }
+
         if ("item".equals(outputId)) {
             if (results != null && results.length > 0 && results[0] instanceof ItemStack) {
                 loadCraftingRecipes((ItemStack) results[0]);
@@ -71,7 +96,7 @@ public class AmplifierRecipeHandler extends TemplateRecipeHandler {
             ItemStack in = amplifier.getInput();
             ItemStack out = amplifier.getOutput();
 
-            if (in != null && ItemStack.areItemStacksEqual(ingredient, in)) {
+            if (in != null && ingredient.isItemEqual(in)) {
                 this.arecipes.add(new CachedAmplifierRecipe(in.copy(), out.copy()));
             }
         }
@@ -82,7 +107,7 @@ public class AmplifierRecipeHandler extends TemplateRecipeHandler {
         for (AetherAmplifier ench : AetherAPI.instance().getAmplifierValues()) {
             ItemStack out = ench.getOutput();
             ItemStack in = ench.getInput();
-            if (ItemStack.areItemStacksEqual(result, out)) {
+            if (in != null && out != null && result.isItemEqual(out)) {
                 this.arecipes.add(new CachedAmplifierRecipe(in.copy(), out.copy()));
             }
         }
@@ -90,19 +115,26 @@ public class AmplifierRecipeHandler extends TemplateRecipeHandler {
 
     @Override
     public void drawExtras(int recipe) {
+        this.drawProgressBar(51, 25, 176, 0, 14, 14, 48, 7);
+        this.drawProgressBar(74, 24, 176, 14, 24, 16, 48, 0);
         Object rec = this.arecipes.get(recipe);
         Minecraft mc = Minecraft.getMinecraft();
-        int x = 0;
-        int y = 64;
+        int progressTicks;
 
         if (rec instanceof CachedAmplifierRecipe r) {
             AetherAmplifier amp = AetherAPI.instance().getAmplifier(r.input.item);
             if (amp != null) {
-                int ticks = amp.getTimeRequired();
-                String s = "Time required: " + ticks + " ticks (" + (ticks / 20) + "s)";
-                mc.fontRenderer.drawString(s, x, y, 0x404040);
+                progressTicks = amp.getTimeRequired();
+                String s = "Time required: " + progressTicks + " ticks (" + (progressTicks / 20) + "s)";
+                mc.fontRenderer.drawString(s, 6, 70, 0x404040);
             }
         }
+    }
+
+    @Override
+    public void loadTransferRects() {
+        transferRects.add(new RecipeTransferRect(new Rectangle(51, 25, 14, 14), "amplifier"));
+        transferRects.add(new RecipeTransferRect(new Rectangle(74, 24, 24, 16), "amplifier"));
     }
 
     @Override

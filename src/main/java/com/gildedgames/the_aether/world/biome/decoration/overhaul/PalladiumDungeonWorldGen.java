@@ -26,7 +26,7 @@ public class PalladiumDungeonWorldGen implements IWorldGenerator {
         this.generateAether(world, palladiumRandom, chunkX * 16, chunkZ * 16);
     }
 
-	public void generateAether(World world, Random rand, int x, int z) {
+    public void generateAether(World world, Random rand, int x, int z) {
         if (Math.abs(x) < 3000 || Math.abs(z) < 3000) {
             return;
         }
@@ -36,8 +36,17 @@ public class PalladiumDungeonWorldGen implements IWorldGenerator {
             return;
         }
 
+        if (rand.nextInt(rarity) != 0) {
+            return;
+        }
+
+        int l3 = rand.nextInt(3) + 2;
+        if (rand.nextInt(35) != 0) {
+            return;
+        }
+
         BiomeGenBase biome = world.getWorldChunkManager().getBiomeGenAt(x + 8, z + 8);
-        if (biome != AetherWorld.divine_island || rand.nextInt(rarity) != 0) {
+        if (biome != AetherWorld.divine_island) {
             return;
         }
 
@@ -52,7 +61,6 @@ public class PalladiumDungeonWorldGen implements IWorldGenerator {
         byte bumpHeightMinTop1 = 2;
         byte bumpHeightMinBottom1 = 2;
         byte byte10 = 2;
-        int l3 = rand.nextInt(3) + 2;
         byte byte11 = 5;
         byte byte12 = 5;
         int i4 = 1;
@@ -68,92 +76,88 @@ public class PalladiumDungeonWorldGen implements IWorldGenerator {
         double radialDistanceVar1 = 1.0D;
         byte radialDistanceScaling1 = 5;
         byte radialDistanceBlurPasses1 = 5;
-        byte byte21 = 35;
-        if (rand.nextInt(byte21) == 0) {
-            int x1 = x + rand.nextInt(16) + 8;
-            int y1 = rand.nextInt(16) + 220;
-            int y2 = rand.nextInt(16) + 225;
-            int z1 = z + rand.nextInt(16) + 8;
-            int bumpsWide1;
-            if (byte2 <= byte0) {
-                bumpsWide1 = byte0;
-            } else {
-                bumpsWide1 = rand.nextInt(byte2 - byte0) + byte0;
-            }
 
-            int bumpsLong1;
-            if (byte3 <= byte1) {
-                bumpsLong1 = byte1;
-            } else {
-                bumpsLong1 = rand.nextInt(byte3 - byte1) + byte1;
-            }
-
-            int bumpHeightVarTop1;
-            if (byte6 <= byte4) {
-                bumpHeightVarTop1 = byte4;
-            } else {
-                bumpHeightVarTop1 = rand.nextInt(byte6 - byte4) + byte4;
-            }
-
-            int bumpHeightVarBottom1;
-            if (byte7 <= byte5) {
-                bumpHeightVarBottom1 = byte5;
-            } else {
-                bumpHeightVarBottom1 = rand.nextInt(byte7 - byte5) + byte5;
-            }
-
-            int blocksPerBumpX1;
-            if (byte11 <= byte10) {
-                blocksPerBumpX1 = byte10;
-            } else {
-                blocksPerBumpX1 = rand.nextInt(byte11 - byte10) + byte10;
-            }
-
-            int blocksPerBumpZ1;
-            if (byte12 <= l3) {
-                blocksPerBumpZ1 = l3;
-            } else {
-                blocksPerBumpZ1 = rand.nextInt(byte12 - l3) + l3;
-            }
-
-            int blocksPerBumpTopY1;
-            if (j4 <= i4) {
-                blocksPerBumpTopY1 = i4;
-            } else {
-                blocksPerBumpTopY1 = rand.nextInt(j4 - i4) + i4;
-            }
-
-            int blocksPerBumpBottomY1;
-            if (byte14 <= byte13) {
-                blocksPerBumpBottomY1 = byte13;
-            } else {
-                blocksPerBumpBottomY1 = rand.nextInt(byte14 - byte13) + byte13;
-            }
-
-            if (AetherConfig.enableLogReporting()) {
-                System.out.println("Palladium Dungeon generated at (X:" + x1 + ", Z:" + z1 + ")");
-                System.out.println("Large Structure is generating, be patient!");
-            }
-            Block genOre3 = BlocksAether.primeval_artifact;
-            (new PalladiumDungeon(bumpsWide1, bumpsLong1, bumpHeightVarTop1, bumpHeightVarBottom1, bumpHeightMinTop1, bumpHeightMinBottom1, blocksPerBumpX1, blocksPerBumpZ1, blocksPerBumpTopY1, blocksPerBumpBottomY1, blurPassesTop1, blurPassesBottom1, spikeHeightVarTop1, spikeHeightVarBottom1, radialDistanceSamples1, radialDistanceMin1, radialDistanceVar1, radialDistanceScaling1, radialDistanceBlurPasses1, genOre3)).generate(world, rand, x1, y2, z1);
-            (new PalladiumDungeon(bumpsWide1, bumpsLong1, bumpHeightVarTop1, bumpHeightVarBottom1, bumpHeightMinTop1, bumpHeightMinBottom1, blocksPerBumpX1, blocksPerBumpZ1, blocksPerBumpTopY1, blocksPerBumpBottomY1, blurPassesTop1, blurPassesBottom1, spikeHeightVarTop1, spikeHeightVarBottom1, radialDistanceSamples1, radialDistanceMin1, radialDistanceVar1, radialDistanceScaling1, radialDistanceBlurPasses1, genOre3)).generate(world, rand, x1 - 16, y2, z1 + 16);
-            (new PalladiumDungeon(bumpsWide1, bumpsLong1, bumpHeightVarTop1, bumpHeightVarBottom1, bumpHeightMinTop1, bumpHeightMinBottom1, blocksPerBumpX1, blocksPerBumpZ1, blocksPerBumpTopY1, blocksPerBumpBottomY1, blurPassesTop1, blurPassesBottom1, spikeHeightVarTop1, spikeHeightVarBottom1, radialDistanceSamples1, radialDistanceMin1, radialDistanceVar1, radialDistanceScaling1, radialDistanceBlurPasses1, genOre3)).generate(world, rand, x1 + 16, y2, z1 - 16);
-            (new PalladiumDungeon(bumpsWide1, bumpsLong1, bumpHeightVarTop1, bumpHeightVarBottom1, bumpHeightMinTop1, bumpHeightMinBottom1, blocksPerBumpX1, blocksPerBumpZ1, blocksPerBumpTopY1, blocksPerBumpBottomY1, blurPassesTop1, blurPassesBottom1, spikeHeightVarTop1, spikeHeightVarBottom1, radialDistanceSamples1, radialDistanceMin1, radialDistanceVar1, radialDistanceScaling1, radialDistanceBlurPasses1, genOre3)).generate(world, rand, x1 - 16, y2, z1 - 16);
-            (new PalladiumDungeon(bumpsWide1, bumpsLong1, bumpHeightVarTop1, bumpHeightVarBottom1, bumpHeightMinTop1, bumpHeightMinBottom1, blocksPerBumpX1, blocksPerBumpZ1, blocksPerBumpTopY1, blocksPerBumpBottomY1, blurPassesTop1, blurPassesBottom1, spikeHeightVarTop1, spikeHeightVarBottom1, radialDistanceSamples1, radialDistanceMin1, radialDistanceVar1, radialDistanceScaling1, radialDistanceBlurPasses1, genOre3)).generate(world, rand, x1 + 16, y2, z1 + 16);
-
-            (new PalladiumDungeon(bumpsWide1, bumpsLong1, bumpHeightVarTop1, bumpHeightVarBottom1, bumpHeightMinTop1, bumpHeightMinBottom1, blocksPerBumpX1, blocksPerBumpZ1, blocksPerBumpTopY1, blocksPerBumpBottomY1, blurPassesTop1, blurPassesBottom1, spikeHeightVarTop1, spikeHeightVarBottom1, radialDistanceSamples1, radialDistanceMin1, radialDistanceVar1, radialDistanceScaling1, radialDistanceBlurPasses1, genOre3)).generate(world, rand, x1 - 32, y2, z1 + 32);
-            (new PalladiumDungeon(bumpsWide1, bumpsLong1, bumpHeightVarTop1, bumpHeightVarBottom1, bumpHeightMinTop1, bumpHeightMinBottom1, blocksPerBumpX1, blocksPerBumpZ1, blocksPerBumpTopY1, blocksPerBumpBottomY1, blurPassesTop1, blurPassesBottom1, spikeHeightVarTop1, spikeHeightVarBottom1, radialDistanceSamples1, radialDistanceMin1, radialDistanceVar1, radialDistanceScaling1, radialDistanceBlurPasses1, genOre3)).generate(world, rand, x1 + 32, y2, z1 - 32);
-            (new PalladiumDungeon(bumpsWide1, bumpsLong1, bumpHeightVarTop1, bumpHeightVarBottom1, bumpHeightMinTop1, bumpHeightMinBottom1, blocksPerBumpX1, blocksPerBumpZ1, blocksPerBumpTopY1, blocksPerBumpBottomY1, blurPassesTop1, blurPassesBottom1, spikeHeightVarTop1, spikeHeightVarBottom1, radialDistanceSamples1, radialDistanceMin1, radialDistanceVar1, radialDistanceScaling1, radialDistanceBlurPasses1, genOre3)).generate(world, rand, x1 - 32, y2, z1 - 32);
-            (new PalladiumDungeon(bumpsWide1, bumpsLong1, bumpHeightVarTop1, bumpHeightVarBottom1, bumpHeightMinTop1, bumpHeightMinBottom1, blocksPerBumpX1, blocksPerBumpZ1, blocksPerBumpTopY1, blocksPerBumpBottomY1, blurPassesTop1, blurPassesBottom1, spikeHeightVarTop1, spikeHeightVarBottom1, radialDistanceSamples1, radialDistanceMin1, radialDistanceVar1, radialDistanceScaling1, radialDistanceBlurPasses1, genOre3)).generate(world, rand, x1 + 32, y2, z1 + 32);
-
-            (new DivineIsland(bumpsWide1, bumpsLong1, bumpHeightVarTop1, bumpHeightVarBottom1, bumpHeightMinTop1, bumpHeightMinBottom1, blocksPerBumpX1, blocksPerBumpZ1, blocksPerBumpTopY1, blocksPerBumpBottomY1, blurPassesTop1, blurPassesBottom1, spikeHeightVarTop1, spikeHeightVarBottom1, radialDistanceSamples1, radialDistanceMin1, radialDistanceVar1, radialDistanceScaling1, radialDistanceBlurPasses1, genOre3)).generate(world, rand, x1 - 48, y1 - 6, z1 + 48);
-            (new DivineIsland(bumpsWide1, bumpsLong1, bumpHeightVarTop1, bumpHeightVarBottom1, bumpHeightMinTop1, bumpHeightMinBottom1, blocksPerBumpX1, blocksPerBumpZ1, blocksPerBumpTopY1, blocksPerBumpBottomY1, blurPassesTop1, blurPassesBottom1, spikeHeightVarTop1, spikeHeightVarBottom1, radialDistanceSamples1, radialDistanceMin1, radialDistanceVar1, radialDistanceScaling1, radialDistanceBlurPasses1, genOre3)).generate(world, rand, x1 + 48, y1 - 6, z1 - 48);
-            (new DivineIsland(bumpsWide1, bumpsLong1, bumpHeightVarTop1, bumpHeightVarBottom1, bumpHeightMinTop1, bumpHeightMinBottom1, blocksPerBumpX1, blocksPerBumpZ1, blocksPerBumpTopY1, blocksPerBumpBottomY1, blurPassesTop1, blurPassesBottom1, spikeHeightVarTop1, spikeHeightVarBottom1, radialDistanceSamples1, radialDistanceMin1, radialDistanceVar1, radialDistanceScaling1, radialDistanceBlurPasses1, genOre3)).generate(world, rand, x1 - 48, y1 - 6, z1 - 48);
-            (new DivineIsland(bumpsWide1, bumpsLong1, bumpHeightVarTop1, bumpHeightVarBottom1, bumpHeightMinTop1, bumpHeightMinBottom1, blocksPerBumpX1, blocksPerBumpZ1, blocksPerBumpTopY1, blocksPerBumpBottomY1, blurPassesTop1, blurPassesBottom1, spikeHeightVarTop1, spikeHeightVarBottom1, radialDistanceSamples1, radialDistanceMin1, radialDistanceVar1, radialDistanceScaling1, radialDistanceBlurPasses1, genOre3)).generate(world, rand, x1 + 48, y1 - 6, z1 + 48);
-
-            new PalladiumDungeonTotem().generate(world, rand, x1, y2 + 1, z1);
+        int x1 = x + rand.nextInt(16) + 8;
+        int y1 = rand.nextInt(16) + 220;
+        int y2 = rand.nextInt(16) + 225;
+        int z1 = z + rand.nextInt(16) + 8;
+        int bumpsWide1;
+        if (byte2 <= byte0) {
+            bumpsWide1 = byte0;
+        } else {
+            bumpsWide1 = rand.nextInt(byte2 - byte0) + byte0;
         }
 
-    }
+        int bumpsLong1;
+        if (byte3 <= byte1) {
+            bumpsLong1 = byte1;
+        } else {
+            bumpsLong1 = rand.nextInt(byte3 - byte1) + byte1;
+        }
 
+        int bumpHeightVarTop1;
+        if (byte6 <= byte4) {
+            bumpHeightVarTop1 = byte4;
+        } else {
+            bumpHeightVarTop1 = rand.nextInt(byte6 - byte4) + byte4;
+        }
+
+        int bumpHeightVarBottom1;
+        if (byte7 <= byte5) {
+            bumpHeightVarBottom1 = byte5;
+        } else {
+            bumpHeightVarBottom1 = rand.nextInt(byte7 - byte5) + byte5;
+        }
+
+        int blocksPerBumpX1;
+        if (byte11 <= byte10) {
+            blocksPerBumpX1 = byte10;
+        } else {
+            blocksPerBumpX1 = rand.nextInt(byte11 - byte10) + byte10;
+        }
+
+        int blocksPerBumpZ1;
+        if (byte12 <= l3) {
+            blocksPerBumpZ1 = l3;
+        } else {
+            blocksPerBumpZ1 = rand.nextInt(byte12 - l3) + l3;
+        }
+
+        int blocksPerBumpTopY1;
+        if (j4 <= i4) {
+            blocksPerBumpTopY1 = i4;
+        } else {
+            blocksPerBumpTopY1 = rand.nextInt(j4 - i4) + i4;
+        }
+
+        int blocksPerBumpBottomY1;
+        if (byte14 <= byte13) {
+            blocksPerBumpBottomY1 = byte13;
+        } else {
+            blocksPerBumpBottomY1 = rand.nextInt(byte14 - byte13) + byte13;
+        }
+
+        if (AetherConfig.enableLogReporting()) {
+            System.out.println("Palladium Dungeon generated at (X:" + x1 + ", Z:" + z1 + ")");
+            System.out.println("Large Structure is generating, be patient!");
+        }
+        Block genOre3 = BlocksAether.primeval_artifact;
+        (new PalladiumDungeon(bumpsWide1, bumpsLong1, bumpHeightVarTop1, bumpHeightVarBottom1, bumpHeightMinTop1, bumpHeightMinBottom1, blocksPerBumpX1, blocksPerBumpZ1, blocksPerBumpTopY1, blocksPerBumpBottomY1, blurPassesTop1, blurPassesBottom1, spikeHeightVarTop1, spikeHeightVarBottom1, radialDistanceSamples1, radialDistanceMin1, radialDistanceVar1, radialDistanceScaling1, radialDistanceBlurPasses1, genOre3)).generate(world, rand, x1, y2, z1);
+        (new PalladiumDungeon(bumpsWide1, bumpsLong1, bumpHeightVarTop1, bumpHeightVarBottom1, bumpHeightMinTop1, bumpHeightMinBottom1, blocksPerBumpX1, blocksPerBumpZ1, blocksPerBumpTopY1, blocksPerBumpBottomY1, blurPassesTop1, blurPassesBottom1, spikeHeightVarTop1, spikeHeightVarBottom1, radialDistanceSamples1, radialDistanceMin1, radialDistanceVar1, radialDistanceScaling1, radialDistanceBlurPasses1, genOre3)).generate(world, rand, x1 - 16, y2, z1 + 16);
+        (new PalladiumDungeon(bumpsWide1, bumpsLong1, bumpHeightVarTop1, bumpHeightVarBottom1, bumpHeightMinTop1, bumpHeightMinBottom1, blocksPerBumpX1, blocksPerBumpZ1, blocksPerBumpTopY1, blocksPerBumpBottomY1, blurPassesTop1, blurPassesBottom1, spikeHeightVarTop1, spikeHeightVarBottom1, radialDistanceSamples1, radialDistanceMin1, radialDistanceVar1, radialDistanceScaling1, radialDistanceBlurPasses1, genOre3)).generate(world, rand, x1 + 16, y2, z1 - 16);
+        (new PalladiumDungeon(bumpsWide1, bumpsLong1, bumpHeightVarTop1, bumpHeightVarBottom1, bumpHeightMinTop1, bumpHeightMinBottom1, blocksPerBumpX1, blocksPerBumpZ1, blocksPerBumpTopY1, blocksPerBumpBottomY1, blurPassesTop1, blurPassesBottom1, spikeHeightVarTop1, spikeHeightVarBottom1, radialDistanceSamples1, radialDistanceMin1, radialDistanceVar1, radialDistanceScaling1, radialDistanceBlurPasses1, genOre3)).generate(world, rand, x1 - 16, y2, z1 - 16);
+        (new PalladiumDungeon(bumpsWide1, bumpsLong1, bumpHeightVarTop1, bumpHeightVarBottom1, bumpHeightMinTop1, bumpHeightMinBottom1, blocksPerBumpX1, blocksPerBumpZ1, blocksPerBumpTopY1, blocksPerBumpBottomY1, blurPassesTop1, blurPassesBottom1, spikeHeightVarTop1, spikeHeightVarBottom1, radialDistanceSamples1, radialDistanceMin1, radialDistanceVar1, radialDistanceScaling1, radialDistanceBlurPasses1, genOre3)).generate(world, rand, x1 + 16, y2, z1 + 16);
+
+        (new PalladiumDungeon(bumpsWide1, bumpsLong1, bumpHeightVarTop1, bumpHeightVarBottom1, bumpHeightMinTop1, bumpHeightMinBottom1, blocksPerBumpX1, blocksPerBumpZ1, blocksPerBumpTopY1, blocksPerBumpBottomY1, blurPassesTop1, blurPassesBottom1, spikeHeightVarTop1, spikeHeightVarBottom1, radialDistanceSamples1, radialDistanceMin1, radialDistanceVar1, radialDistanceScaling1, radialDistanceBlurPasses1, genOre3)).generate(world, rand, x1 - 32, y2, z1 + 32);
+        (new PalladiumDungeon(bumpsWide1, bumpsLong1, bumpHeightVarTop1, bumpHeightVarBottom1, bumpHeightMinTop1, bumpHeightMinBottom1, blocksPerBumpX1, blocksPerBumpZ1, blocksPerBumpTopY1, blocksPerBumpBottomY1, blurPassesTop1, blurPassesBottom1, spikeHeightVarTop1, spikeHeightVarBottom1, radialDistanceSamples1, radialDistanceMin1, radialDistanceVar1, radialDistanceScaling1, radialDistanceBlurPasses1, genOre3)).generate(world, rand, x1 + 32, y2, z1 - 32);
+        (new PalladiumDungeon(bumpsWide1, bumpsLong1, bumpHeightVarTop1, bumpHeightVarBottom1, bumpHeightMinTop1, bumpHeightMinBottom1, blocksPerBumpX1, blocksPerBumpZ1, blocksPerBumpTopY1, blocksPerBumpBottomY1, blurPassesTop1, blurPassesBottom1, spikeHeightVarTop1, spikeHeightVarBottom1, radialDistanceSamples1, radialDistanceMin1, radialDistanceVar1, radialDistanceScaling1, radialDistanceBlurPasses1, genOre3)).generate(world, rand, x1 - 32, y2, z1 - 32);
+        (new PalladiumDungeon(bumpsWide1, bumpsLong1, bumpHeightVarTop1, bumpHeightVarBottom1, bumpHeightMinTop1, bumpHeightMinBottom1, blocksPerBumpX1, blocksPerBumpZ1, blocksPerBumpTopY1, blocksPerBumpBottomY1, blurPassesTop1, blurPassesBottom1, spikeHeightVarTop1, spikeHeightVarBottom1, radialDistanceSamples1, radialDistanceMin1, radialDistanceVar1, radialDistanceScaling1, radialDistanceBlurPasses1, genOre3)).generate(world, rand, x1 + 32, y2, z1 + 32);
+
+        (new DivineIsland(bumpsWide1, bumpsLong1, bumpHeightVarTop1, bumpHeightVarBottom1, bumpHeightMinTop1, bumpHeightMinBottom1, blocksPerBumpX1, blocksPerBumpZ1, blocksPerBumpTopY1, blocksPerBumpBottomY1, blurPassesTop1, blurPassesBottom1, spikeHeightVarTop1, spikeHeightVarBottom1, radialDistanceSamples1, radialDistanceMin1, radialDistanceVar1, radialDistanceScaling1, radialDistanceBlurPasses1, genOre3)).generate(world, rand, x1 - 48, y1 - 6, z1 + 48);
+        (new DivineIsland(bumpsWide1, bumpsLong1, bumpHeightVarTop1, bumpHeightVarBottom1, bumpHeightMinTop1, bumpHeightMinBottom1, blocksPerBumpX1, blocksPerBumpZ1, blocksPerBumpTopY1, blocksPerBumpBottomY1, blurPassesTop1, blurPassesBottom1, spikeHeightVarTop1, spikeHeightVarBottom1, radialDistanceSamples1, radialDistanceMin1, radialDistanceVar1, radialDistanceScaling1, radialDistanceBlurPasses1, genOre3)).generate(world, rand, x1 + 48, y1 - 6, z1 - 48);
+        (new DivineIsland(bumpsWide1, bumpsLong1, bumpHeightVarTop1, bumpHeightVarBottom1, bumpHeightMinTop1, bumpHeightMinBottom1, blocksPerBumpX1, blocksPerBumpZ1, blocksPerBumpTopY1, blocksPerBumpBottomY1, blurPassesTop1, blurPassesBottom1, spikeHeightVarTop1, spikeHeightVarBottom1, radialDistanceSamples1, radialDistanceMin1, radialDistanceVar1, radialDistanceScaling1, radialDistanceBlurPasses1, genOre3)).generate(world, rand, x1 - 48, y1 - 6, z1 - 48);
+        (new DivineIsland(bumpsWide1, bumpsLong1, bumpHeightVarTop1, bumpHeightVarBottom1, bumpHeightMinTop1, bumpHeightMinBottom1, blocksPerBumpX1, blocksPerBumpZ1, blocksPerBumpTopY1, blocksPerBumpBottomY1, blurPassesTop1, blurPassesBottom1, spikeHeightVarTop1, spikeHeightVarBottom1, radialDistanceSamples1, radialDistanceMin1, radialDistanceVar1, radialDistanceScaling1, radialDistanceBlurPasses1, genOre3)).generate(world, rand, x1 + 48, y1 - 6, z1 + 48);
+
+        new PalladiumDungeonTotem().generate(world, rand, x1, y2 + 1, z1);
+    }
 }

@@ -35,7 +35,7 @@
 	  }
 	]
   },
-  
+
   "music.night1": {
     "category": "music",
     "sounds": [
@@ -45,7 +45,7 @@
       }
     ]
   },
-  
+
   "music.night2": {
     "category": "music",
     "sounds": [
@@ -55,7 +55,7 @@
       }
     ]
   },
-  
+
   "music.menu": {
 	"category": "music",
 	"sounds": [
@@ -100,7 +100,7 @@
 	    "stream": true
 	  }
 	]
-  },  
+  },
    "music.aether5": {
     "category": "music",
     "sounds": [
@@ -109,7 +109,7 @@
         "stream": true
       }
     ]
-  },    
+  },
    "music.aether6": {
     "category": "music",
     "sounds": [
@@ -119,7 +119,7 @@
       }
     ]
   },
-  
+
   "achievement": {
   	"category": "player",
 	"sounds": [
@@ -188,14 +188,14 @@
 	"sounds": [
 	    "aether_legacy:aemob/zephyr/shoot"
 	]
-  },  
+  },
   "aemob.zephyr.blow": {
     "category": "hostile",
     "subtitle": "subtitles.aemob.zephyr.blow",
     "sounds": [
         "aetherii:aemob/zephyr/blow"
     ]
-  },  
+  },
   "aemob.zephyr.puff": {
     "category": "hostile",
     "subtitle": "subtitles.aemob.zephyr.puff",
@@ -267,7 +267,7 @@
 	    "aether_legacy:aeboss/slider/death"
 	]
    },
-   
+
    "aemob.cyro.hurt": {
     "category": "hostile",
     "subtitle": "subtitles.aemob.cyro.hit",
@@ -278,7 +278,7 @@
         "aether_legacy:aemob/cyro/hit4"
      ]
     },
-    
+
     "aemob.cyro.death": {
     "category": "hostile",
     "subtitle": "subtitles.aemob.cyro.death",
@@ -286,7 +286,7 @@
         "aether_legacy:aemob/cyro/death"
      ]
     },
-    
+
     "aemob.cyro.living": {
     "category": "hostile",
     "subtitle": "subtitles.aemob.cyro.breathe",
@@ -296,13 +296,13 @@
         "aether_legacy:aemob/cyro/breathe3"
      ]
     },
-    
+
    "aemob.aercenturion.hurt": {
     "category": "hostile",
     "subtitle": "subtitles.aemob.aercenturion.hit",
     "sounds": [
-        "aether_legacy:aemob/aercenturion/hit1",
-        "aether_legacy:aemob/aercenturion/hit2"
+        "aetherii:aemob/sentryGolem/hit1",
+        "aetherii:aemob/sentryGolem/hit2"
      ]
     },
 
@@ -310,27 +310,27 @@
     "category": "hostile",
     "subtitle": "subtitles.aemob.aercenturion.death",
     "sounds": [
-        "aether_legacy:aemob/aercenturion/death"
+        "aetherii:aemob/sentryGolem/death"
      ]
     },
-    
+
     "aemob.aercenturion.say": {
     "category": "hostile",
     "subtitle": "subtitles.aemob.aercenturion.say",
     "sounds": [
-        "aether_legacy:aemob/aercenturion/say1",
-        "aether_legacy:aemob/aercenturion/say2"
+        "aetherii:aemob/sentryGolem/say1",
+        "aetherii:aemob/sentryGolem/say2"
      ]
     },
-    
+
     "aemob.aercenturion.seenEnemy": {
     "category": "hostile",
     "subtitle": "subtitles.aemob.aercenturion.seenEnemy",
     "sounds": [
-        "aether_legacy:aemob/aercenturion/seenEnemy"
+        "aetherii:aemob/sentryGolem/creepySeen"
      ]
     },
-    
+
     "projectile.charged_hit": {
     "category": "neutral",
     "subtitle": "subtitles.projectile.charged_hit",
@@ -341,28 +341,8 @@
         "aether_legacy:projectile/charged_hit/charged_hit3",
         "aether_legacy:projectile/charged_hit/charged_hit4"
     ]
-  }, 
-    
-    "aemob.zephyroo.say": {
-    "category": "neutral",
-    "subtitle": "subtitles.aemob.zephyroo.say",
-    "sounds": [
-        "aether_legacy:aemob/zephyroo/say1",
-        "aether_legacy:aemob/zephyroo/say2",
-        "aether_legacy:aemob/zephyroo/say3"
-    ]
   },
-  
-  "aemob.zephyroo.hurt": {
-    "category": "neutral",
-    "subtitle": "subtitles.aemob.zephyroo.hurt",
-    "sounds": [
-        "aether_legacy:aemob/zephyroo/hurt1",
-        "aether_legacy:aemob/zephyroo/hurt2",
-        "aether_legacy:aemob/zephyroo/hurt3"
-    ]
-  },
-  
+
   "aemob.zarnillys.say": {
     "category": "hostile",
     "subtitle": "subtitles.aemob.zarnillys.say",
@@ -373,7 +353,7 @@
         "aether_legacy:aemob/zarnillys/say3"
     ]
   },
-  
+
   "aemob.zarnillys.hurt": {
     "category": "hostile",
     "subtitle": "subtitles.aemob.zarnillys.hurt",
@@ -384,15 +364,7 @@
         "aether_legacy:aemob/zarnillys/hurt3"
     ]
   },
-  
-  "aemob.zephyroo.death": {
-    "category": "neutral",
-    "subtitle": "subtitles.aemob.zephyroo.death",
-    "sounds": [
-        "aether_legacy:aemob/zephyroo/death"
-    ]
-  },
-  
+
   "aemob.urk.hurt": {
     "category": "hostile",
     "subtitle": "subtitles.aemob.urk.hurt",
@@ -402,7 +374,7 @@
         "aether_legacy:aemob/urk/hurt2"
     ]
   },
-  
+
   "aemob.urk.death": {
     "category": "neutral",
     "subtitle": "subtitles.aemob.urk.death",
@@ -410,8 +382,8 @@
         "aether_legacy:aemob/urk/death"
     ]
   },
-  
-  
+
+
   "aemob.urk.step": {
     "category": "hostile",
     "subtitle": "subtitles.aemob.urk.step",
@@ -422,8 +394,8 @@
         "aether_legacy:aemob/urk/step3"
     ]
   },
-  
-   
+
+
   "aemob.cockatrice.hurt": {
     "category": "hostile",
     "subtitle": "subtitles.aemob.cockatrice.hurt",
@@ -433,7 +405,7 @@
         "aether_legacy:aemob/cockatrice/hurt3"
      ]
     },
-    
+
     "aemob.cockatrice.death": {
     "category": "hostile",
     "subtitle": "subtitles.aemob.cockatrice.death",
@@ -441,7 +413,7 @@
         "aether_legacy:aemob/cockatrice/death"
      ]
     },
-    
+
     "aemob.cockatrice.say": {
     "category": "hostile",
     "subtitle": "subtitles.aemob.cockatrice.say",
@@ -451,7 +423,7 @@
         "aether_legacy:aemob/cockatrice/say3"
      ]
     },
-    
+
     "aemob.uligo.hurt": {
     "category": "hostile",
     "subtitle": "subtitles.aemob.uligo.hurt",
@@ -461,7 +433,7 @@
         "aether_legacy:aemob/uligo/hurt3"
      ]
     },
-    
+
     "aemob.uligo.death": {
     "category": "hostile",
     "subtitle": "subtitles.aemob.uligo.death",
@@ -469,7 +441,7 @@
         "aether_legacy:aemob/uligo/death"
      ]
     },
-    
+
    "aemob.thunderlo.hurt": {
     "category": "neutral",
     "subtitle": "subtitles.aemob.thunderlo.hurt",
@@ -479,7 +451,7 @@
         "aether_legacy:aemob/thunderlo/hurt3"
      ]
     },
-    
+
     "aemob.thunderlo.death": {
     "category": "neutral",
     "subtitle": "subtitles.aemob.thunderlo.death",
@@ -487,7 +459,7 @@
         "aether_legacy:aemob/thunderlo/death"
      ]
     },
-    
+
     "aemob.thunderlo.say": {
     "category": "neutral",
     "subtitle": "subtitles.aemob.thunderlo.say",
@@ -498,14 +470,14 @@
         "aether_legacy:aemob/thunderlo/say4"
      ]
     },
-   
+
   "aeportal.aeportal": {
         "category": "neutral",
         "sounds": [
             "aetherii:aeportal/aeportal"
         ]
     },
-    
+
    "aeportal.aetravel": {
         "category": "neutral",
         "sounds": [

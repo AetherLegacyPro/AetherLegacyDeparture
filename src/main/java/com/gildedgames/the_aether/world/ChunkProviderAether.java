@@ -71,9 +71,10 @@ public class ChunkProviderAether implements IChunkProvider {
     private static final int AERCLOUD_FIELDS_HILL_Y = 92;
     private static final int AERCLOUD_FIELDS_RARE_HILL_Y = 102;
 
-    private static final int AERCLOUD_FIELDS_PULL_DISTANCE = 96;
-    private static final int AERCLOUD_FIELDS_PULL_SAMPLE_STEP = 2;
-    private static final int AERCLOUD_FIELDS_PULL_EXTRA_Y = 4;
+    private static final int AERCLOUD_FIELDS_BLEND_DISTANCE = 32;
+    private static final int AERCLOUD_FIELDS_BLEND_SAMPLE_STEP = 2;
+    private static final int AERCLOUD_FIELDS_TOP_FADE_DISTANCE = 40;
+    private static final double AERCLOUD_FIELDS_TOP_FADE_STRENGTH = 36.0D;
 
     private static final int STORMY_SKIES_LOW_Y = 82;
     private static final int STORMY_SKIES_COMMON_Y = 96;
@@ -200,20 +201,16 @@ public class ChunkProviderAether implements IChunkProvider {
                                 int columnIndex = localX + localZ * 16;
 
                                 BiomeGenBase biome = biomes[columnIndex];
-                                double terrainFactor = terrainFactors[columnIndex];
+                                double aercloudBlend = terrainFactors[columnIndex];
                                 int maxTerrainY = maxTerrainYByColumn[columnIndex];
 
                                 Block filler = Blocks.air;
 
-                                if (y <= maxTerrainY && terrainFactor > 0.02D) {
+                                if (y <= maxTerrainY) {
                                     double density = d15;
 
-                                    double fadeAmount = 1.0D - terrainFactor;
-                                    fadeAmount = Math.pow(fadeAmount, 1.45D);
-                                    density -= fadeAmount * 10.0D;
-
-                                    int topFadeDistance;
-                                    double topFadeStrength;
+                                    int nonAercloudTopFadeDistance;
+                                    double nonAercloudTopFadeStrength;
 
                                     if (this.isHighTerrainBiome(biome)) {
                                         double peakT = (double)(maxTerrainY - PEAKS_EDGE_MIN_Y) / (double)(PEAKS_TERRAIN_MAX_Y - PEAKS_EDGE_MIN_Y);
@@ -227,38 +224,34 @@ public class ChunkProviderAether implements IChunkProvider {
                                         }
 
                                         peakT = this.smootherstep(peakT);
-
-                                        topFadeDistance = this.lerpInt(40, 72, peakT);
-                                        topFadeStrength = this.lerp(24.0D, 10.0D, peakT);
-                                    } else if (this.isAercloudFieldsBiome(biome)) {
-                                        topFadeDistance = 40;
-                                        topFadeStrength = 36.0D;
+                                        nonAercloudTopFadeDistance = this.lerpInt(40, 72, peakT);
+                                        nonAercloudTopFadeStrength = this.lerp(24.0D, 10.0D, peakT);
                                     } else if (this.isStormySkiesBiome(biome)) {
-                                        topFadeDistance = 44;
-                                        topFadeStrength = 30.0D;
+                                        nonAercloudTopFadeDistance = 44;
+                                        nonAercloudTopFadeStrength = 30.0D;
                                     } else if (this.isQuicksoilDunesBiome(biome)) {
-                                        topFadeDistance = 36;
-                                        topFadeStrength = 34.0D;
+                                        nonAercloudTopFadeDistance = 36;
+                                        nonAercloudTopFadeStrength = 34.0D;
                                     } else {
                                         if (maxTerrainY > NORMAL_TERRAIN_RARE_Y) {
-                                            topFadeDistance = 56;
-                                            topFadeStrength = 22.0D;
+                                            nonAercloudTopFadeDistance = 56;
+                                            nonAercloudTopFadeStrength = 22.0D;
                                         } else {
-                                            topFadeDistance = 48;
-                                            topFadeStrength = 30.0D;
+                                            nonAercloudTopFadeDistance = 48;
+                                            nonAercloudTopFadeStrength = 30.0D;
                                         }
                                     }
-
+                                    int topFadeDistance = this.lerpInt(nonAercloudTopFadeDistance, AERCLOUD_FIELDS_TOP_FADE_DISTANCE, aercloudBlend);
+                                    double topFadeStrength = this.lerp(nonAercloudTopFadeStrength, AERCLOUD_FIELDS_TOP_FADE_STRENGTH, aercloudBlend);
                                     int fadeTopStart = maxTerrainY - topFadeDistance;
                                     if (y > fadeTopStart) {
-                                        double topFade = (double) (y - fadeTopStart) / (double) topFadeDistance;
 
+                                        double topFade = (double) (y - fadeTopStart) / (double) topFadeDistance;
                                         if (topFade > 1.0D) {
                                             topFade = 1.0D;
                                         }
 
                                         topFade = topFade * topFade * (3.0D - 2.0D * topFade);
-
                                         density -= topFade * topFadeStrength;
                                     }
 
@@ -321,24 +314,22 @@ public class ChunkProviderAether implements IChunkProvider {
                     top = BlocksAether.aether_grass;
                     filler = BlocksAether.aether_dirt;
                 }
-               // if (biome != AetherWorld.aercloud_fields) {
-                    for (int y = WORLD_HEIGHT - 1; y >= 0; y--) {
-                        int index = this.getBlockIndex(localX, y, localZ);
-                        Block block = blocks[index];
+                for (int y = WORLD_HEIGHT - 1; y >= 0; y--) {
+                    int index = this.getBlockIndex(localX, y, localZ);
+                    Block block = blocks[index];
 
-                        if (block == Blocks.air) {
-                            depth = -1;
-                        } else if (block == BlocksAether.holystone || block == BlocksAether.stratos_aercloud) {
-                            if (depth == -1) {
-                                depth = surfaceDepth;
-                                blocks[index] = top;
-                            } else if (depth > 0) {
-                                --depth;
-                                blocks[index] = filler;
-                            }
+                    if (block == Blocks.air) {
+                        depth = -1;
+                    } else if (block == BlocksAether.holystone || block == BlocksAether.stratos_aercloud) {
+                        if (depth == -1) {
+                            depth = surfaceDepth;
+                            blocks[index] = top;
+                        } else if (depth > 0) {
+                            --depth;
+                            blocks[index] = filler;
                         }
                     }
-               //}
+                }
             }
         }
     }
@@ -418,15 +409,27 @@ public class ChunkProviderAether implements IChunkProvider {
     }
 
     private boolean isStormySkiesBiome(BiomeGenBase biome) {
-        return biome != null
-            && AetherWorld.stormy_skies != null
-            && biome.biomeID == AetherWorld.stormy_skies.biomeID;
+        return biome != null && AetherWorld.stormy_skies != null && biome.biomeID == AetherWorld.stormy_skies.biomeID;
     }
 
     private boolean isQuicksoilDunesBiome(BiomeGenBase biome) {
-        return biome != null
-            && AetherWorld.quicksoil_dunes != null
-            && biome.biomeID == AetherWorld.quicksoil_dunes.biomeID;
+        return biome != null && AetherWorld.quicksoil_dunes != null && biome.biomeID == AetherWorld.quicksoil_dunes.biomeID;
+    }
+
+    private boolean isAetherPeaksBiome(BiomeGenBase biome) {
+        return biome != null && AetherWorld.aether_peaks != null && biome.biomeID == AetherWorld.aether_peaks.biomeID;
+    }
+
+    private boolean isDivineIslandBiome(BiomeGenBase biome) {
+        return biome != null && AetherWorld.divine_island != null && biome.biomeID == AetherWorld.divine_island.biomeID;
+    }
+
+    private boolean isHighTerrainBiome(BiomeGenBase biome) {
+        return this.isAetherPeaksBiome(biome) || this.isDivineIslandBiome(biome);
+    }
+
+    private boolean isAercloudFieldsBiome(BiomeGenBase biome) {
+        return biome != null && AetherWorld.aercloud_fields != null && biome.biomeID == AetherWorld.aercloud_fields.biomeID;
     }
 
     private int getQuicksoilDunesMaxTerrainY(int worldX, int worldZ) {
@@ -435,7 +438,6 @@ public class ChunkProviderAether implements IChunkProvider {
         double small = this.regionalNoise01(worldX - 9917, worldZ + 55123, 64, 8103L);
 
         double n = broad * 0.65D + medium * 0.25D + small * 0.10D;
-
         n = this.smootherstep(n);
 
         if (n < 0.72D) {
@@ -453,16 +455,11 @@ public class ChunkProviderAether implements IChunkProvider {
     }
 
     private int getStormySkiesMaxTerrainY(int worldX, int worldZ) {
-        /*
-         * Hybrid between regular Aether and Aercloud Fields.
-         * Lower and smoother than normal terrain, but not totally flat.
-         */
         double broad = this.regionalNoise01(worldX, worldZ, 256, 10101L);
         double medium = this.regionalNoise01(worldX + 33119, worldZ - 17731, 128, 10102L);
         double small = this.regionalNoise01(worldX - 12117, worldZ + 44123, 80, 10103L);
 
         double n = broad * 0.68D + medium * 0.24D + small * 0.08D;
-
         n = this.smootherstep(n);
 
         if (n < 0.72D) {
@@ -485,7 +482,6 @@ public class ChunkProviderAether implements IChunkProvider {
         double small = this.regionalNoise01(worldX - 19917, worldZ + 65123, 80, 9103L);
 
         double n = broad * 0.70D + medium * 0.22D + small * 0.08D;
-
         n = this.smootherstep(n);
 
         if (n < 0.76D) {
@@ -500,22 +496,6 @@ public class ChunkProviderAether implements IChunkProvider {
 
         double t = (n - 0.95D) / (1.0D - 0.95D);
         return this.lerpInt(AERCLOUD_FIELDS_HILL_Y, AERCLOUD_FIELDS_RARE_HILL_Y, t);
-    }
-
-    private boolean isAetherPeaksBiome(BiomeGenBase biome) {
-        return biome != null
-            && AetherWorld.aether_peaks != null
-            && biome.biomeID == AetherWorld.aether_peaks.biomeID;
-    }
-
-    private boolean isDivineIslandBiome(BiomeGenBase biome) {
-        return biome != null
-            && AetherWorld.divine_island != null
-            && biome.biomeID == AetherWorld.divine_island.biomeID;
-    }
-
-    private boolean isHighTerrainBiome(BiomeGenBase biome) {
-        return this.isAetherPeaksBiome(biome) || this.isDivineIslandBiome(biome);
     }
 
     private int getNormalMaxTerrainY(int worldX, int worldZ) {
@@ -565,7 +545,6 @@ public class ChunkProviderAether implements IChunkProvider {
 
     private int floorDivInt(int x, int y) {
         int r = x / y;
-
         if ((x ^ y) < 0 && r * y != x) {
             r--;
         }
@@ -629,20 +608,91 @@ public class ChunkProviderAether implements IChunkProvider {
         return n;
     }
 
-
-    private boolean isAercloudFieldsBiome(BiomeGenBase biome) {
-        return biome != null && AetherWorld.aercloud_fields != null
-            && biome.biomeID == AetherWorld.aercloud_fields.biomeID;
-    }
-
     private double[] makeAercloudTerrainFactorsForChunk(int chunkX, int chunkZ) {
         double[] factors = new double[256];
 
-        for (int i = 0; i < factors.length; i++) {
-            factors[i] = 1.0D;
+        int worldBaseX = chunkX * 16;
+        int worldBaseZ = chunkZ * 16;
+
+        int radius = AERCLOUD_FIELDS_BLEND_DISTANCE;
+        int sampleStep = AERCLOUD_FIELDS_BLEND_SAMPLE_STEP;
+
+        int sampleMinX = worldBaseX - radius;
+        int sampleMinZ = worldBaseZ - radius;
+        int sampleSize = 16 + radius * 2;
+
+        BiomeGenBase[] nearbyBiomes = this.worldObj.getWorldChunkManager().loadBlockGeneratorData(null, sampleMinX, sampleMinZ, sampleSize, sampleSize);
+
+        for (int localX = 0; localX < 16; localX++) {
+            for (int localZ = 0; localZ < 16; localZ++) {
+                int index = localX + localZ * 16;
+
+                int sampleCenterX = worldBaseX + localX - sampleMinX;
+                int sampleCenterZ = worldBaseZ + localZ - sampleMinZ;
+
+                factors[index] = this.getAercloudFieldsInfluenceFromArray(sampleCenterX, sampleCenterZ, sampleSize, nearbyBiomes, radius, sampleStep);
+            }
         }
 
         return factors;
+    }
+
+    private double getAercloudFieldsInfluenceFromArray(int centerX, int centerZ, int sampleSize, BiomeGenBase[] nearbyBiomes, int radius, int sampleStep) {
+        double aercloudWeight = 0.0D;
+        double totalWeight = 0.0D;
+
+        int radiusSquared = radius * radius;
+        for (int offsetZ = -radius; offsetZ <= radius; offsetZ += sampleStep) {
+
+            int sampleZ = centerZ + offsetZ;
+            if (sampleZ < 0 || sampleZ >= sampleSize) {
+                continue;
+            }
+
+            for (int offsetX = -radius; offsetX <= radius; offsetX += sampleStep) {
+
+                int sampleX = centerX + offsetX;
+                if (sampleX < 0 || sampleX >= sampleSize) {
+                    continue;
+                }
+
+                int distanceSquared = offsetX * offsetX + offsetZ * offsetZ;
+                if (distanceSquared > radiusSquared) {
+                    continue;
+                }
+
+                double distance = Math.sqrt((double)distanceSquared);
+
+                double weight = 1.0D - distance / (double)radius;
+
+                weight = this.smootherstep(weight);
+                if (weight <= 0.0D) {
+                    continue;
+                }
+
+                totalWeight += weight;
+                BiomeGenBase sampleBiome = nearbyBiomes[sampleX + sampleZ * sampleSize];
+
+                if (this.isAercloudFieldsBiome(sampleBiome)) {
+                    aercloudWeight += weight;
+                }
+            }
+        }
+
+        if (totalWeight <= 0.0D) {
+            return 0.0D;
+        }
+
+        double influence = aercloudWeight / totalWeight;
+        if (influence < 0.0D) {
+            return 0.0D;
+        }
+
+        if (influence > 1.0D) {
+            return 1.0D;
+        }
+
+        return this.smootherstep(influence);
     }
 
     private double smootherstep(double t) {
@@ -671,13 +721,13 @@ public class ChunkProviderAether implements IChunkProvider {
         return false;
     }
 
-    private int[] makeMaxTerrainYForChunk(int chunkX, int chunkZ, BiomeGenBase[] biomes) {
+    private int[] makeMaxTerrainYForChunk(int chunkX, int chunkZ, BiomeGenBase[] biomes, double[] aercloudInfluence) {
         int[] result = new int[256];
 
         int worldBaseX = chunkX * 16;
         int worldBaseZ = chunkZ * 16;
 
-        int radius = Math.max(Math.max(PEAKS_EDGE_BLEND_DISTANCE, PEAKS_OUTER_FOOTHILL_DISTANCE), AERCLOUD_FIELDS_PULL_DISTANCE);
+        int radius = Math.max(PEAKS_EDGE_BLEND_DISTANCE, PEAKS_OUTER_FOOTHILL_DISTANCE);
         int sampleStep = PEAKS_EDGE_SAMPLE_STEP;
 
         int sampleMinX = worldBaseX - radius;
@@ -694,189 +744,32 @@ public class ChunkProviderAether implements IChunkProvider {
                 int worldZ = worldBaseZ + localZ;
 
                 BiomeGenBase biome = biomes[index];
-                int height;
+
+                int nonAercloudHeight;
 
                 if (this.isAercloudFieldsBiome(biome)) {
-                    result[index] = this.getAercloudFieldsMaxTerrainY(worldX, worldZ);
-                    continue;
-                }
-
-                if (this.isStormySkiesBiome(biome)) {
-                    height = this.getStormySkiesMaxTerrainY(worldX, worldZ);
+                    nonAercloudHeight = this.getNormalMaxTerrainY(worldX, worldZ);
+                } else if (this.isStormySkiesBiome(biome)) {
+                    nonAercloudHeight = this.getStormySkiesMaxTerrainY(worldX, worldZ);
                 } else if (this.isQuicksoilDunesBiome(biome)) {
-                    height = this.getQuicksoilDunesMaxTerrainY(worldX, worldZ);
+                    nonAercloudHeight = this.getQuicksoilDunesMaxTerrainY(worldX, worldZ);
                 } else {
                     int normalHeight = this.getNormalMaxTerrainY(worldX, worldZ);
-
                     if (this.isHighTerrainBiome(biome)) {
-                        int distanceToNonHighTerrain = this.getApproxDistanceToHighTerrainBiomeTypeFromArray(
-                            worldX,
-                            worldZ,
-                            sampleMinX,
-                            sampleMinZ,
-                            sampleSize,
-                            nearbyBiomes,
-                            radius,
-                            sampleStep,
-                            false
-                        );
-
-                        height = this.getHighTerrainMaxYFromDistance(
-                            worldX,
-                            worldZ,
-                            normalHeight,
-                            distanceToNonHighTerrain
-                        );
+                        int distanceToNonHighTerrain = this.getApproxDistanceToHighTerrainBiomeTypeFromArray(worldX, worldZ, sampleMinX, sampleMinZ, sampleSize, nearbyBiomes, radius, sampleStep, false);
+                        nonAercloudHeight = this.getHighTerrainMaxYFromDistance(worldX, worldZ, normalHeight, distanceToNonHighTerrain);
                     } else {
-                        int distanceToHighTerrain = this.getApproxDistanceToHighTerrainBiomeTypeFromArray(
-                            worldX,
-                            worldZ,
-                            sampleMinX,
-                            sampleMinZ,
-                            sampleSize,
-                            nearbyBiomes,
-                            radius,
-                            sampleStep,
-                            true
-                        );
-
-                        height = this.getNormalMaxTerrainYNearHighTerrain(
-                            worldX,
-                            worldZ,
-                            normalHeight,
-                            distanceToHighTerrain
-                        );
+                        int distanceToHighTerrain = this.getApproxDistanceToHighTerrainBiomeTypeFromArray(worldX, worldZ, sampleMinX, sampleMinZ, sampleSize, nearbyBiomes, radius, sampleStep, true);
+                        nonAercloudHeight = this.getNormalMaxTerrainYNearHighTerrain(worldX, worldZ, normalHeight, distanceToHighTerrain);
                     }
                 }
 
-                /*
-                 * Pull non-Aercloud terrain down near Aercloud Fields.
-                 */
-                int distanceToAercloudFields = this.getApproxDistanceToAercloudFieldsFromArray(
-                    worldX,
-                    worldZ,
-                    sampleMinX,
-                    sampleMinZ,
-                    sampleSize,
-                    nearbyBiomes,
-                    AERCLOUD_FIELDS_PULL_DISTANCE,
-                    AERCLOUD_FIELDS_PULL_SAMPLE_STEP
-                );
-
-                height = this.applyAercloudFieldsPullDown(
-                    worldX,
-                    worldZ,
-                    height,
-                    distanceToAercloudFields
-                );
-
-                result[index] = height;
+                int aercloudHeight = this.getAercloudFieldsMaxTerrainY(worldX, worldZ);
+                result[index] = this.lerpInt(nonAercloudHeight, aercloudHeight, aercloudInfluence[index]);
             }
         }
 
         return result;
-    }
-
-    private int getApproxDistanceToAercloudFieldsFromArray(
-        int worldX,
-        int worldZ,
-        int sampleMinX,
-        int sampleMinZ,
-        int sampleSize,
-        BiomeGenBase[] nearbyBiomes,
-        int maxRadius,
-        int step
-    ) {
-        int localCenterX = worldX - sampleMinX;
-        int localCenterZ = worldZ - sampleMinZ;
-
-        int bestDistanceSq = maxRadius * maxRadius + 1;
-
-        for (int dz = -maxRadius; dz <= maxRadius; dz += step) {
-            int sampleZ = localCenterZ + dz;
-
-            if (sampleZ < 0 || sampleZ >= sampleSize) {
-                continue;
-            }
-
-            for (int dx = -maxRadius; dx <= maxRadius; dx += step) {
-                int sampleX = localCenterX + dx;
-
-                if (sampleX < 0 || sampleX >= sampleSize) {
-                    continue;
-                }
-
-                int distanceSq = dx * dx + dz * dz;
-
-                if (distanceSq >= bestDistanceSq) {
-                    continue;
-                }
-
-                BiomeGenBase sampleBiome = nearbyBiomes[sampleX + sampleZ * sampleSize];
-
-                if (this.isAercloudFieldsBiome(sampleBiome)) {
-                    bestDistanceSq = distanceSq;
-                }
-            }
-        }
-
-        if (bestDistanceSq > maxRadius * maxRadius) {
-            return maxRadius + 1;
-        }
-
-        return (int)Math.sqrt((double)bestDistanceSq);
-    }
-
-    private int applyAercloudFieldsPullDown(
-        int worldX,
-        int worldZ,
-        int currentHeight,
-        int distanceToAercloudFields
-    ) {
-        if (distanceToAercloudFields > AERCLOUD_FIELDS_PULL_DISTANCE) {
-            return currentHeight;
-        }
-
-        /*
-         * t = 1 near Aercloud Fields
-         * t = 0 far away
-         */
-        double t = 1.0D - ((double)distanceToAercloudFields / (double)AERCLOUD_FIELDS_PULL_DISTANCE);
-
-        if (t < 0.0D) {
-            t = 0.0D;
-        }
-
-        if (t > 1.0D) {
-            t = 1.0D;
-        }
-
-        t = this.smootherstep(t);
-
-        /*
-         * Target height near Aercloud Fields.
-         * Uses the Aercloud Fields height profile so the transition matches.
-         */
-        int aercloudHeight = this.getAercloudFieldsMaxTerrainY(worldX, worldZ);
-        int targetHeight = aercloudHeight + AERCLOUD_FIELDS_PULL_EXTRA_Y;
-
-        /*
-         * Never raise terrain here; only pull down.
-         */
-        if (currentHeight <= targetHeight) {
-            return currentHeight;
-        }
-
-        /*
-         * Pull most strongly near Aercloud Fields.
-         */
-        int pulledHeight = this.lerpInt(currentHeight, targetHeight, t);
-
-        if (pulledHeight > currentHeight) {
-            pulledHeight = currentHeight;
-        }
-
-        return pulledHeight;
     }
 
     private int getAetherPeaksMaxTerrainYFromDistance(int worldX, int worldZ, int normalHeight, int distanceToEdge) {
@@ -1006,9 +899,9 @@ public class ChunkProviderAether implements IChunkProvider {
 
         this.biomesForGeneration = this.worldObj.getWorldChunkManager().loadBlockGeneratorData(this.biomesForGeneration, x * 16, z * 16, 16, 16);
 
-        double[] terrainFactors = this.makeAercloudTerrainFactorsForChunk(x, z);
-        int[] maxTerrainYByColumn = this.makeMaxTerrainYForChunk(x, z, this.biomesForGeneration);
-        this.setBlocksInChunk(x, z, ablock, terrainFactors, this.biomesForGeneration, maxTerrainYByColumn);
+        double[] aercloudInfluence = this.makeAercloudTerrainFactorsForChunk(x, z);
+        int[] maxTerrainYByColumn = this.makeMaxTerrainYForChunk(x, z, this.biomesForGeneration, aercloudInfluence);
+        this.setBlocksInChunk(x, z, ablock, aercloudInfluence, this.biomesForGeneration, maxTerrainYByColumn);
         this.buildSurfaces(x, z, ablock, this.biomesForGeneration);
 
         if (this.chunkHasNonAercloudFieldsBiome(this.biomesForGeneration)) {
@@ -1059,7 +952,6 @@ public class ChunkProviderAether implements IChunkProvider {
     @Override
     public void recreateStructures(int x, int z) {
         this.largeColdAercloudStructure.func_151539_a(this, this.worldObj, x, z, null);
-
         this.aether_caves.func_151539_a(this, this.worldObj, x, z, null);
 
         if (AetherConfig.silver_dungeon_enable) {

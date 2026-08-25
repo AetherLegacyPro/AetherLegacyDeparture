@@ -39,7 +39,7 @@ public class ItemPalladiumEye extends Item {
         int playerZ = MathHelper.floor_double(player.posZ);
         ChunkCoordinates coords = PalladiumDungeonFinder.getNearestPalladiumDungeon(world, playerX, playerZ);
         if (coords == null) {
-            player.addChatComponentMessage(new ChatComponentText("No Palladium Dungeon was found within 8192 blocks."));
+            player.addChatComponentMessage(new ChatComponentText("No Palladium Dungeon was found within 16384 blocks."));
             return stack;
         }
 

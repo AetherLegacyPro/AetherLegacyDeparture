@@ -1009,7 +1009,7 @@ public class CobaltDungeon extends AetherDungeon {
                 return new ItemStack(ItemsAether.arkenium_shovel);
 
             case 4:
-                return new ItemStack(ItemsAether.grapes, random.nextInt(4) + 3);
+                return new ItemStack(ItemsAether.tempest_insignia, 1);
 
             case 5:
                 return new ItemStack(ItemsAether.ambrosium_shard, random.nextInt(25) + 1);
@@ -1073,7 +1073,7 @@ public class CobaltDungeon extends AetherDungeon {
                 return new ItemStack(ItemsAether.confractus_staff);
 
             case 5:
-                return new ItemStack(ItemsAether.ambrosium_shard, random.nextInt(9) + 2);
+                return new ItemStack(ItemsAether.tempest_insignia, random.nextInt(3) + 2);
 
             case 6:
                 return new ItemStack(ItemsAether.arkenium_fragement, random.nextInt(4) + 3);
@@ -1082,7 +1082,7 @@ public class CobaltDungeon extends AetherDungeon {
                 return new ItemStack(BlocksAether.ambrosium_block, random.nextInt(9) + 2);
 
             case 8:
-                return new ItemStack(BlocksAether.aerogel);
+                return new ItemStack(BlocksAether.aerogel, random.nextInt(3) + 2);
 
             case 9:
                 return new ItemStack(ItemsAether.shears_of_agnes, 1);

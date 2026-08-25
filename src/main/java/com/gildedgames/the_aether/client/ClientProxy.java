@@ -12,14 +12,10 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import com.gildedgames.the_aether.CommonProxy;
 import com.gildedgames.the_aether.blocks.BlocksAether;
-import com.gildedgames.the_aether.blocks.ancient.enchanter.RenderHandlerTileEntity;
-import com.gildedgames.the_aether.blocks.elysian_totem.TileEntityElysianTotem;
-import com.gildedgames.the_aether.blocks.elysian_totem.TileEntityElysianTotemRenderer;
 import com.gildedgames.the_aether.client.audio.AetherMusicHandler;
 import com.gildedgames.the_aether.client.gui.GuiAetherInGame;
 import com.gildedgames.the_aether.client.gui.GuiSunAltar;
 import com.gildedgames.the_aether.client.renders.RendersAether;
-import com.gildedgames.the_aether.client.renders.TileEntityAncientEnchanterRenderer;
 import com.gildedgames.the_aether.client.renders.block.BlockAceninumClusterRenderer;
 import com.gildedgames.the_aether.client.renders.block.BlockAuraliteClusterRenderer;
 import com.gildedgames.the_aether.client.renders.block.ElysianChestRenderer;
@@ -30,7 +26,6 @@ import com.gildedgames.the_aether.client.renders.block.TileEntityTreasureChestBr
 import com.gildedgames.the_aether.client.renders.block.TreasureChestBreakableRenderer;
 import com.gildedgames.the_aether.entities.particles.EntityCloudSmokeFX;
 import com.gildedgames.the_aether.entities.particles.EntityGoldenFX;
-import com.gildedgames.the_aether.tileentity.TileEntityAncientEnchanter;
 import com.gildedgames.the_aether.tileentity.TileEntityElysianChest;
 import com.gildedgames.the_aether.tileentity.TileEntitySkyrootChest;
 import com.gildedgames.the_aether.tileentity.TileEntityTreasureChestBreakable;
@@ -39,7 +34,6 @@ import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.Loader;
 import net.minecraftforge.common.MinecraftForge;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -70,18 +64,10 @@ public class ClientProxy extends CommonProxy {
 		BlocksAether.TreasureChestBreakbleRenderId = RenderingRegistry.getNextAvailableRenderId();
 		RenderingRegistry.registerBlockHandler(new TreasureChestBreakableRenderer(new TileEntityTreasureChestBreakable()));
 
-		BlocksAether.AncientEnchanterRenderId = RenderingRegistry.getNextAvailableRenderId();
-		RenderingRegistry.registerBlockHandler(new RenderHandlerTileEntity(new TileEntityAncientEnchanter(), BlocksAether.AncientEnchanterRenderId));
-
-		BlocksAether.ElysianTotemRenderId = RenderingRegistry.getNextAvailableRenderId();
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityElysianTotem.class, new TileEntityElysianTotemRenderer());
-		RenderingRegistry.registerBlockHandler(new RenderHandlerTileEntity(new TileEntityElysianTotem(), BlocksAether.ElysianTotemRenderId, 0.6f).setYOffset(-0.5f));
-
 		BlocksAether.AuraliteClusterRenderId = RenderingRegistry.getNextAvailableRenderId();
 		RenderingRegistry.registerBlockHandler(new BlockAuraliteClusterRenderer());
 		RenderingRegistry.registerBlockHandler(new BlockAceninumClusterRenderer());
 
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAncientEnchanter.class, new TileEntityAncientEnchanterRenderer());
 		RendersAether.initialization();
 
         if(AetherConfig.enableStormySkiesWeather()) {

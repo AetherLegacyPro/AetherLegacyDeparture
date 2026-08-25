@@ -43,8 +43,10 @@ public class TileEntityEnchanter extends AetherTileEntity {
 			this.powerRemaining--;
 			if (this.currentEnchantment != null) {
 				if (this.worldObj.getBlock(this.xCoord, this.yCoord - 1, this.zCoord) == BlocksAether.enchanted_gravitite) {
-					this.progress += 2.5F;
-				} else {
+					this.progress += 3F;
+				} else if (this.worldObj.getBlock(this.xCoord, this.yCoord - 1, this.zCoord) == BlocksAether.reinforced_arkenium_block) {
+                    this.progress += 6F;
+                } else {
 					this.progress++;
 				}
 			}

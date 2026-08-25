@@ -3,6 +3,7 @@ package com.gildedgames.the_aether.blocks.container;
 import java.util.Random;
 import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.blocks.BlocksAether;
+import com.gildedgames.the_aether.entities.particles.NewAetherParticleHandler;
 import com.gildedgames.the_aether.network.AetherGuiHandler;
 import com.gildedgames.the_aether.tileentity.TileEntityEnchanter;
 import net.minecraft.block.Block;
@@ -78,15 +79,20 @@ public class BlockEnchanter extends BlockAetherContainer {
 			float f1 = (float) y + 1.0F + (random.nextFloat() * 6F) / 16F;
 			float f2 = (float) z + 0.5F;
 
+            final double d0 = x + 0.75f;
+            final double d2 = y + 0.99f;
+            final double d3 = z + 0.5f;
+            final double d4 = 0.2199999988079071;
+            final double d5 = 0.27000001072883606;
+
 			world.spawnParticle("smoke", f, f1, f2, 0.0D, 0.0D, 0.0D);
-			world.spawnParticle("flame", f, f1, f2, 0.0D, 0.0D, 0.0D);
+            NewAetherParticleHandler.AMBROSIUM_FLAME.spawn(world, d0 - d5, d2 + d4, d3, 0.0, 0.0, 0.0, 0.0f);
 		}
 	}
 
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
 		player.openGui(Aether.instance, AetherGuiHandler.enchanter, world, x, y, z);
-
 		return true;
 	}
 

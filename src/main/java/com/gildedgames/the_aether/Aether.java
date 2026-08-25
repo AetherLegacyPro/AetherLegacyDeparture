@@ -5,7 +5,6 @@ import com.gildedgames.the_aether.events.AetherEntityEvents;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
 import com.gildedgames.the_aether.blocks.BlocksAether;
-import com.gildedgames.the_aether.blocks.ancient.enchanter.AetherEnchantmentsAncientEnchanter;
 import com.gildedgames.the_aether.entities.EntitiesAether;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.network.AetherNetwork;
@@ -71,7 +70,6 @@ public class Aether {
 		EntitiesAether.initialization();
 		AetherCreativeTabs.initialization();
 		AetherTileEntities.initialization();
-		AetherEnchantmentsAncientEnchanter.init();
 		AetherWorld.initialization();
 		AchievementsAether.initialization();
 

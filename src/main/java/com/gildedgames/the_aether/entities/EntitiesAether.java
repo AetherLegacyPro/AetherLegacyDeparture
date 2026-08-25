@@ -8,7 +8,6 @@ import com.gildedgames.the_aether.entities.bosses.valkyrie_queen.EntityAncientVa
 import com.gildedgames.the_aether.entities.bosses.valkyrie_queen.EntityDivineValkyrieQueen;
 import com.gildedgames.the_aether.entities.bosses.valkyrie_queen.EntityValkyrieQueen;
 import com.gildedgames.the_aether.entities.effects.PotionInebriation;
-import com.gildedgames.the_aether.entities.fake.item.EntityFakeItem;
 import com.gildedgames.the_aether.entities.passive.EntityAerwhale;
 import com.gildedgames.the_aether.entities.passive.EntityCarrionSprout;
 import com.gildedgames.the_aether.entities.passive.EntityFlynx;
@@ -169,7 +168,6 @@ public class EntitiesAether {
 		register(EntityMythicFireMinion.class, "mythic_fire_minion", 76, 0xd20070, 0xd6006c);
 		register(EntityHellfireCinder.class, "hellfire_cinder", 77, 0xe5903d, 0x7e2a00);
 		register(EntityMiniCloud.class, "mini_cloud", 24, 80, 3, false);
-		register(EntityFakeItem.class, "fake_item_legacy", 62, 64, 20, true);
 
 		register(EntityFloatingBlock.class, "floating_block", 25, 160, 20, true);
 		register(EntityTNTPresent.class, "tnt_present", 26, 160, 20, true);
@@ -196,6 +194,7 @@ public class EntitiesAether {
 		register(EntityParachute.class, "parachute", 31, 160, 20, true);
 		register(EntityAetherItem.class, "aether_item", 32, 160, 20, true);
         register(EntityPalladiumEye.class, "palladium_eye", 90, 64, 20, true);
+        register(EntityTempestInsignia.class, "osmium_eye", 91, 64, 20, true);
 
 		AetherMoaTypes.initialization();
 		PotionInebriation.initialization();

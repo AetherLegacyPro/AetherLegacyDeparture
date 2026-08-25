@@ -16,8 +16,8 @@ public class PalladiumDungeonTotem extends WorldGenerator {
 
 		world.setBlock(x, y, z, BlocksAether.genesis_stone);
 		world.setBlock(x, y + 1, z, BlocksAether.crystallized_genesis_stone);
-		world.setBlock(x, y + 2, z, BlocksAether.elysian_totem, 0, 0);
-		world.setBlock(x, y + 3, z, BlocksAether.elysian_totem, 1, 1);
+		world.setBlock(x, y + 2, z, BlocksAether.elysian_totem);
+		world.setBlock(x, y + 3, z, BlocksAether.elysian_totem_top);
 
 		world.setBlock(x + 1, y, z + 1, BlocksAether.light_genesis_stone);
 		world.setBlock(x - 1, y, z - 1, BlocksAether.light_genesis_stone);

@@ -1,6 +1,5 @@
 package com.gildedgames.the_aether.tileentity;
 
-import com.gildedgames.the_aether.blocks.elysian_totem.TileEntityElysianTotem;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class AetherTileEntities {
@@ -19,7 +18,5 @@ public class AetherTileEntities {
 		GameRegistry.registerTileEntity(TileEntityElysianChest.class, "elysian_chest");
 		GameRegistry.registerTileEntity(TileEntityAetherEnchantmentTable.class, "aether_enchantment_table");
 		GameRegistry.registerTileEntity(TileEntityDivineEnchantmentTable.class, "divine_enchantment_table");
-		GameRegistry.registerTileEntity(TileEntityElysianTotem.class, "elysian_totem");
 	}
-
 }

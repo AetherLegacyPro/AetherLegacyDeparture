@@ -11,8 +11,8 @@ public final class PalladiumDungeonFinder {
 
     private static final boolean DEBUG = false;
 
-    //8192 blocks in every direction from thrown
-    private static final int SEARCH_RADIUS_CHUNKS = 512;
+    //16384 blocks in every direction from thrown
+    private static final int SEARCH_RADIUS_CHUNKS = 1024;
     private static final long PALLADIUM_SEED_SALT = 0x50414C4C41444955L;
 
     private PalladiumDungeonFinder() {
@@ -131,11 +131,6 @@ public final class PalladiumDungeonFinder {
             return null;
         }
 
-        BiomeGenBase biome = world.getWorldChunkManager().getBiomeGenAt(blockX + 8, blockZ + 8);
-        if (biome != AetherWorld.divine_island) {
-            return null;
-        }
-
         int rarity = AetherConfig.palladium_dungeon_rarity;
         if (!AetherConfig.palladium_dungeon_enable || rarity <= 0) {
             return null;
@@ -146,9 +141,15 @@ public final class PalladiumDungeonFinder {
             return null;
         }
 
-        int unusedL3 = random.nextInt(3) + 2;
+        //Makes sure the random matches with the one in PalladiumDungeonWorldGen at the start
+        random.nextInt(3);
 
         if (random.nextInt(35) != 0) {
+            return null;
+        }
+
+        BiomeGenBase biome = world.getWorldChunkManager().getBiomeGenAt(blockX + 8, blockZ + 8);
+        if (biome != AetherWorld.divine_island) {
             return null;
         }
 
@@ -157,7 +158,7 @@ public final class PalladiumDungeonFinder {
         int dungeonZ = blockZ + random.nextInt(16) + 8;
 
         if (DEBUG) {
-            System.out.println("[Palladium Finder] Candidate at X=" + dungeonX + ", Y=" + (dungeonY + 1) + ", Z=" + dungeonZ + " from chunk " + chunkX + ", " + chunkZ + "; l3=" + unusedL3);
+            System.out.println("[Palladium Finder] Candidate at X=" + dungeonX + ", Y=" + (dungeonY + 1) + ", Z=" + dungeonZ + " from chunk " + chunkX + ", " + chunkZ);
         }
 
         return new ChunkCoordinates(dungeonX, dungeonY + 1, dungeonZ);

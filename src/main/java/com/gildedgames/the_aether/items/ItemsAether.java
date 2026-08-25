@@ -193,7 +193,7 @@ public class ItemsAether {
 	public static Item lore_book, skyroot_bed_item, aether_portal_frame, developer_stick;
 	public static Item aether_tune, ascending_dawn, welcoming_skies, legacy;
 	public static Item moa_egg, aether_spawn_egg;
-    public static Item palladium_eye;
+    public static Item tempest_insignia, palladium_eye;
 
 	public static Item black_dye, white_dye, blue_dye;
 
@@ -383,7 +383,6 @@ public class ItemsAether {
 		aerca_powder = register("aerca_powder", new ItemAether(AetherCreativeTabs.material).setTextureName(Aether.find("misc/aerca_powder")));
 		charged_tempest_core = register("charged_tempest_core", new ItemChargedTempestCore().setTextureName(Aether.find("misc/charged_tempest_core")));
 		aceninum_shard = register("aceninum_shard", new ItemAceninumShard().setTextureName(Aether.find("misc/aceninum_shard")));
-        palladium_eye = register("palladium_eye", new ItemPalladiumEye().setTextureName(Aether.find("misc/palladium_eye")));
 		crystal_dragon_scales = register("crystal_dragon_scales", new ItemAether(AetherCreativeTabs.material).setTextureName(Aether.find("misc/crystal_dragon_scales")));
 		elysian_dragon_scales = register("elysian_dragon_scales", new ItemAceninumShard().setTextureName(Aether.find("misc/elysian_dragon_scales")));
 
@@ -688,6 +687,9 @@ public class ItemsAether {
 		elysian_core = register("elysian_core", new ItemElysianCore().setCreativeTab(AetherCreativeTabs.misc).setTextureName(Aether.find("misc/elysian_core")));
 		notched_core = register("notched_core", new ItemNotchedCore().setCreativeTab(AetherCreativeTabs.misc).setTextureName(Aether.find("misc/notched_core")));
 		elysian_offering = register("elysian_offering", new ItemElysianOffering().setCreativeTab(AetherCreativeTabs.misc).setTextureName(Aether.find("misc/elysian_offering")));
+
+        tempest_insignia = register("tempest_insignia", new ItemTempestInsignia().setTextureName(Aether.find("misc/tempest_insignia")));
+        palladium_eye = register("palladium_eye", new ItemPalladiumEye().setTextureName(Aether.find("misc/palladium_eye")));
 
 		dungeon_key = register("dungeon_key", new ItemDungeonKey());
 		skyroot_bucket = register("skyroot_bucket", new ItemSkyrootBucket());

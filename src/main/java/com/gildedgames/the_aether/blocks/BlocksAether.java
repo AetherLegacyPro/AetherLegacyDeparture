@@ -1,7 +1,9 @@
 package com.gildedgames.the_aether.blocks;
 
 import com.gildedgames.the_aether.Aether;
+import com.gildedgames.the_aether.blocks.container.*;
 import com.gildedgames.the_aether.blocks.decorative.*;
+import com.gildedgames.the_aether.blocks.elysian_totem.BlockElysianTotemTop;
 import com.gildedgames.the_aether.blocks.natural.*;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.items.block.ItemAetherSlab;
@@ -21,23 +23,9 @@ import com.gildedgames.the_aether.world.biome.decoration.AetherGenPurpleSkyrootT
 import com.gildedgames.the_aether.world.biome.decoration.AetherGenSkyrootTree;
 import com.gildedgames.the_aether.world.biome.decoration.AetherGenVoidTree;
 import com.gildedgames.the_aether.world.biome.decoration.AetherGenWisprootTree;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
-
-import com.gildedgames.the_aether.blocks.container.BlockAetherEnchantmentTable;
-import com.gildedgames.the_aether.blocks.container.BlockAetherTNT;
-import com.gildedgames.the_aether.blocks.container.BlockAmplifier;
-import com.gildedgames.the_aether.blocks.container.BlockDivineEnchantmentTable;
-import com.gildedgames.the_aether.blocks.container.BlockElysianChest;
-import com.gildedgames.the_aether.blocks.container.BlockEnchanter;
-import com.gildedgames.the_aether.blocks.container.BlockFreezer;
-import com.gildedgames.the_aether.blocks.container.BlockIncubator;
-import com.gildedgames.the_aether.blocks.container.BlockSkyrootChest;
-import com.gildedgames.the_aether.blocks.container.BlockSkyrootWorkbench;
-import com.gildedgames.the_aether.blocks.container.BlockSunAltar;
-import com.gildedgames.the_aether.blocks.container.BlockTreasureChestBreakable;
 import com.gildedgames.the_aether.blocks.dungeon.BlockAceninumCluster;
 import com.gildedgames.the_aether.blocks.dungeon.BlockDiamondAercloud;
 import com.gildedgames.the_aether.blocks.dungeon.BlockDungeonBase;
@@ -52,8 +40,6 @@ import com.gildedgames.the_aether.blocks.dungeon.BlockTreasureChest;
 import com.gildedgames.the_aether.blocks.elysian_totem.BlockElysianTotem;
 import com.gildedgames.the_aether.blocks.portal.BlockAetherPortal;
 import com.gildedgames.the_aether.blocks.util.BlockFloating;
-import com.gildedgames.the_aether.blocks.ancient.enchanter.BlockAncientEnchanter;
-
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemBlock;
@@ -124,7 +110,7 @@ public class BlocksAether {
 	public static Block skyroot_bed, aether_tnt;
 	public static Block sun_altar, skyroot_workbench;
 	public static Block ancient_enchanter, aether_enchantment_table, divine_enchantment_table;
-	public static Block elysian_totem;
+	public static Block elysian_totem, elysian_totem_top;
 
 	//Bronze Dungeon Exclusive Blocks
 	public static Block carved_stone, ancient_carved_stone, divine_carved_stone, mythic_carved_stone;
@@ -211,12 +197,10 @@ public class BlocksAether {
 
 	//Not Complete or Not Implemented
 
-	public static int AncientEnchanterRenderId;
 	public static int SkyrootChestRenderId;
 	public static int ElysianChestRenderId;
 	public static int TreasureChestBreakbleRenderId;
 	public static int AuraliteClusterRenderId;
-	public static int ElysianTotemRenderId;
 
 	public static void initialization() {
 
@@ -444,7 +428,8 @@ public class BlocksAether {
 		ancient_enchanter = register("ancient_enchanter", new BlockAncientEnchanter());
 		aether_enchantment_table = register("aether_enchantment_table", new BlockAetherEnchantmentTable().setLightOpacity(3));
 		divine_enchantment_table = registerRarity("divine_enchantment_table", new BlockDivineEnchantmentTable(), ItemsAether.divine_aether_loot).setLightOpacity(3);
-		elysian_totem = register("elysian_totem", new BlockElysianTotem());
+		elysian_totem = registerHidden("elysian_totem", new BlockElysianTotem());
+        elysian_totem_top = registerHidden("elysian_totem_top", new BlockElysianTotemTop());
 		present = register("present", new BlockPresent());
 		skyroot_workbench = register("skyroot_workbench", new BlockSkyrootWorkbench());
 		skyroot_chest = register("skyroot_chest", new BlockSkyrootChest(0));
@@ -503,7 +488,7 @@ public class BlocksAether {
 		light_genesis_stone = registerHidden("light_genesis_stone", new BlockLightGenesisStone());
 		genesis_stone_2 = register("genesis_stone_2", new BlockGenesisStone2());
 		light_genesis_stone_2 = register("light_genesis_stone_2", new BlockLightGenesisStone2());
-		crystallized_genesis_stone = register("crystallized_genesis_stone", new BlockCrystallizedGenesisStone().setBlockTextureName(Aether.find("crystallized_genesis_stone")));
+		crystallized_genesis_stone = register("crystallized_genesis_stone", new BlockCrystallizedGenesisStone("crystallized_genesis_stone_top", "crystallized_genesis_stone_side"));
 
 		zanite_pile = registerMeta("zanite_pile", new BlockZanitePile());
 		arkenium_pile = registerMeta("arkenium_pile", new BlockArkeniumPile());

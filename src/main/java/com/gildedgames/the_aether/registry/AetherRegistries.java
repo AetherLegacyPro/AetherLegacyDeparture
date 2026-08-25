@@ -743,6 +743,8 @@ public class AetherRegistries {
 			registerShapeless(new ItemStack(Blocks.sticky_piston), Blocks.piston, ItemsAether.purple_swet_ball);
 		}
 
+        registerShapeless(new ItemStack(ItemsAether.tempest_insignia), ItemsAether.resistance_stone, ItemsAether.tempest_core);
+
 		registerShapeless(new ItemStack(BlocksAether.skyroot_planks, 4), new ItemStack(BlocksAether.skyroot_log, 1, 0));
 		registerShapeless(new ItemStack(BlocksAether.skyroot_planks, 4), new ItemStack(BlocksAether.skyroot_log, 1, 1));
 		registerShapeless(new ItemStack(BlocksAether.golden_oak_planks, 4), new ItemStack(BlocksAether.golden_oak_new_log, 1, 0));

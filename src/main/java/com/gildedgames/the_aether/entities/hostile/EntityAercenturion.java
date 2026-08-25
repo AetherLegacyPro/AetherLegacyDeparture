@@ -1,5 +1,7 @@
 package com.gildedgames.the_aether.entities.hostile;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Vec3;
 import java.util.List;
@@ -22,6 +24,7 @@ import net.minecraft.entity.player.EntityPlayer;
 
 public class EntityAercenturion extends EntityMob {
 	public int shootTime;
+    private int attackTimer;
 
     public EntityAercenturion(final World world) {
         super(world);
@@ -180,7 +183,7 @@ public class EntityAercenturion extends EntityMob {
                 hasdivineralBoots = ((boots.getItem() == ItemsAether.divineral_boots) || (boots.getItem() == ItemsAether.amplified_arkenium_boots) || (boots.getItem() == ItemsAether.amplified_continuum_boots) || (boots.getItem() == ItemsAether.amplified_neptune_boots) || (boots.getItem() == ItemsAether.amplified_valkyrie_boots) || (boots.getItem() == ItemsAether.amplified_zanite_boots) || (boots.getItem() == ItemsAether.amplified_phoenix_boots) || (boots.getItem() == ItemsAether.amplified_obsidian_boots) || (boots.getItem() == ItemsAether.amplified_agility_boots));
 
             if (hasdivineralHelmet || hasdivineralChest || hasdivineralLegs || hasdivineralBoots) {
-
+                this.attackTimer = 30;
             	target.attackEntityFrom(DamageSource.magic, 6.0F);
             	this.worldObj.setEntityState(this, (byte)4);
                 final boolean flag = target.attackEntityFrom(DamageSource.causeMobDamage(this), (float)(6 + this.rand.nextInt(5)));
@@ -192,6 +195,7 @@ public class EntityAercenturion extends EntityMob {
             }
 
             else {
+                this.attackTimer = 30;
             	target.attackEntityFrom(DamageSource.magic, 10.0F);
             	this.worldObj.setEntityState(this, (byte)4);
                 final boolean flag = target.attackEntityFrom(DamageSource.causeMobDamage(this), (float)(12 + this.rand.nextInt(5)));
@@ -205,6 +209,12 @@ public class EntityAercenturion extends EntityMob {
         }
 
         return true;
+    }
+
+    @SideOnly(Side.CLIENT)
+    public int getAttackTimer()
+    {
+        return this.attackTimer;
     }
 
     public void onDeath(DamageSource source) {
