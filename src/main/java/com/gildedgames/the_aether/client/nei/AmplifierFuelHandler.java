@@ -68,13 +68,18 @@ public class AmplifierFuelHandler extends TemplateRecipeHandler {
     }
 
     @Override
+    public String specifyTransferRect() {
+        return "amplifier fuel";
+    }
+
+    @Override
     public String getGuiTexture() {
         return "aether_legacy:textures/gui/amplifier.png";
     }
 
     @Override
     public void loadCraftingRecipes(String outputId, Object... results) {
-        if ("all".equals(outputId) || "*".equals(outputId) || "amplifier".equals(outputId)) {
+        if ("all".equals(outputId) || "*".equals(outputId) || "amplifier fuel".equals(outputId)) {
             List<ItemStack> allInputs = new ArrayList<>();
             List<ItemStack> allOutputs = new ArrayList<>();
             for (AetherAmplifier amp : AetherAPI.instance()
@@ -135,7 +140,7 @@ public class AmplifierFuelHandler extends TemplateRecipeHandler {
                     .getAmplifierFuel(fuelStack);
                 if (fuel != null) {
                     int burn = fuel.getTimeGiven();
-                    mc.fontRenderer.drawString("Fuel burn: " + burn + " ticks (" + (burn / 20) + "s)", 6, 70, 0x404040);
+                    mc.fontRenderer.drawString("Amplify " + burn + " ticks", 73, 51, 0x404040);
                 }
             }
         }
@@ -143,7 +148,7 @@ public class AmplifierFuelHandler extends TemplateRecipeHandler {
 
     @Override
     public void loadTransferRects() {
-        transferRects.add(new RecipeTransferRect(new Rectangle(51, 25, 14, 14), "amplifier"));
+        transferRects.add(new RecipeTransferRect(new Rectangle(51, 25, 14, 14), "amplifier fuel"));
         transferRects.add(new RecipeTransferRect(new Rectangle(74, 24, 24, 16), "amplifier"));
     }
 

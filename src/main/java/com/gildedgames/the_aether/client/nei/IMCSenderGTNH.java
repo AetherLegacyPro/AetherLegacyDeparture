@@ -32,9 +32,9 @@ public class IMCSenderGTNH {
      * These were copied from GTNewHorizons/GoodGenerator (Fork of GlodBlock/GoodGenerator)
      * Author: GlodBlock
      */
-
     private static void sendHandler(String aName, String aBlock) {
-        sendHandler(aName, aBlock, 1);
+        sendHandler(aName, aBlock, 2147483647);
+        //workaround to display more than one recipe in one page
     }
 
     private static void sendHandler(String aName, String aBlock, int maxRecipesPerPage) {

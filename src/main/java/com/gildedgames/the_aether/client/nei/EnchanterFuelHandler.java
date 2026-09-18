@@ -72,13 +72,18 @@ public class EnchanterFuelHandler extends TemplateRecipeHandler {
     }
 
     @Override
+    public String specifyTransferRect() {
+        return "enchanter fuel";
+    }
+
+    @Override
     public String getGuiTexture() {
         return "aether_legacy:textures/gui/new_altar.png";
     }
 
     @Override
     public void loadCraftingRecipes(String outputId, Object... results) {
-        if ("all".equals(outputId) || "*".equals(outputId) || "enchanter".equals(outputId)) {
+        if ("all".equals(outputId) || "*".equals(outputId) || "enchanter fuel".equals(outputId)) {
             // 收集所有配方（输入和输出）
             List<ItemStack> allInputs = new ArrayList<>();
             List<ItemStack> allOutputs = new ArrayList<>();
@@ -143,7 +148,7 @@ public class EnchanterFuelHandler extends TemplateRecipeHandler {
                     .getEnchantmentFuel(fuelStack);
                 if (fuel != null) {
                     int burn = fuel.getTimeGiven();
-                    mc.fontRenderer.drawString("Fuel burn: " + burn + " ticks (" + (burn / 20) + "s)", 6, 70, 0x404040);
+                    mc.fontRenderer.drawString("Enchant " + burn + " ticks", 73, 51, 0x404040);
                 }
             }
         }
@@ -151,7 +156,7 @@ public class EnchanterFuelHandler extends TemplateRecipeHandler {
 
     @Override
     public void loadTransferRects() {
-        transferRects.add(new RecipeTransferRect(new Rectangle(51, 25, 14, 14), "enchanter"));
+        transferRects.add(new RecipeTransferRect(new Rectangle(51, 25, 14, 14), "enchanter fuel"));
         transferRects.add(new RecipeTransferRect(new Rectangle(74, 24, 24, 16), "enchanter"));
     }
 

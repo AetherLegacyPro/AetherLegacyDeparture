@@ -72,6 +72,11 @@ public class EnchanterRecipeHandler extends TemplateRecipeHandler {
     }
 
     @Override
+    public String specifyTransferRect() {
+        return "enchanter";
+    }
+
+    @Override
     public String getGuiTexture() {
         return "aether_legacy:textures/gui/new_altar.png";
     }
@@ -142,15 +147,15 @@ public class EnchanterRecipeHandler extends TemplateRecipeHandler {
                 .getEnchantment(r.input.item);
             if (ench != null) {
                 progressTicks = ench.getTimeRequired();
-                String s = "Time required: " + progressTicks + " ticks (" + (progressTicks / 20) + "s)";
-                mc.fontRenderer.drawString(s, 6, 70, 0x404040);
+                String s = "Require " + progressTicks + " ticks";
+                mc.fontRenderer.drawString(s, 73, 51, 0x404040);
             }
         }
     }
 
     @Override
     public void loadTransferRects() {
-        transferRects.add(new RecipeTransferRect(new Rectangle(51, 25, 14, 14), "enchanter"));
+        transferRects.add(new RecipeTransferRect(new Rectangle(51, 25, 14, 14), "enchanter fuel"));
         transferRects.add(new RecipeTransferRect(new Rectangle(74, 24, 24, 16), "enchanter"));
     }
 

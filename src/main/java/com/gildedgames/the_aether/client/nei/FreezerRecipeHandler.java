@@ -72,6 +72,11 @@ public class FreezerRecipeHandler extends TemplateRecipeHandler {
     }
 
     @Override
+    public String specifyTransferRect() {
+        return "freezer";
+    }
+
+    @Override
     public String getGuiTexture() {
         return "aether_legacy:textures/gui/altar.png";
     }
@@ -139,15 +144,15 @@ public class FreezerRecipeHandler extends TemplateRecipeHandler {
                 .getFreezable(r.input.item);
             if (fz != null) {
                 progressTicks = fz.getTimeRequired();
-                String s = "Time required: " + progressTicks + " ticks (" + (progressTicks / 20) + "s)";
-                mc.fontRenderer.drawString(s, 6, 70, 0x404040);
+                String s = "Require " + progressTicks + " ticks";
+                mc.fontRenderer.drawString(s, 73, 51, 0x404040);
             }
         }
     }
 
     @Override
     public void loadTransferRects() {
-        transferRects.add(new RecipeTransferRect(new Rectangle(51, 25, 14, 14), "freezer"));
+        transferRects.add(new RecipeTransferRect(new Rectangle(51, 25, 14, 14), "freezer fuel"));
         transferRects.add(new RecipeTransferRect(new Rectangle(74, 24, 24, 16), "freezer"));
     }
 
